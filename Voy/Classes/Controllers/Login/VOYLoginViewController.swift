@@ -46,7 +46,6 @@ class VOYLoginViewController: UIViewController {
 
 extension VOYLoginViewController : VOYAlertViewControllerDelegate {
     func buttonDidTap(alertController: VOYAlertViewController, button: UIButton, index: Int) {
-        print(index)
         alertController.close()
     }
 }

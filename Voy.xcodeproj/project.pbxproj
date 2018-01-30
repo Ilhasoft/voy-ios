@@ -11,6 +11,8 @@
 		655BD1262020F3C100D69EA2 /* VOYAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 655BD1242020F3C100D69EA2 /* VOYAlertViewController.swift */; };
 		655BD1272020F3C100D69EA2 /* VOYAlertViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 655BD1252020F3C100D69EA2 /* VOYAlertViewController.xib */; };
 		655BD1292020F53400D69EA2 /* ISModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 655BD1282020F53400D69EA2 /* ISModalViewController.swift */; };
+		655BD12F2021148800D69EA2 /* VOYAddReportAttachViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 655BD12D2021148800D69EA2 /* VOYAddReportAttachViewController.swift */; };
+		655BD1302021148800D69EA2 /* VOYAddReportAttachViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 655BD12E2021148800D69EA2 /* VOYAddReportAttachViewController.xib */; };
 		65F346072020A87A00AC5437 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65F346062020A87A00AC5437 /* AppDelegate.swift */; };
 		65F346092020A87A00AC5437 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65F346082020A87A00AC5437 /* ViewController.swift */; };
 		65F3460C2020A87A00AC5437 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 65F3460A2020A87A00AC5437 /* Main.storyboard */; };
@@ -54,6 +56,8 @@
 		655BD1242020F3C100D69EA2 /* VOYAlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VOYAlertViewController.swift; sourceTree = "<group>"; };
 		655BD1252020F3C100D69EA2 /* VOYAlertViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VOYAlertViewController.xib; sourceTree = "<group>"; };
 		655BD1282020F53400D69EA2 /* ISModalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ISModalViewController.swift; sourceTree = "<group>"; };
+		655BD12D2021148800D69EA2 /* VOYAddReportAttachViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VOYAddReportAttachViewController.swift; sourceTree = "<group>"; };
+		655BD12E2021148800D69EA2 /* VOYAddReportAttachViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VOYAddReportAttachViewController.xib; sourceTree = "<group>"; };
 		65F346032020A87A00AC5437 /* Voy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Voy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		65F346062020A87A00AC5437 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		65F346082020A87A00AC5437 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -123,6 +127,22 @@
 			path = Alert;
 			sourceTree = "<group>";
 		};
+		655BD12B202112F600D69EA2 /* ReportDetail */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ReportDetail;
+			sourceTree = "<group>";
+		};
+		655BD12C202112F600D69EA2 /* AddReport */ = {
+			isa = PBXGroup;
+			children = (
+				655BD12D2021148800D69EA2 /* VOYAddReportAttachViewController.swift */,
+				655BD12E2021148800D69EA2 /* VOYAddReportAttachViewController.xib */,
+			);
+			path = AddReport;
+			sourceTree = "<group>";
+		};
 		65F345FA2020A87A00AC5437 = {
 			isa = PBXGroup;
 			children = (
@@ -190,6 +210,8 @@
 		65F346352020B24500AC5437 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				655BD12C202112F600D69EA2 /* AddReport */,
+				655BD12B202112F600D69EA2 /* ReportDetail */,
 				655BD1232020F2D200D69EA2 /* Alert */,
 				65F346362020B25400AC5437 /* Login */,
 			);
@@ -359,6 +381,7 @@
 				655BD1272020F3C100D69EA2 /* VOYAlertViewController.xib in Resources */,
 				65F346112020A87A00AC5437 /* LaunchScreen.storyboard in Resources */,
 				65F3460E2020A87A00AC5437 /* Assets.xcassets in Resources */,
+				655BD1302021148800D69EA2 /* VOYAddReportAttachViewController.xib in Resources */,
 				65F3460C2020A87A00AC5437 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -534,6 +557,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				655BD12F2021148800D69EA2 /* VOYAddReportAttachViewController.swift in Sources */,
 				655BD1262020F3C100D69EA2 /* VOYAlertViewController.swift in Sources */,
 				655BD1292020F53400D69EA2 /* ISModalViewController.swift in Sources */,
 				65F3463D2020B58A00AC5437 /* VOYLoginViewController.swift in Sources */,
