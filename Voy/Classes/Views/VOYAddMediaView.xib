@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="VOYAddMediaView" customModule="Voy" customModuleProvider="target">
+            <connections>
+                <outlet property="btRemove" destination="GWz-Es-bmb" id="UU3-oO-qdZ"/>
+                <outlet property="contentView" destination="i5M-Pr-FkT" id="m4f-4y-uma"/>
+                <outlet property="imgView" destination="IHg-L7-jsa" id="8lg-Bb-L4z"/>
+                <outlet property="imgViewPlusIcon" destination="cYC-0F-jni" id="THn-xg-gur"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="136" height="136"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="IHg-L7-jsa">
+                    <rect key="frame" x="0.0" y="0.0" width="136" height="136"/>
+                </imageView>
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="noun1172956Cc" translatesAutoresizingMaskIntoConstraints="NO" id="cYC-0F-jni">
+                    <rect key="frame" x="49.5" y="49.5" width="38" height="38"/>
+                </imageView>
+                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GWz-Es-bmb">
+                    <rect key="frame" x="124" y="-9" width="22" height="22"/>
+                    <state key="normal" image="group5Copy3"/>
+                    <connections>
+                        <action selector="btRemoveTapped:" destination="-1" eventType="touchUpInside" id="msd-oy-56b"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="0.97647058823529409" green="0.97647058823529409" blue="0.97647058823529409" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="cYC-0F-jni" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="JsY-tH-64q"/>
+                <constraint firstItem="cYC-0F-jni" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="XHr-gb-Ge4"/>
+                <constraint firstItem="IHg-L7-jsa" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="beh-Jf-7Sz"/>
+                <constraint firstItem="IHg-L7-jsa" firstAttribute="bottom" secondItem="i5M-Pr-FkT" secondAttribute="bottom" id="doT-3l-Fw6"/>
+                <constraint firstItem="IHg-L7-jsa" firstAttribute="trailing" secondItem="i5M-Pr-FkT" secondAttribute="trailing" id="eaJ-XX-BRE"/>
+                <constraint firstItem="GWz-Es-bmb" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" constant="67" id="lK2-3d-zLR"/>
+                <constraint firstItem="GWz-Es-bmb" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" constant="-66" id="oFK-Jh-VnM"/>
+                <constraint firstItem="IHg-L7-jsa" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="typ-9i-EA1"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="group5Copy3" width="22" height="21"/>
+        <image name="noun1172956Cc" width="38" height="38"/>
+    </resources>
+</document>

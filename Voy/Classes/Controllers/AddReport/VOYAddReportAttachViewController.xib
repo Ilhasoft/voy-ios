@@ -43,14 +43,34 @@
                         <constraint firstAttribute="height" constant="3" id="h7Z-ZF-wSO"/>
                     </constraints>
                 </view>
-                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="HIa-Zk-W3E">
+                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="HIa-Zk-W3E">
                     <rect key="frame" x="25" y="137" width="325" height="325"/>
                     <subviews>
-                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="6JE-qH-gL8">
-                            <rect key="frame" x="0.0" y="0.0" width="162.5" height="325"/>
+                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="6JE-qH-gL8">
+                            <rect key="frame" x="0.0" y="0.0" width="157.5" height="325"/>
+                            <subviews>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cVB-0N-71r" customClass="VOYAddMediaView" customModule="Voy" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="0.0" width="157.5" height="157.5"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </view>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OiF-uA-6Nx" customClass="VOYAddMediaView" customModule="Voy" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="167.5" width="157.5" height="157.5"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </view>
+                            </subviews>
                         </stackView>
-                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="mIp-HH-i55">
-                            <rect key="frame" x="162.5" y="0.0" width="162.5" height="325"/>
+                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="mIp-HH-i55">
+                            <rect key="frame" x="167.5" y="0.0" width="157.5" height="325"/>
+                            <subviews>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0OR-aI-Kvw" customClass="VOYAddMediaView" customModule="Voy" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="0.0" width="157.5" height="157.5"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </view>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ULU-ca-A7I" customClass="VOYAddMediaView" customModule="Voy" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="167.5" width="157.5" height="157.5"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </view>
+                            </subviews>
                         </stackView>
                     </subviews>
                     <constraints>

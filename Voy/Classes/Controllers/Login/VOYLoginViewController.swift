@@ -37,9 +37,11 @@ class VOYLoginViewController: UIViewController {
     //MARK: Component Events
     
     @IBAction func btLoginTapped(_ sender: Any) {
-        let alertController = VOYAlertViewController(title: "Internet connection", message: "We couldn’t identify an active internet connection, please check your connection and try again.", buttonNames:["Ok","ok"])
-        alertController.delegate = self
-        alertController.show(true, inViewController: self)
+//        let alertController = VOYAlertViewController(title: "Internet connection", message: "We couldn’t identify an active internet connection, please check your connection and try again.", buttonNames:["Ok","ok"])
+//        alertController.delegate = self
+//        alertController.show(true, inViewController: self)
+        let addReportAttachViewController = VOYAddReportAttachViewController()
+        self.navigationController?.pushViewController(addReportAttachViewController, animated: true)
     }
     
 }
