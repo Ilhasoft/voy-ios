@@ -1,0 +1,817 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 48;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		65F346072020A87A00AC5437 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65F346062020A87A00AC5437 /* AppDelegate.swift */; };
+		65F346092020A87A00AC5437 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65F346082020A87A00AC5437 /* ViewController.swift */; };
+		65F3460C2020A87A00AC5437 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 65F3460A2020A87A00AC5437 /* Main.storyboard */; };
+		65F3460E2020A87A00AC5437 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 65F3460D2020A87A00AC5437 /* Assets.xcassets */; };
+		65F346112020A87A00AC5437 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 65F3460F2020A87A00AC5437 /* LaunchScreen.storyboard */; };
+		65F3461C2020A87B00AC5437 /* VoyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65F3461B2020A87B00AC5437 /* VoyTests.swift */; };
+		65F346272020A87B00AC5437 /* VoyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65F346262020A87B00AC5437 /* VoyUITests.swift */; };
+		65F3463D2020B58A00AC5437 /* VOYLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65F3463B2020B58A00AC5437 /* VOYLoginViewController.swift */; };
+		65F3463E2020B58A00AC5437 /* VOYLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 65F3463C2020B58A00AC5437 /* VOYLoginViewController.xib */; };
+		65F346422020B82B00AC5437 /* VOYTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65F346402020B82B00AC5437 /* VOYTextFieldView.swift */; };
+		65F346432020B82B00AC5437 /* VOYTextFieldView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 65F346412020B82B00AC5437 /* VOYTextFieldView.xib */; };
+		7CE0EFAA68FD7879EE12CDA5 /* Pods_Voy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E550C0C568807F52623837F /* Pods_Voy.framework */; };
+		C365BA53A254E96BCDEB9AAF /* Pods_VoyUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33E4711F114752F9A169B817 /* Pods_VoyUITests.framework */; };
+		D36E24B6691A028EA1A52082 /* Pods_VoyTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABF132ADC4EF1DA114732EB6 /* Pods_VoyTests.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		65F346182020A87B00AC5437 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 65F345FB2020A87A00AC5437 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 65F346022020A87A00AC5437;
+			remoteInfo = Voy;
+		};
+		65F346232020A87B00AC5437 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 65F345FB2020A87A00AC5437 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 65F346022020A87A00AC5437;
+			remoteInfo = Voy;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		09E6F9A93ABF9A8CD9032B8F /* Pods-VoyTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VoyTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-VoyTests/Pods-VoyTests.release.xcconfig"; sourceTree = "<group>"; };
+		1C63B2E9849D938061D8A8BB /* Pods-VoyTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VoyTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-VoyTests/Pods-VoyTests.debug.xcconfig"; sourceTree = "<group>"; };
+		1E550C0C568807F52623837F /* Pods_Voy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Voy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		33E4711F114752F9A169B817 /* Pods_VoyUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VoyUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5C5F78CC110E27296AC6C772 /* Pods-VoyUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VoyUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-VoyUITests/Pods-VoyUITests.release.xcconfig"; sourceTree = "<group>"; };
+		65F346032020A87A00AC5437 /* Voy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Voy.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		65F346062020A87A00AC5437 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		65F346082020A87A00AC5437 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		65F3460B2020A87A00AC5437 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		65F3460D2020A87A00AC5437 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		65F346102020A87A00AC5437 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		65F346122020A87A00AC5437 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		65F346172020A87B00AC5437 /* VoyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VoyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		65F3461B2020A87B00AC5437 /* VoyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoyTests.swift; sourceTree = "<group>"; };
+		65F3461D2020A87B00AC5437 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		65F346222020A87B00AC5437 /* VoyUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VoyUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		65F346262020A87B00AC5437 /* VoyUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoyUITests.swift; sourceTree = "<group>"; };
+		65F346282020A87B00AC5437 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		65F3463B2020B58A00AC5437 /* VOYLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VOYLoginViewController.swift; sourceTree = "<group>"; };
+		65F3463C2020B58A00AC5437 /* VOYLoginViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VOYLoginViewController.xib; sourceTree = "<group>"; };
+		65F346402020B82B00AC5437 /* VOYTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VOYTextFieldView.swift; sourceTree = "<group>"; };
+		65F346412020B82B00AC5437 /* VOYTextFieldView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VOYTextFieldView.xib; sourceTree = "<group>"; };
+		6BA92341A1C7FC405623FD46 /* Pods-VoyUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VoyUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-VoyUITests/Pods-VoyUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		A3774A32A2AA74A335CD6885 /* Pods-Voy.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Voy.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Voy/Pods-Voy.debug.xcconfig"; sourceTree = "<group>"; };
+		ABF132ADC4EF1DA114732EB6 /* Pods_VoyTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VoyTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B50D70A526449FB3324B7983 /* Pods-Voy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Voy.release.xcconfig"; path = "Pods/Target Support Files/Pods-Voy/Pods-Voy.release.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		65F346002020A87A00AC5437 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7CE0EFAA68FD7879EE12CDA5 /* Pods_Voy.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		65F346142020A87A00AC5437 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D36E24B6691A028EA1A52082 /* Pods_VoyTests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		65F3461F2020A87B00AC5437 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C365BA53A254E96BCDEB9AAF /* Pods_VoyUITests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		65F345FA2020A87A00AC5437 = {
+			isa = PBXGroup;
+			children = (
+				65F346052020A87A00AC5437 /* Voy */,
+				65F3461A2020A87B00AC5437 /* VoyTests */,
+				65F346252020A87B00AC5437 /* VoyUITests */,
+				65F346042020A87A00AC5437 /* Products */,
+				C719BE0786B50BD4697C92B9 /* Pods */,
+				E41BF611D24D11A81D73B236 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		65F346042020A87A00AC5437 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				65F346032020A87A00AC5437 /* Voy.app */,
+				65F346172020A87B00AC5437 /* VoyTests.xctest */,
+				65F346222020A87B00AC5437 /* VoyUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		65F346052020A87A00AC5437 /* Voy */ = {
+			isa = PBXGroup;
+			children = (
+				65F346342020B23A00AC5437 /* Classes */,
+				65F346062020A87A00AC5437 /* AppDelegate.swift */,
+				65F346082020A87A00AC5437 /* ViewController.swift */,
+				65F3460A2020A87A00AC5437 /* Main.storyboard */,
+				65F3460D2020A87A00AC5437 /* Assets.xcassets */,
+				65F3460F2020A87A00AC5437 /* LaunchScreen.storyboard */,
+				65F346122020A87A00AC5437 /* Info.plist */,
+			);
+			path = Voy;
+			sourceTree = "<group>";
+		};
+		65F3461A2020A87B00AC5437 /* VoyTests */ = {
+			isa = PBXGroup;
+			children = (
+				65F3461B2020A87B00AC5437 /* VoyTests.swift */,
+				65F3461D2020A87B00AC5437 /* Info.plist */,
+			);
+			path = VoyTests;
+			sourceTree = "<group>";
+		};
+		65F346252020A87B00AC5437 /* VoyUITests */ = {
+			isa = PBXGroup;
+			children = (
+				65F346262020A87B00AC5437 /* VoyUITests.swift */,
+				65F346282020A87B00AC5437 /* Info.plist */,
+			);
+			path = VoyUITests;
+			sourceTree = "<group>";
+		};
+		65F346342020B23A00AC5437 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				65F3463F2020B80F00AC5437 /* Views */,
+				65F346352020B24500AC5437 /* Controllers */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		65F346352020B24500AC5437 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				65F346362020B25400AC5437 /* Login */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		65F346362020B25400AC5437 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				65F3463B2020B58A00AC5437 /* VOYLoginViewController.swift */,
+				65F3463C2020B58A00AC5437 /* VOYLoginViewController.xib */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		65F3463F2020B80F00AC5437 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				65F346402020B82B00AC5437 /* VOYTextFieldView.swift */,
+				65F346412020B82B00AC5437 /* VOYTextFieldView.xib */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		C719BE0786B50BD4697C92B9 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				A3774A32A2AA74A335CD6885 /* Pods-Voy.debug.xcconfig */,
+				B50D70A526449FB3324B7983 /* Pods-Voy.release.xcconfig */,
+				1C63B2E9849D938061D8A8BB /* Pods-VoyTests.debug.xcconfig */,
+				09E6F9A93ABF9A8CD9032B8F /* Pods-VoyTests.release.xcconfig */,
+				6BA92341A1C7FC405623FD46 /* Pods-VoyUITests.debug.xcconfig */,
+				5C5F78CC110E27296AC6C772 /* Pods-VoyUITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		E41BF611D24D11A81D73B236 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1E550C0C568807F52623837F /* Pods_Voy.framework */,
+				ABF132ADC4EF1DA114732EB6 /* Pods_VoyTests.framework */,
+				33E4711F114752F9A169B817 /* Pods_VoyUITests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		65F346022020A87A00AC5437 /* Voy */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 65F3462B2020A87B00AC5437 /* Build configuration list for PBXNativeTarget "Voy" */;
+			buildPhases = (
+				06B3FEA5D74FC835DD497ED6 /* [CP] Check Pods Manifest.lock */,
+				65F345FF2020A87A00AC5437 /* Sources */,
+				65F346002020A87A00AC5437 /* Frameworks */,
+				65F346012020A87A00AC5437 /* Resources */,
+				42DA7F30FB556E98FC231194 /* [CP] Embed Pods Frameworks */,
+				494ADE4FC227B84A4C04B30D /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Voy;
+			productName = Voy;
+			productReference = 65F346032020A87A00AC5437 /* Voy.app */;
+			productType = "com.apple.product-type.application";
+		};
+		65F346162020A87A00AC5437 /* VoyTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 65F3462E2020A87B00AC5437 /* Build configuration list for PBXNativeTarget "VoyTests" */;
+			buildPhases = (
+				E7FB3E66DEF7D8C830965FC1 /* [CP] Check Pods Manifest.lock */,
+				65F346132020A87A00AC5437 /* Sources */,
+				65F346142020A87A00AC5437 /* Frameworks */,
+				65F346152020A87A00AC5437 /* Resources */,
+				0C4FEB4F06018ADE6D650746 /* [CP] Embed Pods Frameworks */,
+				FFFA98C5B7C06838CF641BE8 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				65F346192020A87B00AC5437 /* PBXTargetDependency */,
+			);
+			name = VoyTests;
+			productName = VoyTests;
+			productReference = 65F346172020A87B00AC5437 /* VoyTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		65F346212020A87B00AC5437 /* VoyUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 65F346312020A87B00AC5437 /* Build configuration list for PBXNativeTarget "VoyUITests" */;
+			buildPhases = (
+				02DF6943BB7A5F715E942890 /* [CP] Check Pods Manifest.lock */,
+				65F3461E2020A87B00AC5437 /* Sources */,
+				65F3461F2020A87B00AC5437 /* Frameworks */,
+				65F346202020A87B00AC5437 /* Resources */,
+				2E5AE3B7258F2ACEFFC03929 /* [CP] Embed Pods Frameworks */,
+				4664528FB3269C43914D9D39 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				65F346242020A87B00AC5437 /* PBXTargetDependency */,
+			);
+			name = VoyUITests;
+			productName = VoyUITests;
+			productReference = 65F346222020A87B00AC5437 /* VoyUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		65F345FB2020A87A00AC5437 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = VOY;
+				LastSwiftUpdateCheck = 0920;
+				LastUpgradeCheck = 0920;
+				ORGANIZATIONNAME = Ilhasoft;
+				TargetAttributes = {
+					65F346022020A87A00AC5437 = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+					};
+					65F346162020A87A00AC5437 = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 65F346022020A87A00AC5437;
+					};
+					65F346212020A87B00AC5437 = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 65F346022020A87A00AC5437;
+					};
+				};
+			};
+			buildConfigurationList = 65F345FE2020A87A00AC5437 /* Build configuration list for PBXProject "Voy" */;
+			compatibilityVersion = "Xcode 8.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 65F345FA2020A87A00AC5437;
+			productRefGroup = 65F346042020A87A00AC5437 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				65F346022020A87A00AC5437 /* Voy */,
+				65F346162020A87A00AC5437 /* VoyTests */,
+				65F346212020A87B00AC5437 /* VoyUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		65F346012020A87A00AC5437 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				65F346432020B82B00AC5437 /* VOYTextFieldView.xib in Resources */,
+				65F3463E2020B58A00AC5437 /* VOYLoginViewController.xib in Resources */,
+				65F346112020A87A00AC5437 /* LaunchScreen.storyboard in Resources */,
+				65F3460E2020A87A00AC5437 /* Assets.xcassets in Resources */,
+				65F3460C2020A87A00AC5437 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		65F346152020A87A00AC5437 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		65F346202020A87B00AC5437 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		02DF6943BB7A5F715E942890 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-VoyUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		06B3FEA5D74FC835DD497ED6 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Voy-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		0C4FEB4F06018ADE6D650746 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-VoyTests/Pods-VoyTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		2E5AE3B7258F2ACEFFC03929 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-VoyUITests/Pods-VoyUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		42DA7F30FB556E98FC231194 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Voy/Pods-Voy-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/TPKeyboardAvoiding/TPKeyboardAvoiding.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TPKeyboardAvoiding.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Voy/Pods-Voy-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		4664528FB3269C43914D9D39 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-VoyUITests/Pods-VoyUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		494ADE4FC227B84A4C04B30D /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Voy/Pods-Voy-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E7FB3E66DEF7D8C830965FC1 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-VoyTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FFFA98C5B7C06838CF641BE8 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-VoyTests/Pods-VoyTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		65F345FF2020A87A00AC5437 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				65F3463D2020B58A00AC5437 /* VOYLoginViewController.swift in Sources */,
+				65F346092020A87A00AC5437 /* ViewController.swift in Sources */,
+				65F346072020A87A00AC5437 /* AppDelegate.swift in Sources */,
+				65F346422020B82B00AC5437 /* VOYTextFieldView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		65F346132020A87A00AC5437 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				65F3461C2020A87B00AC5437 /* VoyTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		65F3461E2020A87B00AC5437 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				65F346272020A87B00AC5437 /* VoyUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		65F346192020A87B00AC5437 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 65F346022020A87A00AC5437 /* Voy */;
+			targetProxy = 65F346182020A87B00AC5437 /* PBXContainerItemProxy */;
+		};
+		65F346242020A87B00AC5437 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 65F346022020A87A00AC5437 /* Voy */;
+			targetProxy = 65F346232020A87B00AC5437 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		65F3460A2020A87A00AC5437 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				65F3460B2020A87A00AC5437 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		65F3460F2020A87A00AC5437 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				65F346102020A87A00AC5437 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		65F346292020A87B00AC5437 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		65F3462A2020A87B00AC5437 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		65F3462C2020A87B00AC5437 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A3774A32A2AA74A335CD6885 /* Pods-Voy.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = ZE9A9HAM9Z;
+				INFOPLIST_FILE = Voy/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = br.com.ilhasoft.Voy;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		65F3462D2020A87B00AC5437 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B50D70A526449FB3324B7983 /* Pods-Voy.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = ZE9A9HAM9Z;
+				INFOPLIST_FILE = Voy/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = br.com.ilhasoft.Voy;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		65F3462F2020A87B00AC5437 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1C63B2E9849D938061D8A8BB /* Pods-VoyTests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = ZE9A9HAM9Z;
+				INFOPLIST_FILE = VoyTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = br.com.ilhasoft.VoyTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Voy.app/Voy";
+			};
+			name = Debug;
+		};
+		65F346302020A87B00AC5437 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 09E6F9A93ABF9A8CD9032B8F /* Pods-VoyTests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = ZE9A9HAM9Z;
+				INFOPLIST_FILE = VoyTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = br.com.ilhasoft.VoyTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Voy.app/Voy";
+			};
+			name = Release;
+		};
+		65F346322020A87B00AC5437 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6BA92341A1C7FC405623FD46 /* Pods-VoyUITests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = ZE9A9HAM9Z;
+				INFOPLIST_FILE = VoyUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = br.com.ilhasoft.VoyUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Voy;
+			};
+			name = Debug;
+		};
+		65F346332020A87B00AC5437 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5C5F78CC110E27296AC6C772 /* Pods-VoyUITests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = ZE9A9HAM9Z;
+				INFOPLIST_FILE = VoyUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = br.com.ilhasoft.VoyUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Voy;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		65F345FE2020A87A00AC5437 /* Build configuration list for PBXProject "Voy" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				65F346292020A87B00AC5437 /* Debug */,
+				65F3462A2020A87B00AC5437 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		65F3462B2020A87B00AC5437 /* Build configuration list for PBXNativeTarget "Voy" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				65F3462C2020A87B00AC5437 /* Debug */,
+				65F3462D2020A87B00AC5437 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		65F3462E2020A87B00AC5437 /* Build configuration list for PBXNativeTarget "VoyTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				65F3462F2020A87B00AC5437 /* Debug */,
+				65F346302020A87B00AC5437 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		65F346312020A87B00AC5437 /* Build configuration list for PBXNativeTarget "VoyUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				65F346322020A87B00AC5437 /* Debug */,
+				65F346332020A87B00AC5437 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 65F345FB2020A87A00AC5437 /* Project object */;
+}

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="VOYLoginViewController" customModule="Voy" customModuleProvider="target">
+            <connections>
+                <outlet property="scrollView" destination="dIk-ii-lej" id="Rqw-se-Kcn"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dIk-ii-lej" customClass="TPKeyboardAvoidingScrollView">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Aw-3c-Vyc" userLabel="ContentView">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            <subviews>
+                                <stackView opaque="NO" contentMode="scaleToFill" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="RRE-U2-A8D">
+                                    <rect key="frame" x="96" y="131" width="183" height="65"/>
+                                    <subviews>
+                                        <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" image="group19" translatesAutoresizingMaskIntoConstraints="NO" id="dU9-xK-nNB">
+                                            <rect key="frame" x="0.0" y="0.0" width="55" height="65"/>
+                                        </imageView>
+                                        <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" image="group14" translatesAutoresizingMaskIntoConstraints="NO" id="te7-pP-kgB">
+                                            <rect key="frame" x="59" y="0.0" width="66" height="65"/>
+                                        </imageView>
+                                        <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" image="group12" translatesAutoresizingMaskIntoConstraints="NO" id="6tW-ZW-yye">
+                                            <rect key="frame" x="129" y="0.0" width="54" height="65"/>
+                                        </imageView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="183" id="5mB-Ym-lOz"/>
+                                        <constraint firstAttribute="height" constant="65" id="d3q-nS-qIa"/>
+                                    </constraints>
+                                </stackView>
+                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aFv-sJ-4fm" customClass="VOYTextFieldView" customModule="Voy">
+                                    <rect key="frame" x="67" y="348" width="240" height="58"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </view>
+                            </subviews>
+                            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstItem="RRE-U2-A8D" firstAttribute="centerY" secondItem="7Aw-3c-Vyc" secondAttribute="centerY" constant="-170" id="KA6-ni-nsf"/>
+                                <constraint firstItem="RRE-U2-A8D" firstAttribute="centerX" secondItem="7Aw-3c-Vyc" secondAttribute="centerX" id="Vd4-WC-Hjd"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <constraints>
+                        <constraint firstItem="7Aw-3c-Vyc" firstAttribute="top" secondItem="dIk-ii-lej" secondAttribute="top" id="D73-kc-e65"/>
+                        <constraint firstAttribute="trailing" secondItem="7Aw-3c-Vyc" secondAttribute="trailing" id="IT3-sc-tKP"/>
+                        <constraint firstItem="7Aw-3c-Vyc" firstAttribute="height" secondItem="dIk-ii-lej" secondAttribute="height" id="M04-Gl-Spk"/>
+                        <constraint firstItem="7Aw-3c-Vyc" firstAttribute="leading" secondItem="dIk-ii-lej" secondAttribute="leading" id="k8F-c4-Lgn"/>
+                        <constraint firstAttribute="bottom" secondItem="7Aw-3c-Vyc" secondAttribute="bottom" id="mbt-ew-szB"/>
+                        <constraint firstItem="7Aw-3c-Vyc" firstAttribute="width" secondItem="dIk-ii-lej" secondAttribute="width" id="pwo-LD-Hk4"/>
+                    </constraints>
+                </scrollView>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="dIk-ii-lej" secondAttribute="trailing" id="DyX-m2-Xui"/>
+                <constraint firstAttribute="bottom" secondItem="dIk-ii-lej" secondAttribute="bottom" id="UvA-c4-Fil"/>
+                <constraint firstItem="dIk-ii-lej" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="XVc-lI-n3C"/>
+                <constraint firstItem="dIk-ii-lej" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="iYg-um-7TB"/>
+            </constraints>
+            <point key="canvasLocation" x="33.5" y="54.5"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="group12" width="54" height="53"/>
+        <image name="group14" width="66" height="65"/>
+        <image name="group19" width="55" height="55"/>
+    </resources>
+</document>
