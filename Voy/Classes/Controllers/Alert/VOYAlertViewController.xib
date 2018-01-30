@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="HelveticaNeue.ttc">
+            <string>HelveticaNeue</string>
+            <string>HelveticaNeue-Medium</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="VOYAlertViewController" customModule="Voy" customModuleProvider="target">
+            <connections>
+                <outlet property="heightStackView" destination="0zS-4b-Sdq" id="nK8-lR-moc"/>
+                <outlet property="lbMessage" destination="UMy-P4-XlG" id="QNz-hR-qFd"/>
+                <outlet property="lbTitle" destination="gaD-8F-3Oi" id="RfP-BP-OCH"/>
+                <outlet property="stackView" destination="qC0-a4-1qZ" id="Dv6-1h-yHP"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pjM-cF-n7q">
+                    <rect key="frame" x="40" y="198.5" width="295" height="270"/>
+                    <subviews>
+                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="qC0-a4-1qZ">
+                            <rect key="frame" x="0.0" y="221" width="295" height="49"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="49" id="0zS-4b-Sdq"/>
+                            </constraints>
+                        </stackView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Permissions" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gaD-8F-3Oi">
+                            <rect key="frame" x="28" y="21" width="238" height="31"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="31" id="TX7-GU-qIh"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="19"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="To use the application, GPS must be enabled. Click OK and you will be directed to the settings to enable it." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UMy-P4-XlG">
+                            <rect key="frame" x="17" y="80" width="261" height="112"/>
+                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" red="1" green="0.67470329299999998" blue="0.2245470943" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="270" id="8N4-GZ-vFq"/>
+                        <constraint firstAttribute="trailing" secondItem="gaD-8F-3Oi" secondAttribute="trailing" constant="29" id="IZ1-XS-vkz"/>
+                        <constraint firstItem="qC0-a4-1qZ" firstAttribute="top" secondItem="UMy-P4-XlG" secondAttribute="bottom" constant="29" id="MOS-uk-L4b"/>
+                        <constraint firstAttribute="bottom" secondItem="qC0-a4-1qZ" secondAttribute="bottom" id="RzR-3Z-BfU"/>
+                        <constraint firstAttribute="trailing" secondItem="UMy-P4-XlG" secondAttribute="trailing" constant="17" id="WT7-AZ-LKk"/>
+                        <constraint firstAttribute="trailing" secondItem="qC0-a4-1qZ" secondAttribute="trailing" id="Z2f-Qu-PrA"/>
+                        <constraint firstItem="gaD-8F-3Oi" firstAttribute="leading" secondItem="pjM-cF-n7q" secondAttribute="leading" constant="28" id="ZsN-iI-hWM"/>
+                        <constraint firstItem="UMy-P4-XlG" firstAttribute="top" secondItem="gaD-8F-3Oi" secondAttribute="bottom" constant="28" id="fwi-rw-GMz"/>
+                        <constraint firstAttribute="width" constant="295" id="gBM-ew-tbz"/>
+                        <constraint firstItem="gaD-8F-3Oi" firstAttribute="top" secondItem="pjM-cF-n7q" secondAttribute="top" constant="21" id="kw8-UE-Yu5"/>
+                        <constraint firstItem="qC0-a4-1qZ" firstAttribute="leading" secondItem="pjM-cF-n7q" secondAttribute="leading" id="lsK-Cp-r1I"/>
+                        <constraint firstItem="UMy-P4-XlG" firstAttribute="leading" secondItem="pjM-cF-n7q" secondAttribute="leading" constant="17" id="q2q-dc-q17"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <integer key="value" value="10"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="pjM-cF-n7q" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="87F-0y-vft"/>
+                <constraint firstItem="pjM-cF-n7q" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="cpf-Ae-BbY"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <point key="canvasLocation" x="33.5" y="63.5"/>
+        </view>
+    </objects>
+</document>

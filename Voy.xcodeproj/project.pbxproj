@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		655BD1222020E4FA00D69EA2 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 655BD1212020E4FA00D69EA2 /* UIColorExtension.swift */; };
+		655BD1262020F3C100D69EA2 /* VOYAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 655BD1242020F3C100D69EA2 /* VOYAlertViewController.swift */; };
+		655BD1272020F3C100D69EA2 /* VOYAlertViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 655BD1252020F3C100D69EA2 /* VOYAlertViewController.xib */; };
+		655BD1292020F53400D69EA2 /* ISModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 655BD1282020F53400D69EA2 /* ISModalViewController.swift */; };
 		65F346072020A87A00AC5437 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65F346062020A87A00AC5437 /* AppDelegate.swift */; };
 		65F346092020A87A00AC5437 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65F346082020A87A00AC5437 /* ViewController.swift */; };
 		65F3460C2020A87A00AC5437 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 65F3460A2020A87A00AC5437 /* Main.storyboard */; };
@@ -46,6 +50,10 @@
 		1E550C0C568807F52623837F /* Pods_Voy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Voy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		33E4711F114752F9A169B817 /* Pods_VoyUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VoyUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5C5F78CC110E27296AC6C772 /* Pods-VoyUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VoyUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-VoyUITests/Pods-VoyUITests.release.xcconfig"; sourceTree = "<group>"; };
+		655BD1212020E4FA00D69EA2 /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
+		655BD1242020F3C100D69EA2 /* VOYAlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VOYAlertViewController.swift; sourceTree = "<group>"; };
+		655BD1252020F3C100D69EA2 /* VOYAlertViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VOYAlertViewController.xib; sourceTree = "<group>"; };
+		655BD1282020F53400D69EA2 /* ISModalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ISModalViewController.swift; sourceTree = "<group>"; };
 		65F346032020A87A00AC5437 /* Voy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Voy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		65F346062020A87A00AC5437 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		65F346082020A87A00AC5437 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -97,6 +105,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		655BD1202020E4E500D69EA2 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				655BD1282020F53400D69EA2 /* ISModalViewController.swift */,
+				655BD1212020E4FA00D69EA2 /* UIColorExtension.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		655BD1232020F2D200D69EA2 /* Alert */ = {
+			isa = PBXGroup;
+			children = (
+				655BD1242020F3C100D69EA2 /* VOYAlertViewController.swift */,
+				655BD1252020F3C100D69EA2 /* VOYAlertViewController.xib */,
+			);
+			path = Alert;
+			sourceTree = "<group>";
+		};
 		65F345FA2020A87A00AC5437 = {
 			isa = PBXGroup;
 			children = (
@@ -154,6 +180,7 @@
 		65F346342020B23A00AC5437 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				655BD1202020E4E500D69EA2 /* Utils */,
 				65F3463F2020B80F00AC5437 /* Views */,
 				65F346352020B24500AC5437 /* Controllers */,
 			);
@@ -163,6 +190,7 @@
 		65F346352020B24500AC5437 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				655BD1232020F2D200D69EA2 /* Alert */,
 				65F346362020B25400AC5437 /* Login */,
 			);
 			path = Controllers;
@@ -328,6 +356,7 @@
 			files = (
 				65F346432020B82B00AC5437 /* VOYTextFieldView.xib in Resources */,
 				65F3463E2020B58A00AC5437 /* VOYLoginViewController.xib in Resources */,
+				655BD1272020F3C100D69EA2 /* VOYAlertViewController.xib in Resources */,
 				65F346112020A87A00AC5437 /* LaunchScreen.storyboard in Resources */,
 				65F3460E2020A87A00AC5437 /* Assets.xcassets in Resources */,
 				65F3460C2020A87A00AC5437 /* Main.storyboard in Resources */,
@@ -505,8 +534,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				655BD1262020F3C100D69EA2 /* VOYAlertViewController.swift in Sources */,
+				655BD1292020F53400D69EA2 /* ISModalViewController.swift in Sources */,
 				65F3463D2020B58A00AC5437 /* VOYLoginViewController.swift in Sources */,
 				65F346092020A87A00AC5437 /* ViewController.swift in Sources */,
+				655BD1222020E4FA00D69EA2 /* UIColorExtension.swift in Sources */,
 				65F346072020A87A00AC5437 /* AppDelegate.swift in Sources */,
 				65F346422020B82B00AC5437 /* VOYTextFieldView.swift in Sources */,
 			);
@@ -678,6 +710,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = ZE9A9HAM9Z;
 				INFOPLIST_FILE = Voy/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = br.com.ilhasoft.Voy;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -694,6 +727,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = ZE9A9HAM9Z;
 				INFOPLIST_FILE = Voy/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = br.com.ilhasoft.Voy;
 				PRODUCT_NAME = "$(TARGET_NAME)";

@@ -11,6 +11,11 @@ import UIKit
 class VOYLoginViewController: UIViewController {
 
     @IBOutlet var scrollView:UIScrollView!
+    @IBOutlet weak var stackViewIcons: UIStackView!
+    @IBOutlet weak var lbHey: UILabel!
+    @IBOutlet weak var userNameView: VOYTextFieldView!
+    @IBOutlet weak var passwordView: VOYTextFieldView!
+    @IBOutlet weak var btLogin: UIView!
     
     init() {
         super.init(nibName:"VOYLoginViewController",bundle:nil)
@@ -22,8 +27,8 @@ class VOYLoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        self.automaticallyAdjustsScrollViewInsets = false
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
     }
 
     //MARK: Class Methods
@@ -31,5 +36,17 @@ class VOYLoginViewController: UIViewController {
     
     //MARK: Component Events
     
+    @IBAction func btLoginTapped(_ sender: Any) {
+        let alertController = VOYAlertViewController(title: "Internet connection", message: "We couldn’t identify an active internet connection, please check your connection and try again.", buttonNames:["Ok","ok"])
+        alertController.delegate = self
+        alertController.show(true, inViewController: self)
+    }
+    
+}
 
+extension VOYLoginViewController : VOYAlertViewControllerDelegate {
+    func buttonDidTap(alertController: VOYAlertViewController, button: UIButton, index: Int) {
+        print(index)
+        alertController.close()
+    }
 }

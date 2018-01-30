@@ -12,26 +12,27 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="VOYTextFieldView" customModule="Voy" customModuleProvider="target">
             <connections>
                 <outlet property="contentView" destination="i5M-Pr-FkT" id="YCC-qN-IUq"/>
+                <outlet property="heightViewBottom" destination="NtP-iC-DEd" id="SWH-mL-Jtn"/>
                 <outlet property="txtField" destination="d3H-fg-p9A" id="9RD-kl-7xS"/>
                 <outlet property="viewBottom" destination="QhQ-ch-dQm" id="Xkz-dM-RXa"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
+            <rect key="frame" x="0.0" y="0.0" width="375" height="45"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="d3H-fg-p9A">
-                    <rect key="frame" x="0.0" y="3" width="375" height="57"/>
+                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="d3H-fg-p9A">
+                    <rect key="frame" x="0.0" y="5" width="375" height="40"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="57" id="VY9-PQ-8xI"/>
+                        <constraint firstAttribute="height" constant="40" id="VY9-PQ-8xI"/>
                     </constraints>
                     <nil key="textColor"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits"/>
                 </textField>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QhQ-ch-dQm">
-                    <rect key="frame" x="0.0" y="59" width="375" height="1"/>
+                    <rect key="frame" x="0.0" y="44" width="375" height="1"/>
                     <color key="backgroundColor" red="0.75098687770000006" green="0.75842239140000001" blue="0.75842239140000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="1" id="NtP-iC-DEd"/>
@@ -48,7 +49,7 @@
                 <constraint firstItem="QhQ-ch-dQm" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="mMD-UZ-t6B"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="-64.5" y="-73"/>
+            <point key="canvasLocation" x="-64.5" y="-80.5"/>
         </view>
     </objects>
 </document>

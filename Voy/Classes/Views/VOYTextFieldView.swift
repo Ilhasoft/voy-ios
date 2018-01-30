@@ -11,9 +11,21 @@ import UIKit
 @IBDesignable
 class VOYTextFieldView: UIView {
     
-    static let activeColor = UIColor.blue
-    static let defaultColor = UIColor.gray
+    static let activeColor  = UIColor(hex: "00cbff")
+    static let defaultColor = UIColor(hex:"f0f0f0")
     
+    @IBInspectable var placeholder:String = "" {
+        didSet {
+            self.txtField.placeholder = placeholder
+        }
+    }
+    @IBInspectable var password:Bool = false {
+        didSet {
+            self.txtField.isSecureTextEntry = password
+        }
+    }
+    
+    @IBOutlet var heightViewBottom:NSLayoutConstraint!
     @IBOutlet var txtField:UITextField!
     @IBOutlet var viewBottom:UIView!
     @IBOutlet var contentView:UIView!
@@ -40,10 +52,20 @@ class VOYTextFieldView: UIView {
 
 extension VOYTextFieldView : UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
+        self.heightViewBottom.constant = 2
+        UIView.animate(withDuration: 0.5) {
+            self.layoutIfNeeded()
+        }
         self.viewBottom.backgroundColor = VOYTextFieldView.activeColor
+        self.txtField.textColor = VOYTextFieldView.activeColor
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
+        self.heightViewBottom.constant = 1
+        UIView.animate(withDuration: 0.5) {
+            self.layoutIfNeeded()
+        }
         self.viewBottom.backgroundColor = VOYTextFieldView.defaultColor
+        self.txtField.textColor = UIColor.black
     }
 }
