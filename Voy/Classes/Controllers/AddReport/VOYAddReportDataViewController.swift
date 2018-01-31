@@ -37,7 +37,7 @@ class VOYAddReportDataViewController: UIViewController {
 
     func setupLayout() {
         self.txtFieldLink.layer.borderWidth = 1
-        self.txtFieldLink.layer.borderColor = UIColor.lightGray.cgColor
+        self.txtFieldLink.layer.borderColor = UIColor(hex: "f0f0f0").cgColor
     }
     
     func setupTableView() {
