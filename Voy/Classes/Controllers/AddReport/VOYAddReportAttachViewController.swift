@@ -10,6 +10,7 @@ import UIKit
 
 class VOYAddReportAttachViewController: UIViewController {
 
+    @IBOutlet var mediaViews:[VOYAddMediaView]!
     @IBOutlet var lbTitle:UILabel!
 
     init() {
@@ -23,7 +24,26 @@ class VOYAddReportAttachViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        for mediaView in mediaViews {
+            mediaView.delegate = self
+        }
     }
+    
+}
 
+extension VOYAddReportAttachViewController : VOYAddMediaViewDelegate {
+    func mediaViewDidTap(mediaView: VOYAddMediaView) {
+        let actionSheetController = VOYActionSheetViewController(buttonNames: ["Movie","Photo"], icons: [#imageLiteral(resourceName: "noun1018049Cc"),#imageLiteral(resourceName: "noun938989Cc")])
+        actionSheetController.delegate = self
+        actionSheetController.show(true, inViewController: self)
+    }
+}
+
+extension VOYAddReportAttachViewController : VOYActionSheetViewControllerDelegate {
+    func buttonDidTap(actionSheetViewController: VOYActionSheetViewController, button: UIButton, index: Int) {
+        //TODO: Implement actions
+    }
+    func cancelButtonDidTap(actionSheetViewController:VOYActionSheetViewController) {
+        actionSheetViewController.close()
+    }
 }
