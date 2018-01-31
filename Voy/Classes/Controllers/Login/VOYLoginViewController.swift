@@ -40,6 +40,7 @@ class VOYLoginViewController: UIViewController {
 //        let alertController = VOYAlertViewController(title: "Internet connection", message: "We couldn’t identify an active internet connection, please check your connection and try again.", buttonNames:["Ok","ok"])
 //        alertController.delegate = self
 //        alertController.show(true, inViewController: self)
+        
         let addReportAttachViewController = VOYAddReportAttachViewController()
         self.navigationController?.pushViewController(addReportAttachViewController, animated: true)
     }

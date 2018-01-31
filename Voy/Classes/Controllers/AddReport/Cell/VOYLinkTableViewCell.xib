@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="HelveticaNeue.ttc">
+            <string>HelveticaNeue</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KGk-i7-Jjw" customClass="VOYLinkTableViewCell" customModule="Voy" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qrs-sD-SLa">
+                        <rect key="frame" x="6" y="11" width="273" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="lcz-p0-Tbr"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                        <color key="textColor" red="0.29019607843137252" green="0.56470588235294117" blue="0.88627450980392153" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pn1-Yr-RQb">
+                        <rect key="frame" x="279" y="6" width="41" height="32"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="32" id="7Tl-yZ-9Hl"/>
+                            <constraint firstAttribute="width" constant="41" id="dtt-Mf-PrN"/>
+                        </constraints>
+                        <state key="normal" image="group5Copy4"/>
+                        <connections>
+                            <action selector="btRemoveTapped" destination="KGk-i7-Jjw" eventType="touchUpInside" id="Om6-hY-EKn"/>
+                        </connections>
+                    </button>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="qrs-sD-SLa" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="11" id="18g-pq-OEe"/>
+                    <constraint firstItem="pn1-Yr-RQb" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="6" id="YKq-Wg-laA"/>
+                    <constraint firstAttribute="trailing" secondItem="pn1-Yr-RQb" secondAttribute="trailing" id="iMj-xD-Gy6"/>
+                    <constraint firstItem="pn1-Yr-RQb" firstAttribute="leading" secondItem="qrs-sD-SLa" secondAttribute="trailing" id="rL4-iX-N5J"/>
+                    <constraint firstItem="qrs-sD-SLa" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="6" id="xCN-Bh-7b9"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="btRemove" destination="pn1-Yr-RQb" id="T0f-H9-7HF"/>
+                <outlet property="lbLink" destination="qrs-sD-SLa" id="SlJ-AR-jzW"/>
+            </connections>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="group5Copy4" width="21" height="21"/>
+    </resources>
+</document>

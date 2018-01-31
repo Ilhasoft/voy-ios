@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait">
+    <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -30,17 +30,17 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dIk-ii-lej" customClass="TPKeyboardAvoidingScrollView">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Aw-3c-Vyc" userLabel="ContentView">
-                            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                             <subviews>
                                 <stackView opaque="NO" contentMode="scaleToFill" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="RRE-U2-A8D">
-                                    <rect key="frame" x="96" y="131" width="183" height="65"/>
+                                    <rect key="frame" x="68.5" y="81.5" width="183" height="65"/>
                                     <subviews>
                                         <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" image="group19" translatesAutoresizingMaskIntoConstraints="NO" id="dU9-xK-nNB">
                                             <rect key="frame" x="0.0" y="0.0" width="55" height="65"/>
@@ -58,7 +58,7 @@
                                     </constraints>
                                 </stackView>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aFv-sJ-4fm" customClass="VOYTextFieldView" customModule="Voy">
-                                    <rect key="frame" x="52" y="348" width="270" height="45"/>
+                                    <rect key="frame" x="24.5" y="298.5" width="270" height="45"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="270" id="H19-JD-JQP"/>
@@ -69,7 +69,7 @@
                                     </userDefinedRuntimeAttributes>
                                 </view>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hey!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SEE-y1-SBu">
-                                    <rect key="frame" x="135" y="244" width="104" height="80"/>
+                                    <rect key="frame" x="107.5" y="194.5" width="104" height="80"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="80" id="2ra-a4-Lx5"/>
                                         <constraint firstAttribute="width" constant="104" id="PjF-km-iZ5"/>
@@ -79,7 +79,7 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7vn-vv-asa">
-                                    <rect key="frame" x="52" y="580" width="270" height="45"/>
+                                    <rect key="frame" x="24.5" y="481" width="270" height="45"/>
                                     <color key="backgroundColor" red="0.0" green="0.79607843140000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="270" id="1Be-33-WbY"/>
@@ -99,7 +99,7 @@
                                     </connections>
                                 </button>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="x83-6K-eFi" customClass="VOYTextFieldView" customModule="Voy">
-                                    <rect key="frame" x="52" y="407" width="270" height="45"/>
+                                    <rect key="frame" x="24.5" y="357.5" width="270" height="45"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="270" id="SM0-Xs-JQb"/>

@@ -27,7 +27,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func loadRootScreen() -> UIViewController {
-        return UINavigationController(rootViewController: VOYLoginViewController())
+        let navigation = UINavigationController(rootViewController: VOYLoginViewController())
+        return navigation
     }
 }
 
