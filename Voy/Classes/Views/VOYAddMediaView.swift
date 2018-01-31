@@ -10,6 +10,7 @@ import UIKit
 
 protocol VOYAddMediaViewDelegate {
     func mediaViewDidTap(mediaView:VOYAddMediaView)
+    func removeMediaButtonDidTap(mediaView:VOYAddMediaView)
 }
 
 class VOYAddMediaView: UIView {
@@ -42,13 +43,19 @@ class VOYAddMediaView: UIView {
         addSubview(contentView)
     }
     
+    func setupWithMedia() {
+        
+    }
+    
     @objc func viewTapped(gestureRecognizer:UITapGestureRecognizer) {
         let mediaView = gestureRecognizer.view as! VOYAddMediaView
         self.delegate?.mediaViewDidTap(mediaView: mediaView)
     }
 
     @IBAction func btRemoveTapped(_ sender: Any) {
-        
+        self.delegate?.removeMediaButtonDidTap(mediaView: self)
+        self.imgView.image = nil
+        self.imgViewPlusIcon.isHidden = true
     }
     
 }
