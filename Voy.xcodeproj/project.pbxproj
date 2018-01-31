@@ -17,6 +17,8 @@
 		655BD134202118CB00D69EA2 /* VOYAddMediaView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 655BD132202118CB00D69EA2 /* VOYAddMediaView.xib */; };
 		655BD13720220D5000D69EA2 /* VOYActionSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 655BD13520220D5000D69EA2 /* VOYActionSheetViewController.swift */; };
 		655BD13820220D5000D69EA2 /* VOYActionSheetViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 655BD13620220D5000D69EA2 /* VOYActionSheetViewController.xib */; };
+		655BD13B2022396700D69EA2 /* VOYAddReportDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 655BD1392022396700D69EA2 /* VOYAddReportDataViewController.swift */; };
+		655BD13C2022396700D69EA2 /* VOYAddReportDataViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 655BD13A2022396700D69EA2 /* VOYAddReportDataViewController.xib */; };
 		65F346072020A87A00AC5437 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65F346062020A87A00AC5437 /* AppDelegate.swift */; };
 		65F346092020A87A00AC5437 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65F346082020A87A00AC5437 /* ViewController.swift */; };
 		65F3460C2020A87A00AC5437 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 65F3460A2020A87A00AC5437 /* Main.storyboard */; };
@@ -66,6 +68,8 @@
 		655BD132202118CB00D69EA2 /* VOYAddMediaView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VOYAddMediaView.xib; sourceTree = "<group>"; };
 		655BD13520220D5000D69EA2 /* VOYActionSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VOYActionSheetViewController.swift; sourceTree = "<group>"; };
 		655BD13620220D5000D69EA2 /* VOYActionSheetViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VOYActionSheetViewController.xib; sourceTree = "<group>"; };
+		655BD1392022396700D69EA2 /* VOYAddReportDataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VOYAddReportDataViewController.swift; sourceTree = "<group>"; };
+		655BD13A2022396700D69EA2 /* VOYAddReportDataViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VOYAddReportDataViewController.xib; sourceTree = "<group>"; };
 		65F346032020A87A00AC5437 /* Voy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Voy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		65F346062020A87A00AC5437 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		65F346082020A87A00AC5437 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -149,6 +153,8 @@
 			children = (
 				655BD12D2021148800D69EA2 /* VOYAddReportAttachViewController.swift */,
 				655BD12E2021148800D69EA2 /* VOYAddReportAttachViewController.xib */,
+				655BD1392022396700D69EA2 /* VOYAddReportDataViewController.swift */,
+				655BD13A2022396700D69EA2 /* VOYAddReportDataViewController.xib */,
 			);
 			path = AddReport;
 			sourceTree = "<group>";
@@ -397,6 +403,7 @@
 				655BD134202118CB00D69EA2 /* VOYAddMediaView.xib in Resources */,
 				65F3460C2020A87A00AC5437 /* Main.storyboard in Resources */,
 				655BD13820220D5000D69EA2 /* VOYActionSheetViewController.xib in Resources */,
+				655BD13C2022396700D69EA2 /* VOYAddReportDataViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -578,6 +585,7 @@
 				655BD133202118CB00D69EA2 /* VOYAddMediaView.swift in Sources */,
 				65F346092020A87A00AC5437 /* ViewController.swift in Sources */,
 				655BD1222020E4FA00D69EA2 /* UIColorExtension.swift in Sources */,
+				655BD13B2022396700D69EA2 /* VOYAddReportDataViewController.swift in Sources */,
 				655BD13720220D5000D69EA2 /* VOYActionSheetViewController.swift in Sources */,
 				65F346072020A87A00AC5437 /* AppDelegate.swift in Sources */,
 				65F346422020B82B00AC5437 /* VOYTextFieldView.swift in Sources */,

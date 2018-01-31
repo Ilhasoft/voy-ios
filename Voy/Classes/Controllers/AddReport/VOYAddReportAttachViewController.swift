@@ -37,6 +37,9 @@ extension VOYAddReportAttachViewController : VOYAddMediaViewDelegate {
         actionSheetController.delegate = self
         actionSheetController.show(true, inViewController: self)
     }
+    func removeMediaButtonDidTap(mediaView: VOYAddMediaView) {
+        
+    }
 }
 
 extension VOYAddReportAttachViewController : VOYActionSheetViewControllerDelegate {

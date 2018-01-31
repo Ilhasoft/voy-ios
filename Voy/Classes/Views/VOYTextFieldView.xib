@@ -8,11 +8,17 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="HelveticaNeue.ttc">
+            <string>HelveticaNeue</string>
+        </array>
+    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="VOYTextFieldView" customModule="Voy" customModuleProvider="target">
             <connections>
                 <outlet property="contentView" destination="i5M-Pr-FkT" id="YCC-qN-IUq"/>
                 <outlet property="heightViewBottom" destination="NtP-iC-DEd" id="SWH-mL-Jtn"/>
+                <outlet property="lbFieldName" destination="tig-dH-5jh" id="WfC-Pk-ekg"/>
                 <outlet property="txtField" destination="d3H-fg-p9A" id="9RD-kl-7xS"/>
                 <outlet property="viewBottom" destination="QhQ-ch-dQm" id="Xkz-dM-RXa"/>
             </connections>
@@ -23,9 +29,9 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="d3H-fg-p9A">
-                    <rect key="frame" x="0.0" y="5" width="375" height="40"/>
+                    <rect key="frame" x="6" y="12" width="363" height="33"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="40" id="VY9-PQ-8xI"/>
+                        <constraint firstAttribute="height" constant="33" id="VY9-PQ-8xI"/>
                     </constraints>
                     <nil key="textColor"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -38,15 +44,27 @@
                         <constraint firstAttribute="height" constant="1" id="NtP-iC-DEd"/>
                     </constraints>
                 </view>
+                <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tig-dH-5jh">
+                    <rect key="frame" x="6" y="1" width="363" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="21" id="RjE-hb-zoZ"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
+                    <color key="textColor" red="0.60784313725490191" green="0.62352941176470589" blue="0.63921568627450975" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
+                <constraint firstItem="tig-dH-5jh" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="1" id="51i-ew-sfO"/>
                 <constraint firstItem="d3H-fg-p9A" firstAttribute="bottom" secondItem="i5M-Pr-FkT" secondAttribute="bottom" id="640-p7-u6s"/>
                 <constraint firstItem="QhQ-ch-dQm" firstAttribute="bottom" secondItem="i5M-Pr-FkT" secondAttribute="bottom" id="Cfq-TO-e8e"/>
-                <constraint firstItem="d3H-fg-p9A" firstAttribute="trailing" secondItem="i5M-Pr-FkT" secondAttribute="trailing" id="N82-q0-1FM"/>
-                <constraint firstItem="d3H-fg-p9A" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="S9P-ys-5yl"/>
+                <constraint firstItem="tig-dH-5jh" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="6" id="Eqx-yO-iAf"/>
+                <constraint firstItem="d3H-fg-p9A" firstAttribute="trailing" secondItem="i5M-Pr-FkT" secondAttribute="trailing" constant="-6" id="N82-q0-1FM"/>
+                <constraint firstItem="d3H-fg-p9A" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="6" id="S9P-ys-5yl"/>
                 <constraint firstAttribute="trailing" secondItem="QhQ-ch-dQm" secondAttribute="trailing" id="aMD-GO-cM0"/>
                 <constraint firstItem="QhQ-ch-dQm" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="mMD-UZ-t6B"/>
+                <constraint firstAttribute="trailing" secondItem="tig-dH-5jh" secondAttribute="trailing" constant="6" id="rM1-72-0BX"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="-64.5" y="-80.5"/>
