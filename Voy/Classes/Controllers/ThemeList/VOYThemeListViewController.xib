@@ -34,7 +34,7 @@
                     </constraints>
                 </imageView>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="0hJ-R7-AAK" customClass="ISOnDemandTableView">
-                    <rect key="frame" x="0.0" y="159" width="375" height="619"/>
+                    <rect key="frame" x="24" y="159" width="327" height="619"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </tableView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You are on 4 themes" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5K7-In-J5z">
@@ -55,9 +55,9 @@
                 <constraint firstItem="5K7-In-J5z" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="23" id="Wbu-ij-aY2"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="5K7-In-J5z" secondAttribute="trailing" constant="16" id="XSO-lT-qZb"/>
                 <constraint firstItem="N0m-BX-fSy" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="ZG6-Gj-sLs"/>
-                <constraint firstItem="0hJ-R7-AAK" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="aJe-NS-bKw"/>
+                <constraint firstItem="0hJ-R7-AAK" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="24" id="aJe-NS-bKw"/>
                 <constraint firstItem="N0m-BX-fSy" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="cGC-TE-uej"/>
-                <constraint firstItem="0hJ-R7-AAK" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="ifq-Ea-3jn"/>
+                <constraint firstItem="0hJ-R7-AAK" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" constant="-24" id="ifq-Ea-3jn"/>
                 <constraint firstItem="0hJ-R7-AAK" firstAttribute="top" secondItem="5K7-In-J5z" secondAttribute="bottom" constant="27" id="n2R-Mg-Lwu"/>
             </constraints>
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>

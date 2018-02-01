@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SlideMenuControllerSwift
 
 class VOYLoginViewController: UIViewController {
 
@@ -42,8 +43,13 @@ class VOYLoginViewController: UIViewController {
 //        alertController.delegate = self
 //        alertController.show(true, inViewController: self)
         
-        let addReportAttachViewController = VOYAddReportAttachViewController()
-        self.navigationController?.pushViewController(addReportAttachViewController, animated: true)
+//        let addReportAttachViewController = VOYAddReportAttachViewController()
+//        self.navigationController?.pushViewController(addReportAttachViewController, animated: true)
+        
+        let navigationController = UINavigationController(rootViewController: VOYThemeListViewController())
+        let slideMenuController = SlideMenuController(mainViewController: navigationController, rightMenuViewController: VOYNotificationViewController())
+        
+        self.navigationController?.pushViewController(slideMenuController, animated: true)
     }
     
 }

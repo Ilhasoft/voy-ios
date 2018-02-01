@@ -7,7 +7,7 @@ use_frameworks!
 
 pod 'TPKeyboardAvoiding'
 pod 'TagListView'
-pod 'ISOnDemandTableView'
+pod 'ISOnDemandTableView', :git => 'https://github.com/Ilhasoft/ISOnDemandTableView'
 pod 'SlideMenuControllerSwift'
 
 

@@ -33,6 +33,8 @@
 		655BD15C20238D4500D69EA2 /* VOYThemeListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 655BD15A20238D4500D69EA2 /* VOYThemeListViewController.swift */; };
 		655BD15D20238D4500D69EA2 /* VOYThemeListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 655BD15B20238D4500D69EA2 /* VOYThemeListViewController.xib */; };
 		655BD15F20238F7000D69EA2 /* VOYThemeListTableViewProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 655BD15E20238F7000D69EA2 /* VOYThemeListTableViewProvider.swift */; };
+		655BD1632023989600D69EA2 /* VOYNotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 655BD1612023989600D69EA2 /* VOYNotificationViewController.swift */; };
+		655BD1642023989600D69EA2 /* VOYNotificationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 655BD1622023989600D69EA2 /* VOYNotificationViewController.xib */; };
 		65F346072020A87A00AC5437 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65F346062020A87A00AC5437 /* AppDelegate.swift */; };
 		65F346092020A87A00AC5437 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65F346082020A87A00AC5437 /* ViewController.swift */; };
 		65F3460C2020A87A00AC5437 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 65F3460A2020A87A00AC5437 /* Main.storyboard */; };
@@ -98,6 +100,8 @@
 		655BD15A20238D4500D69EA2 /* VOYThemeListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VOYThemeListViewController.swift; sourceTree = "<group>"; };
 		655BD15B20238D4500D69EA2 /* VOYThemeListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VOYThemeListViewController.xib; sourceTree = "<group>"; };
 		655BD15E20238F7000D69EA2 /* VOYThemeListTableViewProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VOYThemeListTableViewProvider.swift; sourceTree = "<group>"; };
+		655BD1612023989600D69EA2 /* VOYNotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VOYNotificationViewController.swift; sourceTree = "<group>"; };
+		655BD1622023989600D69EA2 /* VOYNotificationViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VOYNotificationViewController.xib; sourceTree = "<group>"; };
 		65F346032020A87A00AC5437 /* Voy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Voy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		65F346062020A87A00AC5437 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		65F346082020A87A00AC5437 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -222,6 +226,15 @@
 			path = Cell;
 			sourceTree = "<group>";
 		};
+		655BD1602023987D00D69EA2 /* Notification */ = {
+			isa = PBXGroup;
+			children = (
+				655BD1612023989600D69EA2 /* VOYNotificationViewController.swift */,
+				655BD1622023989600D69EA2 /* VOYNotificationViewController.xib */,
+			);
+			path = Notification;
+			sourceTree = "<group>";
+		};
 		65F345FA2020A87A00AC5437 = {
 			isa = PBXGroup;
 			children = (
@@ -289,6 +302,7 @@
 		65F346352020B24500AC5437 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				655BD1602023987D00D69EA2 /* Notification */,
 				655BD15020238AD800D69EA2 /* ThemeList */,
 				655BD12C202112F600D69EA2 /* AddReport */,
 				655BD12B202112F600D69EA2 /* ReportDetail */,
@@ -467,6 +481,7 @@
 				655BD14B20237BD100D69EA2 /* VOYInfoView.xib in Resources */,
 				655BD14520233FEB00D69EA2 /* VOYAddReportTagsViewController.xib in Resources */,
 				65F3460E2020A87A00AC5437 /* Assets.xcassets in Resources */,
+				655BD1642023989600D69EA2 /* VOYNotificationViewController.xib in Resources */,
 				655BD1412022439000D69EA2 /* VOYLinkTableViewCell.xib in Resources */,
 				655BD1302021148800D69EA2 /* VOYAddReportAttachViewController.xib in Resources */,
 				655BD134202118CB00D69EA2 /* VOYAddMediaView.xib in Resources */,
@@ -674,6 +689,7 @@
 				65F346422020B82B00AC5437 /* VOYTextFieldView.swift in Sources */,
 				655BD14A20237BD100D69EA2 /* VOYInfoView.swift in Sources */,
 				655BD15F20238F7000D69EA2 /* VOYThemeListTableViewProvider.swift in Sources */,
+				655BD1632023989600D69EA2 /* VOYNotificationViewController.swift in Sources */,
 				655BD15920238B1000D69EA2 /* VOYThemeTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
