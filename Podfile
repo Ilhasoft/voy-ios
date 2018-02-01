@@ -7,6 +7,8 @@ use_frameworks!
 
 pod 'TPKeyboardAvoiding'
 pod 'TagListView'
+pod 'ISOnDemandTableView'
+pod 'SlideMenuControllerSwift'
 
 
   target 'VoyTests' do

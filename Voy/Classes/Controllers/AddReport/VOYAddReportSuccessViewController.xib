@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="HelveticaNeue.ttc">
+            <string>HelveticaNeue</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="VOYAddReportSuccessViewController" customModule="Voy" customModuleProvider="target">
+            <connections>
+                <outlet property="btClose" destination="PE4-yi-0f2" id="fIy-88-LNX"/>
+                <outlet property="btNewReport" destination="MnG-8b-Swq" id="fxp-Gm-V4r"/>
+                <outlet property="infoView" destination="vqJ-Qp-fJa" id="Q8s-lE-S9l"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="Tz8-WX-5s5"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vqJ-Qp-fJa" customClass="VOYInfoView" customModule="Voy" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="54" width="375" height="435"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MnG-8b-Swq">
+                    <rect key="frame" x="39" y="508" width="296" height="45"/>
+                    <color key="backgroundColor" red="0.0" green="0.79607843140000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="45" id="8rt-MR-KAs"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
+                    <state key="normal" title="New Report">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <integer key="value" value="7"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="btNewReportTapped" destination="-1" eventType="touchUpInside" id="Ndo-Nm-WZQ"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PE4-yi-0f2">
+                    <rect key="frame" x="39" y="576" width="296" height="45"/>
+                    <color key="backgroundColor" red="0.90980392156862744" green="0.90980392156862744" blue="0.90980392156862744" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="45" id="XGN-Tj-kuc"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
+                    <state key="normal" title="Close">
+                        <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <integer key="value" value="7"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="btCloseTapped" destination="-1" eventType="touchUpInside" id="cOm-HK-zbw"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="PE4-yi-0f2" firstAttribute="top" secondItem="MnG-8b-Swq" secondAttribute="bottom" constant="23" id="08q-aw-QCJ"/>
+                <constraint firstItem="vqJ-Qp-fJa" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="32Q-fG-LAc"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="MnG-8b-Swq" secondAttribute="trailing" constant="40" id="3d9-El-QaG"/>
+                <constraint firstItem="MnG-8b-Swq" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="39" id="Exe-EN-OTC"/>
+                <constraint firstItem="PE4-yi-0f2" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="39" id="JGz-PE-9m3"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="PE4-yi-0f2" secondAttribute="bottom" constant="46" id="ceg-36-uEf"/>
+                <constraint firstItem="MnG-8b-Swq" firstAttribute="top" secondItem="vqJ-Qp-fJa" secondAttribute="bottom" constant="19" id="hO6-A8-Hrj"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="PE4-yi-0f2" secondAttribute="trailing" constant="40" id="m4J-hE-hji"/>
+                <constraint firstItem="vqJ-Qp-fJa" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="34" id="v3Z-cK-yqJ"/>
+                <constraint firstItem="vqJ-Qp-fJa" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="wFX-rY-fv1"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <point key="canvasLocation" x="95.5" y="52.5"/>
+        </view>
+    </objects>
+</document>

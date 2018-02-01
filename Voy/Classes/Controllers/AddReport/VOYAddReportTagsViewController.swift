@@ -24,12 +24,22 @@ class VOYAddReportTagsViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: " ", style: .plain, target: nil, action: nil)
         loadTags()
+        addNextButton()
     }
 
+    func addNextButton() {
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Next", style: .plain, target: self, action: #selector(openNextController))
+    }
+    
+    @objc func openNextController() {
+        self.navigationController?.pushViewController(VOYAddReportSuccessViewController(), animated: true)
+    }
+    
     private func loadTags() {
         viewTags.addTags(["Accessibility","Water", "Comunnity","Trash","Security"])
         viewTags.delegate = self
