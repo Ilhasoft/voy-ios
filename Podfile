@@ -6,7 +6,8 @@ target 'Voy' do
 use_frameworks!
 
 pod 'TPKeyboardAvoiding'
-  
+pod 'TagListView'
+
 
   target 'VoyTests' do
     inherit! :search_paths

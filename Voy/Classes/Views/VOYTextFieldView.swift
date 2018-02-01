@@ -11,8 +11,8 @@ import UIKit
 @IBDesignable
 class VOYTextFieldView: UIView {
     
-    static let activeColor  = UIColor(hex: "00cbff")
-    static let defaultColor = UIColor(hex:"f0f0f0")
+    static let activeColor  = VOYConstant.Color.blue
+    static let defaultColor = VOYConstant.Color.gray
     
     @IBInspectable var placeholder:String = "" {
         didSet {

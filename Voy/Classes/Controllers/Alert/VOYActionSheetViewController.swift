@@ -58,7 +58,7 @@ class VOYActionSheetViewController: ISModalViewController {
         }
         
         let cancelButton = buildButton(index: 999, name: "Cancel")
-        cancelButton.backgroundColor = UIColor(hex: "00cbff")
+        cancelButton.backgroundColor = VOYConstant.Color.blue
         addAction(inButton: cancelButton)
         self.stackView.addArrangedSubview(cancelButton)
         

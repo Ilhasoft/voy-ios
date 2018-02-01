@@ -21,7 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func setupAppearance() {
-        UINavigationBar.appearance().tintColor = UIColor(hex: "00cbff")
+        UINavigationBar.appearance().tintColor = VOYConstant.Color.blue
         UINavigationBar.appearance().titleTextAttributes =  [NSAttributedStringKey.font: UIFont(name: "HelveticaNeue", size: 16) as Any]
     }
     

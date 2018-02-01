@@ -42,7 +42,7 @@ class VOYAddReportDataViewController: UIViewController {
     }
     
     @objc func openNextController() {
-//        self.navigationController?.pushViewController(VOYAddReportDataViewController(), animated: true)
+        self.navigationController?.pushViewController(VOYAddReportTagsViewController(), animated: true)
     }
     
     func setupLayout() {
@@ -50,7 +50,7 @@ class VOYAddReportDataViewController: UIViewController {
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: " ", style: .plain, target: nil, action: nil)
         self.automaticallyAdjustsScrollViewInsets = false
         self.txtFieldLink.layer.borderWidth = 1
-        self.txtFieldLink.layer.borderColor = UIColor(hex: "f0f0f0").cgColor    
+        self.txtFieldLink.layer.borderColor = VOYConstant.Color.gray.cgColor    
     }
     
     func setupTableView() {

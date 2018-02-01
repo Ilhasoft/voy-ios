@@ -60,7 +60,7 @@ class VOYAlertViewController: ISModalViewController {
             let button = UIButton()
             button.titleLabel!.font = UIFont.systemFont(ofSize: 16)
             button.layer.borderWidth = 1
-            button.layer.borderColor = UIColor(hex: "f0f0f0").cgColor
+            button.layer.borderColor = VOYConstant.Color.gray.cgColor
             button.setTitleColor(UIColor(hex: "4a90e2"), for: .normal)
             button.setTitle(buttonName, for: .normal)
             button.backgroundColor = UIColor.white

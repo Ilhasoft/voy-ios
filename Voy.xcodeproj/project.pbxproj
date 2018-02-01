@@ -21,6 +21,9 @@
 		655BD13C2022396700D69EA2 /* VOYAddReportDataViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 655BD13A2022396700D69EA2 /* VOYAddReportDataViewController.xib */; };
 		655BD1402022439000D69EA2 /* VOYLinkTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 655BD13E2022439000D69EA2 /* VOYLinkTableViewCell.swift */; };
 		655BD1412022439000D69EA2 /* VOYLinkTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 655BD13F2022439000D69EA2 /* VOYLinkTableViewCell.xib */; };
+		655BD14420233FEB00D69EA2 /* VOYAddReportTagsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 655BD14220233FEB00D69EA2 /* VOYAddReportTagsViewController.swift */; };
+		655BD14520233FEB00D69EA2 /* VOYAddReportTagsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 655BD14320233FEB00D69EA2 /* VOYAddReportTagsViewController.xib */; };
+		655BD14720234A4A00D69EA2 /* VOYConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 655BD14620234A4A00D69EA2 /* VOYConstant.swift */; };
 		65F346072020A87A00AC5437 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65F346062020A87A00AC5437 /* AppDelegate.swift */; };
 		65F346092020A87A00AC5437 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65F346082020A87A00AC5437 /* ViewController.swift */; };
 		65F3460C2020A87A00AC5437 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 65F3460A2020A87A00AC5437 /* Main.storyboard */; };
@@ -74,6 +77,9 @@
 		655BD13A2022396700D69EA2 /* VOYAddReportDataViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VOYAddReportDataViewController.xib; sourceTree = "<group>"; };
 		655BD13E2022439000D69EA2 /* VOYLinkTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VOYLinkTableViewCell.swift; sourceTree = "<group>"; };
 		655BD13F2022439000D69EA2 /* VOYLinkTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VOYLinkTableViewCell.xib; sourceTree = "<group>"; };
+		655BD14220233FEB00D69EA2 /* VOYAddReportTagsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VOYAddReportTagsViewController.swift; sourceTree = "<group>"; };
+		655BD14320233FEB00D69EA2 /* VOYAddReportTagsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VOYAddReportTagsViewController.xib; sourceTree = "<group>"; };
+		655BD14620234A4A00D69EA2 /* VOYConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VOYConstant.swift; sourceTree = "<group>"; };
 		65F346032020A87A00AC5437 /* Voy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Voy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		65F346062020A87A00AC5437 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		65F346082020A87A00AC5437 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -130,6 +136,7 @@
 			children = (
 				655BD1282020F53400D69EA2 /* ISModalViewController.swift */,
 				655BD1212020E4FA00D69EA2 /* UIColorExtension.swift */,
+				655BD14620234A4A00D69EA2 /* VOYConstant.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -160,6 +167,8 @@
 				655BD12E2021148800D69EA2 /* VOYAddReportAttachViewController.xib */,
 				655BD1392022396700D69EA2 /* VOYAddReportDataViewController.swift */,
 				655BD13A2022396700D69EA2 /* VOYAddReportDataViewController.xib */,
+				655BD14220233FEB00D69EA2 /* VOYAddReportTagsViewController.swift */,
+				655BD14320233FEB00D69EA2 /* VOYAddReportTagsViewController.xib */,
 			);
 			path = AddReport;
 			sourceTree = "<group>";
@@ -412,6 +421,7 @@
 				65F3463E2020B58A00AC5437 /* VOYLoginViewController.xib in Resources */,
 				655BD1272020F3C100D69EA2 /* VOYAlertViewController.xib in Resources */,
 				65F346112020A87A00AC5437 /* LaunchScreen.storyboard in Resources */,
+				655BD14520233FEB00D69EA2 /* VOYAddReportTagsViewController.xib in Resources */,
 				65F3460E2020A87A00AC5437 /* Assets.xcassets in Resources */,
 				655BD1412022439000D69EA2 /* VOYLinkTableViewCell.xib in Resources */,
 				655BD1302021148800D69EA2 /* VOYAddReportAttachViewController.xib in Resources */,
@@ -513,10 +523,12 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Voy/Pods-Voy-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/TPKeyboardAvoiding/TPKeyboardAvoiding.framework",
+				"${BUILT_PRODUCTS_DIR}/TagListView/TagListView.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TPKeyboardAvoiding.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TagListView.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -599,11 +611,13 @@
 				65F3463D2020B58A00AC5437 /* VOYLoginViewController.swift in Sources */,
 				655BD1402022439000D69EA2 /* VOYLinkTableViewCell.swift in Sources */,
 				655BD133202118CB00D69EA2 /* VOYAddMediaView.swift in Sources */,
+				655BD14720234A4A00D69EA2 /* VOYConstant.swift in Sources */,
 				65F346092020A87A00AC5437 /* ViewController.swift in Sources */,
 				655BD1222020E4FA00D69EA2 /* UIColorExtension.swift in Sources */,
 				655BD13B2022396700D69EA2 /* VOYAddReportDataViewController.swift in Sources */,
 				655BD13720220D5000D69EA2 /* VOYActionSheetViewController.swift in Sources */,
 				65F346072020A87A00AC5437 /* AppDelegate.swift in Sources */,
+				655BD14420233FEB00D69EA2 /* VOYAddReportTagsViewController.swift in Sources */,
 				65F346422020B82B00AC5437 /* VOYTextFieldView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
