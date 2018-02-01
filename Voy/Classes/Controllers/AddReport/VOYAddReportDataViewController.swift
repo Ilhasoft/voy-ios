@@ -31,6 +31,7 @@ class VOYAddReportDataViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Add Report"
+        self.txtFieldLink.delegate = self
         setupTableView()
         setupLayout()
         addNextButton()
@@ -45,6 +46,7 @@ class VOYAddReportDataViewController: UIViewController {
     }
     
     func setupLayout() {
+        self.tbViewLinks.separatorColor = UIColor.clear
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: " ", style: .plain, target: nil, action: nil)
         self.automaticallyAdjustsScrollViewInsets = false
         self.txtFieldLink.layer.borderWidth = 1
@@ -79,6 +81,30 @@ extension VOYAddReportDataViewController : UITableViewDataSource, UITableViewDel
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
+    }
+}
+
+extension VOYAddReportDataViewController : UITextFieldDelegate {
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        if (string == "\n") {
+            textField.resignFirstResponder()
+            return false
+        }
+        let newText = (textField.text! as NSString).replacingCharacters(in: range, with: string)
+        let numberOfChars = newText.count
+        
+        if numberOfChars > 0 && self.btAddLink.alpha < 1 {
+            UIView.animate(withDuration: 0.3, animations: {
+                self.btAddLink.alpha = 1
+            })
+        }else if numberOfChars == 0 && self.btAddLink.alpha == 1 {
+            UIView.animate(withDuration: 0.3, animations: {
+                self.btAddLink.alpha = 0.3
+            })
+        }
+        
+        return true
     }
     
 }
