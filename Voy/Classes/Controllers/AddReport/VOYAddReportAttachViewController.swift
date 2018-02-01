@@ -23,8 +23,19 @@ class VOYAddReportAttachViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.title = "Add Report"
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: " ", style: .plain, target: nil, action: nil)
         self.navigationController?.setNavigationBarHidden(false, animated: false)
         setupMediaViewDelegate()
+        addNextButton()
+    }
+    
+    func addNextButton() {
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Next", style: .plain, target: self, action: #selector(openNextController))
+    }
+    
+    @objc func openNextController() {
+        self.navigationController?.pushViewController(VOYAddReportDataViewController(), animated: true)
     }
     
     func setupMediaViewDelegate() {
@@ -49,9 +60,6 @@ extension VOYAddReportAttachViewController : VOYAddMediaViewDelegate {
 extension VOYAddReportAttachViewController : VOYActionSheetViewControllerDelegate {
     func buttonDidTap(actionSheetViewController: VOYActionSheetViewController, button: UIButton, index: Int) {
         //TODO: Implement actions
-        actionSheetViewController.closeWithCompletion {
-            self.navigationController?.pushViewController(VOYAddReportDataViewController(), animated: true)
-        }
     }
     func cancelButtonDidTap(actionSheetViewController:VOYActionSheetViewController) {
         actionSheetViewController.close()

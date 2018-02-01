@@ -30,14 +30,25 @@ class VOYAddReportDataViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.title = "Add Report"
         setupTableView()
         setupLayout()
-        self.automaticallyAdjustsScrollViewInsets = false
+        addNextButton()
     }
-
+    
+    func addNextButton() {
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Next", style: .plain, target: self, action: #selector(openNextController))
+    }
+    
+    @objc func openNextController() {
+//        self.navigationController?.pushViewController(VOYAddReportDataViewController(), animated: true)
+    }
+    
     func setupLayout() {
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: " ", style: .plain, target: nil, action: nil)
+        self.automaticallyAdjustsScrollViewInsets = false
         self.txtFieldLink.layer.borderWidth = 1
-        self.txtFieldLink.layer.borderColor = UIColor(hex: "f0f0f0").cgColor
+        self.txtFieldLink.layer.borderColor = UIColor(hex: "f0f0f0").cgColor    
     }
     
     func setupTableView() {
