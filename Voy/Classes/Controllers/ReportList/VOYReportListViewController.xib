@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina5_9" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="HelveticaNeue.ttc">
+            <string>HelveticaNeue-Medium</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="VOYReportListViewController" customModule="Voy" customModuleProvider="target">
+            <connections>
+                <outlet property="btAddReport" destination="TkX-K4-otn" id="0wY-zd-O7B"/>
+                <outlet property="segmentedControl" destination="Z1Z-ub-iOy" id="8k9-DM-8eN"/>
+                <outlet property="tbView" destination="T84-3W-wTn" id="wji-WM-SUP"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Z1Z-ub-iOy">
+                    <rect key="frame" x="40" y="104" width="295" height="29"/>
+                    <segments>
+                        <segment title="Approved"/>
+                        <segment title="Pending"/>
+                        <segment title="Not Approved"/>
+                    </segments>
+                    <color key="tintColor" red="0.0" green="0.79607843140000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <connections>
+                        <action selector="segmentedControlTapped" destination="-1" eventType="touchUpInside" id="mew-fT-tLD"/>
+                    </connections>
+                </segmentedControl>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="T84-3W-wTn" customClass="ISOnDemandTableView">
+                    <rect key="frame" x="0.0" y="153" width="375" height="568"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </tableView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TkX-K4-otn">
+                    <rect key="frame" x="0.0" y="721" width="375" height="57"/>
+                    <color key="backgroundColor" red="0.0" green="0.79607843140000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="57" id="ZvS-oN-1XJ"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="16"/>
+                    <state key="normal" title="Add Report">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                    <connections>
+                        <action selector="btAddReportTapped:" destination="-1" eventType="touchUpInside" id="seX-0J-DVH"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="Z1Z-ub-iOy" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="40" id="7Pc-HL-OLp"/>
+                <constraint firstItem="TkX-K4-otn" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" id="Atq-AV-cJ8"/>
+                <constraint firstItem="T84-3W-wTn" firstAttribute="top" secondItem="Z1Z-ub-iOy" secondAttribute="bottom" constant="21" id="HjE-DU-bMi"/>
+                <constraint firstItem="TkX-K4-otn" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="Jdx-Bi-zR3"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Z1Z-ub-iOy" secondAttribute="trailing" constant="40" id="R9M-Uv-iOg"/>
+                <constraint firstItem="T84-3W-wTn" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="ZaD-yA-P38"/>
+                <constraint firstItem="TkX-K4-otn" firstAttribute="top" secondItem="T84-3W-wTn" secondAttribute="bottom" id="dFl-QE-sQr"/>
+                <constraint firstItem="Z1Z-ub-iOy" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="16" id="liS-ER-4tU"/>
+                <constraint firstItem="TkX-K4-otn" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="qIx-10-K91"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="T84-3W-wTn" secondAttribute="trailing" id="sb9-bW-YVH"/>
+            </constraints>
+            <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <point key="canvasLocation" x="33.5" y="53.5"/>
+        </view>
+    </objects>
+</document>

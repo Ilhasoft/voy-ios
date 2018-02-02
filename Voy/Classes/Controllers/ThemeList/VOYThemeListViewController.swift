@@ -27,6 +27,7 @@ class VOYThemeListViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: " ", style: .plain, target: nil, action: nil)
         setupTableView()
         setupButtonItems()
         setupDropDown()
@@ -95,6 +96,9 @@ extension VOYThemeListViewController : ISOnDemandTableViewDelegate {
     }
     func onDemandTableView(_ tableView: ISOnDemandTableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 103
+    }
+    func onDemandTableView(_ tableView: ISOnDemandTableView, didSelectRowAt indexPath: IndexPath) {
+        self.navigationController?.pushViewController(VOYReportListViewController(), animated: true)
     }
 }
 
