@@ -15,8 +15,9 @@ class VOYReportListViewController: UIViewController {
     @IBOutlet var tbView:ISOnDemandTableView!
     @IBOutlet var segmentedControl:UISegmentedControl!
     
-    init() {
+    init(selectedReport:String) {
         super.init(nibName: "VOYReportListViewController", bundle: nil)
+        self.title = selectedReport
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -25,8 +26,13 @@ class VOYReportListViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        let rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "bell"), style: .plain, target: self, action: #selector(openNotifications))
+        self.navigationItem.rightBarButtonItem = rightBarButtonItem
         setupTableView()
+    }
+    
+    @objc func openNotifications() {
+        self.slideMenuController()?.openRight()
     }
     
     func setupTableView() {

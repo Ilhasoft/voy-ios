@@ -15,6 +15,7 @@ class VOYThemeListViewController: UIViewController {
     @IBOutlet weak var lbThemesCount: UILabel!
     @IBOutlet weak var tbView: ISOnDemandTableView!
     
+    var selectedReportView:VOYSelectedReportView!
     var dropDown = DropDown()
     
     init() {
@@ -49,7 +50,7 @@ class VOYThemeListViewController: UIViewController {
     
     func setupDropDown() {
         
-        let selectedReportView = VOYSelectedReportView(frame: CGRect(x: 0, y: 0, width: 180, height: 40))
+        selectedReportView = VOYSelectedReportView(frame: CGRect(x: 0, y: 0, width: 180, height: 40))
         selectedReportView.widthAnchor.constraint(equalToConstant: 180)
         selectedReportView.heightAnchor.constraint(equalToConstant: 40)
         selectedReportView.delegate = self
@@ -62,7 +63,7 @@ class VOYThemeListViewController: UIViewController {
             cell.textLabel!.textAlignment = .center
         }
         dropDown.selectionAction = { [unowned self] (index: Int, item: String) in
-            selectedReportView.lbTitle.text = item
+            self.selectedReportView.lbTitle.text = item
         }
     }
     
@@ -98,7 +99,7 @@ extension VOYThemeListViewController : ISOnDemandTableViewDelegate {
         return 103
     }
     func onDemandTableView(_ tableView: ISOnDemandTableView, didSelectRowAt indexPath: IndexPath) {
-        self.navigationController?.pushViewController(VOYReportListViewController(), animated: true)
+        self.navigationController?.pushViewController(VOYReportListViewController(selectedReport:selectedReportView.lbTitle.text!), animated: true)
     }
 }
 
