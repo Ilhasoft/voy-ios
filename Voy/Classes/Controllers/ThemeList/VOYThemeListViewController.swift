@@ -8,11 +8,14 @@
 
 import UIKit
 import ISOnDemandTableView
+import DropDown
 
 class VOYThemeListViewController: UIViewController {
 
     @IBOutlet weak var lbThemesCount: UILabel!
     @IBOutlet weak var tbView: ISOnDemandTableView!
+    
+    var dropDown = DropDown()
     
     init() {
         super.init(nibName: "VOYThemeListViewController", bundle: nil)
@@ -25,7 +28,49 @@ class VOYThemeListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
+        setupButtonItems()
+        setupDropDown()
         self.navigationController?.setNavigationBarHidden(false, animated: true)
+    }
+    
+    func setupButtonItems() {
+        let image = #imageLiteral(resourceName: "group14Copy2").withRenderingMode(.alwaysOriginal)
+        let leftBarButtonItem = UIBarButtonItem(image: image, style: .plain, target: self, action: #selector(openAccount))
+        let rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "bell"), style: .plain, target: self, action: #selector(openNotifications))
+        self.navigationItem.leftBarButtonItem = leftBarButtonItem
+        self.navigationItem.rightBarButtonItem = rightBarButtonItem
+    }
+    
+    func setupReportsTouch() {
+        
+        
+    }
+    
+    func setupDropDown() {
+        
+        let selectedReportView = VOYSelectedReportView(frame: CGRect(x: 0, y: 0, width: 180, height: 40))
+        selectedReportView.widthAnchor.constraint(equalToConstant: 180)
+        selectedReportView.heightAnchor.constraint(equalToConstant: 40)
+        selectedReportView.delegate = self
+        self.navigationItem.titleView = selectedReportView            
+        
+        dropDown.anchorView = selectedReportView
+        dropDown.bottomOffset = CGPoint(x: 0, y: selectedReportView.bounds.size.height)
+        dropDown.dataSource = ["Project 01","Project 02","Project 03"]
+        dropDown.customCellConfiguration = { (index: Index, item: String, cell: DropDownCell) -> Void in
+            cell.textLabel!.textAlignment = .center
+        }
+        dropDown.selectionAction = { [unowned self] (index: Int, item: String) in
+            selectedReportView.lbTitle.text = item
+        }
+    }
+    
+    @objc func openAccount() {
+        
+    }
+    
+    @objc func openNotifications() {
+        self.slideMenuController()?.openRight()
     }
     
     func setupTableView() {        
@@ -50,5 +95,11 @@ extension VOYThemeListViewController : ISOnDemandTableViewDelegate {
     }
     func onDemandTableView(_ tableView: ISOnDemandTableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 103
+    }
+}
+
+extension VOYThemeListViewController : VOYSelectedReportViewDelegate {
+    func seletecReportDidTap() {
+        dropDown.show()
     }
 }

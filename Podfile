@@ -9,7 +9,7 @@ pod 'TPKeyboardAvoiding'
 pod 'TagListView'
 pod 'ISOnDemandTableView', :git => 'https://github.com/Ilhasoft/ISOnDemandTableView'
 pod 'SlideMenuControllerSwift'
-
+pod 'DropDown'
 
   target 'VoyTests' do
     inherit! :search_paths
