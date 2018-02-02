@@ -11,6 +11,7 @@ import ISOnDemandTableView
 
 class VOYReportListViewController: UIViewController {
 
+    @IBOutlet var viewInfo:VOYInfoView!
     @IBOutlet var btAddReport:UIButton!
     @IBOutlet var tbView:ISOnDemandTableView!
     @IBOutlet var segmentedControl:UISegmentedControl!
@@ -74,7 +75,10 @@ extension VOYReportListViewController : ISOnDemandTableViewDelegate {
         
     }
     func onDemandTableView(_ tableView: ISOnDemandTableView, onContentLoad lastData: [Any]?, withError error: Error?) {
-        
+        if tableView.interactor?.objects.count == 0 {
+            //check segmentedControl index for showing correct info view
+            //TODO: self.viewInfo.isHidden = false
+        }
     }
     func onDemandTableView(_ tableView: ISOnDemandTableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 118

@@ -26,6 +26,18 @@ class VOYTextFieldView: UIView {
         }
     }
     
+    @IBInspectable var showBottomView:Bool = true {
+        didSet {
+            self.viewBottom.isHidden = !showBottomView
+        }
+    }
+    
+    @IBInspectable var editEnabled:Bool = true {
+        didSet {
+            self.txtField.isEnabled = editEnabled
+        }
+    }
+    
     @IBOutlet var heightViewBottom:NSLayoutConstraint!
     @IBOutlet var txtField:UITextField!
     @IBOutlet var lbFieldName:UILabel!

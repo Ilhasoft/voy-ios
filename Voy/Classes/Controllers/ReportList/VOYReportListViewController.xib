@@ -21,6 +21,7 @@
                 <outlet property="segmentedControl" destination="Z1Z-ub-iOy" id="8k9-DM-8eN"/>
                 <outlet property="tbView" destination="T84-3W-wTn" id="wji-WM-SUP"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+                <outlet property="viewInfo" destination="McM-1T-NsW" id="kts-sN-ekm"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -58,9 +59,18 @@
                         <action selector="btAddReportTapped:" destination="-1" eventType="touchUpInside" id="seX-0J-DVH"/>
                     </connections>
                 </button>
+                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="McM-1T-NsW" customClass="VOYInfoView" customModule="Voy" customModuleProvider="target">
+                    <rect key="frame" x="16" y="161" width="343" height="326"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="326" id="ZB7-HE-swi"/>
+                    </constraints>
+                </view>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
+                <constraint firstItem="McM-1T-NsW" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="2wR-Mr-xmY"/>
+                <constraint firstItem="McM-1T-NsW" firstAttribute="top" secondItem="Z1Z-ub-iOy" secondAttribute="bottom" constant="29" id="4VW-y2-4FK"/>
                 <constraint firstItem="Z1Z-ub-iOy" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="40" id="7Pc-HL-OLp"/>
                 <constraint firstItem="TkX-K4-otn" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" id="Atq-AV-cJ8"/>
                 <constraint firstItem="T84-3W-wTn" firstAttribute="top" secondItem="Z1Z-ub-iOy" secondAttribute="bottom" constant="21" id="HjE-DU-bMi"/>
@@ -68,13 +78,14 @@
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Z1Z-ub-iOy" secondAttribute="trailing" constant="40" id="R9M-Uv-iOg"/>
                 <constraint firstItem="T84-3W-wTn" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="ZaD-yA-P38"/>
                 <constraint firstItem="TkX-K4-otn" firstAttribute="top" secondItem="T84-3W-wTn" secondAttribute="bottom" id="dFl-QE-sQr"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="McM-1T-NsW" secondAttribute="trailing" constant="16" id="kRu-9C-rEn"/>
                 <constraint firstItem="Z1Z-ub-iOy" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="16" id="liS-ER-4tU"/>
                 <constraint firstItem="TkX-K4-otn" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="qIx-10-K91"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="T84-3W-wTn" secondAttribute="trailing" id="sb9-bW-YVH"/>
             </constraints>
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
-            <point key="canvasLocation" x="33.5" y="53.5"/>
+            <point key="canvasLocation" x="33.5" y="53"/>
         </view>
     </objects>
 </document>

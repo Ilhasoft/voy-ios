@@ -68,7 +68,7 @@ class VOYThemeListViewController: UIViewController {
     }
     
     @objc func openAccount() {
-        
+        self.navigationController?.pushViewController(VOYAccountViewController(), animated: true)
     }
     
     @objc func openNotifications() {
