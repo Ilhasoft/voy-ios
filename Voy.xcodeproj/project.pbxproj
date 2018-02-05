@@ -47,6 +47,7 @@
 		655BD1852024F87100D69EA2 /* VOYAvatarCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 655BD1832024F87100D69EA2 /* VOYAvatarCollectionViewCell.swift */; };
 		655BD1862024F87100D69EA2 /* VOYAvatarCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 655BD1842024F87100D69EA2 /* VOYAvatarCollectionViewCell.xib */; };
 		655BD1882024FFD700D69EA2 /* VOYAvatarCollectionViewProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 655BD1872024FFD700D69EA2 /* VOYAvatarCollectionViewProvider.swift */; };
+		655BD18A2028841100D69EA2 /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 655BD1892028841000D69EA2 /* UIViewControllerExtension.swift */; };
 		65F346072020A87A00AC5437 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65F346062020A87A00AC5437 /* AppDelegate.swift */; };
 		65F3460E2020A87A00AC5437 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 65F3460D2020A87A00AC5437 /* Assets.xcassets */; };
 		65F346112020A87A00AC5437 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 65F3460F2020A87A00AC5437 /* LaunchScreen.storyboard */; };
@@ -124,6 +125,7 @@
 		655BD1832024F87100D69EA2 /* VOYAvatarCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VOYAvatarCollectionViewCell.swift; sourceTree = "<group>"; };
 		655BD1842024F87100D69EA2 /* VOYAvatarCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VOYAvatarCollectionViewCell.xib; sourceTree = "<group>"; };
 		655BD1872024FFD700D69EA2 /* VOYAvatarCollectionViewProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VOYAvatarCollectionViewProvider.swift; sourceTree = "<group>"; };
+		655BD1892028841000D69EA2 /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
 		65F346032020A87A00AC5437 /* Voy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Voy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		65F346062020A87A00AC5437 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		65F3460D2020A87A00AC5437 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -179,6 +181,7 @@
 				655BD1282020F53400D69EA2 /* ISModalViewController.swift */,
 				655BD1212020E4FA00D69EA2 /* UIColorExtension.swift */,
 				655BD14620234A4A00D69EA2 /* VOYConstant.swift */,
+				655BD1892028841000D69EA2 /* UIViewControllerExtension.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -752,6 +755,7 @@
 				655BD14720234A4A00D69EA2 /* VOYConstant.swift in Sources */,
 				655BD1222020E4FA00D69EA2 /* UIColorExtension.swift in Sources */,
 				655BD13B2022396700D69EA2 /* VOYAddReportDataViewController.swift in Sources */,
+				655BD18A2028841100D69EA2 /* UIViewControllerExtension.swift in Sources */,
 				655BD17C2024E74B00D69EA2 /* VOYAccountViewController.swift in Sources */,
 				655BD13720220D5000D69EA2 /* VOYActionSheetViewController.swift in Sources */,
 				655BD16920248C6C00D69EA2 /* VOYSelectedReportView.swift in Sources */,
