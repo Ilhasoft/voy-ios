@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="VOYPlayMediaView" customModule="Voy" customModuleProvider="target">
+            <connections>
+                <outlet property="contentView" destination="i5M-Pr-FkT" id="KDG-WH-VFM"/>
+                <outlet property="imgPlayIcon" destination="ZhI-4t-F7u" id="Lvg-Rf-rjX"/>
+                <outlet property="imgView" destination="2HB-Fu-a7B" id="Pl2-uD-ndg"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="161"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="2HB-Fu-a7B">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="161"/>
+                </imageView>
+                <imageView hidden="YES" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" image="noun419251Cc" translatesAutoresizingMaskIntoConstraints="NO" id="ZhI-4t-F7u">
+                    <rect key="frame" x="161" y="54" width="53" height="52"/>
+                </imageView>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="2HB-Fu-a7B" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="Cqz-6Y-E83"/>
+                <constraint firstItem="2HB-Fu-a7B" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="LjF-Ch-Q1I"/>
+                <constraint firstItem="2HB-Fu-a7B" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="PY5-Dy-bU3"/>
+                <constraint firstItem="ZhI-4t-F7u" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="RUW-hW-05z"/>
+                <constraint firstItem="2HB-Fu-a7B" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" id="cgu-eK-AAa"/>
+                <constraint firstItem="ZhI-4t-F7u" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="fPF-DI-kok"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <point key="canvasLocation" x="34.5" y="-179.5"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="noun419251Cc" width="53" height="52"/>
+    </resources>
+</document>

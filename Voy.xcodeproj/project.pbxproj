@@ -48,6 +48,10 @@
 		655BD1862024F87100D69EA2 /* VOYAvatarCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 655BD1842024F87100D69EA2 /* VOYAvatarCollectionViewCell.xib */; };
 		655BD1882024FFD700D69EA2 /* VOYAvatarCollectionViewProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 655BD1872024FFD700D69EA2 /* VOYAvatarCollectionViewProvider.swift */; };
 		655BD18A2028841100D69EA2 /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 655BD1892028841000D69EA2 /* UIViewControllerExtension.swift */; };
+		655BD18D202885C800D69EA2 /* VOYReportDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 655BD18B202885C800D69EA2 /* VOYReportDetailViewController.swift */; };
+		655BD18E202885C800D69EA2 /* VOYReportDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 655BD18C202885C800D69EA2 /* VOYReportDetailViewController.xib */; };
+		655BD1912028C50400D69EA2 /* VOYPlayMediaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 655BD18F2028C50400D69EA2 /* VOYPlayMediaView.swift */; };
+		655BD1922028C50400D69EA2 /* VOYPlayMediaView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 655BD1902028C50400D69EA2 /* VOYPlayMediaView.xib */; };
 		65F346072020A87A00AC5437 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65F346062020A87A00AC5437 /* AppDelegate.swift */; };
 		65F3460E2020A87A00AC5437 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 65F3460D2020A87A00AC5437 /* Assets.xcassets */; };
 		65F346112020A87A00AC5437 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 65F3460F2020A87A00AC5437 /* LaunchScreen.storyboard */; };
@@ -126,6 +130,10 @@
 		655BD1842024F87100D69EA2 /* VOYAvatarCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VOYAvatarCollectionViewCell.xib; sourceTree = "<group>"; };
 		655BD1872024FFD700D69EA2 /* VOYAvatarCollectionViewProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VOYAvatarCollectionViewProvider.swift; sourceTree = "<group>"; };
 		655BD1892028841000D69EA2 /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
+		655BD18B202885C800D69EA2 /* VOYReportDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VOYReportDetailViewController.swift; sourceTree = "<group>"; };
+		655BD18C202885C800D69EA2 /* VOYReportDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VOYReportDetailViewController.xib; sourceTree = "<group>"; };
+		655BD18F2028C50400D69EA2 /* VOYPlayMediaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VOYPlayMediaView.swift; sourceTree = "<group>"; };
+		655BD1902028C50400D69EA2 /* VOYPlayMediaView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VOYPlayMediaView.xib; sourceTree = "<group>"; };
 		65F346032020A87A00AC5437 /* Voy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Voy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		65F346062020A87A00AC5437 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		65F3460D2020A87A00AC5437 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -200,6 +208,8 @@
 		655BD12B202112F600D69EA2 /* ReportDetail */ = {
 			isa = PBXGroup;
 			children = (
+				655BD18B202885C800D69EA2 /* VOYReportDetailViewController.swift */,
+				655BD18C202885C800D69EA2 /* VOYReportDetailViewController.xib */,
 			);
 			path = ReportDetail;
 			sourceTree = "<group>";
@@ -395,6 +405,8 @@
 				655BD14920237BD100D69EA2 /* VOYInfoView.xib */,
 				655BD16720248C6C00D69EA2 /* VOYSelectedReportView.swift */,
 				655BD16820248C6C00D69EA2 /* VOYSelectedReportView.xib */,
+				655BD18F2028C50400D69EA2 /* VOYPlayMediaView.swift */,
+				655BD1902028C50400D69EA2 /* VOYPlayMediaView.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -547,6 +559,7 @@
 				65F346112020A87A00AC5437 /* LaunchScreen.storyboard in Resources */,
 				655BD14B20237BD100D69EA2 /* VOYInfoView.xib in Resources */,
 				655BD14520233FEB00D69EA2 /* VOYAddReportTagsViewController.xib in Resources */,
+				655BD18E202885C800D69EA2 /* VOYReportDetailViewController.xib in Resources */,
 				65F3460E2020A87A00AC5437 /* Assets.xcassets in Resources */,
 				655BD1642023989600D69EA2 /* VOYNotificationViewController.xib in Resources */,
 				655BD1412022439000D69EA2 /* VOYLinkTableViewCell.xib in Resources */,
@@ -555,6 +568,7 @@
 				655BD134202118CB00D69EA2 /* VOYAddMediaView.xib in Resources */,
 				655BD15820238B1000D69EA2 /* VOYThemeTableViewCell.xib in Resources */,
 				655BD16F2024CC5F00D69EA2 /* VOYReportListViewController.xib in Resources */,
+				655BD1922028C50400D69EA2 /* VOYPlayMediaView.xib in Resources */,
 				655BD15D20238D4500D69EA2 /* VOYThemeListViewController.xib in Resources */,
 				655BD1862024F87100D69EA2 /* VOYAvatarCollectionViewCell.xib in Resources */,
 				655BD14F20237EC600D69EA2 /* VOYAddReportSuccessViewController.xib in Resources */,
@@ -656,6 +670,7 @@
 				"${BUILT_PRODUCTS_DIR}/DropDown/DropDown.framework",
 				"${BUILT_PRODUCTS_DIR}/ISOnDemandCollectionView/ISOnDemandCollectionView.framework",
 				"${BUILT_PRODUCTS_DIR}/ISOnDemandTableView/ISOnDemandTableView.framework",
+				"${BUILT_PRODUCTS_DIR}/ISScrollViewPageSwift/ISScrollViewPageSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SlideMenuControllerSwift/SlideMenuControllerSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/TPKeyboardAvoiding/TPKeyboardAvoiding.framework",
 				"${BUILT_PRODUCTS_DIR}/TagListView/TagListView.framework",
@@ -665,6 +680,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DropDown.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ISOnDemandCollectionView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ISOnDemandTableView.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ISScrollViewPageSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SlideMenuControllerSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TPKeyboardAvoiding.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TagListView.framework",
@@ -746,6 +762,7 @@
 			files = (
 				655BD15C20238D4500D69EA2 /* VOYThemeListViewController.swift in Sources */,
 				655BD12F2021148800D69EA2 /* VOYAddReportAttachViewController.swift in Sources */,
+				655BD18D202885C800D69EA2 /* VOYReportDetailViewController.swift in Sources */,
 				655BD1262020F3C100D69EA2 /* VOYAlertViewController.swift in Sources */,
 				655BD1292020F53400D69EA2 /* ISModalViewController.swift in Sources */,
 				65F3463D2020B58A00AC5437 /* VOYLoginViewController.swift in Sources */,
@@ -759,6 +776,7 @@
 				655BD17C2024E74B00D69EA2 /* VOYAccountViewController.swift in Sources */,
 				655BD13720220D5000D69EA2 /* VOYActionSheetViewController.swift in Sources */,
 				655BD16920248C6C00D69EA2 /* VOYSelectedReportView.swift in Sources */,
+				655BD1912028C50400D69EA2 /* VOYPlayMediaView.swift in Sources */,
 				65F346072020A87A00AC5437 /* AppDelegate.swift in Sources */,
 				655BD1782024D37B00D69EA2 /* VOYReportListTableViewProvider.swift in Sources */,
 				655BD1732024CE6500D69EA2 /* VOYReportTableViewCell.swift in Sources */,

@@ -74,7 +74,12 @@ class VOYActionSheetViewController: ISModalViewController {
         if button.tag != 999 {
             self.delegate?.buttonDidTap(actionSheetViewController:self, button: button, index: button.tag)
         }else {
-            self.delegate?.cancelButtonDidTap(actionSheetViewController:self)
+            if let delegate = self.delegate {
+                delegate.cancelButtonDidTap(actionSheetViewController:self)
+            }else {
+                self.close()
+            }
+            
         }
     }
     

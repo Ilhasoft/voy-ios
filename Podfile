@@ -11,6 +11,7 @@ pod 'ISOnDemandTableView', :git => 'https://github.com/Ilhasoft/ISOnDemandTableV
 pod 'ISOnDemandCollectionView', :git => 'https://github.com/Ilhasoft/ISOnDemandCollectionView'
 pod 'SlideMenuControllerSwift'
 pod 'DropDown'
+pod 'ISScrollViewPageSwift'
 
   target 'VoyTests' do
     inherit! :search_paths

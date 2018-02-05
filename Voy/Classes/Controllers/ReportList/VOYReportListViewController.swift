@@ -83,5 +83,9 @@ extension VOYReportListViewController : ISOnDemandTableViewDelegate {
     func onDemandTableView(_ tableView: ISOnDemandTableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 118
     }
+    
+    func onDemandTableView(_ tableView: ISOnDemandTableView, didSelectRowAt indexPath: IndexPath) {
+        self.navigationController?.pushViewController(VOYReportDetailViewController(), animated: true)
+    }
 }
 
