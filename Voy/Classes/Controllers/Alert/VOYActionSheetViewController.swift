@@ -18,7 +18,7 @@ class VOYActionSheetViewController: ISModalViewController {
     @IBOutlet private var stackView:UIStackView!
     @IBOutlet weak var heightStackView: NSLayoutConstraint!
     
-    private var buttonHeight = 82
+    private var buttonHeight = 56
     private var buttonNames = [String]()
     private var icons = [UIImage]()
     
@@ -48,7 +48,7 @@ class VOYActionSheetViewController: ISModalViewController {
     
     private func setupLayout() {
                 
-        self.heightStackView.constant = CGFloat(buttonHeight * buttonNames.count + 1)
+        self.heightStackView.constant = CGFloat(buttonHeight * (buttonNames.count + 1))
         self.view.layoutIfNeeded()
         
         for (index,buttonName) in buttonNames.enumerated() {

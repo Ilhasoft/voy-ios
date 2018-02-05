@@ -46,7 +46,7 @@ class VOYReportDetailViewController: UIViewController {
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: " ", style: .plain, target: nil, action: nil)
         let image = #imageLiteral(resourceName: "combinedShape").withRenderingMode(.alwaysOriginal)
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: image, style: .plain, target: self, action: #selector(showActionSheet))
-        let imageView = UIImageView(frame: CGRect(x: -8, y: 5, width: 32, height: 31))
+        let imageView = UIImageView(frame: CGRect(x: -13, y: 5, width: 32, height: 31))
         let v = UIView(frame: CGRect(x: 0, y: 0, width: 32, height: 31))
         imageView.image = #imageLiteral(resourceName: "avatar14")
         imageView.contentMode = .scaleAspectFit
@@ -77,7 +77,7 @@ class VOYReportDetailViewController: UIViewController {
     }
     
     @IBAction func btCommentTapped(_ sender: Any) {
-        
+        self.navigationController?.pushViewController(VOYCommentViewController(), animated: true)
     }
 }
 extension VOYReportDetailViewController : ISScrollViewPageDelegate {
