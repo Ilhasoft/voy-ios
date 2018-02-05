@@ -44,8 +44,8 @@ class VOYReportDetailViewController: UIViewController {
     
     func setupNavigationItem() {
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: " ", style: .plain, target: nil, action: nil)
-        let image = #imageLiteral(resourceName: "combinedShape").withRenderingMode(.alwaysOriginal)
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: image, style: .plain, target: self, action: #selector(showActionSheet))
+        let barButtonItemOptions = UIBarButtonItem(image: #imageLiteral(resourceName: "combinedShape").withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(showActionSheet))
+        let barButtonItemIssue = UIBarButtonItem(image: #imageLiteral(resourceName: "issue").withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(showIssue))
         let imageView = UIImageView(frame: CGRect(x: -13, y: 5, width: 32, height: 31))
         let v = UIView(frame: CGRect(x: 0, y: 0, width: 32, height: 31))
         imageView.image = #imageLiteral(resourceName: "avatar14")
@@ -54,6 +54,13 @@ class VOYReportDetailViewController: UIViewController {
         imageView.heightAnchor.constraint(equalToConstant: 31)
         v.addSubview(imageView)
         self.navigationItem.titleView = v
+        self.navigationItem.rightBarButtonItems = [barButtonItemOptions,barButtonItemIssue]
+    }
+    
+    @objc func showIssue() {
+        let alertInfoController = VOYAlertViewController(title: "Issues reported in your report", message: "Try to send more photos of this problem and talk more about it.", buttonNames: ["Edit Report","Close"])
+        alertInfoController.delegate = self
+        alertInfoController.show(true, inViewController: self)
     }
     
     func setupScrollViewMedias() {
@@ -94,5 +101,19 @@ extension VOYReportDetailViewController : VOYActionSheetViewControllerDelegate {
     func buttonDidTap(actionSheetViewController: VOYActionSheetViewController, button: UIButton, index: Int) {
         actionSheetViewController.close()
         self.navigationController?.pushViewController(VOYAddReportAttachViewController(), animated: true)
+    }
+}
+
+extension VOYReportDetailViewController : VOYAlertViewControllerDelegate {
+    func buttonDidTap(alertController: VOYAlertViewController, button: UIButton, index: Int) {
+        alertController.close()
+        switch index {
+        case 0:
+            self.navigationController?.pushViewController(VOYAddReportAttachViewController(), animated: true)
+        case 1:
+            break
+        default:
+            break
+        }
     }
 }

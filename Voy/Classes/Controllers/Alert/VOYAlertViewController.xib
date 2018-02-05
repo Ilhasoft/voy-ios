@@ -39,10 +39,10 @@
                                 <constraint firstAttribute="height" constant="49" id="0zS-4b-Sdq"/>
                             </constraints>
                         </stackView>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Permissions" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gaD-8F-3Oi">
-                            <rect key="frame" x="28" y="21" width="238" height="31"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Permissions" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gaD-8F-3Oi">
+                            <rect key="frame" x="28" y="21" width="238" height="46"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="31" id="TX7-GU-qIh"/>
+                                <constraint firstAttribute="height" constant="46" id="TX7-GU-qIh"/>
                             </constraints>
                             <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="19"/>
                             <nil key="textColor"/>
@@ -64,7 +64,7 @@
                         <constraint firstAttribute="trailing" secondItem="UMy-P4-XlG" secondAttribute="trailing" constant="17" id="WT7-AZ-LKk"/>
                         <constraint firstAttribute="trailing" secondItem="qC0-a4-1qZ" secondAttribute="trailing" id="Z2f-Qu-PrA"/>
                         <constraint firstItem="gaD-8F-3Oi" firstAttribute="leading" secondItem="pjM-cF-n7q" secondAttribute="leading" constant="28" id="ZsN-iI-hWM"/>
-                        <constraint firstItem="UMy-P4-XlG" firstAttribute="top" secondItem="gaD-8F-3Oi" secondAttribute="bottom" constant="28" id="fwi-rw-GMz"/>
+                        <constraint firstItem="UMy-P4-XlG" firstAttribute="top" secondItem="gaD-8F-3Oi" secondAttribute="bottom" constant="13" id="fwi-rw-GMz"/>
                         <constraint firstAttribute="width" constant="295" id="gBM-ew-tbz"/>
                         <constraint firstItem="gaD-8F-3Oi" firstAttribute="top" secondItem="pjM-cF-n7q" secondAttribute="top" constant="21" id="kw8-UE-Yu5"/>
                         <constraint firstItem="qC0-a4-1qZ" firstAttribute="leading" secondItem="pjM-cF-n7q" secondAttribute="leading" id="lsK-Cp-r1I"/>
