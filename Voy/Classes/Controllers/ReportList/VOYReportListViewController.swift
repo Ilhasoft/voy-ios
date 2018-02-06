@@ -16,8 +16,11 @@ class VOYReportListViewController: UIViewController {
     @IBOutlet var tbView:ISOnDemandTableView!
     @IBOutlet var segmentedControl:UISegmentedControl!
     
+    static var sharedInstance:VOYReportListViewController?
+    
     init(selectedReport:String) {
         super.init(nibName: "VOYReportListViewController", bundle: nil)
+        VOYReportListViewController.sharedInstance = self
         self.title = selectedReport
     }
     
@@ -30,6 +33,11 @@ class VOYReportListViewController: UIViewController {
         let rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "bell"), style: .plain, target: self, action: #selector(openNotifications))
         self.navigationItem.rightBarButtonItem = rightBarButtonItem
         setupTableView()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
     }
     
     @objc func openNotifications() {

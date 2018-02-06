@@ -38,10 +38,13 @@ class VOYAddReportSuccessViewController: UIViewController {
     }
     
     @IBAction func btCloseTapped() {
-        let navigationController = UINavigationController(rootViewController: self.navigationController!.viewControllers[1])
-        let slideMenuController = SlideMenuController(mainViewController: navigationController, rightMenuViewController: VOYNotificationViewController())
-        
-        UIViewController.switchRootViewController(slideMenuController, animated: true) { }
+        if let sharedInstance = VOYReportListViewController.sharedInstance {
+            self.navigationController?.popToViewController(sharedInstance, animated: true)
+        }
+//        let navigationController = UINavigationController(rootViewController: self.navigationController!.viewControllers[1])
+//        let slideMenuController = SlideMenuController(mainViewController: navigationController, rightMenuViewController: VOYNotificationViewController())
+//
+//        UIViewController.switchRootViewController(slideMenuController, animated: true) { }
     }
 
 }
