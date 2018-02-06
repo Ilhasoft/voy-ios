@@ -67,6 +67,8 @@
 		65F346422020B82B00AC5437 /* VOYTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65F346402020B82B00AC5437 /* VOYTextFieldView.swift */; };
 		65F346432020B82B00AC5437 /* VOYTextFieldView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 65F346412020B82B00AC5437 /* VOYTextFieldView.xib */; };
 		65F699492028FAE400BFCF0C /* ISOndemandTableViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65F699482028FAE400BFCF0C /* ISOndemandTableViewExtension.swift */; };
+		65F6994C202A1CB400BFCF0C /* VOYTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65F6994A202A1CB400BFCF0C /* VOYTextView.swift */; };
+		65F6994D202A1CB400BFCF0C /* VOYTextView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 65F6994B202A1CB400BFCF0C /* VOYTextView.xib */; };
 		7CE0EFAA68FD7879EE12CDA5 /* Pods_Voy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E550C0C568807F52623837F /* Pods_Voy.framework */; };
 		C365BA53A254E96BCDEB9AAF /* Pods_VoyUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33E4711F114752F9A169B817 /* Pods_VoyUITests.framework */; };
 		D36E24B6691A028EA1A52082 /* Pods_VoyTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABF132ADC4EF1DA114732EB6 /* Pods_VoyTests.framework */; };
@@ -161,6 +163,8 @@
 		65F346402020B82B00AC5437 /* VOYTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VOYTextFieldView.swift; sourceTree = "<group>"; };
 		65F346412020B82B00AC5437 /* VOYTextFieldView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VOYTextFieldView.xib; sourceTree = "<group>"; };
 		65F699482028FAE400BFCF0C /* ISOndemandTableViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ISOndemandTableViewExtension.swift; sourceTree = "<group>"; };
+		65F6994A202A1CB400BFCF0C /* VOYTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VOYTextView.swift; sourceTree = "<group>"; };
+		65F6994B202A1CB400BFCF0C /* VOYTextView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VOYTextView.xib; sourceTree = "<group>"; };
 		6BA92341A1C7FC405623FD46 /* Pods-VoyUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VoyUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-VoyUITests/Pods-VoyUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		A3774A32A2AA74A335CD6885 /* Pods-Voy.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Voy.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Voy/Pods-Voy.debug.xcconfig"; sourceTree = "<group>"; };
 		ABF132ADC4EF1DA114732EB6 /* Pods_VoyTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VoyTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -441,6 +445,8 @@
 				655BD16820248C6C00D69EA2 /* VOYSelectedReportView.xib */,
 				655BD18F2028C50400D69EA2 /* VOYPlayMediaView.swift */,
 				655BD1902028C50400D69EA2 /* VOYPlayMediaView.xib */,
+				65F6994A202A1CB400BFCF0C /* VOYTextView.swift */,
+				65F6994B202A1CB400BFCF0C /* VOYTextView.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -593,6 +599,7 @@
 				65F346112020A87A00AC5437 /* LaunchScreen.storyboard in Resources */,
 				655BD14B20237BD100D69EA2 /* VOYInfoView.xib in Resources */,
 				655BD14520233FEB00D69EA2 /* VOYAddReportTagsViewController.xib in Resources */,
+				65F6994D202A1CB400BFCF0C /* VOYTextView.xib in Resources */,
 				655BD1982028ECB800D69EA2 /* VOYCommentTableViewCell.xib in Resources */,
 				655BD18E202885C800D69EA2 /* VOYReportDetailViewController.xib in Resources */,
 				65F3460E2020A87A00AC5437 /* Assets.xcassets in Resources */,
@@ -704,6 +711,7 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Voy/Pods-Voy-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/DropDown/DropDown.framework",
+				"${BUILT_PRODUCTS_DIR}/GrowingTextView/GrowingTextView.framework",
 				"${BUILT_PRODUCTS_DIR}/ISOnDemandCollectionView/ISOnDemandCollectionView.framework",
 				"${BUILT_PRODUCTS_DIR}/ISOnDemandTableView/ISOnDemandTableView.framework",
 				"${BUILT_PRODUCTS_DIR}/ISScrollViewPageSwift/ISScrollViewPageSwift.framework",
@@ -714,6 +722,7 @@
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DropDown.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GrowingTextView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ISOnDemandCollectionView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ISOnDemandTableView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ISScrollViewPageSwift.framework",
@@ -814,6 +823,7 @@
 				655BD13720220D5000D69EA2 /* VOYActionSheetViewController.swift in Sources */,
 				655BD16920248C6C00D69EA2 /* VOYSelectedReportView.swift in Sources */,
 				655BD19E2028EF1400D69EA2 /* VOYCommentTableViewProvider.swift in Sources */,
+				65F6994C202A1CB400BFCF0C /* VOYTextView.swift in Sources */,
 				655BD1912028C50400D69EA2 /* VOYPlayMediaView.swift in Sources */,
 				65F346072020A87A00AC5437 /* AppDelegate.swift in Sources */,
 				655BD19B2028ECFC00D69EA2 /* VOYCommentViewController.swift in Sources */,

@@ -19,7 +19,8 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="VOYAddReportDataViewController" customModule="Voy" customModuleProvider="target">
             <connections>
                 <outlet property="btAddLink" destination="Ljy-7V-vnV" id="Esb-hq-AMi"/>
-                <outlet property="descriptionView" destination="pbI-bm-hvA" id="8sy-wm-QF5"/>
+                <outlet property="descriptionView" destination="qbh-Cy-T1c" id="8GY-oV-VQ2"/>
+                <outlet property="heightDescriptionView" destination="Dua-wf-h17" id="k4i-2D-u53"/>
                 <outlet property="lbAddLink" destination="4Jy-6e-IFa" id="Iqc-dr-5or"/>
                 <outlet property="lbTitle" destination="jFq-xv-cro" id="pe6-oe-ze3"/>
                 <outlet property="tbViewLinks" destination="ozX-WH-phr" id="0DN-qc-hFM"/>
@@ -59,17 +60,6 @@
                                         <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="Title"/>
                                     </userDefinedRuntimeAttributes>
                                 </view>
-                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pbI-bm-hvA" customClass="VOYTextFieldView" customModule="Voy">
-                                    <rect key="frame" x="25" y="205" width="325" height="45"/>
-                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    <constraints>
-                                        <constraint firstAttribute="height" constant="45" id="Xiy-s5-v7V"/>
-                                    </constraints>
-                                    <userDefinedRuntimeAttributes>
-                                        <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="Description"/>
-                                        <userDefinedRuntimeAttribute type="boolean" keyPath="password" value="NO"/>
-                                    </userDefinedRuntimeAttributes>
-                                </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oYZ-FS-zkR">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="3"/>
                                     <color key="backgroundColor" red="0.0" green="0.79607843140000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -102,7 +92,7 @@
                                         <constraint firstAttribute="width" constant="30" id="NoH-Yi-Ea9"/>
                                         <constraint firstAttribute="height" constant="30" id="eFj-ko-1yl"/>
                                     </constraints>
-                                    <state key="normal" image="group2"/>
+                                    <state key="normal" image="addLink"/>
                                     <connections>
                                         <action selector="btAddLinkTapped:" destination="-1" eventType="touchUpInside" id="8Gt-8x-QxL"/>
                                     </connections>
@@ -115,9 +105,24 @@
                                         <outlet property="delegate" destination="-1" id="sTs-vL-NoZ"/>
                                     </connections>
                                 </tableView>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qbh-Cy-T1c" customClass="VOYTextView" customModule="Voy" customModuleProvider="target">
+                                    <rect key="frame" x="25" y="202" width="325" height="45"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="45" id="Dua-wf-h17"/>
+                                    </constraints>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="Description"/>
+                                        <userDefinedRuntimeAttribute type="boolean" keyPath="showBottomView" value="YES"/>
+                                        <userDefinedRuntimeAttribute type="boolean" keyPath="editEnabled" value="YES"/>
+                                    </userDefinedRuntimeAttributes>
+                                </view>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
+                                <constraint firstItem="qbh-Cy-T1c" firstAttribute="leading" secondItem="2IB-dE-tl7" secondAttribute="leading" constant="25" id="0Io-Si-x50"/>
+                                <constraint firstItem="4Jy-6e-IFa" firstAttribute="top" secondItem="qbh-Cy-T1c" secondAttribute="bottom" constant="35" id="1qR-SS-ADV"/>
+                                <constraint firstAttribute="trailing" secondItem="qbh-Cy-T1c" secondAttribute="trailing" constant="25" id="4TJ-iL-IkA"/>
                                 <constraint firstItem="oYZ-FS-zkR" firstAttribute="leading" secondItem="2IB-dE-tl7" secondAttribute="leading" id="4sh-GC-ond"/>
                                 <constraint firstItem="ozX-WH-phr" firstAttribute="top" secondItem="c7T-5J-oYP" secondAttribute="bottom" constant="24" id="6Id-lI-fA0"/>
                                 <constraint firstItem="jFq-xv-cro" firstAttribute="leading" secondItem="2IB-dE-tl7" secondAttribute="leading" constant="25" id="78M-oO-CcX"/>
@@ -125,19 +130,16 @@
                                 <constraint firstAttribute="trailing" secondItem="ozX-WH-phr" secondAttribute="trailing" constant="25" id="9rl-xg-Ahp"/>
                                 <constraint firstAttribute="trailing" secondItem="fVN-Il-aK5" secondAttribute="trailing" constant="25" id="Anm-Xv-Bno"/>
                                 <constraint firstAttribute="bottom" secondItem="ozX-WH-phr" secondAttribute="bottom" id="FeN-Uh-0hH"/>
-                                <constraint firstItem="pbI-bm-hvA" firstAttribute="leading" secondItem="2IB-dE-tl7" secondAttribute="leading" constant="25" id="NPn-zA-0Af"/>
+                                <constraint firstItem="qbh-Cy-T1c" firstAttribute="top" secondItem="fVN-Il-aK5" secondAttribute="bottom" constant="11" id="Oz5-RS-wTr"/>
                                 <constraint firstItem="fVN-Il-aK5" firstAttribute="top" secondItem="jFq-xv-cro" secondAttribute="bottom" constant="34" id="PRw-MP-4nU"/>
                                 <constraint firstItem="4Jy-6e-IFa" firstAttribute="leading" secondItem="2IB-dE-tl7" secondAttribute="leading" constant="25" id="Ph5-TM-AgQ"/>
                                 <constraint firstItem="Ljy-7V-vnV" firstAttribute="leading" secondItem="c7T-5J-oYP" secondAttribute="trailing" constant="22" id="Z6a-FP-Z5o"/>
+                                <constraint firstItem="Ljy-7V-vnV" firstAttribute="top" secondItem="qbh-Cy-T1c" secondAttribute="bottom" constant="66" id="ZXU-Qv-noY"/>
                                 <constraint firstAttribute="trailing" secondItem="Ljy-7V-vnV" secondAttribute="trailing" constant="25" id="dno-4E-8FQ"/>
                                 <constraint firstItem="oYZ-FS-zkR" firstAttribute="top" secondItem="2IB-dE-tl7" secondAttribute="top" id="eSh-qE-ni8"/>
                                 <constraint firstItem="c7T-5J-oYP" firstAttribute="top" secondItem="4Jy-6e-IFa" secondAttribute="bottom" constant="1" id="fS4-AL-F2r"/>
-                                <constraint firstItem="4Jy-6e-IFa" firstAttribute="top" secondItem="pbI-bm-hvA" secondAttribute="bottom" constant="32" id="fvV-AD-VmV"/>
-                                <constraint firstAttribute="trailing" secondItem="pbI-bm-hvA" secondAttribute="trailing" constant="25" id="g3d-jT-LzF"/>
                                 <constraint firstAttribute="trailing" secondItem="oYZ-FS-zkR" secondAttribute="trailing" id="hbf-zz-VIi"/>
-                                <constraint firstItem="pbI-bm-hvA" firstAttribute="top" secondItem="fVN-Il-aK5" secondAttribute="bottom" constant="14" id="l2E-Aw-rmG"/>
                                 <constraint firstItem="c7T-5J-oYP" firstAttribute="leading" secondItem="2IB-dE-tl7" secondAttribute="leading" constant="25" id="teb-9O-aYn"/>
-                                <constraint firstItem="Ljy-7V-vnV" firstAttribute="top" secondItem="pbI-bm-hvA" secondAttribute="bottom" constant="63" id="u5b-fC-jRb"/>
                                 <constraint firstItem="fVN-Il-aK5" firstAttribute="leading" secondItem="2IB-dE-tl7" secondAttribute="leading" constant="25" id="viO-YG-pwg"/>
                                 <constraint firstItem="jFq-xv-cro" firstAttribute="top" secondItem="oYZ-FS-zkR" secondAttribute="bottom" constant="22" id="vie-IL-HBY"/>
                             </constraints>
@@ -166,6 +168,6 @@
         </view>
     </objects>
     <resources>
-        <image name="group2" width="30" height="30"/>
+        <image name="addLink" width="29" height="30"/>
     </resources>
 </document>

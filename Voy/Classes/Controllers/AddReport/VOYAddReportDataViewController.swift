@@ -7,12 +7,14 @@
 //
 
 import UIKit
+import GrowingTextView
 
 class VOYAddReportDataViewController: UIViewController {
 
     @IBOutlet var lbTitle:UILabel!
     @IBOutlet weak var titleView: VOYTextFieldView!
-    @IBOutlet weak var descriptionView: VOYTextFieldView!
+    @IBOutlet weak var heightDescriptionView: NSLayoutConstraint!
+    @IBOutlet weak var descriptionView: VOYTextView!
     @IBOutlet weak var lbAddLink: UILabel!
     @IBOutlet weak var txtFieldLink: UITextField!
     @IBOutlet weak var btAddLink: UIButton!
@@ -35,6 +37,7 @@ class VOYAddReportDataViewController: UIViewController {
         setupTableView()
         setupLayout()
         addNextButton()
+        descriptionView.delegate = self
     }
     
     func addNextButton() {
@@ -107,4 +110,13 @@ extension VOYAddReportDataViewController : UITextFieldDelegate {
         return true
     }
     
+}
+
+extension VOYAddReportDataViewController : VOYTextViewDelegate {
+    func textViewDidChangeHeight(_ textView: GrowingTextView, height: CGFloat) {
+        self.heightDescriptionView.constant = height + 15
+        UIView.animate(withDuration: 0.2) {
+            self.view.layoutIfNeeded()
+        }
+    }
 }

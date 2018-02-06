@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SlideMenuControllerSwift
 
 class VOYAddReportSuccessViewController: UIViewController {
 
@@ -25,16 +26,22 @@ class VOYAddReportSuccessViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.setNavigationBarHidden(true, animated: false)
-        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: " ", style: .plain, target: nil, action: nil)
+//        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: " ", style: .plain, target: nil, action: nil)
         
     }
     
     @IBAction func btNewReportTapped() {
-    
+        let navigationController = UINavigationController(rootViewController: VOYThemeListViewController())
+        let slideMenuController = SlideMenuController(mainViewController: navigationController, rightMenuViewController: VOYNotificationViewController())
+        
+        UIViewController.switchRootViewController(slideMenuController, animated: true) { }
     }
     
     @IBAction func btCloseTapped() {
+        let navigationController = UINavigationController(rootViewController: self.navigationController!.viewControllers[1])
+        let slideMenuController = SlideMenuController(mainViewController: navigationController, rightMenuViewController: VOYNotificationViewController())
         
+        UIViewController.switchRootViewController(slideMenuController, animated: true) { }
     }
 
 }
