@@ -72,7 +72,9 @@ extension VOYReportListViewController : ISOnDemandTableViewDelegate {
         return "VOYReportTableViewCell"
     }
     func onDemandTableView(_ tableView: ISOnDemandTableView, setupCell cell: UITableViewCell, at indexPath: IndexPath) {
-        
+        if let cell = cell as? VOYReportTableViewCell {
+            cell.delegate = self
+        }
     }
     func onDemandTableView(_ tableView: ISOnDemandTableView, onContentLoad lastData: [Any]?, withError error: Error?) {
         if tableView.interactor?.objects.count == 0 {
@@ -89,3 +91,20 @@ extension VOYReportListViewController : ISOnDemandTableViewDelegate {
     }
 }
 
+extension VOYReportListViewController : VOYReportTableViewCellDelegate {
+    func btResentDidTap(cell: VOYReportTableViewCell) {
+        let actionSheetViewController = VOYActionSheetViewController(buttonNames: ["Resent"], icons: nil)
+        actionSheetViewController.delegate = self
+        actionSheetViewController.show(true, inViewController: self)
+    }
+}
+
+extension VOYReportListViewController : VOYActionSheetViewControllerDelegate {
+    func cancelButtonDidTap(actionSheetViewController: VOYActionSheetViewController) {
+        actionSheetViewController.close()
+    }
+    
+    func buttonDidTap(actionSheetViewController: VOYActionSheetViewController, button: UIButton, index: Int) {
+        
+    }
+}

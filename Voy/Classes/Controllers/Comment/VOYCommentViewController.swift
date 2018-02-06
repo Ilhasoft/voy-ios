@@ -121,9 +121,9 @@ extension VOYCommentViewController : ISOnDemandTableViewDelegate {
     }
     
     func onDemandTableView(_ tableView: ISOnDemandTableView, setupCell cell: UITableViewCell, at indexPath: IndexPath) {
-//        if let cell = cell as? ASQCommentsTableViewCell {
-//            cell.delegate = self
-//        }
+        if let cell = cell as? VOYCommentTableViewCell {
+            cell.delegate = self
+        }
     }
     
     func onDemandTableView(_ tableView: ISOnDemandTableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -132,3 +132,19 @@ extension VOYCommentViewController : ISOnDemandTableViewDelegate {
     
 }
 
+extension VOYCommentViewController : VOYCommentTableViewCellDelegate {
+    func btOptionsDidTap(cell: VOYCommentTableViewCell) {
+        let actionSheetViewController = VOYActionSheetViewController(buttonNames: ["Remove"], icons: nil)
+        actionSheetViewController.delegate = self
+        actionSheetViewController.show(true, inViewController: self)
+    }
+}
+
+extension VOYCommentViewController : VOYActionSheetViewControllerDelegate {
+    func cancelButtonDidTap(actionSheetViewController: VOYActionSheetViewController) {
+        actionSheetViewController.close()
+    }
+    func buttonDidTap(actionSheetViewController: VOYActionSheetViewController, button: UIButton, index: Int) {
+        print("remove")
+    }
+}

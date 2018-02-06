@@ -43,7 +43,7 @@
                                 </userDefinedRuntimeAttributes>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Akn-hS-u6v">
-                                <rect key="frame" x="75" y="15" width="200" height="36"/>
+                                <rect key="frame" x="75" y="15" width="192" height="36"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="36" id="uFj-vQ-BRr"/>
                                 </constraints>
@@ -54,7 +54,7 @@ disposal in river</string>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lorem ipsu m dolor sit amet, coed iscingelit, sed doet, conseadipisci…" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ji7-MQ-3zN">
-                                <rect key="frame" x="75" y="59" width="200" height="36"/>
+                                <rect key="frame" x="75" y="59" width="199" height="36"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="36" id="9Xs-ND-okR"/>
                                 </constraints>
@@ -72,20 +72,33 @@ disposal in river</string>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yOO-KR-Cw0">
+                                <rect key="frame" x="251" y="0.0" width="31" height="26"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="26" id="2zZ-p7-ha6"/>
+                                    <constraint firstAttribute="width" constant="31" id="9HF-tl-9Yb"/>
+                                </constraints>
+                                <state key="normal" image="noun1146501Cc"/>
+                                <connections>
+                                    <action selector="btResentTapped" destination="KGk-i7-Jjw" eventType="touchUpInside" id="P16-eG-fE7"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="8sY-gD-M8W" firstAttribute="top" secondItem="8zw-mO-NJt" secondAttribute="top" constant="15" id="1Jn-Ji-qQG"/>
                             <constraint firstItem="Ji7-MQ-3zN" firstAttribute="top" secondItem="Akn-hS-u6v" secondAttribute="bottom" constant="8" id="34R-EG-Zjg"/>
                             <constraint firstItem="Akn-hS-u6v" firstAttribute="top" secondItem="8zw-mO-NJt" secondAttribute="top" constant="15" id="BTo-zH-FpI"/>
+                            <constraint firstAttribute="trailing" secondItem="yOO-KR-Cw0" secondAttribute="trailing" id="J2H-Uq-xtn"/>
+                            <constraint firstItem="yOO-KR-Cw0" firstAttribute="top" secondItem="8zw-mO-NJt" secondAttribute="top" id="Kml-Zw-heq"/>
                             <constraint firstItem="RUV-77-fB6" firstAttribute="top" secondItem="8sY-gD-M8W" secondAttribute="bottom" constant="8" id="LdI-XL-OHs"/>
-                            <constraint firstAttribute="trailing" secondItem="Ji7-MQ-3zN" secondAttribute="trailing" constant="7" id="WHy-HP-VYV"/>
+                            <constraint firstAttribute="trailing" secondItem="Ji7-MQ-3zN" secondAttribute="trailing" constant="8" id="WHy-HP-VYV"/>
                             <constraint firstItem="Ji7-MQ-3zN" firstAttribute="leading" secondItem="8sY-gD-M8W" secondAttribute="trailing" constant="16" id="Xih-uB-Q0H"/>
                             <constraint firstItem="RUV-77-fB6" firstAttribute="leading" secondItem="8zw-mO-NJt" secondAttribute="leading" constant="5" id="chC-CJ-TNv"/>
                             <constraint firstItem="Akn-hS-u6v" firstAttribute="leading" secondItem="8sY-gD-M8W" secondAttribute="trailing" constant="16" id="oJW-Pt-Oo6"/>
                             <constraint firstAttribute="height" constant="103" id="ol2-y3-Jak"/>
                             <constraint firstItem="8sY-gD-M8W" firstAttribute="leading" secondItem="8zw-mO-NJt" secondAttribute="leading" constant="5" id="s2M-qw-eT0"/>
-                            <constraint firstAttribute="trailing" secondItem="Akn-hS-u6v" secondAttribute="trailing" constant="7" id="wiK-ge-bmh"/>
+                            <constraint firstAttribute="trailing" secondItem="Akn-hS-u6v" secondAttribute="trailing" constant="15" id="wiK-ge-bmh"/>
                         </constraints>
                     </view>
                 </subviews>
@@ -97,6 +110,7 @@ disposal in river</string>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="btResent" destination="yOO-KR-Cw0" id="s3C-wb-cvl"/>
                 <outlet property="imgReport" destination="8sY-gD-M8W" id="IFc-Dh-BMy"/>
                 <outlet property="lbDate" destination="RUV-77-fB6" id="zge-td-ery"/>
                 <outlet property="lbDescription" destination="Ji7-MQ-3zN" id="yzN-qG-9x8"/>
@@ -107,6 +121,7 @@ disposal in river</string>
         </tableViewCell>
     </objects>
     <resources>
+        <image name="noun1146501Cc" width="11" height="12"/>
         <image name="panda" width="366" height="366"/>
     </resources>
 </document>

@@ -9,6 +9,10 @@
 import UIKit
 import ISOnDemandTableView
 
+protocol VOYReportTableViewCellDelegate {
+    func btResentDidTap(cell:VOYReportTableViewCell)
+}
+
 class VOYReportTableViewCell: UITableViewCell {
 
     @IBOutlet var lbTitle:UILabel!
@@ -16,6 +20,9 @@ class VOYReportTableViewCell: UITableViewCell {
     @IBOutlet var lbDate:UILabel!
     @IBOutlet var imgReport:UIImageView!
     @IBOutlet var viewBG:UIView!
+    @IBOutlet var btResent:UIButton!
+    
+    var delegate:VOYReportTableViewCellDelegate?
     
     override func layoutSubviews() {
         super.layoutSubviews()
@@ -45,6 +52,10 @@ class VOYReportTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
+    }
+    
+    @IBAction func btResentTapped() {
+        self.delegate?.btResentDidTap(cell: self)
     }
     
 }
