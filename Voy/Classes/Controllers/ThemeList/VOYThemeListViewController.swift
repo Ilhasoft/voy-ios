@@ -79,7 +79,7 @@ class VOYThemeListViewController: UIViewController {
         tbView.separatorColor = UIColor.clear
         tbView.register(UINib(nibName: "VOYThemeTableViewCell", bundle: nil), forCellReuseIdentifier: "VOYThemeTableViewCell")
         tbView.onDemandTableViewDelegate = self
-        tbView.interactor = RestBindProvider(tableViewConfiguration:tbView.getConfiguration(), filteredFromMap: nil, filteredFromParams: ["project":1], paginationCount: 50)
+        tbView.interactor = RestBindTableViewProvider(tableViewConfiguration:tbView.getConfiguration(), params: ["project":1], paginationCount: 10)
         tbView.loadContent()
     }
 

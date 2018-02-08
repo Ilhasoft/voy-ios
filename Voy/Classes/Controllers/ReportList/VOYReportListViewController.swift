@@ -23,6 +23,7 @@ class VOYReportListViewController: UIViewController {
         super.init(nibName: "VOYReportListViewController", bundle: nil)
         VOYReportListViewController.sharedInstance = self
         self.theme = theme
+        self.title = theme.name
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -50,10 +51,9 @@ class VOYReportListViewController: UIViewController {
         tbView.separatorColor = UIColor.clear
         tbView.register(UINib(nibName: "VOYReportTableViewCell", bundle: nil), forCellReuseIdentifier: "VOYReportTableViewCell")
         tbView.onDemandTableViewDelegate = self
-        tbView.interactor = RestBindProvider(tableViewConfiguration:tbView.getConfiguration(), filteredFromMap: (className: "theme", map: self.theme.map()))
-        tbView.loadContent()
         
-        
+        self.segmentedControl.selectedSegmentIndex = 0
+        segmentedControlTapped()                
     }
     
     @IBAction func btAddReportTapped(_ sender: Any) {
@@ -61,12 +61,28 @@ class VOYReportListViewController: UIViewController {
     }
     
     @IBAction func segmentedControlTapped() {
+        var status = 0
         switch self.segmentedControl.selectedSegmentIndex {
         case 0:
+            status = 1
+            tbView.interactor = RestBindTableViewProvider(tableViewConfiguration:tbView.getConfiguration(),
+                                                          params: ["theme":self.theme.id,"status":status],
+                                                          paginationCount:5)
+            tbView.loadContent()
             break
         case 1:
+            status = 2
+            tbView.interactor = RestBindTableViewProvider(tableViewConfiguration:tbView.getConfiguration(),
+                                                          params: ["theme":self.theme.id,"status":status],
+                                                          paginationCount:5)
+            tbView.loadContent()
             break
         case 2:
+            status = 3
+            tbView.interactor = RestBindTableViewProvider(tableViewConfiguration:tbView.getConfiguration(),
+                                                          params: ["theme":self.theme.id,"status":status],
+                                                          paginationCount:5)
+            tbView.loadContent()
             break
         default:
             break
