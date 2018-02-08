@@ -13,24 +13,24 @@ protocol VOYReportTableViewCellDelegate {
     func btResentDidTap(cell:VOYReportTableViewCell)
 }
 
-class VOYReportTableViewCell: UITableViewCell {
+class VOYReportTableViewCell: RestBindTableViewCell {
 
-    @IBOutlet var lbTitle:UILabel!
-    @IBOutlet var lbDescription:UILabel!
-    @IBOutlet var lbDate:UILabel!
-    @IBOutlet var imgReport:UIImageView!
-    @IBOutlet var viewBG:UIView!
+    @IBOutlet var lbTitle:RestBindLabel!
+    @IBOutlet var lbDescription:RestBindLabel!
+    @IBOutlet var lbDate:RestBindLabel!
+    @IBOutlet var imgReport:RestBindImageView!
     @IBOutlet var btResent:UIButton!
     
     var delegate:VOYReportTableViewCellDelegate?
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        installShadow(view:self.viewBG)
+        installShadow(view:self.restBindFillView)
     }
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        self.restBindFillView.delegate = self
         self.selectionStyle = .none
     }
 
@@ -60,8 +60,45 @@ class VOYReportTableViewCell: UITableViewCell {
     
 }
 
-extension VOYReportTableViewCell : ISOnDemandTableViewCell {
-    func setupCell(with object: Any, at indexPath: IndexPath) {
+extension VOYReportTableViewCell : RestBindFillViewDelegate {
+    func didFetch(error: Error?) {
+        
+    }
+    
+    func willFill(component: Any, value: Any) -> Any? {
+        if let component = component as? UILabel {
+            if component == self.lbDate {
+                let dateFormatter = DateFormatter()
+                dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSSSSZ"
+                let dateString = value as! String
+                let date = dateFormatter.date(from: dateString)
+                
+                let dateFormatter2 = DateFormatter()
+                dateFormatter2.dateFormat = "MMM"
+                dateFormatter2.dateStyle = .medium
+                                
+                lbDate.text = dateFormatter2.string(from: date!)
+                
+                return nil
+            }else if component == self.lbDescription {
+                if value is NSNull {
+                    return nil
+                }
+            }
+            
+        }
+        return value
+    }
+    
+    func didFill(component: Any, value: Any) {
+        
+    }
+    
+    func willSet(component: Any, value: Any) -> Any? {
+        return value
+    }
+    
+    func didSet(component: Any, value: Any) {
         
     }
 }

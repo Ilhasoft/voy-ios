@@ -13,15 +13,16 @@ class VOYReportListViewController: UIViewController {
 
     @IBOutlet var viewInfo:VOYInfoView!
     @IBOutlet var btAddReport:UIButton!
-    @IBOutlet var tbView:ISOnDemandTableView!
+    @IBOutlet var tbView:RestBindTableView!
     @IBOutlet var segmentedControl:UISegmentedControl!
     
     static var sharedInstance:VOYReportListViewController?
+    var theme:VOYTheme!
     
-    init(selectedReport:String) {
+    init(theme:VOYTheme) {
         super.init(nibName: "VOYReportListViewController", bundle: nil)
         VOYReportListViewController.sharedInstance = self
-        self.title = selectedReport
+        self.theme = theme
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -49,7 +50,7 @@ class VOYReportListViewController: UIViewController {
         tbView.separatorColor = UIColor.clear
         tbView.register(UINib(nibName: "VOYReportTableViewCell", bundle: nil), forCellReuseIdentifier: "VOYReportTableViewCell")
         tbView.onDemandTableViewDelegate = self
-        tbView.interactor = VOYReportListTableViewProvider()
+        tbView.interactor = RestBindProvider(tableViewConfiguration:tbView.getConfiguration(), filteredFromMap: (className: "theme", map: self.theme.map()))
         tbView.loadContent()
         
         

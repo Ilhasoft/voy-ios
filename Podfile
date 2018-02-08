@@ -13,6 +13,9 @@ pod 'SlideMenuControllerSwift'
 pod 'DropDown'
 pod 'ISScrollViewPageSwift'
 pod 'GrowingTextView'
+pod 'Alamofire'
+pod 'AlamofireObjectMapper'
+pod 'Kingfisher'
 
   target 'VoyTests' do
     inherit! :search_paths

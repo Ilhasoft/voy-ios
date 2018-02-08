@@ -13,7 +13,7 @@ import DropDown
 class VOYThemeListViewController: UIViewController {
 
     @IBOutlet weak var lbThemesCount: UILabel!
-    @IBOutlet weak var tbView: ISOnDemandTableView!
+    @IBOutlet weak var tbView: RestBindTableView!
     
     var selectedReportView:VOYSelectedReportView!
     var dropDown = DropDown()
@@ -79,7 +79,7 @@ class VOYThemeListViewController: UIViewController {
         tbView.separatorColor = UIColor.clear
         tbView.register(UINib(nibName: "VOYThemeTableViewCell", bundle: nil), forCellReuseIdentifier: "VOYThemeTableViewCell")
         tbView.onDemandTableViewDelegate = self
-        tbView.interactor = VOYThemeListTableViewProvider()
+        tbView.interactor = RestBindProvider(tableViewConfiguration:tbView.getConfiguration(), filteredFromMap: nil, filteredFromParams: ["project":1], paginationCount: 50)
         tbView.loadContent()
     }
 
@@ -99,7 +99,8 @@ extension VOYThemeListViewController : ISOnDemandTableViewDelegate {
         return 103
     }
     func onDemandTableView(_ tableView: ISOnDemandTableView, didSelectRowAt indexPath: IndexPath) {
-        self.navigationController?.pushViewController(VOYReportListViewController(selectedReport:selectedReportView.lbTitle.text!), animated: true)
+        let cell = tableView.cellForRow(at: indexPath) as! VOYThemeTableViewCell
+        self.navigationController?.pushViewController(VOYReportListViewController(theme: VOYTheme(JSON: cell.object.JSON)!), animated: true)
     }
 }
 

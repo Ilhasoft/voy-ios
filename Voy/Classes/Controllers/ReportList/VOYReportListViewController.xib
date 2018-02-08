@@ -41,9 +41,13 @@
                         <action selector="segmentedControlTapped" destination="-1" eventType="touchUpInside" id="mew-fT-tLD"/>
                     </connections>
                 </segmentedControl>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="T84-3W-wTn" customClass="ISOnDemandTableView">
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="T84-3W-wTn" customClass="RestBindTableView" customModule="Voy" customModuleProvider="target">
                     <rect key="frame" x="0.0" y="153" width="375" height="568"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="endPoint" value="reports"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="filteredBy" value="theme"/>
+                    </userDefinedRuntimeAttributes>
                 </tableView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TkX-K4-otn">
                     <rect key="frame" x="0.0" y="721" width="375" height="57"/>

@@ -8,15 +8,15 @@
 
 import UIKit
 import ISOnDemandTableView
+import ObjectMapper
 
-class VOYThemeTableViewCell: UITableViewCell {
+class VOYThemeTableViewCell: RestBindTableViewCell {
 
     @IBOutlet var lbTheme:UILabel!
-    @IBOutlet var viewColor:UIView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        self.viewColor.layer.cornerRadius = 5
+        self.restBindFillView.layer.cornerRadius = 5
         self.selectionStyle = .none
     }
 
@@ -25,11 +25,11 @@ class VOYThemeTableViewCell: UITableViewCell {
         
     }
     
+    override func setupCell(with object: Any, at indexPath: IndexPath) {
+        super.setupCell(with: object, at: indexPath)
+        let theme = VOYTheme(JSON:self.object.JSON)!
+        self.restBindFillView.backgroundColor = UIColor(hex: theme.color)
+    }
+    
 }
 
-extension VOYThemeTableViewCell : ISOnDemandTableViewCell {
-    func setupCell(with object: Any, at indexPath: IndexPath) {
-        let text = object as! String
-        self.lbTheme.text = text
-    }
-}

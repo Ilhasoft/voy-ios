@@ -24,14 +24,17 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="102.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="b3b-67-ytg">
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="b3b-67-ytg" customClass="RestBindFillView" customModule="Voy" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="88"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7ZJ-7B-gHa">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7ZJ-7B-gHa" customClass="RestBindLabel" customModule="Voy" customModuleProvider="target">
                                 <rect key="frame" x="10" y="11" width="300" height="66"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="16"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="fieldPath" value=".name"/>
+                                </userDefinedRuntimeAttributes>
                             </label>
                         </subviews>
                         <color key="backgroundColor" red="0.2901960784" green="0.56470588239999997" blue="0.8862745098" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -42,6 +45,9 @@
                             <constraint firstItem="7ZJ-7B-gHa" firstAttribute="top" secondItem="b3b-67-ytg" secondAttribute="top" constant="11" id="m19-1E-uag"/>
                             <constraint firstAttribute="bottom" secondItem="7ZJ-7B-gHa" secondAttribute="bottom" constant="11" id="nEW-2N-jJG"/>
                         </constraints>
+                        <connections>
+                            <outletCollection property="fields" destination="7ZJ-7B-gHa" collectionClass="NSMutableArray" id="6eK-ho-6rh"/>
+                        </connections>
                     </view>
                 </subviews>
                 <constraints>
@@ -53,7 +59,7 @@
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="lbTheme" destination="7ZJ-7B-gHa" id="COA-YR-v5p"/>
-                <outlet property="viewColor" destination="b3b-67-ytg" id="3E4-5b-mvZ"/>
+                <outlet property="restBindFillView" destination="b3b-67-ytg" id="VVw-vG-6DC"/>
             </connections>
             <point key="canvasLocation" x="68" y="62.5"/>
         </tableViewCell>

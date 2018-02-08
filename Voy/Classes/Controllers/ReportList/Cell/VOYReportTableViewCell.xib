@@ -27,10 +27,10 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="117.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8zw-mO-NJt">
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8zw-mO-NJt" customClass="RestBindFillView" customModule="Voy" customModuleProvider="target">
                         <rect key="frame" x="19" y="0.0" width="282" height="103"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="panda" translatesAutoresizingMaskIntoConstraints="NO" id="8sY-gD-M8W">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="panda" translatesAutoresizingMaskIntoConstraints="NO" id="8sY-gD-M8W" customClass="RestBindImageView" customModule="Voy" customModuleProvider="target">
                                 <rect key="frame" x="5" y="15" width="54" height="54"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="54" id="5ck-49-ZCi"/>
@@ -40,9 +40,11 @@
                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                         <integer key="value" value="27"/>
                                     </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="fieldType" value="Image"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="fieldPath" value="report.last_image.file"/>
                                 </userDefinedRuntimeAttributes>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Akn-hS-u6v">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Akn-hS-u6v" customClass="RestBindLabel" customModule="Voy" customModuleProvider="target">
                                 <rect key="frame" x="75" y="15" width="192" height="36"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="36" id="uFj-vQ-BRr"/>
@@ -52,8 +54,11 @@ disposal in river</string>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="14"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="fieldPath" value="report.name"/>
+                                </userDefinedRuntimeAttributes>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lorem ipsu m dolor sit amet, coed iscingelit, sed doet, conseadipisci…" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ji7-MQ-3zN">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lorem ipsu m dolor sit amet, coed iscingelit, sed doet, conseadipisci…" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ji7-MQ-3zN" customClass="RestBindLabel" customModule="Voy" customModuleProvider="target">
                                 <rect key="frame" x="75" y="59" width="199" height="36"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="36" id="9Xs-ND-okR"/>
@@ -61,8 +66,11 @@ disposal in river</string>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="14"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="fieldPath" value="report.description"/>
+                                </userDefinedRuntimeAttributes>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Feb 01, 2018" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="RUV-77-fB6">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Feb 01, 2018" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="RUV-77-fB6" customClass="RestBindLabel" customModule="Voy" customModuleProvider="target">
                                 <rect key="frame" x="5" y="77" width="54" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="54" id="12T-K0-WyI"/>
@@ -71,6 +79,9 @@ disposal in river</string>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="10"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="fieldPath" value="report.created_on"/>
+                                </userDefinedRuntimeAttributes>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yOO-KR-Cw0">
                                 <rect key="frame" x="251" y="0.0" width="31" height="26"/>
@@ -100,6 +111,12 @@ disposal in river</string>
                             <constraint firstItem="8sY-gD-M8W" firstAttribute="leading" secondItem="8zw-mO-NJt" secondAttribute="leading" constant="5" id="s2M-qw-eT0"/>
                             <constraint firstAttribute="trailing" secondItem="Akn-hS-u6v" secondAttribute="trailing" constant="15" id="wiK-ge-bmh"/>
                         </constraints>
+                        <connections>
+                            <outletCollection property="fields" destination="8sY-gD-M8W" collectionClass="NSMutableArray" id="wt9-M6-8EI"/>
+                            <outletCollection property="fields" destination="Akn-hS-u6v" collectionClass="NSMutableArray" id="j3j-ao-gwv"/>
+                            <outletCollection property="fields" destination="Ji7-MQ-3zN" collectionClass="NSMutableArray" id="eMv-5C-NgI"/>
+                            <outletCollection property="fields" destination="RUV-77-fB6" collectionClass="NSMutableArray" id="QWc-3U-yJF"/>
+                        </connections>
                     </view>
                 </subviews>
                 <constraints>
@@ -115,7 +132,7 @@ disposal in river</string>
                 <outlet property="lbDate" destination="RUV-77-fB6" id="zge-td-ery"/>
                 <outlet property="lbDescription" destination="Ji7-MQ-3zN" id="yzN-qG-9x8"/>
                 <outlet property="lbTitle" destination="Akn-hS-u6v" id="Ews-Y4-N3L"/>
-                <outlet property="viewBG" destination="8zw-mO-NJt" id="Dh1-mb-gp2"/>
+                <outlet property="restBindFillView" destination="8zw-mO-NJt" id="rf3-uU-K5h"/>
             </connections>
             <point key="canvasLocation" x="126" y="84"/>
         </tableViewCell>

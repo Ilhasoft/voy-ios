@@ -57,6 +57,18 @@
 		655BD19B2028ECFC00D69EA2 /* VOYCommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 655BD1992028ECFC00D69EA2 /* VOYCommentViewController.swift */; };
 		655BD19C2028ECFC00D69EA2 /* VOYCommentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 655BD19A2028ECFC00D69EA2 /* VOYCommentViewController.xib */; };
 		655BD19E2028EF1400D69EA2 /* VOYCommentTableViewProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 655BD19D2028EF1400D69EA2 /* VOYCommentTableViewProvider.swift */; };
+		6565FBE4202CB7D30047F8D8 /* VOYMedia.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6565FBE3202CB7D30047F8D8 /* VOYMedia.swift */; };
+		65C7B5DF202B4D3A003087EB /* VOYTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65C7B5DE202B4D3A003087EB /* VOYTheme.swift */; };
+		65C7B5E1202B607F003087EB /* RestBindTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65C7B5E0202B607F003087EB /* RestBindTableView.swift */; };
+		65C7B5E3202B6A64003087EB /* RestBindProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65C7B5E2202B6A64003087EB /* RestBindProvider.swift */; };
+		65C7B5E5202B84AC003087EB /* RestBindFillView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65C7B5E4202B84AC003087EB /* RestBindFillView.swift */; };
+		65C7B5E7202B8525003087EB /* RestBindable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65C7B5E6202B8525003087EB /* RestBindable.swift */; };
+		65C7B5E9202B895A003087EB /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65C7B5E8202B895A003087EB /* StringExtension.swift */; };
+		65C7B5EB202B8CF8003087EB /* RestBindLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65C7B5EA202B8CF8003087EB /* RestBindLabel.swift */; };
+		65C7B5ED202B948E003087EB /* VOYReport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65C7B5EC202B948E003087EB /* VOYReport.swift */; };
+		65C7B5EF202B985E003087EB /* RestBindTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65C7B5EE202B985E003087EB /* RestBindTableViewCell.swift */; };
+		65C7B5F1202C803E003087EB /* RestBind.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65C7B5F0202C803E003087EB /* RestBind.swift */; };
+		65C7B5F3202CB08A003087EB /* RestBindImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65C7B5F2202CB08A003087EB /* RestBindImageView.swift */; };
 		65F346072020A87A00AC5437 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65F346062020A87A00AC5437 /* AppDelegate.swift */; };
 		65F3460E2020A87A00AC5437 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 65F3460D2020A87A00AC5437 /* Assets.xcassets */; };
 		65F346112020A87A00AC5437 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 65F3460F2020A87A00AC5437 /* LaunchScreen.storyboard */; };
@@ -147,6 +159,18 @@
 		655BD1992028ECFC00D69EA2 /* VOYCommentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VOYCommentViewController.swift; sourceTree = "<group>"; };
 		655BD19A2028ECFC00D69EA2 /* VOYCommentViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VOYCommentViewController.xib; sourceTree = "<group>"; };
 		655BD19D2028EF1400D69EA2 /* VOYCommentTableViewProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VOYCommentTableViewProvider.swift; sourceTree = "<group>"; };
+		6565FBE3202CB7D30047F8D8 /* VOYMedia.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VOYMedia.swift; sourceTree = "<group>"; };
+		65C7B5DE202B4D3A003087EB /* VOYTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VOYTheme.swift; sourceTree = "<group>"; };
+		65C7B5E0202B607F003087EB /* RestBindTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestBindTableView.swift; sourceTree = "<group>"; };
+		65C7B5E2202B6A64003087EB /* RestBindProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestBindProvider.swift; sourceTree = "<group>"; };
+		65C7B5E4202B84AC003087EB /* RestBindFillView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestBindFillView.swift; sourceTree = "<group>"; };
+		65C7B5E6202B8525003087EB /* RestBindable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestBindable.swift; sourceTree = "<group>"; };
+		65C7B5E8202B895A003087EB /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
+		65C7B5EA202B8CF8003087EB /* RestBindLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestBindLabel.swift; sourceTree = "<group>"; };
+		65C7B5EC202B948E003087EB /* VOYReport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VOYReport.swift; sourceTree = "<group>"; };
+		65C7B5EE202B985E003087EB /* RestBindTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestBindTableViewCell.swift; sourceTree = "<group>"; };
+		65C7B5F0202C803E003087EB /* RestBind.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestBind.swift; sourceTree = "<group>"; };
+		65C7B5F2202CB08A003087EB /* RestBindImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestBindImageView.swift; sourceTree = "<group>"; };
 		65F346032020A87A00AC5437 /* Voy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Voy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		65F346062020A87A00AC5437 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		65F3460D2020A87A00AC5437 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -207,6 +231,15 @@
 				655BD14620234A4A00D69EA2 /* VOYConstant.swift */,
 				655BD1892028841000D69EA2 /* UIViewControllerExtension.swift */,
 				65F699482028FAE400BFCF0C /* ISOndemandTableViewExtension.swift */,
+				65C7B5E0202B607F003087EB /* RestBindTableView.swift */,
+				65C7B5E2202B6A64003087EB /* RestBindProvider.swift */,
+				65C7B5E4202B84AC003087EB /* RestBindFillView.swift */,
+				65C7B5E6202B8525003087EB /* RestBindable.swift */,
+				65C7B5E8202B895A003087EB /* StringExtension.swift */,
+				65C7B5EA202B8CF8003087EB /* RestBindLabel.swift */,
+				65C7B5F2202CB08A003087EB /* RestBindImageView.swift */,
+				65C7B5EE202B985E003087EB /* RestBindTableViewCell.swift */,
+				65C7B5F0202C803E003087EB /* RestBind.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -345,6 +378,16 @@
 			path = Cell;
 			sourceTree = "<group>";
 		};
+		65C7B5DD202B4C19003087EB /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				65C7B5DE202B4D3A003087EB /* VOYTheme.swift */,
+				65C7B5EC202B948E003087EB /* VOYReport.swift */,
+				6565FBE3202CB7D30047F8D8 /* VOYMedia.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		65F345FA2020A87A00AC5437 = {
 			isa = PBXGroup;
 			children = (
@@ -400,6 +443,7 @@
 		65F346342020B23A00AC5437 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				65C7B5DD202B4C19003087EB /* Models */,
 				655BD1202020E4E500D69EA2 /* Utils */,
 				65F3463F2020B80F00AC5437 /* Views */,
 				65F346352020B24500AC5437 /* Controllers */,
@@ -710,22 +754,30 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Voy/Pods-Voy-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/AlamofireObjectMapper/AlamofireObjectMapper.framework",
 				"${BUILT_PRODUCTS_DIR}/DropDown/DropDown.framework",
 				"${BUILT_PRODUCTS_DIR}/GrowingTextView/GrowingTextView.framework",
 				"${BUILT_PRODUCTS_DIR}/ISOnDemandCollectionView/ISOnDemandCollectionView.framework",
 				"${BUILT_PRODUCTS_DIR}/ISOnDemandTableView/ISOnDemandTableView.framework",
 				"${BUILT_PRODUCTS_DIR}/ISScrollViewPageSwift/ISScrollViewPageSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
+				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
 				"${BUILT_PRODUCTS_DIR}/SlideMenuControllerSwift/SlideMenuControllerSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/TPKeyboardAvoiding/TPKeyboardAvoiding.framework",
 				"${BUILT_PRODUCTS_DIR}/TagListView/TagListView.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireObjectMapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DropDown.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GrowingTextView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ISOnDemandCollectionView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ISOnDemandTableView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ISScrollViewPageSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SlideMenuControllerSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TPKeyboardAvoiding.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TagListView.framework",
@@ -805,23 +857,35 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				65C7B5F1202C803E003087EB /* RestBind.swift in Sources */,
 				655BD15C20238D4500D69EA2 /* VOYThemeListViewController.swift in Sources */,
 				655BD12F2021148800D69EA2 /* VOYAddReportAttachViewController.swift in Sources */,
 				655BD18D202885C800D69EA2 /* VOYReportDetailViewController.swift in Sources */,
+				65C7B5EF202B985E003087EB /* RestBindTableViewCell.swift in Sources */,
 				655BD1262020F3C100D69EA2 /* VOYAlertViewController.swift in Sources */,
 				655BD1292020F53400D69EA2 /* ISModalViewController.swift in Sources */,
+				65C7B5DF202B4D3A003087EB /* VOYTheme.swift in Sources */,
+				65C7B5E3202B6A64003087EB /* RestBindProvider.swift in Sources */,
 				65F3463D2020B58A00AC5437 /* VOYLoginViewController.swift in Sources */,
 				655BD1402022439000D69EA2 /* VOYLinkTableViewCell.swift in Sources */,
 				655BD133202118CB00D69EA2 /* VOYAddMediaView.swift in Sources */,
 				655BD1972028ECB800D69EA2 /* VOYCommentTableViewCell.swift in Sources */,
+				65C7B5E7202B8525003087EB /* RestBindable.swift in Sources */,
+				65C7B5E9202B895A003087EB /* StringExtension.swift in Sources */,
+				6565FBE4202CB7D30047F8D8 /* VOYMedia.swift in Sources */,
 				655BD16E2024CC5F00D69EA2 /* VOYReportListViewController.swift in Sources */,
 				655BD14720234A4A00D69EA2 /* VOYConstant.swift in Sources */,
 				655BD1222020E4FA00D69EA2 /* UIColorExtension.swift in Sources */,
 				655BD13B2022396700D69EA2 /* VOYAddReportDataViewController.swift in Sources */,
 				655BD18A2028841100D69EA2 /* UIViewControllerExtension.swift in Sources */,
 				655BD17C2024E74B00D69EA2 /* VOYAccountViewController.swift in Sources */,
+				65C7B5E5202B84AC003087EB /* RestBindFillView.swift in Sources */,
+				65C7B5ED202B948E003087EB /* VOYReport.swift in Sources */,
 				655BD13720220D5000D69EA2 /* VOYActionSheetViewController.swift in Sources */,
+				65C7B5F3202CB08A003087EB /* RestBindImageView.swift in Sources */,
 				655BD16920248C6C00D69EA2 /* VOYSelectedReportView.swift in Sources */,
+				65C7B5E1202B607F003087EB /* RestBindTableView.swift in Sources */,
+				65C7B5EB202B8CF8003087EB /* RestBindLabel.swift in Sources */,
 				655BD19E2028EF1400D69EA2 /* VOYCommentTableViewProvider.swift in Sources */,
 				65F6994C202A1CB400BFCF0C /* VOYTextView.swift in Sources */,
 				655BD1912028C50400D69EA2 /* VOYPlayMediaView.swift in Sources */,
