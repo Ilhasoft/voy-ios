@@ -8,6 +8,7 @@
 
 import UIKit
 import DropDown
+import RestBind
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {

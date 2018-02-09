@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import ISOnDemandTableView
+import RestBind
 
 protocol VOYReportTableViewCellDelegate {
     func btResentDidTap(cell:VOYReportTableViewCell)

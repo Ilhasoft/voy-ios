@@ -13,9 +13,7 @@ pod 'SlideMenuControllerSwift'
 pod 'DropDown'
 pod 'ISScrollViewPageSwift'
 pod 'GrowingTextView'
-pod 'Alamofire'
-pod 'AlamofireObjectMapper'
-pod 'Kingfisher'
+pod 'RestBind', :path => '../RestBind'
 
   target 'VoyTests' do
     inherit! :search_paths

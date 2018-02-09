@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RestBind
 import ISOnDemandTableView
 
 class VOYReportListViewController: UIViewController {

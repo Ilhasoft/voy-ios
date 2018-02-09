@@ -24,10 +24,10 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="102.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="b3b-67-ytg" customClass="RestBindFillView" customModule="Voy" customModuleProvider="target">
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="b3b-67-ytg" customClass="RestBindFillView" customModule="RestBind">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="88"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7ZJ-7B-gHa" customClass="RestBindLabel" customModule="Voy" customModuleProvider="target">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7ZJ-7B-gHa" customClass="RestBindLabel" customModule="RestBind">
                                 <rect key="frame" x="10" y="11" width="300" height="66"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="16"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -46,7 +46,7 @@
                             <constraint firstAttribute="bottom" secondItem="7ZJ-7B-gHa" secondAttribute="bottom" constant="11" id="nEW-2N-jJG"/>
                         </constraints>
                         <connections>
-                            <outletCollection property="fields" destination="7ZJ-7B-gHa" collectionClass="NSMutableArray" id="6eK-ho-6rh"/>
+                            <outletCollection property="fields" destination="7ZJ-7B-gHa" collectionClass="NSMutableArray" id="7wL-1j-Sj9"/>
                         </connections>
                     </view>
                 </subviews>
