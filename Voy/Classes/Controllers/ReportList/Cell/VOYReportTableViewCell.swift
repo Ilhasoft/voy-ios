@@ -82,7 +82,7 @@ extension VOYReportTableViewCell : RestBindFillViewDelegate {
                 return nil
             }else if component == self.lbDescription {
                 if value is NSNull {
-                    return nil
+                    return ""
                 }
             }
             

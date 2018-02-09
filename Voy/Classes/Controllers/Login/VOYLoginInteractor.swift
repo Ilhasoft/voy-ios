@@ -20,6 +20,7 @@ class VOYLoginInteractor: NSObject {
                 if let authToken = authTokenData["token"] as? String {
                     getUserData(authToken: authToken, completion: { (user, error) in
                         if let user = user {
+                            user.authToken = authToken
                             VOYUser.setActiveUser(user: user)
                         }
                         completion(user, error)

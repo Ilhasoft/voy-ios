@@ -24,5 +24,21 @@ class VOYProject: Mappable {
         name <- map["name"]
     }
     
+    static func activeProject() -> VOYProject? {
+        var project: VOYProject?
+        if let projectDictionary = UserDefaults.standard.getArchivedObject(key: "project") as? [String: Any] {
+            project = VOYProject(JSON: projectDictionary)
+        }
+        return project
+    }
+    
+    static func setActiveProject(project:VOYProject) {
+        let defaults = UserDefaults.standard
+        
+        let encodedObject = NSKeyedArchiver.archivedData(withRootObject: project.toJSON())
+        defaults.set(encodedObject, forKey: "project")
+        defaults.synchronize()
+    }
+    
 }
 

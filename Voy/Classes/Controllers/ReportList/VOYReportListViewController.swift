@@ -9,8 +9,9 @@
 import UIKit
 import RestBind
 import ISOnDemandTableView
+import NVActivityIndicatorView
 
-class VOYReportListViewController: UIViewController {
+class VOYReportListViewController: UIViewController, NVActivityIndicatorViewable {
 
     @IBOutlet var viewInfo:VOYInfoView!
     @IBOutlet var btAddReport:UIButton!
@@ -62,6 +63,7 @@ class VOYReportListViewController: UIViewController {
     }
     
     @IBAction func segmentedControlTapped() {
+        startAnimating()
         var status = 0
         switch self.segmentedControl.selectedSegmentIndex {
         case 0:
@@ -103,6 +105,7 @@ extension VOYReportListViewController : ISOnDemandTableViewDelegate {
         }
     }
     func onDemandTableView(_ tableView: ISOnDemandTableView, onContentLoad lastData: [Any]?, withError error: Error?) {
+        self.stopAnimating()
         if tableView.interactor?.objects.count == 0 {
             //check segmentedControl index for showing correct info view
             //TODO: self.viewInfo.isHidden = false

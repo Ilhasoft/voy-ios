@@ -17,6 +17,7 @@ class VOYUser: Mappable {
     var username:String!
     var is_mapper:Bool!
     var is_admin:Bool!
+    var authToken:String!
     
     init() {
         
@@ -32,6 +33,7 @@ class VOYUser: Mappable {
         username <- map["username"]
         is_mapper <- map["is_mapper"]
         is_admin <- map["is_admin"]
+        authToken <- map["authToken"]
         
     }
     

@@ -11,14 +11,27 @@ import RestBind
 import ISOnDemandTableView
 import DropDown
 import ObjectMapper
+import NVActivityIndicatorView
 
-class VOYThemeListViewController: UIViewController {
+class VOYThemeListViewController: UIViewController, NVActivityIndicatorViewable {
 
     @IBOutlet weak var lbThemesCount: UILabel!
     @IBOutlet weak var tbView: RestBindTableView!
     
     var selectedReportView:VOYSelectedReportView!
     var dropDown = DropDown()
+    var projects = [VOYProject]() {
+        didSet {
+            if !projects.isEmpty {
+                let selectedReport = projects.first!
+                setupDropDown()
+                setupTableView(filterThemesByProject: selectedReport)
+                self.selectedReportView.lbTitle.text = selectedReport.name
+            }else {
+                print("User without projects associated")
+            }
+        }
+    }
     
     init() {
         super.init(nibName: "VOYThemeListViewController", bundle: nil)
@@ -31,9 +44,8 @@ class VOYThemeListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: " ", style: .plain, target: nil, action: nil)
-        setupTableView()
         setupButtonItems()
-        setupDropDown()
+        getProjects()        
         self.navigationController?.setNavigationBarHidden(false, animated: true)
     }
     
@@ -45,9 +57,16 @@ class VOYThemeListViewController: UIViewController {
         self.navigationItem.rightBarButtonItem = rightBarButtonItem
     }
     
-    func setupReportsTouch() {
-        
-        
+    func getProjects() {
+        self.startAnimating()
+        VOYProjectInteractor.getMyProjects { (projects, error) in
+            self.stopAnimating()
+            if let error = error {
+                print(error.localizedDescription)
+            }else {
+                self.projects = projects
+            }
+        }
     }
     
     func setupDropDown() {
@@ -60,11 +79,12 @@ class VOYThemeListViewController: UIViewController {
         
         dropDown.anchorView = selectedReportView
         dropDown.bottomOffset = CGPoint(x: 0, y: selectedReportView.bounds.size.height)
-        dropDown.dataSource = ["Project 01","Project 02","Project 03"]
+        dropDown.dataSource = self.projects.map {($0.name)}
         dropDown.customCellConfiguration = { (index: Index, item: String, cell: DropDownCell) -> Void in
-            cell.textLabel!.textAlignment = .center
+            cell.optionLabel.textAlignment = .center
         }
         dropDown.selectionAction = { [unowned self] (index: Int, item: String) in
+            self.loadThemeFilteredByProject(project: self.projects[index])
             self.selectedReportView.lbTitle.text = item
         }
     }
@@ -77,12 +97,17 @@ class VOYThemeListViewController: UIViewController {
         self.slideMenuController()?.openRight()
     }
     
-    func setupTableView() {        
+    func loadThemeFilteredByProject(project:VOYProject) {
+        VOYProject.setActiveProject(project: project)
+        tbView.interactor = RestBindTableViewProvider(tableViewConfiguration:tbView.getConfiguration(), params: ["project":project.id], paginationCount: 10)
+        tbView.loadContent()
+    }
+    
+    func setupTableView(filterThemesByProject project:VOYProject) {
         tbView.separatorColor = UIColor.clear
         tbView.register(UINib(nibName: "VOYThemeTableViewCell", bundle: nil), forCellReuseIdentifier: "VOYThemeTableViewCell")
         tbView.onDemandTableViewDelegate = self
-        tbView.interactor = RestBindTableViewProvider(tableViewConfiguration:tbView.getConfiguration(), params: ["project":1], paginationCount: 10)
-        tbView.loadContent()
+        loadThemeFilteredByProject(project: project)
     }
 
 }
@@ -95,7 +120,7 @@ extension VOYThemeListViewController : ISOnDemandTableViewDelegate {
         
     }
     func onDemandTableView(_ tableView: ISOnDemandTableView, onContentLoad lastData: [Any]?, withError error: Error?) {
-        
+        self.lbThemesCount.text = "You are on \(String(describing: tableView.interactor!.objects.count)) themes"
     }
     func onDemandTableView(_ tableView: ISOnDemandTableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 103
