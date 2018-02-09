@@ -53,7 +53,7 @@ class VOYReportListViewController: UIViewController {
         tbView.onDemandTableViewDelegate = self
         
         self.segmentedControl.selectedSegmentIndex = 0
-        segmentedControlTapped()                
+        segmentedControlTapped()
     }
     
     @IBAction func btAddReportTapped(_ sender: Any) {
