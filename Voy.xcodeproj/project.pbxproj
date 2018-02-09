@@ -58,6 +58,11 @@
 		655BD19C2028ECFC00D69EA2 /* VOYCommentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 655BD19A2028ECFC00D69EA2 /* VOYCommentViewController.xib */; };
 		655BD19E2028EF1400D69EA2 /* VOYCommentTableViewProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 655BD19D2028EF1400D69EA2 /* VOYCommentTableViewProvider.swift */; };
 		6565FBE4202CB7D30047F8D8 /* VOYMedia.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6565FBE3202CB7D30047F8D8 /* VOYMedia.swift */; };
+		65AF37F2202DF53100D64CE4 /* VOYReportInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65AF37F1202DF53100D64CE4 /* VOYReportInteractor.swift */; };
+		65AF37F4202E0ED400D64CE4 /* VOYProject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65AF37F3202E0ED400D64CE4 /* VOYProject.swift */; };
+		65AF37F6202E105400D64CE4 /* VOYUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65AF37F5202E105400D64CE4 /* VOYUser.swift */; };
+		65AF37F8202E10E600D64CE4 /* VOYLoginInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65AF37F7202E10E600D64CE4 /* VOYLoginInteractor.swift */; };
+		65AF37FA202E15B600D64CE4 /* UserDefaultsExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65AF37F9202E15B600D64CE4 /* UserDefaultsExtension.swift */; };
 		65C7B5DF202B4D3A003087EB /* VOYTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65C7B5DE202B4D3A003087EB /* VOYTheme.swift */; };
 		65C7B5ED202B948E003087EB /* VOYReport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65C7B5EC202B948E003087EB /* VOYReport.swift */; };
 		65F346072020A87A00AC5437 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65F346062020A87A00AC5437 /* AppDelegate.swift */; };
@@ -151,6 +156,11 @@
 		655BD19A2028ECFC00D69EA2 /* VOYCommentViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VOYCommentViewController.xib; sourceTree = "<group>"; };
 		655BD19D2028EF1400D69EA2 /* VOYCommentTableViewProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VOYCommentTableViewProvider.swift; sourceTree = "<group>"; };
 		6565FBE3202CB7D30047F8D8 /* VOYMedia.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VOYMedia.swift; sourceTree = "<group>"; };
+		65AF37F1202DF53100D64CE4 /* VOYReportInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VOYReportInteractor.swift; sourceTree = "<group>"; };
+		65AF37F3202E0ED400D64CE4 /* VOYProject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VOYProject.swift; sourceTree = "<group>"; };
+		65AF37F5202E105400D64CE4 /* VOYUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VOYUser.swift; sourceTree = "<group>"; };
+		65AF37F7202E10E600D64CE4 /* VOYLoginInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VOYLoginInteractor.swift; sourceTree = "<group>"; };
+		65AF37F9202E15B600D64CE4 /* UserDefaultsExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsExtension.swift; sourceTree = "<group>"; };
 		65C7B5DE202B4D3A003087EB /* VOYTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VOYTheme.swift; sourceTree = "<group>"; };
 		65C7B5EC202B948E003087EB /* VOYReport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VOYReport.swift; sourceTree = "<group>"; };
 		65F346032020A87A00AC5437 /* Voy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Voy.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -213,6 +223,7 @@
 				655BD14620234A4A00D69EA2 /* VOYConstant.swift */,
 				655BD1892028841000D69EA2 /* UIViewControllerExtension.swift */,
 				65F699482028FAE400BFCF0C /* ISOndemandTableViewExtension.swift */,
+				65AF37F9202E15B600D64CE4 /* UserDefaultsExtension.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -269,6 +280,7 @@
 				655BD15A20238D4500D69EA2 /* VOYThemeListViewController.swift */,
 				655BD15B20238D4500D69EA2 /* VOYThemeListViewController.xib */,
 				655BD15E20238F7000D69EA2 /* VOYThemeListTableViewProvider.swift */,
+				65AF37F1202DF53100D64CE4 /* VOYReportInteractor.swift */,
 			);
 			path = ThemeList;
 			sourceTree = "<group>";
@@ -357,6 +369,8 @@
 				65C7B5DE202B4D3A003087EB /* VOYTheme.swift */,
 				65C7B5EC202B948E003087EB /* VOYReport.swift */,
 				6565FBE3202CB7D30047F8D8 /* VOYMedia.swift */,
+				65AF37F3202E0ED400D64CE4 /* VOYProject.swift */,
+				65AF37F5202E105400D64CE4 /* VOYUser.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -445,6 +459,7 @@
 			children = (
 				65F3463B2020B58A00AC5437 /* VOYLoginViewController.swift */,
 				65F3463C2020B58A00AC5437 /* VOYLoginViewController.xib */,
+				65AF37F7202E10E600D64CE4 /* VOYLoginInteractor.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -728,12 +743,14 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Voy/Pods-Voy-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/AlamofireObjectMapper/AlamofireObjectMapper.framework",
 				"${BUILT_PRODUCTS_DIR}/DropDown/DropDown.framework",
 				"${BUILT_PRODUCTS_DIR}/GrowingTextView/GrowingTextView.framework",
 				"${BUILT_PRODUCTS_DIR}/ISOnDemandCollectionView/ISOnDemandCollectionView.framework",
 				"${BUILT_PRODUCTS_DIR}/ISOnDemandTableView/ISOnDemandTableView.framework",
 				"${BUILT_PRODUCTS_DIR}/ISScrollViewPageSwift/ISScrollViewPageSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
+				"${BUILT_PRODUCTS_DIR}/NVActivityIndicatorView/NVActivityIndicatorView.framework",
 				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
 				"${BUILT_PRODUCTS_DIR}/RestBind/RestBind.framework",
 				"${BUILT_PRODUCTS_DIR}/SlideMenuControllerSwift/SlideMenuControllerSwift.framework",
@@ -743,12 +760,14 @@
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireObjectMapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DropDown.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GrowingTextView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ISOnDemandCollectionView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ISOnDemandTableView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ISScrollViewPageSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NVActivityIndicatorView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RestBind.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SlideMenuControllerSwift.framework",
@@ -835,6 +854,7 @@
 				655BD18D202885C800D69EA2 /* VOYReportDetailViewController.swift in Sources */,
 				655BD1262020F3C100D69EA2 /* VOYAlertViewController.swift in Sources */,
 				655BD1292020F53400D69EA2 /* ISModalViewController.swift in Sources */,
+				65AF37F2202DF53100D64CE4 /* VOYReportInteractor.swift in Sources */,
 				65C7B5DF202B4D3A003087EB /* VOYTheme.swift in Sources */,
 				65F3463D2020B58A00AC5437 /* VOYLoginViewController.swift in Sources */,
 				655BD1402022439000D69EA2 /* VOYLinkTableViewCell.swift in Sources */,
@@ -853,19 +873,23 @@
 				655BD19E2028EF1400D69EA2 /* VOYCommentTableViewProvider.swift in Sources */,
 				65F6994C202A1CB400BFCF0C /* VOYTextView.swift in Sources */,
 				655BD1912028C50400D69EA2 /* VOYPlayMediaView.swift in Sources */,
+				65AF37F4202E0ED400D64CE4 /* VOYProject.swift in Sources */,
 				65F346072020A87A00AC5437 /* AppDelegate.swift in Sources */,
 				655BD19B2028ECFC00D69EA2 /* VOYCommentViewController.swift in Sources */,
 				655BD1782024D37B00D69EA2 /* VOYReportListTableViewProvider.swift in Sources */,
 				655BD1732024CE6500D69EA2 /* VOYReportTableViewCell.swift in Sources */,
+				65AF37F6202E105400D64CE4 /* VOYUser.swift in Sources */,
 				65F699492028FAE400BFCF0C /* ISOndemandTableViewExtension.swift in Sources */,
 				655BD1852024F87100D69EA2 /* VOYAvatarCollectionViewCell.swift in Sources */,
 				655BD14420233FEB00D69EA2 /* VOYAddReportTagsViewController.swift in Sources */,
+				65AF37F8202E10E600D64CE4 /* VOYLoginInteractor.swift in Sources */,
 				655BD14E20237EC600D69EA2 /* VOYAddReportSuccessViewController.swift in Sources */,
 				65F346422020B82B00AC5437 /* VOYTextFieldView.swift in Sources */,
 				655BD1882024FFD700D69EA2 /* VOYAvatarCollectionViewProvider.swift in Sources */,
 				655BD14A20237BD100D69EA2 /* VOYInfoView.swift in Sources */,
 				655BD15F20238F7000D69EA2 /* VOYThemeListTableViewProvider.swift in Sources */,
 				655BD1632023989600D69EA2 /* VOYNotificationViewController.swift in Sources */,
+				65AF37FA202E15B600D64CE4 /* UserDefaultsExtension.swift in Sources */,
 				655BD15920238B1000D69EA2 /* VOYThemeTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -15,4 +15,8 @@ class VOYConstant: NSObject {
         static let gray = UIColor(hex: "f0f0f0")
     }
     
+    struct API {
+        static let URL = "http://voy-dev.ilhasoft.mobi/api/"
+    }
+    
 }

@@ -13,7 +13,9 @@ pod 'SlideMenuControllerSwift'
 pod 'DropDown'
 pod 'ISScrollViewPageSwift'
 pod 'GrowingTextView'
+pod 'AlamofireObjectMapper'
 pod 'RestBind', :path => '../RestBind'
+pod 'NVActivityIndicatorView'
 
   target 'VoyTests' do
     inherit! :search_paths

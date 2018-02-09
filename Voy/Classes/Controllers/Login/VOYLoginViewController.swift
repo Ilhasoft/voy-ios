@@ -8,8 +8,9 @@
 
 import UIKit
 import SlideMenuControllerSwift
+import NVActivityIndicatorView
 
-class VOYLoginViewController: UIViewController {
+class VOYLoginViewController: UIViewController, NVActivityIndicatorViewable {
 
     @IBOutlet var scrollView:UIScrollView!
     @IBOutlet weak var stackViewIcons: UIStackView!
@@ -39,23 +40,24 @@ class VOYLoginViewController: UIViewController {
     //MARK: Component Events
     
     @IBAction func btLoginTapped(_ sender: Any) {
-//        let alertController = VOYAlertViewController(title: "Internet connection", message: "We couldn’t identify an active internet connection, please check your connection and try again.", buttonNames:["Ok","ok"])
-//        alertController.delegate = self
-//        alertController.show(true, inViewController: self)
+        let alertController = VOYAlertViewController(title: "Error", message: "Maybe you entered a wrong username or password!", buttonNames:["Ok"])
         
-//        let addReportAttachViewController = VOYAddReportAttachViewController()
-//        self.navigationController?.pushViewController(addReportAttachViewController, animated: true)
         
         let navigationController = UINavigationController(rootViewController: VOYThemeListViewController())
         let slideMenuController = SlideMenuController(mainViewController: navigationController, rightMenuViewController: VOYNotificationViewController())
         
-        self.navigationController?.pushViewController(slideMenuController, animated: true)
+        startAnimating()
+        VOYLoginInteractor.login(username: self.userNameView.txtField.text!, password: self.passwordView.txtField.text!) { (user , error) in
+            self.stopAnimating()
+            if let _ = error {
+                alertController.show(true, inViewController: self)
+            }else if user != nil {
+                self.navigationController?.pushViewController(slideMenuController, animated: true)
+            }else {
+                alertController.show(true, inViewController: self)
+            }
+        }
+        
     }
     
-}
-
-extension VOYLoginViewController : VOYAlertViewControllerDelegate {
-    func buttonDidTap(alertController: VOYAlertViewController, button: UIButton, index: Int) {
-       
-    }
 }

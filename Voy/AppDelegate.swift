@@ -9,6 +9,8 @@
 import UIKit
 import DropDown
 import RestBind
+import SlideMenuControllerSwift
+import NVActivityIndicatorView
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -18,11 +20,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         setupAppearance()
         setupWindow()
-        _ = RestBind(withURL: "http://voy-dev.ilhasoft.mobi/api/", keyIdentificator: "id")
+        _ = RestBind(withURL: VOYConstant.API.URL, keyIdentificator: "id")
         return true
     }
 
     func setupAppearance() {
+        NVActivityIndicatorView.DEFAULT_TYPE = .ballPulse
         UINavigationBar.appearance().tintColor = VOYConstant.Color.blue
         UINavigationBar.appearance().titleTextAttributes =  [NSAttributedStringKey.font: UIFont(name: "HelveticaNeue", size: 16) as Any]
         let appearance = DropDown.appearance()
@@ -48,8 +51,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func loadRootScreen() -> UIViewController {
-        let navigation = UINavigationController(rootViewController: VOYLoginViewController())
-        return navigation
+        if VOYUser.activeUser() != nil {
+            let navigationController = UINavigationController(rootViewController: VOYThemeListViewController())
+            let slideMenuController = SlideMenuController(mainViewController: navigationController, rightMenuViewController: VOYNotificationViewController())
+            return slideMenuController
+        }else {
+            let navigation = UINavigationController(rootViewController: VOYLoginViewController())
+            return navigation
+        }
     }
 }
 

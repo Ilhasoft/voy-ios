@@ -65,6 +65,7 @@ class VOYAccountViewController: UIViewController {
     }
     
     @IBAction func btLogoutTapped() {
+        VOYUser.deactiveUser()
         UIViewController.switchRootViewController(UINavigationController(rootViewController:VOYLoginViewController()), animated: true) {}
     }
     
