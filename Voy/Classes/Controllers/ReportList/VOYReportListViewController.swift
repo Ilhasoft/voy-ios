@@ -107,8 +107,22 @@ extension VOYReportListViewController : ISOnDemandTableViewDelegate {
     func onDemandTableView(_ tableView: ISOnDemandTableView, onContentLoad lastData: [Any]?, withError error: Error?) {
         self.stopAnimating()
         if tableView.interactor?.objects.count == 0 {
-            //check segmentedControl index for showing correct info view
-            //TODO: self.viewInfo.isHidden = false
+            self.viewInfo.isHidden = false
+            switch self.segmentedControl.selectedSegmentIndex {
+            case 0:
+                self.viewInfo.setupWith(titleAndColor: ["Hello!":VOYConstant.Color.blue],
+                                        messageAndColor: ["You have not created any report yet":UIColor.black])
+            case 1:
+                self.viewInfo.setupWith(titleAndColor: ["Great!":VOYConstant.Color.blue],
+                                        messageAndColor: ["All you reports has been approved":UIColor.black])
+            case 2:
+                self.viewInfo.setupWith(titleAndColor: ["Great Job!":UIColor(hex: "7ed321")],
+                                        messageAndColor: ["All you reports has been approved":UIColor.black])
+            default:
+                break
+            }
+        }else {
+            self.viewInfo.isHidden = true
         }
     }
     func onDemandTableView(_ tableView: ISOnDemandTableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
