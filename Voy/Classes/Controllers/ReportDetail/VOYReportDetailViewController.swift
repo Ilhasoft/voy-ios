@@ -49,7 +49,9 @@ class VOYReportDetailViewController: UIViewController {
     }
     
     func setupViewTags() {
-        self.viewTags.addTags(["Accessibility","Security","Community"])
+        if let tags = self.report.tags {
+            self.viewTags.addTags(tags)
+        }
     }
     
     func setupNavigationItem() {

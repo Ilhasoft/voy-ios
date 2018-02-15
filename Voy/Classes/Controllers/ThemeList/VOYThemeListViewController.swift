@@ -18,6 +18,7 @@ class VOYThemeListViewController: UIViewController, NVActivityIndicatorViewable 
     @IBOutlet weak var lbThemesCount: UILabel!
     @IBOutlet weak var tbView: RestBindTableView!
     
+    var userJustLogged = false
     var selectedReportView:VOYSelectedReportView!
     var dropDown = DropDown()
     var projects = [VOYProject]() {
@@ -33,6 +34,11 @@ class VOYThemeListViewController: UIViewController, NVActivityIndicatorViewable 
         }
     }
     
+    init(userJustLogged:Bool) {
+        self.userJustLogged = userJustLogged
+        super.init(nibName: "VOYThemeListViewController", bundle: nil)
+    }
+    
     init() {
         super.init(nibName: "VOYThemeListViewController", bundle: nil)
     }
@@ -45,7 +51,7 @@ class VOYThemeListViewController: UIViewController, NVActivityIndicatorViewable 
         super.viewDidLoad()
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: " ", style: .plain, target: nil, action: nil)
         setupButtonItems()
-        getProjects()        
+        getProjects()
         self.navigationController?.setNavigationBarHidden(false, animated: true)
     }
     
@@ -65,6 +71,13 @@ class VOYThemeListViewController: UIViewController, NVActivityIndicatorViewable 
                 print(error.localizedDescription)
             }else {
                 self.projects = projects
+                if self.userJustLogged {
+                    for project in self.projects {
+                        var params = ["project":project.id as Any]
+                        VOYRequestManager.cacheDataFrom(url: VOYConstant.API.URL + "themes", parameters:&params)
+                    }
+                    self.userJustLogged = false
+                }
             }
         }
     }
@@ -84,7 +97,7 @@ class VOYThemeListViewController: UIViewController, NVActivityIndicatorViewable 
             cell.optionLabel.textAlignment = .center
         }
         dropDown.selectionAction = { [unowned self] (index: Int, item: String) in
-            self.loadThemeFilteredByProject(project: self.projects[index])
+            self.loadThemesFilteredByProject(project: self.projects[index])
             self.selectedReportView.lbTitle.text = item
         }
     }
@@ -97,9 +110,9 @@ class VOYThemeListViewController: UIViewController, NVActivityIndicatorViewable 
         self.slideMenuController()?.openRight()
     }
     
-    func loadThemeFilteredByProject(project:VOYProject) {
+    func loadThemesFilteredByProject(project:VOYProject) {
         VOYProject.setActiveProject(project: project)
-        tbView.interactor = RestBindTableViewProvider(configuration:tbView.getConfiguration(), params: ["project":project.id], paginationCount: 10)
+        tbView.interactor = RestBindTableViewProvider(configuration:tbView.getConfiguration(), params: ["project":project.id])
         tbView.loadContent()
     }
     
@@ -107,7 +120,7 @@ class VOYThemeListViewController: UIViewController, NVActivityIndicatorViewable 
         tbView.separatorColor = UIColor.clear
         tbView.register(UINib(nibName: "VOYThemeTableViewCell", bundle: nil), forCellReuseIdentifier: "VOYThemeTableViewCell")
         tbView.onDemandTableViewDelegate = self
-        loadThemeFilteredByProject(project: project)
+        loadThemesFilteredByProject(project: project)
     }
 
 }

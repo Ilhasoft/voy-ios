@@ -59,24 +59,21 @@ class VOYReportListViewController: UIViewController, NVActivityIndicatorViewable
         tableViewApproved.register(UINib(nibName: "VOYReportTableViewCell", bundle: nil), forCellReuseIdentifier: "VOYReportTableViewCell")
         tableViewApproved.onDemandTableViewDelegate = self
         tableViewApproved.interactor = RestBindTableViewProvider(configuration:tableViewApproved.getConfiguration(),
-                                                                 params: ["theme":self.theme.id,"status":1],
-                                                                 paginationCount:5)
+                                                                 params: ["theme":self.theme.id,"status":1])
         tableViewApproved.loadContent()
         
         tableViewPending.separatorColor = UIColor.clear
         tableViewPending.register(UINib(nibName: "VOYReportTableViewCell", bundle: nil), forCellReuseIdentifier: "VOYReportTableViewCell")
         tableViewPending.onDemandTableViewDelegate = self
         tableViewPending.interactor = RestBindTableViewProvider(configuration:tableViewPending.getConfiguration(),
-                                                                params: ["theme":self.theme.id,"status":2],
-                                                                paginationCount:5)
+                                                                params: ["theme":self.theme.id,"status":2])
         tableViewPending.loadContent()
         
         tableViewNotApproved.separatorColor = UIColor.clear
         tableViewNotApproved.register(UINib(nibName: "VOYReportTableViewCell", bundle: nil), forCellReuseIdentifier: "VOYReportTableViewCell")
         tableViewNotApproved.onDemandTableViewDelegate = self
         tableViewNotApproved.interactor = RestBindTableViewProvider(configuration:tableViewNotApproved.getConfiguration(),
-                                                                    params: ["theme":self.theme.id,"status":3],
-                                                                    paginationCount:5)
+                                                                    params: ["theme":self.theme.id,"status":3])
         tableViewNotApproved.loadContent()
         
         self.segmentedControl.selectedSegmentIndex = 0

@@ -19,8 +19,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         setupAppearance()
-        setupWindow()
-        _ = RestBind(withURL: VOYConstant.API.URL, keyIdentificator: "id")
+        setupWindow()        
+        URLCache.shared = URLCache(memoryCapacity: 4 * 1024 * 1024, diskCapacity: 20 * 1024 * 1024, diskPath: nil)
+        _ = RestBind(withURL: VOYConstant.API.URL, keyIdentificator: "id", paginationCount: VOYConstant.API.PAGINATION_SIZE)
         return true
     }
 

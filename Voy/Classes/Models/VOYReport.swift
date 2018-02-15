@@ -34,6 +34,7 @@ class VOYReport: Mappable {
         lastImage <- map["last_image"]
         files <- map["files"]
         created_on <- map["created_on"]
+        tags <- map["tags"]
     }
     
     func map() -> Map {

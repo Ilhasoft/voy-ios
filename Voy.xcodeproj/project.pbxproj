@@ -65,6 +65,8 @@
 		65AF3805202E406100D64CE4 /* VOYScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65AF3804202E406100D64CE4 /* VOYScrollView.swift */; };
 		65C7B5DF202B4D3A003087EB /* VOYTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65C7B5DE202B4D3A003087EB /* VOYTheme.swift */; };
 		65C7B5ED202B948E003087EB /* VOYReport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65C7B5EC202B948E003087EB /* VOYReport.swift */; };
+		65CF10C72035F3E000F487CC /* AlamofireExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65CF10C62035F3E000F487CC /* AlamofireExtension.swift */; };
+		65CF10C92036264C00F487CC /* VOYRequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65CF10C82036264C00F487CC /* VOYRequestManager.swift */; };
 		65F346072020A87A00AC5437 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65F346062020A87A00AC5437 /* AppDelegate.swift */; };
 		65F3460E2020A87A00AC5437 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 65F3460D2020A87A00AC5437 /* Assets.xcassets */; };
 		65F346112020A87A00AC5437 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 65F3460F2020A87A00AC5437 /* LaunchScreen.storyboard */; };
@@ -163,6 +165,8 @@
 		65AF3804202E406100D64CE4 /* VOYScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VOYScrollView.swift; sourceTree = "<group>"; };
 		65C7B5DE202B4D3A003087EB /* VOYTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VOYTheme.swift; sourceTree = "<group>"; };
 		65C7B5EC202B948E003087EB /* VOYReport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VOYReport.swift; sourceTree = "<group>"; };
+		65CF10C62035F3E000F487CC /* AlamofireExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlamofireExtension.swift; sourceTree = "<group>"; };
+		65CF10C82036264C00F487CC /* VOYRequestManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VOYRequestManager.swift; sourceTree = "<group>"; };
 		65F346032020A87A00AC5437 /* Voy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Voy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		65F346062020A87A00AC5437 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		65F3460D2020A87A00AC5437 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -224,6 +228,8 @@
 				655BD1892028841000D69EA2 /* UIViewControllerExtension.swift */,
 				65F699482028FAE400BFCF0C /* ISOndemandTableViewExtension.swift */,
 				65AF37F9202E15B600D64CE4 /* UserDefaultsExtension.swift */,
+				65CF10C62035F3E000F487CC /* AlamofireExtension.swift */,
+				65CF10C82036264C00F487CC /* VOYRequestManager.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -895,7 +901,9 @@
 				65F346422020B82B00AC5437 /* VOYTextFieldView.swift in Sources */,
 				655BD1882024FFD700D69EA2 /* VOYAvatarCollectionViewProvider.swift in Sources */,
 				655BD14A20237BD100D69EA2 /* VOYInfoView.swift in Sources */,
+				65CF10C72035F3E000F487CC /* AlamofireExtension.swift in Sources */,
 				655BD15F20238F7000D69EA2 /* VOYThemeListTableViewProvider.swift in Sources */,
+				65CF10C92036264C00F487CC /* VOYRequestManager.swift in Sources */,
 				655BD1632023989600D69EA2 /* VOYNotificationViewController.swift in Sources */,
 				65AF37FA202E15B600D64CE4 /* UserDefaultsExtension.swift in Sources */,
 				655BD15920238B1000D69EA2 /* VOYThemeTableViewCell.swift in Sources */,

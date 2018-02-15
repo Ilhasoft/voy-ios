@@ -43,7 +43,7 @@ class VOYLoginViewController: UIViewController, NVActivityIndicatorViewable {
         let alertController = VOYAlertViewController(title: "Error", message: "Maybe you entered a wrong username or password!", buttonNames:["Ok"])
         
         
-        let navigationController = UINavigationController(rootViewController: VOYThemeListViewController())
+        let navigationController = UINavigationController(rootViewController: VOYThemeListViewController(userJustLogged: true))
         let slideMenuController = SlideMenuController(mainViewController: navigationController, rightMenuViewController: VOYNotificationViewController())
         
         startAnimating()
