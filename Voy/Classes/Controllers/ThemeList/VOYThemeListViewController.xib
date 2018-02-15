@@ -40,7 +40,7 @@
                         <userDefinedRuntimeAttribute type="string" keyPath="endPoint" value="themes"/>
                     </userDefinedRuntimeAttributes>
                 </tableView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You are on 4 themes" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5K7-In-J5z">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5K7-In-J5z">
                     <rect key="frame" x="16" y="111" width="343" height="21"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="21" id="4AM-i1-43N"/>

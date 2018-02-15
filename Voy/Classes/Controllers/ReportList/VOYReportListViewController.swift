@@ -15,11 +15,15 @@ class VOYReportListViewController: UIViewController, NVActivityIndicatorViewable
 
     @IBOutlet var viewInfo:VOYInfoView!
     @IBOutlet var btAddReport:UIButton!
-    @IBOutlet var tbView:RestBindTableView!
+    @IBOutlet var tableViewApproved:RestBindTableView!
+    @IBOutlet var tableViewPending:RestBindTableView!
+    @IBOutlet var tableViewNotApproved:RestBindTableView!
     @IBOutlet var segmentedControl:UISegmentedControl!
     
     static var sharedInstance:VOYReportListViewController?
     var theme:VOYTheme!
+    var allDataFinishedLoad = false
+    var dataLoadTime = 0
     
     init(theme:VOYTheme) {
         super.init(nibName: "VOYReportListViewController", bundle: nil)
@@ -36,6 +40,7 @@ class VOYReportListViewController: UIViewController, NVActivityIndicatorViewable
         super.viewDidLoad()
         let rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "bell"), style: .plain, target: self, action: #selector(openNotifications))
         self.navigationItem.rightBarButtonItem = rightBarButtonItem
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: " ", style: .plain, target: nil, action: nil)
         setupTableView()
     }
     
@@ -49,13 +54,54 @@ class VOYReportListViewController: UIViewController, NVActivityIndicatorViewable
     }
     
     func setupTableView() {
-        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: " ", style: .plain, target: nil, action: nil)
-        tbView.separatorColor = UIColor.clear
-        tbView.register(UINib(nibName: "VOYReportTableViewCell", bundle: nil), forCellReuseIdentifier: "VOYReportTableViewCell")
-        tbView.onDemandTableViewDelegate = self
+        startAnimating()
+        tableViewApproved.separatorColor = UIColor.clear
+        tableViewApproved.register(UINib(nibName: "VOYReportTableViewCell", bundle: nil), forCellReuseIdentifier: "VOYReportTableViewCell")
+        tableViewApproved.onDemandTableViewDelegate = self
+        tableViewApproved.interactor = RestBindTableViewProvider(configuration:tableViewApproved.getConfiguration(),
+                                                                 params: ["theme":self.theme.id,"status":1],
+                                                                 paginationCount:5)
+        tableViewApproved.loadContent()
+        
+        tableViewPending.separatorColor = UIColor.clear
+        tableViewPending.register(UINib(nibName: "VOYReportTableViewCell", bundle: nil), forCellReuseIdentifier: "VOYReportTableViewCell")
+        tableViewPending.onDemandTableViewDelegate = self
+        tableViewPending.interactor = RestBindTableViewProvider(configuration:tableViewPending.getConfiguration(),
+                                                                params: ["theme":self.theme.id,"status":2],
+                                                                paginationCount:5)
+        tableViewPending.loadContent()
+        
+        tableViewNotApproved.separatorColor = UIColor.clear
+        tableViewNotApproved.register(UINib(nibName: "VOYReportTableViewCell", bundle: nil), forCellReuseIdentifier: "VOYReportTableViewCell")
+        tableViewNotApproved.onDemandTableViewDelegate = self
+        tableViewNotApproved.interactor = RestBindTableViewProvider(configuration:tableViewNotApproved.getConfiguration(),
+                                                                    params: ["theme":self.theme.id,"status":3],
+                                                                    paginationCount:5)
+        tableViewNotApproved.loadContent()
         
         self.segmentedControl.selectedSegmentIndex = 0
         segmentedControlTapped()
+    }
+    
+    func showInfoViewIfNecessary(tableView:RestBindTableView) {
+        if tableView.interactor?.objects.count == 0 && allDataFinishedLoad {
+            switch self.segmentedControl.selectedSegmentIndex {
+            case 0:
+                self.viewInfo.setupWith(titleAndColor: ["Hello!":VOYConstant.Color.blue],
+                                        messageAndColor: ["You have not created any report yet":UIColor.black])
+            case 1:
+                self.viewInfo.setupWith(titleAndColor: ["Great!":VOYConstant.Color.blue],
+                                        messageAndColor: ["All you reports has been approved":UIColor.black])
+            case 2:
+                self.viewInfo.setupWith(titleAndColor: ["Great Job!":UIColor(hex: "7ed321")],
+                                        messageAndColor: ["All you reports has been approved":UIColor.black])
+            default:
+                break
+            }
+            self.viewInfo.isHidden = false
+        }else {
+            self.viewInfo.isHidden = true
+        }
     }
     
     @IBAction func btAddReportTapped(_ sender: Any) {
@@ -63,29 +109,24 @@ class VOYReportListViewController: UIViewController, NVActivityIndicatorViewable
     }
     
     @IBAction func segmentedControlTapped() {
-        startAnimating()
-        var status = 0
         switch self.segmentedControl.selectedSegmentIndex {
         case 0:
-            status = 1
-            tbView.interactor = RestBindTableViewProvider(tableViewConfiguration:tbView.getConfiguration(),
-                                                          params: ["theme":self.theme.id,"status":status],
-                                                          paginationCount:5)
-            tbView.loadContent()
+            tableViewApproved.isHidden = false
+            tableViewPending.isHidden = true
+            tableViewNotApproved.isHidden = true
+            showInfoViewIfNecessary(tableView: tableViewApproved)
             break
         case 1:
-            status = 2
-            tbView.interactor = RestBindTableViewProvider(tableViewConfiguration:tbView.getConfiguration(),
-                                                          params: ["theme":self.theme.id,"status":status],
-                                                          paginationCount:5)
-            tbView.loadContent()
+            tableViewApproved.isHidden = true
+            tableViewPending.isHidden = false
+            tableViewNotApproved.isHidden = true
+            showInfoViewIfNecessary(tableView: tableViewPending)
             break
         case 2:
-            status = 3
-            tbView.interactor = RestBindTableViewProvider(tableViewConfiguration:tbView.getConfiguration(),
-                                                          params: ["theme":self.theme.id,"status":status],
-                                                          paginationCount:5)
-            tbView.loadContent()
+            tableViewApproved.isHidden = true
+            tableViewPending.isHidden = true
+            tableViewNotApproved.isHidden = false
+            showInfoViewIfNecessary(tableView: tableViewNotApproved)
             break
         default:
             break
@@ -105,32 +146,18 @@ extension VOYReportListViewController : ISOnDemandTableViewDelegate {
         }
     }
     func onDemandTableView(_ tableView: ISOnDemandTableView, onContentLoad lastData: [Any]?, withError error: Error?) {
+        dataLoadTime+=1
+        allDataFinishedLoad = dataLoadTime >= 3
+        showInfoViewIfNecessary(tableView: tableView as! RestBindTableView)
         self.stopAnimating()
-        if tableView.interactor?.objects.count == 0 {
-            self.viewInfo.isHidden = false
-            switch self.segmentedControl.selectedSegmentIndex {
-            case 0:
-                self.viewInfo.setupWith(titleAndColor: ["Hello!":VOYConstant.Color.blue],
-                                        messageAndColor: ["You have not created any report yet":UIColor.black])
-            case 1:
-                self.viewInfo.setupWith(titleAndColor: ["Great!":VOYConstant.Color.blue],
-                                        messageAndColor: ["All you reports has been approved":UIColor.black])
-            case 2:
-                self.viewInfo.setupWith(titleAndColor: ["Great Job!":UIColor(hex: "7ed321")],
-                                        messageAndColor: ["All you reports has been approved":UIColor.black])
-            default:
-                break
-            }
-        }else {
-            self.viewInfo.isHidden = true
-        }
     }
     func onDemandTableView(_ tableView: ISOnDemandTableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 118
     }
     
     func onDemandTableView(_ tableView: ISOnDemandTableView, didSelectRowAt indexPath: IndexPath) {
-        self.navigationController?.pushViewController(VOYReportDetailViewController(), animated: true)
+        let cell = tableView.cellForRow(at: indexPath) as! VOYReportTableViewCell
+        self.navigationController?.pushViewController(VOYReportDetailViewController(report:VOYReport(JSON:cell.object.JSON)!), animated: true)
     }
 }
 

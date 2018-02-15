@@ -9,20 +9,23 @@
 import UIKit
 import ISScrollViewPageSwift
 import TagListView
+import RestBind
 
 class VOYReportDetailViewController: UIViewController {
 
-    @IBOutlet weak var scrollViewMedias: ISScrollViewPage!
+    @IBOutlet weak var scrollViewMedias: VOYScrollView!
     @IBOutlet weak var pageControl: UIPageControl!
-    @IBOutlet weak var lbTitle: UILabel!
-    @IBOutlet weak var lbDate: UILabel!
-    @IBOutlet weak var lbDescription: UILabel!
+    @IBOutlet weak var lbTitle: RestBindLabel!
+    @IBOutlet weak var lbDate: RestBindLabel!
+    @IBOutlet weak var lbDescription: RestBindLabel!
     @IBOutlet weak var viewTags: TagListView!
     @IBOutlet weak var btComment: UIButton!
+    @IBOutlet weak var restBindFillView: RestBindFillView!
     
-    var mediaList = [UIImage]()
+    var report:VOYReport!
     
-    init() {
+    init(report:VOYReport) {
+        self.report = report
         super.init(nibName: "VOYReportDetailViewController", bundle: nil)
     }
     
@@ -33,9 +36,16 @@ class VOYReportDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.automaticallyAdjustsScrollViewInsets = false
-        setupScrollViewMedias()
+        
+        scrollViewMedias.scrollViewPageType = .horizontally
+        scrollViewMedias.scrollViewPageDelegate = self
+        scrollViewMedias.setPaging(true)
+        
+        restBindFillView.delegate = self
+        restBindFillView.fillFields(withObject:report.map())
         setupNavigationItem()
         setupViewTags()
+        
     }
     
     func setupViewTags() {
@@ -63,17 +73,10 @@ class VOYReportDetailViewController: UIViewController {
         alertInfoController.show(true, inViewController: self)
     }
     
-    func setupScrollViewMedias() {
-        mediaList = [#imageLiteral(resourceName: "panda"),#imageLiteral(resourceName: "panda"),#imageLiteral(resourceName: "panda")]
-        pageControl.numberOfPages = mediaList.count
-        scrollViewMedias.scrollViewPageType = .horizontally
-        scrollViewMedias.scrollViewPageDelegate = self
-        scrollViewMedias.setPaging(true)
-        for i in 0...mediaList.count-1 {
-            let mediaPlayView = VOYPlayMediaView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: 161))
-            mediaPlayView.imgView.image = mediaList[i]
-            scrollViewMedias.addCustomView(mediaPlayView)
-        }
+    func setupScrollViewMedias(media:VOYMedia) {
+        let mediaPlayView = VOYPlayMediaView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: 161))
+        mediaPlayView.imgView.kf.setImage(with: URL(string:media.file))
+        scrollViewMedias.addCustomView(mediaPlayView)
         
     }
     
@@ -116,4 +119,53 @@ extension VOYReportDetailViewController : VOYAlertViewControllerDelegate {
             break
         }
     }
+}
+
+extension VOYReportDetailViewController : RestBindFillViewDelegate {
+    func didFetch(error: Error?) {
+        
+    }
+    
+    func willFill(component: Any, value: Any) -> Any? {
+        if let component = component as? UILabel {
+            if component == self.lbDate {
+                let dateFormatter = DateFormatter()
+                dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSSSSZ"
+                let dateString = value as! String
+                let date = dateFormatter.date(from: dateString)
+                
+                let dateFormatter2 = DateFormatter()
+                dateFormatter2.dateFormat = "MMM"
+                dateFormatter2.dateStyle = .medium
+                
+                lbDate.text = dateFormatter2.string(from: date!)
+                
+                return nil
+            }
+            
+        }else if let _ = component as? UIScrollView {
+            if let values = value as? [[String:Any]] {
+                for mediaObject in values {
+                    let media = VOYMedia(JSON: mediaObject)!
+                    setupScrollViewMedias(media: media)
+                }
+                self.pageControl.numberOfPages = scrollViewMedias.views!.count
+            }
+        }
+        return value
+    }
+    
+    func didFill(component: Any, value: Any) {
+        
+    }
+    
+    func willSet(component: Any, value: Any) -> Any? {
+        return value
+    }
+    
+    func didSet(component: Any, value: Any) {
+        
+    }
+    
+    
 }

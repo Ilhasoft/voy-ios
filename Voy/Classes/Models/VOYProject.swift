@@ -40,5 +40,9 @@ class VOYProject: Mappable {
         defaults.synchronize()
     }
     
+    func map() -> Map {
+        return Map(mappingType: .toJSON, JSON: self.toJSON())
+    }
+    
 }
 

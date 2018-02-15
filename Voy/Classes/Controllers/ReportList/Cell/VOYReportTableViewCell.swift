@@ -23,9 +23,14 @@ class VOYReportTableViewCell: RestBindTableViewCell {
     
     var delegate:VOYReportTableViewCellDelegate?
     
+    var didLayoutSubviews = false
+    
     override func layoutSubviews() {
         super.layoutSubviews()
-        installShadow(view:self.restBindFillView)
+        if !didLayoutSubviews {
+            installShadow(view:self.restBindFillView)
+            didLayoutSubviews = true
+        }
     }
     
     override func awakeFromNib() {

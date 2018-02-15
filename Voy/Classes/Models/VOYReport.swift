@@ -14,7 +14,11 @@ class VOYReport: Mappable {
     var theme:Int!
     var name:String!
     var description:String!
+    var tags:[String]!
+    var lastImage:VOYMedia!
+    var files:[VOYMedia]!
     var media:VOYMedia!
+    var created_on:String!
     
     init() {
         
@@ -27,7 +31,12 @@ class VOYReport: Mappable {
         theme <- map["theme"]
         name <- map["name"]
         description <- map["description"]
-        media <- map["last_image"]
+        lastImage <- map["last_image"]
+        files <- map["files"]
+        created_on <- map["created_on"]
     }
     
+    func map() -> Map {
+        return Map(mappingType: .toJSON, JSON: self.toJSON())
+    }
 }

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RestBind
 
 protocol VOYPlayMediaViewDelegate {
     func mediaDidTap()
@@ -14,11 +15,16 @@ protocol VOYPlayMediaViewDelegate {
 
 class VOYPlayMediaView: UIView {
 
-    @IBOutlet var contentView:UIView!
+    @IBOutlet var contentView:RestBindFillView!
     @IBOutlet var imgView:UIImageView!
     @IBOutlet var imgPlayIcon:UIImageView!
     
     var delegate:VOYPlayMediaViewDelegate?
+    var media:VOYMedia! {
+        didSet {
+            contentView.fillFields(withObject: media.map())
+        }
+    }
     
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)!
@@ -37,15 +43,15 @@ class VOYPlayMediaView: UIView {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(viewDidTap))
         self.addGestureRecognizer(tapGesture)
         contentView.frame = bounds
-        self.addSubview(contentView)
+        self.addSubview(contentView)        
     }
     
     @objc func viewDidTap() {
         self.delegate?.mediaDidTap()
     }
 
-    func setup() {
-        
+    func setup(media:VOYMedia) {
+        self.media = media
     }
     
 }

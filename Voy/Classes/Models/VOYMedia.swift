@@ -28,5 +28,8 @@ class VOYMedia: Mappable {
         file <- map["file"]
     }
     
+    func map() -> Map {
+        return Map(mappingType: .toJSON, JSON: self.toJSON())
+    }
 }
 

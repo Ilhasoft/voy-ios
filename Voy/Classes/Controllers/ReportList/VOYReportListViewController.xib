@@ -19,7 +19,9 @@
             <connections>
                 <outlet property="btAddReport" destination="TkX-K4-otn" id="0wY-zd-O7B"/>
                 <outlet property="segmentedControl" destination="Z1Z-ub-iOy" id="8k9-DM-8eN"/>
-                <outlet property="tbView" destination="T84-3W-wTn" id="wji-WM-SUP"/>
+                <outlet property="tableViewApproved" destination="T84-3W-wTn" id="CPw-30-p3j"/>
+                <outlet property="tableViewNotApproved" destination="csj-pQ-hpO" id="UDg-nK-oO2"/>
+                <outlet property="tableViewPending" destination="T5j-cd-J1t" id="eIx-40-HCZ"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outlet property="viewInfo" destination="McM-1T-NsW" id="kts-sN-ekm"/>
             </connections>
@@ -41,12 +43,19 @@
                         <action selector="segmentedControlTapped" destination="-1" eventType="valueChanged" id="hdw-sF-thi"/>
                     </connections>
                 </segmentedControl>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="T84-3W-wTn" customClass="RestBindTableView" customModule="RestBind">
+                <tableView hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="T84-3W-wTn" customClass="RestBindTableView" customModule="RestBind">
                     <rect key="frame" x="0.0" y="153" width="375" height="568"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="string" keyPath="endPoint" value="reports"/>
-                        <userDefinedRuntimeAttribute type="string" keyPath="filteredBy" value="theme"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="keyPath" value="results"/>
+                    </userDefinedRuntimeAttributes>
+                </tableView>
+                <tableView hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="T5j-cd-J1t" customClass="RestBindTableView" customModule="RestBind">
+                    <rect key="frame" x="0.0" y="153" width="375" height="568"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="endPoint" value="reports"/>
                         <userDefinedRuntimeAttribute type="string" keyPath="keyPath" value="results"/>
                     </userDefinedRuntimeAttributes>
                 </tableView>
@@ -64,6 +73,14 @@
                         <action selector="btAddReportTapped:" destination="-1" eventType="touchUpInside" id="seX-0J-DVH"/>
                     </connections>
                 </button>
+                <tableView hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="csj-pQ-hpO" customClass="RestBindTableView" customModule="RestBind">
+                    <rect key="frame" x="0.0" y="153" width="375" height="568"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="endPoint" value="reports"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="keyPath" value="results"/>
+                    </userDefinedRuntimeAttributes>
+                </tableView>
                 <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="McM-1T-NsW" customClass="VOYInfoView" customModule="Voy" customModuleProvider="target">
                     <rect key="frame" x="16" y="161" width="343" height="326"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -77,15 +94,23 @@
                 <constraint firstItem="McM-1T-NsW" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="2wR-Mr-xmY"/>
                 <constraint firstItem="McM-1T-NsW" firstAttribute="top" secondItem="Z1Z-ub-iOy" secondAttribute="bottom" constant="29" id="4VW-y2-4FK"/>
                 <constraint firstItem="Z1Z-ub-iOy" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="40" id="7Pc-HL-OLp"/>
+                <constraint firstItem="T5j-cd-J1t" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="83k-zE-hWf"/>
+                <constraint firstItem="csj-pQ-hpO" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="9Eh-du-vHe"/>
                 <constraint firstItem="TkX-K4-otn" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" id="Atq-AV-cJ8"/>
+                <constraint firstItem="T5j-cd-J1t" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="E4l-Cx-LoY"/>
+                <constraint firstItem="TkX-K4-otn" firstAttribute="top" secondItem="csj-pQ-hpO" secondAttribute="bottom" id="HcV-OS-Z4a"/>
                 <constraint firstItem="T84-3W-wTn" firstAttribute="top" secondItem="Z1Z-ub-iOy" secondAttribute="bottom" constant="21" id="HjE-DU-bMi"/>
                 <constraint firstItem="TkX-K4-otn" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="Jdx-Bi-zR3"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Z1Z-ub-iOy" secondAttribute="trailing" constant="40" id="R9M-Uv-iOg"/>
+                <constraint firstItem="csj-pQ-hpO" firstAttribute="top" secondItem="Z1Z-ub-iOy" secondAttribute="bottom" constant="21" id="Sb4-95-yVc"/>
                 <constraint firstItem="T84-3W-wTn" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="ZaD-yA-P38"/>
                 <constraint firstItem="TkX-K4-otn" firstAttribute="top" secondItem="T84-3W-wTn" secondAttribute="bottom" id="dFl-QE-sQr"/>
+                <constraint firstItem="TkX-K4-otn" firstAttribute="top" secondItem="T5j-cd-J1t" secondAttribute="bottom" id="j4q-IL-n4t"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="McM-1T-NsW" secondAttribute="trailing" constant="16" id="kRu-9C-rEn"/>
                 <constraint firstItem="Z1Z-ub-iOy" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="16" id="liS-ER-4tU"/>
+                <constraint firstItem="csj-pQ-hpO" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="nBh-GT-t3I"/>
                 <constraint firstItem="TkX-K4-otn" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="qIx-10-K91"/>
+                <constraint firstItem="T5j-cd-J1t" firstAttribute="top" secondItem="Z1Z-ub-iOy" secondAttribute="bottom" constant="21" id="qty-Cp-dZQ"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="T84-3W-wTn" secondAttribute="trailing" id="sb9-bW-YVH"/>
             </constraints>
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>

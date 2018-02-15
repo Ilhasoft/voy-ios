@@ -62,6 +62,7 @@
 		65AF37F6202E105400D64CE4 /* VOYUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65AF37F5202E105400D64CE4 /* VOYUser.swift */; };
 		65AF37F8202E10E600D64CE4 /* VOYLoginInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65AF37F7202E10E600D64CE4 /* VOYLoginInteractor.swift */; };
 		65AF37FA202E15B600D64CE4 /* UserDefaultsExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65AF37F9202E15B600D64CE4 /* UserDefaultsExtension.swift */; };
+		65AF3805202E406100D64CE4 /* VOYScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65AF3804202E406100D64CE4 /* VOYScrollView.swift */; };
 		65C7B5DF202B4D3A003087EB /* VOYTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65C7B5DE202B4D3A003087EB /* VOYTheme.swift */; };
 		65C7B5ED202B948E003087EB /* VOYReport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65C7B5EC202B948E003087EB /* VOYReport.swift */; };
 		65F346072020A87A00AC5437 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65F346062020A87A00AC5437 /* AppDelegate.swift */; };
@@ -159,6 +160,7 @@
 		65AF37F5202E105400D64CE4 /* VOYUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VOYUser.swift; sourceTree = "<group>"; };
 		65AF37F7202E10E600D64CE4 /* VOYLoginInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VOYLoginInteractor.swift; sourceTree = "<group>"; };
 		65AF37F9202E15B600D64CE4 /* UserDefaultsExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsExtension.swift; sourceTree = "<group>"; };
+		65AF3804202E406100D64CE4 /* VOYScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VOYScrollView.swift; sourceTree = "<group>"; };
 		65C7B5DE202B4D3A003087EB /* VOYTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VOYTheme.swift; sourceTree = "<group>"; };
 		65C7B5EC202B948E003087EB /* VOYReport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VOYReport.swift; sourceTree = "<group>"; };
 		65F346032020A87A00AC5437 /* Voy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Voy.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -360,6 +362,14 @@
 			path = Cell;
 			sourceTree = "<group>";
 		};
+		65AF3803202E404900D64CE4 /* CustomComponent */ = {
+			isa = PBXGroup;
+			children = (
+				65AF3804202E406100D64CE4 /* VOYScrollView.swift */,
+			);
+			path = CustomComponent;
+			sourceTree = "<group>";
+		};
 		65C7B5DD202B4C19003087EB /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -427,6 +437,7 @@
 		65F346342020B23A00AC5437 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				65AF3803202E404900D64CE4 /* CustomComponent */,
 				65C7B5DD202B4C19003087EB /* Models */,
 				655BD1202020E4E500D69EA2 /* Utils */,
 				65F3463F2020B80F00AC5437 /* Views */,
@@ -874,6 +885,7 @@
 				65F346072020A87A00AC5437 /* AppDelegate.swift in Sources */,
 				655BD19B2028ECFC00D69EA2 /* VOYCommentViewController.swift in Sources */,
 				655BD1732024CE6500D69EA2 /* VOYReportTableViewCell.swift in Sources */,
+				65AF3805202E406100D64CE4 /* VOYScrollView.swift in Sources */,
 				65AF37F6202E105400D64CE4 /* VOYUser.swift in Sources */,
 				65F699492028FAE400BFCF0C /* ISOndemandTableViewExtension.swift in Sources */,
 				655BD1852024F87100D69EA2 /* VOYAvatarCollectionViewCell.swift in Sources */,
