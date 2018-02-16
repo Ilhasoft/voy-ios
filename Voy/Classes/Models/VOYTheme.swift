@@ -46,4 +46,24 @@ class VOYTheme: Mappable {
         return Map(mappingType: .toJSON, JSON: self.toJSON())
     }
     
+    static func activeTheme() -> VOYTheme? {
+        var theme: VOYTheme?
+        if let themeDictionary = UserDefaults.standard.getArchivedObject(key: "theme") as? [String: Any] {
+            theme = VOYTheme(JSON: themeDictionary)
+        }
+        return theme
+    }
+    
+    static func deactiveTheme() {
+        UserDefaults.standard.removeObject(forKey: "theme")
+    }
+    
+    static func setActiveTheme(theme:VOYTheme) {
+        let defaults = UserDefaults.standard
+        
+        let encodedObject = NSKeyedArchiver.archivedData(withRootObject: theme.toJSON())
+        defaults.set(encodedObject, forKey: "theme")
+        defaults.synchronize()
+    }
+    
 }

@@ -25,10 +25,10 @@ class VOYReportListViewController: UIViewController, NVActivityIndicatorViewable
     var allDataFinishedLoad = false
     var dataLoadTime = 0
     
-    init(theme:VOYTheme) {
+    init() {
         super.init(nibName: "VOYReportListViewController", bundle: nil)
         VOYReportListViewController.sharedInstance = self
-        self.theme = theme
+        self.theme = VOYTheme.activeTheme()!
         self.title = theme.name
     }
     

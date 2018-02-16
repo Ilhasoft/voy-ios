@@ -17,9 +17,6 @@ class VOYRequestManager: NSObject {
             headers["Cache-Control"] = "public, max-age=86400, max-stale=120"
             parameters["page"] = 1
             parameters["page_size"] = VOYConstant.API.PAGINATION_SIZE
-            print(url)
-            print(parameters)
-            print(headers)
             Alamofire.request(url, method:.get, parameters: parameters, headers: headers).responseJSON { (dataResponse:DataResponse<Any>) in
                 if dataResponse.result.error == nil {
                     let cachedURLResponse = CachedURLResponse(response: dataResponse.response!, data: dataResponse.data! , userInfo: nil, storagePolicy: .allowed)

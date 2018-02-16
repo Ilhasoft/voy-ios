@@ -153,7 +153,8 @@ extension VOYThemeListViewController : ISOnDemandTableViewDelegate {
     }
     func onDemandTableView(_ tableView: ISOnDemandTableView, didSelectRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath) as! VOYThemeTableViewCell
-        self.navigationController?.pushViewController(VOYReportListViewController(theme: VOYTheme(JSON: cell.object.JSON)!), animated: true)
+        VOYTheme.setActiveTheme(theme: VOYTheme(JSON: cell.object.JSON)!)
+        self.navigationController?.pushViewController(VOYReportListViewController(), animated: true)
     }
 }
 
