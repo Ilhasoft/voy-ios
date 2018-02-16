@@ -12,6 +12,7 @@ import ISOnDemandTableView
 import DropDown
 import ObjectMapper
 import NVActivityIndicatorView
+import Kingfisher
 
 class VOYThemeListViewController: UIViewController, NVActivityIndicatorViewable {
 
@@ -56,10 +57,18 @@ class VOYThemeListViewController: UIViewController, NVActivityIndicatorViewable 
     }
     
     func setupButtonItems() {
-        let image = #imageLiteral(resourceName: "group14Copy2").withRenderingMode(.alwaysOriginal)
-        let leftBarButtonItem = UIBarButtonItem(image: image, style: .plain, target: self, action: #selector(openAccount))
-        let rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "bell"), style: .plain, target: self, action: #selector(openNotifications))
+        let imageView = UIImageView()
+        imageView.widthAnchor.constraint(equalToConstant: 30).isActive = true
+        imageView.heightAnchor.constraint(equalToConstant: 30).isActive = true
+        imageView.contentMode = .scaleAspectFill
+        
+        imageView.kf.setImage(with: URL(string:VOYUser.activeUser()!.avatar)!)
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(openAccount))
+        imageView.addGestureRecognizer(tapGesture)
+        let leftBarButtonItem = UIBarButtonItem(customView: imageView)
         self.navigationItem.leftBarButtonItem = leftBarButtonItem
+        
+        let rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "bell"), style: .plain, target: self, action: #selector(openNotifications))
         self.navigationItem.rightBarButtonItem = rightBarButtonItem
     }
     
