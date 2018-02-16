@@ -162,7 +162,7 @@ extension VOYAccountViewController : ISOnDemandCollectionViewDelegate {
     }
     
     func onDemandCollectionView(_ collectionView: ISOnDemandCollectionView, didSelect cell: ISOnDemandCollectionViewCell, at indexPath: IndexPath) {
-        newAvatar = indexPath.item
+        newAvatar = indexPath.item + 1
         let cell = cell as! VOYAvatarCollectionViewCell
         self.imgAvatar.image = cell.imgAvatar.image
         self.showAvatars()
