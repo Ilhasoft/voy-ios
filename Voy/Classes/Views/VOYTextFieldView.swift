@@ -8,11 +8,17 @@
 
 import UIKit
 
+protocol VOYTextFieldViewDelegate {
+    func textFieldDidEndEditing(_ textFieldView:VOYTextFieldView)
+}
+
 @IBDesignable
 class VOYTextFieldView: UIView {
     
     static let activeColor  = VOYConstant.Color.blue
     static let defaultColor = VOYConstant.Color.gray
+    
+    var delegate:VOYTextFieldViewDelegate?
     
     @IBInspectable var placeholder:String = "" {
         didSet {
@@ -75,6 +81,7 @@ extension VOYTextFieldView : UITextFieldDelegate {
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
+        self.delegate?.textFieldDidEndEditing(self)
         self.heightViewBottom.constant = 1
         UIView.animate(withDuration: 0.5) {
             self.layoutIfNeeded()

@@ -73,7 +73,7 @@ class VOYThemeListViewController: UIViewController, NVActivityIndicatorViewable 
                 self.projects = projects
                 if self.userJustLogged {
                     for project in self.projects {
-                        var params = ["project":project.id as Any]
+                        var params = ["project":project.id as Any, "user":VOYUser.activeUser()!.id]
                         VOYRequestManager.cacheDataFrom(url: VOYConstant.API.URL + "themes", parameters:&params)
                     }
                     self.userJustLogged = false
@@ -112,7 +112,7 @@ class VOYThemeListViewController: UIViewController, NVActivityIndicatorViewable 
     
     func loadThemesFilteredByProject(project:VOYProject) {
         VOYProject.setActiveProject(project: project)
-        tbView.interactor = RestBindTableViewProvider(configuration:tbView.getConfiguration(), params: ["project":project.id])
+        tbView.interactor = RestBindTableViewProvider(configuration:tbView.getConfiguration(), params: ["project":project.id,"user":VOYUser.activeUser()!.id])
         tbView.loadContent()
     }
     
