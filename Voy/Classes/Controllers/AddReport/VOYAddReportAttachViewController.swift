@@ -7,12 +7,17 @@
 //
 
 import UIKit
+import MapKit
+import NVActivityIndicatorView
 
-class VOYAddReportAttachViewController: UIViewController {
+class VOYAddReportAttachViewController: UIViewController, NVActivityIndicatorViewable {
 
     @IBOutlet var mediaViews:[VOYAddMediaView]!
     @IBOutlet var lbTitle:UILabel!
 
+    var locationManager:VOYLocationManager!
+    var theme:VOYTheme!
+    
     init() {
         super.init(nibName: "VOYAddReportAttachViewController", bundle: nil)
     }
@@ -23,11 +28,22 @@ class VOYAddReportAttachViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.theme = VOYTheme.activeTheme()!
+        locationManager = VOYLocationManager(delegate: self)
+        locationManager.getCurrentLocation()
+        self.startAnimating()
+        
         self.title = "Add Report"
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: " ", style: .plain, target: nil, action: nil)
         self.navigationController?.setNavigationBarHidden(false, animated: false)
         setupMediaViewDelegate()
         addNextButton()
+        checkBounds()
+    }
+    
+    func checkBounds() {
+
     }
     
     func addNextButton() {
@@ -63,5 +79,48 @@ extension VOYAddReportAttachViewController : VOYActionSheetViewControllerDelegat
     }
     func cancelButtonDidTap(actionSheetViewController:VOYActionSheetViewController) {
         actionSheetViewController.close()
+    }
+}
+
+extension VOYAddReportAttachViewController : VOYLocationManagerDelegate {
+    func didGetUserLocation(latitude: Float, longitude: Float, error: Error?) {
+        self.stopAnimating()
+        let myLocation = CLLocationCoordinate2D(latitude: CLLocationDegrees(latitude), longitude: CLLocationDegrees(longitude))
+        
+        var loctionCoordinate2dList = [CLLocationCoordinate2D]()
+        for point in theme.bounds {
+            let locationCoordinate2D = CLLocationCoordinate2D(latitude: point[0], longitude: point[1])
+            loctionCoordinate2dList.append(locationCoordinate2D)
+        }
+        
+        let statePolygonRenderer = MKPolygonRenderer(polygon: MKPolygon(coordinates: loctionCoordinate2dList, count: loctionCoordinate2dList.count))
+        let testMapPoint: MKMapPoint = MKMapPointForCoordinate(myLocation)
+        let statePolygonRenderedPoint: CGPoint = statePolygonRenderer.point(for: testMapPoint)
+        let userLocationInvalid: Bool = statePolygonRenderer.path.contains(statePolygonRenderedPoint)
+        if userLocationInvalid {
+            let alertViewController = VOYAlertViewController(title: "GPS Location", message: "To create a Report you need to stay on GPS area of the Theme.")
+            alertViewController.view.tag = 1
+            alertViewController.delegate = self
+            alertViewController.show(true, inViewController: self)
+        }
+    }
+    
+    func userDidntGivePermission() {
+        self.stopAnimating()
+        let alertViewController = VOYAlertViewController(title: "No GPS Permission", message: "You need provide GPS permission before create a report.")
+        alertViewController.view.tag = 2
+        alertViewController.delegate = self
+        alertViewController.show(true, inViewController: self)
+    }
+}
+
+extension VOYAddReportAttachViewController : VOYAlertViewControllerDelegate {
+    func buttonDidTap(alertController: VOYAlertViewController, button: UIButton, index: Int) {
+        alertController.close()
+        self.navigationController?.popViewController(animated: true)
+        if alertController.view.tag == 1 {
+        }else if alertController.view.tag == 2 {
+            UIApplication.shared.open(URL(string:UIApplicationOpenSettingsURLString)!, options: [:], completionHandler: nil)
+        }
     }
 }
