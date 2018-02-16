@@ -10,6 +10,7 @@ import UIKit
 
 protocol VOYTextFieldViewDelegate {
     func textFieldDidEndEditing(_ textFieldView:VOYTextFieldView)
+    func textFieldDidChange(_ textFieldView:VOYTextFieldView, text:String)
 }
 
 @IBDesignable
@@ -97,6 +98,8 @@ extension VOYTextFieldView : UITextFieldDelegate {
         }
         let newText = (textField.text! as NSString).replacingCharacters(in: range, with: string)
         let numberOfChars = newText.count
+        
+        self.delegate?.textFieldDidChange(self, text: newText)
         
         if numberOfChars > 0 && self.lbFieldName.alpha == 0 {
             UIView.animate(withDuration: 0.3, animations: {

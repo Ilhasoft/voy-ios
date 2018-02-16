@@ -143,11 +143,12 @@
                                     <rect key="frame" x="208" y="69" width="29" height="29"/>
                                 </imageView>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j3a-ps-Q99">
-                                    <rect key="frame" x="362" y="245" width="46" height="30"/>
+                                    <rect key="frame" x="337" y="245" width="71" height="30"/>
                                     <constraints>
-                                        <constraint firstAttribute="width" constant="46" id="NmR-Vh-BfE"/>
+                                        <constraint firstAttribute="width" constant="71" id="NmR-Vh-BfE"/>
                                         <constraint firstAttribute="height" constant="30" id="i8a-6M-STF"/>
                                     </constraints>
+                                    <state key="normal" title="Change"/>
                                     <connections>
                                         <action selector="btEditPasswordTapped" destination="-1" eventType="touchUpInside" id="pLn-Qn-3eH"/>
                                     </connections>
@@ -219,7 +220,7 @@
                 <constraint firstItem="ack-HC-hrS" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" id="cMd-ht-v8a"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
-            <point key="canvasLocation" x="33.5" y="54"/>
+            <point key="canvasLocation" x="33" y="54"/>
         </view>
     </objects>
     <resources>

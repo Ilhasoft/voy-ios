@@ -85,6 +85,8 @@ class VOYAccountViewController: UIViewController {
     }
     
     func setupViewPasswordLayout() {
+        self.btEditPassword.setTitle("Change", for: .normal)
+        
         if isPasswordEditing {
             
             self.viewPassword.editEnabled = false
@@ -142,6 +144,12 @@ extension VOYAccountViewController : ISOnDemandCollectionViewDelegate {
 }
 
 extension VOYAccountViewController : VOYTextFieldViewDelegate {
+    func textFieldDidChange(_ textFieldView: VOYTextFieldView, text: String) {
+        if !text.isEmpty {
+            self.btEditPassword.setTitle("Done", for: .normal)
+        }
+    }
+    
     func textFieldDidEndEditing(_ textFieldView: VOYTextFieldView) {
         setupViewPasswordLayout()
     }
