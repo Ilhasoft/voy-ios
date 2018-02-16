@@ -40,8 +40,8 @@ class VOYLoginViewController: UIViewController, NVActivityIndicatorViewable {
     //MARK: Component Events
     
     @IBAction func btLoginTapped(_ sender: Any) {
+        self.view.endEditing(true)
         let alertController = VOYAlertViewController(title: "Error", message: "Maybe you entered a wrong username or password!", buttonNames:["Ok"])
-        
         
         let navigationController = UINavigationController(rootViewController: VOYThemeListViewController(userJustLogged: true))
         let slideMenuController = SlideMenuController(mainViewController: navigationController, rightMenuViewController: VOYNotificationViewController())

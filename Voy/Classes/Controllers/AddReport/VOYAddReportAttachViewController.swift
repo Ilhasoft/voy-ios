@@ -96,9 +96,9 @@ extension VOYAddReportAttachViewController : VOYLocationManagerDelegate {
         let statePolygonRenderer = MKPolygonRenderer(polygon: MKPolygon(coordinates: loctionCoordinate2dList, count: loctionCoordinate2dList.count))
         let testMapPoint: MKMapPoint = MKMapPointForCoordinate(myLocation)
         let statePolygonRenderedPoint: CGPoint = statePolygonRenderer.point(for: testMapPoint)
-        let userLocationInvalid: Bool = statePolygonRenderer.path.contains(statePolygonRenderedPoint)
-        if userLocationInvalid {
-            let alertViewController = VOYAlertViewController(title: "GPS Location", message: "To create a Report you need to stay on GPS area of the Theme.")
+        let intersects: Bool = statePolygonRenderer.path.contains(statePolygonRenderedPoint)
+        if !intersects {
+            let alertViewController = VOYAlertViewController(title: "Alert", message: "You are outside this theme's bounds. You couldn't create a report.")
             alertViewController.view.tag = 1
             alertViewController.delegate = self
             alertViewController.show(true, inViewController: self)

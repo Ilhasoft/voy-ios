@@ -22,6 +22,7 @@ class VOYPlayMediaView: UIView {
     var delegate:VOYPlayMediaViewDelegate?
     var media:VOYMedia! {
         didSet {
+            print(media)
             contentView.fillFields(withObject: media.map())
         }
     }

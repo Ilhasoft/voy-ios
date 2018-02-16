@@ -37,7 +37,7 @@ class VOYLocationManager: NSObject, CLLocationManagerDelegate {
         }
         
         locationManager!.delegate = self
-        locationManager!.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager!.desiredAccuracy = kCLLocationAccuracyBestForNavigation
         
         if CLLocationManager.locationServicesEnabled() {
             if CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
