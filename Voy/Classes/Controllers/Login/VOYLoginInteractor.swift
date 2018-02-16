@@ -34,7 +34,7 @@ class VOYLoginInteractor: NSObject {
             }
         }
         
-    }
+    }        
     
     static func getUserData(authToken:String, completion:@escaping(_ user:VOYUser?, _ error:Error?) -> Void) {
         let url = VOYConstant.API.URL + "users/?auth_token=" + authToken

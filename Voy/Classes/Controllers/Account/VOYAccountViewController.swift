@@ -8,8 +8,9 @@
 
 import UIKit
 import ISOnDemandCollectionView
+import NVActivityIndicatorView
 
-class VOYAccountViewController: UIViewController {
+class VOYAccountViewController: UIViewController, NVActivityIndicatorViewable {
 
     @IBOutlet weak var imgAvatar: UIImageView!
     @IBOutlet weak var imgIcon: UIImageView!
@@ -21,9 +22,20 @@ class VOYAccountViewController: UIViewController {
     @IBOutlet weak var collectionAvatar: ISOnDemandCollectionView!
     @IBOutlet weak var heightCollectionAvatar: NSLayoutConstraint!
     
+    var rightBarButtonItem:UIBarButtonItem!
+    
     var isPasswordEditing = false
     let nilPassword = "xpto321otpx"
-    var newPassword = ""
+    var newPassword:String? {
+        didSet {
+            enableRightBarButtonItem()
+        }
+    }
+    var newAvatar:Int? {
+        didSet {
+            enableRightBarButtonItem()
+        }
+    }
     
     init() {
         super.init(nibName: "VOYAccountViewController", bundle: nil)
@@ -44,6 +56,14 @@ class VOYAccountViewController: UIViewController {
         setupData()
     }
 
+    func enableRightBarButtonItem() {
+        if newPassword == nil && newAvatar == nil {
+            self.rightBarButtonItem.isEnabled = false
+        }else {
+            self.rightBarButtonItem.isEnabled = true
+        }
+    }
+    
     func setupData() {
         let user = VOYUser.activeUser()!
         self.viewUserName.txtField.text = user.first_name
@@ -56,7 +76,8 @@ class VOYAccountViewController: UIViewController {
     }
     
     func setupLayout() {
-        let rightBarButtonItem = UIBarButtonItem(title: "Save", style: .plain, target: self, action: #selector(save))
+        rightBarButtonItem = UIBarButtonItem(title: "Save", style: .plain, target: self, action: #selector(save))
+        rightBarButtonItem.isEnabled = false
         self.navigationItem.rightBarButtonItem = rightBarButtonItem
     }
     
@@ -71,9 +92,14 @@ class VOYAccountViewController: UIViewController {
     }
     
     @objc func save() {
-        if !newPassword.isEmpty {
-            print("You need update user password - API")
-            //TODO: You need update user password - API
+        if newPassword != nil || newAvatar != nil {
+            self.startAnimating()
+            VOYAccountInteractor.updateUser(avatar: newAvatar, password: newPassword, completion: { (error) in
+                self.stopAnimating()
+                if error != nil {
+                    //TODO: Show Alert
+                }
+            })
         }
     }
     
@@ -94,7 +120,7 @@ class VOYAccountViewController: UIViewController {
             if passwordChanged {
                 newPassword = self.viewPassword.txtField.text!
             }else {
-                newPassword = ""
+                newPassword = nil
             }
             self.viewPassword.txtField.text = passwordChanged ? newPassword : nilPassword
             
@@ -136,6 +162,7 @@ extension VOYAccountViewController : ISOnDemandCollectionViewDelegate {
     }
     
     func onDemandCollectionView(_ collectionView: ISOnDemandCollectionView, didSelect cell: ISOnDemandCollectionViewCell, at indexPath: IndexPath) {
+        newAvatar = indexPath.item
         let cell = cell as! VOYAvatarCollectionViewCell
         self.imgAvatar.image = cell.imgAvatar.image
         self.showAvatars()

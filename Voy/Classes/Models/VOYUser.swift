@@ -12,6 +12,7 @@ class VOYUser: Mappable {
     
     var id:Int!
     var first_name:String!
+    var password:String!
     var avatar:String!
     var email:String!
     var username:String!
