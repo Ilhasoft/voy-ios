@@ -53,10 +53,11 @@ class VOYThemeListViewController: UIViewController, NVActivityIndicatorViewable 
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: " ", style: .plain, target: nil, action: nil)
         setupButtonItems()
         getProjects()
+        NotificationCenter.default.addObserver(self, selector: #selector(addLeftBarButtonItem), name: Notification.Name("userDataUpdated"), object: nil)
         self.navigationController?.setNavigationBarHidden(false, animated: true)
     }
     
-    func setupButtonItems() {
+    @objc func addLeftBarButtonItem() {
         let imageView = UIImageView()
         imageView.widthAnchor.constraint(equalToConstant: 30).isActive = true
         imageView.heightAnchor.constraint(equalToConstant: 30).isActive = true
@@ -67,7 +68,10 @@ class VOYThemeListViewController: UIViewController, NVActivityIndicatorViewable 
         imageView.addGestureRecognizer(tapGesture)
         let leftBarButtonItem = UIBarButtonItem(customView: imageView)
         self.navigationItem.leftBarButtonItem = leftBarButtonItem
-        
+    }
+    
+    func setupButtonItems() {
+        addLeftBarButtonItem()
         let rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "bell"), style: .plain, target: self, action: #selector(openNotifications))
         self.navigationItem.rightBarButtonItem = rightBarButtonItem
     }

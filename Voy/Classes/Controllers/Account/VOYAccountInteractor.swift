@@ -14,6 +14,7 @@ class VOYAccountInteractor: NSObject {
         
         let user = VOYUser.activeUser()!
         var jsonUser = user.toJSON()
+        let authToken = user.authToken!
         
         if let avatar = avatar {
             jsonUser["avatar"] = avatar
@@ -25,11 +26,19 @@ class VOYAccountInteractor: NSObject {
         }
         
         let url = VOYConstant.API.URL + "users/" + "\(user.id!)/"
-        let headers = ["Authorization" : "Token " + user.authToken, "Content-Type" : "application/json"]
+        let headers = ["Authorization" : "Token " + authToken, "Content-Type" : "application/json"]
         
         Alamofire.request(url, method: .put, parameters: jsonUser, encoding: JSONEncoding.default, headers: headers).responseJSON { (dataResponse:DataResponse<Any>) in
-            if let data = dataResponse.result.value {
-                print(data)
+            if let _ = dataResponse.result.value {
+                VOYLoginInteractor.getUserData(authToken: user.authToken, completion: { (user, error) in
+                    if let error = error {
+                        print(error.localizedDescription)
+                    }else if let u = user {
+                        u.authToken = authToken
+                        VOYUser.setActiveUser(user: u)
+                        NotificationCenter.default.post(name: NSNotification.Name("userDataUpdated"), object: nil)
+                    }
+                })
                 completion(nil)
             }else if let error = dataResponse.result.error {
                 print(error.localizedDescription)

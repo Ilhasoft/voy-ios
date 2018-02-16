@@ -34,6 +34,7 @@ class VOYInfoView: UIView {
     }
     
     func setupWith(titleAndColor:[String:UIColor],messageAndColor:[String:UIColor]) {
+        self.imgAvatar.kf.setImage(with: URL(string:VOYUser.activeUser()!.avatar))
         self.lbTitle.text = titleAndColor.keys.first!
         self.lbTitle.textColor = titleAndColor.values.first!
         self.lbMessage.text = messageAndColor.keys.first!

@@ -94,7 +94,7 @@ class VOYAccountViewController: UIViewController, NVActivityIndicatorViewable {
     @objc func save() {
         if newPassword != nil || newAvatar != nil {
             self.startAnimating()
-            VOYAccountInteractor.updateUser(avatar: newAvatar, password: newPassword, completion: { (error) in
+            VOYAccountInteractor.updateUser(avatar: newAvatar, password: newPassword, completion: { (error) in                
                 self.stopAnimating()
                 if error != nil {
                     //TODO: Show Alert
