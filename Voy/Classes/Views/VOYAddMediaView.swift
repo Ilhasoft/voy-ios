@@ -20,6 +20,7 @@ class VOYAddMediaView: UIView {
     @IBOutlet weak var imgView: UIImageView!
     @IBOutlet var contentView:UIView!
     
+    var cameraData:VOYCameraData!
     var delegate:VOYAddMediaViewDelegate?
     
     required init(coder aDecoder: NSCoder) {
@@ -35,7 +36,7 @@ class VOYAddMediaView: UIView {
     private func initSubviews() {
         let nib = UINib(nibName: "VOYAddMediaView", bundle: Bundle(for: VOYAddMediaView.self))
         nib.instantiate(withOwner: self, options: nil)
-        contentView.layer.cornerRadius = 7
+        imgView.layer.cornerRadius = 7
         contentView.frame = bounds
         
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(viewTapped))
@@ -43,8 +44,17 @@ class VOYAddMediaView: UIView {
         addSubview(contentView)
     }
     
-    func setupWithMedia() {
+    func setupWithMedia(cameraData:VOYCameraData) {
+        self.cameraData = cameraData
+        self.imgView.isHidden = false
+        self.imgViewPlusIcon.isHidden = true
+        self.btRemove.isHidden = false
         
+        if cameraData.type == .image {
+            self.imgView.image = cameraData.image!
+        }else if cameraData.type == .video {
+            self.imgView.image = ISVideoUtil.generateThumbnail(cameraData.path!)
+        }
     }
     
     @objc func viewTapped(gestureRecognizer:UITapGestureRecognizer) {
@@ -54,8 +64,9 @@ class VOYAddMediaView: UIView {
 
     @IBAction func btRemoveTapped(_ sender: Any) {
         self.delegate?.removeMediaButtonDidTap(mediaView: self)
+        self.btRemove.isHidden = true
         self.imgView.image = nil
-        self.imgViewPlusIcon.isHidden = true
+        self.imgViewPlusIcon.isHidden = false
     }
     
 }

@@ -59,6 +59,9 @@
 		6565FBE4202CB7D30047F8D8 /* VOYMedia.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6565FBE3202CB7D30047F8D8 /* VOYMedia.swift */; };
 		657C3F6B20374BB10077F07B /* VOYAccountInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 657C3F6A20374BB10077F07B /* VOYAccountInteractor.swift */; };
 		657C3F6E203768D90077F07B /* VOYLocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 657C3F6D203768D90077F07B /* VOYLocationManager.swift */; };
+		657C3F72203B71DC0077F07B /* ISVideoUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 657C3F71203B71DC0077F07B /* ISVideoUtil.swift */; };
+		657C3F74203B72990077F07B /* VOYAddReportAttachViewCameraExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 657C3F73203B72990077F07B /* VOYAddReportAttachViewCameraExtension.swift */; };
+		657C3F76203B762A0077F07B /* VOYCameraData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 657C3F75203B762A0077F07B /* VOYCameraData.swift */; };
 		65AF37F2202DF53100D64CE4 /* VOYProjectInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65AF37F1202DF53100D64CE4 /* VOYProjectInteractor.swift */; };
 		65AF37F4202E0ED400D64CE4 /* VOYProject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65AF37F3202E0ED400D64CE4 /* VOYProject.swift */; };
 		65AF37F6202E105400D64CE4 /* VOYUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65AF37F5202E105400D64CE4 /* VOYUser.swift */; };
@@ -67,7 +70,6 @@
 		65AF3805202E406100D64CE4 /* VOYScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65AF3804202E406100D64CE4 /* VOYScrollView.swift */; };
 		65C7B5DF202B4D3A003087EB /* VOYTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65C7B5DE202B4D3A003087EB /* VOYTheme.swift */; };
 		65C7B5ED202B948E003087EB /* VOYReport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65C7B5EC202B948E003087EB /* VOYReport.swift */; };
-		65CF10C72035F3E000F487CC /* AlamofireExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65CF10C62035F3E000F487CC /* AlamofireExtension.swift */; };
 		65CF10C92036264C00F487CC /* VOYRequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65CF10C82036264C00F487CC /* VOYRequestManager.swift */; };
 		65F346072020A87A00AC5437 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65F346062020A87A00AC5437 /* AppDelegate.swift */; };
 		65F3460E2020A87A00AC5437 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 65F3460D2020A87A00AC5437 /* Assets.xcassets */; };
@@ -161,6 +163,9 @@
 		6565FBE3202CB7D30047F8D8 /* VOYMedia.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VOYMedia.swift; sourceTree = "<group>"; };
 		657C3F6A20374BB10077F07B /* VOYAccountInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VOYAccountInteractor.swift; sourceTree = "<group>"; };
 		657C3F6D203768D90077F07B /* VOYLocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VOYLocationManager.swift; sourceTree = "<group>"; };
+		657C3F71203B71DC0077F07B /* ISVideoUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ISVideoUtil.swift; sourceTree = "<group>"; };
+		657C3F73203B72990077F07B /* VOYAddReportAttachViewCameraExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VOYAddReportAttachViewCameraExtension.swift; sourceTree = "<group>"; };
+		657C3F75203B762A0077F07B /* VOYCameraData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VOYCameraData.swift; sourceTree = "<group>"; };
 		65AF37F1202DF53100D64CE4 /* VOYProjectInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VOYProjectInteractor.swift; sourceTree = "<group>"; };
 		65AF37F3202E0ED400D64CE4 /* VOYProject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VOYProject.swift; sourceTree = "<group>"; };
 		65AF37F5202E105400D64CE4 /* VOYUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VOYUser.swift; sourceTree = "<group>"; };
@@ -169,7 +174,6 @@
 		65AF3804202E406100D64CE4 /* VOYScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VOYScrollView.swift; sourceTree = "<group>"; };
 		65C7B5DE202B4D3A003087EB /* VOYTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VOYTheme.swift; sourceTree = "<group>"; };
 		65C7B5EC202B948E003087EB /* VOYReport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VOYReport.swift; sourceTree = "<group>"; };
-		65CF10C62035F3E000F487CC /* AlamofireExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlamofireExtension.swift; sourceTree = "<group>"; };
 		65CF10C82036264C00F487CC /* VOYRequestManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VOYRequestManager.swift; sourceTree = "<group>"; };
 		65F346032020A87A00AC5437 /* Voy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Voy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		65F346062020A87A00AC5437 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -232,8 +236,8 @@
 				655BD1892028841000D69EA2 /* UIViewControllerExtension.swift */,
 				65F699482028FAE400BFCF0C /* ISOndemandTableViewExtension.swift */,
 				65AF37F9202E15B600D64CE4 /* UserDefaultsExtension.swift */,
-				65CF10C62035F3E000F487CC /* AlamofireExtension.swift */,
 				65CF10C82036264C00F487CC /* VOYRequestManager.swift */,
+				657C3F71203B71DC0077F07B /* ISVideoUtil.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -261,6 +265,7 @@
 		655BD12C202112F600D69EA2 /* AddReport */ = {
 			isa = PBXGroup;
 			children = (
+				657C3F73203B72990077F07B /* VOYAddReportAttachViewCameraExtension.swift */,
 				655BD13D2022437800D69EA2 /* Cell */,
 				655BD12D2021148800D69EA2 /* VOYAddReportAttachViewController.swift */,
 				655BD12E2021148800D69EA2 /* VOYAddReportAttachViewController.xib */,
@@ -397,6 +402,7 @@
 				6565FBE3202CB7D30047F8D8 /* VOYMedia.swift */,
 				65AF37F3202E0ED400D64CE4 /* VOYProject.swift */,
 				65AF37F5202E105400D64CE4 /* VOYUser.swift */,
+				657C3F75203B762A0077F07B /* VOYCameraData.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -913,6 +919,7 @@
 				65F346072020A87A00AC5437 /* AppDelegate.swift in Sources */,
 				655BD19B2028ECFC00D69EA2 /* VOYCommentViewController.swift in Sources */,
 				655BD1732024CE6500D69EA2 /* VOYReportTableViewCell.swift in Sources */,
+				657C3F72203B71DC0077F07B /* ISVideoUtil.swift in Sources */,
 				657C3F6B20374BB10077F07B /* VOYAccountInteractor.swift in Sources */,
 				657C3F6E203768D90077F07B /* VOYLocationManager.swift in Sources */,
 				65AF3805202E406100D64CE4 /* VOYScrollView.swift in Sources */,
@@ -925,12 +932,13 @@
 				65F346422020B82B00AC5437 /* VOYTextFieldView.swift in Sources */,
 				655BD1882024FFD700D69EA2 /* VOYAvatarCollectionViewProvider.swift in Sources */,
 				655BD14A20237BD100D69EA2 /* VOYInfoView.swift in Sources */,
-				65CF10C72035F3E000F487CC /* AlamofireExtension.swift in Sources */,
 				655BD15F20238F7000D69EA2 /* VOYThemeListTableViewProvider.swift in Sources */,
 				65CF10C92036264C00F487CC /* VOYRequestManager.swift in Sources */,
 				655BD1632023989600D69EA2 /* VOYNotificationViewController.swift in Sources */,
 				65AF37FA202E15B600D64CE4 /* UserDefaultsExtension.swift in Sources */,
 				655BD15920238B1000D69EA2 /* VOYThemeTableViewCell.swift in Sources */,
+				657C3F74203B72990077F07B /* VOYAddReportAttachViewCameraExtension.swift in Sources */,
+				657C3F76203B762A0077F07B /* VOYCameraData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

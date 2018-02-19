@@ -22,14 +22,14 @@
             <rect key="frame" x="0.0" y="0.0" width="136" height="136"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="IHg-L7-jsa">
+                <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="IHg-L7-jsa">
                     <rect key="frame" x="0.0" y="0.0" width="136" height="136"/>
                 </imageView>
                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="noun1172956Cc" translatesAutoresizingMaskIntoConstraints="NO" id="cYC-0F-jni">
                     <rect key="frame" x="49.5" y="49.5" width="38" height="38"/>
                 </imageView>
                 <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GWz-Es-bmb">
-                    <rect key="frame" x="124" y="-9" width="22" height="22"/>
+                    <rect key="frame" x="129" y="-14" width="22" height="22"/>
                     <state key="normal" image="group5Copy3"/>
                     <connections>
                         <action selector="btRemoveTapped:" destination="-1" eventType="touchUpInside" id="msd-oy-56b"/>
@@ -43,8 +43,8 @@
                 <constraint firstItem="IHg-L7-jsa" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="beh-Jf-7Sz"/>
                 <constraint firstItem="IHg-L7-jsa" firstAttribute="bottom" secondItem="i5M-Pr-FkT" secondAttribute="bottom" id="doT-3l-Fw6"/>
                 <constraint firstItem="IHg-L7-jsa" firstAttribute="trailing" secondItem="i5M-Pr-FkT" secondAttribute="trailing" id="eaJ-XX-BRE"/>
-                <constraint firstItem="GWz-Es-bmb" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" constant="67" id="lK2-3d-zLR"/>
-                <constraint firstItem="GWz-Es-bmb" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" constant="-66" id="oFK-Jh-VnM"/>
+                <constraint firstItem="GWz-Es-bmb" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" constant="72" id="lK2-3d-zLR"/>
+                <constraint firstItem="GWz-Es-bmb" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" constant="-71" id="oFK-Jh-VnM"/>
                 <constraint firstItem="IHg-L7-jsa" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="typ-9i-EA1"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>

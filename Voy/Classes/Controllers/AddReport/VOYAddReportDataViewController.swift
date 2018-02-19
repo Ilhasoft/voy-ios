@@ -21,8 +21,10 @@ class VOYAddReportDataViewController: UIViewController {
     @IBOutlet weak var tbViewLinks: UITableView!
     
     var links = [String]()
-
-    init() {
+    var cameraDataList = [VOYCameraData]()
+    
+    init(cameraDataList:[VOYCameraData]) {
+        self.cameraDataList = cameraDataList
         super.init(nibName: "VOYAddReportDataViewController", bundle: nil)
     }
     

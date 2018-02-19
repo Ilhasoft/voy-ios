@@ -9,6 +9,7 @@
 import UIKit
 import MapKit
 import NVActivityIndicatorView
+import MobileCoreServices
 
 class VOYAddReportAttachViewController: UIViewController, NVActivityIndicatorViewable {
 
@@ -17,6 +18,22 @@ class VOYAddReportAttachViewController: UIViewController, NVActivityIndicatorVie
 
     var locationManager:VOYLocationManager!
     var theme:VOYTheme!
+    var imagePickerController:UIImagePickerController!
+    var actionSheetController:VOYActionSheetViewController!
+    
+    var cameraDataList = [VOYCameraData]() {
+        didSet {
+            self.navigationItem.rightBarButtonItem!.isEnabled = !cameraDataList.isEmpty
+        }
+    }
+    var cameraData:VOYCameraData! {
+        didSet {
+            cameraDataList.append(cameraData)
+            setupMediaView()
+        }
+    }
+    
+    var tappedMediaView:VOYAddMediaView!
     
     init() {
         super.init(nibName: "VOYAddReportAttachViewController", bundle: nil)
@@ -39,19 +56,15 @@ class VOYAddReportAttachViewController: UIViewController, NVActivityIndicatorVie
         self.navigationController?.setNavigationBarHidden(false, animated: false)
         setupMediaViewDelegate()
         addNextButton()
-        checkBounds()
-    }
-    
-    func checkBounds() {
-
     }
     
     func addNextButton() {
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Next", style: .plain, target: self, action: #selector(openNextController))
+        self.navigationItem.rightBarButtonItem!.isEnabled = false
     }
     
     @objc func openNextController() {
-        self.navigationController?.pushViewController(VOYAddReportDataViewController(), animated: true)
+        self.navigationController?.pushViewController(VOYAddReportDataViewController(cameraDataList:self.cameraDataList), animated: true)
     }
     
     func setupMediaViewDelegate() {
@@ -60,22 +73,44 @@ class VOYAddReportAttachViewController: UIViewController, NVActivityIndicatorVie
         }
     }
     
+    func setupMediaView() {
+        tappedMediaView.setupWithMedia(cameraData:self.cameraData)
+    }
+    
 }
 
 extension VOYAddReportAttachViewController : VOYAddMediaViewDelegate {
     func mediaViewDidTap(mediaView: VOYAddMediaView) {
-        let actionSheetController = VOYActionSheetViewController(buttonNames: ["Movie","Photo"], icons: [#imageLiteral(resourceName: "noun1018049Cc"),#imageLiteral(resourceName: "noun938989Cc")])
+        tappedMediaView = mediaView
+        actionSheetController = VOYActionSheetViewController(buttonNames: ["Movie","Photo"], icons: [#imageLiteral(resourceName: "noun1018049Cc"),#imageLiteral(resourceName: "noun938989Cc")])
         actionSheetController.delegate = self
         actionSheetController.show(true, inViewController: self)
     }
     func removeMediaButtonDidTap(mediaView: VOYAddMediaView) {
-        
+        let index = self.cameraDataList.index{($0.id == mediaView.cameraData.id)}
+        if let index = index {
+            self.cameraDataList.remove(at: index)
+        }
     }
 }
 
 extension VOYAddReportAttachViewController : VOYActionSheetViewControllerDelegate {
     func buttonDidTap(actionSheetViewController: VOYActionSheetViewController, button: UIButton, index: Int) {
-        //TODO: Implement actions
+        actionSheetController.close()
+        imagePickerController = UIImagePickerController()
+        imagePickerController.delegate = self
+        imagePickerController.sourceType = .camera
+        if index == 0 {
+            imagePickerController.mediaTypes = [kUTTypeMovie as String]
+            imagePickerController.videoQuality = .type640x480
+            imagePickerController.videoMaximumDuration = 30
+            imagePickerController.allowsEditing = true
+        }else {
+            imagePickerController.mediaTypes = [kUTTypeImage as String]
+        }
+        self.present(imagePickerController, animated: true) {
+            
+        }
     }
     func cancelButtonDidTap(actionSheetViewController:VOYActionSheetViewController) {
         actionSheetViewController.close()
