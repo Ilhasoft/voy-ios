@@ -10,6 +10,7 @@ import UIKit
 import ISScrollViewPageSwift
 import TagListView
 import RestBind
+import AXPhotoViewer
 
 class VOYReportDetailViewController: UIViewController {
 
@@ -62,8 +63,8 @@ class VOYReportDetailViewController: UIViewController {
         let v = UIView(frame: CGRect(x: 0, y: 0, width: 32, height: 31))
         imageView.image = #imageLiteral(resourceName: "avatar14")
         imageView.contentMode = .scaleAspectFit
-        imageView.widthAnchor.constraint(equalToConstant: 32)
-        imageView.heightAnchor.constraint(equalToConstant: 31)
+        imageView.widthAnchor.constraint(equalToConstant: 32).isActive = true
+        imageView.heightAnchor.constraint(equalToConstant: 31).isActive = true
         v.addSubview(imageView)
         self.navigationItem.titleView = v
         self.navigationItem.rightBarButtonItems = [barButtonItemOptions,barButtonItemIssue]
@@ -77,7 +78,8 @@ class VOYReportDetailViewController: UIViewController {
     
     func setupScrollViewMedias(media:VOYMedia) {
         let mediaPlayView = VOYPlayMediaView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: 161))
-        mediaPlayView.imgView.kf.setImage(with: URL(string:media.file))
+        mediaPlayView.setup(media: media)
+        mediaPlayView.delegate = self
         scrollViewMedias.addCustomView(mediaPlayView)
         
     }
@@ -170,4 +172,14 @@ extension VOYReportDetailViewController : RestBindFillViewDelegate {
     }
     
     
+}
+
+extension VOYReportDetailViewController : VOYPlayMediaViewDelegate {
+    func mediaDidTap(mediaView: VOYPlayMediaView) {
+        let dataSource = PhotosDataSource(photos:[Photo(image:mediaView.imgView.image)])
+        let photosViewController = PhotosViewController(dataSource: dataSource)
+        self.present(photosViewController, animated: true) {
+            
+        }
+    }
 }

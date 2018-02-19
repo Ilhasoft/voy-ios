@@ -18,6 +18,7 @@ class VOYReportListViewController: UIViewController, NVActivityIndicatorViewable
     @IBOutlet var tableViewApproved:RestBindTableView!
     @IBOutlet var tableViewPending:RestBindTableView!
     @IBOutlet var tableViewNotApproved:RestBindTableView!
+    @IBOutlet var tableViews:[RestBindTableView]!
     @IBOutlet var segmentedControl:UISegmentedControl!
     
     static var sharedInstance:VOYReportListViewController?
@@ -54,34 +55,30 @@ class VOYReportListViewController: UIViewController, NVActivityIndicatorViewable
     }
     
     func setupTableView() {
+        var status = 0
         startAnimating()
-        tableViewApproved.separatorColor = UIColor.clear
-        tableViewApproved.register(UINib(nibName: "VOYReportTableViewCell", bundle: nil), forCellReuseIdentifier: "VOYReportTableViewCell")
-        tableViewApproved.onDemandTableViewDelegate = self
-        tableViewApproved.interactor = RestBindTableViewProvider(configuration:tableViewApproved.getConfiguration(),
-                                                                 params: ["theme":self.theme.id,"status":1])
-        tableViewApproved.loadContent()
+        for tableView in self.tableViews {
+            
+            if tableView == self.tableViewApproved {
+                status = 1
+            }else if tableView == self.tableViewPending {
+                status = 2
+            }else if tableView == self.tableViewNotApproved {
+                status = 3
+            }
+            
+            tableView.separatorColor = UIColor.clear
+            tableView.register(UINib(nibName: "VOYReportTableViewCell", bundle: nil), forCellReuseIdentifier: "VOYReportTableViewCell")
+            tableView.onDemandTableViewDelegate = self
+            tableView.interactor = RestBindTableViewProvider(configuration:tableViewApproved.getConfiguration(),
+                                                                     params: ["theme":self.theme.id,"status":status])
+            tableView.loadContent()
+        }
         
-        tableViewPending.separatorColor = UIColor.clear
-        tableViewPending.register(UINib(nibName: "VOYReportTableViewCell", bundle: nil), forCellReuseIdentifier: "VOYReportTableViewCell")
-        tableViewPending.onDemandTableViewDelegate = self
-        tableViewPending.interactor = RestBindTableViewProvider(configuration:tableViewPending.getConfiguration(),
-                                                                params: ["theme":self.theme.id,"status":2])
-        tableViewPending.loadContent()
-        
-        tableViewNotApproved.separatorColor = UIColor.clear
-        tableViewNotApproved.register(UINib(nibName: "VOYReportTableViewCell", bundle: nil), forCellReuseIdentifier: "VOYReportTableViewCell")
-        tableViewNotApproved.onDemandTableViewDelegate = self
-        tableViewNotApproved.interactor = RestBindTableViewProvider(configuration:tableViewNotApproved.getConfiguration(),
-                                                                    params: ["theme":self.theme.id,"status":3])
-        tableViewNotApproved.loadContent()
-        
-        self.segmentedControl.selectedSegmentIndex = 0
-        segmentedControlTapped()
     }
     
     func showInfoViewIfNecessary(tableView:RestBindTableView) {
-        if tableView.interactor?.objects.count == 0 && allDataFinishedLoad {
+        if tableView.interactor?.objects.count == 0 {
             switch self.segmentedControl.selectedSegmentIndex {
             case 0:
                 self.viewInfo.setupWith(titleAndColor: ["Hello!":VOYConstant.Color.blue],
@@ -145,8 +142,14 @@ extension VOYReportListViewController : ISOnDemandTableViewDelegate {
     func onDemandTableView(_ tableView: ISOnDemandTableView, onContentLoad lastData: [Any]?, withError error: Error?) {
         dataLoadTime+=1
         allDataFinishedLoad = dataLoadTime >= 3
-        showInfoViewIfNecessary(tableView: tableView as! RestBindTableView)
-        self.stopAnimating()
+        if allDataFinishedLoad {
+            self.stopAnimating()
+            for onDemandTableView in self.tableViews {
+                showInfoViewIfNecessary(tableView: onDemandTableView)
+            }
+            self.segmentedControl.selectedSegmentIndex = 0
+            segmentedControlTapped()
+        }
     }
     func onDemandTableView(_ tableView: ISOnDemandTableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 118

@@ -8,9 +8,16 @@
 
 import UIKit
 import RestBind
+import PlayerKit
+import AVFoundation
+
+enum VOYMediaType:String {
+    case image = "image"
+    case video = "video"
+}
 
 protocol VOYPlayMediaViewDelegate {
-    func mediaDidTap()
+    func mediaDidTap(mediaView:VOYPlayMediaView)
 }
 
 class VOYPlayMediaView: UIView {
@@ -20,12 +27,8 @@ class VOYPlayMediaView: UIView {
     @IBOutlet var imgPlayIcon:UIImageView!
     
     var delegate:VOYPlayMediaViewDelegate?
-    var media:VOYMedia! {
-        didSet {
-            print(media)
-            contentView.fillFields(withObject: media.map())
-        }
-    }
+    var media:VOYMedia!
+    var player:RegularPlayer!
     
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)!
@@ -44,15 +47,35 @@ class VOYPlayMediaView: UIView {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(viewDidTap))
         self.addGestureRecognizer(tapGesture)
         contentView.frame = bounds
-        self.addSubview(contentView)        
+        self.addSubview(contentView)
+        player = RegularPlayer()
     }
     
     @objc func viewDidTap() {
-        self.delegate?.mediaDidTap()
+        if self.media.media_type == VOYMediaType.image.rawValue {
+            self.delegate?.mediaDidTap(mediaView:self)
+        }
     }
 
     func setup(media:VOYMedia) {
         self.media = media
+        
+        switch self.media.media_type {
+        case VOYMediaType.image.rawValue:
+            self.imgView.isHidden = false
+            self.imgView.kf.setImage(with: URL(string:self.media.file))
+            break
+        case VOYMediaType.video.rawValue:
+            self.imgView.isHidden = true
+            contentView.addSubview(player.view)
+            player.set(AVURLAsset(url: URL(string:self.media.file)!))
+            player.play()
+            break
+        default:
+            break
+        }
+        
     }
     
 }
+

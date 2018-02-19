@@ -16,6 +16,8 @@ pod 'GrowingTextView'
 pod 'AlamofireObjectMapper'
 pod 'RestBind', :path => '../RestBind'
 pod 'NVActivityIndicatorView'
+pod 'PlayerKit'
+pod 'AXPhotoViewer'
 
   target 'VoyTests' do
     inherit! :search_paths
