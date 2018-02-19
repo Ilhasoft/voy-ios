@@ -147,7 +147,6 @@ extension VOYReportListViewController : ISOnDemandTableViewDelegate {
             for onDemandTableView in self.tableViews {
                 showInfoViewIfNecessary(tableView: onDemandTableView)
             }
-            self.segmentedControl.selectedSegmentIndex = 0
             segmentedControlTapped()
         }
     }
