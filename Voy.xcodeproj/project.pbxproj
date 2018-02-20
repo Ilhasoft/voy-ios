@@ -70,6 +70,8 @@
 		65AF3805202E406100D64CE4 /* VOYScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65AF3804202E406100D64CE4 /* VOYScrollView.swift */; };
 		65C7B5DF202B4D3A003087EB /* VOYTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65C7B5DE202B4D3A003087EB /* VOYTheme.swift */; };
 		65C7B5ED202B948E003087EB /* VOYReport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65C7B5EC202B948E003087EB /* VOYReport.swift */; };
+		65CA0648203C4D2B009A936A /* VOYMediaUploadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65CA0647203C4D2B009A936A /* VOYMediaUploadManager.swift */; };
+		65CA064A203C544A009A936A /* VOYAddReportInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65CA0649203C544A009A936A /* VOYAddReportInteractor.swift */; };
 		65CF10C92036264C00F487CC /* VOYRequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65CF10C82036264C00F487CC /* VOYRequestManager.swift */; };
 		65F346072020A87A00AC5437 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65F346062020A87A00AC5437 /* AppDelegate.swift */; };
 		65F3460E2020A87A00AC5437 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 65F3460D2020A87A00AC5437 /* Assets.xcassets */; };
@@ -174,6 +176,8 @@
 		65AF3804202E406100D64CE4 /* VOYScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VOYScrollView.swift; sourceTree = "<group>"; };
 		65C7B5DE202B4D3A003087EB /* VOYTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VOYTheme.swift; sourceTree = "<group>"; };
 		65C7B5EC202B948E003087EB /* VOYReport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VOYReport.swift; sourceTree = "<group>"; };
+		65CA0647203C4D2B009A936A /* VOYMediaUploadManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VOYMediaUploadManager.swift; sourceTree = "<group>"; };
+		65CA0649203C544A009A936A /* VOYAddReportInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VOYAddReportInteractor.swift; sourceTree = "<group>"; };
 		65CF10C82036264C00F487CC /* VOYRequestManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VOYRequestManager.swift; sourceTree = "<group>"; };
 		65F346032020A87A00AC5437 /* Voy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Voy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		65F346062020A87A00AC5437 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -275,6 +279,7 @@
 				655BD14320233FEB00D69EA2 /* VOYAddReportTagsViewController.xib */,
 				655BD14C20237EC600D69EA2 /* VOYAddReportSuccessViewController.swift */,
 				655BD14D20237EC600D69EA2 /* VOYAddReportSuccessViewController.xib */,
+				65CA0649203C544A009A936A /* VOYAddReportInteractor.swift */,
 			);
 			path = AddReport;
 			sourceTree = "<group>";
@@ -382,6 +387,7 @@
 			isa = PBXGroup;
 			children = (
 				657C3F6D203768D90077F07B /* VOYLocationManager.swift */,
+				65CA0647203C4D2B009A936A /* VOYMediaUploadManager.swift */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -906,6 +912,7 @@
 				655BD16E2024CC5F00D69EA2 /* VOYReportListViewController.swift in Sources */,
 				655BD14720234A4A00D69EA2 /* VOYConstant.swift in Sources */,
 				655BD1222020E4FA00D69EA2 /* UIColorExtension.swift in Sources */,
+				65CA0648203C4D2B009A936A /* VOYMediaUploadManager.swift in Sources */,
 				655BD13B2022396700D69EA2 /* VOYAddReportDataViewController.swift in Sources */,
 				655BD18A2028841100D69EA2 /* UIViewControllerExtension.swift in Sources */,
 				655BD17C2024E74B00D69EA2 /* VOYAccountViewController.swift in Sources */,
@@ -925,6 +932,7 @@
 				65AF3805202E406100D64CE4 /* VOYScrollView.swift in Sources */,
 				65AF37F6202E105400D64CE4 /* VOYUser.swift in Sources */,
 				65F699492028FAE400BFCF0C /* ISOndemandTableViewExtension.swift in Sources */,
+				65CA064A203C544A009A936A /* VOYAddReportInteractor.swift in Sources */,
 				655BD1852024F87100D69EA2 /* VOYAvatarCollectionViewCell.swift in Sources */,
 				655BD14420233FEB00D69EA2 /* VOYAddReportTagsViewController.swift in Sources */,
 				65AF37F8202E10E600D64CE4 /* VOYLoginInteractor.swift in Sources */,

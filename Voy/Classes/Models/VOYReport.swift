@@ -17,8 +17,10 @@ class VOYReport: Mappable {
     var tags:[String]!
     var lastImage:VOYMedia!
     var files:[VOYMedia]!
+    var urls:[String]!
     var media:VOYMedia!
     var created_on:String!
+    var cameraData:[VOYCameraData]?
     
     init() {
         
@@ -33,6 +35,7 @@ class VOYReport: Mappable {
         description <- map["description"]
         lastImage <- map["last_image"]
         files <- map["files"]
+        urls <- map["urls"]
         created_on <- map["created_on"]
         tags <- map["tags"]
     }
