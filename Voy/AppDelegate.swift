@@ -8,7 +8,7 @@
 
 import UIKit
 import DropDown
-import RestBind
+import DataBindSwift
 import SlideMenuControllerSwift
 import NVActivityIndicatorView
 
@@ -21,7 +21,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         setupAppearance()
         setupWindow()        
         URLCache.shared = URLCache(memoryCapacity: 4 * 1024 * 1024, diskCapacity: 20 * 1024 * 1024, diskPath: nil)
-        _ = RestBind(withURL: VOYConstant.API.URL, keyIdentificator: "id", paginationCount: VOYConstant.API.PAGINATION_SIZE)
         return true
     }
 

@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import RestBind
+import DataBindSwift
 import PlayerKit
 import AVFoundation
 
@@ -22,7 +22,7 @@ protocol VOYPlayMediaViewDelegate {
 
 class VOYPlayMediaView: UIView {
 
-    @IBOutlet var contentView:RestBindFillView!
+    @IBOutlet var contentView:DataBindView!
     @IBOutlet var imgView:UIImageView!
     @IBOutlet var imgPlayIcon:UIImageView!
     

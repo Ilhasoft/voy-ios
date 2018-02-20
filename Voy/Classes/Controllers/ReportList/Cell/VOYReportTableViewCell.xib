@@ -27,10 +27,10 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="117.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8zw-mO-NJt" customClass="RestBindFillView" customModule="RestBind">
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8zw-mO-NJt" customClass="DataBindView" customModule="DataBindSwift">
                         <rect key="frame" x="19" y="0.0" width="282" height="103"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="panda" translatesAutoresizingMaskIntoConstraints="NO" id="8sY-gD-M8W" customClass="RestBindImageView" customModule="RestBind">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="panda" translatesAutoresizingMaskIntoConstraints="NO" id="8sY-gD-M8W" customClass="DataBindImageView" customModule="DataBindSwift">
                                 <rect key="frame" x="5" y="15" width="54" height="54"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="54" id="5ck-49-ZCi"/>
@@ -44,7 +44,7 @@
                                     <userDefinedRuntimeAttribute type="string" keyPath="fieldPath" value="report.last_image.file"/>
                                 </userDefinedRuntimeAttributes>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Akn-hS-u6v" customClass="RestBindLabel" customModule="RestBind">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Akn-hS-u6v" customClass="DataBindLabel" customModule="DataBindSwift">
                                 <rect key="frame" x="75" y="15" width="192" height="36"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="36" id="uFj-vQ-BRr"/>
@@ -58,7 +58,7 @@ disposal in river</string>
                                     <userDefinedRuntimeAttribute type="string" keyPath="fieldPath" value="report.name"/>
                                 </userDefinedRuntimeAttributes>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lorem ipsu m dolor sit amet, coed iscingelit, sed doet, conseadipisci…" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ji7-MQ-3zN" customClass="RestBindLabel" customModule="RestBind">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lorem ipsu m dolor sit amet, coed iscingelit, sed doet, conseadipisci…" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ji7-MQ-3zN" customClass="DataBindLabel" customModule="DataBindSwift">
                                 <rect key="frame" x="75" y="59" width="199" height="36"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="36" id="9Xs-ND-okR"/>
@@ -70,7 +70,7 @@ disposal in river</string>
                                     <userDefinedRuntimeAttribute type="string" keyPath="fieldPath" value="report.description"/>
                                 </userDefinedRuntimeAttributes>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Feb 01, 2018" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="RUV-77-fB6" customClass="RestBindLabel" customModule="RestBind">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Feb 01, 2018" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="RUV-77-fB6" customClass="DataBindLabel" customModule="DataBindSwift">
                                 <rect key="frame" x="5" y="77" width="54" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="54" id="12T-K0-WyI"/>
@@ -128,11 +128,11 @@ disposal in river</string>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="btResent" destination="yOO-KR-Cw0" id="s3C-wb-cvl"/>
+                <outlet property="dataBindView" destination="8zw-mO-NJt" id="icW-Bn-dSb"/>
                 <outlet property="imgReport" destination="8sY-gD-M8W" id="IFc-Dh-BMy"/>
                 <outlet property="lbDate" destination="RUV-77-fB6" id="zge-td-ery"/>
                 <outlet property="lbDescription" destination="Ji7-MQ-3zN" id="yzN-qG-9x8"/>
                 <outlet property="lbTitle" destination="Akn-hS-u6v" id="Ews-Y4-N3L"/>
-                <outlet property="restBindFillView" destination="8zw-mO-NJt" id="rf3-uU-K5h"/>
             </connections>
             <point key="canvasLocation" x="126" y="84"/>
         </tableViewCell>

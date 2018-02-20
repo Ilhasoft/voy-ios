@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import RestBind
+import DataBindSwift
 
 protocol VOYReportTableViewCellDelegate {
     func btResentDidTap(cell:VOYReportTableViewCell)
@@ -15,10 +15,10 @@ protocol VOYReportTableViewCellDelegate {
 
 class VOYReportTableViewCell: RestBindTableViewCell {
 
-    @IBOutlet var lbTitle:RestBindLabel!
-    @IBOutlet var lbDescription:RestBindLabel!
-    @IBOutlet var lbDate:RestBindLabel!
-    @IBOutlet var imgReport:RestBindImageView!
+    @IBOutlet var lbTitle:DataBindLabel!
+    @IBOutlet var lbDescription:DataBindLabel!
+    @IBOutlet var lbDate:DataBindLabel!
+    @IBOutlet var imgReport:DataBindImageView!
     @IBOutlet var btResent:UIButton!
     
     var delegate:VOYReportTableViewCellDelegate?
@@ -28,14 +28,14 @@ class VOYReportTableViewCell: RestBindTableViewCell {
     override func layoutSubviews() {
         super.layoutSubviews()
         if !didLayoutSubviews {
-            installShadow(view:self.restBindFillView)
+            installShadow(view:self.dataBindView)
             didLayoutSubviews = true
         }
     }
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        self.restBindFillView.delegate = self
+        self.dataBindView.delegate = self
         self.selectionStyle = .none
     }
 
@@ -65,7 +65,7 @@ class VOYReportTableViewCell: RestBindTableViewCell {
     
 }
 
-extension VOYReportTableViewCell : RestBindFillViewDelegate {
+extension VOYReportTableViewCell : DataBindViewDelegate {
     func didFetch(error: Error?) {
         
     }

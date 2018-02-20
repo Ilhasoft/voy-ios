@@ -8,9 +8,9 @@
 
 import UIKit
 import ISScrollViewPageSwift
-import RestBind
+import DataBindSwift
 
-class VOYScrollView: ISScrollViewPage, RestBindable {
+class VOYScrollView: ISScrollViewPage, DataBindable {
     
     override init(frame: CGRect) {
         super.init(frame: frame)

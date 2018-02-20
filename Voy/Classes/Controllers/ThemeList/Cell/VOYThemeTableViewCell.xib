@@ -24,10 +24,10 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="102.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="b3b-67-ytg" customClass="RestBindFillView" customModule="RestBind">
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="b3b-67-ytg" customClass="DataBindView" customModule="DataBindSwift">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="88"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7ZJ-7B-gHa" customClass="RestBindLabel" customModule="RestBind">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7ZJ-7B-gHa" customClass="DataBindLabel" customModule="DataBindSwift">
                                 <rect key="frame" x="10" y="11" width="300" height="66"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="16"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -58,8 +58,8 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="DataBindView" destination="b3b-67-ytg" id="VVw-vG-6DC"/>
                 <outlet property="lbTheme" destination="7ZJ-7B-gHa" id="COA-YR-v5p"/>
-                <outlet property="restBindFillView" destination="b3b-67-ytg" id="VVw-vG-6DC"/>
             </connections>
             <point key="canvasLocation" x="68" y="62.5"/>
         </tableViewCell>

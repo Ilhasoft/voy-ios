@@ -11,6 +11,8 @@ PODS:
   - AXPhotoViewer/Lite (1.3.6):
     - AXPhotoViewer/Core
   - AXStateButton (1.1.4)
+  - DataBindSwift (0.1.0):
+    - Kingfisher
   - DropDown (2.3.1)
   - FLAnimatedImage (1.0.12)
   - GrowingTextView (0.5.4)
@@ -23,8 +25,6 @@ PODS:
   - NVActivityIndicatorView/Presenter (4.1.1)
   - ObjectMapper (3.1.0)
   - PlayerKit (1.2.0)
-  - RestBind (0.1.0):
-    - Kingfisher
   - SlideMenuControllerSwift (4.0.0)
   - TagListView (1.3.0)
   - TPKeyboardAvoiding (1.3.2)
@@ -33,6 +33,7 @@ DEPENDENCIES:
   - Alamofire
   - AlamofireObjectMapper
   - AXPhotoViewer
+  - DataBindSwift (from `../DataBindSwift`)
   - DropDown
   - GrowingTextView
   - ISOnDemandCollectionView (from `https://github.com/Ilhasoft/ISOnDemandCollectionView`)
@@ -41,18 +42,17 @@ DEPENDENCIES:
   - NVActivityIndicatorView
   - ObjectMapper
   - PlayerKit
-  - RestBind (from `../RestBind`)
   - SlideMenuControllerSwift
   - TagListView
   - TPKeyboardAvoiding
 
 EXTERNAL SOURCES:
+  DataBindSwift:
+    :path: ../DataBindSwift
   ISOnDemandCollectionView:
     :git: https://github.com/Ilhasoft/ISOnDemandCollectionView
   ISOnDemandTableView:
     :git: https://github.com/Ilhasoft/ISOnDemandTableView
-  RestBind:
-    :path: ../RestBind
 
 CHECKOUT OPTIONS:
   ISOnDemandCollectionView:
@@ -67,6 +67,7 @@ SPEC CHECKSUMS:
   AlamofireObjectMapper: 5fafc816351cbbc0d486611aaeba7461c0cbad49
   AXPhotoViewer: f1edb13f8116f57e67c5f2a6484acd9f8a54d263
   AXStateButton: 6c515a433e37551505046429b5be04c12daa8c07
+  DataBindSwift: f59e441ff2596f2fb7ab200591e5c791df13a1b2
   DropDown: 20499c7b2731b0d21609af924e47c7677a2be50d
   FLAnimatedImage: 4a0b56255d9b05f18b6dd7ee06871be5d3b89e31
   GrowingTextView: 0615429affef558cbbb610aa6f9baf19b027fdbe
@@ -77,11 +78,10 @@ SPEC CHECKSUMS:
   NVActivityIndicatorView: 60109b9bf46efc2e71ab81453196ccdfdfeea870
   ObjectMapper: 20505058f54e5c3ca69e1d6de9897d152a5369a6
   PlayerKit: a1fd44e0d2277ac5e2e6cb1fae38e86c872abb5b
-  RestBind: 154dffc5ed8cd4dc22345e5997e9c8429f428ad2
   SlideMenuControllerSwift: 021d6318201c53d4d4d3710517d43d6c556c7dd0
   TagListView: 669f7d4455003c877655875d34829731c4191528
   TPKeyboardAvoiding: cb69d5ddbe90ce0170e4bc2db1e5e41d4a3ad9a4
 
-PODFILE CHECKSUM: 3d31d95acd00ae86bcd0c9aaea580cbe99be88c1
+PODFILE CHECKSUM: b7b0ffe9244f5abe3fe36d18ef20926823d72170
 
 COCOAPODS: 1.3.1

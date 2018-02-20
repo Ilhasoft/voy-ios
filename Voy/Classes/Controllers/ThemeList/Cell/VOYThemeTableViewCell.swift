@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import RestBind
+import DataBindSwift
 
 open class VOYThemeTableViewCell: RestBindTableViewCell {
 
@@ -15,7 +15,7 @@ open class VOYThemeTableViewCell: RestBindTableViewCell {
     
     override open func awakeFromNib() {
         super.awakeFromNib()
-        self.restBindFillView.layer.cornerRadius = 5
+        self.dataBindView.layer.cornerRadius = 5
         self.selectionStyle = .none
     }
 
@@ -27,7 +27,7 @@ open class VOYThemeTableViewCell: RestBindTableViewCell {
     override open func setupCell(with object: Any, at indexPath: IndexPath) {
         super.setupCell(with: object, at: indexPath)
         let theme = VOYTheme(JSON:self.object.JSON)!
-        self.restBindFillView.backgroundColor = UIColor(hex: theme.color)
+        self.dataBindView.backgroundColor = UIColor(hex: theme.color)
     }
     
 }

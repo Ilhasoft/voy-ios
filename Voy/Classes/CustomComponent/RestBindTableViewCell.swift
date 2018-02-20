@@ -9,11 +9,11 @@
 import UIKit
 import ObjectMapper
 import ISOnDemandTableView
-import RestBind
+import DataBindSwift
 
 open class RestBindTableViewCell: UITableViewCell, ISOnDemandTableViewCell {
     
-    @IBOutlet public var restBindFillView:RestBindFillView!
+    @IBOutlet public var dataBindView:DataBindView!
     
     public var object:Map!
     
@@ -27,7 +27,7 @@ open class RestBindTableViewCell: UITableViewCell, ISOnDemandTableViewCell {
  
     open func setupCell(with object: Any, at indexPath: IndexPath) {
         self.object = object as! Map
-        restBindFillView.fillFields(withObject:self.object.JSON)
+        dataBindView.fillFields(withObject:self.object.JSON)
     }
     
 }

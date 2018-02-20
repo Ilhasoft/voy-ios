@@ -9,19 +9,19 @@
 import UIKit
 import ISScrollViewPageSwift
 import TagListView
-import RestBind
+import DataBindSwift
 import AXPhotoViewer
 
 class VOYReportDetailViewController: UIViewController {
 
     @IBOutlet weak var scrollViewMedias: VOYScrollView!
     @IBOutlet weak var pageControl: UIPageControl!
-    @IBOutlet weak var lbTitle: RestBindLabel!
-    @IBOutlet weak var lbDate: RestBindLabel!
-    @IBOutlet weak var lbDescription: RestBindLabel!
+    @IBOutlet weak var lbTitle: DataBindLabel!
+    @IBOutlet weak var lbDate: DataBindLabel!
+    @IBOutlet weak var lbDescription: DataBindLabel!
     @IBOutlet weak var viewTags: TagListView!
     @IBOutlet weak var btComment: UIButton!
-    @IBOutlet weak var restBindFillView: RestBindFillView!
+    @IBOutlet weak var dataBindView: DataBindView!
     
     var report:VOYReport!
     
@@ -42,8 +42,8 @@ class VOYReportDetailViewController: UIViewController {
         scrollViewMedias.scrollViewPageDelegate = self
         scrollViewMedias.setPaging(true)
         
-        restBindFillView.delegate = self
-        restBindFillView.fillFields(withObject:report.toJSON())
+        dataBindView.delegate = self
+        dataBindView.fillFields(withObject:report.toJSON())
         setupNavigationItem()
         setupViewTags()
         
@@ -125,7 +125,7 @@ extension VOYReportDetailViewController : VOYAlertViewControllerDelegate {
     }
 }
 
-extension VOYReportDetailViewController : RestBindFillViewDelegate {
+extension VOYReportDetailViewController : DataBindViewDelegate {
     func didFetch(error: Error?) {
         
     }
