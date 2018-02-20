@@ -71,7 +71,7 @@ class VOYReportListViewController: UIViewController, NVActivityIndicatorViewable
             tableView.register(UINib(nibName: "VOYReportTableViewCell", bundle: nil), forCellReuseIdentifier: "VOYReportTableViewCell")
             tableView.onDemandTableViewDelegate = self
             tableView.interactor = RestBindTableViewProvider(configuration:tableViewApproved.getConfiguration(),
-                                                                     params: ["theme":self.theme.id,"status":status])
+                                                             params: ["theme":self.theme.id,"status":status], paginationCount: VOYConstant.API.PAGINATION_SIZE)
             tableView.loadContent()
         }
         

@@ -125,7 +125,7 @@ class VOYThemeListViewController: UIViewController, NVActivityIndicatorViewable 
     
     func loadThemesFilteredByProject(project:VOYProject) {
         VOYProject.setActiveProject(project: project)
-        tbView.interactor = RestBindTableViewProvider(configuration:tbView.getConfiguration(), params: ["project":project.id,"user":VOYUser.activeUser()!.id])
+        tbView.interactor = RestBindTableViewProvider(configuration:tbView.getConfiguration(), params: ["project":project.id,"user":VOYUser.activeUser()!.id], paginationCount: VOYConstant.API.PAGINATION_SIZE)
         tbView.loadContent()
     }
     

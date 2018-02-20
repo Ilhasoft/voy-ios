@@ -43,7 +43,7 @@ class VOYReportDetailViewController: UIViewController {
         scrollViewMedias.setPaging(true)
         
         restBindFillView.delegate = self
-        restBindFillView.fillFields(withObject:report.map())
+        restBindFillView.fillFields(withObject:report.toJSON())
         setupNavigationItem()
         setupViewTags()
         
