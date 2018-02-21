@@ -17,15 +17,35 @@ class VOYReportStorageManager: NSObject {
         return [[String:Any]]()
     }
     
+    static func removeFromStorageAfterSave(report:VOYReport) {
+        var pendentReports = getPendentReports()
+        let index = pendentReports.index {($0["id"] as! Int == report.id)}
+        if let index = index {
+            pendentReports.remove(at: index)
+            let encodedObject = NSKeyedArchiver.archivedData(withRootObject: pendentReports)
+            UserDefaults.standard.set(encodedObject, forKey: "reports")
+            UserDefaults.standard.synchronize()
+        }
+    }
+    
     static func addAsPendent(report:VOYReport) {
-        let defaults = UserDefaults.standard
         
         var pendentReports = getPendentReports()
+        
+        let index = pendentReports.index {($0["id"] as! Int == report.id)}
+        
+        if let index = index {
+            pendentReports.remove(at: index)
+        }
+        
+        let reportID = Int(String.getIdentifier())
+        report.id = reportID
         pendentReports.append(report.toJSON())
         
         let encodedObject = NSKeyedArchiver.archivedData(withRootObject: pendentReports)
-        defaults.set(encodedObject, forKey: "reports")
-        defaults.synchronize()
+        UserDefaults.standard.set(encodedObject, forKey: "reports")
+        UserDefaults.standard.synchronize()
+        
     }
     /*
     static func addPendentReportInURLCache(report:VOYReport) {

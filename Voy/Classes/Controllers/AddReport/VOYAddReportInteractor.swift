@@ -12,7 +12,6 @@ import Alamofire
 class VOYAddReportInteractor: NSObject {
 
     static func save(report:VOYReport, completion:@escaping(Error?,Int?) -> Void) {
-        
         let url = VOYConstant.API.URL + "reports/"
         let authToken = VOYUser.activeUser()!.authToken
         
@@ -25,6 +24,7 @@ class VOYAddReportInteractor: NSObject {
                 }else if let value = dataResponse.result.value as? [String:Any] {
                     if let reportID = value["id"] as? Int {
                         completion(nil, reportID)
+                        VOYReportStorageManager.removeFromStorageAfterSave(report: report)
                     }else {
                         print("error: \(value)")
                         completion(nil, nil)

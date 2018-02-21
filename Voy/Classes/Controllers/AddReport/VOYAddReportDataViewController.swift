@@ -81,6 +81,9 @@ class VOYAddReportDataViewController: UIViewController {
             self.tbViewLinks.dataList.append(self.txtFieldLink.text!)
             self.tbViewLinks.reloadData()
             self.txtFieldLink.text = ""
+            UIView.animate(withDuration: 0.3, animations: {
+                self.btAddLink.alpha = 0.3
+            })
         }
     }
     

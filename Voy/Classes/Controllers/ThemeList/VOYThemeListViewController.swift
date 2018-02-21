@@ -53,6 +53,7 @@ class VOYThemeListViewController: UIViewController, NVActivityIndicatorViewable 
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: " ", style: .plain, target: nil, action: nil)
         setupButtonItems()
         getProjects()
+        checkPendentReportsToSend()
         NotificationCenter.default.addObserver(self, selector: #selector(addLeftBarButtonItem), name: Notification.Name("userDataUpdated"), object: nil)
         self.navigationController?.setNavigationBarHidden(false, animated: true)
     }
@@ -68,6 +69,12 @@ class VOYThemeListViewController: UIViewController, NVActivityIndicatorViewable 
         imageView.addGestureRecognizer(tapGesture)
         let leftBarButtonItem = UIBarButtonItem(customView: imageView)
         self.navigationItem.leftBarButtonItem = leftBarButtonItem
+    }
+    
+    func checkPendentReportsToSend() {
+        Timer.scheduledTimer(withTimeInterval: 10, repeats: true) { (t) in
+            VOYReportSyncManager.trySendPendentReports()
+        }
     }
     
     func setupButtonItems() {

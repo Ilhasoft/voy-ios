@@ -6,26 +6,30 @@
 //  Copyright © 2018 Ilhasoft. All rights reserved.
 //
 import UIKit
+import ObjectMapper
 
-struct VOYCameraData {
+class VOYCameraData: Mappable {
     
     var id:String!
     var type:VOYMediaType!
     var image:UIImage?
     var path:URL?
     
+    required init?(map: Map) { }
+    
+    func mapping(map: Map) {
+        id <- map["id"]
+        type <- map["type"]
+        image <- map["image"]
+        path <- map["path"]
+    }
+    
     init(image:UIImage?, path:URL?, type:VOYMediaType) {
-        self.id = getIdentifier()
+        self.id = String.getIdentifier()
         self.image = image
         self.path = path
         self.type = type
-    }
-    
-    private func getIdentifier() -> String {
-        let hour = Calendar.current.component(.hour, from: Date())
-        let minutes = Calendar.current.component(.minute, from: Date())
-        let seconds = Calendar.current.component(.second, from: Date())
-        return "\(hour)\(minutes)\(seconds)"
+        
     }
     
 }
