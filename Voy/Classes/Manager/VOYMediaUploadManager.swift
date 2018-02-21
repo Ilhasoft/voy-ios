@@ -13,14 +13,18 @@ class VOYMediaUploadManager: NSObject {
 
     static func upload(reportID:Int, cameraDataList:[VOYCameraData], completion:@escaping(Error?) -> Void) {
         
-        for (index,cameraData) in cameraDataList.enumerated() {
+        for (index,cameraData) in cameraDataList.enumerated() {            
             
             Alamofire.upload(
                 multipartFormData: { multipartFormData in
                     multipartFormData.append("\(reportID)".data(using: String.Encoding.utf8)!, withName: "report_id")
                     multipartFormData.append("title".data(using: String.Encoding.utf8)!, withName: "title")
-                    multipartFormData.append("description".data(using: String.Encoding.utf8)!, withName: "description")
-                    multipartFormData.append(cameraData.path!, withName: "file")
+                    if cameraData.type == .video {
+                        multipartFormData.append(URL(fileURLWithPath: cameraData.path!.path), withName: "file")
+                    }else {
+                        multipartFormData.append(UIImageJPEGRepresentation(cameraData.image!, 0.2)!, withName: "file", fileName: "image.jpg", mimeType: "image/jpg")
+                    }
+                    
                 },
                 to: VOYConstant.API.URL + "report-files/",
                 method:.post,
@@ -30,7 +34,7 @@ class VOYMediaUploadManager: NSObject {
                     case .success(let upload, _, _):
                         upload.responseJSON { response in
                             debugPrint(response)
-                            if index == cameraDataList.count {
+                            if index == cameraDataList.count - 1 {
                                 completion(nil)
                             }
                         }
