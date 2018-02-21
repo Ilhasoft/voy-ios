@@ -22,9 +22,7 @@ class VOYReportSyncManager: NSObject {
         }
         
         for reportJSON in pendentReportsJSON {
-            VOYAddReportInteractor.save(report: VOYReport(JSON:reportJSON)!, completion: { (error, reportID) in
-                
-            })
+            VOYAddReportInteractor.save(report: VOYReport(JSON:reportJSON)!, completion: { (error, reportID) in })
         }
     }
     

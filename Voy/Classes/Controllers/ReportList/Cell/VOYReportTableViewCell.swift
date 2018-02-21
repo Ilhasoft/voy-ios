@@ -66,7 +66,23 @@ class VOYReportTableViewCell: DataBindOnDemandTableViewCell {
 }
 
 extension VOYReportTableViewCell : DataBindViewDelegate {
-    func didFillAllComponents() {
+    func didFillAllComponents(JSON:[String:Any]) {
+        let report = VOYReport(JSON:JSON)!
+        if report.status == nil {
+            self.btResent.isHidden = false
+            self.btResent.setImage(#imageLiteral(resourceName: "noun576598Cc"), for: .normal)
+        }else if let status = report.status {
+            switch status {
+            case 1:
+                break
+            case 2:
+                break
+            case 3:
+                break
+            default:
+                break
+            }
+        }
         
     }
     

@@ -21,6 +21,7 @@ class VOYReport: Mappable {
     var media:VOYMedia!
     var created_on:String!
     var location:String!
+    var status:Int?
     var cameraDataList:[VOYCameraData]?
     
     init() {
@@ -40,6 +41,7 @@ class VOYReport: Mappable {
         created_on <- map["created_on"]
         tags <- map["tags"]
         location <- map["location"]
+        status <- map["status"]        
     }
     
     func map() -> Map {

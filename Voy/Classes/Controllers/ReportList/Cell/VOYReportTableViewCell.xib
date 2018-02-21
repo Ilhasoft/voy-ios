@@ -83,7 +83,7 @@ disposal in river</string>
                                     <userDefinedRuntimeAttribute type="string" keyPath="fieldPath" value="report.created_on"/>
                                 </userDefinedRuntimeAttributes>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yOO-KR-Cw0">
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yOO-KR-Cw0">
                                 <rect key="frame" x="251" y="0.0" width="31" height="26"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="26" id="2zZ-p7-ha6"/>

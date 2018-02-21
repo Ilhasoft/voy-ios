@@ -141,7 +141,7 @@ extension VOYAddReportDataViewController : VOYTextViewDelegate {
 }
 
 extension VOYAddReportDataViewController : DataBindViewDelegate {
-    func didFillAllComponents() {
+    func didFillAllComponents(JSON:[String:Any]) {
         
     }
     

@@ -126,7 +126,7 @@ extension VOYReportDetailViewController : VOYAlertViewControllerDelegate {
 }
 
 extension VOYReportDetailViewController : DataBindViewDelegate {
-    func didFillAllComponents() {
+    func didFillAllComponents(JSON:[String:Any]) {
         
     }
     
