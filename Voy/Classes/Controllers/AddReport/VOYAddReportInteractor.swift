@@ -11,20 +11,29 @@ import Alamofire
 
 class VOYAddReportInteractor: NSObject {
 
-    static func save(report:VOYReport, completion:@escaping(Error?) -> Void) {
+    static func save(report:VOYReport, completion:@escaping(Error?,Int?) -> Void) {
         
         let url = VOYConstant.API.URL + "reports/"
         let authToken = VOYUser.activeUser()!.authToken
         
         let headers = ["Authorization" : "Token " + authToken!, "Content-Type" : "application/json"]
         
-        Alamofire.request(url, method: .post, parameters: report.toJSON(), encoding: JSONEncoding.default, headers: headers).responseJSON { (dataResponse:DataResponse<Any>) in
-            if let error = dataResponse.result.error {
-                completion(error)
-            }else if let value = dataResponse.result.value as? [String:Any] {
-                print(value)
-                completion(nil)
+        if NetworkReachabilityManager()!.isReachable {
+            Alamofire.request(url, method: .post, parameters: report.toJSON(), encoding: JSONEncoding.default, headers: headers).responseJSON { (dataResponse:DataResponse<Any>) in
+                if let error = dataResponse.result.error {
+                    completion(error, nil)
+                }else if let value = dataResponse.result.value as? [String:Any] {
+                    if let reportID = value["id"] as? Int {
+                        completion(nil, reportID)
+                    }else {
+                        print("error: \(value)")
+                        completion(nil, nil)
+                    }
+                }
             }
+        }else {
+            VOYReportStorageManager.addAsPendent(report: report)
+            completion(nil,nil)
         }
         
     }

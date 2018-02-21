@@ -20,7 +20,8 @@ class VOYReport: Mappable {
     var urls:[String]!
     var media:VOYMedia!
     var created_on:String!
-    var cameraData:[VOYCameraData]?
+    var location:String!
+    var cameraDataList:[VOYCameraData]?
     
     init() {
         
@@ -38,6 +39,7 @@ class VOYReport: Mappable {
         urls <- map["urls"]
         created_on <- map["created_on"]
         tags <- map["tags"]
+        location <- map["location"]
     }
     
     func map() -> Map {

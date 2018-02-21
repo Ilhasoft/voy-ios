@@ -60,7 +60,7 @@ class VOYAddReportAttachViewController: UIViewController, NVActivityIndicatorVie
     
     func addNextButton() {
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Next", style: .plain, target: self, action: #selector(openNextController))
-        self.navigationItem.rightBarButtonItem!.isEnabled = false
+//        self.navigationItem.rightBarButtonItem!.isEnabled = false
     }
     
     @objc func openNextController() {
@@ -132,12 +132,14 @@ extension VOYAddReportAttachViewController : VOYLocationManagerDelegate {
         let testMapPoint: MKMapPoint = MKMapPointForCoordinate(myLocation)
         let statePolygonRenderedPoint: CGPoint = statePolygonRenderer.point(for: testMapPoint)
         let intersects: Bool = statePolygonRenderer.path.contains(statePolygonRenderedPoint)
+        
         if !intersects {
             let alertViewController = VOYAlertViewController(title: "Alert", message: "You are outside this theme's bounds. You couldn't create a report.")
             alertViewController.view.tag = 1
             alertViewController.delegate = self
             alertViewController.show(true, inViewController: self)
         }
+ 
     }
     
     func userDidntGivePermission() {

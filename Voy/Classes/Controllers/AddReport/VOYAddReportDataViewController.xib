@@ -99,9 +99,12 @@
                                         <action selector="btAddLinkTapped:" destination="-1" eventType="touchUpInside" id="8Gt-8x-QxL"/>
                                     </connections>
                                 </button>
-                                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ozX-WH-phr">
+                                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ozX-WH-phr" customClass="DataBindTableView" customModule="DataBindSwift">
                                     <rect key="frame" x="25" y="367" width="325" height="323"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="string" keyPath="fieldPath" value="report.urls"/>
+                                    </userDefinedRuntimeAttributes>
                                     <connections>
                                         <outlet property="dataSource" destination="-1" id="uY1-mj-16j"/>
                                         <outlet property="delegate" destination="-1" id="sTs-vL-NoZ"/>
@@ -149,6 +152,7 @@
                             <connections>
                                 <outletCollection property="fields" destination="fVN-Il-aK5" collectionClass="NSMutableArray" id="0Uy-xc-V5C"/>
                                 <outletCollection property="fields" destination="qbh-Cy-T1c" collectionClass="NSMutableArray" id="9Wl-tW-was"/>
+                                <outletCollection property="fields" destination="ozX-WH-phr" collectionClass="NSMutableArray" id="kpX-LO-5Bx"/>
                             </connections>
                         </view>
                     </subviews>

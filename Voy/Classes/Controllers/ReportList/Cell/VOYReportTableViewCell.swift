@@ -66,7 +66,7 @@ class VOYReportTableViewCell: DataBindOnDemandTableViewCell {
 }
 
 extension VOYReportTableViewCell : DataBindViewDelegate {
-    func didFetch(error: Error?) {
+    func didFillAllComponents() {
         
     }
     

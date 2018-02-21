@@ -16,7 +16,10 @@ class VOYAddReportTagsViewController: UIViewController {
     
     var selectedTags = [String]()
     
-    init() {
+    var report:VOYReport!
+    
+    init(report:VOYReport) {
+        self.report = report
         super.init(nibName: "VOYAddReportTagsViewController", bundle: nil)
     }
     
@@ -33,15 +36,23 @@ class VOYAddReportTagsViewController: UIViewController {
     }
 
     func addNextButton() {
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Next", style: .plain, target: self, action: #selector(openNextController))
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Next", style: .plain, target: self, action: #selector(save))
     }
     
-    @objc func openNextController() {
-        self.navigationController?.pushViewController(VOYAddReportSuccessViewController(), animated: true)
+    @objc func save() {
+        self.report.tags = selectedTags
+        self.report.theme = VOYTheme.activeTheme()!.id
+        let location = "POINT(\(VOYLocationManager.longitude) \(VOYLocationManager.latitude))"
+        self.report.location = location
+        
+        VOYAddReportInteractor.save(report: report) { (error,reporID) in
+            self.navigationController?.pushViewController(VOYAddReportSuccessViewController(), animated: true)
+        }
+        
     }
     
     private func loadTags() {
-        viewTags.addTags(["Accessibility","Water", "Comunnity","Trash","Security"])
+        viewTags.addTags(VOYTheme.activeTheme()!.tags)
         viewTags.delegate = self
     }
     

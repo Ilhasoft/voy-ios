@@ -19,14 +19,19 @@ class VOYAddReportDataViewController: UIViewController {
     @IBOutlet weak var lbAddLink: UILabel!
     @IBOutlet weak var txtFieldLink: UITextField!
     @IBOutlet weak var btAddLink: UIButton!
-    @IBOutlet weak var tbViewLinks: UITableView!
+    @IBOutlet weak var tbViewLinks: DataBindTableView!
     @IBOutlet weak var dataBindView: DataBindView!
     
-    var links = [String]()
     var cameraDataList = [VOYCameraData]()
+    var savedReport:VOYReport?
     
     init(cameraDataList:[VOYCameraData]) {
         self.cameraDataList = cameraDataList
+        super.init(nibName: "VOYAddReportDataViewController", bundle: nil)
+    }
+    
+    init(savedReport:VOYReport) {
+        self.savedReport = savedReport
         super.init(nibName: "VOYAddReportDataViewController", bundle: nil)
     }
     
@@ -41,8 +46,10 @@ class VOYAddReportDataViewController: UIViewController {
         setupTableView()
         setupLayout()
         addNextButton()
-        let report = VOYReport(JSON: ["name":"Titulo","description":"teste"])
-        dataBindView.fillFields(withObject:report!.toJSON())
+        dataBindView.delegate = self
+        if let savedReport = self.savedReport {
+            dataBindView.fillFields(withObject:savedReport.toJSON())
+        }
         descriptionView.delegate = self
     }
     
@@ -51,8 +58,10 @@ class VOYAddReportDataViewController: UIViewController {
     }
     
     @objc func openNextController() {
-        print(self.dataBindView.toJSON())
-//        self.navigationController?.pushViewController(VOYAddReportTagsViewController(), animated: true)
+        let report = VOYReport(JSON: self.dataBindView.toJSON())!
+        report.id = self.savedReport?.id ?? nil
+        report.cameraDataList = cameraDataList
+        self.navigationController?.pushViewController(VOYAddReportTagsViewController(report:report), animated: true)
     }
     
     func setupLayout() {
@@ -69,7 +78,7 @@ class VOYAddReportDataViewController: UIViewController {
     
     @IBAction func btAddLinkTapped(_ sender: Any) {
         if !self.txtFieldLink.text!.isEmpty {
-            self.links.append(self.txtFieldLink.text!)
+            self.tbViewLinks.dataList.append(self.txtFieldLink.text!)
             self.tbViewLinks.reloadData()
             self.txtFieldLink.text = ""
         }
@@ -80,12 +89,12 @@ class VOYAddReportDataViewController: UIViewController {
 
 extension VOYAddReportDataViewController : UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return links.count
+        return self.tbViewLinks.dataList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: NSStringFromClass(VOYLinkTableViewCell.self), for: indexPath) as! VOYLinkTableViewCell
-        cell.setupCell(data: links[indexPath.row])
+        cell.setupCell(data: tbViewLinks.dataList[indexPath.row] as! String)
         return cell
     }
     
@@ -126,4 +135,34 @@ extension VOYAddReportDataViewController : VOYTextViewDelegate {
             self.view.layoutIfNeeded()
         }
     }
+}
+
+extension VOYAddReportDataViewController : DataBindViewDelegate {
+    func didFillAllComponents() {
+        
+    }
+    
+    func willFill(component: Any, value: Any) -> Any? {
+//        switch component as! UIView {
+//        case self.tbViewLinks:
+//            break
+//        default:
+//            break
+//        }
+        return value
+    }
+    
+    func didFill(component: Any, value: Any) {
+        
+    }
+    
+    func willSet(component: Any, value: Any) -> Any? {
+        return value
+    }
+    
+    func didSet(component: Any, value: Any) {
+        
+    }
+    
+    
 }

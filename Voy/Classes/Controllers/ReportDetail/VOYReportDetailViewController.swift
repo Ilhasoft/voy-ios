@@ -126,7 +126,7 @@ extension VOYReportDetailViewController : VOYAlertViewControllerDelegate {
 }
 
 extension VOYReportDetailViewController : DataBindViewDelegate {
-    func didFetch(error: Error?) {
+    func didFillAllComponents() {
         
     }
     

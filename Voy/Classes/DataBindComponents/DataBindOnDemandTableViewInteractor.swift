@@ -59,13 +59,12 @@ public class DataBindOnDemandTableViewInteractor : ISOnDemandTableViewInteractor
         let cachedResponse = URLCache.shared.cachedResponse(for: request.request!)
         
         if NetworkReachabilityManager()!.isReachable {
-            
-            //TODO: Check internet connection
          
             request.responseJSON { (dataResponse:DataResponse<Any>) in
                 if dataResponse.result.error == nil {
                     let cachedURLResponse = CachedURLResponse(response: dataResponse.response!, data: dataResponse.data! , userInfo: nil, storagePolicy: .allowed)
                     URLCache.shared.storeCachedResponse(cachedURLResponse, for: dataResponse.request!)
+                  
                 }
                 
                 if let keyPath = self.keyPath {
@@ -88,9 +87,33 @@ public class DataBindOnDemandTableViewInteractor : ISOnDemandTableViewInteractor
             
         }else if let cachedResponse = cachedResponse {
             do {
+                var objects = [[String:Any]]()
                 let jsonObject = try JSONSerialization.jsonObject(with: cachedResponse.data, options: [])
-                prepareForHandlerData(jsonObject as! [[String : Any]], completion: { (objects, error) in
-                    handler(objects,error)
+                
+                if let keyPath = self.keyPath {
+                    objects = (jsonObject as! [String:Any])[keyPath] as! [[String : Any]]
+                }else {
+                    objects = jsonObject as! [[String : Any]]
+                }
+                
+                prepareForHandlerData(objects, completion: { (objects, error) in
+                    
+                    if self.endPoint == "reports" && self.params!["status"] as! Int == 2 {
+                        
+                        let pendentReportsJSONList = VOYReportStorageManager.getPendentReports()
+                        guard !pendentReportsJSONList.isEmpty else {
+                            handler(objects,error)
+                            return
+                        }
+                        var objects = objects as! [Map]
+                        for reportJSON in pendentReportsJSONList {
+                            objects.append(Map(mappingType: .fromJSON, JSON: reportJSON))
+                        }
+                        handler(objects,error)
+                    }else {
+                        handler(objects,error)
+                    }
+                    
                 })
             } catch {
                 print(error.localizedDescription)

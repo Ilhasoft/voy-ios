@@ -9,7 +9,7 @@ import Foundation
 import Alamofire
 
 class VOYRequestManager: NSObject {
-
+    
     static func cacheDataFrom(url:String, parameters:inout [String:Any]) {
         
         if NetworkReachabilityManager()!.isReachable {
