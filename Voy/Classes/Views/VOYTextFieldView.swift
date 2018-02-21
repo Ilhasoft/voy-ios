@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import DataBindSwift
 
 protocol VOYTextFieldViewDelegate {
     func textFieldDidEndEditing(_ textFieldView:VOYTextFieldView)
@@ -20,7 +21,11 @@ class VOYTextFieldView: UIView {
     static let defaultColor = VOYConstant.Color.gray
     
     var delegate:VOYTextFieldViewDelegate?
-    
+    @IBInspectable var path:String! {
+        didSet {
+            self.txtField.fieldPath = path
+        }
+    }
     @IBInspectable var placeholder:String = "" {
         didSet {
             self.txtField.placeholder = placeholder
@@ -46,7 +51,7 @@ class VOYTextFieldView: UIView {
     }
     
     @IBOutlet var heightViewBottom:NSLayoutConstraint!
-    @IBOutlet var txtField:UITextField!
+    @IBOutlet var txtField:DataBindTextField!
     @IBOutlet var lbFieldName:UILabel!
     @IBOutlet var viewBottom:UIView!
     @IBOutlet var contentView:UIView!

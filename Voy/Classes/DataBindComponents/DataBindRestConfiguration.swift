@@ -7,7 +7,7 @@
 
 import UIKit
 
-public class RestBindConfiguration: NSObject {
+public class DataBindRestConfiguration: NSObject {
     var endPoint:String!
     var keyPath:String?
     var apiURL:String?

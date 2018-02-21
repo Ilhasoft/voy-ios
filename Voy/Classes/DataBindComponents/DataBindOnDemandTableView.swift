@@ -9,16 +9,16 @@
 import UIKit
 import ISOnDemandTableView
 
-open class RestBindTableView: ISOnDemandTableView {
+open class DataBindOnDemandTableView: ISOnDemandTableView {
 
     @IBInspectable var apiURL:String?
     @IBInspectable var endPoint:String!
     @IBInspectable var keyPath:String?
     
-    private var configuration:RestBindConfiguration!
+    private var configuration:DataBindRestConfiguration!
     
-    public func getConfiguration() -> RestBindConfiguration {
-        configuration = RestBindConfiguration()
+    public func getConfiguration() -> DataBindRestConfiguration {
+        configuration = DataBindRestConfiguration()
         configuration.apiURL = apiURL
         configuration.endPoint = endPoint
         configuration.keyPath = keyPath

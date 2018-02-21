@@ -19,6 +19,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="VOYAddReportDataViewController" customModule="Voy" customModuleProvider="target">
             <connections>
                 <outlet property="btAddLink" destination="Ljy-7V-vnV" id="Esb-hq-AMi"/>
+                <outlet property="dataBindView" destination="2IB-dE-tl7" id="aVy-jS-ABx"/>
                 <outlet property="descriptionView" destination="qbh-Cy-T1c" id="8GY-oV-VQ2"/>
                 <outlet property="heightDescriptionView" destination="Dua-wf-h17" id="k4i-2D-u53"/>
                 <outlet property="lbAddLink" destination="4Jy-6e-IFa" id="Iqc-dr-5or"/>
@@ -37,7 +38,7 @@
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GnQ-yH-Jeu" customClass="TPKeyboardAvoidingScrollView">
                     <rect key="frame" x="0.0" y="88" width="375" height="690"/>
                     <subviews>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2IB-dE-tl7">
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2IB-dE-tl7" customClass="DataBindView" customModule="DataBindSwift">
                             <rect key="frame" x="0.0" y="0.0" width="375" height="690"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title and Description" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jFq-xv-cro">
@@ -50,7 +51,7 @@
                                     <color key="textColor" red="0.0" green="0.79607843140000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fVN-Il-aK5" customClass="VOYTextFieldView" customModule="Voy">
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fVN-Il-aK5" customClass="VOYTextFieldView" customModule="Voy" customModuleProvider="target">
                                     <rect key="frame" x="25" y="146" width="325" height="45"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
@@ -58,6 +59,7 @@
                                     </constraints>
                                     <userDefinedRuntimeAttributes>
                                         <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="Title"/>
+                                        <userDefinedRuntimeAttribute type="string" keyPath="path" value="report.name"/>
                                     </userDefinedRuntimeAttributes>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oYZ-FS-zkR">
@@ -115,6 +117,7 @@
                                         <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="Description"/>
                                         <userDefinedRuntimeAttribute type="boolean" keyPath="showBottomView" value="YES"/>
                                         <userDefinedRuntimeAttribute type="boolean" keyPath="editEnabled" value="YES"/>
+                                        <userDefinedRuntimeAttribute type="string" keyPath="path" value="report.description"/>
                                     </userDefinedRuntimeAttributes>
                                 </view>
                             </subviews>
@@ -143,6 +146,10 @@
                                 <constraint firstItem="fVN-Il-aK5" firstAttribute="leading" secondItem="2IB-dE-tl7" secondAttribute="leading" constant="25" id="viO-YG-pwg"/>
                                 <constraint firstItem="jFq-xv-cro" firstAttribute="top" secondItem="oYZ-FS-zkR" secondAttribute="bottom" constant="22" id="vie-IL-HBY"/>
                             </constraints>
+                            <connections>
+                                <outletCollection property="fields" destination="fVN-Il-aK5" collectionClass="NSMutableArray" id="0Uy-xc-V5C"/>
+                                <outletCollection property="fields" destination="qbh-Cy-T1c" collectionClass="NSMutableArray" id="9Wl-tW-was"/>
+                            </connections>
                         </view>
                     </subviews>
                     <constraints>

@@ -17,7 +17,7 @@ import Kingfisher
 class VOYThemeListViewController: UIViewController, NVActivityIndicatorViewable {
 
     @IBOutlet weak var lbThemesCount: UILabel!
-    @IBOutlet weak var tbView: RestBindTableView!
+    @IBOutlet weak var tbView: DataBindOnDemandTableView!
     
     var userJustLogged = false
     var selectedReportView:VOYSelectedReportView!
@@ -125,7 +125,7 @@ class VOYThemeListViewController: UIViewController, NVActivityIndicatorViewable 
     
     func loadThemesFilteredByProject(project:VOYProject) {
         VOYProject.setActiveProject(project: project)
-        tbView.interactor = RestBindTableViewProvider(configuration:tbView.getConfiguration(), params: ["project":project.id,"user":VOYUser.activeUser()!.id], paginationCount: VOYConstant.API.PAGINATION_SIZE)
+        tbView.interactor = DataBindOnDemandTableViewInteractor(configuration:tbView.getConfiguration(), params: ["project":project.id,"user":VOYUser.activeUser()!.id], paginationCount: VOYConstant.API.PAGINATION_SIZE)
         tbView.loadContent()
     }
     

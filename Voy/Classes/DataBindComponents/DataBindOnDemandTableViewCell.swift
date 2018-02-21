@@ -11,7 +11,7 @@ import ObjectMapper
 import ISOnDemandTableView
 import DataBindSwift
 
-open class RestBindTableViewCell: UITableViewCell, ISOnDemandTableViewCell {
+open class DataBindOnDemandTableViewCell: UITableViewCell, ISOnDemandTableViewCell {
     
     @IBOutlet public var dataBindView:DataBindView!
     

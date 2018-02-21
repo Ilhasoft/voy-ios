@@ -15,10 +15,10 @@ class VOYReportListViewController: UIViewController, NVActivityIndicatorViewable
 
     @IBOutlet var viewInfo:VOYInfoView!
     @IBOutlet var btAddReport:UIButton!
-    @IBOutlet var tableViewApproved:RestBindTableView!
-    @IBOutlet var tableViewPending:RestBindTableView!
-    @IBOutlet var tableViewNotApproved:RestBindTableView!
-    @IBOutlet var tableViews:[RestBindTableView]!
+    @IBOutlet var tableViewApproved:DataBindOnDemandTableView!
+    @IBOutlet var tableViewPending:DataBindOnDemandTableView!
+    @IBOutlet var tableViewNotApproved:DataBindOnDemandTableView!
+    @IBOutlet var tableViews:[DataBindOnDemandTableView]!
     @IBOutlet var segmentedControl:UISegmentedControl!
     
     static var sharedInstance:VOYReportListViewController?
@@ -70,14 +70,14 @@ class VOYReportListViewController: UIViewController, NVActivityIndicatorViewable
             tableView.separatorColor = UIColor.clear
             tableView.register(UINib(nibName: "VOYReportTableViewCell", bundle: nil), forCellReuseIdentifier: "VOYReportTableViewCell")
             tableView.onDemandTableViewDelegate = self
-            tableView.interactor = RestBindTableViewProvider(configuration:tableViewApproved.getConfiguration(),
+            tableView.interactor = DataBindOnDemandTableViewInteractor(configuration:tableViewApproved.getConfiguration(),
                                                              params: ["theme":self.theme.id,"status":status], paginationCount: VOYConstant.API.PAGINATION_SIZE)
             tableView.loadContent()
         }
         
     }
     
-    func showInfoViewIfNecessary(tableView:RestBindTableView) {
+    func showInfoViewIfNecessary(tableView:DataBindOnDemandTableView) {
         if tableView.interactor?.objects.count == 0 {
             switch self.segmentedControl.selectedSegmentIndex {
             case 0:

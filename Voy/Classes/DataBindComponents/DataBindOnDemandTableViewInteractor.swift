@@ -10,14 +10,14 @@ import ISOnDemandTableView
 import Alamofire
 import ObjectMapper
 
-public class RestBindTableViewProvider : ISOnDemandTableViewInteractor {
+public class DataBindOnDemandTableViewInteractor : ISOnDemandTableViewInteractor {
     
     private var endPoint:String!
     private var keyPath:String?
     private var apiURL:String?
     private var params:[String:Any]?
     
-    public init(configuration:RestBindConfiguration, params:[String:Any]? = nil, paginationCount:Int) {
+    public init(configuration:DataBindRestConfiguration, params:[String:Any]? = nil, paginationCount:Int) {
         self.endPoint = configuration.endPoint
         self.keyPath = configuration.keyPath
         self.apiURL = configuration.apiURL

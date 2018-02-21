@@ -21,6 +21,11 @@ class VOYTextView: UIView {
     
     var delegate:VOYTextViewDelegate?
     
+    @IBInspectable var path:String = "" {
+        didSet {
+            self.txtView.fieldPath = path
+        }
+    }
     @IBInspectable var placeholder:String = "" {
         didSet {
             self.txtView.placeHolder = placeholder
@@ -41,7 +46,7 @@ class VOYTextView: UIView {
     }
     
     @IBOutlet var heightViewBottom:NSLayoutConstraint!
-    @IBOutlet var txtView:GrowingTextView!
+    @IBOutlet var txtView:DataBindGrowingTextView!
     @IBOutlet var lbFieldName:UILabel!
     @IBOutlet var viewBottom:UIView!
     @IBOutlet var contentView:UIView!

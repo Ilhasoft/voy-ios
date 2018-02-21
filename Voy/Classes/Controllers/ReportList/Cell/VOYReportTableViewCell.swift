@@ -13,7 +13,7 @@ protocol VOYReportTableViewCellDelegate {
     func btResentDidTap(cell:VOYReportTableViewCell)
 }
 
-class VOYReportTableViewCell: RestBindTableViewCell {
+class VOYReportTableViewCell: DataBindOnDemandTableViewCell {
 
     @IBOutlet var lbTitle:DataBindLabel!
     @IBOutlet var lbDescription:DataBindLabel!

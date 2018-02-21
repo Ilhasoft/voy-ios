@@ -14,7 +14,7 @@ import AXPhotoViewer
 
 class VOYReportDetailViewController: UIViewController {
 
-    @IBOutlet weak var scrollViewMedias: VOYScrollView!
+    @IBOutlet weak var scrollViewMedias: DataBindScrollViewPageSwift!
     @IBOutlet weak var pageControl: UIPageControl!
     @IBOutlet weak var lbTitle: DataBindLabel!
     @IBOutlet weak var lbDate: DataBindLabel!

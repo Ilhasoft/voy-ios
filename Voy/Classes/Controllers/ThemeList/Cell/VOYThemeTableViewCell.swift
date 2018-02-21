@@ -9,7 +9,7 @@
 import UIKit
 import DataBindSwift
 
-open class VOYThemeTableViewCell: RestBindTableViewCell {
+open class VOYThemeTableViewCell: DataBindOnDemandTableViewCell {
 
     @IBOutlet var lbTheme:UILabel!
     

@@ -36,7 +36,7 @@
                         <constraint firstAttribute="height" constant="1" id="uH9-Ot-np5"/>
                     </constraints>
                 </view>
-                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="1HN-05-oBD" customClass="GrowingTextView" customModule="GrowingTextView">
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="1HN-05-oBD" customClass="DataBindGrowingTextView" customModule="Voy" customModuleProvider="target">
                     <rect key="frame" x="6" y="14" width="363" height="30"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>

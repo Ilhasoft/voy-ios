@@ -8,6 +8,7 @@
 
 import UIKit
 import GrowingTextView
+import DataBindSwift
 
 class VOYAddReportDataViewController: UIViewController {
 
@@ -19,6 +20,7 @@ class VOYAddReportDataViewController: UIViewController {
     @IBOutlet weak var txtFieldLink: UITextField!
     @IBOutlet weak var btAddLink: UIButton!
     @IBOutlet weak var tbViewLinks: UITableView!
+    @IBOutlet weak var dataBindView: DataBindView!
     
     var links = [String]()
     var cameraDataList = [VOYCameraData]()
@@ -39,6 +41,8 @@ class VOYAddReportDataViewController: UIViewController {
         setupTableView()
         setupLayout()
         addNextButton()
+        let report = VOYReport(JSON: ["name":"Titulo","description":"teste"])
+        dataBindView.fillFields(withObject:report!.toJSON())
         descriptionView.delegate = self
     }
     
@@ -47,7 +51,8 @@ class VOYAddReportDataViewController: UIViewController {
     }
     
     @objc func openNextController() {
-        self.navigationController?.pushViewController(VOYAddReportTagsViewController(), animated: true)
+        print(self.dataBindView.toJSON())
+//        self.navigationController?.pushViewController(VOYAddReportTagsViewController(), animated: true)
     }
     
     func setupLayout() {
