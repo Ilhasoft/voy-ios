@@ -15,7 +15,11 @@ class VOYAddReportTagsViewController: UIViewController, NVActivityIndicatorViewa
     @IBOutlet var lbTitle:UILabel!
     @IBOutlet var viewTags:TagListView!
     
-    var selectedTags = [String]()
+    var selectedTags = [String]() {
+        didSet {
+            self.navigationItem.rightBarButtonItem!.isEnabled = !selectedTags.isEmpty
+        }
+    }
     
     var report:VOYReport!
     
@@ -38,6 +42,7 @@ class VOYAddReportTagsViewController: UIViewController, NVActivityIndicatorViewa
 
     func addNextButton() {
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Next", style: .plain, target: self, action: #selector(save))
+        self.navigationItem.rightBarButtonItem!.isEnabled = false
     }
     
     @objc func save() {

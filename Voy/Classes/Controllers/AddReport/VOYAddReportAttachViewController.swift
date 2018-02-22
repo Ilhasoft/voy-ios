@@ -60,7 +60,7 @@ class VOYAddReportAttachViewController: UIViewController, NVActivityIndicatorVie
     
     func addNextButton() {
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Next", style: .plain, target: self, action: #selector(openNextController))
-//        self.navigationItem.rightBarButtonItem!.isEnabled = false
+        self.navigationItem.rightBarButtonItem!.isEnabled = false
     }
     
     @objc func openNextController() {

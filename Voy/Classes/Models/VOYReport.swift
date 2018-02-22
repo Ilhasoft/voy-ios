@@ -41,7 +41,8 @@ class VOYReport: Mappable {
         created_on <- map["created_on"]
         tags <- map["tags"]
         location <- map["location"]
-        status <- map["status"]        
+        status <- map["status"]
+        cameraDataList <- map["cameraDataList"]
     }
     
     func map() -> Map {

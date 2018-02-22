@@ -26,4 +26,26 @@ class VOYReportSyncManager: NSObject {
         }
     }
     
+    static func trySendPendentCameraData() {
+        let pendentCameraDataListDictionary = VOYCameraDataStorageManager.getPendentCameraDataList()
+        var cameraDataList = [VOYCameraData]()
+        
+        guard !pendentCameraDataListDictionary.isEmpty else {
+            return
+        }
+        
+        for cameraDataDictionary in pendentCameraDataListDictionary {
+            let cameraData = VOYCameraData(JSON:cameraDataDictionary)!
+            cameraDataList.append(cameraData)
+        }
+        
+        guard NetworkReachabilityManager()!.isReachable else {
+            return
+        }
+        
+        guard !VOYMediaUploadManager.isUploading else { return }
+        
+        VOYMediaUploadManager.upload(reportID: 0, cameraDataList: cameraDataList) { (error) in }
+    }
+    
 }

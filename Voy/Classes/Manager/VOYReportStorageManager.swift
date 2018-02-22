@@ -47,29 +47,6 @@ class VOYReportStorageManager: NSObject {
         UserDefaults.standard.synchronize()
         
     }
-    /*
-    static func addPendentReportInURLCache(report:VOYReport) {
-        guard let request = VOYRequestManager.lastURLRequestPendentReport else { return }
-        guard let response = VOYRequestManager.lastURLResponsePendentReport else { return }
-        
-        if let cachedResponse = URLCache.shared.cachedResponse(for: request) {
-            do {
-                let jsonObject = try JSONSerialization.jsonObject(with: cachedResponse.data, options: [])
-                    var pendingReportsArray = (jsonObject as! [String:Any])["results"] as! [[String : Any]]
-                    pendingReportsArray.append(report.toJSON())
-                let input = ["results":pendingReportsArray]
-                var value = input
-                let data = withUnsafePointer(to: &value) {
-                    Data(bytes: UnsafePointer($0), count: MemoryLayout.size(ofValue: input))
-                }
-                let cachedURLResponse = CachedURLResponse(response: response, data: data , userInfo: nil, storagePolicy: .allowed)
-                URLCache.shared.storeCachedResponse(cachedURLResponse, for: request)
-            }catch {
-                print(error.localizedDescription)
-            }
-            
-        }
-    }
-    */
+
 }
 

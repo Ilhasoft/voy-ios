@@ -58,6 +58,13 @@ class VOYAddReportDataViewController: UIViewController {
     }
     
     @objc func openNextController() {
+        
+        if self.titleView.txtField.text!.isEmpty {
+            self.titleView.shake()
+            self.titleView.txtField.becomeFirstResponder()
+            return
+        }
+        
         let report = VOYReport(JSON: self.dataBindView.toJSON())!
         report.id = self.savedReport?.id ?? nil
         report.cameraDataList = cameraDataList
@@ -69,7 +76,12 @@ class VOYAddReportDataViewController: UIViewController {
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: " ", style: .plain, target: nil, action: nil)
         self.automaticallyAdjustsScrollViewInsets = false
         self.txtFieldLink.layer.borderWidth = 1
-        self.txtFieldLink.layer.borderColor = VOYConstant.Color.gray.cgColor    
+        self.txtFieldLink.layer.borderColor = VOYConstant.Color.gray.cgColor
+        if !VOYTheme.activeTheme()!.allow_links {
+            self.tbViewLinks.isHidden = true
+            self.txtFieldLink.isHidden = true
+            self.btAddLink.isHidden = true
+        }
     }
     
     func setupTableView() {

@@ -75,6 +75,9 @@ class VOYThemeListViewController: UIViewController, NVActivityIndicatorViewable 
         Timer.scheduledTimer(withTimeInterval: 10, repeats: true) { (t) in
             VOYReportSyncManager.trySendPendentReports()
         }
+        Timer.scheduledTimer(withTimeInterval: 17, repeats: true) { (t) in
+            VOYReportSyncManager.trySendPendentCameraData()
+        }
     }
     
     func setupButtonItems() {
