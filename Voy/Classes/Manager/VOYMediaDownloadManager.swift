@@ -19,16 +19,25 @@ class VOYMediaDownloadManager: NSObject {
     }
     
     func download(url:String, completion:@escaping(URL?) -> Void) {
+
+        let urlRequest = URLRequest(url: URL(string:url)!, cachePolicy: URLRequest.CachePolicy.returnCacheDataElseLoad, timeoutInterval: 5)
+//            urlRequest.addValue("max-age=31536000", forHTTPHeaderField: "Cache-Control")
         
-        Alamofire.download(url, method: .get, encoding: JSONEncoding.default, to: destination)
+        Alamofire.download(urlRequest, to: destination)
             .downloadProgress(queue: DispatchQueue.global(qos: .utility)) { progress in
                 print("Progress: \(progress.fractionCompleted)")
             }
             .responseJSON { response in
                 if let statusCode = response.response?.statusCode, statusCode == 200 {
+                    do {
+                        let data = try Data(contentsOf: VOYMediaDownloadManager.destinationPath)
+                        let cachedURLResponse = CachedURLResponse(response: response.response!, data: data)
+                        URLCache.shared.storeCachedResponse(cachedURLResponse, for: urlRequest)
+                    }catch {
+                        print(error.localizedDescription)
+                    }
                     completion(VOYMediaDownloadManager.destinationPath)
                 }
-                return
         }
     }
 }

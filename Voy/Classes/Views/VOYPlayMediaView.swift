@@ -11,6 +11,7 @@ import DataBindSwift
 import AVFoundation
 import Player
 import Alamofire
+import NVActivityIndicatorView
 
 enum VOYMediaType:String {
     case image = "image"
@@ -19,17 +20,20 @@ enum VOYMediaType:String {
 
 protocol VOYPlayMediaViewDelegate {
     func mediaDidTap(mediaView:VOYPlayMediaView)
+    func videoDidTap(mediaView:VOYPlayMediaView, url:URL, showInFullScreen:Bool)
 }
 
-class VOYPlayMediaView: UIView {
+class VOYPlayMediaView: UIView, NVActivityIndicatorViewable {
 
     @IBOutlet var contentView:DataBindView!
     @IBOutlet var imgView:UIImageView!
     @IBOutlet var imgPlayIcon:UIImageView!
+    @IBOutlet var activityView:NVActivityIndicatorView!
     
+    var fullScreen = false
     var delegate:VOYPlayMediaViewDelegate?
     var media:VOYMedia!
-    var player:Player!
+    var videoURL:URL?
     
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)!
@@ -62,22 +66,25 @@ class VOYPlayMediaView: UIView {
         
         switch self.media.media_type {
         case VOYMediaType.image.rawValue:
+            self.imgPlayIcon.isHidden = true
+            self.activityView.isHidden = true
             self.imgView.isHidden = false
             self.imgView.kf.setImage(with: URL(string:self.media.file))
             break
         case VOYMediaType.video.rawValue:
-            
+            self.activityView.isHidden = false
+            self.activityView.startAnimating()
             VOYMediaDownloadManager.shared.download(url: self.media.file, completion: { (url) in
-                let playerItem = AVPlayerItem(asset: AVURLAsset(url: url!))
+                self.activityView.isHidden = true
+                self.activityView.stopAnimating()
                 
-                let player = AVPlayer(playerItem: playerItem)
-                
-                let playerLayer = AVPlayerLayer(player: player)
-                playerLayer.frame = self.bounds
-                self.contentView.layer.addSublayer(playerLayer)
-                
-                player.volume = 1.0
-                player.play()
+                guard let url = url else {return}
+                let thumb = ISVideoUtil.generateThumbnail(url)
+                self.imgView.image = thumb
+                self.imgPlayIcon.isHidden = false
+                self.videoURL = url
+                let tap = UITapGestureRecognizer(target: self, action: #selector(self.videoDidTap))
+                self.contentView.addGestureRecognizer(tap)
             })
             
             break
@@ -85,6 +92,11 @@ class VOYPlayMediaView: UIView {
             break
         }
         
+    }
+    
+    @objc func videoDidTap() {
+        fullScreen = !fullScreen
+        self.delegate?.videoDidTap(mediaView: self, url:self.videoURL!, showInFullScreen: fullScreen)
     }
     
 }

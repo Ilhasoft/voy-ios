@@ -12,6 +12,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="VOYPlayMediaView" customModule="Voy" customModuleProvider="target">
             <connections>
+                <outlet property="activityView" destination="vlp-uh-lk5" id="SOR-ce-ahN"/>
                 <outlet property="contentView" destination="i5M-Pr-FkT" id="HeQ-qb-03W"/>
                 <outlet property="imgPlayIcon" destination="ZhI-4t-F7u" id="Lvg-Rf-rjX"/>
                 <outlet property="imgView" destination="2HB-Fu-a7B" id="Pl2-uD-ndg"/>
@@ -31,15 +32,24 @@
                 <imageView hidden="YES" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" image="noun419251Cc" translatesAutoresizingMaskIntoConstraints="NO" id="ZhI-4t-F7u">
                     <rect key="frame" x="161" y="54" width="53" height="52"/>
                 </imageView>
+                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vlp-uh-lk5" customClass="NVActivityIndicatorView" customModule="NVActivityIndicatorView">
+                    <rect key="frame" x="147" y="40" width="80" height="80"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="80" id="Ig8-55-8I1"/>
+                        <constraint firstAttribute="height" constant="80" id="NJO-et-v21"/>
+                    </constraints>
+                </view>
             </subviews>
-            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
+                <constraint firstItem="vlp-uh-lk5" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="1fu-yj-K6a"/>
                 <constraint firstItem="2HB-Fu-a7B" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="Cqz-6Y-E83"/>
                 <constraint firstItem="2HB-Fu-a7B" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="LjF-Ch-Q1I"/>
                 <constraint firstItem="2HB-Fu-a7B" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="PY5-Dy-bU3"/>
                 <constraint firstItem="ZhI-4t-F7u" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="RUW-hW-05z"/>
                 <constraint firstItem="2HB-Fu-a7B" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" id="cgu-eK-AAa"/>
                 <constraint firstItem="ZhI-4t-F7u" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="fPF-DI-kok"/>
+                <constraint firstItem="vlp-uh-lk5" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="mel-ew-y53"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>

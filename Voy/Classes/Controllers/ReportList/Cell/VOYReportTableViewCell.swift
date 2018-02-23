@@ -73,11 +73,11 @@ extension VOYReportTableViewCell : DataBindViewDelegate {
             self.btResent.setImage(#imageLiteral(resourceName: "noun576598Cc"), for: .normal)
         }else if let status = report.status {
             switch status {
-            case 1:
+            case VOYReportStatus.approved.rawValue:
                 break
-            case 2:
+            case VOYReportStatus.pendent.rawValue:
                 break
-            case 3:
+            case VOYReportStatus.notApproved.rawValue:
                 break
             default:
                 break

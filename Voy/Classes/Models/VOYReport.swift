@@ -8,6 +8,12 @@
 
 import ObjectMapper
 
+enum VOYReportStatus:Int {
+    case approved = 1
+    case pendent = 2
+    case notApproved = 3
+}
+
 class VOYReport: Mappable {
     
     var id:Int!
@@ -23,6 +29,7 @@ class VOYReport: Mappable {
     var location:String!
     var status:Int?
     var cameraDataList:[VOYCameraData]?
+    var lastNotification:String!
     
     init() {
         
@@ -43,6 +50,7 @@ class VOYReport: Mappable {
         location <- map["location"]
         status <- map["status"]
         cameraDataList <- map["cameraDataList"]
+        lastNotification <- map["last_notification"]
     }
     
     func map() -> Map {

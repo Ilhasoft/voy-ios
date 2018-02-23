@@ -11,6 +11,7 @@ import ISScrollViewPageSwift
 import TagListView
 import DataBindSwift
 import AXPhotoViewer
+import Player
 
 class VOYReportDetailViewController: UIViewController {
 
@@ -24,6 +25,7 @@ class VOYReportDetailViewController: UIViewController {
     @IBOutlet weak var dataBindView: DataBindView!
     
     var report:VOYReport!
+    var player: Player?
     
     init(report:VOYReport) {
         self.report = report
@@ -59,19 +61,30 @@ class VOYReportDetailViewController: UIViewController {
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: " ", style: .plain, target: nil, action: nil)
         let barButtonItemOptions = UIBarButtonItem(image: #imageLiteral(resourceName: "combinedShape").withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(showActionSheet))
         let barButtonItemIssue = UIBarButtonItem(image: #imageLiteral(resourceName: "issue").withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(showIssue))
-        let imageView = UIImageView(frame: CGRect(x: -13, y: 5, width: 32, height: 31))
-        let v = UIView(frame: CGRect(x: 0, y: 0, width: 32, height: 31))
-        imageView.image = #imageLiteral(resourceName: "avatar14")
+        
+        let imageView = UIImageView()
+        imageView.kf.setImage(with: URL(string:VOYUser.activeUser()!.avatar))
         imageView.contentMode = .scaleAspectFit
         imageView.widthAnchor.constraint(equalToConstant: 32).isActive = true
         imageView.heightAnchor.constraint(equalToConstant: 31).isActive = true
-        v.addSubview(imageView)
-        self.navigationItem.titleView = v
-        self.navigationItem.rightBarButtonItems = [barButtonItemOptions,barButtonItemIssue]
+        
+        self.navigationItem.titleView = imageView
+        
+        var buttonItens = [barButtonItemOptions,barButtonItemIssue]
+        
+        if self.report.lastNotification.isEmpty {
+            buttonItens.remove(at: 1)
+        }
+        
+        if !(self.report.status != nil && self.report.status! != VOYReportStatus.approved.rawValue) {
+            buttonItens.remove(at: 0)
+        }
+        
+        self.navigationItem.rightBarButtonItems = buttonItens
     }
     
     @objc func showIssue() {
-        let alertInfoController = VOYAlertViewController(title: "Issues reported in your report", message: "Try to send more photos of this problem and talk more about it.", buttonNames: ["Edit Report","Close"])
+        let alertInfoController = VOYAlertViewController(title: "Issues reported in your report", message: self.report.lastNotification, buttonNames: ["Edit Report","Close"])
         alertInfoController.delegate = self
         alertInfoController.show(true, inViewController: self)
     }
@@ -82,6 +95,14 @@ class VOYReportDetailViewController: UIViewController {
         mediaPlayView.delegate = self
         scrollViewMedias.addCustomView(mediaPlayView)
         
+    }
+    
+    @objc func removePlayer() {
+        UIView.transition(with: self.view, duration: 0.5, options: UIViewAnimationOptions.transitionCrossDissolve, animations: {
+            self.navigationController?.view.viewWithTag(130)?.removeFromSuperview()
+        }) { (completed) in
+            self.player = nil
+        }
     }
     
     @objc private func showActionSheet() {
@@ -181,5 +202,26 @@ extension VOYReportDetailViewController : VOYPlayMediaViewDelegate {
         self.present(photosViewController, animated: true) {
             
         }
+    }
+    
+    func videoDidTap(mediaView: VOYPlayMediaView, url:URL, showInFullScreen:Bool) {
+        player = Player()
+        
+        self.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        player?.view.tag = 130
+        player?.view.frame = self.view.bounds
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(self.removePlayer))
+        player?.view.addGestureRecognizer(tap)
+        
+        UIView.transition(with: (player?.view)!, duration: 0.5, options: UIViewAnimationOptions.transitionCrossDissolve, animations: {
+            self.navigationController?.view.addSubview((self.player?.view)!)
+        }) { (completed) in
+            
+        }                
+        
+        player?.url = url
+        player?.playbackLoops = true
+        player?.playFromBeginning()
     }
 }

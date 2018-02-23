@@ -60,11 +60,11 @@ class VOYReportListViewController: UIViewController, NVActivityIndicatorViewable
         for tableView in self.tableViews {
             
             if tableView == self.tableViewApproved {
-                status = 1
+                status = VOYReportStatus.approved.rawValue
             }else if tableView == self.tableViewPending {
-                status = 2
+                status = VOYReportStatus.pendent.rawValue
             }else if tableView == self.tableViewNotApproved {
-                status = 3
+                status = VOYReportStatus.notApproved.rawValue
             }
             
             tableView.separatorColor = UIColor.clear
