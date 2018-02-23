@@ -10,7 +10,9 @@ import Alamofire
 
 class VOYRequestManager: NSObject {
     
-    static func cacheDataFrom(url:String, parameters:inout [String:Any]) {
+    static let shared = VOYRequestManager()
+    
+    func cacheDataFrom(url:String, parameters:inout [String:Any]) {
         
         if NetworkReachabilityManager()!.isReachable {
             var headers = [String:String]()

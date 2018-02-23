@@ -12,13 +12,15 @@ import DataBindSwift
 
 class VOYLoginInteractor: NSObject {
 
-    static func login(username:String, password:String, completion:@escaping(_ user:VOYUser?, _ error:Error?) -> Void) {
+    static let shared = VOYLoginInteractor()
+    
+    func login(username:String, password:String, completion:@escaping(_ user:VOYUser?, _ error:Error?) -> Void) {
         let params = ["username":username,"password":password]
         
         Alamofire.request(VOYConstant.API.URL + "get_auth_token/", method: .post, parameters: params).responseJSON { (dataResponse:DataResponse<Any>) in
             if let authTokenData = dataResponse.result.value as? [String:Any] {
                 if let authToken = authTokenData["token"] as? String {
-                    getUserData(authToken: authToken, completion: { (user, error) in
+                    self.getUserData(authToken: authToken, completion: { (user, error) in
                         if let user = user {
                             user.authToken = authToken
                             VOYUser.setActiveUser(user: user)
@@ -36,7 +38,7 @@ class VOYLoginInteractor: NSObject {
         
     }        
     
-    static func getUserData(authToken:String, completion:@escaping(_ user:VOYUser?, _ error:Error?) -> Void) {
+    func getUserData(authToken:String, completion:@escaping(_ user:VOYUser?, _ error:Error?) -> Void) {
         let url = VOYConstant.API.URL + "users/?auth_token=" + authToken
         Alamofire.request(url, method: .get).responseArray { (dataResponse:DataResponse<[VOYUser]>) in
             if let userData = dataResponse.result.value {

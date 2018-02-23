@@ -11,7 +11,9 @@ import AlamofireObjectMapper
 
 class VOYProjectInteractor: NSObject {
 
-    static func getMyProjects(completion:@escaping(_ projects:[VOYProject], _ error: Error?) -> Void) {
+    static let shared = VOYProjectInteractor()
+    
+    func getMyProjects(completion:@escaping(_ projects:[VOYProject], _ error: Error?) -> Void) {
         
         var headers = [String:String]()
         if !NetworkReachabilityManager()!.isReachable {

@@ -8,8 +8,9 @@
 
 import UIKit
 import DataBindSwift
-import PlayerKit
 import AVFoundation
+import Player
+import Alamofire
 
 enum VOYMediaType:String {
     case image = "image"
@@ -28,7 +29,7 @@ class VOYPlayMediaView: UIView {
     
     var delegate:VOYPlayMediaViewDelegate?
     var media:VOYMedia!
-    var player:RegularPlayer!
+    var player:Player!
     
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)!
@@ -48,7 +49,6 @@ class VOYPlayMediaView: UIView {
         self.addGestureRecognizer(tapGesture)
         contentView.frame = bounds
         self.addSubview(contentView)
-        player = RegularPlayer()
     }
     
     @objc func viewDidTap() {
@@ -66,10 +66,20 @@ class VOYPlayMediaView: UIView {
             self.imgView.kf.setImage(with: URL(string:self.media.file))
             break
         case VOYMediaType.video.rawValue:
-            self.imgView.isHidden = true
-            contentView.addSubview(player.view)
-            player.set(AVURLAsset(url: URL(string:self.media.file)!))
-            player.play()
+            
+            VOYMediaDownloadManager.shared.download(url: self.media.file, completion: { (url) in
+                let playerItem = AVPlayerItem(asset: AVURLAsset(url: url!))
+                
+                let player = AVPlayer(playerItem: playerItem)
+                
+                let playerLayer = AVPlayerLayer(player: player)
+                playerLayer.frame = self.bounds
+                self.contentView.layer.addSublayer(playerLayer)
+                
+                player.volume = 1.0
+                player.play()
+            })
+            
             break
         default:
             break

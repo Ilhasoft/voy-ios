@@ -100,7 +100,7 @@ public class DataBindOnDemandTableViewInteractor : ISOnDemandTableViewInteractor
                     
                     if self.endPoint == "reports" && self.params!["status"] as! Int == 2 {
                         
-                        let pendentReportsJSONList = VOYReportStorageManager.getPendentReports()
+                        let pendentReportsJSONList = VOYReportStorageManager.shared.getPendentReports()
                         guard !pendentReportsJSONList.isEmpty else {
                             handler(objects,error)
                             return

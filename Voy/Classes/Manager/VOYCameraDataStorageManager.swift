@@ -10,14 +10,16 @@ import UIKit
 
 class VOYCameraDataStorageManager: NSObject {
     
-    static func getPendentCameraDataList() -> [[String: Any]] {
+    static let shared = VOYCameraDataStorageManager()
+    
+    func getPendentCameraDataList() -> [[String: Any]] {
         if let cameraDataDictioanry = UserDefaults.standard.getArchivedObject(key: "cameraData") as? [[String: Any]] {
             return cameraDataDictioanry
         }
         return [[String:Any]]()
     }
     
-    static func removeFromStorageAfterSave(cameraData:VOYCameraData) {
+    func removeFromStorageAfterSave(cameraData:VOYCameraData) {
         var pendentCameraDataList = getPendentCameraDataList()
         let index = pendentCameraDataList.index {($0["id"] as! String == cameraData.id)}
         if let index = index {
@@ -28,7 +30,7 @@ class VOYCameraDataStorageManager: NSObject {
         }
     }
     
-    static func addAsPendent(cameraData:VOYCameraData, reportID:Int) {
+    func addAsPendent(cameraData:VOYCameraData, reportID:Int) {
         
         var pendentCameraDataList = getPendentCameraDataList()
         

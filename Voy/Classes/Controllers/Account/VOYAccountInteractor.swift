@@ -10,7 +10,9 @@ import Alamofire
 
 class VOYAccountInteractor: NSObject {
     
-    static func updateUser(avatar:Int?, password:String?, completion:@escaping(Error?) -> Void) {
+    static let shared = VOYAccountInteractor()
+    
+    func updateUser(avatar:Int?, password:String?, completion:@escaping(Error?) -> Void) {
         
         let user = VOYUser.activeUser()!
         var jsonUser = user.toJSON()
@@ -30,7 +32,7 @@ class VOYAccountInteractor: NSObject {
         
         Alamofire.request(url, method: .put, parameters: jsonUser, encoding: JSONEncoding.default, headers: headers).responseJSON { (dataResponse:DataResponse<Any>) in
             if let _ = dataResponse.result.value {
-                VOYLoginInteractor.getUserData(authToken: user.authToken, completion: { (user, error) in
+                VOYLoginInteractor.shared.getUserData(authToken: user.authToken, completion: { (user, error) in
                     if let error = error {
                         print(error.localizedDescription)
                     }else if let u = user {

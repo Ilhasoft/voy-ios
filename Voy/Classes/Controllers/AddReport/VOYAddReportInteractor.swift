@@ -11,7 +11,9 @@ import Alamofire
 
 class VOYAddReportInteractor: NSObject {
 
-    static func save(report:VOYReport, completion:@escaping(Error?,Int?) -> Void) {
+    static let shared = VOYAddReportInteractor()
+    
+    func save(report:VOYReport, completion:@escaping(Error?,Int?) -> Void) {
         let url = VOYConstant.API.URL + "reports/"
         let authToken = VOYUser.activeUser()!.authToken
         
@@ -23,8 +25,8 @@ class VOYAddReportInteractor: NSObject {
                     completion(error, nil)
                 }else if let value = dataResponse.result.value as? [String:Any] {
                     if let reportID = value["id"] as? Int {
-                        VOYReportStorageManager.removeFromStorageAfterSave(report: report)
-                        VOYMediaUploadManager.upload(reportID: reportID, cameraDataList: report.cameraDataList!, completion: { (error) in
+                        VOYReportStorageManager.shared.removeFromStorageAfterSave(report: report)
+                        VOYMediaUploadManager.shared.upload(reportID: reportID, cameraDataList: report.cameraDataList!, completion: { (error) in
 //                            completion(nil, reportID)
                         })
                         completion(nil, reportID)
@@ -35,7 +37,7 @@ class VOYAddReportInteractor: NSObject {
                 }
             }
         }else {
-            VOYReportStorageManager.addAsPendent(report: report)
+            VOYReportStorageManager.shared.addAsPendent(report: report)
             completion(nil,nil)
         }
         

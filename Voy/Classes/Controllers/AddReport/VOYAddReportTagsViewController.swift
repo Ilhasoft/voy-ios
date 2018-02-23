@@ -51,7 +51,7 @@ class VOYAddReportTagsViewController: UIViewController, NVActivityIndicatorViewa
         let location = "POINT(\(VOYLocationManager.longitude) \(VOYLocationManager.latitude))"
         self.report.location = location
         self.startAnimating()
-        VOYAddReportInteractor.save(report: report) { (error,reporID) in
+        VOYAddReportInteractor.shared.save(report: report) { (error,reporID) in
             self.stopAnimating()
             self.navigationController?.pushViewController(VOYAddReportSuccessViewController(), animated: true)
         }

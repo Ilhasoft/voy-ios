@@ -47,7 +47,7 @@ class VOYLoginViewController: UIViewController, NVActivityIndicatorViewable {
         let slideMenuController = SlideMenuController(mainViewController: navigationController, rightMenuViewController: VOYNotificationViewController())
         
         startAnimating()
-        VOYLoginInteractor.login(username: self.userNameView.txtField.text!, password: self.passwordView.txtField.text!) { (user , error) in
+        VOYLoginInteractor.shared.login(username: self.userNameView.txtField.text!, password: self.passwordView.txtField.text!) { (user , error) in
             self.stopAnimating()
             if let _ = error {
                 alertController.show(true, inViewController: self)

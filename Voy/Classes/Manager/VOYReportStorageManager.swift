@@ -10,14 +10,16 @@ import UIKit
 
 class VOYReportStorageManager: NSObject {
 
-    static func getPendentReports() -> [[String: Any]] {
+    static let shared = VOYReportStorageManager()
+    
+    func getPendentReports() -> [[String: Any]] {
         if let reportsDictionary = UserDefaults.standard.getArchivedObject(key: "reports") as? [[String: Any]] {
             return reportsDictionary
         }
         return [[String:Any]]()
     }
     
-    static func removeFromStorageAfterSave(report:VOYReport) {
+    func removeFromStorageAfterSave(report:VOYReport) {
         var pendentReports = getPendentReports()
         let index = pendentReports.index {($0["id"] as! Int == report.id)}
         if let index = index {
@@ -28,7 +30,7 @@ class VOYReportStorageManager: NSObject {
         }
     }
     
-    static func addAsPendent(report:VOYReport) {
+    func addAsPendent(report:VOYReport) {
         
         var pendentReports = getPendentReports()
         

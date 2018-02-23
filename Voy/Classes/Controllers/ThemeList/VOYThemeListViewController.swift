@@ -73,10 +73,10 @@ class VOYThemeListViewController: UIViewController, NVActivityIndicatorViewable 
     
     func checkPendentReportsToSend() {
         Timer.scheduledTimer(withTimeInterval: 10, repeats: true) { (t) in
-            VOYReportSyncManager.trySendPendentReports()
+            VOYReportSyncManager.shared.trySendPendentReports()
         }
         Timer.scheduledTimer(withTimeInterval: 17, repeats: true) { (t) in
-            VOYReportSyncManager.trySendPendentCameraData()
+            VOYReportSyncManager.shared.trySendPendentCameraData()
         }
     }
     
@@ -88,7 +88,7 @@ class VOYThemeListViewController: UIViewController, NVActivityIndicatorViewable 
     
     func getProjects() {
         self.startAnimating()
-        VOYProjectInteractor.getMyProjects { (projects, error) in
+        VOYProjectInteractor.shared.getMyProjects { (projects, error) in
             self.stopAnimating()
             if let error = error {
                 print(error.localizedDescription)
@@ -97,7 +97,7 @@ class VOYThemeListViewController: UIViewController, NVActivityIndicatorViewable 
                 if self.userJustLogged {
                     for project in self.projects {
                         var params = ["project":project.id as Any, "user":VOYUser.activeUser()!.id]
-                        VOYRequestManager.cacheDataFrom(url: VOYConstant.API.URL + "themes", parameters:&params)
+                        VOYRequestManager.shared.cacheDataFrom(url: VOYConstant.API.URL + "themes", parameters:&params)
                     }
                     self.userJustLogged = false
                 }

@@ -11,9 +11,11 @@ import Alamofire
 
 class VOYMediaUploadManager: NSObject {
 
+    static let shared = VOYMediaUploadManager()
+    
     static var isUploading = false
     
-    static func upload(reportID: Int, cameraDataList:[VOYCameraData], completion:@escaping(Error?) -> Void) {
+    func upload(reportID: Int, cameraDataList:[VOYCameraData], completion:@escaping(Error?) -> Void) {
         for (_,cameraData) in cameraDataList.enumerated() {
             
             var report_id = reportID
@@ -23,7 +25,7 @@ class VOYMediaUploadManager: NSObject {
             }
             
             if NetworkReachabilityManager()!.isReachable {
-                isUploading = true
+                VOYMediaUploadManager.isUploading = true
                 Alamofire.upload(
                     multipartFormData: { multipartFormData in
                         multipartFormData.append("\(report_id)".data(using: String.Encoding.utf8)!, withName: "report_id")
@@ -34,26 +36,26 @@ class VOYMediaUploadManager: NSObject {
                     method:.post,
                     headers: ["Authorization" : "Token " + VOYUser.activeUser()!.authToken],
                     encodingCompletion: { encodingResult in
-                        isUploading = false
+                        VOYMediaUploadManager.isUploading = false
                         switch encodingResult {
                         case .success(let upload, _, _):
                             upload.responseJSON { response in
                                 debugPrint(response)
                                 if response.error != nil {
-                                    VOYCameraDataStorageManager.addAsPendent(cameraData: cameraData, reportID: report_id)
+                                    VOYCameraDataStorageManager.shared.addAsPendent(cameraData: cameraData, reportID: report_id)
                                 }else {
-                                    VOYCameraDataStorageManager.removeFromStorageAfterSave(cameraData: cameraData)
+                                    VOYCameraDataStorageManager.shared.removeFromStorageAfterSave(cameraData: cameraData)
                                 }
                             }
                         case .failure(let encodingError):
                             print(encodingError)
-                            VOYCameraDataStorageManager.addAsPendent(cameraData: cameraData, reportID: report_id)
+                            VOYCameraDataStorageManager.shared.addAsPendent(cameraData: cameraData, reportID: report_id)
                             //                        completion(encodingError)
                         }
                 }
                 )
             }else {
-                VOYCameraDataStorageManager.addAsPendent(cameraData: cameraData, reportID: report_id)
+                VOYCameraDataStorageManager.shared.addAsPendent(cameraData: cameraData, reportID: report_id)
             }
     
         }
