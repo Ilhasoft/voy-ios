@@ -26,7 +26,7 @@ class VOYAddReportAttachViewController: UIViewController, NVActivityIndicatorVie
     
     var mediaList = [VOYMedia]() {
         didSet {
-            self.navigationItem.rightBarButtonItem!.isEnabled = !cameraDataList.isEmpty
+            self.navigationItem.rightBarButtonItem!.isEnabled = !mediaList.isEmpty
         }
     }
     
@@ -74,8 +74,7 @@ class VOYAddReportAttachViewController: UIViewController, NVActivityIndicatorVie
     }
     
     func loadFromReport() {
-        guard let report = self.report else { return }
-        self.navigationItem.rightBarButtonItem!.isEnabled = true
+        guard let report = self.report else { return }        
         mediaList = report.files
         for (index,mediaView) in self.mediaViews.enumerated() {
             guard index < report.files.count else { return }
@@ -89,7 +88,7 @@ class VOYAddReportAttachViewController: UIViewController, NVActivityIndicatorVie
     }
     
     @objc func openNextController() {
-        let addReportDataViewController = self.report != nil ? VOYAddReportDataViewController(savedReport: self.report!, removedMedias:self.removedMedias) : VOYAddReportDataViewController(cameraDataList:self.cameraDataList)
+        let addReportDataViewController = self.report != nil ? VOYAddReportDataViewController(savedReport: self.report!) : VOYAddReportDataViewController(cameraDataList:self.cameraDataList)
         self.navigationController?.pushViewController(addReportDataViewController, animated: true)
     }
     

@@ -73,7 +73,6 @@
 		65B2EAE7203DC2ED00BD84C6 /* VOYReportStorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65B2EAE6203DC2ED00BD84C6 /* VOYReportStorageManager.swift */; };
 		65C7B5DF202B4D3A003087EB /* VOYTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65C7B5DE202B4D3A003087EB /* VOYTheme.swift */; };
 		65C7B5ED202B948E003087EB /* VOYReport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65C7B5EC202B948E003087EB /* VOYReport.swift */; };
-		65CA0648203C4D2B009A936A /* VOYMediaUploadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65CA0647203C4D2B009A936A /* VOYMediaUploadManager.swift */; };
 		65CA064A203C544A009A936A /* VOYAddReportInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65CA0649203C544A009A936A /* VOYAddReportInteractor.swift */; };
 		65CA064F203C5C67009A936A /* DataBindOnDemandTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65CA064B203C5C66009A936A /* DataBindOnDemandTableViewCell.swift */; };
 		65CA0650203C5C67009A936A /* DataBindOnDemandTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65CA064C203C5C66009A936A /* DataBindOnDemandTableView.swift */; };
@@ -85,6 +84,7 @@
 		65D73B58203EF4280055F1A8 /* VOYFileUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65D73B57203EF4280055F1A8 /* VOYFileUtil.swift */; };
 		65D73B5A203EF9A00055F1A8 /* VOYCameraDataStorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65D73B59203EF9A00055F1A8 /* VOYCameraDataStorageManager.swift */; };
 		65D73B5F204046840055F1A8 /* VOYMediaDownloadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65D73B5E204046840055F1A8 /* VOYMediaDownloadManager.swift */; };
+		65D73B6120409E820055F1A8 /* VOYMediaFileInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65D73B6020409E820055F1A8 /* VOYMediaFileInteractor.swift */; };
 		65F346072020A87A00AC5437 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65F346062020A87A00AC5437 /* AppDelegate.swift */; };
 		65F3460E2020A87A00AC5437 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 65F3460D2020A87A00AC5437 /* Assets.xcassets */; };
 		65F346112020A87A00AC5437 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 65F3460F2020A87A00AC5437 /* LaunchScreen.storyboard */; };
@@ -191,7 +191,6 @@
 		65B2EAE6203DC2ED00BD84C6 /* VOYReportStorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VOYReportStorageManager.swift; sourceTree = "<group>"; };
 		65C7B5DE202B4D3A003087EB /* VOYTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VOYTheme.swift; sourceTree = "<group>"; };
 		65C7B5EC202B948E003087EB /* VOYReport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VOYReport.swift; sourceTree = "<group>"; };
-		65CA0647203C4D2B009A936A /* VOYMediaUploadManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VOYMediaUploadManager.swift; sourceTree = "<group>"; };
 		65CA0649203C544A009A936A /* VOYAddReportInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VOYAddReportInteractor.swift; sourceTree = "<group>"; };
 		65CA064B203C5C66009A936A /* DataBindOnDemandTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataBindOnDemandTableViewCell.swift; sourceTree = "<group>"; };
 		65CA064C203C5C66009A936A /* DataBindOnDemandTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataBindOnDemandTableView.swift; sourceTree = "<group>"; };
@@ -204,6 +203,7 @@
 		65D73B59203EF9A00055F1A8 /* VOYCameraDataStorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VOYCameraDataStorageManager.swift; sourceTree = "<group>"; };
 		65D73B5B203F03B50055F1A8 /* Voy.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Voy.entitlements; sourceTree = "<group>"; };
 		65D73B5E204046840055F1A8 /* VOYMediaDownloadManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VOYMediaDownloadManager.swift; sourceTree = "<group>"; };
+		65D73B6020409E820055F1A8 /* VOYMediaFileInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VOYMediaFileInteractor.swift; sourceTree = "<group>"; };
 		65F346032020A87A00AC5437 /* Voy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Voy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		65F346062020A87A00AC5437 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		65F3460D2020A87A00AC5437 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -296,6 +296,7 @@
 		655BD12C202112F600D69EA2 /* AddReport */ = {
 			isa = PBXGroup;
 			children = (
+				65D73B6020409E820055F1A8 /* VOYMediaFileInteractor.swift */,
 				657C3F73203B72990077F07B /* VOYAddReportAttachViewCameraExtension.swift */,
 				655BD13D2022437800D69EA2 /* Cell */,
 				655BD12D2021148800D69EA2 /* VOYAddReportAttachViewController.swift */,
@@ -415,7 +416,6 @@
 			children = (
 				6534A24F203DCA6900336931 /* VOYRequestManager.swift */,
 				657C3F6D203768D90077F07B /* VOYLocationManager.swift */,
-				65CA0647203C4D2B009A936A /* VOYMediaUploadManager.swift */,
 				65B2EAE6203DC2ED00BD84C6 /* VOYReportStorageManager.swift */,
 				65D73B4F203DF45E0055F1A8 /* VOYReportSyncManager.swift */,
 				65D73B59203EF9A00055F1A8 /* VOYCameraDataStorageManager.swift */,
@@ -960,7 +960,6 @@
 				655BD16E2024CC5F00D69EA2 /* VOYReportListViewController.swift in Sources */,
 				655BD14720234A4A00D69EA2 /* VOYConstant.swift in Sources */,
 				655BD1222020E4FA00D69EA2 /* UIColorExtension.swift in Sources */,
-				65CA0648203C4D2B009A936A /* VOYMediaUploadManager.swift in Sources */,
 				65B2EAE7203DC2ED00BD84C6 /* VOYReportStorageManager.swift in Sources */,
 				655BD13B2022396700D69EA2 /* VOYAddReportDataViewController.swift in Sources */,
 				655BD18A2028841100D69EA2 /* UIViewControllerExtension.swift in Sources */,
@@ -993,6 +992,7 @@
 				65D73B5A203EF9A00055F1A8 /* VOYCameraDataStorageManager.swift in Sources */,
 				65AF37F8202E10E600D64CE4 /* VOYLoginInteractor.swift in Sources */,
 				655BD14E20237EC600D69EA2 /* VOYAddReportSuccessViewController.swift in Sources */,
+				65D73B6120409E820055F1A8 /* VOYMediaFileInteractor.swift in Sources */,
 				65F346422020B82B00AC5437 /* VOYTextFieldView.swift in Sources */,
 				655BD1882024FFD700D69EA2 /* VOYAvatarCollectionViewProvider.swift in Sources */,
 				655BD14A20237BD100D69EA2 /* VOYInfoView.swift in Sources */,

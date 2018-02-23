@@ -14,7 +14,8 @@ class VOYAddReportInteractor: NSObject {
     static let shared = VOYAddReportInteractor()
     
     func save(report:VOYReport, completion:@escaping(Error?,Int?) -> Void) {
-        let url = VOYConstant.API.URL + "reports/"
+        let reportIDString = report.id == nil ? "" : "\(report.id!)"
+        let url = VOYConstant.API.URL + "reports/" + reportIDString
         let authToken = VOYUser.activeUser()!.authToken
         
         let headers = ["Authorization" : "Token " + authToken!, "Content-Type" : "application/json"]
@@ -25,8 +26,9 @@ class VOYAddReportInteractor: NSObject {
                     completion(error, nil)
                 }else if let value = dataResponse.result.value as? [String:Any] {
                     if let reportID = value["id"] as? Int {
+                        VOYMediaFileInteractor.shared.delete(mediaFiles: report.removedMedias)
                         VOYReportStorageManager.shared.removeFromStorageAfterSave(report: report)
-                        VOYMediaUploadManager.shared.upload(reportID: reportID, cameraDataList: report.cameraDataList!, completion: { (error) in
+                        VOYMediaFileInteractor.shared.upload(reportID: reportID, cameraDataList: report.cameraDataList!, completion: { (error) in
                         })
                         completion(nil, reportID)
                     }else {

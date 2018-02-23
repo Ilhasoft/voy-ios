@@ -9,11 +9,32 @@
 import UIKit
 import Alamofire
 
-class VOYMediaUploadManager: NSObject {
+class VOYMediaFileInteractor: NSObject {
 
-    static let shared = VOYMediaUploadManager()
+    static let shared = VOYMediaFileInteractor()
     
     static var isUploading = false
+    
+    func delete(mediaFiles:[VOYMedia]?) -> Void {
+        guard let mediaFiles = mediaFiles else {return}
+        let mediaIds = mediaFiles.map {($0.id!)}
+        var mediaIdsString = ""
+        for mediaId in mediaIds {
+            mediaIdsString = mediaIdsString + "\(mediaId)" + ","
+        }
+        mediaIdsString.removeLast()
+        let url = VOYConstant.API.URL + "report-files/" + mediaIdsString
+        var headers = ["Authorization" : "Token " + VOYUser.activeUser()!.authToken]
+        headers["Content-Type"] = "application/x-www-form-urlencoded"
+        
+        Alamofire.request(url, method: .delete, headers: headers).responseJSON { (dataResponse:DataResponse<Any>) in
+            if let value = dataResponse.result.value {
+                print(value)
+            }else if let error = dataResponse.result.error {
+                print(error.localizedDescription)
+            }
+        }
+    }
     
     func upload(reportID: Int, cameraDataList:[VOYCameraData], completion:@escaping(Error?) -> Void) {
         for (_,cameraData) in cameraDataList.enumerated() {
@@ -25,7 +46,7 @@ class VOYMediaUploadManager: NSObject {
             }
             
             if NetworkReachabilityManager()!.isReachable {
-                VOYMediaUploadManager.isUploading = true
+                VOYMediaFileInteractor.isUploading = true
                 Alamofire.upload(
                     multipartFormData: { multipartFormData in
                         multipartFormData.append("\(report_id)".data(using: String.Encoding.utf8)!, withName: "report_id")
@@ -36,7 +57,7 @@ class VOYMediaUploadManager: NSObject {
                     method:.post,
                     headers: ["Authorization" : "Token " + VOYUser.activeUser()!.authToken],
                     encodingCompletion: { encodingResult in
-                        VOYMediaUploadManager.isUploading = false
+                        VOYMediaFileInteractor.isUploading = false
                         switch encodingResult {
                         case .success(let upload, _, _):
                             upload.responseJSON { response in
@@ -59,8 +80,6 @@ class VOYMediaUploadManager: NSObject {
             }
     
         }
-        
-        
         
     }
     

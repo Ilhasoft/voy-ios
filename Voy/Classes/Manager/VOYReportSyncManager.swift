@@ -46,9 +46,9 @@ class VOYReportSyncManager: NSObject {
             return
         }
         
-        guard !VOYMediaUploadManager.isUploading else { return }
+        guard !VOYMediaFileInteractor.isUploading else { return }
         
-        VOYMediaUploadManager.shared.upload(reportID: 0, cameraDataList: cameraDataList) { (error) in }
+        VOYMediaFileInteractor.shared.upload(reportID: 0, cameraDataList: cameraDataList) { (error) in }
     }
     
 }

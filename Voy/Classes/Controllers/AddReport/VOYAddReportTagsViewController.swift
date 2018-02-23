@@ -17,16 +17,14 @@ class VOYAddReportTagsViewController: UIViewController, NVActivityIndicatorViewa
     
     var selectedTags = [String]() {
         didSet {
-            self.navigationItem.rightBarButtonItem!.isEnabled = !selectedTags.isEmpty
+            self.navigationItem.rightBarButtonItem?.isEnabled = !selectedTags.isEmpty
         }
     }
     
-    var report:VOYReport!
-    var removedMedias:[VOYMedia]?
+    var report:VOYReport!    
     
-    init(report:VOYReport, removedMedias:[VOYMedia]?) {
+    init(report:VOYReport) {
         self.report = report
-        self.removedMedias = removedMedias
         super.init(nibName: "VOYAddReportTagsViewController", bundle: nil)
     }
     
@@ -38,13 +36,13 @@ class VOYAddReportTagsViewController: UIViewController, NVActivityIndicatorViewa
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: " ", style: .plain, target: nil, action: nil)
-        loadTags()
         addNextButton()
+        loadTags()
+        selectTags()
     }
 
     func addNextButton() {
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Next", style: .plain, target: self, action: #selector(save))
-        self.navigationItem.rightBarButtonItem!.isEnabled = false
     }
     
     @objc func save() {
@@ -63,6 +61,25 @@ class VOYAddReportTagsViewController: UIViewController, NVActivityIndicatorViewa
     private func loadTags() {
         viewTags.addTags(VOYTheme.activeTheme()!.tags)
         viewTags.delegate = self
+    }
+    
+    private func selectTags() {
+        guard let tags = self.report.tags else {
+            return
+        }
+        self.selectedTags = tags
+        
+        for tag in tags {
+            
+            let tagViewFiltered = self.viewTags.tagViews.filter {($0.titleLabel!.text! == tag)}
+            
+            guard !tagViewFiltered.isEmpty else { return }
+            
+            tagViewFiltered.first!.textColor = UIColor.white
+            tagViewFiltered.first!.tagBackgroundColor = VOYConstant.Color.blue
+            selectedTags.append(tag)
+            
+        }
     }
     
     private func addTag(tagView:TagView, title:String) {

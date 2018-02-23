@@ -16,7 +16,7 @@ enum VOYReportStatus:Int {
 
 class VOYReport: Mappable {
     
-    var id:Int!
+    var id:Int?
     var theme:Int!
     var name:String!
     var description:String!

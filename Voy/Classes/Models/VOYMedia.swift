@@ -14,6 +14,7 @@ class VOYMedia: Mappable {
     var title:String!
     var media_type:String!
     var file:String!
+    var thumbnail:String?
     
     init() {
         
@@ -26,6 +27,7 @@ class VOYMedia: Mappable {
         title <- map["title"]
         media_type <- map["media_type"]
         file <- map["file"]
+        thumbnail <- map["thumbnail"]
     }
     
     func map() -> Map {
