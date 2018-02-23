@@ -65,13 +65,11 @@ class VOYAddReportDataViewController: UIViewController {
             return
         }
         
-        var report = VOYReport(JSON: self.dataBindView.toJSON())!
+        let report = VOYReport(JSON: self.dataBindView.toJSON())!
         if let savedReport = self.savedReport {
-            report = savedReport
-            report.urls = savedReport.urls
             report.tags = savedReport.tags
+            report.id = savedReport.id
         }
-        report.id = self.savedReport?.id ?? nil
         report.cameraDataList = cameraDataList
         self.navigationController?.pushViewController(VOYAddReportTagsViewController(report:report), animated: true)
     }

@@ -19,9 +19,10 @@ class VOYAddReportInteractor: NSObject {
         let authToken = VOYUser.activeUser()!.authToken
         
         let headers = ["Authorization" : "Token " + authToken!, "Content-Type" : "application/json"]
+        let method = report.id != nil ? HTTPMethod.put : HTTPMethod.post
         
         if NetworkReachabilityManager()!.isReachable {
-            Alamofire.request(url, method: .post, parameters: report.toJSON(), encoding: JSONEncoding.default, headers: headers).responseJSON { (dataResponse:DataResponse<Any>) in
+            Alamofire.request(url, method: method, parameters: report.toJSON(), encoding: JSONEncoding.default, headers: headers).responseJSON { (dataResponse:DataResponse<Any>) in
                 if let error = dataResponse.result.error {
                     completion(error, nil)
                 }else if let value = dataResponse.result.value as? [String:Any] {
