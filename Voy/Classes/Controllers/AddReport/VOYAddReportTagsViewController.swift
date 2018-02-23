@@ -53,7 +53,11 @@ class VOYAddReportTagsViewController: UIViewController, NVActivityIndicatorViewa
         self.startAnimating()
         VOYAddReportInteractor.shared.save(report: report) { (error,reporID) in
             self.stopAnimating()
-            self.navigationController?.pushViewController(VOYAddReportSuccessViewController(), animated: true)
+            if error != nil {
+                self.navigationController?.pushViewController(VOYAddReportSuccessViewController(), animated: true)
+            }else {
+                print("error: " + error!.localizedDescription)
+            }
         }
         
     }
