@@ -24,7 +24,8 @@ class VOYReportSyncManager: NSObject {
         }
         
         for reportJSON in pendentReportsJSON {
-            VOYAddReportInteractor.shared.save(report: VOYReport(JSON:reportJSON)!, completion: { (error, reportID) in })
+            let report = VOYReport(JSON:reportJSON)!
+            VOYAddReportInteractor.shared.save(report: report, completion: { (error, reportID) in })
         }
     }
     

@@ -21,6 +21,15 @@ class VOYAddReportAttachViewController: UIViewController, NVActivityIndicatorVie
     var imagePickerController:UIImagePickerController!
     var actionSheetController:VOYActionSheetViewController!
     
+    var report:VOYReport?
+    var removedMedias = [VOYMedia]()
+    
+    var mediaList = [VOYMedia]() {
+        didSet {
+            self.navigationItem.rightBarButtonItem!.isEnabled = !cameraDataList.isEmpty
+        }
+    }
+    
     var cameraDataList = [VOYCameraData]() {
         didSet {
             self.navigationItem.rightBarButtonItem!.isEnabled = !cameraDataList.isEmpty
@@ -34,6 +43,11 @@ class VOYAddReportAttachViewController: UIViewController, NVActivityIndicatorVie
     }
     
     var tappedMediaView:VOYAddMediaView!
+    
+    init(report:VOYReport) {
+        self.report = report
+        super.init(nibName: "VOYAddReportAttachViewController", bundle: nil)
+    }
     
     init() {
         super.init(nibName: "VOYAddReportAttachViewController", bundle: nil)
@@ -56,6 +70,17 @@ class VOYAddReportAttachViewController: UIViewController, NVActivityIndicatorVie
         self.navigationController?.setNavigationBarHidden(false, animated: false)
         setupMediaViewDelegate()
         addNextButton()
+        loadFromReport()
+    }
+    
+    func loadFromReport() {
+        guard let report = self.report else { return }
+        self.navigationItem.rightBarButtonItem!.isEnabled = true
+        mediaList = report.files
+        for (index,mediaView) in self.mediaViews.enumerated() {
+            guard index < report.files.count else { return }
+            mediaView.setupWithMedia(media: mediaList[index])
+        }
     }
     
     func addNextButton() {
@@ -64,7 +89,8 @@ class VOYAddReportAttachViewController: UIViewController, NVActivityIndicatorVie
     }
     
     @objc func openNextController() {
-        self.navigationController?.pushViewController(VOYAddReportDataViewController(cameraDataList:self.cameraDataList), animated: true)
+        let addReportDataViewController = self.report != nil ? VOYAddReportDataViewController(savedReport: self.report!, removedMedias:self.removedMedias) : VOYAddReportDataViewController(cameraDataList:self.cameraDataList)
+        self.navigationController?.pushViewController(addReportDataViewController, animated: true)
     }
     
     func setupMediaViewDelegate() {
@@ -87,9 +113,17 @@ extension VOYAddReportAttachViewController : VOYAddMediaViewDelegate {
         actionSheetController.show(true, inViewController: self)
     }
     func removeMediaButtonDidTap(mediaView: VOYAddMediaView) {
-        let index = self.cameraDataList.index{($0.id == mediaView.cameraData.id)}
-        if let index = index {
-            self.cameraDataList.remove(at: index)
+        if let cameraData = mediaView.cameraData {
+            let index = self.cameraDataList.index{($0.id == cameraData.id)}
+            if let index = index {
+                self.cameraDataList.remove(at: index)
+            }
+        }else if let media = mediaView.media {
+            let index = self.mediaList.index{($0.id == media.id)}
+            if let index = index {
+                self.mediaList.remove(at: index)
+                self.removedMedias.append(media)
+            }
         }
     }
 }

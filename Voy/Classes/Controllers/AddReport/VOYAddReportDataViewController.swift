@@ -24,14 +24,16 @@ class VOYAddReportDataViewController: UIViewController {
     
     var cameraDataList = [VOYCameraData]()
     var savedReport:VOYReport?
+    var removedMedias:[VOYMedia]?
     
     init(cameraDataList:[VOYCameraData]) {
         self.cameraDataList = cameraDataList
         super.init(nibName: "VOYAddReportDataViewController", bundle: nil)
     }
     
-    init(savedReport:VOYReport) {
+    init(savedReport:VOYReport, removedMedias:[VOYMedia]) {
         self.savedReport = savedReport
+        self.removedMedias = removedMedias
         super.init(nibName: "VOYAddReportDataViewController", bundle: nil)
     }
     
@@ -68,7 +70,7 @@ class VOYAddReportDataViewController: UIViewController {
         let report = VOYReport(JSON: self.dataBindView.toJSON())!
         report.id = self.savedReport?.id ?? nil
         report.cameraDataList = cameraDataList
-        self.navigationController?.pushViewController(VOYAddReportTagsViewController(report:report), animated: true)
+        self.navigationController?.pushViewController(VOYAddReportTagsViewController(report:report, removedMedias:self.removedMedias), animated: true)
     }
     
     func setupLayout() {

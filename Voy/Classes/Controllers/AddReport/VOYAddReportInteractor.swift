@@ -27,7 +27,6 @@ class VOYAddReportInteractor: NSObject {
                     if let reportID = value["id"] as? Int {
                         VOYReportStorageManager.shared.removeFromStorageAfterSave(report: report)
                         VOYMediaUploadManager.shared.upload(reportID: reportID, cameraDataList: report.cameraDataList!, completion: { (error) in
-//                            completion(nil, reportID)
                         })
                         completion(nil, reportID)
                     }else {

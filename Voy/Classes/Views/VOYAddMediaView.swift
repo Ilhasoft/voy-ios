@@ -20,8 +20,9 @@ class VOYAddMediaView: UIView {
     @IBOutlet weak var imgView: UIImageView!
     @IBOutlet var contentView:UIView!
     
-    var cameraData:VOYCameraData!
+    var cameraData:VOYCameraData?
     var delegate:VOYAddMediaViewDelegate?
+    var media:VOYMedia?
     
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)!
@@ -54,6 +55,19 @@ class VOYAddMediaView: UIView {
             self.imgView.image = cameraData.image!
         }else if cameraData.type == .video {            
             self.imgView.image = ISVideoUtil.generateThumbnail(URL(fileURLWithPath: cameraData.path))
+        }
+    }
+    
+    func setupWithMedia(media:VOYMedia) {
+        self.media = media
+        self.imgView.isHidden = false
+        self.imgViewPlusIcon.isHidden = true
+        self.btRemove.isHidden = false
+        
+        if media.media_type == VOYMediaType.image.rawValue {
+            self.imgView.kf.setImage(with: URL(string:media.file))
+        }else if media.media_type == VOYMediaType.video.rawValue {
+            print("need download video to show thumb")
         }
     }
     

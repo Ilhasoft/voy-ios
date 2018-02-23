@@ -22,9 +22,11 @@ class VOYAddReportTagsViewController: UIViewController, NVActivityIndicatorViewa
     }
     
     var report:VOYReport!
+    var removedMedias:[VOYMedia]?
     
-    init(report:VOYReport) {
+    init(report:VOYReport, removedMedias:[VOYMedia]?) {
         self.report = report
+        self.removedMedias = removedMedias
         super.init(nibName: "VOYAddReportTagsViewController", bundle: nil)
     }
     

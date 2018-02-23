@@ -29,6 +29,7 @@ class VOYReport: Mappable {
     var location:String!
     var status:Int?
     var cameraDataList:[VOYCameraData]?
+    var removedMedias:[VOYMedia]?
     var lastNotification:String!
     
     init() {
@@ -50,6 +51,7 @@ class VOYReport: Mappable {
         location <- map["location"]
         status <- map["status"]
         cameraDataList <- map["cameraDataList"]
+        removedMedias <- map["removedMedias"]
         lastNotification <- map["last_notification"]
     }
     

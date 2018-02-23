@@ -128,7 +128,7 @@ extension VOYReportDetailViewController : VOYActionSheetViewControllerDelegate {
     
     func buttonDidTap(actionSheetViewController: VOYActionSheetViewController, button: UIButton, index: Int) {
         actionSheetViewController.close()
-        self.navigationController?.pushViewController(VOYAddReportAttachViewController(), animated: true)
+        self.navigationController?.pushViewController(VOYAddReportAttachViewController(report:self.report), animated: true)
     }
 }
 
