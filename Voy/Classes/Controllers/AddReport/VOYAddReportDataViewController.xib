@@ -21,6 +21,7 @@
                 <outlet property="btAddLink" destination="Ljy-7V-vnV" id="Esb-hq-AMi"/>
                 <outlet property="dataBindView" destination="2IB-dE-tl7" id="aVy-jS-ABx"/>
                 <outlet property="descriptionView" destination="qbh-Cy-T1c" id="8GY-oV-VQ2"/>
+                <outlet property="heightBindView" destination="DIX-PP-b7g" id="s0h-aF-pKR"/>
                 <outlet property="heightDescriptionView" destination="Dua-wf-h17" id="k4i-2D-u53"/>
                 <outlet property="lbAddLink" destination="4Jy-6e-IFa" id="Iqc-dr-5or"/>
                 <outlet property="lbTitle" destination="jFq-xv-cro" id="pe6-oe-ze3"/>
@@ -70,9 +71,9 @@
                                     </constraints>
                                 </view>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add Link" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Jy-6e-IFa">
-                                    <rect key="frame" x="25" y="282" width="96" height="30"/>
+                                    <rect key="frame" x="25" y="282" width="96" height="25"/>
                                     <constraints>
-                                        <constraint firstAttribute="height" constant="30" id="04T-87-B0J"/>
+                                        <constraint firstAttribute="height" constant="25" id="04T-87-B0J"/>
                                         <constraint firstAttribute="width" constant="96" id="Yj0-DF-mCa"/>
                                     </constraints>
                                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
@@ -80,7 +81,7 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="c7T-5J-oYP">
-                                    <rect key="frame" x="25" y="313" width="273" height="30"/>
+                                    <rect key="frame" x="25" y="308" width="273" height="30"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="30" id="FTL-QW-I9W"/>
                                     </constraints>
@@ -100,7 +101,7 @@
                                     </connections>
                                 </button>
                                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ozX-WH-phr" customClass="DataBindTableView" customModule="DataBindSwift">
-                                    <rect key="frame" x="25" y="367" width="325" height="323"/>
+                                    <rect key="frame" x="25" y="362" width="325" height="328"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <userDefinedRuntimeAttributes>
                                         <userDefinedRuntimeAttribute type="string" keyPath="fieldPath" value="report.urls"/>
@@ -135,6 +136,7 @@
                                 <constraint firstItem="ozX-WH-phr" firstAttribute="leading" secondItem="2IB-dE-tl7" secondAttribute="leading" constant="25" id="89F-xD-SKY"/>
                                 <constraint firstAttribute="trailing" secondItem="ozX-WH-phr" secondAttribute="trailing" constant="25" id="9rl-xg-Ahp"/>
                                 <constraint firstAttribute="trailing" secondItem="fVN-Il-aK5" secondAttribute="trailing" constant="25" id="Anm-Xv-Bno"/>
+                                <constraint firstAttribute="height" constant="690" id="DIX-PP-b7g"/>
                                 <constraint firstAttribute="bottom" secondItem="ozX-WH-phr" secondAttribute="bottom" id="FeN-Uh-0hH"/>
                                 <constraint firstItem="qbh-Cy-T1c" firstAttribute="top" secondItem="fVN-Il-aK5" secondAttribute="bottom" constant="11" id="Oz5-RS-wTr"/>
                                 <constraint firstItem="fVN-Il-aK5" firstAttribute="top" secondItem="jFq-xv-cro" secondAttribute="bottom" constant="34" id="PRw-MP-4nU"/>
@@ -157,7 +159,6 @@
                         </view>
                     </subviews>
                     <constraints>
-                        <constraint firstItem="2IB-dE-tl7" firstAttribute="height" secondItem="GnQ-yH-Jeu" secondAttribute="height" id="Ehb-bJ-NPU"/>
                         <constraint firstAttribute="bottom" secondItem="2IB-dE-tl7" secondAttribute="bottom" id="GQh-TG-PGT"/>
                         <constraint firstAttribute="trailing" secondItem="2IB-dE-tl7" secondAttribute="trailing" id="ReP-7L-NzX"/>
                         <constraint firstItem="2IB-dE-tl7" firstAttribute="top" secondItem="GnQ-yH-Jeu" secondAttribute="top" id="b8K-Zt-3fn"/>

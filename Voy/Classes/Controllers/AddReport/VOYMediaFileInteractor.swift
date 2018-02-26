@@ -26,13 +26,10 @@ class VOYMediaFileInteractor: NSObject {
             mediaIdsString = mediaIdsString + "\(mediaId)" + ","
         }
         mediaIdsString.removeLast()
-        let url = VOYConstant.API.URL + "report-files/?ids=" + mediaIdsString
-        let headers:HTTPHeaders = ["Authorization" : "Token " + authToken, "Content-Type" : "application/x-www-form-urlencoded"]
-        
-        print(url)
-        print(headers)
-        
-        Alamofire.request(url, method: .delete , headers: headers).responseJSON { (dataResponse:DataResponse<Any>) in
+        let url = VOYConstant.API.URL + "report-files/delete/?ids=" + mediaIdsString
+        let headers:HTTPHeaders = ["Authorization" : "Token " + authToken]
+
+        Alamofire.request(url, method: .post , headers: headers).responseJSON { (dataResponse:DataResponse<Any>) in
             if let value = dataResponse.result.value {
                 print(value)
             }else if let error = dataResponse.result.error {
@@ -57,6 +54,9 @@ class VOYMediaFileInteractor: NSObject {
                         multipartFormData.append("\(report_id)".data(using: String.Encoding.utf8)!, withName: "report_id")
                         multipartFormData.append("title".data(using: String.Encoding.utf8)!, withName: "title")
                         multipartFormData.append(URL(fileURLWithPath: cameraData.path), withName: "file")
+                        if cameraData.type == VOYMediaType.video {
+                            multipartFormData.append(URL(fileURLWithPath: cameraData.thumbnailPath!), withName: "thumbnail")
+                        }
                 },
                     to: VOYConstant.API.URL + "report-files/",
                     method:.post,

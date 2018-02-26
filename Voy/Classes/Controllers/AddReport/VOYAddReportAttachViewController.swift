@@ -88,7 +88,15 @@ class VOYAddReportAttachViewController: UIViewController, NVActivityIndicatorVie
     }
     
     @objc func openNextController() {
-        let addReportDataViewController = self.report != nil ? VOYAddReportDataViewController(savedReport: self.report!) : VOYAddReportDataViewController(cameraDataList:self.cameraDataList)
+        var addReportDataViewController:VOYAddReportDataViewController!
+        
+        if report != nil {
+            report!.cameraDataList = self.cameraDataList
+            addReportDataViewController = VOYAddReportDataViewController(savedReport: self.report!)
+        }else {
+            addReportDataViewController = VOYAddReportDataViewController(cameraDataList:self.cameraDataList)
+        }
+        
         self.navigationController?.pushViewController(addReportDataViewController, animated: true)
     }
     

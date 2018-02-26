@@ -74,6 +74,11 @@ class VOYPlayMediaView: UIView, NVActivityIndicatorViewable {
         case VOYMediaType.video.rawValue:
             self.activityView.isHidden = false
             self.activityView.startAnimating()
+            if let thumbnail = self.media.thumbnail {
+                self.imgView.kf.setImage(with: URL(string:thumbnail))
+            }else {
+                print("video sem thumbnail")
+            }
             VOYMediaDownloadManager.shared.download(url: self.media.file, completion: { (url) in
                 self.activityView.isHidden = true
                 self.activityView.stopAnimating()

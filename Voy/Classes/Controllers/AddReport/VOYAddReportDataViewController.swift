@@ -15,6 +15,7 @@ class VOYAddReportDataViewController: UIViewController {
     @IBOutlet var lbTitle:UILabel!
     @IBOutlet weak var titleView: VOYTextFieldView!
     @IBOutlet weak var heightDescriptionView: NSLayoutConstraint!
+    @IBOutlet weak var heightBindView: NSLayoutConstraint!
     @IBOutlet weak var descriptionView: VOYTextView!
     @IBOutlet weak var lbAddLink: UILabel!
     @IBOutlet weak var txtFieldLink: UITextField!
@@ -70,8 +71,10 @@ class VOYAddReportDataViewController: UIViewController {
             report.tags = savedReport.tags
             report.id = savedReport.id
             report.removedMedias = savedReport.removedMedias
+            report.cameraDataList = savedReport.cameraDataList
+        }else {
+            report.cameraDataList = cameraDataList
         }
-        report.cameraDataList = cameraDataList
         self.navigationController?.pushViewController(VOYAddReportTagsViewController(report:report), animated: true)
     }
     
@@ -150,6 +153,10 @@ extension VOYAddReportDataViewController : UITextFieldDelegate {
 extension VOYAddReportDataViewController : VOYTextViewDelegate {
     func textViewDidChangeHeight(_ textView: GrowingTextView, height: CGFloat) {
         self.heightDescriptionView.constant = height + 15
+        print(tbViewLinks.frame.size.height)
+        if tbViewLinks.frame.size.height <= 0 {
+//            self.heightBindView.constant = 90
+        }
         UIView.animate(withDuration: 0.2) {
             self.view.layoutIfNeeded()
         }

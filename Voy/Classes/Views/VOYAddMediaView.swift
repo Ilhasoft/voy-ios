@@ -54,7 +54,7 @@ class VOYAddMediaView: UIView {
         if cameraData.type == .image {
             self.imgView.image = cameraData.image!
         }else if cameraData.type == .video {            
-            self.imgView.image = ISVideoUtil.generateThumbnail(URL(fileURLWithPath: cameraData.path))
+            self.imgView.image = cameraData.thumbnail!
         }
     }
     

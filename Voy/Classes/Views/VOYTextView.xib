@@ -47,15 +47,15 @@
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="string" keyPath="placeHolder" value="Description"/>
                         <userDefinedRuntimeAttribute type="number" keyPath="maxLength">
-                            <integer key="value" value="1000"/>
+                            <integer key="value" value="800"/>
                         </userDefinedRuntimeAttribute>
                         <userDefinedRuntimeAttribute type="number" keyPath="maxHeight">
-                            <real key="value" value="400"/>
+                            <real key="value" value="240"/>
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                 </textView>
                 <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bgh-Si-JPN">
-                    <rect key="frame" x="6" y="0.0" width="363" height="21"/>
+                    <rect key="frame" x="6" y="-4" width="363" height="21"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="21" id="KDg-CV-hP8"/>
                     </constraints>
@@ -69,7 +69,7 @@
                 <constraint firstItem="pWf-51-Hxt" firstAttribute="top" secondItem="1HN-05-oBD" secondAttribute="bottom" id="1bp-PV-5cV"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Bgh-Si-JPN" secondAttribute="trailing" constant="6" id="2rP-WM-nVU"/>
                 <constraint firstItem="1HN-05-oBD" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="6" id="CdJ-4F-SaJ"/>
-                <constraint firstItem="Bgh-Si-JPN" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="VDC-C2-aPe"/>
+                <constraint firstItem="Bgh-Si-JPN" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="-4" id="VDC-C2-aPe"/>
                 <constraint firstItem="Bgh-Si-JPN" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="6" id="gYi-UZ-cbR"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="1HN-05-oBD" secondAttribute="trailing" constant="6" id="hIM-eG-lu5"/>
                 <constraint firstAttribute="trailing" secondItem="pWf-51-Hxt" secondAttribute="trailing" id="meM-M7-XJd"/>
