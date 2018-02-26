@@ -15,14 +15,13 @@ class VOYAccountInteractor: NSObject {
     func updateUser(avatar:Int?, password:String?, completion:@escaping(Error?) -> Void) {
         
         let user = VOYUser.activeUser()!
-        var jsonUser = user.toJSON()
+        var jsonUser = [String:Any]()
         let authToken = user.authToken!
         
         if let avatar = avatar {
             jsonUser["avatar"] = avatar
-        }else {
-            jsonUser["avatar"] = nil
         }
+        
         if let password = password {
             jsonUser["password"] = password
         }
@@ -31,7 +30,8 @@ class VOYAccountInteractor: NSObject {
         let headers = ["Authorization" : "Token " + authToken, "Content-Type" : "application/json"]
         
         Alamofire.request(url, method: .put, parameters: jsonUser, encoding: JSONEncoding.default, headers: headers).responseJSON { (dataResponse:DataResponse<Any>) in
-            if let _ = dataResponse.result.value {
+            if let value = dataResponse.result.value {
+                print(value)
                 VOYLoginInteractor.shared.getUserData(authToken: user.authToken, completion: { (user, error) in
                     if let error = error {
                         print(error.localizedDescription)

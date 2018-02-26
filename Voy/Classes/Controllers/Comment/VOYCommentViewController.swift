@@ -97,11 +97,14 @@ class VOYCommentViewController: UIViewController {
         if !text.isEmpty {
             let comment = VOYComment(text:text, reportID:self.report.id!)
             self.txtField.text = ""
+            self.txtField.resignFirstResponder()
             VOYCommentInteractor.shared.save(comment:comment) { (error) in
                 if let error = error {
                     print(error.localizedDescription)
                 }
             }
+            let alertViewController = VOYAlertViewController(title: "Thanks!", message: "Your comment was sent to moderation after approved it will available here!")
+            alertViewController.show(true, inViewController: self)
         }
     }
     
