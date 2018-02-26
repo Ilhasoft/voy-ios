@@ -112,7 +112,7 @@ class VOYReportDetailViewController: UIViewController {
     }
     
     @IBAction func btCommentTapped(_ sender: Any) {
-        self.navigationController?.pushViewController(VOYCommentViewController(), animated: true)
+        self.navigationController?.pushViewController(VOYCommentViewController(report:self.report), animated: true)
     }
 }
 extension VOYReportDetailViewController : ISScrollViewPageDelegate {

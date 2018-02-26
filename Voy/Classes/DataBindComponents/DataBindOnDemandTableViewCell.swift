@@ -27,6 +27,7 @@ open class DataBindOnDemandTableViewCell: UITableViewCell, ISOnDemandTableViewCe
  
     open func setupCell(with object: Any, at indexPath: IndexPath) {
         self.object = object as! Map
+        print(self.object.JSON)
         dataBindView.fillFields(withObject:self.object.JSON)
     }
     

@@ -153,10 +153,6 @@ extension VOYAddReportDataViewController : UITextFieldDelegate {
 extension VOYAddReportDataViewController : VOYTextViewDelegate {
     func textViewDidChangeHeight(_ textView: GrowingTextView, height: CGFloat) {
         self.heightDescriptionView.constant = height + 15
-        print(tbViewLinks.frame.size.height)
-        if tbViewLinks.frame.size.height <= 0 {
-//            self.heightBindView.constant = 90
-        }
         UIView.animate(withDuration: 0.2) {
             self.view.layoutIfNeeded()
         }

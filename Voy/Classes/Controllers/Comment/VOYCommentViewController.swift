@@ -11,14 +11,17 @@ import ISOnDemandTableView
 
 class VOYCommentViewController: UIViewController {
     
-    @IBOutlet weak var tableView: ISOnDemandTableView!
+    @IBOutlet weak var tableView: DataBindOnDemandTableView!
     @IBOutlet weak var bottomView: UIView!
     @IBOutlet weak var bgViewTextField: UIView!
     @IBOutlet weak var bottomViewConstraint: NSLayoutConstraint!
     @IBOutlet weak var btSend: UIButton!
     @IBOutlet weak var txtField: UITextField!
     
-    init() {
+    var report:VOYReport!
+    
+    init(report:VOYReport) {
+        self.report = report
         super.init(nibName: "VOYCommentViewController", bundle: nil)
     }
     
@@ -58,7 +61,7 @@ class VOYCommentViewController: UIViewController {
         tableView.refreshControl = nil
         tableView.contentInset = UIEdgeInsetsMake(0, 0, 64, 0)
         tableView.onDemandTableViewDelegate = self
-        tableView.interactor = VOYCommentTableViewProvider()
+        tableView.interactor = DataBindOnDemandTableViewInteractor(configuration: tableView.getConfiguration(), params: ["report":self.report.id!], paginationCount: 20)
         tableView.loadContent()
     }
     
@@ -92,8 +95,13 @@ class VOYCommentViewController: UIViewController {
     func sendComment() {
         let text = self.txtField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
         if !text.isEmpty {
-            self.tableView.insert(object: text as NSObject, at: 0)
+            let comment = VOYComment(text:text, reportID:self.report.id!)
             self.txtField.text = ""
+            VOYCommentInteractor.shared.save(comment:comment) { (error) in
+                if let error = error {
+                    print(error.localizedDescription)
+                }
+            }
         }
     }
     

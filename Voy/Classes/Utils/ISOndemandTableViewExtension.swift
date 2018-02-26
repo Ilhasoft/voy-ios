@@ -10,13 +10,13 @@ import UIKit
 import ISOnDemandTableView
 
 extension ISOnDemandTableView {
-    func insert(object: NSObject, at index: Int) {
+    func insert(object: AnyObject, at index: Int) {
         DispatchQueue.main.async {
             self.interactor?.objects.insert(object, at: index)
             self.beginUpdates()
             self.insertRows(at: [IndexPath(row: index, section: 0)], with: .automatic)
             self.endUpdates()
         }
-    }
+    }        
 }
 

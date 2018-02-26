@@ -8,17 +8,18 @@
 
 import UIKit
 import ISOnDemandTableView
+import DataBindSwift
 
 protocol VOYCommentTableViewCellDelegate {
     func btOptionsDidTap(cell:VOYCommentTableViewCell)
 }
 
-class VOYCommentTableViewCell: UITableViewCell {
+class VOYCommentTableViewCell: DataBindOnDemandTableViewCell {
 
-    @IBOutlet weak var imgAvatar: UIImageView!
-    @IBOutlet weak var lbName: UILabel!
-    @IBOutlet weak var lbDate: UILabel!
-    @IBOutlet weak var lbComment: UILabel!
+    @IBOutlet weak var imgAvatar: DataBindImageView!
+    @IBOutlet weak var lbName: DataBindLabel!
+    @IBOutlet weak var lbDate: DataBindLabel!
+    @IBOutlet weak var lbComment: DataBindLabel!
     @IBOutlet weak var btOptions: UIButton!
     
     var delegate:VOYCommentTableViewCellDelegate?
@@ -27,6 +28,7 @@ class VOYCommentTableViewCell: UITableViewCell {
         super.awakeFromNib()
         contentView.transform = CGAffineTransform(scaleX: 1, y: -1)
         self.selectionStyle = .none
+        self.dataBindView.delegate = self
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -42,9 +44,43 @@ class VOYCommentTableViewCell: UITableViewCell {
     
 }
 
-extension VOYCommentTableViewCell : ISOnDemandTableViewCell {
-    func setupCell(with object: Any, at indexPath: IndexPath) {
-        self.imgAvatar.image = #imageLiteral(resourceName: "avatar4")
-        self.lbComment.text = object as? String
+extension VOYCommentTableViewCell : DataBindViewDelegate {
+    func didFillAllComponents(JSON: [String : Any]) {
+        
     }
+    
+    func willFill(component: Any, value: Any) -> Any? {
+        if let component = component as? UILabel {
+            if component == self.lbDate {
+                let dateFormatter = DateFormatter()
+                dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSSSSZ"
+                let dateString = value as! String
+                let date = dateFormatter.date(from: dateString)
+                
+                let dateFormatter2 = DateFormatter()
+                dateFormatter2.dateFormat = "MMM"
+                dateFormatter2.dateStyle = .medium
+                
+                lbDate.text = dateFormatter2.string(from: date!)
+                
+                return nil
+            }
+            
+        }
+        return value
+    }
+    
+    func didFill(component: Any, value: Any) {
+        
+    }
+    
+    func willSet(component: Any, value: Any) -> Any? {
+        return value
+    }
+    
+    func didSet(component: Any, value: Any) {
+        
+    }
+    
+    
 }
