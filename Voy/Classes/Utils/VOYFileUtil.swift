@@ -33,7 +33,7 @@ class VOYFileUtil: NSObject {
         
         VOYFileUtil.removeFile(URL(string: path)!)
         
-        if ((try? data.write(to: URL(fileURLWithPath: path), options: [.atomic])) != nil) == true {
+        if ((try? data.write(to: URL(fileURLWithPath: path), options: [.atomicWrite])) != nil) == true {
             print("file available")
         }
         

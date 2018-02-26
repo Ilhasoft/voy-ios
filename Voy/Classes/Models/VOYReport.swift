@@ -31,6 +31,7 @@ class VOYReport: Mappable {
     var cameraDataList:[VOYCameraData]?
     var removedMedias:[VOYMedia]?
     var lastNotification:String!
+    var update:Bool!
     
     init() {
         
@@ -53,6 +54,7 @@ class VOYReport: Mappable {
         cameraDataList <- map["cameraDataList"]
         removedMedias <- map["removedMedias"]
         lastNotification <- map["last_notification"]
+        update <- map["update"]
     }
     
     func map() -> Map {
