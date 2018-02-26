@@ -123,6 +123,7 @@ extension VOYAddReportAttachViewController : VOYAddMediaViewDelegate {
                 self.mediaList.remove(at: index)
                 self.removedMedias.append(media)
             }
+            self.report!.removedMedias = self.removedMedias
         }
     }
 }

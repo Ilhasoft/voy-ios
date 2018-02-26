@@ -22,10 +22,6 @@ class DataBindScrollViewPageSwift: ISScrollViewPage, DataBindable {
     
     public var required: Bool = false
     public var requiredError: String = ""
-    public var fieldType: String = "None"
-    public var fieldTypeError: String = ""
-    @IBInspectable open var fieldPath: String = ""
-    public var persist: Bool = false
-    
+    @IBInspectable open var fieldPath: String = ""    
 
 }

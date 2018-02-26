@@ -14,16 +14,18 @@ class VOYAddReportInteractor: NSObject {
     static let shared = VOYAddReportInteractor()
     
     func save(report:VOYReport, completion:@escaping(Error?,Int?) -> Void) {
-        let reportIDString = report.id == nil ? "" : "\(report.id!)"
+        let reportIDString = report.id == nil ? "" : "\(report.id!)/"
+        report.id = nil
         let url = VOYConstant.API.URL + "reports/" + reportIDString
         let authToken = VOYUser.activeUser()!.authToken
         
         let headers = ["Authorization" : "Token " + authToken!, "Content-Type" : "application/json"]
-        let method = report.id != nil ? HTTPMethod.put : HTTPMethod.post
+        let method = !reportIDString.isEmpty ? HTTPMethod.put : HTTPMethod.post
         
         if NetworkReachabilityManager()!.isReachable {
             Alamofire.request(url, method: method, parameters: report.toJSON(), encoding: JSONEncoding.default, headers: headers).responseJSON { (dataResponse:DataResponse<Any>) in
                 if let error = dataResponse.result.error {
+                    print(error)
                     completion(error, nil)
                 }else if let value = dataResponse.result.value as? [String:Any] {
                     if let reportID = value["id"] as? Int {

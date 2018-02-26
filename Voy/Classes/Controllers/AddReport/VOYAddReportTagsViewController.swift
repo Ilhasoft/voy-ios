@@ -53,7 +53,7 @@ class VOYAddReportTagsViewController: UIViewController, NVActivityIndicatorViewa
         self.startAnimating()
         VOYAddReportInteractor.shared.save(report: report) { (error,reporID) in
             self.stopAnimating()
-            if error != nil {
+            if error == nil {
                 self.navigationController?.pushViewController(VOYAddReportSuccessViewController(), animated: true)
             }else {
                 print("error: " + error!.localizedDescription)
@@ -81,7 +81,6 @@ class VOYAddReportTagsViewController: UIViewController, NVActivityIndicatorViewa
             
             tagViewFiltered.first!.textColor = UIColor.white
             tagViewFiltered.first!.tagBackgroundColor = VOYConstant.Color.blue
-            selectedTags.append(tag)
             
         }
     }

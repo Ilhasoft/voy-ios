@@ -40,7 +40,6 @@
                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                         <integer key="value" value="27"/>
                                     </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="fieldType" value="Image"/>
                                     <userDefinedRuntimeAttribute type="string" keyPath="fieldPath" value="report.last_image.file"/>
                                 </userDefinedRuntimeAttributes>
                             </imageView>

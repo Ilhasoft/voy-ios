@@ -17,17 +17,22 @@ class VOYMediaFileInteractor: NSObject {
     
     func delete(mediaFiles:[VOYMedia]?) -> Void {
         guard let mediaFiles = mediaFiles else {return}
+        
+        let authToken = VOYUser.activeUser()!.authToken!
+        
         let mediaIds = mediaFiles.map {($0.id!)}
         var mediaIdsString = ""
         for mediaId in mediaIds {
             mediaIdsString = mediaIdsString + "\(mediaId)" + ","
         }
         mediaIdsString.removeLast()
-        let url = VOYConstant.API.URL + "report-files/" + mediaIdsString
-        var headers = ["Authorization" : "Token " + VOYUser.activeUser()!.authToken]
-        headers["Content-Type"] = "application/x-www-form-urlencoded"
+        let url = VOYConstant.API.URL + "report-files/?ids=" + mediaIdsString
+        let headers:HTTPHeaders = ["Authorization" : "Token " + authToken, "Content-Type" : "application/x-www-form-urlencoded"]
         
-        Alamofire.request(url, method: .delete, headers: headers).responseJSON { (dataResponse:DataResponse<Any>) in
+        print(url)
+        print(headers)
+        
+        Alamofire.request(url, method: .delete , headers: headers).responseJSON { (dataResponse:DataResponse<Any>) in
             if let value = dataResponse.result.value {
                 print(value)
             }else if let error = dataResponse.result.error {

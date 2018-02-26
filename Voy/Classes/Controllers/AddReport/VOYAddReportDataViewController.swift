@@ -69,6 +69,7 @@ class VOYAddReportDataViewController: UIViewController {
         if let savedReport = self.savedReport {
             report.tags = savedReport.tags
             report.id = savedReport.id
+            report.removedMedias = savedReport.removedMedias
         }
         report.cameraDataList = cameraDataList
         self.navigationController?.pushViewController(VOYAddReportTagsViewController(report:report), animated: true)

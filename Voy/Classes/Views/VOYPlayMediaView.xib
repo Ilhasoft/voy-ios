@@ -53,9 +53,6 @@
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
-            <connections>
-                <outletCollection property="fields" destination="2HB-Fu-a7B" collectionClass="NSMutableArray" id="7YI-Mc-XtK"/>
-            </connections>
             <point key="canvasLocation" x="34.5" y="-179.5"/>
         </view>
     </objects>

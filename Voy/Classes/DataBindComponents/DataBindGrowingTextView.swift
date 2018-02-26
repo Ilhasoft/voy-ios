@@ -22,8 +22,5 @@ public class DataBindGrowingTextView: GrowingTextView, DataBindable {
     
     public var required: Bool = false
     public var requiredError: String = ""
-    public var fieldType: String = "Text"
-    public var fieldTypeError: String = ""
     public var fieldPath: String = ""
-    public var persist: Bool = true
 }
