@@ -9,7 +9,7 @@
 import UIKit
 
 class VOYFileUtil: NSObject {
-    public static let outPutURLDirectory = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true)[0] as NSString
+    public static let outPutURLDirectory = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first! as NSString
     
     open class func removeFile(_ fileURL: URL) {
         let filePath = fileURL.path
@@ -29,12 +29,13 @@ class VOYFileUtil: NSObject {
     
     open class func writeImageFile(_ data:Data) -> String{
         
-        let path = VOYFileUtil.outPutURLDirectory.appendingPathComponent("image.jpg")
+        let path = VOYFileUtil.outPutURLDirectory.appendingPathComponent("image\(String.getIdentifier()).jpg")
         
-        VOYFileUtil.removeFile(URL(string: path)!)
-        
-        if ((try? data.write(to: URL(fileURLWithPath: path), options: [.atomicWrite])) != nil) == true {
+        do {
+            try data.write(to: URL(fileURLWithPath: path), options: [.atomic])
             print("file available")
+        }catch {
+            print(error.localizedDescription)
         }
         
         return path

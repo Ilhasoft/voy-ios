@@ -72,7 +72,7 @@ class VOYReportDetailViewController: UIViewController {
         
         var buttonItens = [barButtonItemOptions,barButtonItemIssue]
         
-        if self.report.lastNotification.isEmpty {
+        if self.report.lastNotification == nil || (self.report.lastNotification != nil && self.report.lastNotification.isEmpty) {
             buttonItens.remove(at: 1)
         }
         

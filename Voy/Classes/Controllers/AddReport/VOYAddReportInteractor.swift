@@ -22,7 +22,7 @@ class VOYAddReportInteractor: NSObject {
         var method:HTTPMethod!
         var reportIDString = ""
         
-        if report.update {
+        if report.update && report.status != nil {
             method = HTTPMethod.put
             reportIDString = "\(report.id!)/"
         }else {

@@ -11,23 +11,21 @@ import AVFoundation
 
 open class ISVideoUtil: NSObject {
     
-    static var urlForCompressedVideo: URL {
-        return URL(fileURLWithPath: NSTemporaryDirectory())
-    }
+    public static let outPutURLDirectory = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first! as NSString
     
     static open func compressVideo(inputURL: URL, completion:@escaping (_ success: Bool, _ outputURL: URL?) -> Void) {
         
         let urlAsset = AVURLAsset(url: inputURL, options: nil)
         let exportSession = AVAssetExportSession(asset: urlAsset, presetName: AVAssetExportPresetMediumQuality)!
         
-        let fileName = inputURL.lastPathComponent.replacingOccurrences(of: ".MOV", with: ".mp4")
+        let fileName = inputURL.lastPathComponent.replacingOccurrences(of: ".MOV", with: "\(String.getIdentifier()).mp4")
         
-        exportSession.outputURL = urlForCompressedVideo.appendingPathComponent(fileName)
+        exportSession.outputURL = URL(fileURLWithPath: outPutURLDirectory.appendingPathComponent(fileName))
         exportSession.shouldOptimizeForNetworkUse = true
         exportSession.outputFileType = AVFileType.mp4
         exportSession.exportAsynchronously { () -> Void in
             if exportSession.status == AVAssetExportSessionStatus.completed {
-                completion(true, urlForCompressedVideo.appendingPathComponent(fileName))
+                completion(true, URL(fileURLWithPath: outPutURLDirectory.appendingPathComponent(fileName)))
             } else {
                 completion(false, nil)
             }
