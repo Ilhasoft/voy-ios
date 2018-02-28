@@ -68,6 +68,7 @@ class VOYAddReportDataViewController: UIViewController {
         
         let report = VOYReport(JSON: self.dataBindView.toJSON())!
         if let savedReport = self.savedReport {
+            report.status = savedReport.status
             report.update = true
             report.tags = savedReport.tags
             report.id = savedReport.id
@@ -118,6 +119,7 @@ extension VOYAddReportDataViewController : UITableViewDataSource, UITableViewDel
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: NSStringFromClass(VOYLinkTableViewCell.self), for: indexPath) as! VOYLinkTableViewCell
+        cell.delegate = self
         cell.setupCell(data: tbViewLinks.dataList[indexPath.row] as! String)
         return cell
     }
@@ -157,6 +159,18 @@ extension VOYAddReportDataViewController : VOYTextViewDelegate {
         self.heightDescriptionView.constant = height + 15
         UIView.animate(withDuration: 0.2) {
             self.view.layoutIfNeeded()
+        }
+    }
+}
+
+extension VOYAddReportDataViewController : VOYLinkTableViewCellDelegate {
+    func linkDidTap(url: String, cell: VOYLinkTableViewCell) {
+    }
+    func removeButtonDidTap(cell: VOYLinkTableViewCell) {
+        let index = (self.tbViewLinks.dataList as! [String]).index {($0 == cell.lbLink.text!)}
+        if index != nil {
+            self.tbViewLinks.dataList.remove(at: index!)
+            self.tbViewLinks.reloadData()
         }
     }
 }
