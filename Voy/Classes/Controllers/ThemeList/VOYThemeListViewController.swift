@@ -51,6 +51,7 @@ class VOYThemeListViewController: UIViewController, NVActivityIndicatorViewable 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: " ", style: .plain, target: nil, action: nil)
+        edgesForExtendedLayout = []
         setupButtonItems()
         getProjects()
         checkPendentReportsToSend()
@@ -59,7 +60,7 @@ class VOYThemeListViewController: UIViewController, NVActivityIndicatorViewable 
     }
     
     @objc func addLeftBarButtonItem() {
-        let imageView = UIImageView()
+        let imageView = UIImageView(frame:CGRect(x: 0, y: 0, width: 30, height: 30))
         imageView.widthAnchor.constraint(equalToConstant: 30).isActive = true
         imageView.heightAnchor.constraint(equalToConstant: 30).isActive = true
         imageView.contentMode = .scaleAspectFill

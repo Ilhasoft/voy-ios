@@ -39,6 +39,7 @@ class VOYReportListViewController: UIViewController, NVActivityIndicatorViewable
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        edgesForExtendedLayout = []
         let rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "bell"), style: .plain, target: self, action: #selector(openNotifications))
         self.navigationItem.rightBarButtonItem = rightBarButtonItem
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: " ", style: .plain, target: nil, action: nil)

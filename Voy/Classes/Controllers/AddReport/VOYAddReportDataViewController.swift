@@ -42,6 +42,7 @@ class VOYAddReportDataViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        edgesForExtendedLayout = []
         self.title = "Add Report"
         self.txtFieldLink.delegate = self
         setupTableView()

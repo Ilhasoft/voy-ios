@@ -59,6 +59,7 @@ class VOYAddReportAttachViewController: UIViewController, NVActivityIndicatorVie
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        edgesForExtendedLayout = []
         
         self.theme = VOYTheme.activeTheme()!
         locationManager = VOYLocationManager(delegate: self)

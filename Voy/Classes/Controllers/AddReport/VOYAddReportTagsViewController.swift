@@ -35,6 +35,7 @@ class VOYAddReportTagsViewController: UIViewController, NVActivityIndicatorViewa
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        edgesForExtendedLayout = []
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: " ", style: .plain, target: nil, action: nil)
         addNextButton()
         loadTags()

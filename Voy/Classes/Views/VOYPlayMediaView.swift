@@ -9,7 +9,6 @@
 import UIKit
 import DataBindSwift
 import AVFoundation
-import Player
 import Alamofire
 import NVActivityIndicatorView
 

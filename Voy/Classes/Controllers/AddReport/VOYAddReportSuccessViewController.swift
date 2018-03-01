@@ -24,6 +24,7 @@ class VOYAddReportSuccessViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        edgesForExtendedLayout = []
         self.navigationController?.setNavigationBarHidden(true, animated: false)
 //        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: " ", style: .plain, target: nil, action: nil)
         

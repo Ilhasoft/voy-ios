@@ -41,6 +41,7 @@ class VOYCommentViewController: UIViewController {
         if #available(iOS 11.0, *) {
             tableView.contentInsetAdjustmentBehavior = .never
         }
+        edgesForExtendedLayout = []
         self.bgViewTextField.layer.cornerRadius = 4
         self.bgViewTextField.layer.borderColor = UIColor(hex: "E7E7E7").cgColor
         self.bgViewTextField.layer.borderWidth = 2

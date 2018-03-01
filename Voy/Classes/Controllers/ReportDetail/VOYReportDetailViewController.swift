@@ -11,7 +11,8 @@ import ISScrollViewPageSwift
 import TagListView
 import DataBindSwift
 import AXPhotoViewer
-import Player
+import MediaPlayer
+import AVKit
 
 class VOYReportDetailViewController: UIViewController {
 
@@ -25,7 +26,6 @@ class VOYReportDetailViewController: UIViewController {
     @IBOutlet weak var dataBindView: DataBindView!
     
     var report:VOYReport!
-    var player: Player?
     
     init(report:VOYReport) {
         self.report = report
@@ -39,6 +39,7 @@ class VOYReportDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.automaticallyAdjustsScrollViewInsets = false
+        edgesForExtendedLayout = []
         
         scrollViewMedias.scrollViewPageType = .horizontally
         scrollViewMedias.scrollViewPageDelegate = self
@@ -62,7 +63,7 @@ class VOYReportDetailViewController: UIViewController {
         let barButtonItemOptions = UIBarButtonItem(image: #imageLiteral(resourceName: "combinedShape").withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(showActionSheet))
         let barButtonItemIssue = UIBarButtonItem(image: #imageLiteral(resourceName: "issue").withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(showIssue))
         
-        let imageView = UIImageView()
+        let imageView = UIImageView(frame:CGRect(x: 0, y: 0, width: 30, height: 30))
         imageView.kf.setImage(with: URL(string:VOYUser.activeUser()!.avatar))
         imageView.contentMode = .scaleAspectFit
         imageView.widthAnchor.constraint(equalToConstant: 32).isActive = true
@@ -101,7 +102,7 @@ class VOYReportDetailViewController: UIViewController {
         UIView.transition(with: self.view, duration: 0.5, options: UIViewAnimationOptions.transitionCrossDissolve, animations: {
             self.navigationController?.view.viewWithTag(130)?.removeFromSuperview()
         }) { (completed) in
-            self.player = nil
+            
         }
     }
     
@@ -205,23 +206,11 @@ extension VOYReportDetailViewController : VOYPlayMediaViewDelegate {
     }
     
     func videoDidTap(mediaView: VOYPlayMediaView, url:URL, showInFullScreen:Bool) {
-        player = Player()
         
-        self.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        player?.view.tag = 130
-        player?.view.frame = self.view.bounds
+        let playerController = AVPlayerViewController()
+        playerController.player = AVPlayer(url: url)
+        playerController.player!.play()
         
-        let tap = UITapGestureRecognizer(target: self, action: #selector(self.removePlayer))
-        player?.view.addGestureRecognizer(tap)
-        
-        UIView.transition(with: (player?.view)!, duration: 0.5, options: UIViewAnimationOptions.transitionCrossDissolve, animations: {
-            self.navigationController?.view.addSubview((self.player?.view)!)
-        }) { (completed) in
-            
-        }                
-        
-        player?.url = url
-        player?.playbackLoops = true
-        player?.playFromBeginning()
+        self.present(playerController, animated: true, completion: nil)
     }
 }

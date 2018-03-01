@@ -76,6 +76,7 @@ class VOYAccountViewController: UIViewController, NVActivityIndicatorViewable {
     }
     
     func setupLayout() {
+        edgesForExtendedLayout = []
         rightBarButtonItem = UIBarButtonItem(title: "Save", style: .plain, target: self, action: #selector(save))
         rightBarButtonItem.isEnabled = false
         self.navigationItem.rightBarButtonItem = rightBarButtonItem
