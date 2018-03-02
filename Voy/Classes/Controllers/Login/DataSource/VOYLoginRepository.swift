@@ -1,20 +1,23 @@
 //
-//  VOYLoginInteractor.swift
+//  VOYLoginRepository.swift
 //  Voy
 //
-//  Created by Daniel Amaral on 09/02/18.
+//  Created by Pericles Jr on 02/03/18.
 //  Copyright © 2018 Ilhasoft. All rights reserved.
 //
 
 import UIKit
 import Alamofire
-import DataBindSwift
 
-class VOYLoginInteractor: NSObject {
-
-    static let shared = VOYLoginInteractor()
+class VOYLoginRepository: VOYLoginDataSource {
     
-    func login(username:String, password:String, completion:@escaping(_ user:VOYUser?, _ error:Error?) -> Void) {
+//    let reachability: VOYReachability
+//
+//    init(reachability: VOYReachability) {
+//        self.reachability = reachability
+//    }
+
+    func login(username: String, password: String, completion: @escaping (VOYUser?, Error?) -> Void) {
         let params = ["username":username,"password":password]
         
         Alamofire.request(VOYConstant.API.URL + "get_auth_token/", method: .post, parameters: params).responseJSON { (dataResponse:DataResponse<Any>) in
@@ -35,10 +38,9 @@ class VOYLoginInteractor: NSObject {
                 completion(nil, error)
             }
         }
-        
-    }        
+    }
     
-    func getUserData(authToken:String, completion:@escaping(_ user:VOYUser?, _ error:Error?) -> Void) {
+    func getUserData(authToken: String, completion: @escaping (VOYUser?, Error?) -> Void) {
         let url = VOYConstant.API.URL + "users/?auth_token=" + authToken
         Alamofire.request(url, method: .get).responseArray { (dataResponse:DataResponse<[VOYUser]>) in
             if let userData = dataResponse.result.value {
@@ -49,5 +51,4 @@ class VOYLoginInteractor: NSObject {
             }
         }
     }
-    
 }

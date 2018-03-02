@@ -9,7 +9,7 @@
 import Alamofire
 import AlamofireObjectMapper
 
-class VOYProjectInteractor: NSObject {
+class VOYProjectInteractor: ThemeList {
 
     static let shared = VOYProjectInteractor()
     
@@ -42,7 +42,7 @@ class VOYProjectInteractor: NSObject {
                 }
             }
             
-        }else if let cachedResponse = cachedResponse {
+        } else if let cachedResponse = cachedResponse {
             do {
                 let jsonObject = try JSONSerialization.jsonObject(with: cachedResponse.data, options: [])
                 if let arrayDictionary = jsonObject as? [[String:Any]] {

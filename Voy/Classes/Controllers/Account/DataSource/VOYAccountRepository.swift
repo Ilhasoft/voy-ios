@@ -1,17 +1,15 @@
 //
-//  VOYAccountInteractor.swift
+//  VOYAccountRepository.swift
 //  Voy
 //
-//  Created by Daniel Amaral on 16/02/18.
+//  Created by Pericles Jr on 02/03/18.
 //  Copyright © 2018 Ilhasoft. All rights reserved.
 //
 
+import UIKit
 import Alamofire
 
-class VOYAccountInteractor: NSObject {
-    
-    static let shared = VOYAccountInteractor()
-    
+class VOYAccountRepository: VOYAccountDataSource {
     func updateUser(avatar:Int?, password:String?, completion:@escaping(Error?) -> Void) {
         
         let user = VOYUser.activeUser()!
@@ -30,9 +28,9 @@ class VOYAccountInteractor: NSObject {
         let headers = ["Authorization" : "Token " + authToken, "Content-Type" : "application/json"]
         
         Alamofire.request(url, method: .put, parameters: jsonUser, encoding: JSONEncoding.default, headers: headers).responseJSON { (dataResponse:DataResponse<Any>) in
-            if let value = dataResponse.result.value {
-                print(value)
-                VOYLoginInteractor.shared.getUserData(authToken: user.authToken, completion: { (user, error) in
+            if let _ = dataResponse.result.value {
+                let loginRepository = VOYLoginRepository()
+                loginRepository.getUserData(authToken: user.authToken, completion: { (user, error) in
                     if let error = error {
                         print(error.localizedDescription)
                     }else if let u = user {
@@ -48,5 +46,4 @@ class VOYAccountInteractor: NSObject {
             }
         }
     }
-    
 }
