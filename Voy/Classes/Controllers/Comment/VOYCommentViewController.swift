@@ -9,7 +9,7 @@
 import UIKit
 import ISOnDemandTableView
 
-class VOYCommentViewController: UIViewController {
+class VOYCommentViewController: UIViewController, VOYCommentContract {
     
     @IBOutlet weak var tableView: DataBindOnDemandTableView!
     @IBOutlet weak var bottomView: UIView!
@@ -19,6 +19,7 @@ class VOYCommentViewController: UIViewController {
     @IBOutlet weak var txtField: UITextField!
     
     var report:VOYReport!
+    var presenter: VOYCommentPresenter?
     
     init(report:VOYReport) {
         self.report = report
@@ -32,6 +33,7 @@ class VOYCommentViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Comment"
+        presenter = VOYCommentPresenter(dataSource: VOYCommentRepository(), view: self)
         setupKeyboard()
         setupTableView()
         setupLayout()
@@ -98,11 +100,17 @@ class VOYCommentViewController: UIViewController {
             let comment = VOYComment(text:text, reportID:self.report.id!)
             self.txtField.text = ""
             self.txtField.resignFirstResponder()
-            VOYCommentInteractor.shared.save(comment:comment) { (error) in
+            guard let presenter = presenter else { return }
+            presenter.save(comment: comment, completion: { (error) in
                 if let error = error {
                     print(error.localizedDescription)
                 }
-            }
+            })
+//            VOYCommentInteractor.shared.save(comment:comment) { (error) in
+//                if let error = error {
+//                    print(error.localizedDescription)
+//                }
+//            }
             let alertViewController = VOYAlertViewController(title: "Thanks!", message: "Your comment was sent to moderation after approved it will available here!")
             alertViewController.show(true, inViewController: self)
         }

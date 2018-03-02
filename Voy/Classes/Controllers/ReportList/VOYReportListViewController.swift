@@ -126,8 +126,6 @@ class VOYReportListViewController: UIViewController, NVActivityIndicatorViewable
             break
         }
     }
-    
-
 }
 
 extension VOYReportListViewController : ISOnDemandTableViewDelegate {

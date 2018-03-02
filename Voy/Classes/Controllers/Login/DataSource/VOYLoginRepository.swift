@@ -6,7 +6,6 @@
 //  Copyright © 2018 Ilhasoft. All rights reserved.
 //
 
-import UIKit
 import Alamofire
 
 class VOYLoginRepository: VOYLoginDataSource {    
