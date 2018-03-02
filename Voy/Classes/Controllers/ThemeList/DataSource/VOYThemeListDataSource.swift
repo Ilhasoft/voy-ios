@@ -1,5 +1,5 @@
 //
-//  ThemeList.swift
+//  VOYThemeListDataSource.swift
 //  Voy
 //
 //  Created by Pericles Jr on 02/03/18.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol ThemeList {
+protocol VOYThemeListDataSource {
     func getMyProjects(completion:@escaping(_ projects:[VOYProject], _ error: Error?) -> Void)
+    func cacheDataFrom(url:String, parameters:inout [String:Any])
 }
-

@@ -9,13 +9,7 @@
 import UIKit
 import Alamofire
 
-class VOYLoginRepository: VOYLoginDataSource {
-    
-//    let reachability: VOYReachability
-//
-//    init(reachability: VOYReachability) {
-//        self.reachability = reachability
-//    }
+class VOYLoginRepository: VOYLoginDataSource {    
 
     func login(username: String, password: String, completion: @escaping (VOYUser?, Error?) -> Void) {
         let params = ["username":username,"password":password]

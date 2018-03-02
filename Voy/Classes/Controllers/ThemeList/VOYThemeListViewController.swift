@@ -14,26 +14,16 @@ import ObjectMapper
 import NVActivityIndicatorView
 import Kingfisher
 
-class VOYThemeListViewController: UIViewController, NVActivityIndicatorViewable {
+class VOYThemeListViewController: UIViewController, NVActivityIndicatorViewable, VOYThemeListContract {
 
     @IBOutlet weak var lbThemesCount: UILabel!
     @IBOutlet weak var tbView: DataBindOnDemandTableView!
     
+    var presenter: VOYThemeListPresenter?
+    
     var userJustLogged = false
     var selectedReportView:VOYSelectedReportView!
     var dropDown = DropDown()
-    var projects = [VOYProject]() {
-        didSet {
-            if !projects.isEmpty {
-                let selectedReport = projects.first!
-                setupDropDown()
-                setupTableView(filterThemesByProject: selectedReport)
-                self.selectedReportView.lbTitle.text = selectedReport.name
-            }else {
-                print("User without projects associated")
-            }
-        }
-    }
     
     init(userJustLogged:Bool) {
         self.userJustLogged = userJustLogged
@@ -52,6 +42,7 @@ class VOYThemeListViewController: UIViewController, NVActivityIndicatorViewable 
         super.viewDidLoad()
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: " ", style: .plain, target: nil, action: nil)
         setupButtonItems()
+        presenter = VOYThemeListPresenter(dataSource: VOYThemeListRepository(reachability: VOYReachabilityImpl()), view: self)
         getProjects()
         checkPendentReportsToSend()
         NotificationCenter.default.addObserver(self, selector: #selector(addLeftBarButtonItem), name: Notification.Name("userDataUpdated"), object: nil)
@@ -87,26 +78,52 @@ class VOYThemeListViewController: UIViewController, NVActivityIndicatorViewable 
     }
     
     func getProjects() {
+        guard let presenter = presenter else { return }
         self.startAnimating()
-        VOYProjectInteractor.shared.getMyProjects { (projects, error) in
+        presenter.getProjects { (success, error) in
             self.stopAnimating()
-            if let error = error {
-                print(error.localizedDescription)
-            }else {
-                self.projects = projects
+            if success {
                 if self.userJustLogged {
-                    for project in self.projects {
-                        var params = ["project":project.id as Any, "user":VOYUser.activeUser()!.id]
-                        VOYRequestManager.shared.cacheDataFrom(url: VOYConstant.API.URL + "themes", parameters:&params)
-                    }
+                    presenter.cacheData()
                     self.userJustLogged = false
                 }
+            } else {
+                if let error = error {
+                    print(error.localizedDescription)
+                }
             }
+        }
+//        VOYProjectInteractor.shared.getMyProjects { (projects, error) in
+//            self.stopAnimating()
+//            if let error = error {
+//                print(error.localizedDescription)
+//            }else {
+//                self.projects = projects
+//                if self.userJustLogged {
+//                    for project in self.projects {
+//                        var params = ["project":project.id as Any, "user":VOYUser.activeUser()!.id]
+//                        VOYRequestManager.shared.cacheDataFrom(url: VOYConstant.API.URL + "themes", parameters:&params)
+//                    }
+//                    self.userJustLogged = false
+//                }
+//            }
+//        }
+    }
+    
+    func projectListWasUpdated() {
+        guard let projects = presenter?.projects else { return }
+        if !projects.isEmpty {
+            let selectedReport = projects.first!
+            setupDropDown()
+            setupTableView(filterThemesByProject: selectedReport)
+            self.selectedReportView.lbTitle.text = selectedReport.name
+        }else {
+            print("User without projects associated")
         }
     }
     
     func setupDropDown() {
-        
+        guard let projects = presenter?.projects else { return }
         selectedReportView = VOYSelectedReportView(frame: CGRect(x: 0, y: 0, width: 180, height: 40))
         selectedReportView.widthAnchor.constraint(equalToConstant: 180)
         selectedReportView.heightAnchor.constraint(equalToConstant: 40)
@@ -115,12 +132,12 @@ class VOYThemeListViewController: UIViewController, NVActivityIndicatorViewable 
         
         dropDown.anchorView = selectedReportView
         dropDown.bottomOffset = CGPoint(x: 0, y: selectedReportView.bounds.size.height)
-        dropDown.dataSource = self.projects.map {($0.name)}
+        dropDown.dataSource = projects.map {($0.name)}
         dropDown.customCellConfiguration = { (index: Index, item: String, cell: DropDownCell) -> Void in
             cell.optionLabel.textAlignment = .center
         }
         dropDown.selectionAction = { [unowned self] (index: Int, item: String) in
-            self.loadThemesFilteredByProject(project: self.projects[index])
+            self.loadThemesFilteredByProject(project: projects[index])
             self.selectedReportView.lbTitle.text = item
         }
     }
