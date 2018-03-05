@@ -9,5 +9,6 @@
 import UIKit
 
 protocol VOYLoginContract: class {
-    func redirectController(loginAuth: RedirectUserFor)
+    func redirectController()
+    func presentErrorAlert()
 }

@@ -22,11 +22,11 @@ class VOYLoginPresenter {
         dataSource.login(username: username, password: password) { (user , error) in
             guard let view = self.view else { return }
             if let _ = error {
-                view.redirectController(loginAuth: .error)
+                view.presentErrorAlert()
             }else if user != nil {
-                view.redirectController(loginAuth: .success)
+                view.redirectController()
             }else {
-                view.redirectController(loginAuth: .error)
+                view.presentErrorAlert()
             }
         }
     }
