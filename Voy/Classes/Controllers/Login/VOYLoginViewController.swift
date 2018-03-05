@@ -10,11 +10,6 @@ import UIKit
 import SlideMenuControllerSwift
 import NVActivityIndicatorView
 
-enum RedirectUserFor {
-    case error
-    case success
-}
-
 class VOYLoginViewController: UIViewController, NVActivityIndicatorViewable, VOYLoginContract {
 
     @IBOutlet var scrollView:UIScrollView!
@@ -44,18 +39,20 @@ class VOYLoginViewController: UIViewController, NVActivityIndicatorViewable, VOY
 
     //MARK: VOYLoginContract
     
-    func redirectController(loginAuth: RedirectUserFor) {
+    func presentErrorAlert() {
         let alertController = VOYAlertViewController(title: "Error", message: "Maybe you entered a wrong username or password!", buttonNames:["Ok"])
+        self.stopAnimating()
+        alertController.show(true, inViewController: self)
+    }
+    
+    func redirectController() {
         let navigationController = UINavigationController(rootViewController: VOYThemeListViewController(userJustLogged: true))
         let slideMenuController = SlideMenuController(mainViewController: navigationController, rightMenuViewController: VOYNotificationViewController())
+        
         self.stopAnimating()
-        switch loginAuth {
-        case .success:
-            guard let navigationController = self.navigationController else { return }
-            navigationController.pushViewController(slideMenuController, animated: true)
-        case .error:
-            alertController.show(true, inViewController: self)
-        }
+        
+        guard let navigation = self.navigationController else { return }
+        navigation.pushViewController(slideMenuController, animated: true)
     }
     
     //MARK: Component Events
