@@ -29,6 +29,8 @@
 		437BD1A620487C8F00EC5661 /* VOYLoginPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 437BD1A520487C8F00EC5661 /* VOYLoginPresenter.swift */; };
 		437BD1AD2048891300EC5661 /* VOYLoginContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 437BD1AC2048891300EC5661 /* VOYLoginContract.swift */; };
 		43A05182204D6CD200ABC0C9 /* VOYMockThemeListRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43A05181204D6CD200ABC0C9 /* VOYMockThemeListRepository.swift */; };
+		43A05185204D890900ABC0C9 /* VOYMockAccountRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43A05184204D890900ABC0C9 /* VOYMockAccountRepository.swift */; };
+		43A05188204D8CB700ABC0C9 /* VOYAccountListTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43A05187204D8CB700ABC0C9 /* VOYAccountListTests.swift */; };
 		655BD1222020E4FA00D69EA2 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 655BD1212020E4FA00D69EA2 /* UIColorExtension.swift */; };
 		655BD1262020F3C100D69EA2 /* VOYAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 655BD1242020F3C100D69EA2 /* VOYAlertViewController.swift */; };
 		655BD1272020F3C100D69EA2 /* VOYAlertViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 655BD1252020F3C100D69EA2 /* VOYAlertViewController.xib */; };
@@ -164,6 +166,8 @@
 		437BD1A520487C8F00EC5661 /* VOYLoginPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VOYLoginPresenter.swift; sourceTree = "<group>"; };
 		437BD1AC2048891300EC5661 /* VOYLoginContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VOYLoginContract.swift; sourceTree = "<group>"; };
 		43A05181204D6CD200ABC0C9 /* VOYMockThemeListRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VOYMockThemeListRepository.swift; sourceTree = "<group>"; };
+		43A05184204D890900ABC0C9 /* VOYMockAccountRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VOYMockAccountRepository.swift; sourceTree = "<group>"; };
+		43A05187204D8CB700ABC0C9 /* VOYAccountListTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VOYAccountListTests.swift; sourceTree = "<group>"; };
 		5C5F78CC110E27296AC6C772 /* Pods-VoyUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VoyUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-VoyUITests/Pods-VoyUITests.release.xcconfig"; sourceTree = "<group>"; };
 		655BD1212020E4FA00D69EA2 /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
 		655BD1242020F3C100D69EA2 /* VOYAlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VOYAlertViewController.swift; sourceTree = "<group>"; };
@@ -364,6 +368,7 @@
 		437BD19F204870AA00EC5661 /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				43A05186204D8C6D00ABC0C9 /* Account */,
 				436C992C204984B300915A13 /* ThemeList */,
 				437BD1A0204870BC00EC5661 /* Login */,
 			);
@@ -376,6 +381,22 @@
 				437BD19D204833EB00EC5661 /* VOYLoginTests.swift */,
 			);
 			path = Login;
+			sourceTree = "<group>";
+		};
+		43A05183204D887900ABC0C9 /* Mock */ = {
+			isa = PBXGroup;
+			children = (
+				43A05184204D890900ABC0C9 /* VOYMockAccountRepository.swift */,
+			);
+			path = Mock;
+			sourceTree = "<group>";
+		};
+		43A05186204D8C6D00ABC0C9 /* Account */ = {
+			isa = PBXGroup;
+			children = (
+				43A05187204D8CB700ABC0C9 /* VOYAccountListTests.swift */,
+			);
+			path = Account;
 			sourceTree = "<group>";
 		};
 		655BD1202020E4E500D69EA2 /* Utils */ = {
@@ -498,6 +519,7 @@
 		655BD1792024E73C00D69EA2 /* Account */ = {
 			isa = PBXGroup;
 			children = (
+				43A05183204D887900ABC0C9 /* Mock */,
 				436C99412049987D00915A13 /* DataSource */,
 				655BD17E2024F7AC00D69EA2 /* Cell */,
 				655BD17A2024E74B00D69EA2 /* VOYAccountViewController.swift */,
@@ -1120,6 +1142,7 @@
 				436C99562049D74E00915A13 /* VOYCommentDataSource.swift in Sources */,
 				65AF37F4202E0ED400D64CE4 /* VOYProject.swift in Sources */,
 				65F346072020A87A00AC5437 /* AppDelegate.swift in Sources */,
+				43A05185204D890900ABC0C9 /* VOYMockAccountRepository.swift in Sources */,
 				436C994520499A4400915A13 /* VOYAccountRepository.swift in Sources */,
 				436C99582049D76600915A13 /* VOYCommentRepository.swift in Sources */,
 				655BD19B2028ECFC00D69EA2 /* VOYCommentViewController.swift in Sources */,
@@ -1160,6 +1183,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				43A05188204D8CB700ABC0C9 /* VOYAccountListTests.swift in Sources */,
 				436C992E2049850800915A13 /* VOYThemeListTests.swift in Sources */,
 				437BD19E204833EB00EC5661 /* VOYLoginTests.swift in Sources */,
 			);

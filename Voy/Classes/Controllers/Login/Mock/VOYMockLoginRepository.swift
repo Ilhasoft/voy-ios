@@ -16,10 +16,11 @@ enum TokenStatus: String {
 class VOYMockLoginRepository: VOYLoginDataSource {
     
     let user: VOYUser = VOYUser()
+    let username = "pirralho"
+    let password = "123456"
     
     func login(username: String, password: String, completion: @escaping (VOYUser?, Error?) -> Void) {
-        if username == "pirralho", password == "123456" {
-            
+        if username == username, password == password {            
             getUserData(authToken: TokenStatus.validToken.rawValue, completion: { (user, error) in
                 if let user = user {
                     completion(user, nil)

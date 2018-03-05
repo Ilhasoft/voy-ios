@@ -11,17 +11,17 @@ import XCTest
 
 class VOYThemeListTests: XCTestCase {
     
-    var themeListUnderTest: VOYMockThemeListRepository!
+    var repositoryUnderTest: VOYMockThemeListRepository!
     var apiURL: String = "www.apiurl.com/hadfkadjfsadafdsasssk"
     var userID: String = "userid9dfs9df9sd"
     
     override func setUp() {
         super.setUp()
-        themeListUnderTest = VOYMockThemeListRepository()
+        repositoryUnderTest = VOYMockThemeListRepository()
     }
     
     override func tearDown() {
-        themeListUnderTest = nil
+        repositoryUnderTest = nil
         super.tearDown()
     }
     
@@ -31,10 +31,10 @@ class VOYThemeListTests: XCTestCase {
         
         let expectations = expectation(description: "Expecting a theme list with one object at least.")
         
-        themeListUnderTest.getMyProjects { (projects, error) in
+        repositoryUnderTest.getMyProjects { (projects, error) in
             for project in projects {
                 var params = ["project": project.id as Any, "user": self.userID, "page": 1, "page_size": 50]
-                self.themeListUnderTest.cacheDataFrom(url: self.apiURL, parameters: &params)
+                self.repositoryUnderTest.cacheDataFrom(url: self.apiURL, parameters: &params)
                 retrievedProjects += 1
             }
             XCTAssert(retrievedProjects == projects.count, "retrieved all projects and saved on cache.")
