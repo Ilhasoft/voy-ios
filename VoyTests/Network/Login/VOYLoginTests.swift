@@ -26,52 +26,22 @@ class VOYLoginTests: XCTestCase {
     
     func testValidLogin() {
         
-//        let expectations = expectation(description: "Expecting a JSON data not nil")
-//        interactorUnderTest.login(username: "pirralho", password: "123456") { (user, error) in
-//            XCTAssertNil(error, "No errors")
-//            XCTAssertNotNil(user, "Retrived user")
-//            expectations.fulfill()
-//        }
-//        waitForExpectations(timeout: 10, handler: nil)
+        let expectations = expectation(description: "Expecting a VOYUser object not nil")
+        repositoryUnderTest.login(username: "pirralho", password: "123456") { (user, error) in
+            XCTAssertNotNil(user, "Retrieved user data")
+            XCTAssertNil(error, "Got no errors")
+            expectations.fulfill()
+        }
+        waitForExpectations(timeout: 10, handler: nil)
     }
     
     func testInvalidLogin() {
-//        let expectations = expectation(description: "Expecting a JSON data not nil")
-//        interactorUnderTest.login(username: "username", password: "invalidPassword") { (user, error) in
-//            XCTAssertNil(user, "Nil user")
-//            XCTAssertNil(error, "Returned error")
-//            expectations.fulfill()
-//        }
-//        waitForExpectations(timeout: 10, handler: nil)
+        let expectations = expectation(description: "Expecting a nil value.")
+        repositoryUnderTest.login(username: "username", password: "invalidPassword") { (user, error) in
+            XCTAssertNil(user, "Nil user")
+            XCTAssertNil(error, "Returned error")
+            expectations.fulfill()
+        }
+        waitForExpectations(timeout: 10, handler: nil)
     }
-    
-//    func testValidTokenRequest() {
-//        let expectations = expectation(description: "Expecting a JSON data not nil")
-//        interactorUnderTest.login(username: "pirralho", password: "123456") { (user, error) in
-//            XCTAssertNil(error, "No errors")
-//            XCTAssertNotNil(user, "Retrived user")
-//            expectations.fulfill()
-//        }
-//
-//        waitForExpectations(timeout: 10) { (error) in
-//            if let error = error {
-//                XCTFail("\(error)")
-//            }
-//        }
-//    }
-    
-//    func testWrongCredentials() {
-//        let expectations = expectation(description: "Expecting a nil JSON data")
-//        interactorUnderTest.login(username: "unknownUser", password: "xxxxx") { (user, error) in
-//            XCTAssertNil(user, "No errors")
-//            XCTAssertNotNil(error, "Retrived user")
-//            expectations.fulfill()
-//        }
-//
-//        waitForExpectations(timeout: 10) { (error) in
-//            if let error = error {
-//                XCTFail("\(error)")
-//            }
-//        }
-//    }
 }

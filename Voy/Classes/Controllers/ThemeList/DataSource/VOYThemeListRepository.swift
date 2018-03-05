@@ -28,9 +28,7 @@ class VOYThemeListRepository: VOYThemeListDataSource {
                     let cachedURLResponse = CachedURLResponse(response: dataResponse.response!, data: dataResponse.data! , userInfo: nil, storagePolicy: .allowed)
                     URLCache.shared.storeCachedResponse(cachedURLResponse, for: dataResponse.request!)
                 }
-                
             }
-            
         }else {
             print("User haven't internet connection and don't have cached data")
         }

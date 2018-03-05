@@ -28,6 +28,7 @@
 		437BD19E204833EB00EC5661 /* VOYLoginTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 437BD19D204833EB00EC5661 /* VOYLoginTests.swift */; };
 		437BD1A620487C8F00EC5661 /* VOYLoginPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 437BD1A520487C8F00EC5661 /* VOYLoginPresenter.swift */; };
 		437BD1AD2048891300EC5661 /* VOYLoginContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 437BD1AC2048891300EC5661 /* VOYLoginContract.swift */; };
+		43A05182204D6CD200ABC0C9 /* VOYMockThemeListRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43A05181204D6CD200ABC0C9 /* VOYMockThemeListRepository.swift */; };
 		655BD1222020E4FA00D69EA2 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 655BD1212020E4FA00D69EA2 /* UIColorExtension.swift */; };
 		655BD1262020F3C100D69EA2 /* VOYAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 655BD1242020F3C100D69EA2 /* VOYAlertViewController.swift */; };
 		655BD1272020F3C100D69EA2 /* VOYAlertViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 655BD1252020F3C100D69EA2 /* VOYAlertViewController.xib */; };
@@ -162,6 +163,7 @@
 		437BD19D204833EB00EC5661 /* VOYLoginTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VOYLoginTests.swift; sourceTree = "<group>"; };
 		437BD1A520487C8F00EC5661 /* VOYLoginPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VOYLoginPresenter.swift; sourceTree = "<group>"; };
 		437BD1AC2048891300EC5661 /* VOYLoginContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VOYLoginContract.swift; sourceTree = "<group>"; };
+		43A05181204D6CD200ABC0C9 /* VOYMockThemeListRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VOYMockThemeListRepository.swift; sourceTree = "<group>"; };
 		5C5F78CC110E27296AC6C772 /* Pods-VoyUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VoyUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-VoyUITests/Pods-VoyUITests.release.xcconfig"; sourceTree = "<group>"; };
 		655BD1212020E4FA00D69EA2 /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
 		655BD1242020F3C100D69EA2 /* VOYAlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VOYAlertViewController.swift; sourceTree = "<group>"; };
@@ -301,6 +303,7 @@
 		436C992720497FAE00915A13 /* Mock */ = {
 			isa = PBXGroup;
 			children = (
+				43A05181204D6CD200ABC0C9 /* VOYMockThemeListRepository.swift */,
 			);
 			path = Mock;
 			sourceTree = "<group>";
@@ -1106,6 +1109,7 @@
 				65D73B58203EF4280055F1A8 /* VOYFileUtil.swift in Sources */,
 				436C9938204992A200915A13 /* VOYReachabilityImpl.swift in Sources */,
 				65C7B5ED202B948E003087EB /* VOYReport.swift in Sources */,
+				43A05182204D6CD200ABC0C9 /* VOYMockThemeListRepository.swift in Sources */,
 				436C992520496D7100915A13 /* VOYMockLoginRepository.swift in Sources */,
 				655BD13720220D5000D69EA2 /* VOYActionSheetViewController.swift in Sources */,
 				655BD16920248C6C00D69EA2 /* VOYSelectedReportView.swift in Sources */,

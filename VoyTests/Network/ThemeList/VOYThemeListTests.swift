@@ -11,28 +11,35 @@ import XCTest
 
 class VOYThemeListTests: XCTestCase {
     
-    var interactorUnderTest: MockVOYProjectInteractor!
+    var themeListUnderTest: VOYMockThemeListRepository!
+    var apiURL: String = "www.apiurl.com/hadfkadjfsadafdsasssk"
+    var userID: String = "userid9dfs9df9sd"
     
     override func setUp() {
         super.setUp()
-        interactorUnderTest = MockVOYProjectInteractor()
+        themeListUnderTest = VOYMockThemeListRepository()
     }
     
     override func tearDown() {
-        interactorUnderTest = nil
+        themeListUnderTest = nil
         super.tearDown()
     }
     
     func testRetrieveThemes() {
-        let expectations = expectation(description: "Expecting valid theme list return")
-        interactorUnderTest.getMyProjects { (themeList, <#Error?#>) in
-            XCTAssertNotNil(themeList, "Returned a theme list")
+        
+        var retrievedProjects: Int = 0
+        
+        let expectations = expectation(description: "Expecting a theme list with one object at least.")
+        
+        themeListUnderTest.getMyProjects { (projects, error) in
+            for project in projects {
+                var params = ["project": project.id as Any, "user": self.userID, "page": 1, "page_size": 50]
+                self.themeListUnderTest.cacheDataFrom(url: self.apiURL, parameters: &params)
+                retrievedProjects += 1
+            }
+            XCTAssert(retrievedProjects == projects.count, "retrieved all projects and saved on cache.")
+            expectations.fulfill()
         }
-//        interactorUnderTest.login(username: "username", password: "invalidPassword") { (user, error) in
-//            XCTAssertNil(user, "Nil user")
-//            XCTAssertNil(error, "Returned error")
-//            expectations.fulfill()
-//        }
         waitForExpectations(timeout: 10, handler: nil)
     }
 }
