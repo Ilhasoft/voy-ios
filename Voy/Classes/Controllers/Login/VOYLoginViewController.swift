@@ -10,7 +10,12 @@ import UIKit
 import SlideMenuControllerSwift
 import NVActivityIndicatorView
 
-class VOYLoginViewController: UIViewController, NVActivityIndicatorViewable {
+enum RedirectUserFor {
+    case error
+    case success
+}
+
+class VOYLoginViewController: UIViewController, NVActivityIndicatorViewable, VOYLoginContract {
 
     @IBOutlet var scrollView:UIScrollView!
     @IBOutlet weak var stackViewIcons: UIStackView!
@@ -18,6 +23,8 @@ class VOYLoginViewController: UIViewController, NVActivityIndicatorViewable {
     @IBOutlet weak var userNameView: VOYTextFieldView!
     @IBOutlet weak var passwordView: VOYTextFieldView!
     @IBOutlet weak var btLogin: UIView!
+    
+    var presenter: VOYLoginPresenter?
     
     init() {
         super.init(nibName:"VOYLoginViewController",bundle:nil)
@@ -29,35 +36,35 @@ class VOYLoginViewController: UIViewController, NVActivityIndicatorViewable {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.presenter = VOYLoginPresenter(dataSource: VOYLoginRepository(), view: self)
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: " ", style: .plain, target: nil, action: nil)
         self.automaticallyAdjustsScrollViewInsets = false
         self.navigationController?.setNavigationBarHidden(true, animated: false)
     }
 
-    //MARK: Class Methods
+    //MARK: VOYLoginContract
     
+    func redirectController(loginAuth: RedirectUserFor) {
+        let alertController = VOYAlertViewController(title: "Error", message: "Maybe you entered a wrong username or password!", buttonNames:["Ok"])
+        let navigationController = UINavigationController(rootViewController: VOYThemeListViewController(userJustLogged: true))
+        let slideMenuController = SlideMenuController(mainViewController: navigationController, rightMenuViewController: VOYNotificationViewController())
+        self.stopAnimating()
+        switch loginAuth {
+        case .success:
+            guard let navigationController = self.navigationController else { return }
+            navigationController.pushViewController(slideMenuController, animated: true)
+        case .error:
+            alertController.show(true, inViewController: self)
+        }
+    }
     
     //MARK: Component Events
     
     @IBAction func btLoginTapped(_ sender: Any) {
         self.view.endEditing(true)
-        let alertController = VOYAlertViewController(title: "Error", message: "Maybe you entered a wrong username or password!", buttonNames:["Ok"])
-        
-        let navigationController = UINavigationController(rootViewController: VOYThemeListViewController(userJustLogged: true))
-        let slideMenuController = SlideMenuController(mainViewController: navigationController, rightMenuViewController: VOYNotificationViewController())
-        
         startAnimating()
-        VOYLoginInteractor.shared.login(username: self.userNameView.txtField.text!, password: self.passwordView.txtField.text!) { (user , error) in
-            self.stopAnimating()
-            if let _ = error {
-                alertController.show(true, inViewController: self)
-            }else if user != nil {
-                self.navigationController?.pushViewController(slideMenuController, animated: true)
-            }else {
-                alertController.show(true, inViewController: self)
-            }
-        }
-        
+        guard let presenter = presenter else { return }
+        presenter.login(username: self.userNameView.txtField.text!, password: self.passwordView.txtField.text!)
     }
     
 }

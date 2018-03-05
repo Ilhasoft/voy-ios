@@ -10,7 +10,7 @@ import UIKit
 import ISOnDemandCollectionView
 import NVActivityIndicatorView
 
-class VOYAccountViewController: UIViewController, NVActivityIndicatorViewable {
+class VOYAccountViewController: UIViewController, NVActivityIndicatorViewable, VOYAccountContract {
 
     @IBOutlet weak var imgAvatar: UIImageView!
     @IBOutlet weak var imgIcon: UIImageView!
@@ -23,6 +23,8 @@ class VOYAccountViewController: UIViewController, NVActivityIndicatorViewable {
     @IBOutlet weak var heightCollectionAvatar: NSLayoutConstraint!
     
     var rightBarButtonItem:UIBarButtonItem!
+    
+    var presenter: VOYAccountPresenter?
     
     var isPasswordEditing = false
     let nilPassword = "xpto321otpx"
@@ -48,6 +50,7 @@ class VOYAccountViewController: UIViewController, NVActivityIndicatorViewable {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Account"
+        self.presenter = VOYAccountPresenter(dataSource: VOYAccountRepository(), view: self)
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(showAvatars))
         self.imgAvatar.addGestureRecognizer(tapGesture)
         self.viewPassword.delegate = self
@@ -95,7 +98,8 @@ class VOYAccountViewController: UIViewController, NVActivityIndicatorViewable {
     @objc func save() {
         if newPassword != nil || newAvatar != nil {
             self.startAnimating()
-            VOYAccountInteractor.shared.updateUser(avatar: newAvatar, password: newPassword, completion: { (error) in                
+            guard let presenter = presenter else { return }
+            presenter.updateUser(avatar: newAvatar, password: newPassword, completion: { (error) in
                 self.stopAnimating()
                 if error != nil {
                     //TODO: Show Alert
