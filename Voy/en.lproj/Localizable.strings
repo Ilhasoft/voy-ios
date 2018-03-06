@@ -19,3 +19,14 @@
 
 // Theme List Screen
 "themes_list_header" = "You are on %d themes.";
+
+// Reports List Screen
+"approved" = "Approved";
+"pending" = "Pending";
+"not_approved" = "Not Approved";
+"hello" = "Hello!";
+"no_reports_yet" = "You have not created any report yet";
+"great" = "Great!";
+"great_job" = "Great Job!";
+"all_reports_approved" = "All your reports have been approved";
+"add_report" = "Add Report";
