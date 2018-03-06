@@ -15,14 +15,11 @@ import NVActivityIndicatorView
 import Kingfisher
 
 class VOYThemeListViewController: UIViewController, NVActivityIndicatorViewable, VOYThemeListContract {
-
     @IBOutlet weak var lbThemesCount: UILabel!
     @IBOutlet weak var tbView: DataBindOnDemandTableView!
-    
     var presenter: VOYThemeListPresenter?
-    
     var userJustLogged = false
-    var selectedReportView:VOYSelectedReportView!
+    var selectedReportView: VOYSelectedReportView!
     var dropDown = DropDown()
     
     init(userJustLogged:Bool) {
@@ -40,6 +37,7 @@ class VOYThemeListViewController: UIViewController, NVActivityIndicatorViewable,
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        guard let navigation = self.navigationController else { return }
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: " ", style: .plain, target: nil, action: nil)
         edgesForExtendedLayout = []
         setupButtonItems()
@@ -47,7 +45,7 @@ class VOYThemeListViewController: UIViewController, NVActivityIndicatorViewable,
         getProjects()
         checkPendentReportsToSend()
         NotificationCenter.default.addObserver(self, selector: #selector(addLeftBarButtonItem), name: Notification.Name("userDataUpdated"), object: nil)
-        self.navigationController?.setNavigationBarHidden(false, animated: true)
+        navigation.setNavigationBarHidden(false, animated: true)
     }
     
     @objc func addLeftBarButtonItem() {
@@ -55,7 +53,6 @@ class VOYThemeListViewController: UIViewController, NVActivityIndicatorViewable,
         imageView.widthAnchor.constraint(equalToConstant: 30).isActive = true
         imageView.heightAnchor.constraint(equalToConstant: 30).isActive = true
         imageView.contentMode = .scaleAspectFill
-        
         imageView.kf.setImage(with: URL(string:VOYUser.activeUser()!.avatar)!)
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(openAccount))
         imageView.addGestureRecognizer(tapGesture)
@@ -94,21 +91,6 @@ class VOYThemeListViewController: UIViewController, NVActivityIndicatorViewable,
                 }
             }
         }
-//        VOYProjectInteractor.shared.getMyProjects { (projects, error) in
-//            self.stopAnimating()
-//            if let error = error {
-//                print(error.localizedDescription)
-//            }else {
-//                self.projects = projects
-//                if self.userJustLogged {
-//                    for project in self.projects {
-//                        var params = ["project":project.id as Any, "user":VOYUser.activeUser()!.id]
-//                        VOYRequestManager.shared.cacheDataFrom(url: VOYConstant.API.URL + "themes", parameters:&params)
-//                    }
-//                    self.userJustLogged = false
-//                }
-//            }
-//        }
     }
     
     func projectListWasUpdated() {
@@ -118,7 +100,7 @@ class VOYThemeListViewController: UIViewController, NVActivityIndicatorViewable,
             setupDropDown()
             setupTableView(filterThemesByProject: selectedReport)
             self.selectedReportView.lbTitle.text = selectedReport.name
-        }else {
+        } else {
             print("User without projects associated")
         }
     }
@@ -144,20 +126,22 @@ class VOYThemeListViewController: UIViewController, NVActivityIndicatorViewable,
     }
     
     @objc func openAccount() {
-        self.navigationController?.pushViewController(VOYAccountViewController(), animated: true)
+        guard let navigation = self.navigationController else { return }
+        navigation.pushViewController(VOYAccountViewController(), animated: true)
     }
     
     @objc func openNotifications() {
-        self.slideMenuController()?.openRight()
+        guard let slideMenu = self.slideMenuController() else { return }
+        slideMenu.openRight()
     }
     
-    func loadThemesFilteredByProject(project:VOYProject) {
+    func loadThemesFilteredByProject(project: VOYProject) {
         VOYProject.setActiveProject(project: project)
-        tbView.interactor = DataBindOnDemandTableViewInteractor(configuration:tbView.getConfiguration(), params: ["project":project.id,"user":VOYUser.activeUser()!.id], paginationCount: VOYConstant.API.PAGINATION_SIZE)
+        tbView.interactor = DataBindOnDemandTableViewInteractor(configuration:tbView.getConfiguration(), params: ["project": project.id,"user": VOYUser.activeUser()!.id], paginationCount: VOYConstant.API.PAGINATION_SIZE)
         tbView.loadContent()
     }
     
-    func setupTableView(filterThemesByProject project:VOYProject) {
+    func setupTableView(filterThemesByProject project: VOYProject) {
         tbView.separatorColor = UIColor.clear
         tbView.register(UINib(nibName: "VOYThemeTableViewCell", bundle: nil), forCellReuseIdentifier: "VOYThemeTableViewCell")
         tbView.onDemandTableViewDelegate = self
