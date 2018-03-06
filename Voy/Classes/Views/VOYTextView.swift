@@ -28,7 +28,7 @@ class VOYTextView: UIView {
     }
     @IBInspectable var placeholder:String = "" {
         didSet {
-            self.txtView.placeHolder = placeholder
+            self.txtView.placeholder = placeholder
             self.lbFieldName.text = placeholder
         }
     }
