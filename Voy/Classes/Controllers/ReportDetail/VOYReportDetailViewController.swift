@@ -63,6 +63,8 @@ class VOYReportDetailViewController: UIViewController {
         let barButtonItemOptions = UIBarButtonItem(image: #imageLiteral(resourceName: "combinedShape").withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(showActionSheet))
         let barButtonItemIssue = UIBarButtonItem(image: #imageLiteral(resourceName: "issue").withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(showIssue))
         
+        let barButtonItemShare = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.action, target: self, action: #selector(shareText))
+        
         let imageView = UIImageView(frame:CGRect(x: 0, y: 0, width: 30, height: 30))
         imageView.kf.setImage(with: URL(string:VOYUser.activeUser()!.avatar))
         imageView.contentMode = .scaleAspectFit
@@ -79,6 +81,10 @@ class VOYReportDetailViewController: UIViewController {
         
         if !(self.report.status != nil && self.report.status! != VOYReportStatus.approved.rawValue) {
             buttonItens.remove(at: 0)
+        }
+        
+        if let reportStatus = report.status, reportStatus == VOYReportStatus.approved.rawValue {
+            buttonItens.append(barButtonItemShare)
         }
         
         self.navigationItem.rightBarButtonItems = buttonItens
@@ -110,6 +116,15 @@ class VOYReportDetailViewController: UIViewController {
         let actionSheetViewController = VOYActionSheetViewController(buttonNames: ["Edit Report"], icons: nil)
         actionSheetViewController.delegate = self
         actionSheetViewController.show(true, inViewController: self)
+    }
+    
+    @objc private func shareText() {
+        guard let reportId = self.report.id else { return }
+        let textToShare = "Hello, I reported a problem in this region, take a look: https://voy-dev.ilhasoft.mobi/project/Ilhasoft/report/\(reportId)"
+        let activityViewController = UIActivityViewController(activityItems: [textToShare], applicationActivities: nil)
+        activityViewController.popoverPresentationController?.sourceView = self.view
+        // activityViewController.excludedActivityTypes = [ UIActivityType.airDrop ]
+        present(activityViewController, animated: true, completion: nil)
     }
     
     @IBAction func btCommentTapped(_ sender: Any) {
