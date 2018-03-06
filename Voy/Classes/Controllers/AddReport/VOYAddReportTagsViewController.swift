@@ -10,10 +10,12 @@ import UIKit
 import TagListView
 import NVActivityIndicatorView
 
-class VOYAddReportTagsViewController: UIViewController, NVActivityIndicatorViewable {
+class VOYAddReportTagsViewController: UIViewController, NVActivityIndicatorViewable, VOYAddReportTagsContract {
 
-    @IBOutlet var lbTitle:UILabel!
-    @IBOutlet var viewTags:TagListView!
+    @IBOutlet var lbTitle: UILabel!
+    @IBOutlet var viewTags: TagListView!
+    
+    var presenter: VOYAddReportTagsPresenter?
     
     var selectedTags = [String]() {
         didSet {
@@ -21,9 +23,9 @@ class VOYAddReportTagsViewController: UIViewController, NVActivityIndicatorViewa
         }
     }
     
-    var report:VOYReport!    
+    var report: VOYReport!
     
-    init(report:VOYReport) {
+    init(report: VOYReport) {
         self.report = report
         super.init(nibName: "VOYAddReportTagsViewController", bundle: nil)
     }
@@ -35,6 +37,7 @@ class VOYAddReportTagsViewController: UIViewController, NVActivityIndicatorViewa
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        presenter = VOYAddReportTagsPresenter(dataSource: VOYAddReportRepository(), view: self)
         edgesForExtendedLayout = []
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: " ", style: .plain, target: nil, action: nil)
         addNextButton()
@@ -55,20 +58,24 @@ class VOYAddReportTagsViewController: UIViewController, NVActivityIndicatorViewa
         VOYAddReportInteractor.shared.save(report: report) { (error,reporID) in
             self.stopAnimating()
             if error == nil {
-                self.navigationController?.pushViewController(VOYAddReportSuccessViewController(), animated: true)
-            }else {
+                self.showSuccess()
+            } else {
                 print("error: " + error!.localizedDescription)
             }
         }
         
     }
     
-    private func loadTags() {
+    func showSuccess() {
+        self.navigationController?.pushViewController(VOYAddReportSuccessViewController(), animated: true)
+    }
+    
+    internal func loadTags() {
         viewTags.addTags(VOYTheme.activeTheme()!.tags)
         viewTags.delegate = self
     }
     
-    private func selectTags() {
+    internal func selectTags() {
         guard let tags = self.report.tags else {
             return
         }
@@ -76,7 +83,7 @@ class VOYAddReportTagsViewController: UIViewController, NVActivityIndicatorViewa
         
         for tag in tags {
             
-            let tagViewFiltered = self.viewTags.tagViews.filter {($0.titleLabel!.text! == tag)}
+            let tagViewFiltered = self.viewTags.tagViews.filter { ($0.titleLabel!.text! == tag) }
             
             guard !tagViewFiltered.isEmpty else { return }
             
@@ -86,13 +93,13 @@ class VOYAddReportTagsViewController: UIViewController, NVActivityIndicatorViewa
         }
     }
     
-    private func addTag(tagView:TagView, title:String) {
-        let index = selectedTags.index {($0 == title)}
+    internal func addTag(tagView: TagView, title: String) {
+        let index = selectedTags.index { ($0 == title) }
         if index != nil {
             tagView.textColor = UIColor.black
             tagView.tagBackgroundColor = UIColor.voyGray
             selectedTags.remove(at: index!)
-        }else {
+        } else {
             tagView.textColor = UIColor.white
             tagView.tagBackgroundColor = UIColor.voyBlue
             selectedTags.append(title)
@@ -101,7 +108,7 @@ class VOYAddReportTagsViewController: UIViewController, NVActivityIndicatorViewa
     
 }
 
-extension VOYAddReportTagsViewController : TagListViewDelegate {
+extension VOYAddReportTagsViewController: TagListViewDelegate {
     func tagPressed(_ title: String, tagView: TagView, sender: TagListView) {
         self.addTag(tagView: tagView, title: title)
     }
