@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import DataBindSwift
 import ISOnDemandTableView
 import NVActivityIndicatorView
 

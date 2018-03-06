@@ -10,7 +10,6 @@ import XCTest
 @testable import Voy
 
 class VOYAccountListTests: XCTestCase {
-    
     var repositoryUnderTest: VOYMockAccountRepository!
     
     let newPassword: String = "NewPassword"
@@ -25,6 +24,7 @@ class VOYAccountListTests: XCTestCase {
         super.tearDown()
     }
     
+    // MARK: - Data test
     func testUpdateUser() {
         let expectations = expectation(description: "Get no errors")
         repositoryUnderTest.updateUser(avatar: newAvatar, password: newPassword) { (error) in

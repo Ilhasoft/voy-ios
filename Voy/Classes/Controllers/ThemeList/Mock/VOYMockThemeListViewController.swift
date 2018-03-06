@@ -9,26 +9,32 @@
 import UIKit
 
 class VOYMockThemeListViewController: VOYThemeListContract {
-    var dropDownWasSet: Bool = false
-    var listWasUpdated: Bool = false
-    var tableViewWasUpdated: Bool = false
-    var loadedThemesfromProject: Bool = false
-    var projects: [VOYProject]! {
-        didSet {
-            self.projectListWasUpdated()
-        }
-    }
+    var dropDownWasSet: Bool
+    var startedPresenter: Bool
+    var listWasUpdated: Bool
+    var cachedList: Bool
+    var tableViewWasUpdated: Bool
+    var loadedThemesfromProject: Bool    
+    var presenter: VOYMockThemeListPresenter!
     
     init() {
-        projects = [VOYProject]()
+        dropDownWasSet = false
+        listWasUpdated = false
+        tableViewWasUpdated = false
+        loadedThemesfromProject = false
+        startedPresenter = true
+        cachedList = false
+        presenter = VOYMockThemeListPresenter(dataSource: VOYMockThemeListRepository(), view: self)
     }
     
     func getProjects() {
-        for index in 0 ..< 5 {
-            let newProject = VOYProject()
-            newProject.name = "New Project"
-            newProject.id = index
-            self.projects.append(newProject)
+        startedPresenter = true
+        guard let presenter = presenter else { return }
+        presenter.getProjects { (success) in
+            if success {
+                presenter.cacheData()
+                self.cachedList = true
+            }
         }
     }
     
@@ -39,7 +45,7 @@ class VOYMockThemeListViewController: VOYThemeListContract {
     func projectListWasUpdated() {
         listWasUpdated = true
         setupDropDown()
-        guard let project = projects.first else { return }
+        guard let project = presenter.projects.first else { return }
         setupTableView(filterThemesByProject: project)
     }
     

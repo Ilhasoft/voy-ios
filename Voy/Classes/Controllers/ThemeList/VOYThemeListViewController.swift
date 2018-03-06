@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import DataBindSwift
 import ISOnDemandTableView
 import DropDown
 import ObjectMapper
@@ -78,7 +77,7 @@ class VOYThemeListViewController: UIViewController, NVActivityIndicatorViewable,
     func getProjects() {
         guard let presenter = presenter else { return }
         self.startAnimating()
-        presenter.getProjects { (success, error) in
+        presenter.getProjects { (success) in
             self.stopAnimating()
             if success {
                 if self.userJustLogged {
@@ -86,9 +85,7 @@ class VOYThemeListViewController: UIViewController, NVActivityIndicatorViewable,
                     self.userJustLogged = false
                 }
             } else {
-                if let error = error {
-                    print(error.localizedDescription)
-                }
+                // TODO: Show some error
             }
         }
     }

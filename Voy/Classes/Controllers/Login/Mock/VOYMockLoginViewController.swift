@@ -24,6 +24,4 @@ open class VOYMockLoginViewController: VOYLoginContract {
     func presentErrorAlert() {
         presentedAlert = true
     }
-    
-
 }

@@ -10,7 +10,6 @@ import XCTest
 @testable import Voy
 
 class VOYCommentTests: XCTestCase {
-    
     var repositoryUnderTest: VOYMockCommentRepository!
     
     override func setUp() {
@@ -23,6 +22,7 @@ class VOYCommentTests: XCTestCase {
         super.tearDown()
     }
     
+    // MARK: - Data test
     func testSaveComment() {
         let newComment = VOYComment(text: "JustASimpleComment", reportID: 0998080)
         let expectations = expectation(description: "Should get no errors")
