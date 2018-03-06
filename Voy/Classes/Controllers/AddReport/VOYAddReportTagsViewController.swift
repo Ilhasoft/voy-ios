@@ -81,7 +81,7 @@ class VOYAddReportTagsViewController: UIViewController, NVActivityIndicatorViewa
             guard !tagViewFiltered.isEmpty else { return }
             
             tagViewFiltered.first!.textColor = UIColor.white
-            tagViewFiltered.first!.tagBackgroundColor = VOYConstant.Color.blue
+            tagViewFiltered.first!.tagBackgroundColor = UIColor.voyBlue
             
         }
     }
@@ -90,11 +90,11 @@ class VOYAddReportTagsViewController: UIViewController, NVActivityIndicatorViewa
         let index = selectedTags.index {($0 == title)}
         if index != nil {
             tagView.textColor = UIColor.black
-            tagView.tagBackgroundColor = VOYConstant.Color.gray
+            tagView.tagBackgroundColor = UIColor.voyGray
             selectedTags.remove(at: index!)
         }else {
             tagView.textColor = UIColor.white
-            tagView.tagBackgroundColor = VOYConstant.Color.blue
+            tagView.tagBackgroundColor = UIColor.voyBlue
             selectedTags.append(title)
         }
     }
