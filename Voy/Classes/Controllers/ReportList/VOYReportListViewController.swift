@@ -81,13 +81,13 @@ class VOYReportListViewController: UIViewController, NVActivityIndicatorViewable
         if tableView.interactor?.objects.count == 0 {
             switch self.segmentedControl.selectedSegmentIndex {
             case 0:
-                self.viewInfo.setupWith(titleAndColor: ["Hello!":VOYConstant.Color.blue],
+                self.viewInfo.setupWith(titleAndColor: ["Hello!": UIColor.voyBlue],
                                         messageAndColor: ["You have not created any report yet":UIColor.black])
             case 1:
-                self.viewInfo.setupWith(titleAndColor: ["Great!":VOYConstant.Color.blue],
+                self.viewInfo.setupWith(titleAndColor: ["Great!": UIColor.voyBlue],
                                         messageAndColor: ["All your reports have been approved":UIColor.black])
             case 2:
-                self.viewInfo.setupWith(titleAndColor: ["Great Job!":UIColor(hex: "7ed321")],
+                self.viewInfo.setupWith(titleAndColor: ["Great Job!": UIColor.voyLeafGreen],
                                         messageAndColor: ["All your reports have been approved":UIColor.black])
             default:
                 break

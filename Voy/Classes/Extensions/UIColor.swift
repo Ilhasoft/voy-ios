@@ -10,6 +10,15 @@ import UIKit
 
 extension UIColor {
     
+    static var transparentBlack: UIColor { return UIColor.black.withAlphaComponent(0.5) }
+    static var voyBlue: UIColor { return UIColor(hex: "00cbff") }
+    static var voyGray: UIColor { return UIColor(hex: "f0f0f0") }
+    static var voyLightGray: UIColor { return UIColor(hex: "e7e7e7") }
+    static var voyLeafGreen: UIColor { return UIColor(hex: "7ed321") }
+    static var voyLightBlue: UIColor { return UIColor(hex: "4a90e2") }
+    static var voyDropDownSelectedBlue: UIColor { return UIColor(red: 0.6494, green: 0.8155, blue: 1.0, alpha: 0.2) }
+    static var voyDropDownShadow: UIColor { return UIColor(white: 0.6, alpha: 1) }
+    
     convenience init(hex: String) {
         let scanner = Scanner(string: hex)
         scanner.scanLocation = 0

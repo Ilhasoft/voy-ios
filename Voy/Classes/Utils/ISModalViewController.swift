@@ -47,7 +47,7 @@ open class ISModalViewController: UIViewController {
             self.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
             inViewController.present(self, animated: animated) { () -> Void in
                 UIView.animate(withDuration: 0.3, animations: { () -> Void in
-                    self.view.backgroundColor  = UIColor.black.withAlphaComponent(0.5)
+                    self.view.backgroundColor  = UIColor.transparentBlack
                 })
             }
         }
@@ -58,7 +58,7 @@ open class ISModalViewController: UIViewController {
             self.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
             viewController.present(self, animated: animated) { () -> Void in
                 UIView.animate(withDuration: 0.3, animations: { () -> Void in
-                    self.view.backgroundColor  = UIColor.black.withAlphaComponent(0.5)
+                    self.view.backgroundColor  = UIColor.transparentBlack
                     withCompletion()
                 })
             }

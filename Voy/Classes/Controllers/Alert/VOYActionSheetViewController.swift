@@ -58,7 +58,7 @@ class VOYActionSheetViewController: ISModalViewController {
         }
         
         let cancelButton = buildButton(index: 999, name: "Cancel")
-        cancelButton.backgroundColor = VOYConstant.Color.blue
+        cancelButton.backgroundColor = UIColor.voyBlue
         addAction(inButton: cancelButton)
         self.stackView.addArrangedSubview(cancelButton)
         
@@ -87,7 +87,7 @@ class VOYActionSheetViewController: ISModalViewController {
         let button = UIButton()
         button.layer.cornerRadius = 7
         button.titleLabel!.font = UIFont.systemFont(ofSize: 16)
-        button.setTitleColor(index == 999 ? UIColor.white : UIColor(hex: "4a90e2"), for: .normal)
+        button.setTitleColor(index == 999 ? UIColor.white : UIColor.voyLightBlue, for: .normal)
         button.setTitle(name, for: .normal)
         
         if let icon = icon {

@@ -45,7 +45,7 @@ class VOYCommentViewController: UIViewController, VOYCommentContract {
         }
         edgesForExtendedLayout = []
         self.bgViewTextField.layer.cornerRadius = 4
-        self.bgViewTextField.layer.borderColor = UIColor(hex: "E7E7E7").cgColor
+        self.bgViewTextField.layer.borderColor = UIColor.voyLightGray.cgColor
         self.bgViewTextField.layer.borderWidth = 2
         
         self.automaticallyAdjustsScrollViewInsets = false
