@@ -5,3 +5,14 @@
   Created by Dielson Sales on 06/03/18.
   Copyright © 2018 Ilhasoft. All rights reserved.
 */
+
+// Shared
+"error" = "Error";
+"ok" = "Ok";
+
+// Login Screen
+"hey" = "Hey!";
+"username" = "Username";
+"password" = "Password";
+"login" = "Login";
+"login_error_message" = "Maybe you entered a wrong username or password!";

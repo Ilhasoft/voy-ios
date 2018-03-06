@@ -19,7 +19,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="VOYLoginViewController" customModule="Voy" customModuleProvider="target">
             <connections>
-                <outlet property="btLogin" destination="7Aw-3c-Vyc" id="V8t-S5-3Fb"/>
+                <outlet property="btLogin" destination="7vn-vv-asa" id="7cv-E7-Kc3"/>
                 <outlet property="lbHey" destination="SEE-y1-SBu" id="cwv-k1-MmO"/>
                 <outlet property="passwordView" destination="x83-6K-eFi" id="ddY-XG-N9M"/>
                 <outlet property="scrollView" destination="dIk-ii-lej" id="Rqw-se-Kcn"/>
