@@ -21,9 +21,15 @@ class VOYLocalizable {
         case ok
         case password
         case username
+        case themesListHeader = "themes_list_header"
     }
 }
 
 func localizedString(_ localizedText: VOYLocalizable.LocalizedText) -> String {
     return NSLocalizedString(localizedText.rawValue, comment: "")
+}
+
+func localizedString(_ localizedText: VOYLocalizable.LocalizedText, andNumber number: Int) -> String {
+    let format = localizedString(localizedText)
+    return String(format: format, arguments: [number])
 }

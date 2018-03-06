@@ -16,3 +16,6 @@
 "password" = "Password";
 "login" = "Login";
 "login_error_message" = "Maybe you entered a wrong username or password!";
+
+// Theme List Screen
+"themes_list_header" = "You are on %d themes.";
