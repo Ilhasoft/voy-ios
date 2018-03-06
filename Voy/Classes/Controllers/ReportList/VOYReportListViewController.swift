@@ -86,10 +86,10 @@ class VOYReportListViewController: UIViewController, NVActivityIndicatorViewable
                                         messageAndColor: ["You have not created any report yet":UIColor.black])
             case 1:
                 self.viewInfo.setupWith(titleAndColor: ["Great!":VOYConstant.Color.blue],
-                                        messageAndColor: ["All you reports has been approved":UIColor.black])
+                                        messageAndColor: ["All your reports have been approved":UIColor.black])
             case 2:
                 self.viewInfo.setupWith(titleAndColor: ["Great Job!":UIColor(hex: "7ed321")],
-                                        messageAndColor: ["All you reports has been approved":UIColor.black])
+                                        messageAndColor: ["All your reports have been approved":UIColor.black])
             default:
                 break
             }
