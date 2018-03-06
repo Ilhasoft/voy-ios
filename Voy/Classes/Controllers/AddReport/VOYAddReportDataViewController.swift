@@ -87,7 +87,7 @@ class VOYAddReportDataViewController: UIViewController {
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: " ", style: .plain, target: nil, action: nil)
         self.automaticallyAdjustsScrollViewInsets = false
         self.txtFieldLink.layer.borderWidth = 1
-        self.txtFieldLink.layer.borderColor = VOYConstant.Color.gray.cgColor
+        self.txtFieldLink.layer.borderColor = UIColor.voyGray.cgColor
         if !VOYTheme.activeTheme()!.allow_links {
             self.tbViewLinks.isHidden = true
             self.txtFieldLink.isHidden = true

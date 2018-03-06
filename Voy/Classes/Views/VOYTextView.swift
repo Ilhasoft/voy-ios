@@ -16,8 +16,8 @@ protocol VOYTextViewDelegate {
 @IBDesignable
 class VOYTextView: UIView {
     
-    static let activeColor  = VOYConstant.Color.blue
-    static let defaultColor = VOYConstant.Color.gray
+    static let activeColor  = UIColor.voyBlue
+    static let defaultColor = UIColor.voyGray
     
     var delegate:VOYTextViewDelegate?
     
