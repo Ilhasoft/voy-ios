@@ -123,6 +123,7 @@ class VOYReportDetailViewController: UIViewController {
         let textToShare = "Hello, I reported a problem in this region, take a look: https://voy-dev.ilhasoft.mobi/project/Ilhasoft/report/\(reportId)"
         let activityViewController = UIActivityViewController(activityItems: [textToShare], applicationActivities: nil)
         activityViewController.popoverPresentationController?.sourceView = self.view
+        // TODO: test this in a real device to see what we should remove
         // activityViewController.excludedActivityTypes = [ UIActivityType.airDrop ]
         present(activityViewController, animated: true, completion: nil)
     }
