@@ -18,6 +18,7 @@ class VOYLocalizable {
         case addReport = "add_report"
         case allReportsApproved = "all_reports_approved"
         case approved
+        case cancel
         case change
         case close
         case comment

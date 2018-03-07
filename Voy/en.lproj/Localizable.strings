@@ -10,6 +10,7 @@
 "error" = "Error";
 "ok" = "Ok";
 "date_format" = "yyyy-MM-dd'T'HH:mm:ss.SSSSSSZ";
+"cancel" = "Cancel";
 
 // Login Screen
 "hey" = "Hey!";
