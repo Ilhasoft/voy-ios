@@ -9,6 +9,7 @@
 // Shared
 "error" = "Error";
 "ok" = "Ok";
+"date_format" = "yyyy-MM-dd'T'HH:mm:ss.SSSSSSZ";
 
 // Login Screen
 "hey" = "Hey!";
@@ -33,3 +34,18 @@
 
 // Notifications Screen
 "notifications" = "Notifications";
+
+// Account Screen
+"account" = "Account";
+"save" = "Save";
+"change" = "Change";
+"done" = "Done";
+"logout" = "Logout";
+"email" = "Email";
+"new_password" = "New Password";
+
+// Report Details
+"issues_reported" = "Issues reported in your report";
+"edit_report" = "Edit Report";
+"close" = "Close";
+"comment" = "Comment";

@@ -14,22 +14,34 @@ class VOYLocalizable {
      * Add item here in alphabetic order
      */
     enum LocalizedText: String {
+        case account
         case addReport = "add_report"
         case allReportsApproved = "all_reports_approved"
         case approved
+        case change
+        case close
+        case comment
+        case dateFormat = "date_format"
+        case done
+        case editReport = "edit_report"
+        case email
         case error
         case great
         case greatJob = "great_job"
         case hello
         case hey
+        case issuesReported = "issues_reported"
         case login
         case loginErrorMessage = "login_error_message"
+        case logout
+        case newPassword = "new_password"
         case noReportsYet = "no_reports_yet"
         case notApproved = "not_approved"
         case notifications
         case ok
         case password
         case pending
+        case save
         case username
         case themesListHeader = "themes_list_header"
     }
