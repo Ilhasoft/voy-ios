@@ -1,20 +1,23 @@
 //
-//  VOYAddReportInteractor.swift
+//  VOYAddReportRepository.swift
 //  Voy
 //
-//  Created by Daniel Amaral on 20/02/18.
+//  Created by Pericles Jr on 06/03/18.
 //  Copyright © 2018 Ilhasoft. All rights reserved.
 //
 
 import UIKit
 import Alamofire
 
-class VOYAddReportInteractor: NSObject {
-
-    static let shared = VOYAddReportInteractor()
+class VOYAddReportRepository: VOYAddReportDataSource {
     
-    func save(report: VOYReport, completion: @escaping(Error?, Int?) -> Void) {
-        
+    let reachability: VOYReachability
+    
+    init(reachability: VOYReachability) {
+        self.reachability = reachability
+    }
+    
+    func save(report: VOYReport, completion: @escaping (Error?, Int?) -> Void) {
         let authToken = VOYUser.activeUser()!.authToken
         
         let headers = ["Authorization" : "Token " + authToken!, "Content-Type" : "application/json"]
@@ -25,16 +28,14 @@ class VOYAddReportInteractor: NSObject {
         if report.update && report.status != nil {
             method = HTTPMethod.put
             reportIDString = "\(report.id!)/"
-        }else {
+        } else {
             method = HTTPMethod.post
             reportIDString = ""
         }
         
-//        report.id = nil
-        
         let url = VOYConstant.API.URL + "reports/" + reportIDString
         
-        if NetworkReachabilityManager()!.isReachable {
+        if reachability.hasNetwork() {
             Alamofire.request(url, method: method, parameters: report.toJSON(), encoding: JSONEncoding.default, headers: headers).responseJSON { (dataResponse:DataResponse<Any>) in
                 if let error = dataResponse.result.error {
                     print(error)
@@ -56,7 +57,7 @@ class VOYAddReportInteractor: NSObject {
             VOYReportStorageManager.shared.addAsPendent(report: report)
             completion(nil, nil)
         }
-        
     }
     
+
 }
