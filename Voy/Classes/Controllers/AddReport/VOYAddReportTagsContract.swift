@@ -15,4 +15,6 @@ protocol VOYAddReportTagsContract {
     func addTag(tagView: TagView, title: String)
     func save()
     func showSuccess()
+    func stopLoadingAnimation()
+    func startLoadingAnimation()
 }

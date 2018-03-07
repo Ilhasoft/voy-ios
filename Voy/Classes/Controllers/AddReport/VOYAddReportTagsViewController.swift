@@ -11,7 +11,6 @@ import TagListView
 import NVActivityIndicatorView
 
 class VOYAddReportTagsViewController: UIViewController, NVActivityIndicatorViewable, VOYAddReportTagsContract {
-
     @IBOutlet var lbTitle: UILabel!
     @IBOutlet var viewTags: TagListView!
     
@@ -37,7 +36,7 @@ class VOYAddReportTagsViewController: UIViewController, NVActivityIndicatorViewa
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        presenter = VOYAddReportTagsPresenter(dataSource: VOYAddReportRepository(), view: self)
+        presenter = VOYAddReportTagsPresenter(dataSource: VOYAddReportRepository(reachability: VOYReachabilityImpl()), view: self)
         edgesForExtendedLayout = []
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: " ", style: .plain, target: nil, action: nil)
         addNextButton()
@@ -50,20 +49,20 @@ class VOYAddReportTagsViewController: UIViewController, NVActivityIndicatorViewa
     }
     
     @objc func save() {
+        guard let presenter = self.presenter else { return }
         self.report.tags = selectedTags
         self.report.theme = VOYTheme.activeTheme()!.id
         let location = "POINT(\(VOYLocationManager.longitude) \(VOYLocationManager.latitude))"
         self.report.location = location
+        presenter.saveReport(report: report)
+    }
+    
+    func stopLoadingAnimation() {
+        self.stopAnimating()
+    }
+    
+    func startLoadingAnimation() {
         self.startAnimating()
-        VOYAddReportInteractor.shared.save(report: report) { (error,reporID) in
-            self.stopAnimating()
-            if error == nil {
-                self.showSuccess()
-            } else {
-                print("error: " + error!.localizedDescription)
-            }
-        }
-        
     }
     
     func showSuccess() {

@@ -10,6 +10,13 @@ import UIKit
 import Alamofire
 
 class VOYAddReportRepository: VOYAddReportDataSource {
+    
+    let reachability: VOYReachability
+    
+    init(reachability: VOYReachability) {
+        self.reachability = reachability
+    }
+    
     func save(report: VOYReport, completion: @escaping (Error?, Int?) -> Void) {
         let authToken = VOYUser.activeUser()!.authToken
         
@@ -28,7 +35,7 @@ class VOYAddReportRepository: VOYAddReportDataSource {
         
         let url = VOYConstant.API.URL + "reports/" + reportIDString
         
-        if NetworkReachabilityManager()!.isReachable {
+        if reachability.hasNetwork() {
             Alamofire.request(url, method: method, parameters: report.toJSON(), encoding: JSONEncoding.default, headers: headers).responseJSON { (dataResponse:DataResponse<Any>) in
                 if let error = dataResponse.result.error {
                     print(error)
