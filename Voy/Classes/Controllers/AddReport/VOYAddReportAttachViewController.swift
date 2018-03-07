@@ -65,15 +65,15 @@ class VOYAddReportAttachViewController: UIViewController, NVActivityIndicatorVie
         locationManager = VOYLocationManager(delegate: self)
         locationManager.getCurrentLocation()
         self.startAnimating()
-        
-        self.title = "Add Report"
+
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: " ", style: .plain, target: nil, action: nil)
         self.navigationController?.setNavigationBarHidden(false, animated: false)
         setupMediaViewDelegate()
         addNextButton()
         loadFromReport()
+        setupLocalization()
     }
-    
+
     func loadFromReport() {
         guard let report = self.report else { return }        
         mediaList = report.files
@@ -82,22 +82,20 @@ class VOYAddReportAttachViewController: UIViewController, NVActivityIndicatorVie
             mediaView.setupWithMedia(media: mediaList[index])
         }
     }
-    
+
     func addNextButton() {
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Next", style: .plain, target: self, action: #selector(openNextController))
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: localizedString(.next), style: .plain, target: self, action: #selector(openNextController))
         self.navigationItem.rightBarButtonItem!.isEnabled = false
     }
-    
+
     @objc func openNextController() {
         var addReportDataViewController:VOYAddReportDataViewController!
-        
         if report != nil {
             report!.cameraDataList = self.cameraDataList
             addReportDataViewController = VOYAddReportDataViewController(savedReport: self.report!)
-        }else {
+        } else {
             addReportDataViewController = VOYAddReportDataViewController(cameraDataList:self.cameraDataList)
         }
-        
         self.navigationController?.pushViewController(addReportDataViewController, animated: true)
     }
     
@@ -111,12 +109,22 @@ class VOYAddReportAttachViewController: UIViewController, NVActivityIndicatorVie
         tappedMediaView.setupWithMedia(cameraData:self.cameraData)
     }
     
+    // MARK: - Localization
+    
+    private func setupLocalization() {
+        self.title = localizedString(.addReport)
+        lbTitle.text = localizedString(.addPhotosAndVideos)
+    }
+    
 }
 
 extension VOYAddReportAttachViewController : VOYAddMediaViewDelegate {
     func mediaViewDidTap(mediaView: VOYAddMediaView) {
         tappedMediaView = mediaView
-        actionSheetController = VOYActionSheetViewController(buttonNames: ["Movie","Photo"], icons: [#imageLiteral(resourceName: "noun1018049Cc"),#imageLiteral(resourceName: "noun938989Cc")])
+        actionSheetController = VOYActionSheetViewController(
+            buttonNames: [localizedString(.movie), localizedString(.photo)],
+            icons: [#imageLiteral(resourceName: "noun1018049Cc"),#imageLiteral(resourceName: "noun938989Cc")]
+        )
         actionSheetController.delegate = self
         actionSheetController.show(true, inViewController: self)
     }

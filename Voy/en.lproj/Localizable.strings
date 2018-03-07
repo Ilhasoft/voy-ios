@@ -50,3 +50,17 @@
 "edit_report" = "Edit Report";
 "close" = "Close";
 "comment" = "Comment";
+
+// Comments Screen
+"comments" = "Comments";
+"thanks" = "Thanks!";
+"comment_sent_to_moderation" = "Your comment was sent to moderation, after approved it will available here.";
+"send" = "Send";
+"send_comment" = "Send comment...";
+"remove" = "Remove";
+
+// Add Report
+"add_photos_and_videos" = "Add photos and videos";
+"movie" = "Movie";
+"photo" = "Photo";
+"next" = "Next";

@@ -15,6 +15,7 @@ class VOYLocalizable {
      */
     enum LocalizedText: String {
         case account
+        case addPhotosAndVideos = "add_photos_and_videos"
         case addReport = "add_report"
         case allReportsApproved = "all_reports_approved"
         case approved
@@ -22,6 +23,8 @@ class VOYLocalizable {
         case change
         case close
         case comment
+        case comments
+        case commentSentToModeration = "comment_sent_to_moderation"
         case dateFormat = "date_format"
         case done
         case editReport = "edit_report"
@@ -35,14 +38,21 @@ class VOYLocalizable {
         case login
         case loginErrorMessage = "login_error_message"
         case logout
+        case movie
         case newPassword = "new_password"
+        case next
         case noReportsYet = "no_reports_yet"
         case notApproved = "not_approved"
         case notifications
         case ok
         case password
         case pending
+        case photo
+        case remove
         case save
+        case send
+        case sendComment = "send_comment"
+        case thanks
         case username
         case themesListHeader = "themes_list_header"
     }

@@ -23,7 +23,7 @@ class VOYCommentViewController: UIViewController, VOYCommentContract {
     
     init(report:VOYReport) {
         self.report = report
-        super.init(nibName: "VOYCommentViewController", bundle: nil)
+        super.init(nibName: String(describing: type(of: self)), bundle: nil)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -32,11 +32,11 @@ class VOYCommentViewController: UIViewController, VOYCommentContract {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "Comment"
         presenter = VOYCommentPresenter(dataSource: VOYCommentRepository(), view: self)
         setupKeyboard()
         setupTableView()
         setupLayout()
+        setupLocalization()
     }
     
     func setupLayout() {
@@ -64,7 +64,7 @@ class VOYCommentViewController: UIViewController, VOYCommentContract {
         tableView.refreshControl = nil
         tableView.contentInset = UIEdgeInsetsMake(0, 0, 64, 0)
         tableView.onDemandTableViewDelegate = self
-        tableView.interactor = DataBindOnDemandTableViewInteractor(configuration: tableView.getConfiguration(), params: ["report":self.report.id!], paginationCount: 20)
+        tableView.interactor = DataBindOnDemandTableViewInteractor(configuration: tableView.getConfiguration(), params: ["report": self.report.id!], paginationCount: 20)
         tableView.loadContent()
     }
     
@@ -107,12 +107,10 @@ class VOYCommentViewController: UIViewController, VOYCommentContract {
                     print(error.localizedDescription)
                 }
             })
-//            VOYCommentInteractor.shared.save(comment:comment) { (error) in
-//                if let error = error {
-//                    print(error.localizedDescription)
-//                }
-//            }
-            let alertViewController = VOYAlertViewController(title: "Thanks!", message: "Your comment was sent to moderation after approved it will available here!")
+            let alertViewController = VOYAlertViewController(
+                title: localizedString(.thanks),
+                message: localizedString(.commentSentToModeration)
+            )
             alertViewController.show(true, inViewController: self)
         }
     }
@@ -123,6 +121,14 @@ class VOYCommentViewController: UIViewController, VOYCommentContract {
     
     @IBAction func btSendTapped(_ sender: Any) {
         sendComment()
+    }
+    
+    // MARK: - Localization
+    
+    private func setupLocalization() {
+        self.title = localizedString(.comments)
+        btSend.setTitle(localizedString(.send), for: .normal)
+        self.txtField.placeholder = localizedString(.sendComment)
     }
 }
 
@@ -154,7 +160,7 @@ extension VOYCommentViewController : ISOnDemandTableViewDelegate {
 
 extension VOYCommentViewController : VOYCommentTableViewCellDelegate {
     func btOptionsDidTap(cell: VOYCommentTableViewCell) {
-        let actionSheetViewController = VOYActionSheetViewController(buttonNames: ["Remove"], icons: nil)
+        let actionSheetViewController = VOYActionSheetViewController(buttonNames: [localizedString(.remove)], icons: nil)
         actionSheetViewController.delegate = self
         actionSheetViewController.show(true, inViewController: self)
     }
