@@ -12,7 +12,7 @@ import DataBindSwift
 
 class VOYAddReportDataViewController: UIViewController {
 
-    @IBOutlet var lbTitle:UILabel!
+    @IBOutlet var lbTitle: UILabel!
     @IBOutlet weak var titleView: VOYTextFieldView!
     @IBOutlet weak var heightDescriptionView: NSLayoutConstraint!
     @IBOutlet weak var heightBindView: NSLayoutConstraint!
@@ -24,14 +24,14 @@ class VOYAddReportDataViewController: UIViewController {
     @IBOutlet weak var dataBindView: DataBindView!
     
     var cameraDataList = [VOYCameraData]()
-    var savedReport:VOYReport?
+    var savedReport: VOYReport?
     
-    init(cameraDataList:[VOYCameraData]) {
+    init(cameraDataList: [VOYCameraData]) {
         self.cameraDataList = cameraDataList
         super.init(nibName: String(describing: type(of: self)), bundle: nil)
     }
     
-    init(savedReport:VOYReport) {
+    init(savedReport: VOYReport) {
         self.savedReport = savedReport
         super.init(nibName: String(describing: type(of: self)), bundle: nil)
     }
@@ -122,7 +122,7 @@ class VOYAddReportDataViewController: UIViewController {
 
 }
 
-extension VOYAddReportDataViewController : UITableViewDataSource, UITableViewDelegate {
+extension VOYAddReportDataViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.tbViewLinks.dataList.count
     }
@@ -139,7 +139,7 @@ extension VOYAddReportDataViewController : UITableViewDataSource, UITableViewDel
     }
 }
 
-extension VOYAddReportDataViewController : UITextFieldDelegate {
+extension VOYAddReportDataViewController: UITextFieldDelegate {
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         if (string == "\n") {
@@ -164,7 +164,7 @@ extension VOYAddReportDataViewController : UITextFieldDelegate {
     
 }
 
-extension VOYAddReportDataViewController : VOYTextViewDelegate {
+extension VOYAddReportDataViewController: VOYTextViewDelegate {
     func textViewDidChangeHeight(_ textView: GrowingTextView, height: CGFloat) {
         self.heightDescriptionView.constant = height + 15
         UIView.animate(withDuration: 0.2) {
@@ -173,7 +173,7 @@ extension VOYAddReportDataViewController : VOYTextViewDelegate {
     }
 }
 
-extension VOYAddReportDataViewController : VOYLinkTableViewCellDelegate {
+extension VOYAddReportDataViewController: VOYLinkTableViewCellDelegate {
     func linkDidTap(url: String, cell: VOYLinkTableViewCell) {
     }
     func removeButtonDidTap(cell: VOYLinkTableViewCell) {
@@ -185,8 +185,8 @@ extension VOYAddReportDataViewController : VOYLinkTableViewCellDelegate {
     }
 }
 
-extension VOYAddReportDataViewController : DataBindViewDelegate {
-    func didFillAllComponents(JSON:[String:Any]) {
+extension VOYAddReportDataViewController: DataBindViewDelegate {
+    func didFillAllComponents(JSON: [String:Any]) {
         
     }
     

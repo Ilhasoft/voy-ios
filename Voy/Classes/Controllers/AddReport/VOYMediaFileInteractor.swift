@@ -15,7 +15,7 @@ class VOYMediaFileInteractor: NSObject {
     
     static var isUploading = false
     
-    func delete(mediaFiles:[VOYMedia]?) -> Void {
+    func delete(mediaFiles:[VOYMedia]?) {
         guard let mediaFiles = mediaFiles else {return}
         
         let authToken = VOYUser.activeUser()!.authToken!
