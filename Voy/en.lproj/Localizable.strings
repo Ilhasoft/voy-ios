@@ -54,7 +54,7 @@
 // Comments Screen
 "comments" = "Comments";
 "thanks" = "Thanks!";
-"comment_sent_to_moderation" = "Your comment was sent to moderation, after being approved it will available here.";
+"comment_sent_to_moderation" = "Your comment was sent to moderation, after being approved it will be available here.";
 "send" = "Send";
 "send_comment" = "Send comment...";
 "remove" = "Remove";
