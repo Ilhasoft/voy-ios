@@ -11,8 +11,8 @@ import SlideMenuControllerSwift
 
 class VOYAddReportSuccessViewController: UIViewController {
 
-    @IBOutlet var infoView:VOYInfoView!
-    @IBOutlet var btClose:UIButton!
+    @IBOutlet var infoView: VOYInfoView!
+    @IBOutlet var btClose: UIButton!
     
     init() {
         super.init(nibName: "VOYAddReportSuccessViewController", bundle: nil)

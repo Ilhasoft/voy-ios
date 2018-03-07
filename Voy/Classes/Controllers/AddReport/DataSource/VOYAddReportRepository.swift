@@ -21,7 +21,7 @@ class VOYAddReportRepository: VOYAddReportDataSource {
         if report.update && report.status != nil {
             method = HTTPMethod.put
             reportIDString = "\(report.id!)/"
-        }else {
+        } else {
             method = HTTPMethod.post
             reportIDString = ""
         }
@@ -33,22 +33,22 @@ class VOYAddReportRepository: VOYAddReportDataSource {
                 if let error = dataResponse.result.error {
                     print(error)
                     completion(error, nil)
-                }else if let value = dataResponse.result.value as? [String:Any] {
+                } else if let value = dataResponse.result.value as? [String:Any] {
                     if let reportID = value["id"] as? Int {
                         VOYMediaFileInteractor.shared.delete(mediaFiles: report.removedMedias)
                         VOYReportStorageManager.shared.removeFromStorageAfterSave(report: report)
                         VOYMediaFileInteractor.shared.upload(reportID: reportID, cameraDataList: report.cameraDataList!, completion: { (error) in
                         })
                         completion(nil, reportID)
-                    }else {
+                    } else {
                         print("error: \(value)")
                         completion(nil, nil)
                     }
                 }
             }
-        }else {
+        } else {
             VOYReportStorageManager.shared.addAsPendent(report: report)
-            completion(nil,nil)
+            completion(nil, nil)
         }
     }
     

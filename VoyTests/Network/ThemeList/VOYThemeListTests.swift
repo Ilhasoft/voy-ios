@@ -10,21 +10,26 @@ import XCTest
 @testable import Voy
 
 class VOYThemeListTests: XCTestCase {
-    
     var repositoryUnderTest: VOYMockThemeListRepository!
+    var viewControllerUnderTest: VOYMockThemeListViewController!
+    var presenterUnderTest: VOYMockThemeListPresenter!
     var apiURL: String = "www.apiurl.com/hadfkadjfsadafdsasssk"
     var userID: String = "userid9dfs9df9sd"
     
     override func setUp() {
         super.setUp()
         repositoryUnderTest = VOYMockThemeListRepository()
+        viewControllerUnderTest = VOYMockThemeListViewController()
     }
     
     override func tearDown() {
         repositoryUnderTest = nil
+        viewControllerUnderTest = nil
+        presenterUnderTest = nil
         super.tearDown()
     }
     
+    // MARK: - Data tests
     func testRetrieveThemes() {
         
         var retrievedProjects: Int = 0
@@ -40,6 +45,20 @@ class VOYThemeListTests: XCTestCase {
             XCTAssert(retrievedProjects == projects.count, "retrieved all projects and saved on cache.")
             expectations.fulfill()
         }
+        waitForExpectations(timeout: 10, handler: nil)
+    }
+    
+    // MARK: - UITests
+    func testDefaultControllerFlow() {
+        let expectations = expectation(description: "Validate the whole controller behaviour flow.")
+        viewControllerUnderTest.getProjects()
+        XCTAssertTrue(viewControllerUnderTest.startedPresenter, "Started loading projects.")
+        XCTAssertTrue(viewControllerUnderTest.listWasUpdated, "Updated project list.")
+        XCTAssertTrue(viewControllerUnderTest.cachedList, "Stored list on cache.")
+        XCTAssertTrue(viewControllerUnderTest.dropDownWasSet, "Loaded dropdown menu.")
+        XCTAssertTrue(viewControllerUnderTest.loadedThemesfromProject, "Loaded themes relative to the current project.")
+        XCTAssertTrue(viewControllerUnderTest.tableViewWasUpdated, "Updated list of themes on tableView.")
+        expectations.fulfill()
         waitForExpectations(timeout: 10, handler: nil)
     }
 }

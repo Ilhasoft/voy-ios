@@ -37,6 +37,8 @@
 		4371B692204F1DB700D83454 /* VOYMediaFileDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4371B691204F1DB700D83454 /* VOYMediaFileDataSource.swift */; };
 		4371B694204F256300D83454 /* VOYAddReportTagsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4371B693204F256300D83454 /* VOYAddReportTagsPresenter.swift */; };
 		4371B696204F257600D83454 /* VOYAddReportTagsContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4371B695204F257600D83454 /* VOYAddReportTagsContract.swift */; };
+		4371B686204EC55B00D83454 /* VOYMockThemeListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4371B685204EC55B00D83454 /* VOYMockThemeListViewController.swift */; };
+		4371B688204F0B1100D83454 /* VOYMockThemeListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4371B687204F0B1100D83454 /* VOYMockThemeListPresenter.swift */; };
 		437BD1A620487C8F00EC5661 /* VOYLoginPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 437BD1A520487C8F00EC5661 /* VOYLoginPresenter.swift */; };
 		437BD1AD2048891300EC5661 /* VOYLoginContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 437BD1AC2048891300EC5661 /* VOYLoginContract.swift */; };
 		43A05182204D6CD200ABC0C9 /* VOYMockThemeListRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43A05181204D6CD200ABC0C9 /* VOYMockThemeListRepository.swift */; };
@@ -182,6 +184,8 @@
 		4371B691204F1DB700D83454 /* VOYMediaFileDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VOYMediaFileDataSource.swift; sourceTree = "<group>"; };
 		4371B693204F256300D83454 /* VOYAddReportTagsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VOYAddReportTagsPresenter.swift; sourceTree = "<group>"; };
 		4371B695204F257600D83454 /* VOYAddReportTagsContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VOYAddReportTagsContract.swift; sourceTree = "<group>"; };
+		4371B685204EC55B00D83454 /* VOYMockThemeListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VOYMockThemeListViewController.swift; sourceTree = "<group>"; };
+		4371B687204F0B1100D83454 /* VOYMockThemeListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VOYMockThemeListPresenter.swift; sourceTree = "<group>"; };
 		437BD1A520487C8F00EC5661 /* VOYLoginPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VOYLoginPresenter.swift; sourceTree = "<group>"; };
 		437BD1AC2048891300EC5661 /* VOYLoginContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VOYLoginContract.swift; sourceTree = "<group>"; };
 		43A05181204D6CD200ABC0C9 /* VOYMockThemeListRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VOYMockThemeListRepository.swift; sourceTree = "<group>"; };
@@ -358,6 +362,8 @@
 			isa = PBXGroup;
 			children = (
 				43A05181204D6CD200ABC0C9 /* VOYMockThemeListRepository.swift */,
+				4371B685204EC55B00D83454 /* VOYMockThemeListViewController.swift */,
+				4371B687204F0B1100D83454 /* VOYMockThemeListPresenter.swift */,
 			);
 			path = Mock;
 			sourceTree = "<group>";
@@ -1197,6 +1203,7 @@
 				436C992520496D7100915A13 /* VOYMockLoginRepository.swift in Sources */,
 				655BD13720220D5000D69EA2 /* VOYActionSheetViewController.swift in Sources */,
 				655BD16920248C6C00D69EA2 /* VOYSelectedReportView.swift in Sources */,
+				4371B686204EC55B00D83454 /* VOYMockThemeListViewController.swift in Sources */,
 				655BD19E2028EF1400D69EA2 /* VOYCommentTableViewProvider.swift in Sources */,
 				65CA0651203C5C67009A936A /* DataBindRestConfiguration.swift in Sources */,
 				65F6994C202A1CB400BFCF0C /* VOYTextView.swift in Sources */,
@@ -1218,6 +1225,7 @@
 				437BD1AD2048891300EC5661 /* VOYLoginContract.swift in Sources */,
 				436C995C2049D7B000915A13 /* VOYCommentPresenter.swift in Sources */,
 				4371B694204F256300D83454 /* VOYAddReportTagsPresenter.swift in Sources */,
+				4371B688204F0B1100D83454 /* VOYMockThemeListPresenter.swift in Sources */,
 				657C3F72203B71DC0077F07B /* ISVideoUtil.swift in Sources */,
 				657C3F6E203768D90077F07B /* VOYLocationManager.swift in Sources */,
 				437BD1A620487C8F00EC5661 /* VOYLoginPresenter.swift in Sources */,

@@ -10,11 +10,9 @@ import XCTest
 @testable import Voy
 
 class VOYLoginTests: XCTestCase {
-    
     var repositoryUnderTest: VOYMockLoginRepository!
     var viewControllerUnderTest: VOYMockLoginViewController!
     var presenterUnderTest: VOYLoginPresenter!
-    
     let validUsername: String = "pirralho"
     let validPassword: String = "123456"
     let invalidUsername: String = "ohlarrip"
@@ -29,12 +27,12 @@ class VOYLoginTests: XCTestCase {
     
     override func tearDown() {
         repositoryUnderTest = nil
-        
+        viewControllerUnderTest = nil
+        presenterUnderTest = nil
         super.tearDown()
     }
     
-    // MARK: Data tests
-    
+    // MARK: - Data tests
     func testValidLogin() {
         
         let expectations = expectation(description: "Expecting a VOYUser object not nil")
@@ -57,7 +55,6 @@ class VOYLoginTests: XCTestCase {
     }
     
     // MARK: UITests
-    
     func testRedirectingUser() {
         let expectations = expectation(description: "User will be redirected")
         presenterUnderTest.login(username: validUsername, password: validPassword)

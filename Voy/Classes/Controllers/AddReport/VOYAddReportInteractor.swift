@@ -13,7 +13,7 @@ class VOYAddReportInteractor: NSObject {
 
     static let shared = VOYAddReportInteractor()
     
-    func save(report:VOYReport, completion:@escaping(Error?,Int?) -> Void) {
+    func save(report: VOYReport, completion: @escaping(Error?, Int?) -> Void) {
         
         let authToken = VOYUser.activeUser()!.authToken
         
@@ -39,22 +39,22 @@ class VOYAddReportInteractor: NSObject {
                 if let error = dataResponse.result.error {
                     print(error)
                     completion(error, nil)
-                }else if let value = dataResponse.result.value as? [String:Any] {
+                } else if let value = dataResponse.result.value as? [String:Any] {
                     if let reportID = value["id"] as? Int {
                         VOYMediaFileInteractor.shared.delete(mediaFiles: report.removedMedias)
                         VOYReportStorageManager.shared.removeFromStorageAfterSave(report: report)
                         VOYMediaFileInteractor.shared.upload(reportID: reportID, cameraDataList: report.cameraDataList!, completion: { (error) in
                         })
                         completion(nil, reportID)
-                    }else {
+                    } else {
                         print("error: \(value)")
                         completion(nil, nil)
                     }
                 }
             }
-        }else {
+        } else {
             VOYReportStorageManager.shared.addAsPendent(report: report)
-            completion(nil,nil)
+            completion(nil, nil)
         }
         
     }
