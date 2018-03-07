@@ -23,11 +23,11 @@ class VOYThemeListViewController: UIViewController, NVActivityIndicatorViewable,
     
     init(userJustLogged:Bool) {
         self.userJustLogged = userJustLogged
-        super.init(nibName: "VOYThemeListViewController", bundle: nil)
+        super.init(nibName: String(describing: type(of: self)), bundle: nil)
     }
     
     init() {
-        super.init(nibName: "VOYThemeListViewController", bundle: nil)
+        super.init(nibName: String(describing: type(of: self)), bundle: nil)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -155,7 +155,10 @@ extension VOYThemeListViewController : ISOnDemandTableViewDelegate {
         
     }
     func onDemandTableView(_ tableView: ISOnDemandTableView, onContentLoad lastData: [Any]?, withError error: Error?) {
-        self.lbThemesCount.text = "You are on \(String(describing: tableView.interactor!.objects.count)) themes"
+        self.lbThemesCount.text = localizedString(
+            .themesListHeader,
+            andNumber: tableView.interactor!.objects.count
+        )
     }
     func onDemandTableView(_ tableView: ISOnDemandTableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 103

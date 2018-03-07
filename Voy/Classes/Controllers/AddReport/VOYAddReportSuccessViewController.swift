@@ -15,7 +15,7 @@ class VOYAddReportSuccessViewController: UIViewController {
     @IBOutlet var btClose: UIButton!
     
     init() {
-        super.init(nibName: "VOYAddReportSuccessViewController", bundle: nil)
+        super.init(nibName: String(describing: type(of: self)), bundle: nil)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -26,8 +26,7 @@ class VOYAddReportSuccessViewController: UIViewController {
         super.viewDidLoad()
         edgesForExtendedLayout = []
         self.navigationController?.setNavigationBarHidden(true, animated: false)
-//        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: " ", style: .plain, target: nil, action: nil)
-        
+        setupLocalization()
     }
     
     @IBAction func btNewReportTapped() {
@@ -42,6 +41,14 @@ class VOYAddReportSuccessViewController: UIViewController {
         
         UIViewController.switchRootViewController(slideMenuController, animated: true) { }
         
+    }
+    
+    // MARK: - Localization
+    
+    private func setupLocalization() {
+        infoView.lbTitle.text = localizedString(.thanks)
+        infoView.lbMessage.text = localizedString(.thanksForReporting)
+        btClose.setTitle(localizedString(.done), for: .normal)
     }
 
 }

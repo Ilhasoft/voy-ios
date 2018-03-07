@@ -40,7 +40,7 @@ class VOYAccountViewController: UIViewController, NVActivityIndicatorViewable, V
     }
     
     init() {
-        super.init(nibName: "VOYAccountViewController", bundle: nil)
+        super.init(nibName: String(describing: type(of: self)), bundle: nil)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -49,7 +49,6 @@ class VOYAccountViewController: UIViewController, NVActivityIndicatorViewable, V
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "Account"
         self.presenter = VOYAccountPresenter(dataSource: VOYAccountRepository(), view: self)
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(showAvatars))
         self.imgAvatar.addGestureRecognizer(tapGesture)
@@ -57,6 +56,7 @@ class VOYAccountViewController: UIViewController, NVActivityIndicatorViewable, V
         setupLayout()
         setupCollectionView()
         setupData()
+        setupLocalization()
     }
 
     func enableRightBarButtonItem() {
@@ -80,7 +80,7 @@ class VOYAccountViewController: UIViewController, NVActivityIndicatorViewable, V
     
     func setupLayout() {
         edgesForExtendedLayout = []
-        rightBarButtonItem = UIBarButtonItem(title: "Save", style: .plain, target: self, action: #selector(save))
+        rightBarButtonItem = UIBarButtonItem(title: localizedString(.save), style: .plain, target: self, action: #selector(save))
         rightBarButtonItem.isEnabled = false
         self.navigationItem.rightBarButtonItem = rightBarButtonItem
     }
@@ -116,10 +116,8 @@ class VOYAccountViewController: UIViewController, NVActivityIndicatorViewable, V
     }
     
     func setupViewPasswordLayout() {
-        self.btEditPassword.setTitle("Change", for: .normal)
-        
+        btEditPassword.setTitle(localizedString(.change), for: .normal)
         if isPasswordEditing {
-            
             self.viewPassword.editEnabled = false
             let passwordChanged = (nilPassword != self.viewPassword.txtField.text && !self.viewPassword.txtField.text!.isEmpty)
             if passwordChanged {
@@ -132,7 +130,7 @@ class VOYAccountViewController: UIViewController, NVActivityIndicatorViewable, V
             self.viewPassword.layer.opacity = 0.5
             self.viewPassword.txtField.resignFirstResponder()
             isPasswordEditing = false
-        }else {
+        } else {
             self.viewPassword.editEnabled = true
             self.viewPassword.txtField.text = ""
             self.viewPassword.layer.opacity = 1
@@ -148,6 +146,17 @@ class VOYAccountViewController: UIViewController, NVActivityIndicatorViewable, V
     
     @IBAction func btEditPasswordTapped() {
         setupViewPasswordLayout()
+    }
+    
+    // MARK: - Private methods
+    
+    private func setupLocalization() {
+        self.title = localizedString(.account)
+        btEditPassword.setTitle(localizedString(.change), for: .normal)
+        viewUserName.placeholder = localizedString(.username)
+        viewEmail.placeholder = localizedString(.email)
+        viewPassword.placeholder = localizedString(.newPassword)
+        btLogout.setTitle(localizedString(.logout), for: .normal)
     }
     
 }
@@ -178,7 +187,7 @@ extension VOYAccountViewController : ISOnDemandCollectionViewDelegate {
 extension VOYAccountViewController : VOYTextFieldViewDelegate {
     func textFieldDidChange(_ textFieldView: VOYTextFieldView, text: String) {
         if !text.isEmpty {
-            self.btEditPassword.setTitle("Done", for: .normal)
+            self.btEditPassword.setTitle(localizedString(.done), for: .normal)
         }
     }
     

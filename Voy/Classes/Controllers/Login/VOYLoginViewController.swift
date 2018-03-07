@@ -17,12 +17,12 @@ class VOYLoginViewController: UIViewController, NVActivityIndicatorViewable, VOY
     @IBOutlet weak var lbHey: UILabel!
     @IBOutlet weak var userNameView: VOYTextFieldView!
     @IBOutlet weak var passwordView: VOYTextFieldView!
-    @IBOutlet weak var btLogin: UIView!
+    @IBOutlet weak var btLogin: UIButton!
     
     var presenter: VOYLoginPresenter?
     
     init() {
-        super.init(nibName:"VOYLoginViewController",bundle:nil)
+        super.init(nibName: String(describing: type(of: self)), bundle: nil)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -35,12 +35,17 @@ class VOYLoginViewController: UIViewController, NVActivityIndicatorViewable, VOY
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: " ", style: .plain, target: nil, action: nil)
         self.automaticallyAdjustsScrollViewInsets = false
         self.navigationController?.setNavigationBarHidden(true, animated: false)
+        setupLocalization()
     }
 
     //MARK: VOYLoginContract
     
     func presentErrorAlert() {
-        let alertController = VOYAlertViewController(title: "Error", message: "Maybe you entered a wrong username or password!", buttonNames:["Ok"])
+        let alertController = VOYAlertViewController(
+            title: localizedString(.error),
+            message: localizedString(.loginErrorMessage),
+            buttonNames:[localizedString(.ok)]
+        )
         self.stopAnimating()
         alertController.show(true, inViewController: self)
     }
@@ -62,6 +67,15 @@ class VOYLoginViewController: UIViewController, NVActivityIndicatorViewable, VOY
         startAnimating()
         guard let presenter = presenter else { return }
         presenter.login(username: self.userNameView.txtField.text!, password: self.passwordView.txtField.text!)
+    }
+    
+    // MARK: - Localization
+    
+    private func setupLocalization() {
+        lbHey.text = localizedString(.hey)
+        userNameView.txtField.placeholder = localizedString(.username)
+        passwordView.txtField.placeholder = localizedString(.password)
+        btLogin.setTitle(localizedString(.login), for: .normal)
     }
     
 }

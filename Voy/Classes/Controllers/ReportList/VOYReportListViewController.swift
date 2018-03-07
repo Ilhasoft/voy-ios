@@ -26,7 +26,7 @@ class VOYReportListViewController: UIViewController, NVActivityIndicatorViewable
     var dataLoadTime = 0
     
     init() {
-        super.init(nibName: "VOYReportListViewController", bundle: nil)
+        super.init(nibName: String(describing: type(of: self)), bundle: nil)
         VOYReportListViewController.sharedInstance = self
         self.theme = VOYTheme.activeTheme()!
         self.title = theme.name
@@ -43,6 +43,7 @@ class VOYReportListViewController: UIViewController, NVActivityIndicatorViewable
         self.navigationItem.rightBarButtonItem = rightBarButtonItem
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: " ", style: .plain, target: nil, action: nil)
         setupTableView()
+        setupLocalization()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -81,14 +82,14 @@ class VOYReportListViewController: UIViewController, NVActivityIndicatorViewable
         if tableView.interactor?.objects.count == 0 {
             switch self.segmentedControl.selectedSegmentIndex {
             case 0:
-                self.viewInfo.setupWith(titleAndColor: ["Hello!": UIColor.voyBlue],
-                                        messageAndColor: ["You have not created any report yet":UIColor.black])
+                self.viewInfo.setupWith(titleAndColor: [localizedString(.hello): UIColor.voyBlue],
+                                        messageAndColor: [localizedString(.noReportsYet): UIColor.black])
             case 1:
-                self.viewInfo.setupWith(titleAndColor: ["Great!": UIColor.voyBlue],
-                                        messageAndColor: ["All your reports have been approved":UIColor.black])
+                self.viewInfo.setupWith(titleAndColor: [localizedString(.great): UIColor.voyBlue],
+                                        messageAndColor: [localizedString(.allReportsApproved): UIColor.black])
             case 2:
-                self.viewInfo.setupWith(titleAndColor: ["Great Job!": UIColor.voyLeafGreen],
-                                        messageAndColor: ["All your reports have been approved":UIColor.black])
+                self.viewInfo.setupWith(titleAndColor: [localizedString(.greatJob): UIColor.voyLeafGreen],
+                                        messageAndColor: [localizedString(.allReportsApproved): UIColor.black])
             default:
                 break
             }
@@ -125,6 +126,15 @@ class VOYReportListViewController: UIViewController, NVActivityIndicatorViewable
         default:
             break
         }
+    }
+    
+    // MARK: - Localization
+    
+    private func setupLocalization() {
+        btAddReport.setTitle(localizedString(.addReport), for: .normal)
+        segmentedControl.setTitle(localizedString(.approved), forSegmentAt: 0)
+        segmentedControl.setTitle(localizedString(.pending), forSegmentAt: 1)
+        segmentedControl.setTitle(localizedString(.notApproved), forSegmentAt: 2)
     }
 }
 

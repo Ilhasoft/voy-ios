@@ -9,9 +9,11 @@
 import UIKit
 
 class VOYNotificationViewController: UIViewController {
+    
+    @IBOutlet var lbTitle: UILabel!
 
     init() {
-        super.init(nibName: "VOYNotificationViewController", bundle: nil)
+        super.init(nibName: String(describing: type(of: self)), bundle: nil)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -20,8 +22,11 @@ class VOYNotificationViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        setupLocalization()
+    }
+    
+    private func setupLocalization() {
+        lbTitle.text = localizedString(.notifications)
     }
 
 }
