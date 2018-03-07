@@ -70,7 +70,7 @@ class VOYActionSheetViewController: ISModalViewController {
     }
     
     @objc private func buttonTapped(gesture:UIGestureRecognizer) {
-        let button = gesture.view as! UIButton
+        guard let button = gesture.view as? UIButton else { return }
         if button.tag != 999 {
             self.delegate?.buttonDidTap(actionSheetViewController:self, button: button, index: button.tag)
         }else {

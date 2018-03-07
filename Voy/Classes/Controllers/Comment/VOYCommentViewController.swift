@@ -70,31 +70,33 @@ class VOYCommentViewController: UIViewController, VOYCommentContract {
     
     @objc func keyboardWillShow(notification: NSNotification) {
         if let keyboardSize = (notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
-            let duration = notification.userInfo![UIKeyboardAnimationDurationUserInfoKey] as! Double
-            let curve = notification.userInfo![UIKeyboardAnimationCurveUserInfoKey] as! UInt
-            view.setNeedsLayout()
-            view.layoutIfNeeded()
-            
-            UIView.animate(withDuration: duration, delay: 0, options: UIViewAnimationOptions(rawValue: curve), animations: {
-                self.bottomViewConstraint.constant = -keyboardSize.height //- 45
-                self.view.layoutIfNeeded()
-            }, completion:nil)
+            if let duration = notification.userInfo![UIKeyboardAnimationDurationUserInfoKey] as? Double,
+                let curve = notification.userInfo![UIKeyboardAnimationCurveUserInfoKey] as? UInt {
+                view.setNeedsLayout()
+                view.layoutIfNeeded()
+                
+                UIView.animate(withDuration: duration, delay: 0, options: UIViewAnimationOptions(rawValue: curve), animations: {
+                    self.bottomViewConstraint.constant = -keyboardSize.height //- 45
+                    self.view.layoutIfNeeded()
+                }, completion:nil)
+            }
         }
     }
-    
+
     @objc func keyboardWillHide(notification: NSNotification) {
         if let _ = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
-            let duration = notification.userInfo![UIKeyboardAnimationDurationUserInfoKey] as! Double
-            let curve = notification.userInfo![UIKeyboardAnimationCurveUserInfoKey] as! UInt
-            view.setNeedsLayout()
-            view.layoutIfNeeded()
-            UIView.animate(withDuration: duration, delay: 0, options: UIViewAnimationOptions(rawValue: curve), animations: {
-                self.bottomViewConstraint.constant = 0
-                self.view.layoutIfNeeded()
-            }, completion:nil)
+            if let duration = notification.userInfo![UIKeyboardAnimationDurationUserInfoKey] as? Double,
+                let curve = notification.userInfo![UIKeyboardAnimationCurveUserInfoKey] as? UInt {
+                view.setNeedsLayout()
+                view.layoutIfNeeded()
+                UIView.animate(withDuration: duration, delay: 0, options: UIViewAnimationOptions(rawValue: curve), animations: {
+                    self.bottomViewConstraint.constant = 0
+                    self.view.layoutIfNeeded()
+                }, completion:nil)
+            }
         }
     }
-    
+
     func sendComment() {
         let text = self.txtField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
         if !text.isEmpty {

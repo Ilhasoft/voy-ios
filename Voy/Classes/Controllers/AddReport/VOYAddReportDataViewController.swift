@@ -128,9 +128,13 @@ extension VOYAddReportDataViewController: UITableViewDataSource, UITableViewDele
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: NSStringFromClass(VOYLinkTableViewCell.self), for: indexPath) as! VOYLinkTableViewCell
-        cell.delegate = self
-        cell.setupCell(data: tbViewLinks.dataList[indexPath.row] as! String)
+        let cell = tableView.dequeueReusableCell(withIdentifier: NSStringFromClass(VOYLinkTableViewCell.self), for: indexPath)
+        if let linkTableViewCell = cell as? VOYLinkTableViewCell {
+            linkTableViewCell.delegate = self
+            if let dataList = tbViewLinks.dataList[indexPath.row] as? String {
+                linkTableViewCell.setupCell(data: dataList)
+            }
+        }
         return cell
     }
     
@@ -177,10 +181,12 @@ extension VOYAddReportDataViewController: VOYLinkTableViewCellDelegate {
     func linkDidTap(url: String, cell: VOYLinkTableViewCell) {
     }
     func removeButtonDidTap(cell: VOYLinkTableViewCell) {
-        let index = (self.tbViewLinks.dataList as! [String]).index {($0 == cell.lbLink.text!)}
-        if index != nil {
-            self.tbViewLinks.dataList.remove(at: index!)
-            self.tbViewLinks.reloadData()
+        if let dataList = self.tbViewLinks.dataList as? [String] {
+            let index = dataList.index {($0 == cell.lbLink.text!)}
+            if index != nil {
+                self.tbViewLinks.dataList.remove(at: index!)
+                self.tbViewLinks.reloadData()
+            }
         }
     }
 }

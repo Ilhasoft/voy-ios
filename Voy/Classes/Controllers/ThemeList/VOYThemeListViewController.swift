@@ -60,10 +60,10 @@ class VOYThemeListViewController: UIViewController, NVActivityIndicatorViewable,
     }
     
     func checkPendentReportsToSend() {
-        Timer.scheduledTimer(withTimeInterval: 10, repeats: true) { (t) in
+        Timer.scheduledTimer(withTimeInterval: 10, repeats: true) { _ in
             VOYReportSyncManager.shared.trySendPendentReports()
         }
-        Timer.scheduledTimer(withTimeInterval: 17, repeats: true) { (t) in
+        Timer.scheduledTimer(withTimeInterval: 17, repeats: true) { _ in
             VOYReportSyncManager.shared.trySendPendentCameraData()
         }
     }
@@ -134,7 +134,11 @@ class VOYThemeListViewController: UIViewController, NVActivityIndicatorViewable,
     
     func loadThemesFilteredByProject(project: VOYProject) {
         VOYProject.setActiveProject(project: project)
-        tbView.interactor = DataBindOnDemandTableViewInteractor(configuration:tbView.getConfiguration(), params: ["project": project.id,"user": VOYUser.activeUser()!.id], paginationCount: VOYConstant.API.PAGINATION_SIZE)
+        tbView.interactor = DataBindOnDemandTableViewInteractor(
+            configuration:tbView.getConfiguration(),
+            params: ["project": project.id,"user": VOYUser.activeUser()!.id],
+            paginationCount: VOYConstant.API.paginationSize
+        )
         tbView.loadContent()
     }
     
@@ -164,9 +168,10 @@ extension VOYThemeListViewController : ISOnDemandTableViewDelegate {
         return 103
     }
     func onDemandTableView(_ tableView: ISOnDemandTableView, didSelectRowAt indexPath: IndexPath) {
-        let cell = tableView.cellForRow(at: indexPath) as! VOYThemeTableViewCell
-        VOYTheme.setActiveTheme(theme: VOYTheme(JSON: cell.object.JSON)!)
-        self.navigationController?.pushViewController(VOYReportListViewController(), animated: true)
+        if let cell = tableView.cellForRow(at: indexPath) as? VOYThemeTableViewCell {
+            VOYTheme.setActiveTheme(theme: VOYTheme(JSON: cell.object.JSON)!)
+            self.navigationController?.pushViewController(VOYReportListViewController(), animated: true)
+        }
     }
 }
 

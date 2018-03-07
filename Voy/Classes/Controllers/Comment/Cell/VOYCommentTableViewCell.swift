@@ -54,18 +54,15 @@ extension VOYCommentTableViewCell : DataBindViewDelegate {
             if component == self.lbDate {
                 let dateFormatter = DateFormatter()
                 dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSSSSZ"
-                let dateString = value as! String
-                let date = dateFormatter.date(from: dateString)
-                
-                let dateFormatter2 = DateFormatter()
-                dateFormatter2.dateFormat = "MMM"
-                dateFormatter2.dateStyle = .medium
-                
-                lbDate.text = dateFormatter2.string(from: date!)
-                
+                if let dateString = value as? String {
+                    let date = dateFormatter.date(from: dateString)
+                    let dateFormatter2 = DateFormatter()
+                    dateFormatter2.dateFormat = "MMM"
+                    dateFormatter2.dateStyle = .medium
+                    lbDate.text = dateFormatter2.string(from: date!)
+                }
                 return nil
             }
-            
         }
         return value
     }

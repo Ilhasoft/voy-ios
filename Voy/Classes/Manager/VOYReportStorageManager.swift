@@ -21,7 +21,10 @@ class VOYReportStorageManager: NSObject {
     
     func removeFromStorageAfterSave(report:VOYReport) {
         var pendentReports = getPendentReports()
-        let index = pendentReports.index {($0["id"] as! Int == report.id)}
+        let index = pendentReports.index {
+            if let idAsInt = $0["id"] as? Int { return idAsInt == report.id }
+            return false
+        }
         if let index = index {
             pendentReports.remove(at: index)
             let encodedObject = NSKeyedArchiver.archivedData(withRootObject: pendentReports)
@@ -34,7 +37,10 @@ class VOYReportStorageManager: NSObject {
         
         var pendentReports = getPendentReports()
         
-        let index = pendentReports.index {($0["id"] as! Int == report.id)}
+        let index = pendentReports.index {
+            if let idAsInt = $0["id"] as? Int { return idAsInt == report.id }
+            return false
+        }
         
         if let index = index {
             pendentReports.remove(at: index)
