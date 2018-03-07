@@ -17,7 +17,7 @@
 "username" = "Username";
 "password" = "Password";
 "login" = "Login";
-"login_error_message" = "Maybe you entered a wrong username or password!";
+"login_error_message" = "Maybe you typed a wrong username or password!";
 
 // Theme List Screen
 "themes_list_header" = "You are on %d themes.";
@@ -27,7 +27,7 @@
 "pending" = "Pending";
 "not_approved" = "Not Approved";
 "hello" = "Hello!";
-"no_reports_yet" = "You have not created any report yet";
+"no_reports_yet" = "You haven't created any reports yet";
 "great" = "Great!";
 "great_job" = "Great Job!";
 "all_reports_approved" = "All your reports have been approved";
@@ -54,7 +54,7 @@
 // Comments Screen
 "comments" = "Comments";
 "thanks" = "Thanks!";
-"comment_sent_to_moderation" = "Your comment was sent to moderation, after approved it will available here.";
+"comment_sent_to_moderation" = "Your comment was sent to moderation, after being approved it will available here.";
 "send" = "Send";
 "send_comment" = "Send comment...";
 "remove" = "Remove";
@@ -67,7 +67,7 @@
 "alert" = "Alert";
 "outside_themes_bounds" = "You are outside this theme's bounds. You can't create a report.";
 "gps_permission_error" = "No GPS Permission";
-"need_gps_permission" = "You need provide GPS permission before create a report.";
+"need_gps_permission" = "You have to give GPS permission before creating a report.";
 
 "title_and_description" = "Title and Description";
 "title" = "Title";
