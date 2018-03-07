@@ -64,3 +64,16 @@
 "movie" = "Movie";
 "photo" = "Photo";
 "next" = "Next";
+"alert" = "Alert";
+"outside_themes_bounds" = "You are outside this theme's bounds. You can't create a report.";
+"gps_permission_error" = "No GPS Permission";
+"need_gps_permission" = "You need provide GPS permission before create a report.";
+
+"title_and_description" = "Title and Description";
+"title" = "Title";
+"description" = "Description";
+"add_link" = "Add Link";
+
+"add_tags" = "Add Tags";
+
+"thanks_for_reporting" = "Thanks for reporting! Please come back whenever you have a new request.";

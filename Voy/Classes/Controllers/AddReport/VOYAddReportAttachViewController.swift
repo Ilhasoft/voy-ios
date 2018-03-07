@@ -46,11 +46,11 @@ class VOYAddReportAttachViewController: UIViewController, NVActivityIndicatorVie
     
     init(report:VOYReport) {
         self.report = report
-        super.init(nibName: "VOYAddReportAttachViewController", bundle: nil)
+        super.init(nibName: String(describing: type(of: self)), bundle: nil)
     }
     
     init() {
-        super.init(nibName: "VOYAddReportAttachViewController", bundle: nil)
+        super.init(nibName: String(describing: type(of: self)), bundle: nil)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -185,7 +185,10 @@ extension VOYAddReportAttachViewController : VOYLocationManagerDelegate {
         let intersects: Bool = statePolygonRenderer.path.contains(statePolygonRenderedPoint)
         
         if !intersects {
-            let alertViewController = VOYAlertViewController(title: "Alert", message: "You are outside this theme's bounds. You couldn't create a report.")
+            let alertViewController = VOYAlertViewController(
+                title: localizedString(.alert),
+                message: localizedString(.outsideThemesBounds)
+            )
             alertViewController.view.tag = 1
             alertViewController.delegate = self
             alertViewController.show(true, inViewController: self)
@@ -195,7 +198,10 @@ extension VOYAddReportAttachViewController : VOYLocationManagerDelegate {
     
     func userDidntGivePermission() {
         self.stopAnimating()
-        let alertViewController = VOYAlertViewController(title: "No GPS Permission", message: "You need provide GPS permission before create a report.")
+        let alertViewController = VOYAlertViewController(
+            title: localizedString(.gpsPermissionError),
+            message: localizedString(.needGpsPermission)
+        )
         alertViewController.view.tag = 2
         alertViewController.delegate = self
         alertViewController.show(true, inViewController: self)

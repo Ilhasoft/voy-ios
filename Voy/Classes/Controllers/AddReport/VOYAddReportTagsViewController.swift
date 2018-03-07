@@ -25,7 +25,7 @@ class VOYAddReportTagsViewController: UIViewController, NVActivityIndicatorViewa
     
     init(report:VOYReport) {
         self.report = report
-        super.init(nibName: "VOYAddReportTagsViewController", bundle: nil)
+        super.init(nibName: String(describing: type(of: self)), bundle: nil)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -43,7 +43,7 @@ class VOYAddReportTagsViewController: UIViewController, NVActivityIndicatorViewa
     }
 
     func addNextButton() {
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Next", style: .plain, target: self, action: #selector(save))
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: localizedString(.send), style: .plain, target: self, action: #selector(save))
     }
     
     @objc func save() {
@@ -97,6 +97,12 @@ class VOYAddReportTagsViewController: UIViewController, NVActivityIndicatorViewa
             tagView.tagBackgroundColor = UIColor.voyBlue
             selectedTags.append(title)
         }
+    }
+    
+    // MARK: - Localization
+    
+    private func setupLocalization() {
+        lbTitle.text = localizedString(.addTags)
     }
     
 }
