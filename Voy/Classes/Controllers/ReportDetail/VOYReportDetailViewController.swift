@@ -29,7 +29,7 @@ class VOYReportDetailViewController: UIViewController {
     
     init(report:VOYReport) {
         self.report = report
-        super.init(nibName: "VOYReportDetailViewController", bundle: nil)
+        super.init(nibName: String(describing: type(of: self)), bundle: nil)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -49,7 +49,7 @@ class VOYReportDetailViewController: UIViewController {
         dataBindView.fillFields(withObject:report.toJSON())
         setupNavigationItem()
         setupViewTags()
-        
+        setupLocalization()
     }
     
     func setupViewTags() {
@@ -91,7 +91,11 @@ class VOYReportDetailViewController: UIViewController {
     }
     
     @objc func showIssue() {
-        let alertInfoController = VOYAlertViewController(title: "Issues reported in your report", message: self.report.lastNotification, buttonNames: ["Edit Report","Close"])
+        let alertInfoController = VOYAlertViewController(
+            title: localizedString(.issuesReported),
+            message: self.report.lastNotification,
+            buttonNames: [localizedString(.editReport), localizedString(.close)]
+        )
         alertInfoController.delegate = self
         alertInfoController.show(true, inViewController: self)
     }
@@ -113,7 +117,7 @@ class VOYReportDetailViewController: UIViewController {
     }
     
     @objc private func showActionSheet() {
-        let actionSheetViewController = VOYActionSheetViewController(buttonNames: ["Edit Report"], icons: nil)
+        let actionSheetViewController = VOYActionSheetViewController(buttonNames: [localizedString(.editReport)], icons: nil)
         actionSheetViewController.delegate = self
         actionSheetViewController.show(true, inViewController: self)
     }
@@ -130,6 +134,12 @@ class VOYReportDetailViewController: UIViewController {
     
     @IBAction func btCommentTapped(_ sender: Any) {
         self.navigationController?.pushViewController(VOYCommentViewController(report:self.report), animated: true)
+    }
+    
+    // MARK: - Private methods
+    
+    private func setupLocalization() {
+        btComment.setTitle(localizedString(.comment), for: .normal)
     }
 }
 extension VOYReportDetailViewController : ISScrollViewPageDelegate {
@@ -172,7 +182,7 @@ extension VOYReportDetailViewController : DataBindViewDelegate {
         if let component = component as? UILabel {
             if component == self.lbDate {
                 let dateFormatter = DateFormatter()
-                dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSSSSZ"
+                dateFormatter.dateFormat = localizedString(.dateFormat)
                 let dateString = value as! String
                 let date = dateFormatter.date(from: dateString)
                 

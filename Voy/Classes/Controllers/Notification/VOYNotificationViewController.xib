@@ -17,6 +17,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="VOYNotificationViewController" customModule="Voy" customModuleProvider="target">
             <connections>
+                <outlet property="lbTitle" destination="fb1-U8-7KH" id="dyP-4e-EK0"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -26,10 +27,9 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Notifications" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fb1-U8-7KH">
-                    <rect key="frame" x="18" y="46" width="169" height="20"/>
+                    <rect key="frame" x="18" y="46" width="339" height="20"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="20" id="TrK-1I-N8f"/>
-                        <constraint firstAttribute="width" constant="169" id="fpS-ta-VMf"/>
                     </constraints>
                     <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="18"/>
                     <nil key="textColor"/>
@@ -38,6 +38,7 @@
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="fb1-U8-7KH" secondAttribute="trailing" constant="18" id="CZX-Rr-9yT"/>
                 <constraint firstItem="fb1-U8-7KH" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="26" id="GKV-4o-dIb"/>
                 <constraint firstItem="fb1-U8-7KH" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="18" id="l17-Nn-FB1"/>
             </constraints>

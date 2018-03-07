@@ -28,12 +28,12 @@ class VOYAddReportDataViewController: UIViewController {
     
     init(cameraDataList:[VOYCameraData]) {
         self.cameraDataList = cameraDataList
-        super.init(nibName: "VOYAddReportDataViewController", bundle: nil)
+        super.init(nibName: String(describing: type(of: self)), bundle: nil)
     }
     
     init(savedReport:VOYReport) {
         self.savedReport = savedReport
-        super.init(nibName: "VOYAddReportDataViewController", bundle: nil)
+        super.init(nibName: String(describing: type(of: self)), bundle: nil)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -43,7 +43,6 @@ class VOYAddReportDataViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         edgesForExtendedLayout = []
-        self.title = "Add Report"
         self.txtFieldLink.delegate = self
         setupTableView()
         setupLayout()
@@ -53,10 +52,11 @@ class VOYAddReportDataViewController: UIViewController {
             dataBindView.fillFields(withObject:savedReport.toJSON())
         }
         descriptionView.delegate = self
+        setupLocalization()
     }
     
     func addNextButton() {
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Next", style: .plain, target: self, action: #selector(openNextController))
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: localizedString(.next), style: .plain, target: self, action: #selector(openNextController))
     }
     
     @objc func openNextController() {
@@ -110,6 +110,15 @@ class VOYAddReportDataViewController: UIViewController {
         }
     }
     
+    // MARK: - Localization
+    
+    private func setupLocalization() {
+        self.title = localizedString(.addReport)
+        lbTitle.text = localizedString(.titleAndDescription)
+        titleView.placeholder = localizedString(.title)
+        descriptionView.placeholder = localizedString(.description)
+        lbAddLink.text = localizedString(.addLink)
+    }
 
 }
 
@@ -182,12 +191,6 @@ extension VOYAddReportDataViewController : DataBindViewDelegate {
     }
     
     func willFill(component: Any, value: Any) -> Any? {
-//        switch component as! UIView {
-//        case self.tbViewLinks:
-//            break
-//        default:
-//            break
-//        }
         return value
     }
     

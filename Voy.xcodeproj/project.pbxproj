@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		01EBF715204EB7D800D4EF10 /* UIFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01EBF714204EB7D800D4EF10 /* UIFont.swift */; };
+		01EBF718204F216200D4EF10 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 01EBF71A204F216200D4EF10 /* Localizable.strings */; };
+		01EBF71C204F295600D4EF10 /* VOYLocalizable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01EBF71B204F295600D4EF10 /* VOYLocalizable.swift */; };
 		431F3593204DBE2900E27A7F /* VOYLoginTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43A0518E204DB63600ABC0C9 /* VOYLoginTests.swift */; };
 		431F3594204DBE6B00E27A7F /* VOYThemeListTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436C992D2049850800915A13 /* VOYThemeListTests.swift */; };
 		431F3595204DBE7300E27A7F /* VOYAccountListTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43A0518C204DB62D00ABC0C9 /* VOYAccountListTests.swift */; };
@@ -147,6 +149,8 @@
 
 /* Begin PBXFileReference section */
 		01EBF714204EB7D800D4EF10 /* UIFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIFont.swift; sourceTree = "<group>"; };
+		01EBF719204F216200D4EF10 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		01EBF71B204F295600D4EF10 /* VOYLocalizable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VOYLocalizable.swift; sourceTree = "<group>"; };
 		09E6F9A93ABF9A8CD9032B8F /* Pods-VoyTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VoyTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-VoyTests/Pods-VoyTests.release.xcconfig"; sourceTree = "<group>"; };
 		1C63B2E9849D938061D8A8BB /* Pods-VoyTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VoyTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-VoyTests/Pods-VoyTests.debug.xcconfig"; sourceTree = "<group>"; };
 		1E550C0C568807F52623837F /* Pods_Voy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Voy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -452,6 +456,7 @@
 				65AF37F9202E15B600D64CE4 /* UserDefaultsExtension.swift */,
 				657C3F71203B71DC0077F07B /* ISVideoUtil.swift */,
 				65D73B57203EF4280055F1A8 /* VOYFileUtil.swift */,
+				01EBF71B204F295600D4EF10 /* VOYLocalizable.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -674,6 +679,7 @@
 				65F3460D2020A87A00AC5437 /* Assets.xcassets */,
 				65F3460F2020A87A00AC5437 /* LaunchScreen.storyboard */,
 				65F346122020A87A00AC5437 /* Info.plist */,
+				01EBF71A204F216200D4EF10 /* Localizable.strings */,
 			);
 			path = Voy;
 			sourceTree = "<group>";
@@ -908,6 +914,7 @@
 				65F3463E2020B58A00AC5437 /* VOYLoginViewController.xib in Resources */,
 				655BD16A20248C6C00D69EA2 /* VOYSelectedReportView.xib in Resources */,
 				655BD1272020F3C100D69EA2 /* VOYAlertViewController.xib in Resources */,
+				01EBF718204F216200D4EF10 /* Localizable.strings in Resources */,
 				655BD1742024CE6500D69EA2 /* VOYReportTableViewCell.xib in Resources */,
 				65F346112020A87A00AC5437 /* LaunchScreen.storyboard in Resources */,
 				655BD14B20237BD100D69EA2 /* VOYInfoView.xib in Resources */,
@@ -1213,6 +1220,7 @@
 				65F346422020B82B00AC5437 /* VOYTextFieldView.swift in Sources */,
 				655BD1882024FFD700D69EA2 /* VOYAvatarCollectionViewProvider.swift in Sources */,
 				655BD14A20237BD100D69EA2 /* VOYInfoView.swift in Sources */,
+				01EBF71C204F295600D4EF10 /* VOYLocalizable.swift in Sources */,
 				655BD15F20238F7000D69EA2 /* VOYThemeListTableViewProvider.swift in Sources */,
 				655BD1632023989600D69EA2 /* VOYNotificationViewController.swift in Sources */,
 				65AF37FA202E15B600D64CE4 /* UserDefaultsExtension.swift in Sources */,
@@ -1259,6 +1267,14 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		01EBF71A204F216200D4EF10 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				01EBF719204F216200D4EF10 /* en */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 		65F3460F2020A87A00AC5437 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (

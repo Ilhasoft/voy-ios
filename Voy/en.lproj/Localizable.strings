@@ -1,0 +1,79 @@
+/* 
+  Localizable.strings
+  Voy
+
+  Created by Dielson Sales on 06/03/18.
+  Copyright © 2018 Ilhasoft. All rights reserved.
+*/
+
+// Shared
+"error" = "Error";
+"ok" = "Ok";
+"date_format" = "yyyy-MM-dd'T'HH:mm:ss.SSSSSSZ";
+"cancel" = "Cancel";
+
+// Login Screen
+"hey" = "Hey!";
+"username" = "Username";
+"password" = "Password";
+"login" = "Login";
+"login_error_message" = "Maybe you typed a wrong username or password!";
+
+// Theme List Screen
+"themes_list_header" = "You are on %d themes.";
+
+// Reports List Screen
+"approved" = "Approved";
+"pending" = "Pending";
+"not_approved" = "Not Approved";
+"hello" = "Hello!";
+"no_reports_yet" = "You haven't created any reports yet";
+"great" = "Great!";
+"great_job" = "Great Job!";
+"all_reports_approved" = "All your reports have been approved";
+"add_report" = "Add Report";
+
+// Notifications Screen
+"notifications" = "Notifications";
+
+// Account Screen
+"account" = "Account";
+"save" = "Save";
+"change" = "Change";
+"done" = "Done";
+"logout" = "Logout";
+"email" = "Email";
+"new_password" = "New Password";
+
+// Report Details
+"issues_reported" = "Issues reported in your report";
+"edit_report" = "Edit Report";
+"close" = "Close";
+"comment" = "Comment";
+
+// Comments Screen
+"comments" = "Comments";
+"thanks" = "Thanks!";
+"comment_sent_to_moderation" = "Your comment was sent to moderation, after being approved it will be available here.";
+"send" = "Send";
+"send_comment" = "Send comment...";
+"remove" = "Remove";
+
+// Add Report
+"add_photos_and_videos" = "Add photos and videos";
+"movie" = "Movie";
+"photo" = "Photo";
+"next" = "Next";
+"alert" = "Alert";
+"outside_themes_bounds" = "You are outside this theme's bounds. You can't create a report.";
+"gps_permission_error" = "No GPS Permission";
+"need_gps_permission" = "You have to give GPS permission before creating a report.";
+
+"title_and_description" = "Title and Description";
+"title" = "Title";
+"description" = "Description";
+"add_link" = "Add Link";
+
+"add_tags" = "Add Tags";
+
+"thanks_for_reporting" = "Thanks for reporting! Please come back whenever you have a new request.";

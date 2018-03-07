@@ -29,11 +29,11 @@ class VOYActionSheetViewController: ISModalViewController {
         if let icons = icons {
             self.icons = icons
         }
-        super.init(nibName: "VOYActionSheetViewController", bundle: nil)
+        super.init(nibName: String(describing: type(of: self)), bundle: nil)
     }
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
-        super.init(nibName: "VOYActionSheetViewController", bundle: nibBundleOrNil)
+        super.init(nibName: String(describing: type(of: self)), bundle: nibBundleOrNil)
     }
     
     required public init?(coder aDecoder: NSCoder) {
@@ -57,7 +57,7 @@ class VOYActionSheetViewController: ISModalViewController {
             self.stackView.addArrangedSubview(button)
         }
         
-        let cancelButton = buildButton(index: 999, name: "Cancel")
+        let cancelButton = buildButton(index: 999, name: localizedString(.cancel))
         cancelButton.backgroundColor = UIColor.voyBlue
         addAction(inButton: cancelButton)
         self.stackView.addArrangedSubview(cancelButton)
