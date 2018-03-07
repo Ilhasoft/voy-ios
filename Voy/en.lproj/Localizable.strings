@@ -30,3 +30,6 @@
 "great_job" = "Great Job!";
 "all_reports_approved" = "All your reports have been approved";
 "add_report" = "Add Report";
+
+// Notifications Screen
+"notifications" = "Notifications";

@@ -26,6 +26,7 @@ class VOYLocalizable {
         case loginErrorMessage = "login_error_message"
         case noReportsYet = "no_reports_yet"
         case notApproved = "not_approved"
+        case notifications
         case ok
         case password
         case pending
