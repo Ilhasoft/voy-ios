@@ -13,7 +13,7 @@ class VOYMediaFileRepository: VOYMediaFileDataSource {
     static let shared = VOYMediaFileRepository()
     static var isUploading = false
     
-    func delete(mediaFiles:[VOYMedia]?) {
+    func delete(mediaFiles: [VOYMedia]?) {
         guard let mediaFiles = mediaFiles else {return}
         
         let authToken = VOYUser.activeUser()!.authToken!
@@ -21,13 +21,13 @@ class VOYMediaFileRepository: VOYMediaFileDataSource {
         let mediaIds = mediaFiles.map {($0.id!)}
         var mediaIdsString = ""
         for mediaId in mediaIds {
-            mediaIdsString = mediaIdsString + "\(mediaId)" + ","
+            mediaIdsString = "\(mediaIdsString)\(mediaId),"
         }
         mediaIdsString.removeLast()
         let url = VOYConstant.API.URL + "report-files/delete/?ids=" + mediaIdsString
-        let headers:HTTPHeaders = ["Authorization" : "Token " + authToken]
+        let headers: HTTPHeaders = ["Authorization": "Token " + authToken]
         
-        Alamofire.request(url, method: .post, headers: headers).responseJSON { (dataResponse:DataResponse<Any>) in
+        Alamofire.request(url, method: .post, headers: headers).responseJSON { (dataResponse: DataResponse<Any>) in
             if let value = dataResponse.result.value {
                 print(value)
             } else if let error = dataResponse.result.error {
@@ -36,7 +36,7 @@ class VOYMediaFileRepository: VOYMediaFileDataSource {
         }
     }
     
-    func upload(reportID: Int, cameraDataList:[VOYCameraData], completion:@escaping(Error?) -> Void) {
+    func upload(reportID: Int, cameraDataList: [VOYCameraData], completion:@escaping(Error?) -> Void) {
         for (_, cameraData) in cameraDataList.enumerated() {
             
             var report_id = reportID
@@ -58,7 +58,7 @@ class VOYMediaFileRepository: VOYMediaFileDataSource {
                 },
                     to: VOYConstant.API.URL + "report-files/",
                     method: .post,
-                    headers: ["Authorization" : "Token " + VOYUser.activeUser()!.authToken],
+                    headers: ["Authorization": "Token " + VOYUser.activeUser()!.authToken],
                     encodingCompletion: { encodingResult in
                         VOYMediaFileRepository.isUploading = false
                         switch encodingResult {

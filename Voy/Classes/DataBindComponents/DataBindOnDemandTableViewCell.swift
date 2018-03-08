@@ -13,9 +13,9 @@ import DataBindSwift
 
 open class DataBindOnDemandTableViewCell: UITableViewCell, ISOnDemandTableViewCell {
     
-    @IBOutlet public var dataBindView:DataBindView!
+    @IBOutlet public var dataBindView: DataBindView!
     
-    public var object:Map!
+    public var object: Map!
     
     override open func awakeFromNib() {
         super.awakeFromNib()        
@@ -29,7 +29,7 @@ open class DataBindOnDemandTableViewCell: UITableViewCell, ISOnDemandTableViewCe
         if let objectAsMap = object as? Map {
             self.object = objectAsMap
             print(self.object.JSON)
-            dataBindView.fillFields(withObject:self.object.JSON)
+            dataBindView.fillFields(withObject: self.object.JSON)
         }
     }
 }

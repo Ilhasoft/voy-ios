@@ -11,10 +11,11 @@ import Alamofire
 class VOYLoginRepository: VOYLoginDataSource {    
 
     func login(username: String, password: String, completion: @escaping (VOYUser?, Error?) -> Void) {
-        let params = ["username":username,"password":password]
+        let params = ["username": username, "password": password]
         
-        Alamofire.request(VOYConstant.API.URL + "get_auth_token/", method: .post, parameters: params).responseJSON { (dataResponse:DataResponse<Any>) in
-            if let authTokenData = dataResponse.result.value as? [String:Any] {
+        Alamofire.request(VOYConstant.API.URL + "get_auth_token/", method: .post, parameters: params)
+            .responseJSON { (dataResponse: DataResponse<Any>) in
+            if let authTokenData = dataResponse.result.value as? [String: Any] {
                 if let authToken = authTokenData["token"] as? String {
                     self.getUserData(authToken: authToken, completion: { (user, error) in
                         if let user = user {
@@ -23,10 +24,10 @@ class VOYLoginRepository: VOYLoginDataSource {
                         }
                         completion(user, error)
                     })
-                }else {
+                } else {
                     completion(nil, nil)
                 }
-            }else if let error = dataResponse.result.error {
+            } else if let error = dataResponse.result.error {
                 print(error.localizedDescription)
                 completion(nil, error)
             }
@@ -35,12 +36,12 @@ class VOYLoginRepository: VOYLoginDataSource {
     
     func getUserData(authToken: String, completion: @escaping (VOYUser?, Error?) -> Void) {
         let url = VOYConstant.API.URL + "users/?auth_token=" + authToken
-        Alamofire.request(url, method: .get).responseArray { (dataResponse:DataResponse<[VOYUser]>) in
+        Alamofire.request(url, method: .get).responseArray { (dataResponse: DataResponse<[VOYUser]>) in
             if let userData = dataResponse.result.value {
-                completion(userData.first!,nil)
-            }else if let error = dataResponse.result.error {
+                completion(userData.first!, nil)
+            } else if let error = dataResponse.result.error {
                 print(error.localizedDescription)
-                completion(nil,error)
+                completion(nil, error)
             }
         }
     }

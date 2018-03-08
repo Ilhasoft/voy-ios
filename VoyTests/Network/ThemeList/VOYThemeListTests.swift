@@ -34,7 +34,7 @@ class VOYThemeListTests: XCTestCase {
         repositoryUnderTest.setNetwork(hasNetwork: true)
         var retrievedProjects: Int = 0
         let expectations = expectation(description: "Expecting a theme list with one object at least.")
-        repositoryUnderTest.getMyProjects { (projects, error) in
+        repositoryUnderTest.getMyProjects { (projects, _) in
             for project in projects {
                 var params = ["project": project.id as Any, "user": self.userID, "page": 1, "page_size": 50]
                 self.repositoryUnderTest.cacheDataFrom(url: self.apiURL, parameters: &params)
@@ -51,7 +51,7 @@ class VOYThemeListTests: XCTestCase {
         repositoryUnderTest.setNetwork(hasNetwork: false)
         var retrievedProjects: Int = 0
         let expectations = expectation(description: "Expecting a empty theme list.")
-        repositoryUnderTest.getMyProjects { (projects, error) in
+        repositoryUnderTest.getMyProjects { (projects, _) in
             for project in projects {
                 var params = ["project": project.id as Any, "user": self.userID, "page": 1, "page_size": 50]
                 self.repositoryUnderTest.cacheDataFrom(url: self.apiURL, parameters: &params)

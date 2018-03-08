@@ -25,7 +25,7 @@ class VOYThemeListPresenter {
     }
     
     func getProjects(completion:@escaping(Bool) -> Void) {
-        dataSource.getMyProjects { (projects, error) in
+        dataSource.getMyProjects { (projects, _) in
             if projects.count > 0 {
                 self.projects = projects
                 completion(true)
@@ -37,7 +37,7 @@ class VOYThemeListPresenter {
     
     func cacheData() {
         for project in projects {
-            var params = ["project":project.id as Any, "user":VOYUser.activeUser()!.id]
+            var params = ["project": project.id as Any, "user": VOYUser.activeUser()!.id]
             dataSource.cacheDataFrom(url: VOYConstant.API.URL + "themes", parameters: &params)
         }
     }

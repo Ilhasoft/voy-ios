@@ -9,26 +9,26 @@
 import UIKit
 import DataBindSwift
 
-protocol VOYReportTableViewCellDelegate {
-    func btResentDidTap(cell:VOYReportTableViewCell)
+protocol VOYReportTableViewCellDelegate: class {
+    func btResentDidTap(cell: VOYReportTableViewCell)
 }
 
 class VOYReportTableViewCell: DataBindOnDemandTableViewCell {
 
-    @IBOutlet var lbTitle:DataBindLabel!
-    @IBOutlet var lbDescription:DataBindLabel!
-    @IBOutlet var lbDate:DataBindLabel!
-    @IBOutlet var imgReport:DataBindImageView!
-    @IBOutlet var btResent:UIButton!
+    @IBOutlet var lbTitle: DataBindLabel!
+    @IBOutlet var lbDescription: DataBindLabel!
+    @IBOutlet var lbDate: DataBindLabel!
+    @IBOutlet var imgReport: DataBindImageView!
+    @IBOutlet var btResent: UIButton!
     
-    var delegate:VOYReportTableViewCellDelegate?
+    weak var delegate: VOYReportTableViewCellDelegate?
     
     var didLayoutSubviews = false
     
     override func layoutSubviews() {
         super.layoutSubviews()
         if !didLayoutSubviews {
-            installShadow(view:self.dataBindView)
+            installShadow(view: self.dataBindView)
             didLayoutSubviews = true
         }
     }
@@ -39,11 +39,13 @@ class VOYReportTableViewCell: DataBindOnDemandTableViewCell {
         self.selectionStyle = .none
     }
 
-    func installShadow(view:UIView) {
-        let radius: CGFloat = (self.contentView.frame.size.width - 55) / 2.0 //change it to .height if you need spread for height
-        let shadowPath = UIBezierPath(rect: CGRect(x: 0, y: 0, width: 2.1 * radius, height: view.frame.height))
-        //Change 2.1 to amount of spread you need and for height replace the code for height
+    func installShadow(view: UIView) {
+        //change it to .height if you need spread for height
+        let radius: CGFloat = (self.contentView.frame.size.width - 55) / 2.0
         
+        //Change 2.1 to amount of spread you need and for height replace the code for height
+        let shadowPath = UIBezierPath(rect: CGRect(x: 0, y: 0, width: 2.1 * radius, height: view.frame.height))
+
         view.layer.cornerRadius = 2
         view.layer.shadowColor = UIColor.black.cgColor
         view.layer.shadowOffset = CGSize(width: 0.1, height: 0.2)  //Here you control x and y
@@ -65,13 +67,13 @@ class VOYReportTableViewCell: DataBindOnDemandTableViewCell {
     
 }
 
-extension VOYReportTableViewCell : DataBindViewDelegate {
-    func didFillAllComponents(JSON:[String:Any]) {
-        let report = VOYReport(JSON:JSON)!
+extension VOYReportTableViewCell: DataBindViewDelegate {
+    func didFillAllComponents(JSON: [String: Any]) {
+        let report = VOYReport(JSON: JSON)!
         if report.status == nil {
             self.btResent.isHidden = false
             self.btResent.setImage(#imageLiteral(resourceName: "noun576598Cc"), for: .normal)
-        }else if let status = report.status {
+        } else if let status = report.status {
             switch status {
             case VOYReportStatus.approved.rawValue:
                 break
@@ -101,7 +103,7 @@ extension VOYReportTableViewCell : DataBindViewDelegate {
                     lbDate.text = dateFormatter2.string(from: date!)
                 }
                 return nil
-            }else if component == self.lbDescription {
+            } else if component == self.lbDescription {
                 if value is NSNull {
                     return ""
                 }

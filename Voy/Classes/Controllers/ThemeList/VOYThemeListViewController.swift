@@ -21,7 +21,7 @@ class VOYThemeListViewController: UIViewController, NVActivityIndicatorViewable,
     var selectedReportView: VOYSelectedReportView!
     var dropDown = DropDown()
     
-    init(userJustLogged:Bool) {
+    init(userJustLogged: Bool) {
         self.userJustLogged = userJustLogged
         super.init(nibName: String(describing: type(of: self)), bundle: nil)
     }
@@ -40,19 +40,27 @@ class VOYThemeListViewController: UIViewController, NVActivityIndicatorViewable,
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: " ", style: .plain, target: nil, action: nil)
         edgesForExtendedLayout = []
         setupButtonItems()
-        presenter = VOYThemeListPresenter(dataSource: VOYThemeListRepository(reachability: VOYReachabilityImpl()), view: self)
+        presenter = VOYThemeListPresenter(
+            dataSource: VOYThemeListRepository(reachability: VOYReachabilityImpl()),
+            view: self
+        )
         getProjects()
         checkPendentReportsToSend()
-        NotificationCenter.default.addObserver(self, selector: #selector(addLeftBarButtonItem), name: Notification.Name("userDataUpdated"), object: nil)
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(addLeftBarButtonItem),
+            name: Notification.Name("userDataUpdated"),
+            object: nil
+        )
         navigation.setNavigationBarHidden(false, animated: true)
     }
     
     @objc func addLeftBarButtonItem() {
-        let imageView = UIImageView(frame:CGRect(x: 0, y: 0, width: 30, height: 30))
+        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
         imageView.widthAnchor.constraint(equalToConstant: 30).isActive = true
         imageView.heightAnchor.constraint(equalToConstant: 30).isActive = true
         imageView.contentMode = .scaleAspectFill
-        imageView.kf.setImage(with: URL(string:VOYUser.activeUser()!.avatar)!)
+        imageView.kf.setImage(with: URL(string: VOYUser.activeUser()!.avatar)!)
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(openAccount))
         imageView.addGestureRecognizer(tapGesture)
         let leftBarButtonItem = UIBarButtonItem(customView: imageView)
@@ -70,7 +78,12 @@ class VOYThemeListViewController: UIViewController, NVActivityIndicatorViewable,
     
     func setupButtonItems() {
         addLeftBarButtonItem()
-        let rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "bell"), style: .plain, target: self, action: #selector(openNotifications))
+        let rightBarButtonItem = UIBarButtonItem(
+            image: #imageLiteral(resourceName: "bell"),
+            style: .plain,
+            target: self,
+            action: #selector(openNotifications)
+        )
         self.navigationItem.rightBarButtonItem = rightBarButtonItem
     }
     
@@ -135,8 +148,8 @@ class VOYThemeListViewController: UIViewController, NVActivityIndicatorViewable,
     func loadThemesFilteredByProject(project: VOYProject) {
         VOYProject.setActiveProject(project: project)
         tbView.interactor = DataBindOnDemandTableViewInteractor(
-            configuration:tbView.getConfiguration(),
-            params: ["project": project.id,"user": VOYUser.activeUser()!.id],
+            configuration: tbView.getConfiguration(),
+            params: ["project": project.id, "user": VOYUser.activeUser()!.id],
             paginationCount: VOYConstant.API.paginationSize
         )
         tbView.loadContent()
@@ -144,19 +157,21 @@ class VOYThemeListViewController: UIViewController, NVActivityIndicatorViewable,
     
     func setupTableView(filterThemesByProject project: VOYProject) {
         tbView.separatorColor = UIColor.clear
-        tbView.register(UINib(nibName: "VOYThemeTableViewCell", bundle: nil), forCellReuseIdentifier: "VOYThemeTableViewCell")
+        tbView.register(
+            UINib(nibName: "VOYThemeTableViewCell", bundle: nil),
+            forCellReuseIdentifier: "VOYThemeTableViewCell"
+        )
         tbView.onDemandTableViewDelegate = self
         loadThemesFilteredByProject(project: project)
     }
 
 }
 
-extension VOYThemeListViewController : ISOnDemandTableViewDelegate {
+extension VOYThemeListViewController: ISOnDemandTableViewDelegate {
     func onDemandTableView(_ tableView: ISOnDemandTableView, reuseIdentifierForCellAt indexPath: IndexPath) -> String {
         return "VOYThemeTableViewCell"
     }
     func onDemandTableView(_ tableView: ISOnDemandTableView, setupCell cell: UITableViewCell, at indexPath: IndexPath) {
-        
     }
     func onDemandTableView(_ tableView: ISOnDemandTableView, onContentLoad lastData: [Any]?, withError error: Error?) {
         self.lbThemesCount.text = localizedString(
@@ -175,7 +190,7 @@ extension VOYThemeListViewController : ISOnDemandTableViewDelegate {
     }
 }
 
-extension VOYThemeListViewController : VOYSelectedReportViewDelegate {
+extension VOYThemeListViewController: VOYSelectedReportViewDelegate {
     func seletecReportDidTap() {
         dropDown.show()
     }

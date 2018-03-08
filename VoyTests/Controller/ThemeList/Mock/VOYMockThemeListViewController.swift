@@ -58,6 +58,4 @@ class VOYMockThemeListViewController: VOYThemeListContract {
         tableViewWasUpdated = true
         loadThemesFilteredByProject(project: project)
     }
-    
-
 }

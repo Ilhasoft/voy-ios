@@ -35,16 +35,16 @@ class VOYAddReportAttachViewController: UIViewController, NVActivityIndicatorVie
             self.navigationItem.rightBarButtonItem!.isEnabled = !cameraDataList.isEmpty
         }
     }
-    var cameraData:VOYCameraData! {
+    var cameraData: VOYCameraData! {
         didSet {
             cameraDataList.append(cameraData)
             setupMediaView()
         }
     }
     
-    var tappedMediaView:VOYAddMediaView!
+    var tappedMediaView: VOYAddMediaView!
     
-    init(report:VOYReport) {
+    init(report: VOYReport) {
         self.report = report
         super.init(nibName: String(describing: type(of: self)), bundle: nil)
     }
@@ -77,14 +77,19 @@ class VOYAddReportAttachViewController: UIViewController, NVActivityIndicatorVie
     func loadFromReport() {
         guard let report = self.report else { return }        
         mediaList = report.files
-        for (index,mediaView) in self.mediaViews.enumerated() {
+        for (index, mediaView) in self.mediaViews.enumerated() {
             guard index < report.files.count else { return }
             mediaView.setupWithMedia(media: mediaList[index])
         }
     }
 
     func addNextButton() {
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: localizedString(.next), style: .plain, target: self, action: #selector(openNextController))
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(
+            title: localizedString(.next),
+            style: .plain,
+            target: self,
+            action: #selector(openNextController)
+        )
         self.navigationItem.rightBarButtonItem!.isEnabled = false
     }
 
@@ -123,19 +128,19 @@ extension VOYAddReportAttachViewController: VOYAddMediaViewDelegate {
         tappedMediaView = mediaView
         actionSheetController = VOYActionSheetViewController(
             buttonNames: [localizedString(.movie), localizedString(.photo)],
-            icons: [#imageLiteral(resourceName: "noun1018049Cc"),#imageLiteral(resourceName: "noun938989Cc")]
+            icons: [#imageLiteral(resourceName: "noun1018049Cc"), #imageLiteral(resourceName: "noun938989Cc")]
         )
         actionSheetController.delegate = self
         actionSheetController.show(true, inViewController: self)
     }
     func removeMediaButtonDidTap(mediaView: VOYAddMediaView) {
         if let cameraData = mediaView.cameraData {
-            let index = self.cameraDataList.index{($0.id == cameraData.id)}
+            let index = self.cameraDataList.index { ($0.id == cameraData.id) }
             if let index = index {
                 self.cameraDataList.remove(at: index)
             }
-        }else if let media = mediaView.media {
-            let index = self.mediaList.index{($0.id == media.id)}
+        } else if let media = mediaView.media {
+            let index = self.mediaList.index { ($0.id == media.id) }
             if let index = index {
                 self.mediaList.remove(at: index)
                 self.removedMedias.append(media)
@@ -156,14 +161,14 @@ extension VOYAddReportAttachViewController: VOYActionSheetViewControllerDelegate
             imagePickerController.videoQuality = .type640x480
             imagePickerController.videoMaximumDuration = 30
             imagePickerController.allowsEditing = true
-        }else {
+        } else {
             imagePickerController.mediaTypes = [kUTTypeImage as String]
         }
         self.present(imagePickerController, animated: true) {
             
         }
     }
-    func cancelButtonDidTap(actionSheetViewController:VOYActionSheetViewController) {
+    func cancelButtonDidTap(actionSheetViewController: VOYActionSheetViewController) {
         actionSheetViewController.close()
     }
 }
@@ -171,15 +176,20 @@ extension VOYAddReportAttachViewController: VOYActionSheetViewControllerDelegate
 extension VOYAddReportAttachViewController: VOYLocationManagerDelegate {
     func didGetUserLocation(latitude: Float, longitude: Float, error: Error?) {
         self.stopAnimating()
-        let myLocation = CLLocationCoordinate2D(latitude: CLLocationDegrees(latitude), longitude: CLLocationDegrees(longitude))
-        
+        let myLocation = CLLocationCoordinate2D(
+            latitude: CLLocationDegrees(latitude),
+            longitude: CLLocationDegrees(longitude)
+        )
+
         var loctionCoordinate2dList = [CLLocationCoordinate2D]()
         for point in theme.bounds {
             let locationCoordinate2D = CLLocationCoordinate2D(latitude: point[0], longitude: point[1])
             loctionCoordinate2dList.append(locationCoordinate2D)
         }
         
-        let statePolygonRenderer = MKPolygonRenderer(polygon: MKPolygon(coordinates: loctionCoordinate2dList, count: loctionCoordinate2dList.count))
+        let statePolygonRenderer = MKPolygonRenderer(polygon:
+            MKPolygon(coordinates: loctionCoordinate2dList, count: loctionCoordinate2dList.count)
+        )
         let testMapPoint: MKMapPoint = MKMapPointForCoordinate(myLocation)
         let statePolygonRenderedPoint: CGPoint = statePolygonRenderer.point(for: testMapPoint)
         let intersects: Bool = statePolygonRenderer.path.contains(statePolygonRenderedPoint)
@@ -213,8 +223,12 @@ extension VOYAddReportAttachViewController: VOYAlertViewControllerDelegate {
         alertController.close()
         self.navigationController?.popViewController(animated: true)
         if alertController.view.tag == 1 {
-        }else if alertController.view.tag == 2 {
-            UIApplication.shared.open(URL(string:UIApplicationOpenSettingsURLString)!, options: [:], completionHandler: nil)
+        } else if alertController.view.tag == 2 {
+            UIApplication.shared.open(
+                URL(string: UIApplicationOpenSettingsURLString)!,
+                options: [:],
+                completionHandler: nil
+            )
         }
     }
 }

@@ -10,8 +10,8 @@ import ObjectMapper
 
 class VOYProject: Mappable {
     
-    var id:Int!
-    var name:String!
+    var id: Int!
+    var name: String!
     
     init() {
         
@@ -32,7 +32,7 @@ class VOYProject: Mappable {
         return project
     }
     
-    static func setActiveProject(project:VOYProject) {
+    static func setActiveProject(project: VOYProject) {
         let defaults = UserDefaults.standard
         
         let encodedObject = NSKeyedArchiver.archivedData(withRootObject: project.toJSON())
@@ -45,4 +45,3 @@ class VOYProject: Mappable {
     }
     
 }
-

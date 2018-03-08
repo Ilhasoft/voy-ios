@@ -12,16 +12,16 @@ import NVActivityIndicatorView
 
 class VOYReportListViewController: UIViewController, NVActivityIndicatorViewable {
 
-    @IBOutlet var viewInfo:VOYInfoView!
-    @IBOutlet var btAddReport:UIButton!
-    @IBOutlet var tableViewApproved:DataBindOnDemandTableView!
-    @IBOutlet var tableViewPending:DataBindOnDemandTableView!
-    @IBOutlet var tableViewNotApproved:DataBindOnDemandTableView!
-    @IBOutlet var tableViews:[DataBindOnDemandTableView]!
-    @IBOutlet var segmentedControl:UISegmentedControl!
+    @IBOutlet var viewInfo: VOYInfoView!
+    @IBOutlet var btAddReport: UIButton!
+    @IBOutlet var tableViewApproved: DataBindOnDemandTableView!
+    @IBOutlet var tableViewPending: DataBindOnDemandTableView!
+    @IBOutlet var tableViewNotApproved: DataBindOnDemandTableView!
+    @IBOutlet var tableViews: [DataBindOnDemandTableView]!
+    @IBOutlet var segmentedControl: UISegmentedControl!
     
-    static var sharedInstance:VOYReportListViewController?
-    var theme:VOYTheme!
+    static var sharedInstance: VOYReportListViewController?
+    var theme: VOYTheme!
     var allDataFinishedLoad = false
     var dataLoadTime = 0
     
@@ -39,7 +39,12 @@ class VOYReportListViewController: UIViewController, NVActivityIndicatorViewable
     override func viewDidLoad() {
         super.viewDidLoad()
         edgesForExtendedLayout = []
-        let rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "bell"), style: .plain, target: self, action: #selector(openNotifications))
+        let rightBarButtonItem = UIBarButtonItem(
+            image: #imageLiteral(resourceName: "bell"),
+            style: .plain,
+            target: self,
+            action: #selector(openNotifications)
+        )
         self.navigationItem.rightBarButtonItem = rightBarButtonItem
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: " ", style: .plain, target: nil, action: nil)
         setupTableView()
@@ -62,18 +67,21 @@ class VOYReportListViewController: UIViewController, NVActivityIndicatorViewable
             
             if tableView == self.tableViewApproved {
                 status = VOYReportStatus.approved.rawValue
-            }else if tableView == self.tableViewPending {
+            } else if tableView == self.tableViewPending {
                 status = VOYReportStatus.pendent.rawValue
-            }else if tableView == self.tableViewNotApproved {
+            } else if tableView == self.tableViewNotApproved {
                 status = VOYReportStatus.notApproved.rawValue
             }
             
             tableView.separatorColor = UIColor.clear
-            tableView.register(UINib(nibName: "VOYReportTableViewCell", bundle: nil), forCellReuseIdentifier: "VOYReportTableViewCell")
+            tableView.register(
+                UINib(nibName: "VOYReportTableViewCell", bundle: nil),
+                forCellReuseIdentifier: "VOYReportTableViewCell"
+            )
             tableView.onDemandTableViewDelegate = self
             tableView.interactor = DataBindOnDemandTableViewInteractor(
-                configuration:tableViewApproved.getConfiguration(),
-                params: ["theme":self.theme.id,"status":status, "mapper" : VOYUser.activeUser()!.id],
+                configuration: tableViewApproved.getConfiguration(),
+                params: ["theme": self.theme.id, "status": status, "mapper": VOYUser.activeUser()!.id],
                 paginationCount: VOYConstant.API.paginationSize
             )
             tableView.loadContent()
@@ -81,7 +89,7 @@ class VOYReportListViewController: UIViewController, NVActivityIndicatorViewable
         
     }
     
-    func showInfoViewIfNecessary(tableView:DataBindOnDemandTableView) {
+    func showInfoViewIfNecessary(tableView: DataBindOnDemandTableView) {
         if tableView.interactor?.objects.count == 0 {
             switch self.segmentedControl.selectedSegmentIndex {
             case 0:
@@ -97,7 +105,7 @@ class VOYReportListViewController: UIViewController, NVActivityIndicatorViewable
                 break
             }
             self.viewInfo.isHidden = false
-        }else {
+        } else {
             self.viewInfo.isHidden = true
         }
     }
@@ -113,19 +121,16 @@ class VOYReportListViewController: UIViewController, NVActivityIndicatorViewable
             tableViewPending.isHidden = true
             tableViewNotApproved.isHidden = true
             showInfoViewIfNecessary(tableView: tableViewApproved)
-            break
         case 1:
             tableViewApproved.isHidden = true
             tableViewPending.isHidden = false
             tableViewNotApproved.isHidden = true
             showInfoViewIfNecessary(tableView: tableViewPending)
-            break
         case 2:
             tableViewApproved.isHidden = true
             tableViewPending.isHidden = true
             tableViewNotApproved.isHidden = false
             showInfoViewIfNecessary(tableView: tableViewNotApproved)
-            break
         default:
             break
         }
@@ -141,7 +146,7 @@ class VOYReportListViewController: UIViewController, NVActivityIndicatorViewable
     }
 }
 
-extension VOYReportListViewController : ISOnDemandTableViewDelegate {
+extension VOYReportListViewController: ISOnDemandTableViewDelegate {
     func onDemandTableView(_ tableView: ISOnDemandTableView, reuseIdentifierForCellAt indexPath: IndexPath) -> String {
         return "VOYReportTableViewCell"
     }
@@ -167,12 +172,15 @@ extension VOYReportListViewController : ISOnDemandTableViewDelegate {
     
     func onDemandTableView(_ tableView: ISOnDemandTableView, didSelectRowAt indexPath: IndexPath) {
         if let cell = tableView.cellForRow(at: indexPath) as? VOYReportTableViewCell {
-            self.navigationController?.pushViewController(VOYReportDetailViewController(report: VOYReport(JSON: cell.object.JSON)!), animated: true)
+            self.navigationController?.pushViewController(
+                VOYReportDetailViewController(report: VOYReport(JSON: cell.object.JSON)!),
+                animated: true
+            )
         }
     }
 }
 
-extension VOYReportListViewController : VOYReportTableViewCellDelegate {
+extension VOYReportListViewController: VOYReportTableViewCellDelegate {
     func btResentDidTap(cell: VOYReportTableViewCell) {
         let actionSheetViewController = VOYActionSheetViewController(buttonNames: ["Resent"], icons: nil)
         actionSheetViewController.delegate = self
@@ -180,7 +188,7 @@ extension VOYReportListViewController : VOYReportTableViewCellDelegate {
     }
 }
 
-extension VOYReportListViewController : VOYActionSheetViewControllerDelegate {
+extension VOYReportListViewController: VOYActionSheetViewControllerDelegate {
     func cancelButtonDidTap(actionSheetViewController: VOYActionSheetViewController) {
         actionSheetViewController.close()
     }

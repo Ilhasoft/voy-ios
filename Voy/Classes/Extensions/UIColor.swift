@@ -39,25 +39,25 @@ extension UIColor {
     }
     
     func toHexString() -> String {
-        var r:CGFloat = 0
-        var g:CGFloat = 0
-        var b:CGFloat = 0
-        var a:CGFloat = 0
+        var r: CGFloat = 0
+        var g: CGFloat = 0
+        var b: CGFloat = 0
+        var a: CGFloat = 0
         
         getRed(&r, green: &g, blue: &b, alpha: &a)
         
-        let rgb:Int = (Int)(r*255)<<16 | (Int)(g*255)<<8 | (Int)(b*255)<<0
+        let rgb: Int = (Int)(r*255)<<16 | (Int)(g*255)<<8 | (Int)(b*255)<<0
         
-        return String(format:"%06x", rgb)
+        return String(format: "%06x", rgb)
     }
     
     static func blend(from: UIColor, to: UIColor, percent: Double) -> UIColor {
-        var fR : CGFloat = 0.0
-        var fG : CGFloat = 0.0
-        var fB : CGFloat = 0.0
-        var tR : CGFloat = 0.0
-        var tG : CGFloat = 0.0
-        var tB : CGFloat = 0.0
+        var fR: CGFloat = 0.0
+        var fG: CGFloat = 0.0
+        var fB: CGFloat = 0.0
+        var tR: CGFloat = 0.0
+        var tG: CGFloat = 0.0
+        var tB: CGFloat = 0.0
         
         from.getRed(&fR, green: &fG, blue: &fB, alpha: nil)
         to.getRed(&tR, green: &tG, blue: &tB, alpha: nil)

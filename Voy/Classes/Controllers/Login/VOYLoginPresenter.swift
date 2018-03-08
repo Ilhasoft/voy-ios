@@ -19,7 +19,7 @@ class VOYLoginPresenter {
     }
 
     func login(username: String, password: String) {
-        dataSource.login(username: username, password: password) { (user , error) in
+        dataSource.login(username: username, password: password) { (user, _) in
             guard let view = self.view else { return }
             if user != nil {
                 view.redirectController()

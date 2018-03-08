@@ -12,7 +12,7 @@ import NVActivityIndicatorView
 
 class VOYLoginViewController: UIViewController, NVActivityIndicatorViewable, VOYLoginContract {
 
-    @IBOutlet var scrollView:UIScrollView!
+    @IBOutlet var scrollView: UIScrollView!
     @IBOutlet weak var stackViewIcons: UIStackView!
     @IBOutlet weak var lbHey: UILabel!
     @IBOutlet weak var userNameView: VOYTextFieldView!
@@ -38,29 +38,34 @@ class VOYLoginViewController: UIViewController, NVActivityIndicatorViewable, VOY
         setupLocalization()
     }
 
-    //MARK: VOYLoginContract
+    // MARK: - VOYLoginContract
     
     func presentErrorAlert() {
         let alertController = VOYAlertViewController(
             title: localizedString(.error),
             message: localizedString(.loginErrorMessage),
-            buttonNames:[localizedString(.ok)]
+            buttonNames: [localizedString(.ok)]
         )
         self.stopAnimating()
         alertController.show(true, inViewController: self)
     }
     
     func redirectController() {
-        let navigationController = UINavigationController(rootViewController: VOYThemeListViewController(userJustLogged: true))
-        let slideMenuController = SlideMenuController(mainViewController: navigationController, rightMenuViewController: VOYNotificationViewController())
-        
+        let navigationController = UINavigationController(
+            rootViewController: VOYThemeListViewController(userJustLogged: true)
+        )
+        let slideMenuController = SlideMenuController(
+            mainViewController: navigationController,
+            rightMenuViewController: VOYNotificationViewController()
+        )
+
         self.stopAnimating()
         
         guard let navigation = self.navigationController else { return }
         navigation.pushViewController(slideMenuController, animated: true)
     }
     
-    //MARK: Component Events
+    // MARK: - Component Events
     
     @IBAction func btLoginTapped(_ sender: Any) {
         self.view.endEditing(true)

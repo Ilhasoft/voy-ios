@@ -9,5 +9,5 @@
 import UIKit
 
 protocol VOYAccountDataSource {
-    func updateUser(avatar:Int?, password:String?, completion:@escaping(Error?) -> Void)
+    func updateUser(avatar: Int?, password: String?, completion: @escaping(Error?) -> Void)
 }

@@ -8,7 +8,7 @@
 import UIKit
 
 public class DataBindRestConfiguration: NSObject {
-    var endPoint:String!
-    var keyPath:String?
-    var apiURL:String?
+    var endPoint: String!
+    var keyPath: String?
+    var apiURL: String?
 }

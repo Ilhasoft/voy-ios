@@ -22,18 +22,18 @@ class VOYAccountViewController: UIViewController, NVActivityIndicatorViewable, V
     @IBOutlet weak var collectionAvatar: ISOnDemandCollectionView!
     @IBOutlet weak var heightCollectionAvatar: NSLayoutConstraint!
     
-    var rightBarButtonItem:UIBarButtonItem!
+    var rightBarButtonItem: UIBarButtonItem!
     
     var presenter: VOYAccountPresenter?
     
     var isPasswordEditing = false
     let nilPassword = "xpto321otpx"
-    var newPassword:String? {
+    var newPassword: String? {
         didSet {
             enableRightBarButtonItem()
         }
     }
-    var newAvatar:Int? {
+    var newAvatar: Int? {
         didSet {
             enableRightBarButtonItem()
         }
@@ -62,7 +62,7 @@ class VOYAccountViewController: UIViewController, NVActivityIndicatorViewable, V
     func enableRightBarButtonItem() {
         if newPassword == nil && newAvatar == nil {
             self.rightBarButtonItem.isEnabled = false
-        }else {
+        } else {
             self.rightBarButtonItem.isEnabled = true
         }
     }
@@ -73,20 +73,28 @@ class VOYAccountViewController: UIViewController, NVActivityIndicatorViewable, V
         self.viewUserName.layer.opacity = 0.5
         self.viewEmail.txtField.text = user.email
         self.viewEmail.layer.opacity = 0.5
-        self.imgAvatar.kf.setImage(with: URL(string:user.avatar))
+        self.imgAvatar.kf.setImage(with: URL(string: user.avatar))
         self.viewPassword.txtField.text = nilPassword
         self.viewPassword.layer.opacity = 0.5
     }
     
     func setupLayout() {
         edgesForExtendedLayout = []
-        rightBarButtonItem = UIBarButtonItem(title: localizedString(.save), style: .plain, target: self, action: #selector(save))
+        rightBarButtonItem = UIBarButtonItem(
+            title: localizedString(.save),
+            style: .plain,
+            target: self,
+            action: #selector(save)
+        )
         rightBarButtonItem.isEnabled = false
         self.navigationItem.rightBarButtonItem = rightBarButtonItem
     }
     
     func setupCollectionView() {
-        collectionAvatar.register(UINib(nibName: "VOYAvatarCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "VOYAvatarCollectionViewCell")
+        collectionAvatar.register(
+            UINib(nibName: "VOYAvatarCollectionViewCell", bundle: nil),
+            forCellWithReuseIdentifier: "VOYAvatarCollectionViewCell"
+        )
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
         collectionAvatar.setLayout(to: layout)
@@ -119,10 +127,11 @@ class VOYAccountViewController: UIViewController, NVActivityIndicatorViewable, V
         btEditPassword.setTitle(localizedString(.change), for: .normal)
         if isPasswordEditing {
             self.viewPassword.editEnabled = false
-            let passwordChanged = (nilPassword != self.viewPassword.txtField.text && !self.viewPassword.txtField.text!.isEmpty)
+            let passwordChanged = (nilPassword != self.viewPassword.txtField.text
+                    && !self.viewPassword.txtField.text!.isEmpty)
             if passwordChanged {
                 newPassword = self.viewPassword.txtField.text!
-            }else {
+            } else {
                 newPassword = nil
             }
             self.viewPassword.txtField.text = passwordChanged ? newPassword : nilPassword
@@ -141,7 +150,9 @@ class VOYAccountViewController: UIViewController, NVActivityIndicatorViewable, V
     
     @IBAction func btLogoutTapped() {
         VOYUser.deactiveUser()
-        UIViewController.switchRootViewController(UINavigationController(rootViewController:VOYLoginViewController()), animated: true) {}
+        let navigationController = UINavigationController(rootViewController: VOYLoginViewController())
+        UIViewController.switchRootViewController(navigationController, animated: true) {
+        }
     }
     
     @IBAction func btEditPasswordTapped() {
@@ -161,31 +172,35 @@ class VOYAccountViewController: UIViewController, NVActivityIndicatorViewable, V
     
 }
 
-extension VOYAccountViewController : ISOnDemandCollectionViewDelegate {
-    func onDemandCollectionView(_ collectionView: ISOnDemandCollectionView, reuseIdentifierForItemAt indexPath: IndexPath) -> String {
+extension VOYAccountViewController: ISOnDemandCollectionViewDelegate {
+    func onDemandCollectionView(_ collectionView: ISOnDemandCollectionView,
+                                reuseIdentifierForItemAt indexPath: IndexPath) -> String {
         return "VOYAvatarCollectionViewCell"
     }
     
-    func onDemandCollectionView(_ collectionView: ISOnDemandCollectionView, onContentLoadFinishedWithNewObjects objects: [Any]?, error: Error?) {
-        
+    func onDemandCollectionView(_ collectionView: ISOnDemandCollectionView,
+                                onContentLoadFinishedWithNewObjects objects: [Any]?,
+                                error: Error?) {
     }
     
-    func onDemandCollectionView(_ collectionView: ISOnDemandCollectionView, sizeForItemAt indexPath: IndexPath) -> CGSize {
+    func onDemandCollectionView(_ collectionView: ISOnDemandCollectionView,
+                                sizeForItemAt indexPath: IndexPath) -> CGSize {
         let size = CGSize(width: 70, height: 70)
         return size
     }
     
-    func onDemandCollectionView(_ collectionView: ISOnDemandCollectionView, didSelect cell: ISOnDemandCollectionViewCell, at indexPath: IndexPath) {
+    func onDemandCollectionView(_ collectionView: ISOnDemandCollectionView,
+                                didSelect cell: ISOnDemandCollectionViewCell,
+                                at indexPath: IndexPath) {
         newAvatar = indexPath.item + 1
         if let cell = cell as? VOYAvatarCollectionViewCell {
             self.imgAvatar.image = cell.imgAvatar.image
             self.showAvatars()
         }
     }
-    
 }
 
-extension VOYAccountViewController : VOYTextFieldViewDelegate {
+extension VOYAccountViewController: VOYTextFieldViewDelegate {
     func textFieldDidChange(_ textFieldView: VOYTextFieldView, text: String) {
         if !text.isEmpty {
             self.btEditPassword.setTitle(localizedString(.done), for: .normal)

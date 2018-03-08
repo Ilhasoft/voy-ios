@@ -17,9 +17,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+    func application(_ application: UIApplication,
+                     didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         setupAppearance()
-        setupWindow()        
+        setupWindow()
         URLCache.shared = URLCache(memoryCapacity: 4 * 1024 * 1024, diskCapacity: 20 * 1024 * 1024, diskPath: nil)
         return true
     }
@@ -27,9 +28,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func setupAppearance() {
         NVActivityIndicatorView.DEFAULT_TYPE = .ballPulse
         UINavigationBar.appearance().tintColor = UIColor.voyBlue
-        UINavigationBar.appearance().titleTextAttributes =  [NSAttributedStringKey.font: UIFont.helveticaNeue(withSize: 16, andStyle: .normal) as Any]
+        UINavigationBar.appearance().titleTextAttributes =  [
+            NSAttributedStringKey.font: UIFont.helveticaNeue(withSize: 16, andStyle: .normal) as Any
+        ]
         let appearance = DropDown.appearance()
-        
+
         appearance.cellHeight = 60
         appearance.backgroundColor = UIColor.white
         appearance.selectionBackgroundColor = UIColor.voyDropDownSelectedBlue
@@ -41,7 +44,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         appearance.textColor = .black
         appearance.textFont = UIFont.helveticaNeue(withSize: 14, andStyle: .normal)
     }
-    
+
     func setupWindow() {
         self.window = UIWindow(frame: UIScreen.main.bounds)
         self.window!.backgroundColor = UIColor.white
@@ -52,12 +55,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func loadRootScreen() -> UIViewController {
         if VOYUser.activeUser() != nil {
             let navigationController = UINavigationController(rootViewController: VOYThemeListViewController())
-            let slideMenuController = SlideMenuController(mainViewController: navigationController, rightMenuViewController: VOYNotificationViewController())
+            let slideMenuController = SlideMenuController(
+                mainViewController: navigationController,
+                rightMenuViewController: VOYNotificationViewController()
+            )
             return slideMenuController
-        }else {
+        } else {
             let navigation = UINavigationController(rootViewController: VOYLoginViewController())
             return navigation
         }
     }
 }
-

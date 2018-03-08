@@ -20,9 +20,9 @@ class VOYAddReportRepository: VOYAddReportDataSource {
     func save(report: VOYReport, completion: @escaping (Error?, Int?) -> Void) {
         let authToken = VOYUser.activeUser()!.authToken
         
-        let headers = ["Authorization" : "Token " + authToken!, "Content-Type" : "application/json"]
+        let headers = ["Authorization": "Token " + authToken!, "Content-Type": "application/json"]
         
-        var method:HTTPMethod!
+        var method: HTTPMethod!
         var reportIDString = ""
         
         if report.update && report.status != nil {
@@ -36,11 +36,12 @@ class VOYAddReportRepository: VOYAddReportDataSource {
         let url = VOYConstant.API.URL + "reports/" + reportIDString
         
         if reachability.hasNetwork() {
-            Alamofire.request(url, method: method, parameters: report.toJSON(), encoding: JSONEncoding.default, headers: headers).responseJSON { (dataResponse:DataResponse<Any>) in
+            Alamofire.request(url, method: method, parameters: report.toJSON(), headers: headers)
+                .responseJSON { (dataResponse: DataResponse<Any>) in
                 if let error = dataResponse.result.error {
                     print(error)
                     completion(error, nil)
-                } else if let value = dataResponse.result.value as? [String:Any] {
+                } else if let value = dataResponse.result.value as? [String: Any] {
                     if let reportID = value["id"] as? Int {
                         VOYMediaFileRepository.shared.delete(mediaFiles: report.removedMedias)
                         VOYReportStorageManager.shared.removeFromStorageAfterSave(report: report)
@@ -58,6 +59,4 @@ class VOYAddReportRepository: VOYAddReportDataSource {
             completion(nil, nil)
         }
     }
-    
-
 }

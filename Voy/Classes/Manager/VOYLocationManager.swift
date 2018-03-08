@@ -6,26 +6,25 @@
 //  Copyright © 2018 Ilhasoft. All rights reserved.
 //
 
-
 import CoreLocation
 
-protocol VOYLocationManagerDelegate {
-    func didGetUserLocation(latitude:Float,longitude:Float, error: Error?)
+protocol VOYLocationManagerDelegate: class {
+    func didGetUserLocation(latitude: Float, longitude: Float, error: Error?)
     func userDidntGivePermission()
 }
 
 class VOYLocationManager: NSObject, CLLocationManagerDelegate {
     
-    var locationManager:CLLocationManager?
-    static var latitude:Float = 0
-    static var longitude:Float = 0
+    var locationManager: CLLocationManager?
+    static var latitude: Float = 0
+    static var longitude: Float = 0
     
-    init(delegate:VOYLocationManagerDelegate) {
+    init(delegate: VOYLocationManagerDelegate) {
         super.init()
         self.delegate = delegate
     }
     
-    var delegate:VOYLocationManagerDelegate?
+    weak var delegate: VOYLocationManagerDelegate?
     
     static func locationPermissionIsGranted() -> Bool {
         return CLLocationManager.authorizationStatus() == CLAuthorizationStatus.authorizedWhenInUse
@@ -56,7 +55,11 @@ class VOYLocationManager: NSObject, CLLocationManagerDelegate {
         let userLocation = locations.first!
         VOYLocationManager.latitude = Float(userLocation.coordinate.latitude)
         VOYLocationManager.longitude = Float(userLocation.coordinate.longitude)
-        self.delegate?.didGetUserLocation(latitude: VOYLocationManager.latitude, longitude: VOYLocationManager.longitude, error: nil)
+        self.delegate?.didGetUserLocation(
+            latitude: VOYLocationManager.latitude,
+            longitude: VOYLocationManager.longitude,
+            error: nil
+        )
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
@@ -77,4 +80,3 @@ class VOYLocationManager: NSObject, CLLocationManagerDelegate {
     }
     
 }
-

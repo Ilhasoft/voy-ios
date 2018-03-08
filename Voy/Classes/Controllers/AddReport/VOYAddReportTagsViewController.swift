@@ -32,11 +32,13 @@ class VOYAddReportTagsViewController: UIViewController, NVActivityIndicatorViewa
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        presenter = VOYAddReportTagsPresenter(dataSource: VOYAddReportRepository(reachability: VOYReachabilityImpl()), view: self)
+        presenter = VOYAddReportTagsPresenter(
+            dataSource: VOYAddReportRepository(reachability: VOYReachabilityImpl()),
+            view: self
+        )
         edgesForExtendedLayout = []
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: " ", style: .plain, target: nil, action: nil)
         addNextButton()
@@ -45,7 +47,12 @@ class VOYAddReportTagsViewController: UIViewController, NVActivityIndicatorViewa
     }
 
     func addNextButton() {
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: localizedString(.send), style: .plain, target: self, action: #selector(save))
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(
+            title: localizedString(.send),
+            style: .plain,
+            target: self,
+            action: #selector(save)
+        )
     }
     
     @objc func save() {

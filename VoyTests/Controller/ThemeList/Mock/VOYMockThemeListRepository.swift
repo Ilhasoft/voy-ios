@@ -28,7 +28,7 @@ class VOYMockThemeListRepository: VOYThemeListDataSource {
         completion(projectList, nil)
     }
     
-    func cacheDataFrom(url: String, parameters: inout [String : Any]) {
+    func cacheDataFrom(url: String, parameters: inout [String: Any]) {
         if hasNetwork {
             retrievedProjects += 1
         } else {
@@ -39,6 +39,4 @@ class VOYMockThemeListRepository: VOYThemeListDataSource {
     func setNetwork(hasNetwork: Bool) {
         self.hasNetwork = hasNetwork
     }
-    
-    
 }

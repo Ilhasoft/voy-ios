@@ -8,23 +8,23 @@
 
 import UIKit
 
-protocol VOYActionSheetViewControllerDelegate {
-    func buttonDidTap(actionSheetViewController:VOYActionSheetViewController, button:UIButton, index:Int)
-    func cancelButtonDidTap(actionSheetViewController:VOYActionSheetViewController)
+protocol VOYActionSheetViewControllerDelegate: class {
+    func buttonDidTap(actionSheetViewController: VOYActionSheetViewController, button: UIButton, index: Int)
+    func cancelButtonDidTap(actionSheetViewController: VOYActionSheetViewController)
 }
 
 class VOYActionSheetViewController: ISModalViewController {
     
-    @IBOutlet private var stackView:UIStackView!
+    @IBOutlet private var stackView: UIStackView!
     @IBOutlet weak var heightStackView: NSLayoutConstraint!
     
     private var buttonHeight = 56
     private var buttonNames = [String]()
     private var icons = [UIImage]()
     
-    var delegate:VOYActionSheetViewControllerDelegate?
+    weak var delegate: VOYActionSheetViewControllerDelegate?
     
-    init(buttonNames:[String]? = ["Ok"], icons: [UIImage]? = nil) {
+    init(buttonNames: [String]? = ["Ok"], icons: [UIImage]? = nil) {
         self.buttonNames = buttonNames!
         if let icons = icons {
             self.icons = icons
@@ -51,8 +51,8 @@ class VOYActionSheetViewController: ISModalViewController {
         self.heightStackView.constant = CGFloat(buttonHeight * (buttonNames.count + 1))
         self.view.layoutIfNeeded()
         
-        for (index,buttonName) in buttonNames.enumerated() {
-            let button = buildButton(index:index, name: buttonName, icon: !icons.isEmpty ? icons[index] : nil)
+        for (index, buttonName) in buttonNames.enumerated() {
+            let button = buildButton(index: index, name: buttonName, icon: !icons.isEmpty ? icons[index] : nil)
             addAction(inButton: button)
             self.stackView.addArrangedSubview(button)
         }
@@ -64,26 +64,25 @@ class VOYActionSheetViewController: ISModalViewController {
         
     }
     
-    private func addAction(inButton button:UIButton) {
+    private func addAction(inButton button: UIButton) {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(buttonTapped))
         button.addGestureRecognizer(tapGesture)
     }
     
-    @objc private func buttonTapped(gesture:UIGestureRecognizer) {
+    @objc private func buttonTapped(gesture: UIGestureRecognizer) {
         guard let button = gesture.view as? UIButton else { return }
         if button.tag != 999 {
-            self.delegate?.buttonDidTap(actionSheetViewController:self, button: button, index: button.tag)
-        }else {
+            self.delegate?.buttonDidTap(actionSheetViewController: self, button: button, index: button.tag)
+        } else {
             if let delegate = self.delegate {
-                delegate.cancelButtonDidTap(actionSheetViewController:self)
-            }else {
+                delegate.cancelButtonDidTap(actionSheetViewController: self)
+            } else {
                 self.close()
             }
-            
         }
     }
     
-    private func buildButton(index:Int, name:String, icon:UIImage? = nil) -> UIButton {
+    private func buildButton(index: Int, name: String, icon: UIImage? = nil) -> UIButton {
         let button = UIButton()
         button.layer.cornerRadius = 7
         button.titleLabel!.font = UIFont.systemFont(ofSize: 16)
@@ -101,4 +100,3 @@ class VOYActionSheetViewController: ISModalViewController {
     }
     
 }
-
