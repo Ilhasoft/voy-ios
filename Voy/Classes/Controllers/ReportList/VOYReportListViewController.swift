@@ -71,8 +71,11 @@ class VOYReportListViewController: UIViewController, NVActivityIndicatorViewable
             tableView.separatorColor = UIColor.clear
             tableView.register(UINib(nibName: "VOYReportTableViewCell", bundle: nil), forCellReuseIdentifier: "VOYReportTableViewCell")
             tableView.onDemandTableViewDelegate = self
-            tableView.interactor = DataBindOnDemandTableViewInteractor(configuration:tableViewApproved.getConfiguration(),
-                                                                       params: ["theme":self.theme.id,"status":status, "mapper" : VOYUser.activeUser()!.id], paginationCount: VOYConstant.API.PAGINATION_SIZE)
+            tableView.interactor = DataBindOnDemandTableViewInteractor(
+                configuration:tableViewApproved.getConfiguration(),
+                params: ["theme":self.theme.id,"status":status, "mapper" : VOYUser.activeUser()!.id],
+                paginationCount: VOYConstant.API.paginationSize
+            )
             tableView.loadContent()
         }
         
@@ -163,8 +166,9 @@ extension VOYReportListViewController : ISOnDemandTableViewDelegate {
     }
     
     func onDemandTableView(_ tableView: ISOnDemandTableView, didSelectRowAt indexPath: IndexPath) {
-        let cell = tableView.cellForRow(at: indexPath) as! VOYReportTableViewCell
-        self.navigationController?.pushViewController(VOYReportDetailViewController(report: VOYReport(JSON: cell.object.JSON)!), animated: true)
+        if let cell = tableView.cellForRow(at: indexPath) as? VOYReportTableViewCell {
+            self.navigationController?.pushViewController(VOYReportDetailViewController(report: VOYReport(JSON: cell.object.JSON)!), animated: true)
+        }
     }
 }
 

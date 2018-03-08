@@ -74,7 +74,7 @@ class VOYAlertViewController: ISModalViewController {
     }
     
     @objc private func buttonTapped(gesture:UIGestureRecognizer) {
-        let button = gesture.view as! UIButton
+        guard let button = gesture.view as? UIButton else { return }
         if let delegate = self.delegate {
             delegate.buttonDidTap(alertController:self, button: button, index: button.tag)
         }else {

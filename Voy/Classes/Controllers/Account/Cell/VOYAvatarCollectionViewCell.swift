@@ -11,8 +11,8 @@ import ISOnDemandCollectionView
 
 class VOYAvatarCollectionViewCell: UICollectionViewCell {
 
-    @IBOutlet var imgAvatar:UIImageView!
-    
+    @IBOutlet var imgAvatar: UIImageView!
+
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -20,10 +20,10 @@ class VOYAvatarCollectionViewCell: UICollectionViewCell {
 
 }
 
-extension VOYAvatarCollectionViewCell : ISOnDemandCollectionViewCell {
+extension VOYAvatarCollectionViewCell: ISOnDemandCollectionViewCell {
     func setup(with object: Any, at indexPath: IndexPath) {
-        let image = object as! UIImage
-        self.imgAvatar.image = image
+        if let image = object as? UIImage {
+            self.imgAvatar.image = image
+        }
     }
-    
 }

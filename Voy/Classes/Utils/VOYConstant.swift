@@ -12,7 +12,7 @@ class VOYConstant: NSObject {
     
     struct API {
         static let URL = "http://voy-dev.ilhasoft.mobi/api/"
-        static let PAGINATION_SIZE = 50
+        static let paginationSize = 50
     }
     
 }

@@ -23,7 +23,7 @@ class VOYMediaFileInteractor: NSObject {
         let mediaIds = mediaFiles.map {($0.id!)}
         var mediaIdsString = ""
         for mediaId in mediaIds {
-            mediaIdsString = mediaIdsString + "\(mediaId)" + ","
+            mediaIdsString = "\(mediaIdsString)\(mediaId),"
         }
         mediaIdsString.removeLast()
         let url = VOYConstant.API.URL + "report-files/delete/?ids=" + mediaIdsString
