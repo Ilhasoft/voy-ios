@@ -7,6 +7,7 @@
 //
 
 import UIKit
+@testable import Voy
 
 class VOYMockAddReportRepository: VOYAddReportDataSource {
     var hasNetwork: Bool = false
@@ -17,7 +18,11 @@ class VOYMockAddReportRepository: VOYAddReportDataSource {
     
     func save(report: VOYReport, completion: @escaping (Error?, Int?) -> Void) {
         if hasNetwork {
-            completion(nil, 1234567)
+            if let id = report.id, let dataList = report.cameraDataList {
+                VOYMockMediaFileRepository.shared.delete(mediaFiles: report.removedMedias)
+                VOYMockMediaFileRepository.shared.upload(reportID: id, cameraDataList: dataList, completion: { (_) in})
+                completion(nil, id)
+            }
         } else {
             completion(nil, nil)
         }

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+@testable import Voy
 
 enum TokenStatus: String {
     case validToken

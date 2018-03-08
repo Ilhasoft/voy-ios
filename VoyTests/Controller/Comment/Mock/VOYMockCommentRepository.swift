@@ -7,6 +7,7 @@
 //
 
 import UIKit
+@testable import Voy
 
 class VOYMockCommentRepository: VOYCommentDataSource {
     func save(comment: VOYComment, completion: @escaping (Error?) -> Void) {

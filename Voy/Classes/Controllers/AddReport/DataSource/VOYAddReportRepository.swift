@@ -43,13 +43,10 @@ class VOYAddReportRepository: VOYAddReportDataSource {
                     completion(error, nil)
                 } else if let value = dataResponse.result.value as? [String: Any] {
                     if let reportID = value["id"] as? Int {
-                        VOYMediaFileInteractor.shared.delete(mediaFiles: report.removedMedias)
+                        VOYMediaFileRepository.shared.delete(mediaFiles: report.removedMedias)
                         VOYReportStorageManager.shared.removeFromStorageAfterSave(report: report)
-                        VOYMediaFileInteractor.shared.upload(
-                            reportID: reportID,
-                            cameraDataList: report.cameraDataList!,
-                            completion: { _ in }
-                        )
+                        VOYMediaFileRepository.shared.upload(reportID: reportID, cameraDataList: report.cameraDataList!, completion: { (_) in
+                        })
                         completion(nil, reportID)
                     } else {
                         print("error: \(value)")

@@ -23,7 +23,7 @@ class VOYReportSyncManager: NSObject {
         }
         for reportJSON in pendentReportsJSON {
             let report = VOYReport(JSON: reportJSON)!
-            VOYAddReportInteractor.shared.save(report: report, completion: { _, _ in })
+            VOYAddReportRepository(reachability: VOYReachabilityImpl()).save(report: report, completion: { (error, reportID) in })
         }
     }
 
@@ -44,8 +44,8 @@ class VOYReportSyncManager: NSObject {
             return
         }
         
-        guard !VOYMediaFileInteractor.isUploading else { return }
+        guard !VOYMediaFileRepository.isUploading else { return }
         
-        VOYMediaFileInteractor.shared.upload(reportID: 0, cameraDataList: cameraDataList) { _ in }
+        VOYMediaFileRepository.shared.upload(reportID: 0, cameraDataList: cameraDataList) { (_) in }
     }
 }
