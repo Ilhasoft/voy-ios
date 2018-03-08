@@ -7,6 +7,7 @@
 //
 
 import UIKit
+@testable import Voy
 
 open class VOYMockLoginViewController: VOYLoginContract {
     var redirectedUser: Bool
@@ -17,11 +18,11 @@ open class VOYMockLoginViewController: VOYLoginContract {
         self.presentedAlert = presentedAlert
     }
     
-    func redirectController() {
+    public func redirectController() {
         redirectedUser = true
     }
     
-    func presentErrorAlert() {
+    public func presentErrorAlert() {
         presentedAlert = true
     }
 }

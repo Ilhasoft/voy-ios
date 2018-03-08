@@ -7,6 +7,7 @@
 //
 
 import UIKit
+@testable import Voy
 
 class VOYMockThemeListPresenter: NSObject {
     weak var view: VOYThemeListContract?

@@ -8,12 +8,13 @@
 
 import UIKit
 import TagListView
+@testable import Voy
 
 class VOYMockAddReportTagsViewController: VOYAddReportTagsContract {
     var stopedAnimation: Bool = false
     var startedAnimation: Bool = false
     var showedSuccess: Bool = false
-    var userTapedSave: Bool = false
+    var userTappedSave: Bool = false
     var loadedTags: Bool = false
     var updatedSelectedTags: Bool = false
     
@@ -38,7 +39,7 @@ class VOYMockAddReportTagsViewController: VOYAddReportTagsContract {
     
     func save() {
         guard let presenter = self.presenter else { return }
-        userTapedSave = true
+        userTappedSave = true
         let newReport = VOYReport()
         newReport.id = 234567
         newReport.name = "New Report"

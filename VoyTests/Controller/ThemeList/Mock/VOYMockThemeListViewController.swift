@@ -7,6 +7,7 @@
 //
 
 import UIKit
+@testable import Voy
 
 class VOYMockThemeListViewController: VOYThemeListContract {
     var dropDownWasSet: Bool

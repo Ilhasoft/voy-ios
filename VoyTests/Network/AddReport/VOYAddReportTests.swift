@@ -11,12 +11,10 @@ import XCTest
 
 class VOYAddReportTests: XCTestCase {
     var repositoryUnderTest: VOYMockAddReportRepository!
-    var controllerUnderTest: VOYMockAddReportTagsViewController!
 
     override func setUp() {
         super.setUp()
         repositoryUnderTest = VOYMockAddReportRepository()
-        controllerUnderTest = VOYMockAddReportTagsViewController()
     }
     
     override func tearDown() {
@@ -28,9 +26,17 @@ class VOYAddReportTests: XCTestCase {
     func testSaveReportOnline() {
         let expectations = expectation(description: "Successful report upload!")
         repositoryUnderTest.setNetwork(hasNetwork: true)
-        repositoryUnderTest.save(report: VOYReport()) { (error, reportID) in
+        let newReport = VOYReport()
+        newReport.id = 123456
+        newReport.name = "New Report"
+        newReport.removedMedias = [VOYMedia(), VOYMedia()]
+        let cameraData = VOYCameraData(image: UIImage(), thumbnail: UIImage(), thumbnailPath: URL(fileURLWithPath:""), path: URL(fileURLWithPath:""), type: .image)
+        newReport.cameraDataList = [cameraData, cameraData, cameraData]
+        repositoryUnderTest.save(report: newReport) { (error, reportID) in
             XCTAssertNil(error, "Got no errors.")
             XCTAssertNotNil(reportID, "Valid report id.")
+            XCTAssertTrue(VOYMockMediaFileRepository.shared.removedFile, "Cleaned removed medias array.")
+            XCTAssertTrue(VOYMockMediaFileRepository.shared.uploadedFile, "Upload camera data list array.")
             expectations.fulfill()
         }
         waitForExpectations(timeout: 10, handler: nil)
@@ -50,17 +56,26 @@ class VOYAddReportTests: XCTestCase {
     // MARK: - UITests
     func testDefaultControllerFlow() {
         let expectations = expectation(description: "Entered all methods that handles the UI.")
-        let controllerUnderTest: VOYMockAddReportTagsViewController = VOYMockAddReportTagsViewController()
-        let presenterUnderTest: VOYAddReportTagsPresenter = VOYAddReportTagsPresenter(dataSource: VOYMockAddReportRepository(), view: controllerUnderTest)
-        controllerUnderTest.presenter = presenterUnderTest
+        let attachControllerUnderTest: VOYMockAddReportAttachViewController = VOYMockAddReportAttachViewController()
+        let tagsControllerUnderTest: VOYMockAddReportTagsViewController = VOYMockAddReportTagsViewController()
+        let presenterUnderTest: VOYAddReportTagsPresenter = VOYAddReportTagsPresenter(dataSource: VOYMockAddReportRepository(), view: tagsControllerUnderTest)
+        // Emulating media button tap
+        attachControllerUnderTest.buttonDidTap(actionSheetViewController: VOYActionSheetViewController(), button: UIButton(), index: 0)
+        
+        tagsControllerUnderTest.presenter = presenterUnderTest
         // Emulating a - Send Report - Event
-        controllerUnderTest.save()
-        XCTAssertTrue(controllerUnderTest.loadedTags, "Loaded tags for this")
-        XCTAssertTrue(controllerUnderTest.updatedSelectedTags, "")
-        XCTAssertTrue(controllerUnderTest.userTapedSave, "")
-        XCTAssertTrue(controllerUnderTest.startedAnimation, "")
-        XCTAssertTrue(controllerUnderTest.stopedAnimation, "")
-        XCTAssertTrue(controllerUnderTest.showedSuccess, "")
+        tagsControllerUnderTest.save()
+        
+        XCTAssertTrue(attachControllerUnderTest.addedNextButton, "Added button on navbar.")
+        XCTAssertTrue(attachControllerUnderTest.loadedMediaFromPreviousReport, "loaded medias from previous report.")
+        XCTAssertTrue(attachControllerUnderTest.addedMedias, "Added medias on the new report.")
+        XCTAssertTrue(attachControllerUnderTest.startedMediaPicker, "Presented a UIImagePickerController.")
+        XCTAssertTrue(tagsControllerUnderTest.loadedTags, "Loaded tags for this")
+        XCTAssertTrue(tagsControllerUnderTest.updatedSelectedTags, "")
+        XCTAssertTrue(tagsControllerUnderTest.userTappedSave, "")
+        XCTAssertTrue(tagsControllerUnderTest.startedAnimation, "")
+        XCTAssertTrue(tagsControllerUnderTest.stopedAnimation, "")
+        XCTAssertTrue(tagsControllerUnderTest.showedSuccess, "")
         expectations.fulfill()
         waitForExpectations(timeout: 10, handler: nil)
     }

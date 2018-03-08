@@ -13,15 +13,15 @@ import MobileCoreServices
 
 class VOYAddReportAttachViewController: UIViewController, NVActivityIndicatorViewable {
 
-    @IBOutlet var mediaViews:[VOYAddMediaView]!
-    @IBOutlet var lbTitle:UILabel!
+    @IBOutlet var mediaViews: [VOYAddMediaView]!
+    @IBOutlet var lbTitle: UILabel!
 
-    var locationManager:VOYLocationManager!
-    var theme:VOYTheme!
-    var imagePickerController:UIImagePickerController!
-    var actionSheetController:VOYActionSheetViewController!
+    var locationManager: VOYLocationManager!
+    var theme: VOYTheme!
+    var imagePickerController: UIImagePickerController!
+    var actionSheetController: VOYActionSheetViewController!
     
-    var report:VOYReport?
+    var report: VOYReport?
     var removedMedias = [VOYMedia]()
     
     var mediaList = [VOYMedia]() {
@@ -89,12 +89,12 @@ class VOYAddReportAttachViewController: UIViewController, NVActivityIndicatorVie
     }
 
     @objc func openNextController() {
-        var addReportDataViewController:VOYAddReportDataViewController!
+        var addReportDataViewController: VOYAddReportDataViewController!
         if report != nil {
             report!.cameraDataList = self.cameraDataList
             addReportDataViewController = VOYAddReportDataViewController(savedReport: self.report!)
         } else {
-            addReportDataViewController = VOYAddReportDataViewController(cameraDataList:self.cameraDataList)
+            addReportDataViewController = VOYAddReportDataViewController(cameraDataList: self.cameraDataList)
         }
         self.navigationController?.pushViewController(addReportDataViewController, animated: true)
     }
@@ -106,7 +106,7 @@ class VOYAddReportAttachViewController: UIViewController, NVActivityIndicatorVie
     }
     
     func setupMediaView() {
-        tappedMediaView.setupWithMedia(cameraData:self.cameraData)
+        tappedMediaView.setupWithMedia(cameraData: self.cameraData)
     }
     
     // MARK: - Localization
@@ -118,7 +118,7 @@ class VOYAddReportAttachViewController: UIViewController, NVActivityIndicatorVie
     
 }
 
-extension VOYAddReportAttachViewController : VOYAddMediaViewDelegate {
+extension VOYAddReportAttachViewController: VOYAddMediaViewDelegate {
     func mediaViewDidTap(mediaView: VOYAddMediaView) {
         tappedMediaView = mediaView
         actionSheetController = VOYActionSheetViewController(
@@ -145,7 +145,7 @@ extension VOYAddReportAttachViewController : VOYAddMediaViewDelegate {
     }
 }
 
-extension VOYAddReportAttachViewController : VOYActionSheetViewControllerDelegate {
+extension VOYAddReportAttachViewController: VOYActionSheetViewControllerDelegate {
     func buttonDidTap(actionSheetViewController: VOYActionSheetViewController, button: UIButton, index: Int) {
         actionSheetController.close()
         imagePickerController = UIImagePickerController()
@@ -168,7 +168,7 @@ extension VOYAddReportAttachViewController : VOYActionSheetViewControllerDelegat
     }
 }
 
-extension VOYAddReportAttachViewController : VOYLocationManagerDelegate {
+extension VOYAddReportAttachViewController: VOYLocationManagerDelegate {
     func didGetUserLocation(latitude: Float, longitude: Float, error: Error?) {
         self.stopAnimating()
         let myLocation = CLLocationCoordinate2D(latitude: CLLocationDegrees(latitude), longitude: CLLocationDegrees(longitude))
@@ -208,7 +208,7 @@ extension VOYAddReportAttachViewController : VOYLocationManagerDelegate {
     }
 }
 
-extension VOYAddReportAttachViewController : VOYAlertViewControllerDelegate {
+extension VOYAddReportAttachViewController: VOYAlertViewControllerDelegate {
     func buttonDidTap(alertController: VOYAlertViewController, button: UIButton, index: Int) {
         alertController.close()
         self.navigationController?.popViewController(animated: true)
