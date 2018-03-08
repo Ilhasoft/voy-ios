@@ -8,15 +8,15 @@
 
 import UIKit
 
-protocol VOYAlertViewControllerDelegate {
-    func buttonDidTap(alertController:VOYAlertViewController, button:UIButton, index:Int)
+protocol VOYAlertViewControllerDelegate: class {
+    func buttonDidTap(alertController: VOYAlertViewController, button: UIButton, index: Int)
 }
 
 class VOYAlertViewController: ISModalViewController {
 
-    @IBOutlet private var lbTitle:UILabel!
-    @IBOutlet private var lbMessage:UILabel!
-    @IBOutlet private var stackView:UIStackView!
+    @IBOutlet private var lbTitle: UILabel!
+    @IBOutlet private var lbMessage: UILabel!
+    @IBOutlet private var stackView: UIStackView!
     @IBOutlet weak var heightStackView: NSLayoutConstraint!
     
     private var buttonHeight = 49
@@ -25,9 +25,9 @@ class VOYAlertViewController: ISModalViewController {
     private var messageTitle = "title"
     private var message = "message"
     
-    var delegate:VOYAlertViewControllerDelegate?
+    weak var delegate: VOYAlertViewControllerDelegate?
     
-    init(title:String,message:String,buttonNames:[String]? = ["Ok"]) {
+    init(title: String, message: String, buttonNames: [String]? = ["Ok"]) {
         self.messageTitle = title
         self.message = message
         self.buttonNames = buttonNames!
@@ -56,7 +56,7 @@ class VOYAlertViewController: ISModalViewController {
         self.heightStackView.constant = CGFloat(buttonHeight * buttonNames.count)
         self.view.layoutIfNeeded()
         
-        for (index,buttonName) in buttonNames.enumerated() {
+        for (index, buttonName) in buttonNames.enumerated() {
             let button = UIButton()
             button.titleLabel!.font = UIFont.systemFont(ofSize: 16)
             button.layer.borderWidth = 1
@@ -69,15 +69,13 @@ class VOYAlertViewController: ISModalViewController {
             button.addGestureRecognizer(tapGesture)
             self.stackView.addArrangedSubview(button)
         }
-        
-
     }
-    
-    @objc private func buttonTapped(gesture:UIGestureRecognizer) {
+
+    @objc private func buttonTapped(gesture: UIGestureRecognizer) {
         guard let button = gesture.view as? UIButton else { return }
         if let delegate = self.delegate {
-            delegate.buttonDidTap(alertController:self, button: button, index: button.tag)
-        }else {
+            delegate.buttonDidTap(alertController: self, button: button, index: button.tag)
+        } else {
             self.close()
         }
     }

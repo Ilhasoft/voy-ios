@@ -18,7 +18,7 @@ class VOYAccountPresenter {
         self.view = view
     }
     
-    func updateUser(avatar:Int?, password:String?, completion:@escaping(Error?) -> Void) {
+    func updateUser(avatar: Int?, password: String?, completion: @escaping(Error?) -> Void) {
         self.dataSource.updateUser(avatar: avatar, password: password) { (error) in
             completion(error)
         }

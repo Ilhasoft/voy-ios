@@ -10,14 +10,14 @@ import ISOnDemandTableView
 import Alamofire
 import ObjectMapper
 
-public class DataBindOnDemandTableViewInteractor : ISOnDemandTableViewInteractor {
+public class DataBindOnDemandTableViewInteractor: ISOnDemandTableViewInteractor {
     
-    private var endPoint:String!
-    private var keyPath:String?
-    private var apiURL:String?
-    private var params:[String:Any]?
+    private var endPoint: String!
+    private var keyPath: String?
+    private var apiURL: String?
+    private var params: [String: Any]?
     
-    public init(configuration:DataBindRestConfiguration, params:[String:Any]? = nil, paginationCount:Int) {
+    public init(configuration: DataBindRestConfiguration, params: [String: Any]? = nil, paginationCount: Int) {
         self.endPoint = configuration.endPoint
         self.keyPath = configuration.keyPath
         self.apiURL = configuration.apiURL
@@ -25,13 +25,14 @@ public class DataBindOnDemandTableViewInteractor : ISOnDemandTableViewInteractor
         super.init(paginationCount: UInt(paginationCount))
     }
     
-    override public func fetchObjects(forPage page: UInt, with handler: (([Any]?, Error?) -> Void)!) {
+    override public func fetchObjects(forPage page: UInt,
+                                      with handler: (([Any]?, Error?) -> Void)!) {
         
-        var parameters = [String:Any]()
-        var headers = [String:String]()
+        var parameters = [String: Any]()
+        var headers = [String: String]()
         if !NetworkReachabilityManager()!.isReachable {
             headers["Cache-Control"] = "public, only-if-cached, max-stale=86400"
-        }else {
+        } else {
             headers["Cache-Control"] = "public, max-age=86400, max-stale=120"
         }
         
@@ -94,9 +95,9 @@ public class DataBindOnDemandTableViewInteractor : ISOnDemandTableViewInteractor
                 
                 if let keyPath = self.keyPath,
                     let jsonObject = jsonObject as? [String: Any],
-                    let subobject = jsonObject[keyPath] as? [[String : Any]] {
+                    let subobject = jsonObject[keyPath] as? [[String: Any]] {
                     objects = subobject
-                } else if let jsonObject = jsonObject as? [[String : Any]] {
+                } else if let jsonObject = jsonObject as? [[String: Any]] {
                     objects = jsonObject
                 }
                 prepareForHandlerData(objects, completion: { (objects, error) in
@@ -128,14 +129,14 @@ public class DataBindOnDemandTableViewInteractor : ISOnDemandTableViewInteractor
         }
     }
     
-    private func prepareForHandlerData(_ arrayDictionary: [[String:Any]], completion: (([Any]?, Error?) -> Void)!) {
+    private func prepareForHandlerData(_ arrayDictionary: [[String: Any]], completion: (([Any]?, Error?) -> Void)!) {
         var objects = [Map]()
         
         for result in arrayDictionary {
             let object = Map(mappingType: .fromJSON, JSON: result)
             objects.append(object)
         }
-        completion(objects,nil)
+        completion(objects, nil)
     }
     
 }

@@ -49,14 +49,19 @@ class VOYAddReportDataViewController: UIViewController {
         addNextButton()
         dataBindView.delegate = self
         if let savedReport = self.savedReport {
-            dataBindView.fillFields(withObject:savedReport.toJSON())
+            dataBindView.fillFields(withObject: savedReport.toJSON())
         }
         descriptionView.delegate = self
         setupLocalization()
     }
     
     func addNextButton() {
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: localizedString(.next), style: .plain, target: self, action: #selector(openNextController))
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(
+            title: localizedString(.next),
+            style: .plain,
+            target: self,
+            action: #selector(openNextController)
+        )
     }
     
     @objc func openNextController() {
@@ -75,11 +80,11 @@ class VOYAddReportDataViewController: UIViewController {
             report.id = savedReport.id
             report.removedMedias = savedReport.removedMedias
             report.cameraDataList = savedReport.cameraDataList
-        }else {
+        } else {
             report.update = false
             report.cameraDataList = cameraDataList
         }
-        self.navigationController?.pushViewController(VOYAddReportTagsViewController(report:report), animated: true)
+        self.navigationController?.pushViewController(VOYAddReportTagsViewController(report: report), animated: true)
     }
     
     func setupLayout() {
@@ -96,7 +101,10 @@ class VOYAddReportDataViewController: UIViewController {
     }
     
     func setupTableView() {
-        self.tbViewLinks.register(UINib(nibName: "VOYLinkTableViewCell", bundle: nil), forCellReuseIdentifier: NSStringFromClass(VOYLinkTableViewCell.self))
+        self.tbViewLinks.register(
+            UINib(nibName: "VOYLinkTableViewCell", bundle: nil),
+            forCellReuseIdentifier: NSStringFromClass(VOYLinkTableViewCell.self)
+        )
     }
     
     @IBAction func btAddLinkTapped(_ sender: Any) {
@@ -128,7 +136,10 @@ extension VOYAddReportDataViewController: UITableViewDataSource, UITableViewDele
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: NSStringFromClass(VOYLinkTableViewCell.self), for: indexPath)
+        let cell = tableView.dequeueReusableCell(
+            withIdentifier: NSStringFromClass(VOYLinkTableViewCell.self),
+            for: indexPath
+        )
         if let linkTableViewCell = cell as? VOYLinkTableViewCell {
             linkTableViewCell.delegate = self
             if let dataList = tbViewLinks.dataList[indexPath.row] as? String {
@@ -145,8 +156,10 @@ extension VOYAddReportDataViewController: UITableViewDataSource, UITableViewDele
 
 extension VOYAddReportDataViewController: UITextFieldDelegate {
     
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        if (string == "\n") {
+    func textField(_ textField: UITextField,
+                   shouldChangeCharactersIn range: NSRange,
+                   replacementString string: String) -> Bool {
+        if string == "\n" {
             textField.resignFirstResponder()
             return false
         }
@@ -157,7 +170,7 @@ extension VOYAddReportDataViewController: UITextFieldDelegate {
             UIView.animate(withDuration: 0.3, animations: {
                 self.btAddLink.alpha = 1
             })
-        }else if numberOfChars == 0 && self.btAddLink.alpha == 1 {
+        } else if numberOfChars == 0 && self.btAddLink.alpha == 1 {
             UIView.animate(withDuration: 0.3, animations: {
                 self.btAddLink.alpha = 0.3
             })
@@ -192,8 +205,7 @@ extension VOYAddReportDataViewController: VOYLinkTableViewCellDelegate {
 }
 
 extension VOYAddReportDataViewController: DataBindViewDelegate {
-    func didFillAllComponents(JSON: [String:Any]) {
-        
+    func didFillAllComponents(JSON: [String: Any]) {
     }
     
     func willFill(component: Any, value: Any) -> Any? {
@@ -209,8 +221,5 @@ extension VOYAddReportDataViewController: DataBindViewDelegate {
     }
     
     func didSet(component: Any, value: Any) {
-        
     }
-    
-    
 }

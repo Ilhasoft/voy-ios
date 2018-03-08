@@ -11,8 +11,8 @@ import UIKit
 extension UIViewController {
     
     static public func switchRootViewController(_ rootViewController: UIViewController, animated: Bool,
-                                         transition: UIViewAnimationOptions = .transitionFlipFromLeft,
-                                         completion: (() -> Void)?) {
+                                                transition: UIViewAnimationOptions = .transitionFlipFromLeft,
+                                                completion: (() -> Void)?) {
         let window = UIApplication.shared.keyWindow
         if animated {
             UIView.transition(with: window!, duration: 0.5, options: transition, animations: {
@@ -20,7 +20,7 @@ extension UIViewController {
                 UIView.setAnimationsEnabled(false)
                 window!.rootViewController = rootViewController
                 UIView.setAnimationsEnabled(oldState)
-            }, completion: { finished in
+            }, completion: { _ in
                 if completion != nil {
                     completion!()
                 }

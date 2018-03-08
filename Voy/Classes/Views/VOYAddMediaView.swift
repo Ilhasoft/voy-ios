@@ -8,9 +8,9 @@
 
 import UIKit
 
-protocol VOYAddMediaViewDelegate {
-    func mediaViewDidTap(mediaView:VOYAddMediaView)
-    func removeMediaButtonDidTap(mediaView:VOYAddMediaView)
+protocol VOYAddMediaViewDelegate: class {
+    func mediaViewDidTap(mediaView: VOYAddMediaView)
+    func removeMediaButtonDidTap(mediaView: VOYAddMediaView)
 }
 
 class VOYAddMediaView: UIView {
@@ -18,11 +18,11 @@ class VOYAddMediaView: UIView {
     @IBOutlet weak var btRemove: UIButton!
     @IBOutlet weak var imgViewPlusIcon: UIImageView!
     @IBOutlet weak var imgView: UIImageView!
-    @IBOutlet var contentView:UIView!
+    @IBOutlet var contentView: UIView!
     
-    var cameraData:VOYCameraData?
-    var delegate:VOYAddMediaViewDelegate?
-    var media:VOYMedia?
+    var cameraData: VOYCameraData?
+    weak var delegate: VOYAddMediaViewDelegate?
+    var media: VOYMedia?
     
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)!
@@ -45,7 +45,7 @@ class VOYAddMediaView: UIView {
         addSubview(contentView)
     }
     
-    func setupWithMedia(cameraData:VOYCameraData) {
+    func setupWithMedia(cameraData: VOYCameraData) {
         self.cameraData = cameraData
         self.imgView.isHidden = false
         self.imgViewPlusIcon.isHidden = true
@@ -53,25 +53,25 @@ class VOYAddMediaView: UIView {
         
         if cameraData.type == .image {
             self.imgView.image = cameraData.image!
-        }else if cameraData.type == .video {            
+        } else if cameraData.type == .video {            
             self.imgView.image = cameraData.thumbnail!
         }
     }
     
-    func setupWithMedia(media:VOYMedia) {
+    func setupWithMedia(media: VOYMedia) {
         self.media = media
         self.imgView.isHidden = false
         self.imgViewPlusIcon.isHidden = true
         self.btRemove.isHidden = false
         
         if media.media_type == VOYMediaType.image.rawValue {
-            self.imgView.kf.setImage(with: URL(string:media.file))
-        }else if media.media_type == VOYMediaType.video.rawValue {
+            self.imgView.kf.setImage(with: URL(string: media.file))
+        } else if media.media_type == VOYMediaType.video.rawValue {
             print("need download video to show thumb")
         }
     }
     
-    @objc func viewTapped(gestureRecognizer:UITapGestureRecognizer) {
+    @objc func viewTapped(gestureRecognizer: UITapGestureRecognizer) {
         if let mediaView = gestureRecognizer.view as? VOYAddMediaView {
             self.delegate?.mediaViewDidTap(mediaView: mediaView)
         }

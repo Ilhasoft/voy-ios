@@ -13,7 +13,7 @@ class VOYMockAccountRepository: VOYAccountDataSource {
     func updateUser(avatar: Int?, password: String?, completion: @escaping (Error?) -> Void) {
         let oldAvatar = "OldAvatar"
         let oldPassword = "OldPassword"
-        
+
         let user = VOYUser()
         user.authToken = "TokenExample"
         user.avatar = oldAvatar

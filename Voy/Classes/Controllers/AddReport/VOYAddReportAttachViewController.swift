@@ -13,15 +13,15 @@ import MobileCoreServices
 
 class VOYAddReportAttachViewController: UIViewController, NVActivityIndicatorViewable {
 
-    @IBOutlet var mediaViews:[VOYAddMediaView]!
-    @IBOutlet var lbTitle:UILabel!
+    @IBOutlet var mediaViews: [VOYAddMediaView]!
+    @IBOutlet var lbTitle: UILabel!
 
-    var locationManager:VOYLocationManager!
-    var theme:VOYTheme!
-    var imagePickerController:UIImagePickerController!
-    var actionSheetController:VOYActionSheetViewController!
+    var locationManager: VOYLocationManager!
+    var theme: VOYTheme!
+    var imagePickerController: UIImagePickerController!
+    var actionSheetController: VOYActionSheetViewController!
     
-    var report:VOYReport?
+    var report: VOYReport?
     var removedMedias = [VOYMedia]()
     
     var mediaList = [VOYMedia]() {
@@ -35,16 +35,16 @@ class VOYAddReportAttachViewController: UIViewController, NVActivityIndicatorVie
             self.navigationItem.rightBarButtonItem!.isEnabled = !cameraDataList.isEmpty
         }
     }
-    var cameraData:VOYCameraData! {
+    var cameraData: VOYCameraData! {
         didSet {
             cameraDataList.append(cameraData)
             setupMediaView()
         }
     }
     
-    var tappedMediaView:VOYAddMediaView!
+    var tappedMediaView: VOYAddMediaView!
     
-    init(report:VOYReport) {
+    init(report: VOYReport) {
         self.report = report
         super.init(nibName: String(describing: type(of: self)), bundle: nil)
     }
@@ -77,24 +77,29 @@ class VOYAddReportAttachViewController: UIViewController, NVActivityIndicatorVie
     func loadFromReport() {
         guard let report = self.report else { return }        
         mediaList = report.files
-        for (index,mediaView) in self.mediaViews.enumerated() {
+        for (index, mediaView) in self.mediaViews.enumerated() {
             guard index < report.files.count else { return }
             mediaView.setupWithMedia(media: mediaList[index])
         }
     }
 
     func addNextButton() {
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: localizedString(.next), style: .plain, target: self, action: #selector(openNextController))
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(
+            title: localizedString(.next),
+            style: .plain,
+            target: self,
+            action: #selector(openNextController)
+        )
         self.navigationItem.rightBarButtonItem!.isEnabled = false
     }
 
     @objc func openNextController() {
-        var addReportDataViewController:VOYAddReportDataViewController!
+        var addReportDataViewController: VOYAddReportDataViewController!
         if report != nil {
             report!.cameraDataList = self.cameraDataList
             addReportDataViewController = VOYAddReportDataViewController(savedReport: self.report!)
         } else {
-            addReportDataViewController = VOYAddReportDataViewController(cameraDataList:self.cameraDataList)
+            addReportDataViewController = VOYAddReportDataViewController(cameraDataList: self.cameraDataList)
         }
         self.navigationController?.pushViewController(addReportDataViewController, animated: true)
     }
@@ -106,7 +111,7 @@ class VOYAddReportAttachViewController: UIViewController, NVActivityIndicatorVie
     }
     
     func setupMediaView() {
-        tappedMediaView.setupWithMedia(cameraData:self.cameraData)
+        tappedMediaView.setupWithMedia(cameraData: self.cameraData)
     }
     
     // MARK: - Localization
@@ -118,24 +123,24 @@ class VOYAddReportAttachViewController: UIViewController, NVActivityIndicatorVie
     
 }
 
-extension VOYAddReportAttachViewController : VOYAddMediaViewDelegate {
+extension VOYAddReportAttachViewController: VOYAddMediaViewDelegate {
     func mediaViewDidTap(mediaView: VOYAddMediaView) {
         tappedMediaView = mediaView
         actionSheetController = VOYActionSheetViewController(
             buttonNames: [localizedString(.movie), localizedString(.photo)],
-            icons: [#imageLiteral(resourceName: "noun1018049Cc"),#imageLiteral(resourceName: "noun938989Cc")]
+            icons: [#imageLiteral(resourceName: "noun1018049Cc"), #imageLiteral(resourceName: "noun938989Cc")]
         )
         actionSheetController.delegate = self
         actionSheetController.show(true, inViewController: self)
     }
     func removeMediaButtonDidTap(mediaView: VOYAddMediaView) {
         if let cameraData = mediaView.cameraData {
-            let index = self.cameraDataList.index{($0.id == cameraData.id)}
+            let index = self.cameraDataList.index { ($0.id == cameraData.id) }
             if let index = index {
                 self.cameraDataList.remove(at: index)
             }
-        }else if let media = mediaView.media {
-            let index = self.mediaList.index{($0.id == media.id)}
+        } else if let media = mediaView.media {
+            let index = self.mediaList.index { ($0.id == media.id) }
             if let index = index {
                 self.mediaList.remove(at: index)
                 self.removedMedias.append(media)
@@ -145,7 +150,7 @@ extension VOYAddReportAttachViewController : VOYAddMediaViewDelegate {
     }
 }
 
-extension VOYAddReportAttachViewController : VOYActionSheetViewControllerDelegate {
+extension VOYAddReportAttachViewController: VOYActionSheetViewControllerDelegate {
     func buttonDidTap(actionSheetViewController: VOYActionSheetViewController, button: UIButton, index: Int) {
         actionSheetController.close()
         imagePickerController = UIImagePickerController()
@@ -156,30 +161,35 @@ extension VOYAddReportAttachViewController : VOYActionSheetViewControllerDelegat
             imagePickerController.videoQuality = .type640x480
             imagePickerController.videoMaximumDuration = 30
             imagePickerController.allowsEditing = true
-        }else {
+        } else {
             imagePickerController.mediaTypes = [kUTTypeImage as String]
         }
         self.present(imagePickerController, animated: true) {
             
         }
     }
-    func cancelButtonDidTap(actionSheetViewController:VOYActionSheetViewController) {
+    func cancelButtonDidTap(actionSheetViewController: VOYActionSheetViewController) {
         actionSheetViewController.close()
     }
 }
 
-extension VOYAddReportAttachViewController : VOYLocationManagerDelegate {
+extension VOYAddReportAttachViewController: VOYLocationManagerDelegate {
     func didGetUserLocation(latitude: Float, longitude: Float, error: Error?) {
         self.stopAnimating()
-        let myLocation = CLLocationCoordinate2D(latitude: CLLocationDegrees(latitude), longitude: CLLocationDegrees(longitude))
-        
+        let myLocation = CLLocationCoordinate2D(
+            latitude: CLLocationDegrees(latitude),
+            longitude: CLLocationDegrees(longitude)
+        )
+
         var loctionCoordinate2dList = [CLLocationCoordinate2D]()
         for point in theme.bounds {
             let locationCoordinate2D = CLLocationCoordinate2D(latitude: point[0], longitude: point[1])
             loctionCoordinate2dList.append(locationCoordinate2D)
         }
         
-        let statePolygonRenderer = MKPolygonRenderer(polygon: MKPolygon(coordinates: loctionCoordinate2dList, count: loctionCoordinate2dList.count))
+        let statePolygonRenderer = MKPolygonRenderer(polygon:
+            MKPolygon(coordinates: loctionCoordinate2dList, count: loctionCoordinate2dList.count)
+        )
         let testMapPoint: MKMapPoint = MKMapPointForCoordinate(myLocation)
         let statePolygonRenderedPoint: CGPoint = statePolygonRenderer.point(for: testMapPoint)
         let intersects: Bool = statePolygonRenderer.path.contains(statePolygonRenderedPoint)
@@ -208,13 +218,17 @@ extension VOYAddReportAttachViewController : VOYLocationManagerDelegate {
     }
 }
 
-extension VOYAddReportAttachViewController : VOYAlertViewControllerDelegate {
+extension VOYAddReportAttachViewController: VOYAlertViewControllerDelegate {
     func buttonDidTap(alertController: VOYAlertViewController, button: UIButton, index: Int) {
         alertController.close()
         self.navigationController?.popViewController(animated: true)
         if alertController.view.tag == 1 {
-        }else if alertController.view.tag == 2 {
-            UIApplication.shared.open(URL(string:UIApplicationOpenSettingsURLString)!, options: [:], completionHandler: nil)
+        } else if alertController.view.tag == 2 {
+            UIApplication.shared.open(
+                URL(string: UIApplicationOpenSettingsURLString)!,
+                options: [:],
+                completionHandler: nil
+            )
         }
     }
 }

@@ -16,7 +16,14 @@ class VOYThemeListTableViewProvider: ISOnDemandTableViewInteractor {
     }
     
     override func fetchObjects(forPage page: UInt, with handler: (([Any]?, Error?) -> Void)!) {
-        handler(["Sanitation problems","Trash", "Os índices do aquecimento global alcançam recordes de 1.000 anos", "Rivereiet, conseadipiscing elit"],nil)
+        handler([
+            "Sanitation problems",
+            "Trash",
+            "Os índices do aquecimento global alcançam recordes de 1.000 anos",
+            "Rivereiet, conseadipiscing elit"
+            ],
+            nil
+        )
     }
     
 }

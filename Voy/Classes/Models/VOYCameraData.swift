@@ -10,13 +10,13 @@ import ObjectMapper
 
 class VOYCameraData: Mappable {
     
-    var id:String!
-    var report_id:Int!
-    var type:VOYMediaType!
-    var image:UIImage?
-    var thumbnail:UIImage?
-    var thumbnailPath:String?
-    var path:String!
+    var id: String!
+    var report_id: Int!
+    var type: VOYMediaType!
+    var image: UIImage?
+    var thumbnail: UIImage?
+    var thumbnailPath: String?
+    var path: String!
     
     required init?(map: Map) { }
     
@@ -30,7 +30,7 @@ class VOYCameraData: Mappable {
         path <- map["path"]
     }
     
-    init(image:UIImage?, thumbnail: UIImage?, thumbnailPath:URL?, path:URL!, type:VOYMediaType) {
+    init(image: UIImage?, thumbnail: UIImage?, thumbnailPath: URL?, path: URL!, type: VOYMediaType) {
         self.id = String.getIdentifier()
         self.thumbnail = thumbnail
         if let thumbnailPath = thumbnailPath {

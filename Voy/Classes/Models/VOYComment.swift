@@ -10,14 +10,14 @@ import ObjectMapper
 
 class VOYComment: NSObject, Mappable {
     
-    var id:Int!
-    var text:String!
-    var createdBy:VOYUser!
-    var createdOn:String!
-    var modifiedOn:String!
-    var report:Int!
+    var id: Int!
+    var text: String!
+    var createdBy: VOYUser!
+    var createdOn: String!
+    var modifiedOn: String!
+    var report: Int!
     
-    init(text:String, reportID:Int) {
+    init(text: String, reportID: Int) {
         self.text = text
         self.report = reportID
     }
@@ -38,6 +38,3 @@ class VOYComment: NSObject, Mappable {
     }
     
 }
-
-
-

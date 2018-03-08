@@ -17,15 +17,15 @@ class VOYAddReportInteractor: NSObject {
         
         let authToken = VOYUser.activeUser()!.authToken
         
-        let headers = ["Authorization" : "Token " + authToken!, "Content-Type" : "application/json"]
+        let headers = ["Authorization": "Token " + authToken!, "Content-Type": "application/json"]
         
-        var method:HTTPMethod!
+        var method: HTTPMethod!
         var reportIDString = ""
         
         if report.update && report.status != nil {
             method = HTTPMethod.put
             reportIDString = "\(report.id!)/"
-        }else {
+        } else {
             method = HTTPMethod.post
             reportIDString = ""
         }
@@ -35,16 +35,20 @@ class VOYAddReportInteractor: NSObject {
         let url = VOYConstant.API.URL + "reports/" + reportIDString
         
         if NetworkReachabilityManager()!.isReachable {
-            Alamofire.request(url, method: method, parameters: report.toJSON(), encoding: JSONEncoding.default, headers: headers).responseJSON { (dataResponse:DataResponse<Any>) in
+            Alamofire.request(url, method: method, parameters: report.toJSON(), headers: headers)
+                .responseJSON { (dataResponse: DataResponse<Any>) in
                 if let error = dataResponse.result.error {
                     print(error)
                     completion(error, nil)
-                } else if let value = dataResponse.result.value as? [String:Any] {
+                } else if let value = dataResponse.result.value as? [String: Any] {
                     if let reportID = value["id"] as? Int {
                         VOYMediaFileInteractor.shared.delete(mediaFiles: report.removedMedias)
                         VOYReportStorageManager.shared.removeFromStorageAfterSave(report: report)
-                        VOYMediaFileInteractor.shared.upload(reportID: reportID, cameraDataList: report.cameraDataList!, completion: { (error) in
-                        })
+                        VOYMediaFileInteractor.shared.upload(
+                            reportID: reportID,
+                            cameraDataList: report.cameraDataList!,
+                            completion: { _ in }
+                        )
                         completion(nil, reportID)
                     } else {
                         print("error: \(value)")

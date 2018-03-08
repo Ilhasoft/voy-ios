@@ -9,7 +9,11 @@
 import UIKit
 
 class VOYFileUtil: NSObject {
-    public static let outPutURLDirectory = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first! as NSString
+    public static let outPutURLDirectory = NSSearchPathForDirectoriesInDomains(
+        .documentDirectory,
+        .userDomainMask,
+        true)
+        .first! as NSString
     
     open class func removeFile(_ fileURL: URL) {
         let filePath = fileURL.path
@@ -18,26 +22,25 @@ class VOYFileUtil: NSObject {
         if fileManager.fileExists(atPath: filePath) {
             do {
                 try fileManager.removeItem(atPath: filePath)
-            }catch let error as NSError {
+            } catch let error as NSError {
                 print("Can't remove file \(error.localizedDescription)")
             }
             
-        }else{
+        } else {
             print("file doesn't exist")
         }
     }
     
-    open class func writeImageFile(_ data:Data) -> String{
+    open class func writeImageFile(_ data: Data) -> String {
         
         let path = VOYFileUtil.outPutURLDirectory.appendingPathComponent("image\(String.getIdentifier()).jpg")
         
         do {
             try data.write(to: URL(fileURLWithPath: path), options: [.atomic])
             print("file available")
-        }catch {
+        } catch {
             print(error.localizedDescription)
         }
-        
         return path
     }
 }

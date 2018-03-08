@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol VOYSelectedReportViewDelegate {
+protocol VOYSelectedReportViewDelegate: class {
     func seletecReportDidTap()
 }
 
@@ -16,9 +16,9 @@ class VOYSelectedReportView: UIView {
     
     @IBOutlet weak var imgIcon: UIImageView!
     @IBOutlet weak var lbTitle: UILabel!
-    @IBOutlet var contentView:UIView!
+    @IBOutlet var contentView: UIView!
     
-    var delegate:VOYSelectedReportViewDelegate?
+    weak var delegate: VOYSelectedReportViewDelegate?
     
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)!
@@ -43,8 +43,4 @@ class VOYSelectedReportView: UIView {
     @objc private func viewDidTap() {
         self.delegate?.seletecReportDidTap()
     }
-    
-    
 }
-
-

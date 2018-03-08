@@ -12,16 +12,21 @@ import Alamofire
 class VOYMediaDownloadManager: NSObject {
     
     static let shared = VOYMediaDownloadManager()
-    static var destinationPath = URL(fileURLWithPath: VOYFileUtil.outPutURLDirectory.appendingPathComponent(String.getIdentifier()+".mp4") as String)
+    static var destinationPath = URL(
+        fileURLWithPath: VOYFileUtil.outPutURLDirectory.appendingPathComponent(String.getIdentifier()+".mp4") as String
+    )
     
     let destination: DownloadRequest.DownloadFileDestination = { _, _ in
         return (destinationPath, [.removePreviousFile, .createIntermediateDirectories])
     }
     
-    func download(url:String, completion:@escaping(URL?) -> Void) {
+    func download(url: String, completion: @escaping(URL?) -> Void) {
 
-        let urlRequest = URLRequest(url: URL(string:url)!, cachePolicy: URLRequest.CachePolicy.returnCacheDataElseLoad, timeoutInterval: 5)
-//            urlRequest.addValue("max-age=31536000", forHTTPHeaderField: "Cache-Control")
+        let urlRequest = URLRequest(
+            url: URL(string: url)!,
+            cachePolicy: URLRequest.CachePolicy.returnCacheDataElseLoad,
+            timeoutInterval: 5
+        )
         
         Alamofire.download(urlRequest, to: destination)
             .downloadProgress(queue: DispatchQueue.global(qos: .utility)) { progress in
@@ -33,7 +38,7 @@ class VOYMediaDownloadManager: NSObject {
                         let data = try Data(contentsOf: VOYMediaDownloadManager.destinationPath)
                         let cachedURLResponse = CachedURLResponse(response: response.response!, data: data)
                         URLCache.shared.storeCachedResponse(cachedURLResponse, for: urlRequest)
-                    }catch {
+                    } catch {
                         print(error.localizedDescription)
                     }
                     completion(VOYMediaDownloadManager.destinationPath)

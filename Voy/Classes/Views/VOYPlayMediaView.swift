@@ -12,27 +12,27 @@ import AVFoundation
 import Alamofire
 import NVActivityIndicatorView
 
-enum VOYMediaType:String {
-    case image = "image"
-    case video = "video"
+enum VOYMediaType: String {
+    case image
+    case video
 }
 
-protocol VOYPlayMediaViewDelegate {
-    func mediaDidTap(mediaView:VOYPlayMediaView)
-    func videoDidTap(mediaView:VOYPlayMediaView, url:URL, showInFullScreen:Bool)
+protocol VOYPlayMediaViewDelegate: class {
+    func mediaDidTap(mediaView: VOYPlayMediaView)
+    func videoDidTap(mediaView: VOYPlayMediaView, url: URL, showInFullScreen: Bool)
 }
 
 class VOYPlayMediaView: UIView, NVActivityIndicatorViewable {
 
-    @IBOutlet var contentView:DataBindView!
-    @IBOutlet var imgView:UIImageView!
-    @IBOutlet var imgPlayIcon:UIImageView!
-    @IBOutlet var activityView:NVActivityIndicatorView!
+    @IBOutlet var contentView: DataBindView!
+    @IBOutlet var imgView: UIImageView!
+    @IBOutlet var imgPlayIcon: UIImageView!
+    @IBOutlet var activityView: NVActivityIndicatorView!
     
     var fullScreen = false
-    var delegate:VOYPlayMediaViewDelegate?
-    var media:VOYMedia!
-    var videoURL:URL?
+    weak var delegate: VOYPlayMediaViewDelegate?
+    var media: VOYMedia!
+    var videoURL: URL?
     
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)!
@@ -56,11 +56,11 @@ class VOYPlayMediaView: UIView, NVActivityIndicatorViewable {
     
     @objc func viewDidTap() {
         if self.media.media_type == VOYMediaType.image.rawValue {
-            self.delegate?.mediaDidTap(mediaView:self)
+            self.delegate?.mediaDidTap(mediaView: self)
         }
     }
 
-    func setup(media:VOYMedia) {
+    func setup(media: VOYMedia) {
         self.media = media
         
         switch self.media.media_type {
@@ -68,21 +68,19 @@ class VOYPlayMediaView: UIView, NVActivityIndicatorViewable {
             self.imgPlayIcon.isHidden = true
             self.activityView.isHidden = true
             self.imgView.isHidden = false
-            self.imgView.kf.setImage(with: URL(string:self.media.file))
-            break
+            self.imgView.kf.setImage(with: URL(string: self.media.file))
         case VOYMediaType.video.rawValue:
             self.activityView.isHidden = false
             self.activityView.startAnimating()
             if let thumbnail = self.media.thumbnail {
-                self.imgView.kf.setImage(with: URL(string:thumbnail))
-            }else {
+                self.imgView.kf.setImage(with: URL(string: thumbnail))
+            } else {
                 print("video sem thumbnail")
             }
             VOYMediaDownloadManager.shared.download(url: self.media.file, completion: { (url) in
                 self.activityView.isHidden = true
                 self.activityView.stopAnimating()
-                
-                guard let url = url else {return}
+                guard let url = url else { return }
                 let thumb = ISVideoUtil.generateThumbnail(url)
                 self.imgView.image = thumb
                 self.imgPlayIcon.isHidden = false
@@ -90,8 +88,6 @@ class VOYPlayMediaView: UIView, NVActivityIndicatorViewable {
                 let tap = UITapGestureRecognizer(target: self, action: #selector(self.videoDidTap))
                 self.contentView.addGestureRecognizer(tap)
             })
-            
-            break
         default:
             break
         }
@@ -100,8 +96,6 @@ class VOYPlayMediaView: UIView, NVActivityIndicatorViewable {
     
     @objc func videoDidTap() {
         fullScreen = !fullScreen
-        self.delegate?.videoDidTap(mediaView: self, url:self.videoURL!, showInFullScreen: fullScreen)
+        self.delegate?.videoDidTap(mediaView: self, url: self.videoURL!, showInFullScreen: fullScreen)
     }
-    
 }
-

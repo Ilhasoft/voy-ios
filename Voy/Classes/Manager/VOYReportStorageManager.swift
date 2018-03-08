@@ -16,10 +16,10 @@ class VOYReportStorageManager: NSObject {
         if let reportsDictionary = UserDefaults.standard.getArchivedObject(key: "reports") as? [[String: Any]] {
             return reportsDictionary
         }
-        return [[String:Any]]()
+        return [[String: Any]]()
     }
     
-    func removeFromStorageAfterSave(report:VOYReport) {
+    func removeFromStorageAfterSave(report: VOYReport) {
         var pendentReports = getPendentReports()
         let index = pendentReports.index {
             if let idAsInt = $0["id"] as? Int { return idAsInt == report.id }
@@ -33,7 +33,7 @@ class VOYReportStorageManager: NSObject {
         }
     }
     
-    func addAsPendent(report:VOYReport) {
+    func addAsPendent(report: VOYReport) {
         
         var pendentReports = getPendentReports()
         
@@ -53,8 +53,6 @@ class VOYReportStorageManager: NSObject {
         let encodedObject = NSKeyedArchiver.archivedData(withRootObject: pendentReports)
         UserDefaults.standard.set(encodedObject, forKey: "reports")
         UserDefaults.standard.synchronize()
-        
     }
 
 }
-

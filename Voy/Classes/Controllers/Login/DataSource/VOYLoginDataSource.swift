@@ -9,6 +9,6 @@
 import UIKit
 
 protocol VOYLoginDataSource {
-    func login(username:String, password:String, completion:@escaping(_ user:VOYUser?, _ error:Error?) -> Void)
-    func getUserData(authToken:String, completion:@escaping(_ user:VOYUser?, _ error:Error?) -> Void)
+    func login(username: String, password: String, completion: @escaping(_ user: VOYUser?, _ error: Error?) -> Void)
+    func getUserData(authToken: String, completion: @escaping(_ user: VOYUser?, _ error: Error?) -> Void)
 }

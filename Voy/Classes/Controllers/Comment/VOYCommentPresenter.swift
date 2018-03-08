@@ -18,7 +18,7 @@ class VOYCommentPresenter {
         self.view = view
     }
     
-    func save(comment:VOYComment, completion:@escaping (Error?) -> Void) {
+    func save(comment: VOYComment, completion:@escaping (Error?) -> Void) {
         dataSource.save(comment: comment) { (error) in
             if let error = error {
                 completion(error)
