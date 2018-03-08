@@ -6,16 +6,15 @@
 //  Copyright © 2018 Ilhasoft. All rights reserved.
 //
 
-import Alamofire
+import Foundation
 
 class VOYLoginRepository: VOYLoginDataSource {    
 
     func login(username: String, password: String, completion: @escaping (VOYUser?, Error?) -> Void) {
         let params = ["username": username, "password": password]
-        
-        Alamofire.request(VOYConstant.API.URL + "get_auth_token/", method: .post, parameters: params)
-            .responseJSON { (dataResponse: DataResponse<Any>) in
-            if let authTokenData = dataResponse.result.value as? [String: Any] {
+        postRequest(urlSuffix: "get_auth_token/", parameters: params,
+             completion: { (authTokenData: [String: Any]?, error) -> Void in
+            if let authTokenData = authTokenData {
                 if let authToken = authTokenData["token"] as? String {
                     self.getUserData(authToken: authToken, completion: { (user, error) in
                         if let user = user {
@@ -27,22 +26,15 @@ class VOYLoginRepository: VOYLoginDataSource {
                 } else {
                     completion(nil, nil)
                 }
-            } else if let error = dataResponse.result.error {
-                print(error.localizedDescription)
+            } else if let error = error {
                 completion(nil, error)
             }
-        }
+        })
     }
-    
+
     func getUserData(authToken: String, completion: @escaping (VOYUser?, Error?) -> Void) {
-        let url = VOYConstant.API.URL + "users/?auth_token=" + authToken
-        Alamofire.request(url, method: .get).responseArray { (dataResponse: DataResponse<[VOYUser]>) in
-            if let userData = dataResponse.result.value {
-                completion(userData.first!, nil)
-            } else if let error = dataResponse.result.error {
-                print(error.localizedDescription)
-                completion(nil, error)
-            }
-        }
+        getRequest(urlSuffix: "users/?auth_token=\(authToken)", completion: { (user: VOYUser?, error: Error?) in
+            completion(user, error)
+        })
     }
 }
