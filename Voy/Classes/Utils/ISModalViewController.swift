@@ -23,26 +23,26 @@ open class ISModalViewController: UIViewController {
         self.view.backgroundColor!.withAlphaComponent(0)
     }
     
-    //MARK: Class Methods
+    // MARK: - Class Methods
     
     open func closeWithCompletion(_ completion:@escaping () -> Void) {
         UIView.animate(withDuration: 0.3, animations: { () -> Void in
             self.view.backgroundColor = self.view.backgroundColor?.withAlphaComponent(0)
-        }, completion: { (finished) -> Void in
+        }, completion: { _ -> Void in
             self.dismiss(animated: true, completion: nil)
             completion()
         })
     }
     
-    open func close() -> Void {
+    open func close() {
         UIView.animate(withDuration: 0.3, animations: { () -> Void in
             self.view.backgroundColor = self.view.backgroundColor?.withAlphaComponent(0)
-        }, completion: { (finished) -> Void in
+        }, completion: { _ -> Void in
             self.dismiss(animated: true, completion: nil)
         })
     }
     
-    open func show(_ animated:Bool,inViewController:UIViewController){
+    open func show(_ animated: Bool, inViewController: UIViewController) {
         if animated == true {
             self.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
             inViewController.present(self, animated: animated) { () -> Void in
@@ -53,7 +53,9 @@ open class ISModalViewController: UIViewController {
         }
     }
     
-    open func show(_ animated: Bool, inViewController viewController:UIViewController, withCompletion:@escaping () -> Void) {
+    open func show(_ animated: Bool,
+                   inViewController viewController: UIViewController,
+                   withCompletion: @escaping () -> Void) {
         if animated == true {
             self.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
             viewController.present(self, animated: animated) { () -> Void in

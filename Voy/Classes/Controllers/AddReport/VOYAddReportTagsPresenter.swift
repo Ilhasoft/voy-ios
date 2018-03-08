@@ -19,7 +19,7 @@ class VOYAddReportTagsPresenter {
     
     func saveReport(report: VOYReport) {
         view.startLoadingAnimation()
-        dataSource.save(report: report) { (error, reportID) in
+        dataSource.save(report: report) { (error, _) in
             self.view.stopLoadingAnimation()
             if error == nil {
                 self.view.showSuccess()

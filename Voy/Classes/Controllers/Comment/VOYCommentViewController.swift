@@ -18,10 +18,10 @@ class VOYCommentViewController: UIViewController, VOYCommentContract {
     @IBOutlet weak var btSend: UIButton!
     @IBOutlet weak var txtField: UITextField!
     
-    var report:VOYReport!
+    var report: VOYReport!
     var presenter: VOYCommentPresenter?
     
-    init(report:VOYReport) {
+    init(report: VOYReport) {
         self.report = report
         super.init(nibName: String(describing: type(of: self)), bundle: nil)
     }
@@ -52,19 +52,36 @@ class VOYCommentViewController: UIViewController, VOYCommentContract {
     }
     
     private func setupKeyboard() {
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(keyboardWillShow),
+            name: NSNotification.Name.UIKeyboardWillShow,
+            object: nil
+        )
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(keyboardWillHide),
+            name: NSNotification.Name.UIKeyboardWillHide,
+            object: nil
+        )
     }
     
     func setupTableView() {
-        tableView.register(UINib(nibName: "VOYCommentTableViewCell", bundle: Bundle(for:VOYCommentTableViewCell.self)), forCellReuseIdentifier: NSStringFromClass(VOYCommentTableViewCell.self))
+        tableView.register(
+            UINib(nibName: "VOYCommentTableViewCell", bundle: Bundle(for: VOYCommentTableViewCell.self)),
+            forCellReuseIdentifier: NSStringFromClass(VOYCommentTableViewCell.self)
+        )
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 60
         tableView.transform = CGAffineTransform(scaleX: 1, y: -1)
         tableView.refreshControl = nil
-        tableView.contentInset = UIEdgeInsetsMake(0, 0, 64, 0)
+        tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 64, right: 0)
         tableView.onDemandTableViewDelegate = self
-        tableView.interactor = DataBindOnDemandTableViewInteractor(configuration: tableView.getConfiguration(), params: ["report": self.report.id!], paginationCount: 20)
+        tableView.interactor = DataBindOnDemandTableViewInteractor(
+            configuration: tableView.getConfiguration(),
+            params: ["report": self.report.id!],
+            paginationCount: 20
+        )
         tableView.loadContent()
     }
     
@@ -74,25 +91,32 @@ class VOYCommentViewController: UIViewController, VOYCommentContract {
                 let curve = notification.userInfo![UIKeyboardAnimationCurveUserInfoKey] as? UInt {
                 view.setNeedsLayout()
                 view.layoutIfNeeded()
-                
-                UIView.animate(withDuration: duration, delay: 0, options: UIViewAnimationOptions(rawValue: curve), animations: {
-                    self.bottomViewConstraint.constant = -keyboardSize.height //- 45
-                    self.view.layoutIfNeeded()
-                }, completion:nil)
+                UIView.animate(
+                    withDuration: duration,
+                    delay: 0,
+                    options: UIViewAnimationOptions(rawValue: curve),
+                    animations: {
+                        self.bottomViewConstraint.constant = -keyboardSize.height //- 45
+                        self.view.layoutIfNeeded()
+                }, completion: nil)
             }
         }
     }
 
     @objc func keyboardWillHide(notification: NSNotification) {
-        if let _ = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+        if (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue != nil {
             if let duration = notification.userInfo![UIKeyboardAnimationDurationUserInfoKey] as? Double,
                 let curve = notification.userInfo![UIKeyboardAnimationCurveUserInfoKey] as? UInt {
                 view.setNeedsLayout()
                 view.layoutIfNeeded()
-                UIView.animate(withDuration: duration, delay: 0, options: UIViewAnimationOptions(rawValue: curve), animations: {
-                    self.bottomViewConstraint.constant = 0
-                    self.view.layoutIfNeeded()
-                }, completion:nil)
+                UIView.animate(
+                    withDuration: duration,
+                    delay: 0,
+                    options: UIViewAnimationOptions(rawValue: curve),
+                    animations: {
+                        self.bottomViewConstraint.constant = 0
+                        self.view.layoutIfNeeded()
+                }, completion: nil)
             }
         }
     }
@@ -100,7 +124,7 @@ class VOYCommentViewController: UIViewController, VOYCommentContract {
     func sendComment() {
         let text = self.txtField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
         if !text.isEmpty {
-            let comment = VOYComment(text:text, reportID:self.report.id!)
+            let comment = VOYComment(text: text, reportID: self.report.id!)
             self.txtField.text = ""
             self.txtField.resignFirstResponder()
             guard let presenter = presenter else { return }
@@ -134,7 +158,7 @@ class VOYCommentViewController: UIViewController, VOYCommentContract {
     }
 }
 
-extension VOYCommentViewController : ISOnDemandTableViewDelegate {
+extension VOYCommentViewController: ISOnDemandTableViewDelegate {
     
     func onDemandTableView(_ tableView: ISOnDemandTableView, didSelectRowAt indexPath: IndexPath) {
         self.view.endEditing(true)
@@ -160,15 +184,18 @@ extension VOYCommentViewController : ISOnDemandTableViewDelegate {
     
 }
 
-extension VOYCommentViewController : VOYCommentTableViewCellDelegate {
+extension VOYCommentViewController: VOYCommentTableViewCellDelegate {
     func btOptionsDidTap(cell: VOYCommentTableViewCell) {
-        let actionSheetViewController = VOYActionSheetViewController(buttonNames: [localizedString(.remove)], icons: nil)
+        let actionSheetViewController = VOYActionSheetViewController(
+            buttonNames: [localizedString(.remove)],
+            icons: nil
+        )
         actionSheetViewController.delegate = self
         actionSheetViewController.show(true, inViewController: self)
     }
 }
 
-extension VOYCommentViewController : VOYActionSheetViewControllerDelegate {
+extension VOYCommentViewController: VOYActionSheetViewControllerDelegate {
     func cancelButtonDidTap(actionSheetViewController: VOYActionSheetViewController) {
         actionSheetViewController.close()
     }

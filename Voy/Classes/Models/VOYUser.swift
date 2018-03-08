@@ -10,15 +10,15 @@ import ObjectMapper
 
 class VOYUser: Mappable {
     
-    var id:Int!
-    var first_name:String!
-    var password:String!
-    var avatar:String!
-    var email:String!
-    var username:String!
-    var is_mapper:Bool!
-    var is_admin:Bool!
-    var authToken:String!
+    var id: Int!
+    var first_name: String!
+    var password: String!
+    var avatar: String!
+    var email: String!
+    var username: String!
+    var is_mapper: Bool!
+    var is_admin: Bool!
+    var authToken: String!
     
     init() {
         
@@ -35,7 +35,6 @@ class VOYUser: Mappable {
         is_mapper <- map["is_mapper"]
         is_admin <- map["is_admin"]
         authToken <- map["authToken"]
-        
     }
     
     static func activeUser() -> VOYUser? {
@@ -50,7 +49,7 @@ class VOYUser: Mappable {
         UserDefaults.standard.removeObject(forKey: "user")
     }
     
-    static func setActiveUser(user:VOYUser) {
+    static func setActiveUser(user: VOYUser) {
         let defaults = UserDefaults.standard
         
         let encodedObject = NSKeyedArchiver.archivedData(withRootObject: user.toJSON())
@@ -59,5 +58,3 @@ class VOYUser: Mappable {
     }
     
 }
-
-

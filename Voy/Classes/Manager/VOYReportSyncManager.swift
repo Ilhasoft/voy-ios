@@ -12,23 +12,21 @@ import Alamofire
 class VOYReportSyncManager: NSObject {
 
     static let shared = VOYReportSyncManager()
-    
+
     func trySendPendentReports() {
         let pendentReportsJSON = VOYReportStorageManager.shared.getPendentReports()
         guard !pendentReportsJSON.isEmpty else {
             return
         }
-        
         guard NetworkReachabilityManager()!.isReachable else {
             return
         }
-        
         for reportJSON in pendentReportsJSON {
-            let report = VOYReport(JSON:reportJSON)!
-            VOYAddReportInteractor.shared.save(report: report, completion: { (error, reportID) in })
+            let report = VOYReport(JSON: reportJSON)!
+            VOYAddReportInteractor.shared.save(report: report, completion: { _, _ in })
         }
     }
-    
+
     func trySendPendentCameraData() {
         let pendentCameraDataListDictionary = VOYCameraDataStorageManager.shared.getPendentCameraDataList()
         var cameraDataList = [VOYCameraData]()
@@ -38,7 +36,7 @@ class VOYReportSyncManager: NSObject {
         }
         
         for cameraDataDictionary in pendentCameraDataListDictionary {
-            let cameraData = VOYCameraData(JSON:cameraDataDictionary)!
+            let cameraData = VOYCameraData(JSON: cameraDataDictionary)!
             cameraDataList.append(cameraData)
         }
         
@@ -48,7 +46,6 @@ class VOYReportSyncManager: NSObject {
         
         guard !VOYMediaFileInteractor.isUploading else { return }
         
-        VOYMediaFileInteractor.shared.upload(reportID: 0, cameraDataList: cameraDataList) { (error) in }
+        VOYMediaFileInteractor.shared.upload(reportID: 0, cameraDataList: cameraDataList) { _ in }
     }
-    
 }

@@ -10,16 +10,17 @@ import Alamofire
 
 class VOYCommentRepository: VOYCommentDataSource {
 
-    func save(comment:VOYComment, completion:@escaping (Error?) -> Void) {
+    func save(comment: VOYComment, completion: @escaping (Error?) -> Void) {
         
         let authToken = VOYUser.activeUser()!.authToken!
         let url = VOYConstant.API.URL + "report-comments/"
-        let headers = ["Authorization" : "Token " + authToken, "Content-Type" : "application/json"]
+        let headers = ["Authorization": "Token " + authToken, "Content-Type": "application/json"]
         
-        Alamofire.request(url, method: .post, parameters: comment.toJSON(), encoding: JSONEncoding.default, headers: headers).responseJSON { (dataResponse:DataResponse<Any>) in
-            if let _ = dataResponse.result.value {
+        Alamofire.request(url, method: .post, parameters: comment.toJSON(), headers: headers)
+            .responseJSON { (dataResponse: DataResponse<Any>) in
+            if dataResponse.result.value != nil {
                 completion(nil)
-            }else if let error = dataResponse.result.error {
+            } else if let error = dataResponse.result.error {
                 completion(error)
             }
         }

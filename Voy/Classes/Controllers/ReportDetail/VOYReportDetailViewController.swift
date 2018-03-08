@@ -25,9 +25,9 @@ class VOYReportDetailViewController: UIViewController {
     @IBOutlet weak var btComment: UIButton!
     @IBOutlet weak var dataBindView: DataBindView!
     
-    var report:VOYReport!
+    var report: VOYReport!
     
-    init(report:VOYReport) {
+    init(report: VOYReport) {
         self.report = report
         super.init(nibName: String(describing: type(of: self)), bundle: nil)
     }
@@ -46,7 +46,7 @@ class VOYReportDetailViewController: UIViewController {
         scrollViewMedias.setPaging(true)
         
         dataBindView.delegate = self
-        dataBindView.fillFields(withObject:report.toJSON())
+        dataBindView.fillFields(withObject: report.toJSON())
         setupNavigationItem()
         setupViewTags()
         setupLocalization()
@@ -60,22 +60,35 @@ class VOYReportDetailViewController: UIViewController {
     
     func setupNavigationItem() {
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: " ", style: .plain, target: nil, action: nil)
-        let barButtonItemOptions = UIBarButtonItem(image: #imageLiteral(resourceName: "combinedShape").withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(showActionSheet))
-        let barButtonItemIssue = UIBarButtonItem(image: #imageLiteral(resourceName: "issue").withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(showIssue))
-        
-        let barButtonItemShare = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.action, target: self, action: #selector(shareText))
-        
-        let imageView = UIImageView(frame:CGRect(x: 0, y: 0, width: 30, height: 30))
-        imageView.kf.setImage(with: URL(string:VOYUser.activeUser()!.avatar))
+        let barButtonItemOptions = UIBarButtonItem(
+            image: #imageLiteral(resourceName: "combinedShape").withRenderingMode(.alwaysOriginal),
+            style: .plain,
+            target: self,
+            action: #selector(showActionSheet)
+        )
+        let barButtonItemIssue = UIBarButtonItem(
+            image: #imageLiteral(resourceName: "issue").withRenderingMode(.alwaysOriginal),
+            style: .plain,
+            target: self,
+            action: #selector(showIssue)
+        )
+        let barButtonItemShare = UIBarButtonItem(
+            barButtonSystemItem: UIBarButtonSystemItem.action,
+            target: self,
+            action: #selector(shareText)
+        )
+        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
+        imageView.kf.setImage(with: URL(string: VOYUser.activeUser()!.avatar))
         imageView.contentMode = .scaleAspectFit
         imageView.widthAnchor.constraint(equalToConstant: 32).isActive = true
         imageView.heightAnchor.constraint(equalToConstant: 31).isActive = true
         
         self.navigationItem.titleView = imageView
         
-        var buttonItens = [barButtonItemOptions,barButtonItemIssue]
+        var buttonItens = [barButtonItemOptions, barButtonItemIssue]
         
-        if self.report.lastNotification == nil || (self.report.lastNotification != nil && self.report.lastNotification.isEmpty) {
+        if self.report.lastNotification == nil
+            || (self.report.lastNotification != nil && self.report.lastNotification.isEmpty) {
             buttonItens.remove(at: 1)
         }
         
@@ -100,8 +113,10 @@ class VOYReportDetailViewController: UIViewController {
         alertInfoController.show(true, inViewController: self)
     }
     
-    func setupScrollViewMedias(media:VOYMedia) {
-        let mediaPlayView = VOYPlayMediaView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: 161))
+    func setupScrollViewMedias(media: VOYMedia) {
+        let mediaPlayView = VOYPlayMediaView(
+            frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: 161)
+        )
         mediaPlayView.setup(media: media)
         mediaPlayView.delegate = self
         scrollViewMedias.addCustomView(mediaPlayView)
@@ -109,21 +124,29 @@ class VOYReportDetailViewController: UIViewController {
     }
     
     @objc func removePlayer() {
-        UIView.transition(with: self.view, duration: 0.5, options: UIViewAnimationOptions.transitionCrossDissolve, animations: {
-            self.navigationController?.view.viewWithTag(130)?.removeFromSuperview()
-        }) { (completed) in
-            
-        }
+        UIView.transition(
+            with: self.view,
+            duration: 0.5,
+            options: UIViewAnimationOptions.transitionCrossDissolve,
+            animations: {
+                self.navigationController?.view.viewWithTag(130)?.removeFromSuperview()
+            },
+            completion: nil
+        )
     }
     
     @objc private func showActionSheet() {
-        let actionSheetViewController = VOYActionSheetViewController(buttonNames: [localizedString(.editReport)], icons: nil)
+        let actionSheetViewController = VOYActionSheetViewController(
+            buttonNames: [localizedString(.editReport)],
+            icons: nil
+        )
         actionSheetViewController.delegate = self
         actionSheetViewController.show(true, inViewController: self)
     }
     
     @objc private func shareText() {
         guard let reportId = self.report.id else { return }
+        // TODO: make this translatable
         let textToShare = "Hello, I reported a problem in this region, take a look: https://voy-dev.ilhasoft.mobi/project/Ilhasoft/report/\(reportId)"
         let activityViewController = UIActivityViewController(activityItems: [textToShare], applicationActivities: nil)
         activityViewController.popoverPresentationController?.sourceView = self.view
@@ -133,7 +156,7 @@ class VOYReportDetailViewController: UIViewController {
     }
     
     @IBAction func btCommentTapped(_ sender: Any) {
-        self.navigationController?.pushViewController(VOYCommentViewController(report:self.report), animated: true)
+        self.navigationController?.pushViewController(VOYCommentViewController(report: self.report), animated: true)
     }
     
     // MARK: - Private methods
@@ -142,24 +165,27 @@ class VOYReportDetailViewController: UIViewController {
         btComment.setTitle(localizedString(.comment), for: .normal)
     }
 }
-extension VOYReportDetailViewController : ISScrollViewPageDelegate {
+extension VOYReportDetailViewController: ISScrollViewPageDelegate {
     func scrollViewPageDidChanged(_ scrollViewPage: ISScrollViewPage, index: Int) {
         self.pageControl.currentPage = index
     }
 }
 
-extension VOYReportDetailViewController : VOYActionSheetViewControllerDelegate {
+extension VOYReportDetailViewController: VOYActionSheetViewControllerDelegate {
     func cancelButtonDidTap(actionSheetViewController: VOYActionSheetViewController) {
         actionSheetViewController.close()
     }
     
     func buttonDidTap(actionSheetViewController: VOYActionSheetViewController, button: UIButton, index: Int) {
         actionSheetViewController.close()
-        self.navigationController?.pushViewController(VOYAddReportAttachViewController(report:self.report), animated: true)
+        self.navigationController?.pushViewController(
+            VOYAddReportAttachViewController(report: self.report),
+            animated: true
+        )
     }
 }
 
-extension VOYReportDetailViewController : VOYAlertViewControllerDelegate {
+extension VOYReportDetailViewController: VOYAlertViewControllerDelegate {
     func buttonDidTap(alertController: VOYAlertViewController, button: UIButton, index: Int) {
         alertController.close()
         switch index {
@@ -173,11 +199,10 @@ extension VOYReportDetailViewController : VOYAlertViewControllerDelegate {
     }
 }
 
-extension VOYReportDetailViewController : DataBindViewDelegate {
-    func didFillAllComponents(JSON:[String:Any]) {
-        
+extension VOYReportDetailViewController: DataBindViewDelegate {
+    func didFillAllComponents(JSON: [String: Any]) {
     }
-    
+
     func willFill(component: Any, value: Any) -> Any? {
         if let component = component as? UILabel {
             if component == self.lbDate {
@@ -193,8 +218,8 @@ extension VOYReportDetailViewController : DataBindViewDelegate {
                 return nil
             }
             
-        }else if let _ = component as? UIScrollView {
-            if let values = value as? [[String:Any]] {
+        } else if component is UIScrollView {
+            if let values = value as? [[String: Any]] {
                 for mediaObject in values {
                     let media = VOYMedia(JSON: mediaObject)!
                     setupScrollViewMedias(media: media)
@@ -216,25 +241,20 @@ extension VOYReportDetailViewController : DataBindViewDelegate {
     func didSet(component: Any, value: Any) {
         
     }
-    
-    
 }
 
-extension VOYReportDetailViewController : VOYPlayMediaViewDelegate {
+extension VOYReportDetailViewController: VOYPlayMediaViewDelegate {
     func mediaDidTap(mediaView: VOYPlayMediaView) {
-        let dataSource = PhotosDataSource(photos:[Photo(image:mediaView.imgView.image)])
+        let dataSource = PhotosDataSource(photos: [Photo(image: mediaView.imgView.image)])
         let photosViewController = PhotosViewController(dataSource: dataSource)
         self.present(photosViewController, animated: true) {
-            
         }
     }
     
-    func videoDidTap(mediaView: VOYPlayMediaView, url:URL, showInFullScreen:Bool) {
-        
+    func videoDidTap(mediaView: VOYPlayMediaView, url: URL, showInFullScreen: Bool) {
         let playerController = AVPlayerViewController()
         playerController.player = AVPlayer(url: url)
         playerController.player!.play()
-        
         self.present(playerController, animated: true, completion: nil)
     }
 }

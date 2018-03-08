@@ -10,18 +10,17 @@ import ObjectMapper
 
 class VOYMedia: Mappable {
     
-    var id:Int!
-    var title:String!
-    var media_type:String!
-    var file:String!
-    var thumbnail:String?
-    
+    var id: Int!
+    var title: String!
+    var media_type: String!
+    var file: String!
+    var thumbnail: String?
+
     init() {
-        
     }
-    
+
     required init?(map: Map) { }
-    
+
     func mapping(map: Map) {
         id <- map["id"]
         title <- map["title"]
@@ -29,9 +28,8 @@ class VOYMedia: Mappable {
         file <- map["file"]
         thumbnail <- map["thumbnail"]
     }
-    
+
     func map() -> Map {
         return Map(mappingType: .toJSON, JSON: self.toJSON())
     }
 }
-

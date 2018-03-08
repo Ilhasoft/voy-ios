@@ -9,5 +9,5 @@
 import UIKit
 
 protocol VOYCommentDataSource {
-    func save(comment:VOYComment, completion:@escaping (Error?) -> Void)
+    func save(comment: VOYComment, completion:@escaping (Error?) -> Void)
 }

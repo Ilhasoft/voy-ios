@@ -51,7 +51,10 @@ class VOYAddReportTests: XCTestCase {
     func testDefaultControllerFlow() {
         let expectations = expectation(description: "Entered all methods that handles the UI.")
         let controllerUnderTest: VOYMockAddReportTagsViewController = VOYMockAddReportTagsViewController()
-        let presenterUnderTest: VOYAddReportTagsPresenter = VOYAddReportTagsPresenter(dataSource: VOYMockAddReportRepository(), view: controllerUnderTest)
+        let presenterUnderTest: VOYAddReportTagsPresenter = VOYAddReportTagsPresenter(
+            dataSource: VOYMockAddReportRepository(),
+            view: controllerUnderTest
+        )
         controllerUnderTest.presenter = presenterUnderTest
         // Emulating a - Send Report - Event
         controllerUnderTest.save()

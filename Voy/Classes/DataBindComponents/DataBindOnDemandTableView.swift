@@ -11,11 +11,11 @@ import ISOnDemandTableView
 
 open class DataBindOnDemandTableView: ISOnDemandTableView {
 
-    @IBInspectable var apiURL:String?
-    @IBInspectable var endPoint:String!
-    @IBInspectable var keyPath:String?
+    @IBInspectable var apiURL: String?
+    @IBInspectable var endPoint: String!
+    @IBInspectable var keyPath: String?
     
-    private var configuration:DataBindRestConfiguration!
+    private var configuration: DataBindRestConfiguration!
     
     public func getConfiguration() -> DataBindRestConfiguration {
         configuration = DataBindRestConfiguration()

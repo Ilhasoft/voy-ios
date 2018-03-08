@@ -9,8 +9,8 @@
 import UIKit
 
 enum TokenStatus: String {
-    case validToken = "validToken"
-    case invalidToken = "invalidToken"
+    case validToken
+    case invalidToken
 }
 
 class VOYMockLoginRepository: VOYLoginDataSource {
@@ -21,7 +21,7 @@ class VOYMockLoginRepository: VOYLoginDataSource {
     
     func login(username: String, password: String, completion: @escaping (VOYUser?, Error?) -> Void) {
         if username == validUsername, password == validPassword {
-            getUserData(authToken: TokenStatus.validToken.rawValue, completion: { (user, error) in
+            getUserData(authToken: TokenStatus.validToken.rawValue, completion: { (user, _) in
                 if let user = user {
                     completion(user, nil)
                 } else {

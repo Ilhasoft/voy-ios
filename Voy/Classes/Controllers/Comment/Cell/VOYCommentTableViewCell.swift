@@ -10,8 +10,8 @@ import UIKit
 import ISOnDemandTableView
 import DataBindSwift
 
-protocol VOYCommentTableViewCellDelegate {
-    func btOptionsDidTap(cell:VOYCommentTableViewCell)
+protocol VOYCommentTableViewCellDelegate: class {
+    func btOptionsDidTap(cell: VOYCommentTableViewCell)
 }
 
 class VOYCommentTableViewCell: DataBindOnDemandTableViewCell {
@@ -22,7 +22,7 @@ class VOYCommentTableViewCell: DataBindOnDemandTableViewCell {
     @IBOutlet weak var lbComment: DataBindLabel!
     @IBOutlet weak var btOptions: UIButton!
     
-    var delegate:VOYCommentTableViewCellDelegate?
+    weak var delegate: VOYCommentTableViewCellDelegate?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -40,15 +40,12 @@ class VOYCommentTableViewCell: DataBindOnDemandTableViewCell {
     @IBAction func btOptionsTapped(_ sender: Any) {
         delegate?.btOptionsDidTap(cell: self)
     }
-    
-    
 }
 
-extension VOYCommentTableViewCell : DataBindViewDelegate {
-    func didFillAllComponents(JSON: [String : Any]) {
-        
+extension VOYCommentTableViewCell: DataBindViewDelegate {
+    func didFillAllComponents(JSON: [String: Any]) {
     }
-    
+
     func willFill(component: Any, value: Any) -> Any? {
         if let component = component as? UILabel {
             if component == self.lbDate {
@@ -66,9 +63,8 @@ extension VOYCommentTableViewCell : DataBindViewDelegate {
         }
         return value
     }
-    
+
     func didFill(component: Any, value: Any) {
-        
     }
     
     func willSet(component: Any, value: Any) -> Any? {
@@ -76,8 +72,5 @@ extension VOYCommentTableViewCell : DataBindViewDelegate {
     }
     
     func didSet(component: Any, value: Any) {
-        
     }
-    
-    
 }

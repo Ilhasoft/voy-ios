@@ -10,17 +10,17 @@ import ObjectMapper
 
 class VOYTheme: Mappable {
 
-    var id:Int!
-    var project:String!
-    var bounds:[[Double]]!
-    var name:String!
-    var description:String!
-    var tags:[String]!
-    var color:String!
-    var pin:String!
-    var reports_count:Int!
-    var created_on:String!
-    var allow_links:Bool!
+    var id: Int!
+    var project: String!
+    var bounds: [[Double]]!
+    var name: String!
+    var description: String!
+    var tags: [String]!
+    var color: String!
+    var pin: String!
+    var reports_count: Int!
+    var created_on: String!
+    var allow_links: Bool!
     
     init() {
         
@@ -58,7 +58,7 @@ class VOYTheme: Mappable {
         UserDefaults.standard.removeObject(forKey: "theme")
     }
     
-    static func setActiveTheme(theme:VOYTheme) {
+    static func setActiveTheme(theme: VOYTheme) {
         let defaults = UserDefaults.standard
         
         let encodedObject = NSKeyedArchiver.archivedData(withRootObject: theme.toJSON())

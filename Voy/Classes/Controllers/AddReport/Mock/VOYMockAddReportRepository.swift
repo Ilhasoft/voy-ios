@@ -22,6 +22,4 @@ class VOYMockAddReportRepository: VOYAddReportDataSource {
             completion(nil, nil)
         }
     }
-    
-
 }

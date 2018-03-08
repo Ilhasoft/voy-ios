@@ -10,12 +10,8 @@ import UIKit
 
 class VOYMediaFileRepository: VOYMediaFileDataSource {
     func delete(mediaFiles: [VOYMedia]?) {
-        
     }
-    
-    func upload(reportID: Int, cameraDataList: [VOYCameraData], completion: @escaping (Error?) -> Void) {
-        
-    }
-    
 
+    func upload(reportID: Int, cameraDataList: [VOYCameraData], completion: @escaping (Error?) -> Void) {
+    }
 }

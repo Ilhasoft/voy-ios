@@ -56,6 +56,4 @@ class VOYMockAddReportTagsViewController: VOYAddReportTagsContract {
     func startLoadingAnimation() {
         startedAnimation = true
     }
-    
-
 }

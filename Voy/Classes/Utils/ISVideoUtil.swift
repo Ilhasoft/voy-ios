@@ -11,15 +11,21 @@ import AVFoundation
 
 open class ISVideoUtil: NSObject {
     
-    public static let outPutURLDirectory = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first! as NSString
+    public static let outPutURLDirectory = NSSearchPathForDirectoriesInDomains(
+        .documentDirectory,
+        .userDomainMask,
+        true
+        ).first! as NSString
     
     static open func compressVideo(inputURL: URL, completion:@escaping (_ success: Bool, _ outputURL: URL?) -> Void) {
         
         let urlAsset = AVURLAsset(url: inputURL, options: nil)
         let exportSession = AVAssetExportSession(asset: urlAsset, presetName: AVAssetExportPresetMediumQuality)!
         
-        let fileName = inputURL.lastPathComponent.replacingOccurrences(of: ".MOV", with: "\(String.getIdentifier()).mp4")
-        
+        let fileName = inputURL.lastPathComponent.replacingOccurrences(
+            of: ".MOV",
+            with: "\(String.getIdentifier()).mp4"
+        )
         exportSession.outputURL = URL(fileURLWithPath: outPutURLDirectory.appendingPathComponent(fileName))
         exportSession.shouldOptimizeForNetworkUse = true
         exportSession.outputFileType = AVFileType.mp4
@@ -33,9 +39,9 @@ open class ISVideoUtil: NSObject {
         }
     }
     
-    open class func generateThumbnail(_ url : URL) -> UIImage?{
+    open class func generateThumbnail(_ url: URL) -> UIImage? {
         let asset = AVAsset(url: url)
-        let assetImgGenerate : AVAssetImageGenerator = AVAssetImageGenerator(asset: asset)
+        let assetImgGenerate: AVAssetImageGenerator = AVAssetImageGenerator(asset: asset)
         assetImgGenerate.appliesPreferredTrackTransform = true
         
         var time = asset.duration
@@ -44,9 +50,8 @@ open class ISVideoUtil: NSObject {
         do {
             let image = try assetImgGenerate.copyCGImage(at: time, actualTime: nil)
             let frameImg = UIImage(cgImage: image)
-            
             return frameImg
-        }catch let error as NSError {
+        } catch let error as NSError {
             print("error on generate image thumbnail \(error.localizedDescription)")
             return nil
         }
