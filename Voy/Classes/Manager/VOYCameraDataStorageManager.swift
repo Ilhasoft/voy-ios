@@ -21,7 +21,10 @@ class VOYCameraDataStorageManager: NSObject {
     
     func removeFromStorageAfterSave(cameraData:VOYCameraData) {
         var pendentCameraDataList = getPendentCameraDataList()
-        let index = pendentCameraDataList.index {($0["id"] as! String == cameraData.id)}
+        let index = pendentCameraDataList.index {
+            if let idString = $0["id"] as? String { return idString == cameraData.id }
+            return false
+        }
         if let index = index {
             pendentCameraDataList.remove(at: index)
             let encodedObject = NSKeyedArchiver.archivedData(withRootObject: pendentCameraDataList)
@@ -34,7 +37,10 @@ class VOYCameraDataStorageManager: NSObject {
         
         var pendentCameraDataList = getPendentCameraDataList()
         
-        let index = pendentCameraDataList.index {($0["id"] as! String == cameraData.id)}
+        let index = pendentCameraDataList.index {
+            if let idString = $0["id"] as? String { return idString == cameraData.id }
+            return false
+        }
         
         if let index = index {
             pendentCameraDataList.remove(at: index)

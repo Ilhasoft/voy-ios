@@ -72,8 +72,9 @@ class VOYAddMediaView: UIView {
     }
     
     @objc func viewTapped(gestureRecognizer:UITapGestureRecognizer) {
-        let mediaView = gestureRecognizer.view as! VOYAddMediaView
-        self.delegate?.mediaViewDidTap(mediaView: mediaView)
+        if let mediaView = gestureRecognizer.view as? VOYAddMediaView {
+            self.delegate?.mediaViewDidTap(mediaView: mediaView)
+        }
     }
 
     @IBAction func btRemoveTapped(_ sender: Any) {

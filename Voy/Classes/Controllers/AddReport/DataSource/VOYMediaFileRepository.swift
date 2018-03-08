@@ -27,17 +27,17 @@ class VOYMediaFileRepository: VOYMediaFileDataSource {
         let url = VOYConstant.API.URL + "report-files/delete/?ids=" + mediaIdsString
         let headers:HTTPHeaders = ["Authorization" : "Token " + authToken]
         
-        Alamofire.request(url, method: .post , headers: headers).responseJSON { (dataResponse:DataResponse<Any>) in
+        Alamofire.request(url, method: .post, headers: headers).responseJSON { (dataResponse:DataResponse<Any>) in
             if let value = dataResponse.result.value {
                 print(value)
-            }else if let error = dataResponse.result.error {
+            } else if let error = dataResponse.result.error {
                 print(error.localizedDescription)
             }
         }
     }
     
     func upload(reportID: Int, cameraDataList:[VOYCameraData], completion:@escaping(Error?) -> Void) {
-        for (_,cameraData) in cameraDataList.enumerated() {
+        for (_, cameraData) in cameraDataList.enumerated() {
             
             var report_id = reportID
             
@@ -57,7 +57,7 @@ class VOYMediaFileRepository: VOYMediaFileDataSource {
                         }
                 },
                     to: VOYConstant.API.URL + "report-files/",
-                    method:.post,
+                    method: .post,
                     headers: ["Authorization" : "Token " + VOYUser.activeUser()!.authToken],
                     encodingCompletion: { encodingResult in
                         VOYMediaFileRepository.isUploading = false
@@ -67,7 +67,7 @@ class VOYMediaFileRepository: VOYMediaFileDataSource {
                                 debugPrint(response)
                                 if response.error != nil {
                                     VOYCameraDataStorageManager.shared.addAsPendent(cameraData: cameraData, reportID: report_id)
-                                }else {
+                                } else {
                                     VOYCameraDataStorageManager.shared.removeFromStorageAfterSave(cameraData: cameraData)
                                 }
                             }

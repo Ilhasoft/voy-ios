@@ -59,72 +59,73 @@ public class DataBindOnDemandTableViewInteractor : ISOnDemandTableViewInteractor
         let cachedResponse = URLCache.shared.cachedResponse(for: request.request!)
         
         if NetworkReachabilityManager()!.isReachable {
-         
-            request.responseJSON { (dataResponse:DataResponse<Any>) in
+            request.responseJSON { (dataResponse: DataResponse<Any>) in
                 if dataResponse.result.error == nil {
-                    let cachedURLResponse = CachedURLResponse(response: dataResponse.response!, data: dataResponse.data! , userInfo: nil, storagePolicy: .allowed)
+                    let cachedURLResponse = CachedURLResponse(
+                        response: dataResponse.response!,
+                        data: dataResponse.data!,
+                        userInfo: nil,
+                        storagePolicy: .allowed
+                    )
                     URLCache.shared.storeCachedResponse(cachedURLResponse, for: dataResponse.request!)
-                  
                 }
-                
+
                 if let keyPath = self.keyPath {
-                    if let results = (dataResponse.result.value as! [String:Any])[keyPath] as? [[String:Any]] {
+                    if let resultValue = dataResponse.result.value as? [String: Any],
+                        let results = resultValue[keyPath] as? [[String: Any]] {
                         self.prepareForHandlerData(results, completion: { (objects, error) in
-                            handler(objects,error)
+                            handler(objects, error)
                         })
                     }
-                }else if let results = dataResponse.result.value as? [[String:Any]] {
+                } else if let results = dataResponse.result.value as? [[String: Any]] {
                     self.prepareForHandlerData(results, completion: { (objects, error) in
-                        handler(objects,error)
+                        handler(objects, error)
                     })
-                }else if let error = dataResponse.result.error {
-                    handler([],error)
-                }else {
-                    handler([],nil)
+                } else if let error = dataResponse.result.error {
+                    handler([], error)
+                } else {
+                    handler([], nil)
                 }
-                
             }
-            
-        }else if let cachedResponse = cachedResponse {
+        } else if let cachedResponse = cachedResponse {
             do {
-                var objects = [[String:Any]]()
+                var objects = [[String: Any]]()
                 let jsonObject = try JSONSerialization.jsonObject(with: cachedResponse.data, options: [])
                 
-                if let keyPath = self.keyPath {
-                    objects = (jsonObject as! [String:Any])[keyPath] as! [[String : Any]]
-                }else {
-                    objects = jsonObject as! [[String : Any]]
+                if let keyPath = self.keyPath,
+                    let jsonObject = jsonObject as? [String: Any],
+                    let subobject = jsonObject[keyPath] as? [[String : Any]] {
+                    objects = subobject
+                } else if let jsonObject = jsonObject as? [[String : Any]] {
+                    objects = jsonObject
                 }
-                
                 prepareForHandlerData(objects, completion: { (objects, error) in
-                    
-                    if self.endPoint == "reports" && self.params!["status"] as! Int == 2 {
-                        
+                    if self.endPoint == "reports" && self.params!["status"] as? Int == 2 {
                         let pendentReportsJSONList = VOYReportStorageManager.shared.getPendentReports()
                         guard !pendentReportsJSONList.isEmpty else {
-                            handler(objects,error)
+                            handler(objects, error)
                             return
                         }
-                        var objects = objects as! [Map]
-                        for reportJSON in pendentReportsJSONList {
-                            objects.append(Map(mappingType: .fromJSON, JSON: reportJSON))
+                        if var objectsAsMap = objects as? [Map] {
+                            for reportJSON in pendentReportsJSONList {
+                                objectsAsMap.append(Map(mappingType: .fromJSON, JSON: reportJSON))
+                            }
+                            handler(objectsAsMap, error)
+                        } else {
+                            handler(objects, error)
                         }
-                        handler(objects,error)
-                    }else {
-                        handler(objects,error)
+                    } else {
+                        handler(objects, error)
                     }
-                    
                 })
             } catch {
                 print(error.localizedDescription)
-                handler([],error)
+                handler([], error)
             }
-
-        }else {
+        } else {
             print("User haven't internet connection and don't have cached data")
-            handler([],nil)
+            handler([], nil)
         }
-        
     }
     
     private func prepareForHandlerData(_ arrayDictionary: [[String:Any]], completion: (([Any]?, Error?) -> Void)!) {
