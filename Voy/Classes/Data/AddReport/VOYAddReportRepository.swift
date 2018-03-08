@@ -12,51 +12,62 @@ import Alamofire
 class VOYAddReportRepository: VOYAddReportDataSource {
     
     let reachability: VOYReachability
+    let networkClient = VOYNetworkClient()
     
     init(reachability: VOYReachability) {
         self.reachability = reachability
     }
     
+    // MARK: - VOYAddReportDataSource
+    
     func save(report: VOYReport, completion: @escaping (Error?, Int?) -> Void) {
+        if reachability.hasNetwork() {
+            saveRemote(report: report, completion: completion)
+        } else {
+            saveLocal(report: report, completion: completion)
+        }
+    }
+    
+    // MARK: - Private methods
+    
+    private func saveRemote(report: VOYReport, completion: @escaping (Error?, Int?) -> Void) {
         let authToken = VOYUser.activeUser()!.authToken
-        
         let headers = ["Authorization": "Token " + authToken!, "Content-Type": "application/json"]
-        
-        var method: HTTPMethod!
+        var method: VOYNetworkClient.VOYHTTPMethod!
         var reportIDString = ""
-        
         if report.update && report.status != nil {
-            method = HTTPMethod.put
+            method = .put
             reportIDString = "\(report.id!)/"
         } else {
-            method = HTTPMethod.post
+            method = .post
             reportIDString = ""
         }
-        
-        let url = VOYConstant.API.URL + "reports/" + reportIDString
-        
-        if reachability.hasNetwork() {
-            Alamofire.request(url, method: method, parameters: report.toJSON(), headers: headers)
-                .responseJSON { (dataResponse: DataResponse<Any>) in
-                if let error = dataResponse.result.error {
-                    print(error)
+        networkClient.requestDictionary(urlSuffix: "reports/\(reportIDString)",
+            httpMethod: method,
+            parameters: report.toJSON(),
+            headers: headers) { (value, error) in
+                guard let value = value else {
                     completion(error, nil)
-                } else if let value = dataResponse.result.value as? [String: Any] {
-                    if let reportID = value["id"] as? Int {
-                        VOYMediaFileRepository.shared.delete(mediaFiles: report.removedMedias)
-                        VOYReportStorageManager.shared.removeFromStorageAfterSave(report: report)
-                        VOYMediaFileRepository.shared.upload(reportID: reportID, cameraDataList: report.cameraDataList!, completion: { (_) in
-                        })
-                        completion(nil, reportID)
-                    } else {
-                        print("error: \(value)")
-                        completion(nil, nil)
-                    }
+                    return
                 }
-            }
-        } else {
-            VOYReportStorageManager.shared.addAsPendent(report: report)
-            completion(nil, nil)
+                if let reportID = value["id"] as? Int {
+                    VOYMediaFileRepository.shared.delete(mediaFiles: report.removedMedias)
+                    VOYReportStorageManager.shared.removeFromStorageAfterSave(report: report)
+                    VOYMediaFileRepository.shared.upload(
+                        reportID: reportID,
+                        cameraDataList: report.cameraDataList!,
+                        completion: { (_) in }
+                    )
+                    completion(nil, reportID)
+                } else {
+                    print("error: \(value)")
+                    completion(nil, nil)
+                }
         }
+    }
+    
+    private func saveLocal(report: VOYReport, completion: @escaping (Error?, Int?) -> Void) {
+        VOYReportStorageManager.shared.addAsPendent(report: report)
+        completion(nil, nil)
     }
 }
