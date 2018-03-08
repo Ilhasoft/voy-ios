@@ -346,6 +346,7 @@
 		01EBF71E2051C3E300D4EF10 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				436C994620499AE400915A13 /* Reachability */,
 				01EBF7262051C59200D4EF10 /* AddReport */,
 				01EBF7252051C53400D4EF10 /* ThemeList */,
 				01EBF7242051C51800D4EF10 /* Account */,
@@ -435,13 +436,13 @@
 			path = ThemeList;
 			sourceTree = "<group>";
 		};
-		436C994620499AE400915A13 /* Network */ = {
+		436C994620499AE400915A13 /* Reachability */ = {
 			isa = PBXGroup;
 			children = (
 				436C9935204991ED00915A13 /* VOYReachability.swift */,
 				436C9937204992A200915A13 /* VOYReachabilityImpl.swift */,
 			);
-			path = Network;
+			path = Reachability;
 			sourceTree = "<group>";
 		};
 		4376E76720517F2500F83FF5 /* Controller */ = {
@@ -823,7 +824,6 @@
 			children = (
 				01EBF71E2051C3E300D4EF10 /* Data */,
 				01EBF713204EB7BA00D4EF10 /* Extensions */,
-				436C994620499AE400915A13 /* Network */,
 				657C3F6C203768BB0077F07B /* Manager */,
 				65AF3803202E404900D64CE4 /* DataBindComponents */,
 				65C7B5DD202B4C19003087EB /* Models */,
