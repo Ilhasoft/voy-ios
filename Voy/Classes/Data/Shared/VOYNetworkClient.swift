@@ -31,12 +31,16 @@ class VOYNetworkClient {
 
     func requestArray<T: Mappable>(urlSuffix: String,
                                    httpMethod: VOYHTTPMethod,
+                                   parameters: [String: Any]? = nil,
+                                   headers: [String: String]? = nil,
                                    completion: @escaping ([T]?, Error?) -> Void) {
         let url = createURL(urlSuffix: urlSuffix)
         let request = Alamofire.request(
             url,
             method: httpMethod.toHttpMethod(),
-            encoding: JSONEncoding.default
+            parameters: parameters,
+            encoding: JSONEncoding.default,
+            headers: headers
         )
         request.responseArray { (dataResponse: DataResponse<[T]>) in
             if let userData = dataResponse.result.value {

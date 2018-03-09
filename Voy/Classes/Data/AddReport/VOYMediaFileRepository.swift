@@ -12,6 +12,12 @@ import Alamofire
 class VOYMediaFileRepository: VOYMediaFileDataSource {
     static let shared = VOYMediaFileRepository()
     static var isUploading = false
+    private let networkClient = VOYNetworkClient()
+    private let reachability: VOYReachability
+    
+    init(reachability: VOYReachability = VOYReachabilityImpl()) {
+        self.reachability = reachability
+    }
     
     func delete(mediaFiles: [VOYMedia]?) {
         guard let mediaFiles = mediaFiles else {return}
@@ -24,20 +30,21 @@ class VOYMediaFileRepository: VOYMediaFileDataSource {
             mediaIdsString = "\(mediaIdsString)\(mediaId),"
         }
         mediaIdsString.removeLast()
-        let url = VOYConstant.API.URL + "report-files/delete/?ids=" + mediaIdsString
         let headers: HTTPHeaders = ["Authorization": "Token " + authToken]
         
-        Alamofire.request(url, method: .post, headers: headers).responseJSON { (dataResponse: DataResponse<Any>) in
-            if let value = dataResponse.result.value {
+        networkClient.requestDictionary(urlSuffix: "report-files/delete/?ids=\(mediaIdsString)",
+                                        httpMethod: .post,
+                                        headers: headers) { value, error in
+            if let value = value {
                 print(value)
-            } else if let error = dataResponse.result.error {
-                print(error.localizedDescription)
+            } else if let error = error {
+                print (error)
             }
         }
     }
     
     func upload(reportID: Int, cameraDataList: [VOYCameraData], completion:@escaping(Error?) -> Void) {
-        for (_, cameraData) in cameraDataList.enumerated() {
+        for cameraData in cameraDataList {
             
             var report_id = reportID
             
@@ -45,7 +52,7 @@ class VOYMediaFileRepository: VOYMediaFileDataSource {
                 report_id = cameraData.report_id
             }
             
-            if NetworkReachabilityManager()!.isReachable {
+            if reachability.hasNetwork() {
                 VOYMediaFileRepository.isUploading = true
                 Alamofire.upload(
                     multipartFormData: { multipartFormData in
