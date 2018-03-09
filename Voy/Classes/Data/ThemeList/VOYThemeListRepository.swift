@@ -12,7 +12,7 @@ import AlamofireObjectMapper
 class VOYThemeListRepository: VOYThemeListDataSource {
     
     let reachability: VOYReachability
-    
+
     init(reachability: VOYReachability) {
         self.reachability = reachability
     }
