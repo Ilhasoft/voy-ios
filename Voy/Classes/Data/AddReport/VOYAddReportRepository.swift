@@ -12,9 +12,11 @@ class VOYAddReportRepository: VOYAddReportDataSource {
     
     let reachability: VOYReachability
     let networkClient = VOYNetworkClient()
+    let mediaFileDataSource: VOYMediaFileDataSource
     
-    init(reachability: VOYReachability) {
+    init(reachability: VOYReachability, mediaFileDataSource: VOYMediaFileDataSource = VOYMediaFileRepository()) {
         self.reachability = reachability
+        self.mediaFileDataSource = mediaFileDataSource
     }
     
     // MARK: - VOYAddReportDataSource
@@ -31,7 +33,7 @@ class VOYAddReportRepository: VOYAddReportDataSource {
     
     private func saveRemote(report: VOYReport, completion: @escaping (Error?, Int?) -> Void) {
         let authToken = VOYUser.activeUser()!.authToken
-        let headers = ["Authorization": "Token " + authToken!, "Content-Type": "application/json"]
+        let headers = ["Authorization": "Token \(authToken!)", "Content-Type": "application/json"]
         var method: VOYNetworkClient.VOYHTTPMethod!
         var reportIDString = ""
         if report.update && report.status != nil {
@@ -50,9 +52,9 @@ class VOYAddReportRepository: VOYAddReportDataSource {
                     return
                 }
                 if let reportID = value["id"] as? Int {
-                    VOYMediaFileRepository.shared.delete(mediaFiles: report.removedMedias)
+                    self.mediaFileDataSource.delete(mediaFiles: report.removedMedias)
                     VOYReportStorageManager.shared.removeFromStorageAfterSave(report: report)
-                    VOYMediaFileRepository.shared.upload(
+                    self.mediaFileDataSource.upload(
                         reportID: reportID,
                         cameraDataList: report.cameraDataList!,
                         completion: { (_) in }
@@ -64,7 +66,7 @@ class VOYAddReportRepository: VOYAddReportDataSource {
                 }
         }
     }
-    
+
     private func saveLocal(report: VOYReport, completion: @escaping (Error?, Int?) -> Void) {
         VOYReportStorageManager.shared.addAsPendent(report: report)
         completion(nil, nil)

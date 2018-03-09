@@ -12,40 +12,44 @@ import Alamofire
 class VOYReportSyncManager: NSObject {
 
     static let shared = VOYReportSyncManager()
+    
+    private let mediaFileDataSource: VOYMediaFileDataSource
+    private let reachability: VOYReachability
+    
+    init(mediaFileDataSource: VOYMediaFileDataSource = VOYMediaFileRepository(),
+         reachability: VOYReachability = VOYReachabilityImpl()) {
+        self.mediaFileDataSource = mediaFileDataSource
+        self.reachability = reachability
+    }
 
     func trySendPendentReports() {
         let pendentReportsJSON = VOYReportStorageManager.shared.getPendentReports()
         guard !pendentReportsJSON.isEmpty else {
             return
         }
-        guard NetworkReachabilityManager()!.isReachable else {
+        guard reachability.hasNetwork() else {
             return
         }
         for reportJSON in pendentReportsJSON {
             let report = VOYReport(JSON: reportJSON)!
-            VOYAddReportRepository(reachability: VOYReachabilityImpl()).save(report: report, completion: { (error, reportID) in })
+            VOYAddReportRepository(reachability: reachability).save(report: report) { (_, _) in }
         }
     }
 
     func trySendPendentCameraData() {
         let pendentCameraDataListDictionary = VOYCameraDataStorageManager.shared.getPendentCameraDataList()
         var cameraDataList = [VOYCameraData]()
-        
         guard !pendentCameraDataListDictionary.isEmpty else {
             return
         }
-        
         for cameraDataDictionary in pendentCameraDataListDictionary {
             let cameraData = VOYCameraData(JSON: cameraDataDictionary)!
             cameraDataList.append(cameraData)
         }
-        
-        guard NetworkReachabilityManager()!.isReachable else {
+        guard reachability.hasNetwork() else {
             return
         }
-        
-        guard !VOYMediaFileRepository.isUploading else { return }
-        
-        VOYMediaFileRepository.shared.upload(reportID: 0, cameraDataList: cameraDataList) { (_) in }
+        guard !mediaFileDataSource.isUploading else { return }
+        mediaFileDataSource.upload(reportID: 0, cameraDataList: cameraDataList) { (_) in }
     }
 }

@@ -9,6 +9,7 @@
 import UIKit
 
 protocol VOYMediaFileDataSource {
+    var isUploading: Bool { get }
     func delete(mediaFiles: [VOYMedia]?)
     func upload(reportID: Int, cameraDataList: [VOYCameraData], completion:@escaping(Error?) -> Void)
 }

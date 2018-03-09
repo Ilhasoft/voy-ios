@@ -8,17 +8,17 @@
 
 import UIKit
 
-class VOYReportStorageManager: NSObject {
+class VOYReportStorageManager {
 
     static let shared = VOYReportStorageManager()
-    
+
     func getPendentReports() -> [[String: Any]] {
         if let reportsDictionary = UserDefaults.standard.getArchivedObject(key: "reports") as? [[String: Any]] {
             return reportsDictionary
         }
         return [[String: Any]]()
     }
-    
+
     func removeFromStorageAfterSave(report: VOYReport) {
         var pendentReports = getPendentReports()
         let index = pendentReports.index {
@@ -32,20 +32,20 @@ class VOYReportStorageManager: NSObject {
             UserDefaults.standard.synchronize()
         }
     }
-    
+
     func addAsPendent(report: VOYReport) {
-        
+
         var pendentReports = getPendentReports()
-        
+
         let index = pendentReports.index {
             if let idAsInt = $0["id"] as? Int { return idAsInt == report.id }
             return false
         }
-        
+
         if let index = index {
             pendentReports.remove(at: index)
         }
-        
+
         let reportID = Int(String.getIdentifier())
         report.id = reportID
         pendentReports.append(report.toJSON())
@@ -54,5 +54,4 @@ class VOYReportStorageManager: NSObject {
         UserDefaults.standard.set(encodedObject, forKey: "reports")
         UserDefaults.standard.synchronize()
     }
-
 }

@@ -10,8 +10,7 @@ import UIKit
 import Alamofire
 
 class VOYMediaFileRepository: VOYMediaFileDataSource {
-    static let shared = VOYMediaFileRepository()
-    static var isUploading = false
+    var isUploading = false
     private let networkClient = VOYNetworkClient()
     private let reachability: VOYReachability
     
@@ -21,16 +20,14 @@ class VOYMediaFileRepository: VOYMediaFileDataSource {
     
     func delete(mediaFiles: [VOYMedia]?) {
         guard let mediaFiles = mediaFiles else {return}
-        
-        let authToken = VOYUser.activeUser()!.authToken!
-        
+        guard let authToken = VOYUser.activeUser()?.authToken else { return }
         let mediaIds = mediaFiles.map {($0.id!)}
         var mediaIdsString = ""
         for mediaId in mediaIds {
             mediaIdsString = "\(mediaIdsString)\(mediaId),"
         }
         mediaIdsString.removeLast()
-        let headers: HTTPHeaders = ["Authorization": "Token " + authToken]
+        let headers: HTTPHeaders = ["Authorization": "Token \(authToken)"]
         
         networkClient.requestDictionary(urlSuffix: "report-files/delete/?ids=\(mediaIdsString)",
                                         httpMethod: .post,
@@ -53,7 +50,7 @@ class VOYMediaFileRepository: VOYMediaFileDataSource {
             }
             
             if reachability.hasNetwork() {
-                VOYMediaFileRepository.isUploading = true
+                isUploading = true
                 Alamofire.upload(
                     multipartFormData: { multipartFormData in
                         multipartFormData.append("\(report_id)".data(using: String.Encoding.utf8)!, withName: "report_id")
@@ -67,7 +64,7 @@ class VOYMediaFileRepository: VOYMediaFileDataSource {
                     method: .post,
                     headers: ["Authorization": "Token " + VOYUser.activeUser()!.authToken],
                     encodingCompletion: { encodingResult in
-                        VOYMediaFileRepository.isUploading = false
+                        self.isUploading = false
                         switch encodingResult {
                         case .success(let upload, _, _):
                             upload.responseJSON { response in
