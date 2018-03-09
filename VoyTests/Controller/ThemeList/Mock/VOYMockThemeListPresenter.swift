@@ -9,7 +9,7 @@
 import UIKit
 @testable import Voy
 
-class VOYMockThemeListPresenter: NSObject {
+class VOYMockThemeListPresenter {
     weak var view: VOYThemeListContract?
     var dataSource: VOYThemeListDataSource
     let userID: Int = 00000000000

@@ -9,25 +9,23 @@
 import UIKit
 import Alamofire
 
-class VOYMediaDownloadManager: NSObject {
+class VOYMediaDownloadManager {
     
     static let shared = VOYMediaDownloadManager()
     static var destinationPath = URL(
         fileURLWithPath: VOYFileUtil.outPutURLDirectory.appendingPathComponent(String.getIdentifier()+".mp4") as String
     )
-    
+
     let destination: DownloadRequest.DownloadFileDestination = { _, _ in
         return (destinationPath, [.removePreviousFile, .createIntermediateDirectories])
     }
-    
-    func download(url: String, completion: @escaping(URL?) -> Void) {
 
+    func download(url: String, completion: @escaping(URL?) -> Void) {
         let urlRequest = URLRequest(
             url: URL(string: url)!,
             cachePolicy: URLRequest.CachePolicy.returnCacheDataElseLoad,
             timeoutInterval: 5
         )
-        
         Alamofire.download(urlRequest, to: destination)
             .downloadProgress(queue: DispatchQueue.global(qos: .utility)) { progress in
                 print("Progress: \(progress.fractionCompleted)")

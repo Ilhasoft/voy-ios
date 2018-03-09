@@ -7,29 +7,28 @@
 //
 
 import UIKit
-import Alamofire
 
 class VOYAccountRepository: VOYAccountDataSource {
+
+    let networkClient = VOYNetworkClient()
+
     func updateUser(avatar: Int?, password: String?, completion: @escaping(Error?) -> Void) {
-        
         let user = VOYUser.activeUser()!
         var jsonUser = [String: Any]()
         let authToken = user.authToken!
-        
         if let avatar = avatar {
             jsonUser["avatar"] = avatar
         }
-        
         if let password = password {
             jsonUser["password"] = password
         }
-        
-        let url = VOYConstant.API.URL + "users/" + "\(user.id!)/"
         let headers = ["Authorization": "Token " + authToken, "Content-Type": "application/json"]
-        
-        Alamofire.request(url, method: .put, parameters: jsonUser, encoding: JSONEncoding.default, headers: headers)
-            .responseJSON { (dataResponse: DataResponse<Any>) in
-            if dataResponse.result.value != nil {
+
+        networkClient.requestDictionary(urlSuffix: "users/\(user.id!)/",
+                                        httpMethod: .put,
+                                        parameters: jsonUser,
+                                        headers: headers) { result, error in
+            if result != nil {
                 let loginRepository = VOYLoginRepository()
                 loginRepository.getUserData(authToken: user.authToken, completion: { (user, error) in
                     if let error = error {
@@ -41,7 +40,7 @@ class VOYAccountRepository: VOYAccountDataSource {
                     }
                 })
                 completion(nil)
-            } else if let error = dataResponse.result.error {
+            } else if let error = error {
                 print(error.localizedDescription)
                 completion(error)
             }
