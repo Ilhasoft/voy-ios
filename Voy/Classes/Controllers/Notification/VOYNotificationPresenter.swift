@@ -8,6 +8,13 @@
 
 import UIKit
 
-class VOYNotificationPresenter: NSObject {
-
+class VOYNotificationPresenter {
+    var view: VOYNotificationContract!
+    var dataSource: VOYNotificationDataSource!
+    
+    init(dataSource: VOYNotificationDataSource, view: VOYNotificationContract) {
+        self.view = view
+        self.dataSource = dataSource
+    }
+    
 }

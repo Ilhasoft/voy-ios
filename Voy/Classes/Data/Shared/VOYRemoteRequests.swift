@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import Alamorife
+import Alamofire
 import ObjectMapper
 
 func getRequest<T: Mappable>(urlSuffix: String, completion: @escaping (T?, Error?) -> Void) {

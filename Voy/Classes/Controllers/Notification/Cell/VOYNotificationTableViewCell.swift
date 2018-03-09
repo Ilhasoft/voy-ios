@@ -9,15 +9,19 @@
 import UIKit
 
 class VOYNotificationTableViewCell: UITableViewCell {
-
+    @IBOutlet weak var lbNotificationBody: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
+    }
+    
+    func setupCell(with text: String) {
+        self.lbNotificationBody.text = text
     }
 }

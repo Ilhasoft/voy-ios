@@ -20,7 +20,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" editable="NO" text="Lorem ipsum dolor sit er elit lamet" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="qeC-hx-G4z">
-                        <rect key="frame" x="33" y="9" width="240" height="44.5"/>
+                        <rect key="frame" x="22" y="9" width="287" height="44.5"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -35,11 +35,11 @@
                 </subviews>
                 <constraints>
                     <constraint firstItem="FKX-jk-Mrb" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="Gz4-aw-XZY"/>
-                    <constraint firstAttribute="trailing" secondItem="qeC-hx-G4z" secondAttribute="trailing" constant="47" id="Kfr-Gr-aqb"/>
+                    <constraint firstAttribute="trailing" secondItem="qeC-hx-G4z" secondAttribute="trailing" constant="11" id="Kfr-Gr-aqb"/>
                     <constraint firstAttribute="bottom" secondItem="FKX-jk-Mrb" secondAttribute="bottom" id="Yfr-vP-1BH"/>
                     <constraint firstAttribute="trailing" secondItem="FKX-jk-Mrb" secondAttribute="trailing" id="Ynd-Dh-IUK"/>
                     <constraint firstItem="FKX-jk-Mrb" firstAttribute="top" secondItem="qeC-hx-G4z" secondAttribute="bottom" constant="7" id="l5k-0l-OyP"/>
-                    <constraint firstItem="qeC-hx-G4z" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="33" id="qtl-On-zWa"/>
+                    <constraint firstItem="qeC-hx-G4z" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="22" id="qtl-On-zWa"/>
                     <constraint firstItem="qeC-hx-G4z" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="9" id="zCH-kW-lVY"/>
                 </constraints>
             </tableViewCellContentView>
