@@ -21,13 +21,12 @@ class VOYTheme: Mappable {
     var reports_count: Int!
     var created_on: String!
     var allow_links: Bool!
-    
+
     init() {
-        
     }
-    
+
     required init?(map: Map) { }
-    
+
     func mapping(map: Map) {
         id <- map["id"]
         project <- map["project"]
