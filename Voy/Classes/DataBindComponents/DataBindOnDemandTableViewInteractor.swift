@@ -16,12 +16,14 @@ public class DataBindOnDemandTableViewInteractor: ISOnDemandTableViewInteractor 
     private var keyPath: String?
     private var apiURL: String?
     private var params: [String: Any]?
+    private var reachability: VOYReachability
     
-    public init(configuration: DataBindRestConfiguration, params: [String: Any]? = nil, paginationCount: Int) {
+    init(configuration: DataBindRestConfiguration, params: [String: Any]? = nil, paginationCount: Int, reachability: VOYReachability) {
         self.endPoint = configuration.endPoint
         self.keyPath = configuration.keyPath
         self.apiURL = configuration.apiURL
         self.params = params
+        self.reachability = reachability
         super.init(paginationCount: UInt(paginationCount))
     }
     
@@ -30,7 +32,8 @@ public class DataBindOnDemandTableViewInteractor: ISOnDemandTableViewInteractor 
         
         var parameters = [String: Any]()
         var headers = [String: String]()
-        if !NetworkReachabilityManager()!.isReachable {
+
+        if !reachability.hasNetwork() {
             headers["Cache-Control"] = "public, only-if-cached, max-stale=86400"
         } else {
             headers["Cache-Control"] = "public, max-age=86400, max-stale=120"
@@ -59,7 +62,7 @@ public class DataBindOnDemandTableViewInteractor: ISOnDemandTableViewInteractor 
         
         let cachedResponse = URLCache.shared.cachedResponse(for: request.request!)
         
-        if NetworkReachabilityManager()!.isReachable {
+        if reachability.hasNetwork() {
             request.responseJSON { (dataResponse: DataResponse<Any>) in
                 if dataResponse.result.error == nil {
                     let cachedURLResponse = CachedURLResponse(
