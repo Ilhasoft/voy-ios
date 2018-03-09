@@ -9,7 +9,7 @@
 import UIKit
 import AVFoundation
 
-open class ISVideoUtil: NSObject {
+open class ISVideoUtil {
     
     public static let outPutURLDirectory = NSSearchPathForDirectoriesInDomains(
         .documentDirectory,

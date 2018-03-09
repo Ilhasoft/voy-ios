@@ -8,11 +8,9 @@
 
 import UIKit
 
-class VOYConstant: NSObject {
-    
+struct VOYConstant {
     struct API {
         static let URL = "http://voy-dev.ilhasoft.mobi/api/"
         static let paginationSize = 50
     }
-    
 }

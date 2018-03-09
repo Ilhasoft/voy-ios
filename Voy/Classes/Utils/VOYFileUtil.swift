@@ -8,7 +8,7 @@
 
 import UIKit
 
-class VOYFileUtil: NSObject {
+class VOYFileUtil {
     public static let outPutURLDirectory = NSSearchPathForDirectoriesInDomains(
         .documentDirectory,
         .userDomainMask,

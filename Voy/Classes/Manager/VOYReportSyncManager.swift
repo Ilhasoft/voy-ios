@@ -7,15 +7,14 @@
 //
 
 import UIKit
-import Alamofire
 
-class VOYReportSyncManager: NSObject {
+class VOYReportSyncManager {
 
     static let shared = VOYReportSyncManager()
-    
+
     private let mediaFileDataSource: VOYMediaFileDataSource
     private let reachability: VOYReachability
-    
+
     init(mediaFileDataSource: VOYMediaFileDataSource = VOYMediaFileRepository(),
          reachability: VOYReachability = VOYReachabilityImpl()) {
         self.mediaFileDataSource = mediaFileDataSource
