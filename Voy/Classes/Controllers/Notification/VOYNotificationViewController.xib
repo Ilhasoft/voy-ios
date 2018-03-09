@@ -35,12 +35,20 @@
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="zTL-eH-eI1">
+                    <rect key="frame" x="0.0" y="101" width="375" height="566"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </tableView>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="zTL-eH-eI1" secondAttribute="bottom" id="1jm-Yj-dKk"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="fb1-U8-7KH" secondAttribute="trailing" constant="18" id="CZX-Rr-9yT"/>
                 <constraint firstItem="fb1-U8-7KH" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="26" id="GKV-4o-dIb"/>
+                <constraint firstItem="zTL-eH-eI1" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="Xbf-zH-7oA"/>
                 <constraint firstItem="fb1-U8-7KH" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="18" id="l17-Nn-FB1"/>
+                <constraint firstItem="zTL-eH-eI1" firstAttribute="top" secondItem="fb1-U8-7KH" secondAttribute="bottom" constant="35" id="qsW-Hd-v0d"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="zTL-eH-eI1" secondAttribute="trailing" id="teR-XW-LPu"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <point key="canvasLocation" x="33.5" y="78.5"/>

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class VOYNotificationViewController: UIViewController {
+class VOYNotificationViewController: UIViewController, VOYNotificationContract {
     
     @IBOutlet var lbTitle: UILabel!
 

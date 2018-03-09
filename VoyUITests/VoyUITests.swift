@@ -30,9 +30,24 @@ class VoyUITests: XCTestCase {
         super.tearDown()
     }
     
-    func testExample() {
-        // Use recording to get started writing UI tests.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    func testValidLogin() {
+        
+        let app = XCUIApplication()
+        let elementsQuery = app.scrollViews.otherElements
+        let usernameTextField = elementsQuery.textFields["Username"]
+        usernameTextField.tap()
+        usernameTextField.tap()
+        usernameTextField.typeText("pirralho")
+        
+        let passwordSecureTextField = elementsQuery.secureTextFields["Password"]
+        passwordSecureTextField.tap()
+        
+        let moreKey = app/*@START_MENU_TOKEN@*/.keys["more"]/*[[".keyboards",".keys[\"more, numbers\"]",".keys[\"more\"]"],[[[-1,2],[-1,1],[-1,0,1]],[[-1,2],[-1,1]]],[0]]@END_MENU_TOKEN@*/
+        moreKey.tap()
+        moreKey.tap()
+        passwordSecureTextField.typeText("123456")
+        elementsQuery.buttons["Login"].tap()
+       
     }
     
 }
