@@ -31,7 +31,7 @@ class VOYMediaFileRepository: VOYMediaFileDataSource {
         
         networkClient.requestDictionary(urlSuffix: "report-files/delete/?ids=\(mediaIdsString)",
                                         httpMethod: .post,
-                                        headers: headers) { value, error in
+                                        headers: headers) { value, error, _ in
             if let value = value {
                 print(value)
             } else if let error = error {

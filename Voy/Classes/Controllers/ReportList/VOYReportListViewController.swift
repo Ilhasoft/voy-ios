@@ -82,7 +82,8 @@ class VOYReportListViewController: UIViewController, NVActivityIndicatorViewable
             tableView.interactor = DataBindOnDemandTableViewInteractor(
                 configuration: tableViewApproved.getConfiguration(),
                 params: ["theme": self.theme.id, "status": status, "mapper": VOYUser.activeUser()!.id],
-                paginationCount: VOYConstant.API.paginationSize
+                paginationCount: VOYConstant.API.paginationSize,
+                reachability: VOYReachabilityImpl()
             )
             tableView.loadContent()
         }
@@ -144,6 +145,10 @@ class VOYReportListViewController: UIViewController, NVActivityIndicatorViewable
         segmentedControl.setTitle(localizedString(.pending), forSegmentAt: 1)
         segmentedControl.setTitle(localizedString(.notApproved), forSegmentAt: 2)
     }
+}
+
+extension VOYReportListViewController: VOYReportListContract {
+    
 }
 
 extension VOYReportListViewController: ISOnDemandTableViewDelegate {

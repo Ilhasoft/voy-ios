@@ -19,7 +19,7 @@ class VOYCommentRepository: VOYCommentDataSource {
         networkClient.requestDictionary(urlSuffix: "report-comments/",
                                    httpMethod: .post,
                                    parameters: comment.toJSON(),
-                                   headers: headers) { value, error in
+                                   headers: headers) { value, error, _ in
             completion(error)
         }
     }

@@ -16,7 +16,7 @@ class VOYLoginRepository: VOYLoginDataSource {
         let params = ["username": username, "password": password]
         networkClient.requestDictionary(urlSuffix: "get_auth_token/",
                                         httpMethod: .post,
-                                        parameters: params) { (authTokenData: [String: Any]?, error) in
+                                        parameters: params) { (authTokenData: [String: Any]?, error, _) in
             if let authTokenData = authTokenData {
                 if let authToken = authTokenData["token"] as? String {
                     self.getUserData(authToken: authToken, completion: { (user, error) in
@@ -36,8 +36,8 @@ class VOYLoginRepository: VOYLoginDataSource {
     }
 
     func getUserData(authToken: String, completion: @escaping (VOYUser?, Error?) -> Void) {
-        networkClient.requestArray(urlSuffix: "users/?auth_token=\(authToken)",
-                                   httpMethod: .get) { (userList: [VOYUser]?, error) in
+        networkClient.requestObjectArray(urlSuffix: "users/?auth_token=\(authToken)",
+                                   httpMethod: .get) { (userList: [VOYUser]?, error, _) in
             if let userList = userList, userList.count > 0 {
                 completion(userList.first!, nil)
             } else {

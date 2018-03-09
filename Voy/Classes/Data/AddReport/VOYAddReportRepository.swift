@@ -46,7 +46,7 @@ class VOYAddReportRepository: VOYAddReportDataSource {
         networkClient.requestDictionary(urlSuffix: "reports/\(reportIDString)",
             httpMethod: method,
             parameters: report.toJSON(),
-            headers: headers) { (value, error) in
+            headers: headers) { (value, error, _) in
                 guard let value = value else {
                     completion(error, nil)
                     return

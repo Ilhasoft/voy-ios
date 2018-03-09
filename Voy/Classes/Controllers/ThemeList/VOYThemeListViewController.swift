@@ -103,7 +103,8 @@ class VOYThemeListViewController: UIViewController, NVActivityIndicatorViewable 
         tbView.interactor = DataBindOnDemandTableViewInteractor(
             configuration: tbView.getConfiguration(),
             params: ["project": project.id, "user": VOYUser.activeUser()!.id],
-            paginationCount: VOYConstant.API.paginationSize
+            paginationCount: VOYConstant.API.paginationSize,
+            reachability: VOYReachabilityImpl()
         )
         tbView.loadContent()
     }
