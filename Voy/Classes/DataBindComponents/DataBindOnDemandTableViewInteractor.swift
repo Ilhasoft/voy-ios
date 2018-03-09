@@ -17,6 +17,7 @@ public class DataBindOnDemandTableViewInteractor: ISOnDemandTableViewInteractor 
     private var apiURL: String?
     private var params: [String: Any]?
     private var reachability: VOYReachability
+    private let networkClient = VOYNetworkClient()
     
     init(configuration: DataBindRestConfiguration, params: [String: Any]? = nil, paginationCount: Int, reachability: VOYReachability) {
         self.endPoint = configuration.endPoint
@@ -38,7 +39,7 @@ public class DataBindOnDemandTableViewInteractor: ISOnDemandTableViewInteractor 
         } else {
             headers["Cache-Control"] = "public, max-age=86400, max-stale=120"
         }
-        
+
         var url = VOYConstant.API.URL
         
         if apiURL != nil {
@@ -62,74 +63,82 @@ public class DataBindOnDemandTableViewInteractor: ISOnDemandTableViewInteractor 
         
         let cachedResponse = URLCache.shared.cachedResponse(for: request.request!)
         
+        
         if reachability.hasNetwork() {
-            request.responseJSON { (dataResponse: DataResponse<Any>) in
-                if dataResponse.result.error == nil {
-                    let cachedURLResponse = CachedURLResponse(
-                        response: dataResponse.response!,
-                        data: dataResponse.data!,
-                        userInfo: nil,
-                        storagePolicy: .allowed
-                    )
-                    URLCache.shared.storeCachedResponse(cachedURLResponse, for: dataResponse.request!)
-                }
-
-                if let keyPath = self.keyPath {
-                    if let resultValue = dataResponse.result.value as? [String: Any],
-                        let results = resultValue[keyPath] as? [[String: Any]] {
-                        self.prepareForHandlerData(results, completion: { (objects, error) in
-                            handler(objects, error)
-                        })
-                    }
-                } else if let results = dataResponse.result.value as? [[String: Any]] {
-                    self.prepareForHandlerData(results, completion: { (objects, error) in
-                        handler(objects, error)
-                    })
-                } else if let error = dataResponse.result.error {
-                    handler([], error)
-                } else {
-                    handler([], nil)
-                }
+            networkClient.requestAnyObject(urlSuffix: endPoint, httpMethod: .get, parameters: parameters, headers: headers, shouldCacheResponse: true) { value, error, request in
+                print(value ?? "Nothing returned")
             }
-        } else if let cachedResponse = cachedResponse {
-            do {
-                var objects = [[String: Any]]()
-                let jsonObject = try JSONSerialization.jsonObject(with: cachedResponse.data, options: [])
-                
-                if let keyPath = self.keyPath,
-                    let jsonObject = jsonObject as? [String: Any],
-                    let subobject = jsonObject[keyPath] as? [[String: Any]] {
-                    objects = subobject
-                } else if let jsonObject = jsonObject as? [[String: Any]] {
-                    objects = jsonObject
-                }
-                prepareForHandlerData(objects, completion: { (objects, error) in
-                    if self.endPoint == "reports" && self.params!["status"] as? Int == 2 {
-                        let pendentReportsJSONList = VOYReportStorageManager.shared.getPendentReports()
-                        guard !pendentReportsJSONList.isEmpty else {
-                            handler(objects, error)
-                            return
-                        }
-                        if var objectsAsMap = objects as? [Map] {
-                            for reportJSON in pendentReportsJSONList {
-                                objectsAsMap.append(Map(mappingType: .fromJSON, JSON: reportJSON))
-                            }
-                            handler(objectsAsMap, error)
-                        } else {
-                            handler(objects, error)
-                        }
-                    } else {
-                        handler(objects, error)
-                    }
-                })
-            } catch {
-                print(error.localizedDescription)
-                handler([], error)
-            }
-        } else {
-            print("User haven't internet connection and don't have cached data")
-            handler([], nil)
         }
+        
+        
+//        if reachability.hasNetwork() {
+//            request.responseJSON { (dataResponse: DataResponse<Any>) in
+//                if dataResponse.result.error == nil {
+//                    let cachedURLResponse = CachedURLResponse(
+//                        response: dataResponse.response!,
+//                        data: dataResponse.data!,
+//                        userInfo: nil,
+//                        storagePolicy: .allowed
+//                    )
+//                    URLCache.shared.storeCachedResponse(cachedURLResponse, for: dataResponse.request!)
+//                }
+//
+//                if let keyPath = self.keyPath {
+//                    if let resultValue = dataResponse.result.value as? [String: Any],
+//                        let results = resultValue[keyPath] as? [[String: Any]] {
+//                        self.prepareForHandlerData(results, completion: { (objects, error) in
+//                            handler(objects, error)
+//                        })
+//                    }
+//                } else if let results = dataResponse.result.value as? [[String: Any]] {
+//                    self.prepareForHandlerData(results, completion: { (objects, error) in
+//                        handler(objects, error)
+//                    })
+//                } else if let error = dataResponse.result.error {
+//                    handler([], error)
+//                } else {
+//                    handler([], nil)
+//                }
+//            }
+//        } else if let cachedResponse = cachedResponse {
+//            do {
+//                var objects = [[String: Any]]()
+//                let jsonObject = try JSONSerialization.jsonObject(with: cachedResponse.data, options: [])
+//
+//                if let keyPath = self.keyPath,
+//                    let jsonObject = jsonObject as? [String: Any],
+//                    let subobject = jsonObject[keyPath] as? [[String: Any]] {
+//                    objects = subobject
+//                } else if let jsonObject = jsonObject as? [[String: Any]] {
+//                    objects = jsonObject
+//                }
+//                prepareForHandlerData(objects, completion: { (objects, error) in
+//                    if self.endPoint == "reports" && self.params!["status"] as? Int == 2 {
+//                        let pendentReportsJSONList = VOYReportStorageManager.shared.getPendentReports()
+//                        guard !pendentReportsJSONList.isEmpty else {
+//                            handler(objects, error)
+//                            return
+//                        }
+//                        if var objectsAsMap = objects as? [Map] {
+//                            for reportJSON in pendentReportsJSONList {
+//                                objectsAsMap.append(Map(mappingType: .fromJSON, JSON: reportJSON))
+//                            }
+//                            handler(objectsAsMap, error)
+//                        } else {
+//                            handler(objects, error)
+//                        }
+//                    } else {
+//                        handler(objects, error)
+//                    }
+//                })
+//            } catch {
+//                print(error.localizedDescription)
+//                handler([], error)
+//            }
+//        } else {
+//            print("User haven't internet connection and don't have cached data")
+//            handler([], nil)
+//        }
     }
     
     private func prepareForHandlerData(_ arrayDictionary: [[String: Any]], completion: (([Any]?, Error?) -> Void)!) {
