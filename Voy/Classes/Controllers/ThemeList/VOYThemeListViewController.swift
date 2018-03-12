@@ -151,6 +151,10 @@ extension VOYThemeListViewController: VOYThemeListContract {
             self.selectedReportView.lbTitle.text = selectedReport.name
         }
     }
+    
+    func navigateToReportList() {
+        self.navigationController?.pushViewController(VOYReportListViewController(), animated: true)
+    }
 }
 
 extension VOYThemeListViewController: ISOnDemandTableViewDelegate {
@@ -170,8 +174,7 @@ extension VOYThemeListViewController: ISOnDemandTableViewDelegate {
     }
     func onDemandTableView(_ tableView: ISOnDemandTableView, didSelectRowAt indexPath: IndexPath) {
         if let cell = tableView.cellForRow(at: indexPath) as? VOYThemeTableViewCell {
-            VOYTheme.setActiveTheme(theme: VOYTheme(JSON: cell.object.JSON)!)
-            self.navigationController?.pushViewController(VOYReportListViewController(), animated: true)
+            presenter?.onThemeSelected(object: cell.object.JSON)
         }
     }
 }
