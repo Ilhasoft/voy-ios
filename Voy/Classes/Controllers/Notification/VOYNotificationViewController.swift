@@ -8,6 +8,7 @@
 
 import UIKit
 import ISOnDemandTableView
+import SlideMenuControllerSwift
 
 class VOYNotificationViewController: UIViewController, VOYNotificationContract {
     
@@ -35,13 +36,19 @@ class VOYNotificationViewController: UIViewController, VOYNotificationContract {
         tableView.dataSource = self
         tableView.delegate = self
         tableView.register(UINib(nibName: VOYNotificationTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: VOYNotificationTableViewCell.identifier)
-        presenter = VOYNotificationPresenter(dataSource: VOYNotificationRepository(reachability: VOYReachabilityImpl()) , view: self)
+        presenter = VOYNotificationPresenter(dataSource: VOYNotificationRepository(reachability: VOYReachabilityImpl()), view: self)
         guard let presenter = self.presenter else { return }
         presenter.viewDidLoad()
     }
     
     func updateTableView() {
         tableView.reloadData()
+    }
+    
+    func userTappedNotification(from report: VOYReport) {
+        guard let mainParentNavigation = (self.parent as? SlideMenuController)?.mainViewController?.parent else { return }
+        mainParentNavigation.closeRight()
+        AppDelegate.mainNavigationController?.pushViewController(VOYReportDetailViewController(report: report), animated: true)
     }
 }
 
@@ -62,5 +69,8 @@ extension VOYNotificationViewController: UITableViewDataSource {
 }
 
 extension VOYNotificationViewController: UITableViewDelegate {
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let presenter = self.presenter else { return }
+        presenter.userTappedNotificationFrom(index: indexPath.row)
+    }
 }

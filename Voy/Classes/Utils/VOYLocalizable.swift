@@ -28,6 +28,8 @@ class VOYLocalizable {
         case comment
         case comments
         case commentSentToModeration = "comment_sent_to_moderation"
+        case commentWasApproved = "comment_was_approved"
+        case commentWasNotApproved = "comment_was_not_approved"
         case dateFormat = "date_format"
         case description
         case done
@@ -56,19 +58,18 @@ class VOYLocalizable {
         case pending
         case photo
         case remove
+        case report = "report"
+        case reportWasApproved = "report_was_approved"
+        case reportWasNotApproved = "report_was_not_approved"
         case save
         case send
         case sendComment = "send_comment"
         case thanks
         case thanksForReporting = "thanks_for_reporting"
+        case themesListHeader = "themes_list_header"
         case title
         case titleAndDescription = "title_and_description"
         case username
-        case themesListHeader = "themes_list_header"
-        case reportWasApproved = "report_was_approved"
-        case commentWasApproved = "comment_was_approved"
-        case reportWasNotApproved = "report_was_not_approved"
-        case commentWasNotApproved = "comment_was_not_approved"
     }
 }
 

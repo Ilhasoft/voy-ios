@@ -36,7 +36,7 @@
 // Notifications Screen
 "notifications" = "Notifications";
 "report_was_approved" = "Your report was approved";
-"comment_was_approved" = "Your comment was approved";
+"comment_was_approved" = "You have a new comment on your report";
 "report_was_not_approved" = "Your report was not approved";
 "comment_was_not_approved" = "Your comment was not approved";
 
@@ -54,6 +54,7 @@
 "edit_report" = "Edit Report";
 "close" = "Close";
 "comment" = "Comment";
+"report" = "Report";
 
 // Comments Screen
 "comments" = "Comments";

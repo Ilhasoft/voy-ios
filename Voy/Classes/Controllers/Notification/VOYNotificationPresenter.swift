@@ -41,4 +41,9 @@ class VOYNotificationPresenter {
         }
     }
     
+    func userTappedNotificationFrom(index: Int) {
+        guard let notification = notifications?[index] else { return }
+        dataSource.updateNotification(notification: notification)
+        view.userTappedNotification(from: notification.report)
+    }
 }
