@@ -25,6 +25,8 @@ class VOYReportListViewController: UIViewController, NVActivityIndicatorViewable
     var allDataFinishedLoad = false
     var dataLoadTime = 0
     
+    var presenter: VOYReportListPresenter!
+    
     init() {
         super.init(nibName: String(describing: type(of: self)), bundle: nil)
         VOYReportListViewController.sharedInstance = self
@@ -49,6 +51,8 @@ class VOYReportListViewController: UIViewController, NVActivityIndicatorViewable
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: " ", style: .plain, target: nil, action: nil)
         setupTableView()
         setupLocalization()
+        
+        presenter = VOYReportListPresenter(view: self)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -148,7 +152,9 @@ class VOYReportListViewController: UIViewController, NVActivityIndicatorViewable
 }
 
 extension VOYReportListViewController: VOYReportListContract {
-    
+    func navigateToReportDetails(report: VOYReport) {
+        self.navigationController?.pushViewController(VOYReportDetailViewController(report: report), animated: true)
+    }
 }
 
 extension VOYReportListViewController: ISOnDemandTableViewDelegate {

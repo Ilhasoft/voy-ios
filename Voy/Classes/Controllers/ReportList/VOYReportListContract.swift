@@ -8,6 +8,6 @@
 
 import UIKit
 
-protocol VOYReportListContract {
-
+protocol VOYReportListContract: class {
+    func navigateToReportDetails(report: VOYReport)
 }
