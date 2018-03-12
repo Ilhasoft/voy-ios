@@ -135,15 +135,14 @@ class VOYNetworkClient {
         }
         return request.request!
     }
-    
-    @discardableResult
+
     func requestKeyPathDictionary(urlSuffix: String,
                                   httpMethod: VOYHTTPMethod,
                                   parameters: [String: Any]? = nil,
                                   headers: [String: String]? = nil,
                                   shouldCacheResponse: Bool = false,
                                   keyPath: String? = nil,
-                                  completion: @escaping ([Any]?, Error?) -> Void) -> URLRequest {
+                                  completion: @escaping ([Any]?, Error?) -> Void) {
         let url = createURL(urlSuffix: urlSuffix)
         let request = Alamofire.request(
             url,
@@ -160,11 +159,11 @@ class VOYNetworkClient {
                 if let keyPath = keyPath,
                     let resultValue = dataResponse.value as? [String: Any],
                     let results = resultValue[keyPath] as? [[String: Any]] {
-                    self.prepareForHandleData(results) { objects, error in
+                    self.prepareForHandleData(results) { objects in
                         completion(objects, nil)
                     }
                 } else if let results = dataResponse.value as? [[String: Any]] {
-                    self.prepareForHandleData(results) { objects, error in
+                    self.prepareForHandleData(results) { objects in
                         completion(objects, nil)
                     }
                 } else if let error = dataResponse.result.error {
@@ -183,23 +182,23 @@ class VOYNetworkClient {
                 } else if let jsonObject = jsonObject as? [[String: Any]] {
                     objects = jsonObject
                 }
-                prepareForHandleData(objects, completion: { (objects, error) in
+                prepareForHandleData(objects, completion: { (objects) in
                     if urlSuffix == "reports" && parameters?["status"] as? Int == 2 {
                         let pendentReportsJSONList = VOYReportStorageManager.shared.getPendentReports()
                         guard !pendentReportsJSONList.isEmpty else {
-                            completion(objects, error)
+                            completion(objects, nil)
                             return
                         }
                         if var objectsAsMap = objects as? [Map] {
                             for reportJSON in pendentReportsJSONList {
                                 objectsAsMap.append(Map(mappingType: .fromJSON, JSON: reportJSON))
                             }
-                            completion(objectsAsMap, error)
+                            completion(objectsAsMap, nil)
                         } else {
-                            completion(objects, error)
+                            completion(objects, nil)
                         }
                     } else {
-                        completion(objects, error)
+                        completion(objects, nil)
                     }
                 })
             } catch {
@@ -207,7 +206,6 @@ class VOYNetworkClient {
                 completion([], error)
             }
         }
-        return request.request!
     }
 
     @discardableResult
@@ -256,14 +254,14 @@ class VOYNetworkClient {
         }
     }
     
-    private func prepareForHandleData(_ arrayDictionary: [[String: Any]], completion: (([Any]?, Error?) -> Void)!) {
+    private func prepareForHandleData(_ arrayDictionary: [[String: Any]], completion: (([Any]) -> Void)!) {
         var objects = [Map]()
         
         for result in arrayDictionary {
             let object = Map(mappingType: .fromJSON, JSON: result)
             objects.append(object)
         }
-        completion(objects, nil)
+        completion(objects)
     }
 }
 
@@ -272,11 +270,9 @@ extension Array where Element: DataRequest {
      * Removes a request from array by comparing their URLRequest variables (since URLRequest implements Equatable).
      */
     mutating func removeRequest(request: DataRequest) {
-        for (index, value) in self.enumerated() {
-            if value.request! == request.request! {
-                remove(at: index)
-                return
-            }
+        for (index, value) in self.enumerated() where value.request! == request.request! {
+            remove(at: index)
+            return
         }
     }
 }
