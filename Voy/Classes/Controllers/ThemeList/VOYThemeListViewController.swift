@@ -13,7 +13,7 @@ import ObjectMapper
 import NVActivityIndicatorView
 import Kingfisher
 
-class VOYThemeListViewController: UIViewController, NVActivityIndicatorViewable, VOYThemeListContract {
+class VOYThemeListViewController: UIViewController, NVActivityIndicatorViewable {
     @IBOutlet weak var lbThemesCount: UILabel!
     @IBOutlet weak var tbView: DataBindOnDemandTableView!
     var presenter: VOYThemeListPresenter?
@@ -41,10 +41,11 @@ class VOYThemeListViewController: UIViewController, NVActivityIndicatorViewable,
         edgesForExtendedLayout = []
         setupButtonItems()
         presenter = VOYThemeListPresenter(
+            view: self,
             dataSource: VOYThemeListRepository(reachability: VOYReachabilityImpl()),
-            view: self
+            userJustLogged: userJustLogged
         )
-        getProjects()
+        presenter?.onViewDidLoad()
         checkPendentReportsToSend()
         NotificationCenter.default.addObserver(
             self,
@@ -87,54 +88,6 @@ class VOYThemeListViewController: UIViewController, NVActivityIndicatorViewable,
         self.navigationItem.rightBarButtonItem = rightBarButtonItem
     }
     
-    func getProjects() {
-        guard let presenter = presenter else { return }
-        self.startAnimating()
-        presenter.getProjects { (success) in
-            self.stopAnimating()
-            if success {
-                if self.userJustLogged {
-                    presenter.cacheData()
-                    self.userJustLogged = false
-                }
-            } else {
-                // TODO: Show some error
-            }
-        }
-    }
-    
-    func projectListWasUpdated() {
-        guard let projects = presenter?.projects else { return }
-        if !projects.isEmpty {
-            let selectedReport = projects.first!
-            setupDropDown()
-            setupTableView(filterThemesByProject: selectedReport)
-            self.selectedReportView.lbTitle.text = selectedReport.name
-        } else {
-            print("User without projects associated")
-        }
-    }
-    
-    func setupDropDown() {
-        guard let projects = presenter?.projects else { return }
-        selectedReportView = VOYSelectedReportView(frame: CGRect(x: 0, y: 0, width: 180, height: 40))
-        selectedReportView.widthAnchor.constraint(equalToConstant: 180)
-        selectedReportView.heightAnchor.constraint(equalToConstant: 40)
-        selectedReportView.delegate = self
-        self.navigationItem.titleView = selectedReportView            
-        
-        dropDown.anchorView = selectedReportView
-        dropDown.bottomOffset = CGPoint(x: 0, y: selectedReportView.bounds.size.height)
-        dropDown.dataSource = projects.map {($0.name)}
-        dropDown.customCellConfiguration = { (index: Index, item: String, cell: DropDownCell) -> Void in
-            cell.optionLabel.textAlignment = .center
-        }
-        dropDown.selectionAction = { [unowned self] (index: Int, item: String) in
-            self.loadThemesFilteredByProject(project: projects[index])
-            self.selectedReportView.lbTitle.text = item
-        }
-    }
-    
     @objc func openAccount() {
         guard let navigation = self.navigationController else { return }
         navigation.pushViewController(VOYAccountViewController(), animated: true)
@@ -158,18 +111,50 @@ class VOYThemeListViewController: UIViewController, NVActivityIndicatorViewable,
     func setupTableView(filterThemesByProject project: VOYProject) {
         tbView.separatorColor = UIColor.clear
         tbView.register(
-            UINib(nibName: "VOYThemeTableViewCell", bundle: nil),
-            forCellReuseIdentifier: "VOYThemeTableViewCell"
+            UINib(nibName: VOYThemeTableViewCell.nibName, bundle: nil),
+            forCellReuseIdentifier: VOYThemeTableViewCell.nibName
         )
         tbView.onDemandTableViewDelegate = self
         loadThemesFilteredByProject(project: project)
     }
+    
+    // MARK: - Private methods
+    
+    fileprivate func setupDropDown(projects: [VOYProject]) {
+        selectedReportView = VOYSelectedReportView(frame: CGRect(x: 0, y: 0, width: 180, height: 40))
+        selectedReportView.widthAnchor.constraint(equalToConstant: 180)
+        selectedReportView.heightAnchor.constraint(equalToConstant: 40)
+        selectedReportView.delegate = self
+        self.navigationItem.titleView = selectedReportView
+        
+        dropDown.anchorView = selectedReportView
+        dropDown.bottomOffset = CGPoint(x: 0, y: selectedReportView.bounds.size.height)
+        dropDown.dataSource = projects.map {($0.name)}
+        dropDown.customCellConfiguration = { (index: Index, item: String, cell: DropDownCell) -> Void in
+            cell.optionLabel.textAlignment = .center
+        }
+        dropDown.selectionAction = { [unowned self] (index: Int, item: String) in
+            self.loadThemesFilteredByProject(project: projects[index])
+            self.selectedReportView.lbTitle.text = item
+        }
+    }
+}
 
+extension VOYThemeListViewController: VOYThemeListContract {
+
+    func updateProjectsList(projects: [VOYProject]) {
+        if !projects.isEmpty {
+            let selectedReport = projects.first!
+            setupDropDown(projects: projects)
+            setupTableView(filterThemesByProject: selectedReport)
+            self.selectedReportView.lbTitle.text = selectedReport.name
+        }
+    }
 }
 
 extension VOYThemeListViewController: ISOnDemandTableViewDelegate {
     func onDemandTableView(_ tableView: ISOnDemandTableView, reuseIdentifierForCellAt indexPath: IndexPath) -> String {
-        return "VOYThemeTableViewCell"
+        return VOYThemeTableViewCell.nibName
     }
     func onDemandTableView(_ tableView: ISOnDemandTableView, setupCell cell: UITableViewCell, at indexPath: IndexPath) {
     }

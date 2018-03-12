@@ -12,6 +12,8 @@ import UIKit
 class VOYMockMediaFileRepository: VOYMediaFileDataSource {
     var removedFile: Bool = false
     var uploadedFile: Bool = false
+    var isUploading: Bool = false
+    
     static let shared = VOYMockMediaFileRepository()
     
     func delete(mediaFiles: [VOYMedia]?) {
@@ -22,6 +24,4 @@ class VOYMockMediaFileRepository: VOYMediaFileDataSource {
         uploadedFile = true
         completion(nil)
     }
-    
-
 }

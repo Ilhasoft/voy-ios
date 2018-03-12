@@ -13,6 +13,10 @@ open class VOYThemeTableViewCell: DataBindOnDemandTableViewCell {
 
     @IBOutlet var lbTheme: UILabel!
     
+    static var nibName: String {
+        return "VOYThemeTableViewCell"
+    }
+    
     override open func awakeFromNib() {
         super.awakeFromNib()
         self.dataBindView.layer.cornerRadius = 5
