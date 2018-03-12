@@ -50,4 +50,27 @@ class VOYThemeListTests: XCTestCase {
         expectations.fulfill()
         waitForExpectations(timeout: 10, handler: nil)
     }
+    
+    func testTapOnTheme() {
+        let expectations = expectation(description: "Check if the presenter actually instructs the view to navigate when tapping on a theme.")
+        reachability.mockNetworkAvailable = true
+        presenterUnderTest.onViewDidLoad()
+        let themeObj: [String: Any] = [
+            "id": 37,
+            "project": "project",
+            "bounds": [1.0, 1.0],
+            "name": "name",
+            "description": "description",
+            "tags": ["tag1", "tag2"],
+            "color": "color",
+            "pin": "pin",
+            "reports_count": 2,
+            "created_on": "01-02-2018",
+            "allow_links": true
+        ]
+        presenterUnderTest.onThemeSelected(object: themeObj)
+        XCTAssertTrue(viewControllerUnderTest.hasNavigatedToReportList, "Successfully redirected to report screen")
+        expectations.fulfill()
+        waitForExpectations(timeout: 10, handler: nil)
+    }
 }
