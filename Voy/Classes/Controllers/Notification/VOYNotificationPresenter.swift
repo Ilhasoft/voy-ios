@@ -26,7 +26,6 @@ class VOYNotificationPresenter {
     func viewDidLoad() {
         dataSource.getNotifications { (notificationList) in
             if let notificationList = notificationList {
-                VOYThemeListViewController.badgeView.isHidden = false
                 self.notifications = notificationList
             }
         }

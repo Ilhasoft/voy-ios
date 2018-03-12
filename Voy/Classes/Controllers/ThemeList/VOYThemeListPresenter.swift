@@ -28,7 +28,7 @@ class VOYThemeListPresenter {
     func updateNotifications() {
         dataSource.getNotifications { (notifications) in
             if notifications != nil, let notificationListUpdated = notifications {
-                if notificationListUpdated != self.currentNotificationList {
+                if notificationListUpdated .count > self.currentNotificationList.count {
                     VOYThemeListViewController.badgeView.isHidden = false
                     self.currentNotificationList = notificationListUpdated
                 }

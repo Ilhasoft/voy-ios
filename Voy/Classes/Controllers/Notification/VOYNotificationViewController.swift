@@ -30,6 +30,16 @@ class VOYNotificationViewController: UIViewController, VOYNotificationContract {
         setupController()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        fetchNotifications()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        VOYThemeListViewController.badgeView.isHidden = true
+    }
+    
     internal func setupController() {
         lbTitle.text = localizedString(.notifications)
         tableView.estimatedRowHeight = 100
@@ -37,6 +47,10 @@ class VOYNotificationViewController: UIViewController, VOYNotificationContract {
         tableView.delegate = self
         tableView.register(UINib(nibName: VOYNotificationTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: VOYNotificationTableViewCell.identifier)
         presenter = VOYNotificationPresenter(dataSource: VOYNotificationRepository(reachability: VOYReachabilityImpl()), view: self)
+        fetchNotifications()
+    }
+    
+    func fetchNotifications() {
         guard let presenter = self.presenter else { return }
         presenter.viewDidLoad()
     }

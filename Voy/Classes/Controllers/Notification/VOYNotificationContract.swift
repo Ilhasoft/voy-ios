@@ -11,5 +11,6 @@ import UIKit
 protocol VOYNotificationContract {
     func setupController()
     func updateTableView()
+    func fetchNotifications()
     func userTappedNotification(from report: VOYReport)
 }

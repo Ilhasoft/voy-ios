@@ -112,7 +112,6 @@ class VOYThemeListViewController: UIViewController, NVActivityIndicatorViewable 
     @objc func openNotifications() {
         guard let slideMenu = self.slideMenuController() else { return }
         slideMenu.openRight()
-        VOYThemeListViewController.badgeView.isHidden = true
     }
     
     func loadThemesFilteredByProject(project: VOYProject) {
