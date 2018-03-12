@@ -11,7 +11,7 @@ import Alamofire
 
 class VOYMediaFileRepository: VOYMediaFileDataSource {
     var isUploading = false
-    private let networkClient = VOYNetworkClient()
+    private let networkClient = VOYNetworkClient(reachability: VOYReachabilityImpl())
     private let reachability: VOYReachability
     
     init(reachability: VOYReachability = VOYReachabilityImpl()) {

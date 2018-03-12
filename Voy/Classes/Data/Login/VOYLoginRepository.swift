@@ -10,7 +10,7 @@ import Foundation
 
 class VOYLoginRepository: VOYLoginDataSource {
     
-    var networkClient = VOYNetworkClient()
+    var networkClient = VOYNetworkClient(reachability: VOYReachabilityImpl())
 
     func login(username: String, password: String, completion: @escaping (VOYUser?, Error?) -> Void) {
         let params = ["username": username, "password": password]

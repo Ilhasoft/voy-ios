@@ -10,7 +10,7 @@ import Foundation
 
 class VOYCommentRepository: VOYCommentDataSource {
     
-    let networkClient = VOYNetworkClient()
+    let networkClient = VOYNetworkClient(reachability: VOYReachabilityImpl())
 
     func save(comment: VOYComment, completion: @escaping (Error?) -> Void) {
 
