@@ -9,5 +9,5 @@
 import UIKit
 
 protocol VOYNotificationDataSource {
-
+    func getNotifications(completion: @escaping ([VOYNotification]?) -> Void)
 }

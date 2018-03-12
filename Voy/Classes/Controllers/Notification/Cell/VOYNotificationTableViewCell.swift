@@ -9,7 +9,10 @@
 import UIKit
 
 class VOYNotificationTableViewCell: UITableViewCell {
-    @IBOutlet weak var lbNotificationBody: UILabel!
+    
+    @IBOutlet weak var tvNotificationBody: UITextView!
+    
+    static let identifier = String(describing: VOYNotificationTableViewCell.classForCoder())
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -22,6 +25,6 @@ class VOYNotificationTableViewCell: UITableViewCell {
     }
     
     func setupCell(with text: String) {
-        self.lbNotificationBody.text = text
+        self.tvNotificationBody.text = text
     }
 }

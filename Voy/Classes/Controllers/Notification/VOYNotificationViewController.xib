@@ -18,7 +18,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="VOYNotificationViewController" customModule="Voy" customModuleProvider="target">
             <connections>
                 <outlet property="lbTitle" destination="fb1-U8-7KH" id="dyP-4e-EK0"/>
-                <outlet property="tableView" destination="zTL-eH-eI1" id="1Hk-71-YBd"/>
+                <outlet property="tableView" destination="zTL-eH-eI1" id="aaN-FA-po0"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -36,7 +36,7 @@
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="zTL-eH-eI1" customClass="ISOnDemandTableView">
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="zTL-eH-eI1">
                     <rect key="frame" x="0.0" y="101" width="375" height="566"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </tableView>

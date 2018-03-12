@@ -16,6 +16,7 @@ import Kingfisher
 class VOYThemeListViewController: UIViewController, NVActivityIndicatorViewable, VOYThemeListContract {
     @IBOutlet weak var lbThemesCount: UILabel!
     @IBOutlet weak var tbView: DataBindOnDemandTableView!
+    static var badgeView = UIView()
     var presenter: VOYThemeListPresenter?
     var userJustLogged = false
     var selectedReportView: VOYSelectedReportView!
@@ -78,13 +79,21 @@ class VOYThemeListViewController: UIViewController, NVActivityIndicatorViewable,
     
     func setupButtonItems() {
         addLeftBarButtonItem()
-        let rightBarButtonItem = UIBarButtonItem(
-            image: #imageLiteral(resourceName: "bell"),
-            style: .plain,
-            target: self,
-            action: #selector(openNotifications)
-        )
-        self.navigationItem.rightBarButtonItem = rightBarButtonItem
+        
+        let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(openNotifications))
+        
+        let customView = UIImageView(image: #imageLiteral(resourceName: "bell"))
+        
+        VOYThemeListViewController.badgeView = UIView(frame: CGRect(x: customView.frame.width - 9, y: 0, width: 9, height: 9))
+        VOYThemeListViewController.badgeView.backgroundColor = UIColor(displayP3Red: 222/255, green: 72/255, blue: 107/255, alpha: 1)
+        VOYThemeListViewController.badgeView.clipsToBounds = true
+        VOYThemeListViewController.badgeView.layer.cornerRadius = VOYThemeListViewController.badgeView.frame.height/2
+        VOYThemeListViewController.badgeView.isHidden = true
+        
+        customView.addGestureRecognizer(gestureRecognizer)
+        customView.addSubview(VOYThemeListViewController.badgeView)
+
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: customView)
     }
     
     func getProjects() {
@@ -143,6 +152,7 @@ class VOYThemeListViewController: UIViewController, NVActivityIndicatorViewable,
     @objc func openNotifications() {
         guard let slideMenu = self.slideMenuController() else { return }
         slideMenu.openRight()
+        VOYThemeListViewController.badgeView.isHidden = true
     }
     
     func loadThemesFilteredByProject(project: VOYProject) {

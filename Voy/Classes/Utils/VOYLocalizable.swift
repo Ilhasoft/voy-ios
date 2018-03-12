@@ -65,6 +65,10 @@ class VOYLocalizable {
         case titleAndDescription = "title_and_description"
         case username
         case themesListHeader = "themes_list_header"
+        case reportWasApproved = "report_was_approved"
+        case commentWasApproved = "comment_was_approved"
+        case reportWasNotApproved = "report_was_not_approved"
+        case commentWasNotApproved = "comment_was_not_approved"
     }
 }
 

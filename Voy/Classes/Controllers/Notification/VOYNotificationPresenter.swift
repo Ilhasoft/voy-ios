@@ -12,9 +12,33 @@ class VOYNotificationPresenter {
     var view: VOYNotificationContract!
     var dataSource: VOYNotificationDataSource!
     
+    var notifications: [VOYNotification]? {
+        didSet {
+            self.view.updateTableView()
+        }
+    }
+    
     init(dataSource: VOYNotificationDataSource, view: VOYNotificationContract) {
         self.view = view
         self.dataSource = dataSource
+    }
+    
+    func viewDidLoad() {
+        dataSource.getNotifications { (notificationList) in
+            if let notificationList = notificationList {
+                VOYThemeListViewController.badgeView.isHidden = false
+                self.notifications = notificationList
+            }
+        }
+    }
+    
+    func setupNotificationTitleFor( indexPath: IndexPath) -> String {
+        guard let notification = notifications?[indexPath.row] else { return "" }
+        if notification.status == 1 {
+            return (notification.origin == 1) ? localizedString(.reportWasApproved) : localizedString(.commentWasApproved)
+        } else {
+            return (notification.origin == 1) ? localizedString(.reportWasNotApproved) : localizedString(.commentWasNotApproved)
+        }
     }
     
 }

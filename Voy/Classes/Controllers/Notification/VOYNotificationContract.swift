@@ -9,5 +9,6 @@
 import UIKit
 
 protocol VOYNotificationContract {
-
+    func setupController()
+    func updateTableView()
 }

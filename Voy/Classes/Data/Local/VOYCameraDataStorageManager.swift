@@ -8,7 +8,7 @@
 
 import UIKit
 
-class VOYCameraDataStorageManager: NSObject {
+class VOYCameraDataStorageManager {
     
     static let shared = VOYCameraDataStorageManager()
     

@@ -8,7 +8,7 @@
 
 import ObjectMapper
 
-class VOYComment: NSObject, Mappable {
+class VOYComment: Mappable {
     
     var id: Int!
     var text: String!

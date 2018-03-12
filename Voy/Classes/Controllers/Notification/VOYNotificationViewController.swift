@@ -12,7 +12,10 @@ import ISOnDemandTableView
 class VOYNotificationViewController: UIViewController, VOYNotificationContract {
     
     @IBOutlet weak var lbTitle: UILabel!
-    @IBOutlet weak var tableView: ISOnDemandTableView!
+    @IBOutlet weak var tableView: UITableView!
+    
+    var presenter: VOYNotificationPresenter?
+    
     init() {
         super.init(nibName: String(describing: type(of: self)), bundle: nil)
     }
@@ -26,46 +29,38 @@ class VOYNotificationViewController: UIViewController, VOYNotificationContract {
         setupController()
     }
     
-    private func setupController() {
+    internal func setupController() {
         lbTitle.text = localizedString(.notifications)
         tableView.estimatedRowHeight = 100
+        tableView.dataSource = self
+        tableView.delegate = self
+        tableView.register(UINib(nibName: VOYNotificationTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: VOYNotificationTableViewCell.identifier)
+        presenter = VOYNotificationPresenter(dataSource: VOYNotificationRepository(reachability: VOYReachabilityImpl()) , view: self)
+        guard let presenter = self.presenter else { return }
+        presenter.viewDidLoad()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        VOYNotificationRepository(reachability: VOYReachabilityImpl()).getNotifications()
-    }
-
-}
-
-extension VOYNotificationViewController: ISOnDemandTableViewDelegate {
-//    func onDemandTableView(_ tableView: ISOnDemandTableView, didSelectRowAt indexPath: IndexPath) {
-//        self.view.endEditing(true)
-//    }
-    
-    func onDemandTableView(_ tableView: ISOnDemandTableView, reuseIdentifierForCellAt indexPath: IndexPath) -> String {
-        return NSStringFromClass(VOYNotificationTableViewCell.self)
-    }
-    
-    func onDemandTableView(_ tableView: ISOnDemandTableView, setupCell cell: UITableViewCell, at indexPath: IndexPath) {
-        if let cell = cell as? VOYNotificationTableViewCell {
-            cell.setupCell(with: "Cell message example")
-        }
-    }
-    
-    func onDemandTableView(_ tableView: ISOnDemandTableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableViewAutomaticDimension
+    func updateTableView() {
+        tableView.reloadData()
     }
 }
 
-//extension VOYNotificationViewController: UITableViewDataSource {
-//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return 9
-//    }
-//
-//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//    }
-//
-//
-//}
+extension VOYNotificationViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        guard let notificationList = self.presenter?.notifications else { return 0 }
+        return notificationList.count
+    }
 
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: VOYNotificationTableViewCell.identifier,
+                                                       for: indexPath) as? VOYNotificationTableViewCell else {
+                                                        return VOYNotificationTableViewCell() }
+        guard let presenter = self.presenter else { return cell }
+        cell.tvNotificationBody.text = presenter.setupNotificationTitleFor(indexPath: indexPath)
+        return cell
+    }
+}
+
+extension VOYNotificationViewController: UITableViewDelegate {
+    
+}

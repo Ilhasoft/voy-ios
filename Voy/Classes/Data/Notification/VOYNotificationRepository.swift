@@ -11,28 +11,31 @@ import Alamofire
 
 class VOYNotificationRepository: VOYNotificationDataSource {
     let reachability: VOYReachability
+    let networkClient = VOYNetworkClient()
     
     init(reachability: VOYReachability) {
         self.reachability = reachability
     }
     
-    func getNotifications() {
-        let request = Alamofire.request(VOYConstant.API.URL + "report-notification", method: .get, parameters: nil, headers: nil)//.request(VOYConstant.API.URL + "report-notification/")
+    func getNotifications(completion: @escaping ([VOYNotification]?) -> Void) {
+        guard let auth = VOYUser.activeUser()?.authToken else { return }
         
-        request.responseJSON { (response) in
-            print(response.result.value)
-            guard let list = response.result.value as? [VOYNotification] else { return }
-            print(list)
-            print("")
-        }
-//        request.responseArray { (dataResponse: DataResponse<[VOYNotification]>) in
-//            print(dataResponse.result.value)
-//            print(dataResponse.result.error)
-//            if dataResponse.result.value != nil {
-//                let list = dataResponse.result.value
-//                print(list)
-//            }
+//        networkClient.requestArray(urlSuffix: "report-notification",
+//                                   httpMethod: VOYNetworkClient.VOYHTTPMethod.get,
+//                                   headers: ["Authorization": "Token \(auth)"]) { (notificationList: [VOYNotification]?, error) in
+//            guard let notificationList = notificationList else { return }
+//            completion(notificationList)
 //        }
+        
+        let request = Alamofire.request(
+            VOYConstant.API.URL + "report-notification/",
+            method: .get,
+            headers: ["Authorization": "Token \(auth)"]
+        )
+        request.responseArray { (dataResponse: DataResponse<[VOYNotification]>) in
+            guard let notificationList = dataResponse.result.value else { return }
+            completion(notificationList)
+        }
     }
     
     func updateNotification() {

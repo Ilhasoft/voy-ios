@@ -35,6 +35,10 @@
 
 // Notifications Screen
 "notifications" = "Notifications";
+"report_was_approved" = "Your report was approved";
+"comment_was_approved" = "Your comment was approved";
+"report_was_not_approved" = "Your report was not approved";
+"comment_was_not_approved" = "Your comment was not approved";
 
 // Account Screen
 "account" = "Account";

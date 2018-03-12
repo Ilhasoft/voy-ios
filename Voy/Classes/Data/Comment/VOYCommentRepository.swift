@@ -6,23 +6,21 @@
 //  Copyright © 2018 Ilhasoft. All rights reserved.
 //
 
-import Alamofire
+import Foundation
 
 class VOYCommentRepository: VOYCommentDataSource {
+    
+    let networkClient = VOYNetworkClient()
 
     func save(comment: VOYComment, completion: @escaping (Error?) -> Void) {
-        
+
         let authToken = VOYUser.activeUser()!.authToken!
-        let url = VOYConstant.API.URL + "report-comments/"
         let headers = ["Authorization": "Token " + authToken, "Content-Type": "application/json"]
-        
-        Alamofire.request(url, method: .post, parameters: comment.toJSON(), headers: headers)
-            .responseJSON { (dataResponse: DataResponse<Any>) in
-            if dataResponse.result.value != nil {
-                completion(nil)
-            } else if let error = dataResponse.result.error {
-                completion(error)
-            }
+        networkClient.requestDictionary(urlSuffix: "report-comments/",
+                                   httpMethod: .post,
+                                   parameters: comment.toJSON(),
+                                   headers: headers) { value, error in
+            completion(error)
         }
     }
 }
