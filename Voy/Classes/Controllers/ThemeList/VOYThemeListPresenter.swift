@@ -24,6 +24,14 @@ class VOYThemeListPresenter {
         self.view = view
     }
     
+    func getNotifications() {
+        dataSource.getNotifications { (notifications) in
+//            if let notifications != nil {
+//                VOYThemeListViewController.badgeView.isHidden
+//            }
+        }
+    }
+    
     func getProjects(completion:@escaping(Bool) -> Void) {
         dataSource.getMyProjects { (projects, _) in
             if projects.count > 0 {

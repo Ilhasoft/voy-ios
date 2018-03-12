@@ -16,6 +16,7 @@ import Kingfisher
 class VOYThemeListViewController: UIViewController, NVActivityIndicatorViewable, VOYThemeListContract {
     @IBOutlet weak var lbThemesCount: UILabel!
     @IBOutlet weak var tbView: DataBindOnDemandTableView!
+    
     static var badgeView = UIView()
     var presenter: VOYThemeListPresenter?
     var userJustLogged = false
