@@ -43,7 +43,7 @@ class VOYThemeListPresenter {
     private func cacheData() {
         for project in projects {
             var params = ["project": project.id as Any, "user": VOYUser.activeUser()!.id]
-            dataSource.cacheDataFrom(url: VOYConstant.API.URL + "themes", parameters: &params)
+            dataSource.cacheDataFrom(url: "\(VOYConstant.API.URL)themes", parameters: &params)
         }
     }
 }
