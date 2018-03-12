@@ -9,9 +9,5 @@
 import UIKit
 
 protocol VOYThemeListContract: class {
-    func getProjects()
-    func setupDropDown()
-    func projectListWasUpdated()
-    func loadThemesFilteredByProject(project: VOYProject)
-    func setupTableView(filterThemesByProject project: VOYProject)
+    func updateProjectsList(projects: [VOYProject])
 }

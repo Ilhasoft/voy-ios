@@ -14,7 +14,7 @@ class VOYThemeListRepository: VOYThemeListDataSource {
     let networkClient = VOYNetworkClient()
     
     let reachability: VOYReachability
-    
+
     init(reachability: VOYReachability) {
         self.reachability = reachability
     }
