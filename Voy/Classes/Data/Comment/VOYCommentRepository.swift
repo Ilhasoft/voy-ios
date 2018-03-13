@@ -10,7 +10,7 @@ import Foundation
 
 class VOYCommentRepository: VOYCommentDataSource {
     
-    let networkClient = VOYNetworkClient()
+    let networkClient = VOYNetworkClient(reachability: VOYReachabilityImpl())
 
     func save(comment: VOYComment, completion: @escaping (Error?) -> Void) {
 
@@ -19,7 +19,7 @@ class VOYCommentRepository: VOYCommentDataSource {
         networkClient.requestDictionary(urlSuffix: "report-comments/",
                                    httpMethod: .post,
                                    parameters: comment.toJSON(),
-                                   headers: headers) { value, error in
+                                   headers: headers) { value, error, _ in
             completion(error)
         }
     }

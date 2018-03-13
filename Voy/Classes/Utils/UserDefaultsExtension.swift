@@ -9,7 +9,7 @@
 import ObjectMapper
 
 extension UserDefaults {
-    func getArchivedObject(key: String) -> Any? {
+    public func getArchivedObject(key: String) -> Any? {
         var any: Any?
         if let encodedData = self.object(forKey: key) as? Data {
             any = NSKeyedUnarchiver.unarchiveObject(with: encodedData)

@@ -25,6 +25,8 @@ class VOYReportListViewController: UIViewController, NVActivityIndicatorViewable
     var allDataFinishedLoad = false
     var dataLoadTime = 0
     
+    var presenter: VOYReportListPresenter!
+    
     init() {
         super.init(nibName: String(describing: type(of: self)), bundle: nil)
         VOYReportListViewController.sharedInstance = self
@@ -49,6 +51,8 @@ class VOYReportListViewController: UIViewController, NVActivityIndicatorViewable
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: " ", style: .plain, target: nil, action: nil)
         setupTableView()
         setupLocalization()
+        
+        presenter = VOYReportListPresenter(view: self)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -82,7 +86,8 @@ class VOYReportListViewController: UIViewController, NVActivityIndicatorViewable
             tableView.interactor = DataBindOnDemandTableViewInteractor(
                 configuration: tableViewApproved.getConfiguration(),
                 params: ["theme": self.theme.id, "status": status, "mapper": VOYUser.activeUser()!.id],
-                paginationCount: VOYConstant.API.paginationSize
+                paginationCount: VOYConstant.API.paginationSize,
+                reachability: VOYReachabilityImpl()
             )
             tableView.loadContent()
         }
@@ -143,6 +148,12 @@ class VOYReportListViewController: UIViewController, NVActivityIndicatorViewable
         segmentedControl.setTitle(localizedString(.approved), forSegmentAt: 0)
         segmentedControl.setTitle(localizedString(.pending), forSegmentAt: 1)
         segmentedControl.setTitle(localizedString(.notApproved), forSegmentAt: 2)
+    }
+}
+
+extension VOYReportListViewController: VOYReportListContract {
+    func navigateToReportDetails(report: VOYReport) {
+        self.navigationController?.pushViewController(VOYReportDetailViewController(report: report), animated: true)
     }
 }
 

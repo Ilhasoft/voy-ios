@@ -24,6 +24,13 @@ class VOYThemeListPresenter {
     func onViewDidLoad() {
         getProjects()
     }
+    
+    func onThemeSelected(object: [String: Any]) {
+        if let theme = VOYTheme(JSON: object) {
+            VOYTheme.setActiveTheme(theme: theme)
+            view?.navigateToReportList()
+        }
+    }
 
     // MARK: - Private methods
 
@@ -43,7 +50,7 @@ class VOYThemeListPresenter {
     private func cacheData() {
         for project in projects {
             var params = ["project": project.id as Any, "user": VOYUser.activeUser()!.id]
-            dataSource.cacheDataFrom(url: VOYConstant.API.URL + "themes", parameters: &params)
+            dataSource.cacheDataFrom(url: "\(VOYConstant.API.URL)themes", parameters: &params)
         }
     }
 }
