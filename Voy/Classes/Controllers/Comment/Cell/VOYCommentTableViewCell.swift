@@ -26,7 +26,6 @@ class VOYCommentTableViewCell: DataBindOnDemandTableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        contentView.transform = CGAffineTransform(scaleX: 1, y: -1)
         self.selectionStyle = .none
         self.dataBindView.delegate = self
     }
