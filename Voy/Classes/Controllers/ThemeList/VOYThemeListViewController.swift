@@ -61,7 +61,9 @@ class VOYThemeListViewController: UIViewController, NVActivityIndicatorViewable 
         imageView.widthAnchor.constraint(equalToConstant: 30).isActive = true
         imageView.heightAnchor.constraint(equalToConstant: 30).isActive = true
         imageView.contentMode = .scaleAspectFill
-        imageView.kf.setImage(with: URL(string: VOYUser.activeUser()!.avatar)!)
+        if let activeUser = VOYUser.activeUser(), let avatar = activeUser.avatar {
+            imageView.kf.setImage(with: URL(string: avatar)!)
+        }
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(openAccount))
         imageView.addGestureRecognizer(tapGesture)
         let leftBarButtonItem = UIBarButtonItem(customView: imageView)
