@@ -49,6 +49,7 @@ class VOYReportDetailViewController: UIViewController {
         dataBindView.fillFields(withObject: report.toJSON())
         setupNavigationItem()
         setupViewTags()
+        setupColors()
         setupLocalization()
     }
     
@@ -158,13 +159,26 @@ class VOYReportDetailViewController: UIViewController {
     @IBAction func btCommentTapped(_ sender: Any) {
         self.navigationController?.pushViewController(VOYCommentViewController(report: self.report), animated: true)
     }
-    
+
+    private func setupColors() {
+        if let currentTheme = VOYTheme.activeTheme(), let colorHex = currentTheme.color {
+            let themeColor = UIColor(hex: colorHex)
+            lbTitle.textColor = themeColor
+            lbDate.textColor = themeColor
+            viewTags.tagBackgroundColor = themeColor
+            pageControl.currentPageIndicatorTintColor = themeColor
+            pageControl.pageIndicatorTintColor = themeColor.withAlphaComponent(0.5)
+        }
+        
+    }
+
     // MARK: - Private methods
-    
+
     private func setupLocalization() {
         btComment.setTitle(localizedString(.comment), for: .normal)
     }
 }
+
 extension VOYReportDetailViewController: ISScrollViewPageDelegate {
     func scrollViewPageDidChanged(_ scrollViewPage: ISScrollViewPage, index: Int) {
         self.pageControl.currentPage = index
@@ -231,7 +245,6 @@ extension VOYReportDetailViewController: DataBindViewDelegate {
     }
     
     func didFill(component: Any, value: Any) {
-        
     }
     
     func willSet(component: Any, value: Any) -> Any? {
@@ -239,7 +252,6 @@ extension VOYReportDetailViewController: DataBindViewDelegate {
     }
     
     func didSet(component: Any, value: Any) {
-        
     }
 }
 
