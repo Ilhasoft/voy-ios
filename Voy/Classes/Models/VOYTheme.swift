@@ -40,11 +40,11 @@ class VOYTheme: Mappable {
         created_on <- map["created_on"]
         allow_links <- map["allow_links"]
     }
-    
+
     func map() -> Map {
         return Map(mappingType: .toJSON, JSON: self.toJSON())
     }
-    
+
     static func activeTheme() -> VOYTheme? {
         var theme: VOYTheme?
         if let themeDictionary = UserDefaults.standard.getArchivedObject(key: "theme") as? [String: Any] {
@@ -52,14 +52,9 @@ class VOYTheme: Mappable {
         }
         return theme
     }
-    
-    static func deactiveTheme() {
-        UserDefaults.standard.removeObject(forKey: "theme")
-    }
-    
+
     static func setActiveTheme(theme: VOYTheme) {
         let defaults = UserDefaults.standard
-        
         let encodedObject = NSKeyedArchiver.archivedData(withRootObject: theme.toJSON())
         defaults.set(encodedObject, forKey: "theme")
         defaults.synchronize()

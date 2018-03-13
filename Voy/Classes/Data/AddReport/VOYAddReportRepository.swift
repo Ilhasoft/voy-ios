@@ -11,7 +11,7 @@ import UIKit
 class VOYAddReportRepository: VOYAddReportDataSource {
     
     let reachability: VOYReachability
-    let networkClient = VOYNetworkClient()
+    let networkClient = VOYNetworkClient(reachability: VOYReachabilityImpl())
     let mediaFileDataSource: VOYMediaFileDataSource
     
     init(reachability: VOYReachability, mediaFileDataSource: VOYMediaFileDataSource = VOYMediaFileRepository()) {
@@ -46,7 +46,7 @@ class VOYAddReportRepository: VOYAddReportDataSource {
         networkClient.requestDictionary(urlSuffix: "reports/\(reportIDString)",
             httpMethod: method,
             parameters: report.toJSON(),
-            headers: headers) { (value, error) in
+            headers: headers) { (value, error, _) in
                 guard let value = value else {
                     completion(error, nil)
                     return

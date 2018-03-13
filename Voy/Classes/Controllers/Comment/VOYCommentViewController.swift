@@ -81,7 +81,8 @@ class VOYCommentViewController: UIViewController, VOYCommentContract {
         tableView.interactor = DataBindOnDemandTableViewInteractor(
             configuration: tableView.getConfiguration(),
             params: ["report": self.report.id!],
-            paginationCount: 20
+            paginationCount: 20,
+            reachability: VOYReachabilityImpl()
         )
         tableView.loadContent()
     }

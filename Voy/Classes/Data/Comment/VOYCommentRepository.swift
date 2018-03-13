@@ -10,16 +10,17 @@ import Foundation
 
 class VOYCommentRepository: VOYCommentDataSource {
     
-    let networkClient = VOYNetworkClient()
     let authToken = VOYUser.activeUser()!.authToken!
     
+    let networkClient = VOYNetworkClient(reachability: VOYReachabilityImpl())
+
     func save(comment: VOYComment, completion: @escaping (Error?) -> Void) {
 
         let headers = ["Authorization": "Token " + authToken, "Content-Type": "application/json"]
         networkClient.requestDictionary(urlSuffix: "report-comments/",
                                    httpMethod: .post,
                                    parameters: comment.toJSON(),
-                                   headers: headers) { _, error in
+                                   headers: headers) { _, error, _ in
             completion(error)
         }
     }
@@ -27,7 +28,7 @@ class VOYCommentRepository: VOYCommentDataSource {
     func delete(commentId: Int, completion: @escaping (Error?) -> Void) {
         networkClient.requestDictionary(urlSuffix: "report-comments/\(commentId)/",
                                     httpMethod: .delete,
-                                    headers: ["Authorization": "Token " + authToken]) { (_, error) in
+                                    headers: ["Authorization": "Token " + authToken]) { (_, error, _)  in
             completion(error)
         }
     }

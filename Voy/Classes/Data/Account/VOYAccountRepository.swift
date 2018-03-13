@@ -10,7 +10,7 @@ import UIKit
 
 class VOYAccountRepository: VOYAccountDataSource {
 
-    let networkClient = VOYNetworkClient()
+    let networkClient = VOYNetworkClient(reachability: VOYReachabilityImpl())
 
     func updateUser(avatar: Int?, password: String?, completion: @escaping(Error?) -> Void) {
         let user = VOYUser.activeUser()!
@@ -27,7 +27,7 @@ class VOYAccountRepository: VOYAccountDataSource {
         networkClient.requestDictionary(urlSuffix: "users/\(user.id!)/",
                                         httpMethod: .put,
                                         parameters: jsonUser,
-                                        headers: headers) { result, error in
+                                        headers: headers) { result, error, _ in
             if result != nil {
                 let loginRepository = VOYLoginRepository()
                 loginRepository.getUserData(authToken: user.authToken, completion: { (user, error) in

@@ -10,4 +10,5 @@ import UIKit
 
 protocol VOYThemeListContract: class {
     func updateProjectsList(projects: [VOYProject])
+    func navigateToReportList()
 }
