@@ -10,4 +10,5 @@ import UIKit
 
 protocol VOYAccountContract: class {
     func save()
+    func setupLoading(showLoading: Bool)
 }

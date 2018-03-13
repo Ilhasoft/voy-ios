@@ -11,6 +11,8 @@ import XCTest
 
 class VOYAccountListTests: XCTestCase {
     var repositoryUnderTest: VOYMockAccountRepository!
+    var presenterUnderTest: VOYAccountPresenter!
+    var viewControllerUnderTest: VOYMockAccountViewController!
     
     let newPassword: String = "NewPassword"
     let newAvatar: Int = 000000
@@ -18,6 +20,8 @@ class VOYAccountListTests: XCTestCase {
     override func setUp() {
         super.setUp()
         repositoryUnderTest = VOYMockAccountRepository()
+        viewControllerUnderTest = VOYMockAccountViewController()
+        presenterUnderTest = VOYAccountPresenter(dataSource: repositoryUnderTest, view: viewControllerUnderTest)
     }
     
     override func tearDown() {
@@ -27,10 +31,10 @@ class VOYAccountListTests: XCTestCase {
     // MARK: - Data test
     func testUpdateUser() {
         let expectations = expectation(description: "Get no errors")
-        repositoryUnderTest.updateUser(avatar: newAvatar, password: newPassword) { (error) in
-            XCTAssertNil(error)
-            expectations.fulfill()
-        }
+        presenterUnderTest.updateUser(avatar: newAvatar, password: newPassword)
+        XCTAssert(viewControllerUnderTest.enabledDisabledLoading == 2)
+        XCTAssert(viewControllerUnderTest.didSaveAccount)
+        expectations.fulfill()
         waitForExpectations(timeout: 10, handler: nil)
     }
 }

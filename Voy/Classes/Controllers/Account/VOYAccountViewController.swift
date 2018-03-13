@@ -104,16 +104,11 @@ class VOYAccountViewController: UIViewController, NVActivityIndicatorViewable, V
     }
     
     @objc func save() {
-        if newPassword != nil || newAvatar != nil {
-            self.startAnimating()
-            guard let presenter = presenter else { return }
-            presenter.updateUser(avatar: newAvatar, password: newPassword, completion: { (error) in
-                self.stopAnimating()
-                if error != nil {
-                    //TODO: Show Alert
-                }
-            })
-        }
+        presenter?.updateUser(avatar: newAvatar, password: newPassword)
+    }
+    
+    func setupLoading(showLoading: Bool) {
+        showLoading ? self.startAnimating() : self.stopAnimating()
     }
     
     @objc func showAvatars() {
