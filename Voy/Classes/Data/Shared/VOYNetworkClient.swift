@@ -68,10 +68,15 @@ class VOYNetworkClient {
             headers: headers
         )
         request.responseJSON { (dataResponse: DataResponse<Any>) in
-            if let value = dataResponse.value as? [String: Any] {
-                completion(value, nil)
-            } else if let error = dataResponse.result.error {
+            switch dataResponse.result {
+            case .failure(let error):
                 completion(nil, error)
+            case .success(let value):
+                guard let valueDict = value as? [String: Any] else {
+                    completion(nil, nil)
+                    return
+                }
+                completion(valueDict, nil)
             }
         }
     }

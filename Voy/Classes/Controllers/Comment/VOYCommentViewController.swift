@@ -208,7 +208,7 @@ extension VOYCommentViewController: VOYActionSheetViewControllerDelegate {
         actionSheetViewController.close()
         presenter.remove(commentId: id) { (_) in
             self.activeCellId = nil
-            self.tableView.loadContent()
+            self.tableView.interactor?.refreshAllContent()
         }
     }
 }
