@@ -16,6 +16,7 @@ class VOYNetworkClient {
         case get
         case post
         case put
+        case delete
 
         fileprivate func toHttpMethod() -> HTTPMethod {
             switch self {
@@ -25,6 +26,8 @@ class VOYNetworkClient {
                 return HTTPMethod.post
             case .put:
                 return HTTPMethod.put
+            case .delete:
+                return HTTPMethod.delete
             }
         }
     }
