@@ -67,7 +67,7 @@ class VOYReportDetailViewController: UIViewController {
             image: #imageLiteral(resourceName: "combinedShape").withRenderingMode(.alwaysOriginal),
             style: .plain,
             target: self,
-            action: #selector(showActionSheet)
+            action: #selector(onItemOptionsTapped)
         )
         let barButtonItemIssue = UIBarButtonItem(
             image: #imageLiteral(resourceName: "issue").withRenderingMode(.alwaysOriginal),
@@ -138,13 +138,8 @@ class VOYReportDetailViewController: UIViewController {
         )
     }
     
-    @objc private func showActionSheet() {
-        let actionSheetViewController = VOYActionSheetViewController(
-            buttonNames: [localizedString(.editReport)],
-            icons: nil
-        )
-        actionSheetViewController.delegate = self
-        actionSheetViewController.show(true, inViewController: self)
+    @objc private func onItemOptionsTapped() {
+        presenter.onOptionsButtonTapped()
     }
     
     @objc private func btShareTapped() {
@@ -189,6 +184,22 @@ extension VOYReportDetailViewController: VOYReportDetailContract {
         playerController.player!.play()
         present(playerController, animated: true, completion: nil)
     }
+    
+    func showActionSheet() {
+        let actionSheetViewController = VOYActionSheetViewController(
+            buttonNames: [localizedString(.editReport)],
+            icons: nil
+        )
+        actionSheetViewController.delegate = self
+        actionSheetViewController.show(true, inViewController: self)
+    }
+    
+    func navigateToEditReportScreen(report: VOYReport) {
+        self.navigationController?.pushViewController(
+            VOYAddReportAttachViewController(report: report),
+            animated: true
+        )
+    }
 }
 
 extension VOYReportDetailViewController: ISScrollViewPageDelegate {
@@ -216,7 +227,7 @@ extension VOYReportDetailViewController: VOYAlertViewControllerDelegate {
         alertController.close()
         switch index {
         case 0:
-            self.navigationController?.pushViewController(VOYAddReportAttachViewController(), animated: true)
+            presenter.onTapEditReport()
         case 1:
             break
         default:

@@ -13,4 +13,6 @@ protocol VOYReportDetailContract: class {
     func shareText(_ string: String)
     func showPictureScreen(image: UIImage)
     func showVideoScreen(videoURL: URL)
+    func showActionSheet()
+    func navigateToEditReportScreen(report: VOYReport)
 }
