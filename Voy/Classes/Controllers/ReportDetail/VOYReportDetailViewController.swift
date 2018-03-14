@@ -169,7 +169,6 @@ class VOYReportDetailViewController: UIViewController {
             pageControl.currentPageIndicatorTintColor = themeColor
             pageControl.pageIndicatorTintColor = themeColor.withAlphaComponent(0.5)
         }
-        
     }
 
     // MARK: - Private methods
