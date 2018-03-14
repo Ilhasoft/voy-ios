@@ -11,8 +11,13 @@ import UIKit
 
 class VOYMockThemeListViewController: VOYThemeListContract {
     var listCount: Int = 0
+    var hasNavigatedToReportList = false
 
     func updateProjectsList(projects: [VOYProject]) {
         listCount = projects.count
+    }
+    
+    func navigateToReportList() {
+        hasNavigatedToReportList = true
     }
 }

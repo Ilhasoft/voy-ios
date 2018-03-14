@@ -11,19 +11,19 @@ import AlamofireObjectMapper
 
 class VOYThemeListRepository: VOYThemeListDataSource {
     
-    let networkClient = VOYNetworkClient()
-    
     let reachability: VOYReachability
+    let networkClient: VOYNetworkClient
 
     init(reachability: VOYReachability) {
         self.reachability = reachability
+        networkClient = VOYNetworkClient(reachability: self.reachability)
     }
     
     func getNotifications(completion: @escaping ([VOYNotification]?) -> Void) {
         guard let auth = VOYUser.activeUser()?.authToken else { return }
-        networkClient.requestArray(urlSuffix: "report-notification/",
+        networkClient.requestObjectArray(urlSuffix: "report-notification/",
                                    httpMethod: VOYNetworkClient.VOYHTTPMethod.get,
-                                   headers: ["Authorization": "Token \(auth)"]) { (notificationList: [VOYNotification]?, _) in
+                                   headers: ["Authorization": "Token \(auth)"]) { (notificationList: [VOYNotification]?, _, _) in
                                     guard let notificationList = notificationList else { return }
                                     completion(notificationList)
         }

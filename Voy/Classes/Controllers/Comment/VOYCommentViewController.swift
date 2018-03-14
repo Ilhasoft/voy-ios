@@ -81,7 +81,8 @@ class VOYCommentViewController: UIViewController, VOYCommentContract {
         tableView.interactor = DataBindOnDemandTableViewInteractor(
             configuration: tableView.getConfiguration(),
             params: ["report": self.report.id!],
-            paginationCount: 20
+            paginationCount: 20,
+            reachability: VOYReachabilityImpl()
         )
         tableView.loadContent()
     }
@@ -208,7 +209,7 @@ extension VOYCommentViewController: VOYActionSheetViewControllerDelegate {
         actionSheetViewController.close()
         presenter.remove(commentId: id) { (_) in
             self.activeCellId = nil
-            self.tableView.loadContent()
+            self.tableView.interactor?.refreshAllContent()
         }
     }
 }

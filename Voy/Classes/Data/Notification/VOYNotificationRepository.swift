@@ -11,17 +11,18 @@ import Alamofire
 
 class VOYNotificationRepository: VOYNotificationDataSource {
     let reachability: VOYReachability
-    let networkClient = VOYNetworkClient()
+    let networkClient: VOYNetworkClient
     
     init(reachability: VOYReachability) {
         self.reachability = reachability
+        self.networkClient = VOYNetworkClient(reachability: reachability)
     }
     
     func getNotifications(completion: @escaping ([VOYNotification]?) -> Void) {
         guard let auth = VOYUser.activeUser()?.authToken else { return }
-        networkClient.requestArray(urlSuffix: "report-notification/",
+        networkClient.requestObjectArray(urlSuffix: "report-notification/",
                                    httpMethod: VOYNetworkClient.VOYHTTPMethod.get,
-                                   headers: ["Authorization": "Token \(auth)"]) { (notificationList: [VOYNotification]?, _) in
+                                   headers: ["Authorization": "Token \(auth)"]) { (notificationList: [VOYNotification]?, _, _) in
             guard let notificationList = notificationList else { return }
             completion(notificationList)
         }
@@ -36,6 +37,6 @@ class VOYNotificationRepository: VOYNotificationDataSource {
         networkClient.requestDictionary(urlSuffix: "report-notification/\(notificationId)/",
                                         httpMethod: .put,
                                         parameters: parameters,
-                                        headers: ["Authorization": "Token \(auth)"]) { (_, _) in }
+                                        headers: ["Authorization": "Token \(auth)"]) { (_, _, _)  in }
     }
 }

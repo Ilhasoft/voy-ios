@@ -67,7 +67,9 @@ class VOYThemeListViewController: UIViewController, NVActivityIndicatorViewable 
         imageView.widthAnchor.constraint(equalToConstant: 30).isActive = true
         imageView.heightAnchor.constraint(equalToConstant: 30).isActive = true
         imageView.contentMode = .scaleAspectFill
-        imageView.kf.setImage(with: URL(string: VOYUser.activeUser()!.avatar)!)
+        if let activeUser = VOYUser.activeUser(), let avatar = activeUser.avatar {
+            imageView.kf.setImage(with: URL(string: avatar)!)
+        }
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(openAccount))
         imageView.addGestureRecognizer(tapGesture)
         let leftBarButtonItem = UIBarButtonItem(customView: imageView)
@@ -117,7 +119,8 @@ class VOYThemeListViewController: UIViewController, NVActivityIndicatorViewable 
         tbView.interactor = DataBindOnDemandTableViewInteractor(
             configuration: tbView.getConfiguration(),
             params: ["project": project.id, "user": VOYUser.activeUser()!.id],
-            paginationCount: VOYConstant.API.paginationSize
+            paginationCount: VOYConstant.API.paginationSize,
+            reachability: VOYReachabilityImpl()
         )
         tbView.loadContent()
     }
@@ -164,6 +167,10 @@ extension VOYThemeListViewController: VOYThemeListContract {
             self.selectedReportView.lbTitle.text = selectedReport.name
         }
     }
+    
+    func navigateToReportList() {
+        self.navigationController?.pushViewController(VOYReportListViewController(), animated: true)
+    }
 }
 
 extension VOYThemeListViewController: ISOnDemandTableViewDelegate {
@@ -183,8 +190,7 @@ extension VOYThemeListViewController: ISOnDemandTableViewDelegate {
     }
     func onDemandTableView(_ tableView: ISOnDemandTableView, didSelectRowAt indexPath: IndexPath) {
         if let cell = tableView.cellForRow(at: indexPath) as? VOYThemeTableViewCell {
-            VOYTheme.setActiveTheme(theme: VOYTheme(JSON: cell.object.JSON)!)
-            self.navigationController?.pushViewController(VOYReportListViewController(), animated: true)
+            presenter?.onThemeSelected(object: cell.object.JSON)
         }
     }
 }
