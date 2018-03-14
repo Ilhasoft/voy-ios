@@ -64,6 +64,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             return slideMenuController
         } else {
             let navigation = UINavigationController(rootViewController: VOYLoginViewController())
+            
             return navigation
         }
     }

@@ -45,7 +45,8 @@ class VOYNotificationViewController: UIViewController, VOYNotificationContract {
         tableView.estimatedRowHeight = 100
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.register(UINib(nibName: VOYNotificationTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: VOYNotificationTableViewCell.identifier)
+        tableView.register(UINib(nibName: VOYNotificationTableViewCell.identifier, bundle: nil),
+                           forCellReuseIdentifier: VOYNotificationTableViewCell.identifier)
         presenter = VOYNotificationPresenter(dataSource: VOYNotificationRepository(reachability: VOYReachabilityImpl()), view: self)
         fetchNotifications()
     }
@@ -60,9 +61,10 @@ class VOYNotificationViewController: UIViewController, VOYNotificationContract {
     }
     
     func userTappedNotification(from report: VOYReport) {
-        guard let mainParentNavigation = (self.parent as? SlideMenuController)?.mainViewController?.parent else { return }
+        guard let mainParentNavigation = (self.parent as? SlideMenuController)?.mainViewController?.parent,
+            let mainNavigation = AppDelegate.mainNavigationController else { return }
         mainParentNavigation.closeRight()
-        AppDelegate.mainNavigationController?.pushViewController(VOYReportDetailViewController(report: report), animated: true)
+        mainNavigation.pushViewController(VOYReportDetailViewController(report: report), animated: true)
     }
 }
 

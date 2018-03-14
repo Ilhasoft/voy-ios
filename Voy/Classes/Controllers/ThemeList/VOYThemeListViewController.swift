@@ -36,10 +36,8 @@ class VOYThemeListViewController: UIViewController, NVActivityIndicatorViewable 
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        guard let presenter = self.presenter else { return }
-        presenter.updateNotifications()
+    override func viewDidAppear(_ animated: Bool) {
+        presenter?.updateNotifications()
     }
     
     override func viewDidLoad() {
