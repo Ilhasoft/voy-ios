@@ -18,9 +18,19 @@ class VOYAccountPresenter {
         self.view = view
     }
     
-    func updateUser(avatar: Int?, password: String?, completion: @escaping(Error?) -> Void) {
-        self.dataSource.updateUser(avatar: avatar, password: password) { (error) in
-            completion(error)
+    func updateUser(avatar: Int?, password: String?) {
+        if avatar != nil || password != nil {
+            view?.setupLoading(showLoading: true)
+            self.dataSource.updateUser(avatar: avatar, password: password) { (_) in
+                self.view?.setupLoading(showLoading: false)
+            }
+        }
+    }
+    
+    func logoutUser() {
+        VOYUser.deactiveUser()
+        let navigationController = UINavigationController(rootViewController: VOYLoginViewController())
+        UIViewController.switchRootViewController(navigationController, animated: true) {
         }
     }
 }

@@ -137,6 +137,7 @@
 		431F3594204DBE6B00E27A7F /* VOYThemeListTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436C992D2049850800915A13 /* VOYThemeListTests.swift */; };
 		431F3595204DBE7300E27A7F /* VOYAccountListTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43A0518C204DB62D00ABC0C9 /* VOYAccountListTests.swift */; };
 		431F359B204DC48F00E27A7F /* VOYCommentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 431F359A204DC48F00E27A7F /* VOYCommentTests.swift */; };
+		436960A7205858BE00A2BD67 /* VOYMockAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436960A6205858BE00A2BD67 /* VOYMockAccountViewController.swift */; };
 		436A088220501823001285FC /* VOYAddReportTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436A087E20501685001285FC /* VOYAddReportTests.swift */; };
 		436C9936204991ED00915A13 /* VOYReachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436C9935204991ED00915A13 /* VOYReachability.swift */; };
 		436C9938204992A200915A13 /* VOYReachabilityImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436C9937204992A200915A13 /* VOYReachabilityImpl.swift */; };
@@ -297,6 +298,7 @@
 		1E550C0C568807F52623837F /* Pods_Voy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Voy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		33E4711F114752F9A169B817 /* Pods_VoyUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VoyUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		431F359A204DC48F00E27A7F /* VOYCommentTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VOYCommentTests.swift; sourceTree = "<group>"; };
+		436960A6205858BE00A2BD67 /* VOYMockAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VOYMockAccountViewController.swift; sourceTree = "<group>"; };
 		436A087E20501685001285FC /* VOYAddReportTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VOYAddReportTests.swift; sourceTree = "<group>"; };
 		436C992D2049850800915A13 /* VOYThemeListTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = VOYThemeListTests.swift; path = VoyTests/Controller/ThemeList/VOYThemeListTests.swift; sourceTree = SOURCE_ROOT; };
 		436C9935204991ED00915A13 /* VOYReachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VOYReachability.swift; sourceTree = "<group>"; };
@@ -675,6 +677,7 @@
 		4376E7842051A7CA00F83FF5 /* Account */ = {
 			isa = PBXGroup;
 			children = (
+				43A0518C204DB62D00ABC0C9 /* VOYAccountListTests.swift */,
 				4376E7852051A7D400F83FF5 /* Mock */,
 			);
 			path = Account;
@@ -684,6 +687,7 @@
 			isa = PBXGroup;
 			children = (
 				4376E7862051A7EC00F83FF5 /* VOYMockAccountRepository.swift */,
+				436960A6205858BE00A2BD67 /* VOYMockAccountViewController.swift */,
 			);
 			path = Mock;
 			sourceTree = "<group>";
@@ -709,18 +713,9 @@
 			children = (
 				436A087D20501685001285FC /* AddReport */,
 				431F3599204DC47400E27A7F /* Comment */,
-				43A05186204D8C6D00ABC0C9 /* Account */,
 				01EBF72C2053058200D4EF10 /* VOYMockReachability.swift */,
 			);
 			path = Network;
-			sourceTree = "<group>";
-		};
-		43A05186204D8C6D00ABC0C9 /* Account */ = {
-			isa = PBXGroup;
-			children = (
-				43A0518C204DB62D00ABC0C9 /* VOYAccountListTests.swift */,
-			);
-			path = Account;
 			sourceTree = "<group>";
 		};
 		655BD1202020E4E500D69EA2 /* Utils */ = {
@@ -1646,6 +1641,7 @@
 				01C02E5E205729740060702B /* VOYConstant.swift in Sources */,
 				01C02E8B20572A3D0060702B /* VOYAddReportDataViewController.swift in Sources */,
 				01C02E57205729520060702B /* DataBindOnDemandTableView.swift in Sources */,
+				436960A7205858BE00A2BD67 /* VOYMockAccountViewController.swift in Sources */,
 				01C02E2B20571CC10060702B /* VOYReportListTests.swift in Sources */,
 				01C02E5A2057295B0060702B /* DataBindScrollViewPageSwift.swift in Sources */,
 				01C02E61205729840060702B /* VOYTextFieldView.swift in Sources */,
