@@ -487,6 +487,8 @@
 		01EBF7282052C35900D4EF10 /* Remote */ = {
 			isa = PBXGroup;
 			children = (
+				65D73B5E204046840055F1A8 /* VOYMediaDownloadManager.swift */,
+				65D73B4F203DF45E0055F1A8 /* VOYReportSyncManager.swift */,
 				436C994620499AE400915A13 /* Reachability */,
 			);
 			path = Remote;
@@ -805,8 +807,6 @@
 			isa = PBXGroup;
 			children = (
 				657C3F6D203768D90077F07B /* VOYLocationManager.swift */,
-				65D73B4F203DF45E0055F1A8 /* VOYReportSyncManager.swift */,
-				65D73B5E204046840055F1A8 /* VOYMediaDownloadManager.swift */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
