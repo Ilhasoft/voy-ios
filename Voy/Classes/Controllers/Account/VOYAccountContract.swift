@@ -10,4 +10,6 @@ import UIKit
 
 protocol VOYAccountContract: class {
     func save()
+    func btLogoutTapped()
+    func setupLoading(showLoading: Bool)
 }

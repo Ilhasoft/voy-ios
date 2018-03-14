@@ -26,6 +26,7 @@ class VOYReportDetailViewController: UIViewController {
     @IBOutlet weak var dataBindView: DataBindView!
     
     var report: VOYReport!
+    var presenter: VOYReportDetailPresenter!
     
     init(report: VOYReport) {
         self.report = report
@@ -51,6 +52,8 @@ class VOYReportDetailViewController: UIViewController {
         setupViewTags()
         setupColors()
         setupLocalization()
+
+        presenter = VOYReportDetailPresenter(view: self, report: self.report)
     }
     
     func setupViewTags() {
@@ -65,7 +68,7 @@ class VOYReportDetailViewController: UIViewController {
             image: #imageLiteral(resourceName: "combinedShape").withRenderingMode(.alwaysOriginal),
             style: .plain,
             target: self,
-            action: #selector(showActionSheet)
+            action: #selector(onItemOptionsTapped)
         )
         let barButtonItemIssue = UIBarButtonItem(
             image: #imageLiteral(resourceName: "issue").withRenderingMode(.alwaysOriginal),
@@ -76,7 +79,7 @@ class VOYReportDetailViewController: UIViewController {
         let barButtonItemShare = UIBarButtonItem(
             barButtonSystemItem: UIBarButtonSystemItem.action,
             target: self,
-            action: #selector(shareText)
+            action: #selector(btShareTapped)
         )
         let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
         imageView.kf.setImage(with: URL(string: VOYUser.activeUser()!.avatar))
@@ -136,28 +139,16 @@ class VOYReportDetailViewController: UIViewController {
         )
     }
     
-    @objc private func showActionSheet() {
-        let actionSheetViewController = VOYActionSheetViewController(
-            buttonNames: [localizedString(.editReport)],
-            icons: nil
-        )
-        actionSheetViewController.delegate = self
-        actionSheetViewController.show(true, inViewController: self)
+    @objc private func onItemOptionsTapped() {
+        presenter.onOptionsButtonTapped()
     }
     
-    @objc private func shareText() {
-        guard let reportId = self.report.id else { return }
-        // TODO: make this translatable
-        let textToShare = "Hello, I reported a problem in this region, take a look: https://voy-dev.ilhasoft.mobi/project/Ilhasoft/report/\(reportId)"
-        let activityViewController = UIActivityViewController(activityItems: [textToShare], applicationActivities: nil)
-        activityViewController.popoverPresentationController?.sourceView = self.view
-        // TODO: test this in a real device to see what we should remove
-        // activityViewController.excludedActivityTypes = [ UIActivityType.airDrop ]
-        present(activityViewController, animated: true, completion: nil)
+    @objc private func btShareTapped() {
+        presenter.onShareButtonTapped()
     }
     
     @IBAction func btCommentTapped(_ sender: Any) {
-        self.navigationController?.pushViewController(VOYCommentViewController(report: self.report), animated: true)
+        presenter.onCommentButtonTapped()
     }
 
     private func setupColors() {
@@ -175,6 +166,51 @@ class VOYReportDetailViewController: UIViewController {
 
     private func setupLocalization() {
         btComment.setTitle(localizedString(.comment), for: .normal)
+    }
+}
+
+extension VOYReportDetailViewController: VOYReportDetailContract {
+
+    func navigateToCommentsScreen(report: VOYReport) {
+        self.navigationController?.pushViewController(VOYCommentViewController(report: report), animated: true)
+    }
+    
+    func shareText(_ string: String) {
+        let activityViewController = UIActivityViewController(
+            activityItems: [string],
+            applicationActivities: nil
+        )
+        activityViewController.popoverPresentationController?.sourceView = self.view
+        present(activityViewController, animated: true, completion: nil)
+    }
+    
+    func showPictureScreen(image: UIImage) {
+        let dataSource = PhotosDataSource(photos: [Photo(image: image)])
+        let photosViewController = PhotosViewController(dataSource: dataSource)
+        present(photosViewController, animated: true, completion: nil)
+    }
+    
+    func showVideoScreen(videoURL: URL) {
+        let playerController = AVPlayerViewController()
+        playerController.player = AVPlayer(url: videoURL)
+        playerController.player!.play()
+        present(playerController, animated: true, completion: nil)
+    }
+    
+    func showActionSheet() {
+        let actionSheetViewController = VOYActionSheetViewController(
+            buttonNames: [localizedString(.editReport)],
+            icons: nil
+        )
+        actionSheetViewController.delegate = self
+        actionSheetViewController.show(true, inViewController: self)
+    }
+    
+    func navigateToEditReportScreen(report: VOYReport) {
+        self.navigationController?.pushViewController(
+            VOYAddReportAttachViewController(report: report),
+            animated: true
+        )
     }
 }
 
@@ -203,7 +239,7 @@ extension VOYReportDetailViewController: VOYAlertViewControllerDelegate {
         alertController.close()
         switch index {
         case 0:
-            self.navigationController?.pushViewController(VOYAddReportAttachViewController(), animated: true)
+            presenter.onTapEditReport()
         case 1:
             break
         default:
@@ -256,16 +292,10 @@ extension VOYReportDetailViewController: DataBindViewDelegate {
 
 extension VOYReportDetailViewController: VOYPlayMediaViewDelegate {
     func mediaDidTap(mediaView: VOYPlayMediaView) {
-        let dataSource = PhotosDataSource(photos: [Photo(image: mediaView.imgView.image)])
-        let photosViewController = PhotosViewController(dataSource: dataSource)
-        self.present(photosViewController, animated: true) {
-        }
+        presenter.onTapImage(image: mediaView.imgView.image)
     }
     
     func videoDidTap(mediaView: VOYPlayMediaView, url: URL, showInFullScreen: Bool) {
-        let playerController = AVPlayerViewController()
-        playerController.player = AVPlayer(url: url)
-        playerController.player!.play()
-        self.present(playerController, animated: true, completion: nil)
+        presenter.onTapVideo(videoURL: url)
     }
 }

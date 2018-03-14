@@ -104,16 +104,11 @@ class VOYAccountViewController: UIViewController, NVActivityIndicatorViewable, V
     }
     
     @objc func save() {
-        if newPassword != nil || newAvatar != nil {
-            self.startAnimating()
-            guard let presenter = presenter else { return }
-            presenter.updateUser(avatar: newAvatar, password: newPassword, completion: { (error) in
-                self.stopAnimating()
-                if error != nil {
-                    //TODO: Show Alert
-                }
-            })
-        }
+        presenter?.updateUser(avatar: newAvatar, password: newPassword)
+    }
+    
+    func setupLoading(showLoading: Bool) {
+        showLoading ? self.startAnimating() : self.stopAnimating()
     }
     
     @objc func showAvatars() {
@@ -149,10 +144,7 @@ class VOYAccountViewController: UIViewController, NVActivityIndicatorViewable, V
     }
     
     @IBAction func btLogoutTapped() {
-        VOYUser.deactiveUser()
-        let navigationController = UINavigationController(rootViewController: VOYLoginViewController())
-        UIViewController.switchRootViewController(navigationController, animated: true) {
-        }
+        presenter?.logoutUser()
     }
     
     @IBAction func btEditPasswordTapped() {
