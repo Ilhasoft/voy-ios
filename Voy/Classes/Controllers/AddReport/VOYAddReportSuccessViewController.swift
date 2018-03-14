@@ -36,14 +36,8 @@ class VOYAddReportSuccessViewController: UIViewController {
     }
     
     @IBAction func btCloseTapped() {
-        let navigationController = UINavigationController(rootViewController: VOYThemeListViewController())
-        let slideMenuController = SlideMenuController(
-            mainViewController: navigationController,
-            rightMenuViewController: VOYNotificationViewController()
-        )
-
-        UIViewController.switchRootViewController(slideMenuController, animated: true) { }
-        
+        guard let navigation = self.navigationController else { return }
+        navigation.setViewControllers([VOYThemeListViewController()], animated: true)
     }
     
     // MARK: - Localization
