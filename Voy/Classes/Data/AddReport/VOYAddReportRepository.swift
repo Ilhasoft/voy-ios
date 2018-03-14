@@ -13,6 +13,7 @@ class VOYAddReportRepository: VOYAddReportDataSource {
     let reachability: VOYReachability
     let networkClient = VOYNetworkClient(reachability: VOYReachabilityImpl())
     let mediaFileDataSource: VOYMediaFileDataSource
+    private let reportStorageManager = VOYReportStorageManager()
     
     init(reachability: VOYReachability, mediaFileDataSource: VOYMediaFileDataSource = VOYMediaFileRepository()) {
         self.reachability = reachability
@@ -53,7 +54,7 @@ class VOYAddReportRepository: VOYAddReportDataSource {
                 }
                 if let reportID = value["id"] as? Int {
                     self.mediaFileDataSource.delete(mediaFiles: report.removedMedias)
-                    VOYReportStorageManager.shared.removeFromStorageAfterSave(report: report)
+                    self.reportStorageManager.removeFromStorageAfterSave(report: report)
                     self.mediaFileDataSource.upload(
                         reportID: reportID,
                         cameraDataList: report.cameraDataList!,
@@ -68,7 +69,7 @@ class VOYAddReportRepository: VOYAddReportDataSource {
     }
 
     private func saveLocal(report: VOYReport, completion: @escaping (Error?, Int?) -> Void) {
-        VOYReportStorageManager.shared.addAsPendent(report: report)
+        reportStorageManager.addAsPendent(report: report)
         completion(nil, nil)
     }
 }

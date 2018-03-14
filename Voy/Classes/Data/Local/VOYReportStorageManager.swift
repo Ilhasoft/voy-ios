@@ -10,8 +10,6 @@ import UIKit
 
 class VOYReportStorageManager {
 
-    static let shared = VOYReportStorageManager()
-
     func getPendentReports() -> [[String: Any]] {
         if let reportsDictionary = UserDefaults.standard.getArchivedObject(key: "reports") as? [[String: Any]] {
             return reportsDictionary
