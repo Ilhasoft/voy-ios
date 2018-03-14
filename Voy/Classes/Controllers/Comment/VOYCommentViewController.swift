@@ -74,7 +74,6 @@ class VOYCommentViewController: UIViewController, VOYCommentContract {
         )
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 60
-        tableView.transform = CGAffineTransform(scaleX: 1, y: -1)
         tableView.refreshControl = nil
         tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 64, right: 0)
         tableView.onDemandTableViewDelegate = self
@@ -82,7 +81,8 @@ class VOYCommentViewController: UIViewController, VOYCommentContract {
             configuration: tableView.getConfiguration(),
             params: ["report": self.report.id!],
             paginationCount: 20,
-            reachability: VOYReachabilityImpl()
+            reachability: VOYReachabilityImpl(),
+            reversedList: true
         )
         tableView.loadContent()
     }
