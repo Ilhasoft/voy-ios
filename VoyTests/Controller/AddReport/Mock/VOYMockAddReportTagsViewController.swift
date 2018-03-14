@@ -6,8 +6,8 @@
 //  Copyright © 2018 Ilhasoft. All rights reserved.
 //
 
-import UIKit
 import TagListView
+import XCTest
 @testable import Voy
 
 class VOYMockAddReportTagsViewController: VOYAddReportTagsContract {
