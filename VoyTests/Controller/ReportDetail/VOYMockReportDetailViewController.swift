@@ -6,7 +6,8 @@
 //  Copyright © 2018 Ilhasoft. All rights reserved.
 //
 
-import UIKit
+import XCTest
+@testable import Voy
 
 class VOYMockReportDetailViewController: VOYReportDetailContract {
     
@@ -40,6 +41,4 @@ class VOYMockReportDetailViewController: VOYReportDetailContract {
     func navigateToEditReportScreen(report: VOYReport) {
         hasNavigatedToEditReportScreen = true
     }
-    
-
 }

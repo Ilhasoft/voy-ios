@@ -6,7 +6,8 @@
 //  Copyright © 2018 Ilhasoft. All rights reserved.
 //
 
-import UIKit
+import XCTest
+@testable import Voy
 
 class VOYMockReachability: VOYReachability {
     var mockNetworkAvailable = true
