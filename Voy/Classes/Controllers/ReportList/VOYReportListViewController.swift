@@ -19,6 +19,7 @@ class VOYReportListViewController: UIViewController, NVActivityIndicatorViewable
     @IBOutlet var tableViewNotApproved: DataBindOnDemandTableView!
     @IBOutlet var tableViews: [DataBindOnDemandTableView]!
     @IBOutlet var segmentedControl: UISegmentedControl!
+    @IBOutlet weak var messageLabel: UILabel!
     
     static var sharedInstance: VOYReportListViewController?
     var theme: VOYTheme!
@@ -44,7 +45,7 @@ class VOYReportListViewController: UIViewController, NVActivityIndicatorViewable
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: " ", style: .plain, target: nil, action: nil)
         setupTableView()
         setupLocalization()
-        
+        messageLabel.isHidden = true
         presenter = VOYReportListPresenter(view: self)
     }
     
@@ -115,16 +116,22 @@ class VOYReportListViewController: UIViewController, NVActivityIndicatorViewable
     @IBAction func segmentedControlTapped() {
         switch self.segmentedControl.selectedSegmentIndex {
         case 0:
+            messageLabel.text = "You have \(tableViewApproved.interactor!.objects.count) reports approved"
+            messageLabel.isHidden = false
             tableViewApproved.isHidden = false
             tableViewPending.isHidden = true
             tableViewNotApproved.isHidden = true
             showInfoViewIfNecessary(tableView: tableViewApproved)
         case 1:
+            messageLabel.text = "You have \(tableViewPending.interactor!.objects.count) reports pending"
+            messageLabel.isHidden = false
             tableViewApproved.isHidden = true
             tableViewPending.isHidden = false
             tableViewNotApproved.isHidden = true
             showInfoViewIfNecessary(tableView: tableViewPending)
         case 2:
+            messageLabel.text = "You have \(tableViewNotApproved.interactor!.objects.count) reports not approved"
+            messageLabel.isHidden = false
             tableViewApproved.isHidden = true
             tableViewPending.isHidden = true
             tableViewNotApproved.isHidden = false
