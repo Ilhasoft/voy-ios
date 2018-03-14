@@ -17,9 +17,10 @@ class VOYLoginTests: XCTestCase {
     let validPassword: String = "123456"
     let invalidUsername: String = "ohlarrip"
     let invalidPassword: String = "654321"
-    
+    var viewController: VOYLoginViewController!
     override func setUp() {
         super.setUp()
+        viewController = VOYLoginViewController()
         repositoryUnderTest = VOYMockLoginRepository()
         viewControllerUnderTest = VOYMockLoginViewController(redirectedUser: false, presentedAlert: false)
         presenterUnderTest = VOYLoginPresenter(dataSource: VOYMockLoginRepository(), view: viewControllerUnderTest)
@@ -34,6 +35,10 @@ class VOYLoginTests: XCTestCase {
     
     // MARK: - Data tests
     func testValidLogin() {
+        // TODO: Kept this to evaluate if it can be useful in the future
+//        viewController.presenter = VOYLoginPresenter(dataSource: VOYMockLoginRepository(), view: viewController)
+//        guard let presenter = viewController.presenter else { return }
+//        presenter.login(username: validUsername, password: validPassword)
         
         let expectations = expectation(description: "Expecting a VOYUser object not nil")
         repositoryUnderTest.login(username: validUsername, password: validPassword) { (user, error) in
@@ -45,6 +50,11 @@ class VOYLoginTests: XCTestCase {
     }
     
     func testInvalidLogin() {
+        // TODO: Kept this to evaluate if it can be useful in the future
+//        viewController.presenter = VOYLoginPresenter(dataSource: VOYMockLoginRepository(), view: viewController)
+//        guard let presenter = viewController.presenter else { return }
+//        presenter.login(username: invalidUsername, password: invalidPassword)
+        
         let expectations = expectation(description: "Expecting a nil value.")
         repositoryUnderTest.login(username: "username", password: "invalidPassword") { (user, error) in
             XCTAssertNil(user, "Nil user")

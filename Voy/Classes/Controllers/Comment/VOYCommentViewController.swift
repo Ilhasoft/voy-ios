@@ -20,6 +20,7 @@ class VOYCommentViewController: UIViewController, VOYCommentContract {
     
     var report: VOYReport!
     var presenter: VOYCommentPresenter?
+    var activeCellId: Int?
     
     init(report: VOYReport) {
         self.report = report
@@ -186,7 +187,8 @@ extension VOYCommentViewController: ISOnDemandTableViewDelegate {
 }
 
 extension VOYCommentViewController: VOYCommentTableViewCellDelegate {
-    func btOptionsDidTap(cell: VOYCommentTableViewCell) {
+    func btOptionsDidTap(commentId: Int) {
+        self.activeCellId = commentId
         let actionSheetViewController = VOYActionSheetViewController(
             buttonNames: [localizedString(.remove)],
             icons: nil
@@ -198,9 +200,16 @@ extension VOYCommentViewController: VOYCommentTableViewCellDelegate {
 
 extension VOYCommentViewController: VOYActionSheetViewControllerDelegate {
     func cancelButtonDidTap(actionSheetViewController: VOYActionSheetViewController) {
+        self.activeCellId = nil
         actionSheetViewController.close()
     }
+    
     func buttonDidTap(actionSheetViewController: VOYActionSheetViewController, button: UIButton, index: Int) {
-        print("remove")
+        guard let presenter = self.presenter, let id = self.activeCellId else { return }
+        actionSheetViewController.close()
+        presenter.remove(commentId: id) { (_) in
+            self.activeCellId = nil
+            self.tableView.interactor?.refreshAllContent()
+        }
     }
 }

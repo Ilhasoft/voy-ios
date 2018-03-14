@@ -28,4 +28,10 @@ class VOYCommentPresenter {
         }
     }
     
+    func remove(commentId: Int, completion: @escaping (_ error: Error?) -> Void) {
+        dataSource.delete(commentId: commentId) { (error) in
+            completion(error)
+        }
+    }
+    
 }

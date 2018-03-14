@@ -16,6 +16,7 @@ import NVActivityIndicatorView
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    static var mainNavigationController: UINavigationController?
 
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
@@ -55,6 +56,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func loadRootScreen() -> UIViewController {
         if VOYUser.activeUser() != nil {
             let navigationController = UINavigationController(rootViewController: VOYThemeListViewController())
+            AppDelegate.mainNavigationController = navigationController
             let slideMenuController = SlideMenuController(
                 mainViewController: navigationController,
                 rightMenuViewController: VOYNotificationViewController()
@@ -62,6 +64,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             return slideMenuController
         } else {
             let navigation = UINavigationController(rootViewController: VOYLoginViewController())
+            
             return navigation
         }
     }

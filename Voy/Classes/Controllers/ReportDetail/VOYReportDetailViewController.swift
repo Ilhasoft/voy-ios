@@ -87,7 +87,7 @@ class VOYReportDetailViewController: UIViewController {
         imageView.widthAnchor.constraint(equalToConstant: 32).isActive = true
         imageView.heightAnchor.constraint(equalToConstant: 31).isActive = true
         
-        self.navigationItem.titleView = imageView
+        self.navigationItem.title = localizedString(.report)
         
         var buttonItens = [barButtonItemOptions, barButtonItemIssue]
         

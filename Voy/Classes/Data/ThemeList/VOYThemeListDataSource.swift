@@ -11,4 +11,5 @@ import UIKit
 protocol VOYThemeListDataSource {
     func getMyProjects(completion: @escaping(_ projects: [VOYProject], _ error: Error?) -> Void)
     func cacheDataFrom(url: String, parameters:inout [String: Any])
+    func getNotifications(completion: @escaping ([VOYNotification]?) -> Void)
 }

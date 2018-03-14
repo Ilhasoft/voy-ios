@@ -29,4 +29,8 @@ extension UIViewController {
             window!.rootViewController = rootViewController
         }
     }
+    
+    static public func rootViewController() -> UIViewController {
+        return UIApplication.shared.keyWindow!.rootViewController!
+    }
 }

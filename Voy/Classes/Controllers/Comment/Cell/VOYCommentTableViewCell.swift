@@ -11,7 +11,7 @@ import ISOnDemandTableView
 import DataBindSwift
 
 protocol VOYCommentTableViewCellDelegate: class {
-    func btOptionsDidTap(cell: VOYCommentTableViewCell)
+    func btOptionsDidTap(commentId: Int)
 }
 
 class VOYCommentTableViewCell: DataBindOnDemandTableViewCell {
@@ -21,6 +21,8 @@ class VOYCommentTableViewCell: DataBindOnDemandTableViewCell {
     @IBOutlet weak var lbDate: DataBindLabel!
     @IBOutlet weak var lbComment: DataBindLabel!
     @IBOutlet weak var btOptions: UIButton!
+    
+    var cellJSON: [String: Any]?
     
     weak var delegate: VOYCommentTableViewCellDelegate?
     
@@ -38,12 +40,23 @@ class VOYCommentTableViewCell: DataBindOnDemandTableViewCell {
     }
  
     @IBAction func btOptionsTapped(_ sender: Any) {
-        delegate?.btOptionsDidTap(cell: self)
+        guard let delegate = self.delegate, let commentId = cellJSON!["id"] as? Int else { return }
+        delegate.btOptionsDidTap(commentId: commentId)
     }
 }
 
 extension VOYCommentTableViewCell: DataBindViewDelegate {
     func didFillAllComponents(JSON: [String: Any]) {
+        self.cellJSON = JSON
+        var activeUserName = ""
+        if let username = VOYUser.activeUser()!.username {
+            activeUserName = username
+        }
+        if let username = self.lbName.text, username != activeUserName {
+            self.btOptions.isHidden = true
+        } else {
+            self.btOptions.isHidden = false
+        }
     }
 
     func willFill(component: Any, value: Any) -> Any? {

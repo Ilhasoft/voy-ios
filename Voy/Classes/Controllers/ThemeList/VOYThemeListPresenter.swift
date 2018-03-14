@@ -12,7 +12,6 @@ class VOYThemeListPresenter {
     private weak var view: VOYThemeListContract?
     private var dataSource: VOYThemeListDataSource
     private var userJustLogged: Bool
-
     var projects = [VOYProject]()
 
     init(view: VOYThemeListContract, dataSource: VOYThemeListDataSource, userJustLogged: Bool) {
@@ -32,6 +31,16 @@ class VOYThemeListPresenter {
         }
     }
 
+    func updateNotifications() {
+        dataSource.getNotifications { (notifications) in
+            if notifications != nil, let notificationListUpdated = notifications {
+                if notificationListUpdated.count > 0 {
+                    VOYThemeListViewController.badgeView.isHidden = false
+                }
+            }
+        }
+    }
+    
     // MARK: - Private methods
 
     private func getProjects() {

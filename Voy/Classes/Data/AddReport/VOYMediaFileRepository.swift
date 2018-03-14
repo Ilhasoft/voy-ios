@@ -51,6 +51,7 @@ class VOYMediaFileRepository: VOYMediaFileDataSource {
             
             if reachability.hasNetwork() {
                 isUploading = true
+                guard let auth = VOYUser.activeUser()?.authToken else { return }
                 Alamofire.upload(
                     multipartFormData: { multipartFormData in
                         multipartFormData.append("\(report_id)".data(using: String.Encoding.utf8)!, withName: "report_id")
@@ -62,7 +63,7 @@ class VOYMediaFileRepository: VOYMediaFileDataSource {
                 },
                     to: VOYConstant.API.URL + "report-files/",
                     method: .post,
-                    headers: ["Authorization": "Token " + VOYUser.activeUser()!.authToken],
+                    headers: ["Authorization": "Token \(auth)"],
                     encodingCompletion: { encodingResult in
                         self.isUploading = false
                         switch encodingResult {

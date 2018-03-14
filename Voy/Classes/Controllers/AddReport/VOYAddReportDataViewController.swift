@@ -97,6 +97,7 @@ class VOYAddReportDataViewController: UIViewController {
             self.tbViewLinks.isHidden = true
             self.txtFieldLink.isHidden = true
             self.btAddLink.isHidden = true
+            self.lbAddLink.isHidden = true
         }
     }
     

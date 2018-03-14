@@ -19,6 +19,7 @@ class VOYNetworkClient {
         case get
         case post
         case put
+        case delete
 
         fileprivate func toHttpMethod() -> HTTPMethod {
             switch self {
@@ -28,6 +29,8 @@ class VOYNetworkClient {
                 return HTTPMethod.post
             case .put:
                 return HTTPMethod.put
+            case .delete:
+                return HTTPMethod.delete
             }
         }
     }
@@ -127,10 +130,15 @@ class VOYNetworkClient {
         request.responseJSON { (dataResponse: DataResponse<Any>) in
             self.pendingRequests.removeRequest(request: request)
             if shouldCacheResponse { self.cacheReponse(dataResponse: dataResponse) }
-            if let value = dataResponse.value as? [String: Any] {
-                completion(value, nil, dataResponse.request!)
-            } else if let error = dataResponse.result.error {
+            switch dataResponse.result {
+            case .failure(let error):
                 completion(nil, error, dataResponse.request!)
+            case .success(let value):
+                guard let valueDict = value as? [String: Any] else {
+                    completion(nil, nil, dataResponse.request!)
+                    return
+                }
+                completion(valueDict, nil, dataResponse.request!)
             }
         }
         return request.request!
