@@ -144,10 +144,7 @@ class VOYAccountViewController: UIViewController, NVActivityIndicatorViewable, V
     }
     
     @IBAction func btLogoutTapped() {
-        VOYUser.deactiveUser()
-        let navigationController = UINavigationController(rootViewController: VOYLoginViewController())
-        UIViewController.switchRootViewController(navigationController, animated: true) {
-        }
+        presenter?.logoutUser()
     }
     
     @IBAction func btEditPasswordTapped() {

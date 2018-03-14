@@ -26,4 +26,11 @@ class VOYAccountPresenter {
             }
         }
     }
+    
+    func logoutUser() {
+        VOYUser.deactiveUser()
+        let navigationController = UINavigationController(rootViewController: VOYLoginViewController())
+        UIViewController.switchRootViewController(navigationController, animated: true) {
+        }
+    }
 }

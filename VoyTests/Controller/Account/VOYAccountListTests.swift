@@ -28,12 +28,20 @@ class VOYAccountListTests: XCTestCase {
         super.tearDown()
     }
     
-    // MARK: - Data test
     func testUpdateUser() {
         let expectations = expectation(description: "Get no errors")
         presenterUnderTest.updateUser(avatar: newAvatar, password: newPassword)
         XCTAssert(viewControllerUnderTest.enabledDisabledLoading == 2)
         XCTAssert(viewControllerUnderTest.didSaveAccount)
+        expectations.fulfill()
+        waitForExpectations(timeout: 10, handler: nil)
+    }
+    
+    func testLogout() {
+        let expectations = expectation(description: "Unactivated user")
+        viewControllerUnderTest.btLogoutTapped()
+        presenterUnderTest.logoutUser()
+        XCTAssert(viewControllerUnderTest.userTappedLogout)
         expectations.fulfill()
         waitForExpectations(timeout: 10, handler: nil)
     }

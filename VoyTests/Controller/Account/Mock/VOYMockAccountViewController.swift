@@ -11,6 +11,7 @@ import UIKit
 
 class VOYMockAccountViewController: VOYAccountContract {
     
+    var userTappedLogout: Bool = false
     var didSaveAccount: Bool = false
     var enabledDisabledLoading: Int = 0
     
@@ -23,5 +24,9 @@ class VOYMockAccountViewController: VOYAccountContract {
     
     func save() {
         didSaveAccount = true
+    }
+    
+    func btLogoutTapped() {
+        userTappedLogout = true
     }
 }
