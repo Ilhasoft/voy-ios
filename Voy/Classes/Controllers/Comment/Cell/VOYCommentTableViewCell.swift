@@ -48,7 +48,11 @@ class VOYCommentTableViewCell: DataBindOnDemandTableViewCell {
 extension VOYCommentTableViewCell: DataBindViewDelegate {
     func didFillAllComponents(JSON: [String: Any]) {
         self.cellJSON = JSON
-        if let username = self.lbName.text, username != VOYUser.activeUser()!.username {
+        var activeUserName = ""
+        if let username = VOYUser.activeUser()!.username {
+            activeUserName = username
+        }
+        if let username = self.lbName.text, username != activeUserName {
             self.btOptions.isHidden = true
         } else {
             self.btOptions.isHidden = false
