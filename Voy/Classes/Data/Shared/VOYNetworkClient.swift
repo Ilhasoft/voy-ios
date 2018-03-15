@@ -123,7 +123,6 @@ class VOYNetworkClient {
             url,
             method: httpMethod.toHttpMethod(),
             parameters: parameters,
-            encoding: JSONEncoding.default,
             headers: headers
         )
         pendingRequests.append(request)
