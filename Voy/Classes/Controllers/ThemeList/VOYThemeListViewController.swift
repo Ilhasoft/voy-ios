@@ -16,30 +16,30 @@ import Kingfisher
 class VOYThemeListViewController: UIViewController, NVActivityIndicatorViewable {
     @IBOutlet weak var lbThemesCount: UILabel!
     @IBOutlet weak var tbView: DataBindOnDemandTableView!
-    
+
     static var badgeView = UIView()
     var presenter: VOYThemeListPresenter?
     var userJustLogged = false
     var selectedReportView: VOYSelectedReportView!
     var dropDown = DropDown()
-    
+
     init(userJustLogged: Bool) {
         self.userJustLogged = userJustLogged
         super.init(nibName: String(describing: type(of: self)), bundle: nil)
     }
-    
+
     init() {
         super.init(nibName: String(describing: type(of: self)), bundle: nil)
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     override func viewDidAppear(_ animated: Bool) {
         presenter?.updateNotifications()
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         guard let navigation = self.navigationController else { return }
@@ -60,7 +60,7 @@ class VOYThemeListViewController: UIViewController, NVActivityIndicatorViewable 
         )
         navigation.setNavigationBarHidden(false, animated: true)
     }
-    
+
     @objc func addLeftBarButtonItem() {
         let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
         imageView.widthAnchor.constraint(equalToConstant: 30).isActive = true
@@ -77,33 +77,30 @@ class VOYThemeListViewController: UIViewController, NVActivityIndicatorViewable 
 
     func setupButtonItems() {
         addLeftBarButtonItem()
-        
         let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(openNotifications))
-        
         let customView = UIImageView(image: #imageLiteral(resourceName: "bell"))
-        
         VOYThemeListViewController.badgeView = UIView(frame: CGRect(x: customView.frame.width - 9, y: 0, width: 9, height: 9))
         VOYThemeListViewController.badgeView.backgroundColor = UIColor(displayP3Red: 222/255, green: 72/255, blue: 107/255, alpha: 1)
         VOYThemeListViewController.badgeView.clipsToBounds = true
         VOYThemeListViewController.badgeView.layer.cornerRadius = VOYThemeListViewController.badgeView.frame.height/2
         VOYThemeListViewController.badgeView.isHidden = true
-        
+
         customView.addGestureRecognizer(gestureRecognizer)
         customView.addSubview(VOYThemeListViewController.badgeView)
 
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: customView)
     }
-    
+
     @objc func openAccount() {
         guard let navigation = self.navigationController else { return }
         navigation.pushViewController(VOYAccountViewController(), animated: true)
     }
-    
+
     @objc func openNotifications() {
         guard let slideMenu = self.slideMenuController() else { return }
         slideMenu.openRight()
     }
-    
+
     func loadThemesFilteredByProject(project: VOYProject) {
         VOYProject.setActiveProject(project: project)
         tbView.interactor = DataBindOnDemandTableViewInteractor(
@@ -114,7 +111,7 @@ class VOYThemeListViewController: UIViewController, NVActivityIndicatorViewable 
         )
         tbView.loadContent()
     }
-    
+
     func setupTableView(filterThemesByProject project: VOYProject) {
         tbView.separatorColor = UIColor.clear
         tbView.register(
@@ -124,9 +121,9 @@ class VOYThemeListViewController: UIViewController, NVActivityIndicatorViewable 
         tbView.onDemandTableViewDelegate = self
         loadThemesFilteredByProject(project: project)
     }
-    
+
     // MARK: - Private methods
-    
+
     fileprivate func setupDropDown(projects: [VOYProject]) {
         selectedReportView = VOYSelectedReportView(frame: CGRect(x: 0, y: 0, width: 180, height: 40))
         selectedReportView.widthAnchor.constraint(equalToConstant: 180)
@@ -148,7 +145,6 @@ class VOYThemeListViewController: UIViewController, NVActivityIndicatorViewable 
 }
 
 extension VOYThemeListViewController: VOYThemeListContract {
-
     func updateProjectsList(projects: [VOYProject]) {
         if !projects.isEmpty {
             let selectedReport = projects.first!
@@ -157,7 +153,7 @@ extension VOYThemeListViewController: VOYThemeListContract {
             self.selectedReportView.lbTitle.text = selectedReport.name
         }
     }
-    
+
     func navigateToReportList() {
         self.navigationController?.pushViewController(VOYReportListViewController(), animated: true)
     }
@@ -167,17 +163,21 @@ extension VOYThemeListViewController: ISOnDemandTableViewDelegate {
     func onDemandTableView(_ tableView: ISOnDemandTableView, reuseIdentifierForCellAt indexPath: IndexPath) -> String {
         return VOYThemeTableViewCell.nibName
     }
+
     func onDemandTableView(_ tableView: ISOnDemandTableView, setupCell cell: UITableViewCell, at indexPath: IndexPath) {
     }
+
     func onDemandTableView(_ tableView: ISOnDemandTableView, onContentLoad lastData: [Any]?, withError error: Error?) {
         self.lbThemesCount.text = localizedString(
             .themesListHeader,
             andNumber: tableView.interactor!.objects.count
         )
     }
+
     func onDemandTableView(_ tableView: ISOnDemandTableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 103
     }
+
     func onDemandTableView(_ tableView: ISOnDemandTableView, didSelectRowAt indexPath: IndexPath) {
         if let cell = tableView.cellForRow(at: indexPath) as? VOYThemeTableViewCell {
             presenter?.onThemeSelected(object: cell.object.JSON)
