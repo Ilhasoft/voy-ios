@@ -14,6 +14,7 @@ class VOYNetworkClient {
     
     private var pendingRequests: [DataRequest] = []
     private let reachability: VOYReachability
+    private let reportStoreManager = VOYReportStorageManager()
 
     enum VOYHTTPMethod {
         case get
@@ -191,7 +192,7 @@ class VOYNetworkClient {
                 }
                 prepareForHandleData(objects, completion: { (objects) in
                     if urlSuffix == "reports" && parameters?["status"] as? Int == 2 {
-                        let pendentReportsJSONList = VOYReportStorageManager.shared.getPendentReports()
+                        let pendentReportsJSONList = self.reportStoreManager.getPendentReports()
                         guard !pendentReportsJSONList.isEmpty else {
                             completion(objects, nil)
                             return

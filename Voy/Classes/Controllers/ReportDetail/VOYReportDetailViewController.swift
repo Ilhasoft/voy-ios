@@ -124,9 +124,8 @@ class VOYReportDetailViewController: UIViewController {
         mediaPlayView.setup(media: media)
         mediaPlayView.delegate = self
         scrollViewMedias.addCustomView(mediaPlayView)
-        
     }
-    
+
     @objc func removePlayer() {
         UIView.transition(
             with: self.view,
@@ -138,7 +137,7 @@ class VOYReportDetailViewController: UIViewController {
             completion: nil
         )
     }
-    
+
     @objc private func onItemOptionsTapped() {
         presenter.onOptionsButtonTapped()
     }

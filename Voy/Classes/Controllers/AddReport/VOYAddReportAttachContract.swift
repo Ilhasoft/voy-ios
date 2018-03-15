@@ -8,8 +8,9 @@
 
 import UIKit
 
-protocol VOYAddReportAttachContract {
-    func addNextButton()
-    func loadFromReport()
-    func openNextController()
+protocol VOYAddReportAttachContract: class {
+    func navigateToNextScreen()
+    func stopAnimating()
+    func showGpsPermissionError()
+    func showOutsideThemeBoundsError()
 }

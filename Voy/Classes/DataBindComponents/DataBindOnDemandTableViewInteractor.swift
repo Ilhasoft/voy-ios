@@ -40,13 +40,7 @@ public class DataBindOnDemandTableViewInteractor: ISOnDemandTableViewInteractor 
         } else {
             headers["Cache-Control"] = "public, max-age=86400, max-stale=120"
         }
-        
-        var url = VOYConstant.API.URL
-        
-        if apiURL != nil {
-            url = apiURL!
-        }
-        
+
         if let params = self.params {
             parameters = params
         }
