@@ -165,7 +165,13 @@ extension VOYAddReportAttachViewController: VOYAddMediaViewDelegate {
             if let index = index {
                 self.mediaList.remove(at: index)
             }
-            report?.removedMedias?.append(media)
+            if let report = self.report {
+                if report.removedMedias == nil {
+                    report.removedMedias = [media]
+                } else {
+                    report.removedMedias!.append(media)
+                }
+            }
         }
     }
 }
