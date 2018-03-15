@@ -46,7 +46,7 @@ class VOYReportListViewController: UIViewController, NVActivityIndicatorViewable
         setupTableView()
         setupLocalization()
         messageLabel.isHidden = true
-        presenter = VOYReportListPresenter(view: self)
+        presenter = VOYReportListPresenter(view: self, dataSource: VOYReportListRepository())
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -59,16 +59,16 @@ class VOYReportListViewController: UIViewController, NVActivityIndicatorViewable
     }
     
     func setupTableView() {
-        var status = 0
+        var status: VOYReportStatus = .approved
         startAnimating()
         for tableView in self.tableViews {
             
             if tableView == self.tableViewApproved {
-                status = VOYReportStatus.approved.rawValue
+                status = VOYReportStatus.approved
             } else if tableView == self.tableViewPending {
-                status = VOYReportStatus.pendent.rawValue
+                status = VOYReportStatus.pendent
             } else if tableView == self.tableViewNotApproved {
-                status = VOYReportStatus.notApproved.rawValue
+                status = VOYReportStatus.notApproved
             }
             
             tableView.separatorColor = UIColor.clear
@@ -79,10 +79,13 @@ class VOYReportListViewController: UIViewController, NVActivityIndicatorViewable
             tableView.onDemandTableViewDelegate = self
             tableView.interactor = DataBindOnDemandTableViewInteractor(
                 configuration: tableViewApproved.getConfiguration(),
-                params: ["theme": self.theme.id, "status": status, "mapper": VOYUser.activeUser()!.id],
+                params: ["theme": self.theme.id, "status": status.rawValue, "mapper": VOYUser.activeUser()!.id],
                 paginationCount: VOYConstant.API.paginationSize,
                 reachability: VOYReachabilityImpl()
             )
+            
+            presenter.countReports(themeId: self.theme.id, status: status, mapper: VOYUser.activeUser()!.id)
+            
             tableView.loadContent()
         }
         

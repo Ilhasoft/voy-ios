@@ -11,7 +11,7 @@ import Alamofire
 import ObjectMapper
 
 public class DataBindOnDemandTableViewInteractor: ISOnDemandTableViewInteractor {
-
+    
     private var endPoint: String!
     private var keyPath: String?
     private var apiURL: String?
@@ -20,7 +20,7 @@ public class DataBindOnDemandTableViewInteractor: ISOnDemandTableViewInteractor 
     private var reachability: VOYReachability
     private let networkClient = VOYNetworkClient(reachability: VOYReachabilityImpl())
     
-  init(configuration: DataBindRestConfiguration, params: [String: Any]? = nil, paginationCount: Int, reachability: VOYReachability, reversedList: Bool = false) {
+    init(configuration: DataBindRestConfiguration, params: [String: Any]? = nil, paginationCount: Int, reachability: VOYReachability, reversedList: Bool = false) {
         self.endPoint = configuration.endPoint
         self.keyPath = configuration.keyPath
         self.apiURL = configuration.apiURL
@@ -32,31 +32,31 @@ public class DataBindOnDemandTableViewInteractor: ISOnDemandTableViewInteractor 
     
     override public func fetchObjects(forPage page: UInt,
                                       with handler: (([Any]?, Error?) -> Void)!) {
-
+        
         var parameters = [String: Any]()
         var headers = [String: String]()
-
+        
         if !reachability.hasNetwork() {
             headers["Cache-Control"] = "public, only-if-cached, max-stale=86400"
         } else {
             headers["Cache-Control"] = "public, max-age=86400, max-stale=120"
         }
-
+        
         var url = VOYConstant.API.URL
-
+        
         if apiURL != nil {
             url = apiURL!
         }
-
+        
         if let params = self.params {
             parameters = params
         }
-
+        
         self.currentPage = page == 0 ? 1 : page
-
+        
         parameters["page_size"] = self.paginationCount
         parameters["page"] = self.currentPage
-
+        
         networkClient.requestKeyPathDictionary(
             urlSuffix: endPoint,
             httpMethod: .get,

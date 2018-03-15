@@ -11,9 +11,14 @@ import UIKit
 class VOYReportListPresenter {
     
     private weak var view: VOYReportListContract?
+    private var dataSource: VOYReportListDataSource!
+    private var countApprovedReports: Int?
+    private var countPendingReports: Int?
+    private var countNotApprovedReports: Int?
     
-    init(view: VOYReportListContract) {
+    init(view: VOYReportListContract, dataSource: VOYReportListDataSource) {
         self.view = view
+        self.dataSource = dataSource
     }
     
     func onReportSelected(object: [String: Any]) {
@@ -21,5 +26,21 @@ class VOYReportListPresenter {
             view?.navigateToReportDetails(report: report)
         }
     }
-
+    
+    func countReports(themeId: Int, status: VOYReportStatus, mapper: Int) {
+        switch status {
+            case .approved:
+                dataSource.getReportCount(themeId: themeId, status: status, mapper: mapper) { (count, error) in
+                    self.countApprovedReports = count
+                }
+            case .pendent:
+                dataSource.getReportCount(themeId: themeId, status: status, mapper: mapper) { (count, error) in
+                    self.countPendingReports = count
+                }
+            case .notApproved:
+                dataSource.getReportCount(themeId: themeId, status: status, mapper: mapper) { (count, error) in
+                    self.countNotApprovedReports = count
+                }
+        }
+    }
 }
