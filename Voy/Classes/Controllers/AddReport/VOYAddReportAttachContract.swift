@@ -10,4 +10,7 @@ import UIKit
 
 protocol VOYAddReportAttachContract: class {
     func navigateToNextScreen()
+    func stopAnimating()
+    func showGpsPermissionError()
+    func showOutsideThemeBoundsError()
 }

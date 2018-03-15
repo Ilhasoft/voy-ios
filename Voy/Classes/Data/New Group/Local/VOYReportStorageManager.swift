@@ -47,7 +47,7 @@ class VOYReportStorageManager {
         let reportID = Int(String.getIdentifier())
         report.id = reportID
         pendentReports.append(report.toJSON())
-        
+
         let encodedObject = NSKeyedArchiver.archivedData(withRootObject: pendentReports)
         UserDefaults.standard.set(encodedObject, forKey: "reports")
         UserDefaults.standard.synchronize()

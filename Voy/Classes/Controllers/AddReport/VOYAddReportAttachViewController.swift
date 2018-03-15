@@ -16,66 +16,55 @@ class VOYAddReportAttachViewController: UIViewController, NVActivityIndicatorVie
     @IBOutlet var mediaViews: [VOYAddMediaView]!
     @IBOutlet var lbTitle: UILabel!
 
-    var locationManager: VOYLocationManager!
-    var theme: VOYTheme!
     var imagePickerController: UIImagePickerController!
     var actionSheetController: VOYActionSheetViewController!
-    
+
     var report: VOYReport?
-    var removedMedias = [VOYMedia]()
-    
+//    var removedMedias = [VOYMedia]()
     var presenter: VOYAddReportAttachPresenter!
-    
+
     var mediaList = [VOYMedia]() {
         didSet {
             self.navigationItem.rightBarButtonItem!.isEnabled = !mediaList.isEmpty
         }
     }
-    
+
     var cameraDataList = [VOYCameraData]() {
         didSet {
             self.navigationItem.rightBarButtonItem!.isEnabled = !cameraDataList.isEmpty
         }
     }
+
     var cameraData: VOYCameraData! {
         didSet {
             cameraDataList.append(cameraData)
             setupMediaView()
         }
     }
-    
+
     var tappedMediaView: VOYAddMediaView!
-    
-    init(report: VOYReport) {
+
+    init(report: VOYReport? = nil) {
         self.report = report
         super.init(nibName: String(describing: type(of: self)), bundle: nil)
     }
-    
-    init() {
-        super.init(nibName: String(describing: type(of: self)), bundle: nil)
-    }
-    
+
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         edgesForExtendedLayout = []
-        
-        self.theme = VOYTheme.activeTheme()!
-        locationManager = VOYLocationManager(delegate: self)
-        locationManager.getCurrentLocation()
-        self.startAnimating()
-
-        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: " ", style: .plain, target: nil, action: nil)
-        self.navigationController?.setNavigationBarHidden(false, animated: false)
+        startAnimating()
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: " ", style: .plain, target: nil, action: nil)
+        navigationController?.setNavigationBarHidden(false, animated: false)
         setupMediaViewDelegate()
         addNextButton()
         loadFromReport()
         setupLocalization()
         
-        presenter = VOYAddReportAttachPresenter(view: self)
+        presenter = VOYAddReportAttachPresenter(view: self, report: self.report)
     }
 
     func loadFromReport() {
@@ -96,7 +85,7 @@ class VOYAddReportAttachViewController: UIViewController, NVActivityIndicatorVie
         )
         self.navigationItem.rightBarButtonItem!.isEnabled = false
     }
-    
+
     @objc func onTapNextButton() {
         presenter.onNextButtonTapped()
     }
@@ -106,13 +95,13 @@ class VOYAddReportAttachViewController: UIViewController, NVActivityIndicatorVie
             mediaView.delegate = self
         }
     }
-    
+
     func setupMediaView() {
         tappedMediaView.setupWithMedia(cameraData: self.cameraData)
     }
-    
+
     // MARK: - Localization
-    
+
     private func setupLocalization() {
         self.title = localizedString(.addReport)
         lbTitle.text = localizedString(.addPhotosAndVideos)
@@ -130,6 +119,26 @@ extension VOYAddReportAttachViewController: VOYAddReportAttachContract {
             addReportDataViewController = VOYAddReportDataViewController(cameraDataList: self.cameraDataList)
         }
         self.navigationController?.pushViewController(addReportDataViewController, animated: true)
+    }
+    
+    func showGpsPermissionError() {
+        let alertViewController = VOYAlertViewController(
+            title: localizedString(.alert),
+            message: localizedString(.outsideThemesBounds)
+        )
+        alertViewController.view.tag = 1
+        alertViewController.delegate = self
+        alertViewController.show(true, inViewController: self)
+    }
+    
+    func showOutsideThemeBoundsError() {
+        let alertViewController = VOYAlertViewController(
+            title: localizedString(.alert),
+            message: localizedString(.outsideThemesBounds)
+        )
+        alertViewController.view.tag = 1
+        alertViewController.delegate = self
+        alertViewController.show(true, inViewController: self)
     }
 }
 
@@ -155,9 +164,8 @@ extension VOYAddReportAttachViewController: VOYAddMediaViewDelegate {
             let index = self.mediaList.index { ($0.id == media.id) }
             if let index = index {
                 self.mediaList.remove(at: index)
-                self.removedMedias.append(media)
             }
-            self.report!.removedMedias = self.removedMedias
+            report?.removedMedias?.append(media)
         }
     }
 }
@@ -176,57 +184,10 @@ extension VOYAddReportAttachViewController: VOYActionSheetViewControllerDelegate
         } else {
             imagePickerController.mediaTypes = [kUTTypeImage as String]
         }
-        self.present(imagePickerController, animated: true) {
-            
-        }
+        present(imagePickerController, animated: true, completion: nil)
     }
     func cancelButtonDidTap(actionSheetViewController: VOYActionSheetViewController) {
         actionSheetViewController.close()
-    }
-}
-
-extension VOYAddReportAttachViewController: VOYLocationManagerDelegate {
-    func didGetUserLocation(latitude: Float, longitude: Float, error: Error?) {
-        self.stopAnimating()
-        let myLocation = CLLocationCoordinate2D(
-            latitude: CLLocationDegrees(latitude),
-            longitude: CLLocationDegrees(longitude)
-        )
-
-        var loctionCoordinate2dList = [CLLocationCoordinate2D]()
-        for point in theme.bounds {
-            let locationCoordinate2D = CLLocationCoordinate2D(latitude: point[0], longitude: point[1])
-            loctionCoordinate2dList.append(locationCoordinate2D)
-        }
-        
-        let statePolygonRenderer = MKPolygonRenderer(polygon:
-            MKPolygon(coordinates: loctionCoordinate2dList, count: loctionCoordinate2dList.count)
-        )
-        let testMapPoint: MKMapPoint = MKMapPointForCoordinate(myLocation)
-        let statePolygonRenderedPoint: CGPoint = statePolygonRenderer.point(for: testMapPoint)
-        let intersects: Bool = statePolygonRenderer.path.contains(statePolygonRenderedPoint)
-        
-        if !intersects {
-            let alertViewController = VOYAlertViewController(
-                title: localizedString(.alert),
-                message: localizedString(.outsideThemesBounds)
-            )
-            alertViewController.view.tag = 1
-            alertViewController.delegate = self
-            alertViewController.show(true, inViewController: self)
-        }
- 
-    }
-    
-    func userDidntGivePermission() {
-        self.stopAnimating()
-        let alertViewController = VOYAlertViewController(
-            title: localizedString(.gpsPermissionError),
-            message: localizedString(.needGpsPermission)
-        )
-        alertViewController.view.tag = 2
-        alertViewController.delegate = self
-        alertViewController.show(true, inViewController: self)
     }
 }
 
