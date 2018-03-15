@@ -37,7 +37,7 @@ class VOYAddReportSuccessViewController: UIViewController {
     
     @IBAction func btCloseTapped() {
         guard let navigation = self.navigationController else { return }
-        navigation.setViewControllers([VOYThemeListViewController()], animated: true)
+        navigation.popToRootViewController(animated: true)
     }
     
     // MARK: - Localization

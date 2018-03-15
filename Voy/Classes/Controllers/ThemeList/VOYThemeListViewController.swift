@@ -35,14 +35,19 @@ class VOYThemeListViewController: UIViewController, NVActivityIndicatorViewable 
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
+    }
 
     override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         presenter?.updateNotifications()
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        guard let navigation = self.navigationController else { return }
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: " ", style: .plain, target: nil, action: nil)
         edgesForExtendedLayout = []
         setupButtonItems()
@@ -58,7 +63,6 @@ class VOYThemeListViewController: UIViewController, NVActivityIndicatorViewable 
             name: Notification.Name("userDataUpdated"),
             object: nil
         )
-        navigation.setNavigationBarHidden(false, animated: true)
     }
 
     @objc func addLeftBarButtonItem() {
