@@ -23,7 +23,7 @@ class VOYReportDetailPresenter {
     }
 
     func onOptionsButtonTapped() {
-        
+        view?.showActionSheet()
     }
 
     func onShareButtonTapped() {
