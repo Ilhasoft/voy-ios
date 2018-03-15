@@ -81,8 +81,7 @@ class VOYCommentViewController: UIViewController, VOYCommentContract {
             configuration: tableView.getConfiguration(),
             params: ["report": self.report.id!],
             paginationCount: 20,
-            reachability: VOYReachabilityImpl(),
-            reversedList: true
+            reachability: VOYReachabilityImpl()
         )
         tableView.loadContent()
     }

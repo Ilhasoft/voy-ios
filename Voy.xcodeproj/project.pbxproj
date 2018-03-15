@@ -154,6 +154,8 @@
 		65F6994C202A1CB400BFCF0C /* VOYTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65F6994A202A1CB400BFCF0C /* VOYTextView.swift */; };
 		65F6994D202A1CB400BFCF0C /* VOYTextView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 65F6994B202A1CB400BFCF0C /* VOYTextView.xib */; };
 		7CE0EFAA68FD7879EE12CDA5 /* Pods_Voy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E550C0C568807F52623837F /* Pods_Voy.framework */; };
+		AF287EDC205AB65100296A22 /* VOYReportListRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF287EDB205AB65100296A22 /* VOYReportListRepository.swift */; };
+		AF287EDE205AB66000296A22 /* VOYReportListDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF287EDD205AB66000296A22 /* VOYReportListDataSource.swift */; };
 		C365BA53A254E96BCDEB9AAF /* Pods_VoyUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33E4711F114752F9A169B817 /* Pods_VoyUITests.framework */; };
 		D36E24B6691A028EA1A52082 /* Pods_VoyTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABF132ADC4EF1DA114732EB6 /* Pods_VoyTests.framework */; };
 /* End PBXBuildFile section */
@@ -336,6 +338,8 @@
 		6BA92341A1C7FC405623FD46 /* Pods-VoyUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VoyUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-VoyUITests/Pods-VoyUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		A3774A32A2AA74A335CD6885 /* Pods-Voy.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Voy.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Voy/Pods-Voy.debug.xcconfig"; sourceTree = "<group>"; };
 		ABF132ADC4EF1DA114732EB6 /* Pods_VoyTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VoyTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		AF287EDB205AB65100296A22 /* VOYReportListRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VOYReportListRepository.swift; sourceTree = "<group>"; };
+		AF287EDD205AB66000296A22 /* VOYReportListDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VOYReportListDataSource.swift; sourceTree = "<group>"; };
 		B50D70A526449FB3324B7983 /* Pods-Voy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Voy.release.xcconfig"; path = "Pods/Target Support Files/Pods-Voy/Pods-Voy.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -422,6 +426,7 @@
 				01609EFD205AACE5008735EB /* Shared */,
 				433DE1C32052AC3B00966BE1 /* Notification */,
 				01EBF7262051C59200D4EF10 /* AddReport */,
+				AF287ED8205AB61900296A22 /* ReportList */,
 				01EBF7252051C53400D4EF10 /* ThemeList */,
 				01EBF7242051C51800D4EF10 /* Account */,
 				01EBF7232051C4F500D4EF10 /* Comment */,
@@ -960,6 +965,15 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		AF287ED8205AB61900296A22 /* ReportList */ = {
+			isa = PBXGroup;
+			children = (
+				AF287EDB205AB65100296A22 /* VOYReportListRepository.swift */,
+				AF287EDD205AB66000296A22 /* VOYReportListDataSource.swift */,
+			);
+			path = ReportList;
+			sourceTree = "<group>";
+		};
 		C719BE0786B50BD4697C92B9 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -1365,6 +1379,7 @@
 				65F3463D2020B58A00AC5437 /* VOYLoginViewController.swift in Sources */,
 				4376E765205163B700F83FF5 /* VOYAddReportAttachContract.swift in Sources */,
 				436C9940204997F100915A13 /* VOYAccountPresenter.swift in Sources */,
+				AF287EDC205AB65100296A22 /* VOYReportListRepository.swift in Sources */,
 				65D73B5F204046840055F1A8 /* VOYMediaDownloadManager.swift in Sources */,
 				4376E7912051C8D800F83FF5 /* VOYNotificationContract.swift in Sources */,
 				436C993B204996A300915A13 /* VOYLoginDataSource.swift in Sources */,
@@ -1394,6 +1409,7 @@
 				655BD18A2028841100D69EA2 /* UIViewController.swift in Sources */,
 				436C994D2049BC0600915A13 /* VOYThemeListPresenter.swift in Sources */,
 				655BD17C2024E74B00D69EA2 /* VOYAccountViewController.swift in Sources */,
+				AF287EDE205AB66000296A22 /* VOYReportListDataSource.swift in Sources */,
 				0103F5A5205861380093E0F5 /* VOYReportDetailPresenter.swift in Sources */,
 				65D73B58203EF4280055F1A8 /* VOYFileUtil.swift in Sources */,
 				436C9938204992A200915A13 /* VOYReachabilityImpl.swift in Sources */,
@@ -1637,7 +1653,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = ZE9A9HAM9Z;
+				DEVELOPMENT_TEAM = URW25ECJ7Y;
 				INFOPLIST_FILE = Voy/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1654,7 +1670,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = ZE9A9HAM9Z;
+				DEVELOPMENT_TEAM = URW25ECJ7Y;
 				INFOPLIST_FILE = Voy/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
