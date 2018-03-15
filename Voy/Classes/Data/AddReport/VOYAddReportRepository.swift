@@ -34,7 +34,7 @@ class VOYAddReportRepository: VOYAddReportDataSource {
 
     private func saveRemote(report: VOYReport, completion: @escaping (Error?, Int?) -> Void) {
         let authToken = VOYUser.activeUser()!.authToken
-        let headers = ["Authorization": "Token \(authToken!)", "Content-Type": "application/json"]
+        let headers = ["Authorization": "Token \(authToken!)"]
         var method: VOYNetworkClient.VOYHTTPMethod!
         var reportIDString = ""
         if report.update && report.status != nil {

@@ -16,7 +16,7 @@ class VOYCommentRepository: VOYCommentDataSource {
 
     func save(comment: VOYComment, completion: @escaping (Error?) -> Void) {
 
-        let headers = ["Authorization": "Token " + authToken, "Content-Type": "application/json"]
+        let headers = ["Authorization": "Token " + authToken]
         networkClient.requestDictionary(urlSuffix: "report-comments/",
                                    httpMethod: .post,
                                    parameters: comment.toJSON(),
