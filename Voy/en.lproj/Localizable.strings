@@ -73,9 +73,9 @@
 "outside_themes_bounds" = "You are outside this theme's bounds. You can't create a report.";
 "gps_permission_error" = "No GPS Permission";
 "need_gps_permission" = "You have to give GPS permission before creating a report.";
-"we_are_preparing_this_theme_for_you" = "We are preparing this theme for you, please come back after:";
+"we_are_preparing_this_theme_for_you" = "We are preparing this theme for you, please come back later or contact your administrator!";
 "title_and_description" = "Title and Description";
-"period_for_reports_has_ended" = "Unfortunately the period to receive new reports has ended. Thank you for your effort.";
+"period_for_reports_has_ended" = "Unfortunately the period to receive new reports has ended. Thank you for your efforts!";
 "title" = "Title";
 "description" = "Description";
 "add_link" = "Add Link";
