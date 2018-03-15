@@ -10,8 +10,6 @@ import UIKit
 
 class VOYReportSyncManager {
 
-    static let shared = VOYReportSyncManager()
-
     private let mediaFileDataSource: VOYMediaFileDataSource
     private let reachability: VOYReachability
     private let reportStoreManager = VOYReportStorageManager()

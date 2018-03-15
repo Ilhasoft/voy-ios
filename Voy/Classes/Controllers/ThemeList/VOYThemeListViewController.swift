@@ -52,7 +52,6 @@ class VOYThemeListViewController: UIViewController, NVActivityIndicatorViewable 
             userJustLogged: userJustLogged
         )
         presenter?.onViewDidLoad()
-        checkPendentReportsToSend()
         NotificationCenter.default.addObserver(
             self,
             selector: #selector(addLeftBarButtonItem),
@@ -75,16 +74,7 @@ class VOYThemeListViewController: UIViewController, NVActivityIndicatorViewable 
         let leftBarButtonItem = UIBarButtonItem(customView: imageView)
         self.navigationItem.leftBarButtonItem = leftBarButtonItem
     }
-    
-    func checkPendentReportsToSend() {
-        Timer.scheduledTimer(withTimeInterval: 10, repeats: true) { _ in
-            VOYReportSyncManager.shared.trySendPendentReports()
-        }
-        Timer.scheduledTimer(withTimeInterval: 17, repeats: true) { _ in
-            VOYReportSyncManager.shared.trySendPendentCameraData()
-        }
-    }
-    
+
     func setupButtonItems() {
         addLeftBarButtonItem()
         
