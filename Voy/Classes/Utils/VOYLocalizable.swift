@@ -57,6 +57,7 @@ class VOYLocalizable {
         case password
         case pending
         case photo
+        case periodForReportEnded = "period_for_reports_has_ended"
         case remove
         case report = "report"
         case reportWasApproved = "report_was_approved"
@@ -70,6 +71,7 @@ class VOYLocalizable {
         case title
         case titleAndDescription = "title_and_description"
         case username
+        case weArePreparingThisTheme = "we_are_preparing_this_theme_for_you"
     }
 }
 

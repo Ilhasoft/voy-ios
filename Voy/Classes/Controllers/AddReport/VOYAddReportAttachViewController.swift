@@ -11,6 +11,12 @@ import MapKit
 import NVActivityIndicatorView
 import MobileCoreServices
 
+enum VOYAddReportErrorType {
+    case willStart
+    case ended
+    case outOfBouds
+}
+
 class VOYAddReportAttachViewController: UIViewController, NVActivityIndicatorViewable {
 
     @IBOutlet var mediaViews: [VOYAddMediaView]!
@@ -61,7 +67,10 @@ class VOYAddReportAttachViewController: UIViewController, NVActivityIndicatorVie
         super.viewDidLoad()
         edgesForExtendedLayout = []
         
-        self.theme = VOYTheme.activeTheme()!
+        if let activeTheme = VOYTheme.activeTheme() {
+            self.theme = activeTheme
+        }
+        
         locationManager = VOYLocationManager(delegate: self)
         locationManager.getCurrentLocation()
         self.startAnimating()
@@ -72,6 +81,24 @@ class VOYAddReportAttachViewController: UIViewController, NVActivityIndicatorVie
         addNextButton()
         loadFromReport()
         setupLocalization()
+        validateDateLimit()
+    }
+    
+    // TODO: Add a method to switch alerts(will start, ended or out of bounds), it must be called from presenter, that must verify both situations, time and bounds
+    
+    func validateDateLimit() {
+        if let startAt = self.theme.start_at, let endAt = self.theme.end_at {
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "yyyy-mm-dd"
+            dateFormatter.timeZone = TimeZone(abbreviation: TimeZone.current.abbreviation() ?? "UTC")
+            
+            if let startDate = dateFormatter.date(from: startAt), let endDate = dateFormatter.date(from: endAt) {
+                let currentDate = Date()
+                if startDate >= currentDate || endDate <= currentDate {
+                    (startDate >= currentDate) ? showAlert(alert: .willStart) : showAlert(alert: .ended)
+                }
+            }
+        }
     }
 
     func loadFromReport() {
@@ -108,6 +135,28 @@ class VOYAddReportAttachViewController: UIViewController, NVActivityIndicatorVie
         for mediaView in mediaViews {
             mediaView.delegate = self
         }
+    }
+    
+    func showAlert(alert: VOYAddReportErrorType) {
+        
+        var alertText: String = ""
+
+        switch alert {
+        case .willStart:
+            alertText = localizedString(.weArePreparingThisTheme)
+        case .ended:
+            alertText = localizedString(.periodForReportEnded)
+        case .outOfBouds:
+            alertText = localizedString(.outsideThemesBounds)
+        }
+        
+        let alertViewController = VOYAlertViewController(
+            title: localizedString(.alert),
+            message: alertText
+        )
+        alertViewController.view.tag = 1
+        alertViewController.delegate = self
+        alertViewController.show(true, inViewController: self)
     }
     
     func setupMediaView() {
@@ -195,13 +244,7 @@ extension VOYAddReportAttachViewController: VOYLocationManagerDelegate {
         let intersects: Bool = statePolygonRenderer.path.contains(statePolygonRenderedPoint)
         
         if !intersects {
-            let alertViewController = VOYAlertViewController(
-                title: localizedString(.alert),
-                message: localizedString(.outsideThemesBounds)
-            )
-            alertViewController.view.tag = 1
-            alertViewController.delegate = self
-            alertViewController.show(true, inViewController: self)
+            self.showAlert(alert: .outOfBouds)
         }
  
     }

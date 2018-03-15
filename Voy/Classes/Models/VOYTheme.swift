@@ -21,6 +21,8 @@ class VOYTheme: Mappable {
     var reports_count: Int!
     var created_on: String!
     var allow_links: Bool!
+    var start_at: String!
+    var end_at: String!
 
     init() {
     }
@@ -39,6 +41,8 @@ class VOYTheme: Mappable {
         reports_count <- map["reports_count"]
         created_on <- map["created_on"]
         allow_links <- map["allow_links"]
+        start_at <- map["start_at"]
+        end_at <- map["end_at"]
     }
 
     func map() -> Map {

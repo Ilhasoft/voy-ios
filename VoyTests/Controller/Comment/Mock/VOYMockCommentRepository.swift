@@ -10,6 +10,10 @@ import XCTest
 @testable import Voy
 
 class VOYMockCommentRepository: VOYCommentDataSource {
+    func delete(commentId: Int, completion: @escaping (Error?) -> Void) {
+        implement
+    }
+    
     func save(comment: VOYComment, completion: @escaping (Error?) -> Void) {
         if !comment.text.isEmpty {
             completion(nil)

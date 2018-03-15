@@ -39,4 +39,8 @@ class VOYMockThemeListRepository: VOYThemeListDataSource {
             print("Don't have internet connect nor cached data")
         }
     }
+    
+    func getNotifications(completion: @escaping ([VOYNotification]?) -> Void) {
+        implement
+    }
 }
