@@ -22,14 +22,22 @@ class VOYReportListRepository: VOYReportListDataSource {
                         status: VOYReportStatus,
                         mapper: Int,
                         completion: @escaping (Int?, Error?) -> Void) {
-        switch status {
-        case .approved:
-//                    networkClient.requestObject(urlSuffix: <#T##String#>, httpMethod: <#T##VOYNetworkClient.VOYHTTPMethod#>, completion: <#T##(Mappable?, Error?, URLRequest) -> Void#>)
-        case .pendent:
-//                    networkClient.requestObject(urlSuffix: <#T##String#>, httpMethod: <#T##VOYNetworkClient.VOYHTTPMethod#>, completion: <#T##(Mappable?, Error?, URLRequest) -> Void#>)
-        case .notApproved:
-//                    networkClient.requestObject(urlSuffix: <#T##String#>, httpMethod: <#T##VOYNetworkClient.VOYHTTPMethod#>, completion: <#T##(Mappable?, Error?, URLRequest) -> Void#>)
-        }
+        guard let auth = VOYUser.activeUser()?.authToken else { return }
+        
+        let parameters = [ "status": status.rawValue,
+                           "mapper": mapper,
+                           "page_size": VOYConstant.API.paginationSize,
+                           "page": 1,
+                           "theme": themeId ]
+        
+        let headers = [ "Authorization": "Token \(auth)" ]
+        
+        networkClient.requestDictionary(urlSuffix: "reports", httpMethod: .get, parameters: parameters, headers: headers, completion: { object, error, _ in
+            if let count = object?["count"] as? Int {
+                completion(count, nil)
+            } else {
+                completion(nil, error)
+            }
+        })
     }
-    
 }

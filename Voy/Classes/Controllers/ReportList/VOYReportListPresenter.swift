@@ -12,9 +12,9 @@ class VOYReportListPresenter {
     
     private weak var view: VOYReportListContract?
     private var dataSource: VOYReportListDataSource!
-    private var countApprovedReports: Int?
-    private var countPendingReports: Int?
-    private var countNotApprovedReports: Int?
+    var countApprovedReports: Int?
+    var countPendingReports: Int?
+    var countNotApprovedReports: Int?
     
     init(view: VOYReportListContract, dataSource: VOYReportListDataSource) {
         self.view = view
