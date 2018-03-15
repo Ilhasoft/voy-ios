@@ -22,7 +22,7 @@ class VOYAccountRepository: VOYAccountDataSource {
         if let password = password {
             jsonUser["password"] = password
         }
-        let headers = ["Authorization": "Token " + authToken, "Content-Type": "application/json"]
+        let headers = ["Authorization": "Token " + authToken]
 
         networkClient.requestDictionary(urlSuffix: "users/\(user.id!)/",
                                         httpMethod: .put,

@@ -19,6 +19,7 @@ class VOYReportListViewController: UIViewController, NVActivityIndicatorViewable
     @IBOutlet var tableViewNotApproved: DataBindOnDemandTableView!
     @IBOutlet var tableViews: [DataBindOnDemandTableView]!
     @IBOutlet var segmentedControl: UISegmentedControl!
+    @IBOutlet weak var messageLabel: UILabel!
     
     static var sharedInstance: VOYReportListViewController?
     var theme: VOYTheme!
@@ -40,12 +41,12 @@ class VOYReportListViewController: UIViewController, NVActivityIndicatorViewable
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        presenter = VOYReportListPresenter(view: self, dataSource: VOYReportListRepository())
+        messageLabel.isHidden = true
         edgesForExtendedLayout = []
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: " ", style: .plain, target: nil, action: nil)
         setupTableView()
         setupLocalization()
-        
-        presenter = VOYReportListPresenter(view: self)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -58,16 +59,16 @@ class VOYReportListViewController: UIViewController, NVActivityIndicatorViewable
     }
     
     func setupTableView() {
-        var status = 0
+        var status: VOYReportStatus = .approved
         startAnimating()
         for tableView in self.tableViews {
             
             if tableView == self.tableViewApproved {
-                status = VOYReportStatus.approved.rawValue
+                status = VOYReportStatus.approved
             } else if tableView == self.tableViewPending {
-                status = VOYReportStatus.pendent.rawValue
+                status = VOYReportStatus.pendent
             } else if tableView == self.tableViewNotApproved {
-                status = VOYReportStatus.notApproved.rawValue
+                status = VOYReportStatus.notApproved
             }
             
             tableView.separatorColor = UIColor.clear
@@ -78,10 +79,13 @@ class VOYReportListViewController: UIViewController, NVActivityIndicatorViewable
             tableView.onDemandTableViewDelegate = self
             tableView.interactor = DataBindOnDemandTableViewInteractor(
                 configuration: tableViewApproved.getConfiguration(),
-                params: ["theme": self.theme.id, "status": status, "mapper": VOYUser.activeUser()!.id],
+                params: ["theme": self.theme.id, "status": status.rawValue, "mapper": VOYUser.activeUser()!.id],
                 paginationCount: VOYConstant.API.paginationSize,
                 reachability: VOYReachabilityImpl()
             )
+            
+            presenter.countReports(themeId: self.theme.id, status: status, mapper: VOYUser.activeUser()!.id)
+            
             tableView.loadContent()
         }
         
@@ -115,16 +119,37 @@ class VOYReportListViewController: UIViewController, NVActivityIndicatorViewable
     @IBAction func segmentedControlTapped() {
         switch self.segmentedControl.selectedSegmentIndex {
         case 0:
+            if let countApprovedReports = presenter.countApprovedReports {
+                messageLabel.text = "You have \(countApprovedReports) reports approved"
+                messageLabel.isHidden = false
+            } else {
+                messageLabel.isHidden = true
+            }
+            
             tableViewApproved.isHidden = false
             tableViewPending.isHidden = true
             tableViewNotApproved.isHidden = true
             showInfoViewIfNecessary(tableView: tableViewApproved)
         case 1:
+            if let countPendingReports = presenter.countPendingReports {
+                messageLabel.text = "You have \(countPendingReports) reports pending"
+                messageLabel.isHidden = false
+            } else {
+                messageLabel.isHidden = true
+            }
+            
             tableViewApproved.isHidden = true
             tableViewPending.isHidden = false
             tableViewNotApproved.isHidden = true
             showInfoViewIfNecessary(tableView: tableViewPending)
         case 2:
+            if let countNotApprovedReports = presenter.countNotApprovedReports {
+                messageLabel.text = "You have \(countNotApprovedReports) reports not approved"
+                messageLabel.isHidden = false
+            } else {
+                messageLabel.isHidden = true
+            }
+            
             tableViewApproved.isHidden = true
             tableViewPending.isHidden = true
             tableViewNotApproved.isHidden = false
