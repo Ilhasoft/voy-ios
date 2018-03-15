@@ -9,19 +9,19 @@
 import UIKit
 
 class VOYAddReportRepository: VOYAddReportDataSource {
-    
+
     let reachability: VOYReachability
     let networkClient = VOYNetworkClient(reachability: VOYReachabilityImpl())
     let mediaFileDataSource: VOYMediaFileDataSource
     private let reportStorageManager = VOYReportStorageManager()
-    
+
     init(reachability: VOYReachability, mediaFileDataSource: VOYMediaFileDataSource = VOYMediaFileRepository()) {
         self.reachability = reachability
         self.mediaFileDataSource = mediaFileDataSource
     }
-    
+
     // MARK: - VOYAddReportDataSource
-    
+
     func save(report: VOYReport, completion: @escaping (Error?, Int?) -> Void) {
         if reachability.hasNetwork() {
             saveRemote(report: report, completion: completion)
@@ -29,9 +29,9 @@ class VOYAddReportRepository: VOYAddReportDataSource {
             saveLocal(report: report, completion: completion)
         }
     }
-    
+
     // MARK: - Private methods
-    
+
     private func saveRemote(report: VOYReport, completion: @escaping (Error?, Int?) -> Void) {
         let authToken = VOYUser.activeUser()!.authToken
         let headers = ["Authorization": "Token \(authToken!)"]
