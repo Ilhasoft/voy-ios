@@ -89,7 +89,7 @@ class VOYAddReportAttachViewController: UIViewController, NVActivityIndicatorVie
     func validateDateLimit() {
         if let startAt = self.theme.start_at, let endAt = self.theme.end_at {
             let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "yyyy-mm-dd"
+            dateFormatter.dateFormat = "yyyy-MM-dd"
             dateFormatter.timeZone = TimeZone(abbreviation: TimeZone.current.abbreviation() ?? "UTC")
             
             if let startDate = dateFormatter.date(from: startAt), let endDate = dateFormatter.date(from: endAt) {
