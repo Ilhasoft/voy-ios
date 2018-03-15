@@ -20,13 +20,12 @@ public class DataBindOnDemandTableViewInteractor: ISOnDemandTableViewInteractor 
     private var reachability: VOYReachability
     private let networkClient = VOYNetworkClient(reachability: VOYReachabilityImpl())
     
-  init(configuration: DataBindRestConfiguration, params: [String: Any]? = nil, paginationCount: Int, reachability: VOYReachability, reversedList: Bool = false) {
+  init(configuration: DataBindRestConfiguration, params: [String: Any]? = nil, paginationCount: Int, reachability: VOYReachability) {
         self.endPoint = configuration.endPoint
         self.keyPath = configuration.keyPath
         self.apiURL = configuration.apiURL
         self.params = params
         self.reachability = reachability
-        self.reversedList = reversedList
         super.init(paginationCount: UInt(paginationCount))
     }
     
@@ -65,12 +64,7 @@ public class DataBindOnDemandTableViewInteractor: ISOnDemandTableViewInteractor 
             shouldCacheResponse: true,
             keyPath: keyPath
         ) { objects, error in
-            if self.reversedList, let reversedObjects = objects?.reversed() {
-                let objects = Array(reversedObjects)
-                handler(objects, error)
-            } else {
-                handler(objects, error)
-            }
+            handler(objects, error)
         }
     }
 }
