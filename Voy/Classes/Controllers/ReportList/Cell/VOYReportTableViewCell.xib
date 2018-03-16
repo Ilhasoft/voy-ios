@@ -30,8 +30,9 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8zw-mO-NJt" customClass="DataBindView" customModule="DataBindSwift">
                         <rect key="frame" x="19" y="0.0" width="282" height="103"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="panda" translatesAutoresizingMaskIntoConstraints="NO" id="8sY-gD-M8W" customClass="DataBindImageView" customModule="DataBindSwift">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="8sY-gD-M8W" customClass="DataBindImageView" customModule="DataBindSwift">
                                 <rect key="frame" x="5" y="15" width="54" height="54"/>
+                                <color key="backgroundColor" red="0.37254901959999998" green="0.42745098040000001" blue="0.44705882349999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="54" id="5ck-49-ZCi"/>
                                     <constraint firstAttribute="height" constant="54" id="m5k-KZ-Iwn"/>
@@ -138,6 +139,5 @@ disposal in river</string>
     </objects>
     <resources>
         <image name="noun1146501Cc" width="11" height="12"/>
-        <image name="panda" width="366" height="366"/>
     </resources>
 </document>
