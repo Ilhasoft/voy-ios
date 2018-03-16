@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0103F5A5205861380093E0F5 /* VOYReportDetailPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0103F5A4205861380093E0F5 /* VOYReportDetailPresenter.swift */; };
 		0103F5A7205861960093E0F5 /* VOYReportDetailContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0103F5A6205861960093E0F5 /* VOYReportDetailContract.swift */; };
+		010D1415205C5A6F0048182D /* VoyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 010D1414205C5A6F0048182D /* VoyTests.swift */; };
 		01609EFF205AD848008735EB /* VOYAddReportAttachPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01609EFE205AD848008735EB /* VOYAddReportAttachPresenter.swift */; };
 		01EBF715204EB7D800D4EF10 /* UIFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01EBF714204EB7D800D4EF10 /* UIFont.swift */; };
 		01EBF718204F216200D4EF10 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 01EBF71A204F216200D4EF10 /* Localizable.strings */; };
@@ -134,9 +135,22 @@
 		AF287EDE205AB66000296A22 /* VOYReportListDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF287EDD205AB66000296A22 /* VOYReportListDataSource.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		010D1417205C5A6F0048182D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 65F345FB2020A87A00AC5437 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 65F346022020A87A00AC5437;
+			remoteInfo = Voy;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		0103F5A4205861380093E0F5 /* VOYReportDetailPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VOYReportDetailPresenter.swift; sourceTree = "<group>"; };
 		0103F5A6205861960093E0F5 /* VOYReportDetailContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VOYReportDetailContract.swift; sourceTree = "<group>"; };
+		010D1412205C5A6F0048182D /* VoyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VoyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		010D1414205C5A6F0048182D /* VoyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoyTests.swift; sourceTree = "<group>"; };
+		010D1416205C5A6F0048182D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		01609EFE205AD848008735EB /* VOYAddReportAttachPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VOYAddReportAttachPresenter.swift; sourceTree = "<group>"; };
 		01EBF714204EB7D800D4EF10 /* UIFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIFont.swift; sourceTree = "<group>"; };
 		01EBF719204F216200D4EF10 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -274,6 +288,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		010D140F205C5A6F0048182D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		65F346002020A87A00AC5437 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -285,6 +306,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		010D1413205C5A6F0048182D /* VoyTests */ = {
+			isa = PBXGroup;
+			children = (
+				010D1414205C5A6F0048182D /* VoyTests.swift */,
+				010D1416205C5A6F0048182D /* Info.plist */,
+			);
+			path = VoyTests;
+			sourceTree = "<group>";
+		};
 		01609EFD205AACE5008735EB /* Shared */ = {
 			isa = PBXGroup;
 			children = (
@@ -619,6 +649,7 @@
 			isa = PBXGroup;
 			children = (
 				65F346052020A87A00AC5437 /* Voy */,
+				010D1413205C5A6F0048182D /* VoyTests */,
 				65F346042020A87A00AC5437 /* Products */,
 				C719BE0786B50BD4697C92B9 /* Pods */,
 				E41BF611D24D11A81D73B236 /* Frameworks */,
@@ -629,6 +660,7 @@
 			isa = PBXGroup;
 			children = (
 				65F346032020A87A00AC5437 /* Voy.app */,
+				010D1412205C5A6F0048182D /* VoyTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -743,6 +775,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		010D1411205C5A6F0048182D /* VoyTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 010D141B205C5A700048182D /* Build configuration list for PBXNativeTarget "VoyTests" */;
+			buildPhases = (
+				010D140E205C5A6F0048182D /* Sources */,
+				010D140F205C5A6F0048182D /* Frameworks */,
+				010D1410205C5A6F0048182D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				010D1418205C5A6F0048182D /* PBXTargetDependency */,
+			);
+			name = VoyTests;
+			productName = VoyTests;
+			productReference = 010D1412205C5A6F0048182D /* VoyTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		65F346022020A87A00AC5437 /* Voy */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 65F3462B2020A87B00AC5437 /* Build configuration list for PBXNativeTarget "Voy" */;
@@ -775,6 +825,11 @@
 				LastUpgradeCheck = 0920;
 				ORGANIZATIONNAME = Ilhasoft;
 				TargetAttributes = {
+					010D1411205C5A6F0048182D = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 65F346022020A87A00AC5437;
+					};
 					65F346022020A87A00AC5437 = {
 						CreatedOnToolsVersion = 9.2;
 						ProvisioningStyle = Automatic;
@@ -800,11 +855,19 @@
 			projectRoot = "";
 			targets = (
 				65F346022020A87A00AC5437 /* Voy */,
+				010D1411205C5A6F0048182D /* VoyTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		010D1410205C5A6F0048182D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		65F346012020A87A00AC5437 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -943,6 +1006,14 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		010D140E205C5A6F0048182D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				010D1415205C5A6F0048182D /* VoyTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		65F345FF2020A87A00AC5437 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1048,6 +1119,14 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		010D1418205C5A6F0048182D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 65F346022020A87A00AC5437 /* Voy */;
+			targetProxy = 010D1417205C5A6F0048182D /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
 		01EBF71A204F216200D4EF10 /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
@@ -1068,6 +1147,36 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		010D1419205C5A6F0048182D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = VoyTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = br.com.ilhasoft.VoyTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Voy.app/Voy";
+			};
+			name = Debug;
+		};
+		010D141A205C5A6F0048182D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = VoyTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = br.com.ilhasoft.VoyTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Voy.app/Voy";
+			};
+			name = Release;
+		};
 		65F346292020A87B00AC5437 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1212,6 +1321,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		010D141B205C5A700048182D /* Build configuration list for PBXNativeTarget "VoyTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				010D1419205C5A6F0048182D /* Debug */,
+				010D141A205C5A6F0048182D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		65F345FE2020A87A00AC5437 /* Build configuration list for PBXProject "Voy" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
