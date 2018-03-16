@@ -130,6 +130,7 @@
 		65F699492028FAE400BFCF0C /* ISOndemandTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65F699482028FAE400BFCF0C /* ISOndemandTableView.swift */; };
 		65F6994C202A1CB400BFCF0C /* VOYTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65F6994A202A1CB400BFCF0C /* VOYTextView.swift */; };
 		65F6994D202A1CB400BFCF0C /* VOYTextView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 65F6994B202A1CB400BFCF0C /* VOYTextView.xib */; };
+		799D127A523DE25275D763EF /* Pods_VoyTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABF132ADC4EF1DA114732EB6 /* Pods_VoyTests.framework */; };
 		7CE0EFAA68FD7879EE12CDA5 /* Pods_Voy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E550C0C568807F52623837F /* Pods_Voy.framework */; };
 		AF287EDC205AB65100296A22 /* VOYReportListRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF287EDB205AB65100296A22 /* VOYReportListRepository.swift */; };
 		AF287EDE205AB66000296A22 /* VOYReportListDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF287EDD205AB66000296A22 /* VOYReportListDataSource.swift */; };
@@ -292,6 +293,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				799D127A523DE25275D763EF /* Pods_VoyTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -779,9 +781,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 010D141B205C5A700048182D /* Build configuration list for PBXNativeTarget "VoyTests" */;
 			buildPhases = (
+				1151F7CE9513E0EA8FC65CB2 /* [CP] Check Pods Manifest.lock */,
 				010D140E205C5A6F0048182D /* Sources */,
 				010D140F205C5A6F0048182D /* Frameworks */,
 				010D1410205C5A6F0048182D /* Resources */,
+				074005E5D1D5FC242DB2503E /* [CP] Embed Pods Frameworks */,
+				03A2B77CE14839695A499E7C /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -920,6 +925,21 @@
 			shellPath = /bin/sh;
 			shellScript = "if which swiftlint >/dev/null; then\n    swiftlint\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
 		};
+		03A2B77CE14839695A499E7C /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-VoyTests/Pods-VoyTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		06B3FEA5D74FC835DD497ED6 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -932,6 +952,74 @@
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 				"$(DERIVED_FILE_DIR)/Pods-Voy-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		074005E5D1D5FC242DB2503E /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-VoyTests/Pods-VoyTests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/AXPhotoViewer/AXPhotoViewer.framework",
+				"${BUILT_PRODUCTS_DIR}/AXStateButton/AXStateButton.framework",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/AlamofireObjectMapper/AlamofireObjectMapper.framework",
+				"${BUILT_PRODUCTS_DIR}/DataBindSwift/DataBindSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/DropDown/DropDown.framework",
+				"${BUILT_PRODUCTS_DIR}/FLAnimatedImage/FLAnimatedImage.framework",
+				"${BUILT_PRODUCTS_DIR}/GrowingTextView/GrowingTextView.framework",
+				"${BUILT_PRODUCTS_DIR}/ISOnDemandCollectionView/ISOnDemandCollectionView.framework",
+				"${BUILT_PRODUCTS_DIR}/ISOnDemandTableView/ISOnDemandTableView.framework",
+				"${BUILT_PRODUCTS_DIR}/ISScrollViewPageSwift/ISScrollViewPageSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
+				"${BUILT_PRODUCTS_DIR}/NVActivityIndicatorView/NVActivityIndicatorView.framework",
+				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
+				"${BUILT_PRODUCTS_DIR}/SlideMenuControllerSwift/SlideMenuControllerSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/TPKeyboardAvoiding/TPKeyboardAvoiding.framework",
+				"${BUILT_PRODUCTS_DIR}/TagListView/TagListView.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AXPhotoViewer.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AXStateButton.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireObjectMapper.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DataBindSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DropDown.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FLAnimatedImage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GrowingTextView.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ISOnDemandCollectionView.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ISOnDemandTableView.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ISScrollViewPageSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NVActivityIndicatorView.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SlideMenuControllerSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TPKeyboardAvoiding.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TagListView.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-VoyTests/Pods-VoyTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		1151F7CE9513E0EA8FC65CB2 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-VoyTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1149,6 +1237,7 @@
 /* Begin XCBuildConfiguration section */
 		010D1419205C5A6F0048182D /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1C63B2E9849D938061D8A8BB /* Pods-VoyTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
@@ -1164,6 +1253,7 @@
 		};
 		010D141A205C5A6F0048182D /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 09E6F9A93ABF9A8CD9032B8F /* Pods-VoyTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
