@@ -9,29 +9,16 @@
 /* Begin PBXBuildFile section */
 		0103F5A5205861380093E0F5 /* VOYReportDetailPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0103F5A4205861380093E0F5 /* VOYReportDetailPresenter.swift */; };
 		0103F5A7205861960093E0F5 /* VOYReportDetailContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0103F5A6205861960093E0F5 /* VOYReportDetailContract.swift */; };
-		0103F5AA205879D80093E0F5 /* VOYReportDetailTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0103F5A9205879D80093E0F5 /* VOYReportDetailTests.swift */; };
-		0103F5AC20587A190093E0F5 /* VOYMockReportDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0103F5AB20587A190093E0F5 /* VOYMockReportDetailViewController.swift */; };
 		01609EFF205AD848008735EB /* VOYAddReportAttachPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01609EFE205AD848008735EB /* VOYAddReportAttachPresenter.swift */; };
-		01C02E2B20571CC10060702B /* VOYReportListTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C02E2A20571CC10060702B /* VOYReportListTests.swift */; };
-		01C02E2D20571D0D0060702B /* VOYMockReportListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C02E2C20571D0D0060702B /* VOYMockReportListViewController.swift */; };
-		01C02E9F20572A900060702B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 65F3460F2020A87A00AC5437 /* LaunchScreen.storyboard */; };
-		01C02EA22058147F0060702B /* VOYUserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C02EA12058147F0060702B /* VOYUserTests.swift */; };
 		01EBF715204EB7D800D4EF10 /* UIFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01EBF714204EB7D800D4EF10 /* UIFont.swift */; };
 		01EBF718204F216200D4EF10 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 01EBF71A204F216200D4EF10 /* Localizable.strings */; };
 		01EBF71C204F295600D4EF10 /* VOYLocalizable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01EBF71B204F295600D4EF10 /* VOYLocalizable.swift */; };
 		01EBF7222051C44A00D4EF10 /* VOYNetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01EBF7212051C44A00D4EF10 /* VOYNetworkClient.swift */; };
-		01EBF72D2053058200D4EF10 /* VOYMockReachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01EBF72C2053058200D4EF10 /* VOYMockReachability.swift */; };
 		01EBF72F2053160E00D4EF10 /* VOYReportListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01EBF72E2053160E00D4EF10 /* VOYReportListPresenter.swift */; };
 		01EBF7312053162400D4EF10 /* VOYReportListContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01EBF7302053162400D4EF10 /* VOYReportListContract.swift */; };
-		431F3593204DBE2900E27A7F /* VOYLoginTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43A0518E204DB63600ABC0C9 /* VOYLoginTests.swift */; };
-		431F3594204DBE6B00E27A7F /* VOYThemeListTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436C992D2049850800915A13 /* VOYThemeListTests.swift */; };
-		431F3595204DBE7300E27A7F /* VOYAccountListTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43A0518C204DB62D00ABC0C9 /* VOYAccountListTests.swift */; };
-		431F359B204DC48F00E27A7F /* VOYCommentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 431F359A204DC48F00E27A7F /* VOYCommentTests.swift */; };
 		433DE1C62052AD0C00966BE1 /* VOYNotificationDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 433DE1C42052AD0C00966BE1 /* VOYNotificationDataSource.swift */; };
 		433DE1C72052AD0C00966BE1 /* VOYNotificationRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 433DE1C52052AD0C00966BE1 /* VOYNotificationRepository.swift */; };
 		433DE1C92052C33C00966BE1 /* VOYNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 433DE1C82052C33C00966BE1 /* VOYNotification.swift */; };
-		436960A7205858BE00A2BD67 /* VOYMockAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436960A6205858BE00A2BD67 /* VOYMockAccountViewController.swift */; };
-		436A088220501823001285FC /* VOYAddReportTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436A087E20501685001285FC /* VOYAddReportTests.swift */; };
 		436C9936204991ED00915A13 /* VOYReachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436C9935204991ED00915A13 /* VOYReachability.swift */; };
 		436C9938204992A200915A13 /* VOYReachabilityImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436C9937204992A200915A13 /* VOYReachabilityImpl.swift */; };
 		436C993B204996A300915A13 /* VOYLoginDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436C9939204996A300915A13 /* VOYLoginDataSource.swift */; };
@@ -55,16 +42,6 @@
 		4371B694204F256300D83454 /* VOYAddReportTagsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4371B693204F256300D83454 /* VOYAddReportTagsPresenter.swift */; };
 		4371B696204F257600D83454 /* VOYAddReportTagsContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4371B695204F257600D83454 /* VOYAddReportTagsContract.swift */; };
 		4376E765205163B700F83FF5 /* VOYAddReportAttachContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4376E764205163B700F83FF5 /* VOYAddReportAttachContract.swift */; };
-		4376E7702051806600F83FF5 /* VOYMockLoginRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4376E76E2051806600F83FF5 /* VOYMockLoginRepository.swift */; };
-		4376E7712051806600F83FF5 /* VOYMockLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4376E76F2051806600F83FF5 /* VOYMockLoginViewController.swift */; };
-		4376E7782051825A00F83FF5 /* VOYMockMediaFileRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4376E7742051825A00F83FF5 /* VOYMockMediaFileRepository.swift */; };
-		4376E7792051825A00F83FF5 /* VOYMockAddReportAttachViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4376E7752051825A00F83FF5 /* VOYMockAddReportAttachViewController.swift */; };
-		4376E77A2051825A00F83FF5 /* VOYMockAddReportTagsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4376E7762051825A00F83FF5 /* VOYMockAddReportTagsViewController.swift */; };
-		4376E77B2051825A00F83FF5 /* VOYMockAddReportRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4376E7772051825A00F83FF5 /* VOYMockAddReportRepository.swift */; };
-		4376E7812051A78C00F83FF5 /* VOYMockThemeListRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4376E77E2051A78B00F83FF5 /* VOYMockThemeListRepository.swift */; };
-		4376E7822051A78C00F83FF5 /* VOYMockThemeListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4376E77F2051A78B00F83FF5 /* VOYMockThemeListViewController.swift */; };
-		4376E7872051A7EC00F83FF5 /* VOYMockAccountRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4376E7862051A7EC00F83FF5 /* VOYMockAccountRepository.swift */; };
-		4376E78B2051A83900F83FF5 /* VOYMockCommentRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4376E78A2051A83900F83FF5 /* VOYMockCommentRepository.swift */; };
 		4376E78F2051C83100F83FF5 /* VOYNotificationPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4376E78E2051C83100F83FF5 /* VOYNotificationPresenter.swift */; };
 		4376E7912051C8D800F83FF5 /* VOYNotificationContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4376E7902051C8D800F83FF5 /* VOYNotificationContract.swift */; };
 		4376E7992051C9C300F83FF5 /* VOYNotificationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4376E7972051C9C300F83FF5 /* VOYNotificationTableViewCell.swift */; };
@@ -145,7 +122,6 @@
 		65F346072020A87A00AC5437 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65F346062020A87A00AC5437 /* AppDelegate.swift */; };
 		65F3460E2020A87A00AC5437 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 65F3460D2020A87A00AC5437 /* Assets.xcassets */; };
 		65F346112020A87A00AC5437 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 65F3460F2020A87A00AC5437 /* LaunchScreen.storyboard */; };
-		65F346272020A87B00AC5437 /* VoyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65F346262020A87B00AC5437 /* VoyUITests.swift */; };
 		65F3463D2020B58A00AC5437 /* VOYLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65F3463B2020B58A00AC5437 /* VOYLoginViewController.swift */; };
 		65F3463E2020B58A00AC5437 /* VOYLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 65F3463C2020B58A00AC5437 /* VOYLoginViewController.xib */; };
 		65F346422020B82B00AC5437 /* VOYTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65F346402020B82B00AC5437 /* VOYTextFieldView.swift */; };
@@ -156,54 +132,25 @@
 		7CE0EFAA68FD7879EE12CDA5 /* Pods_Voy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E550C0C568807F52623837F /* Pods_Voy.framework */; };
 		AF287EDC205AB65100296A22 /* VOYReportListRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF287EDB205AB65100296A22 /* VOYReportListRepository.swift */; };
 		AF287EDE205AB66000296A22 /* VOYReportListDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF287EDD205AB66000296A22 /* VOYReportListDataSource.swift */; };
-		C365BA53A254E96BCDEB9AAF /* Pods_VoyUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33E4711F114752F9A169B817 /* Pods_VoyUITests.framework */; };
-		D36E24B6691A028EA1A52082 /* Pods_VoyTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABF132ADC4EF1DA114732EB6 /* Pods_VoyTests.framework */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		65F346182020A87B00AC5437 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 65F345FB2020A87A00AC5437 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 65F346022020A87A00AC5437;
-			remoteInfo = Voy;
-		};
-		65F346232020A87B00AC5437 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 65F345FB2020A87A00AC5437 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 65F346022020A87A00AC5437;
-			remoteInfo = Voy;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		0103F5A4205861380093E0F5 /* VOYReportDetailPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VOYReportDetailPresenter.swift; sourceTree = "<group>"; };
 		0103F5A6205861960093E0F5 /* VOYReportDetailContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VOYReportDetailContract.swift; sourceTree = "<group>"; };
-		0103F5A9205879D80093E0F5 /* VOYReportDetailTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VOYReportDetailTests.swift; sourceTree = "<group>"; };
-		0103F5AB20587A190093E0F5 /* VOYMockReportDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VOYMockReportDetailViewController.swift; sourceTree = "<group>"; };
 		01609EFE205AD848008735EB /* VOYAddReportAttachPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VOYAddReportAttachPresenter.swift; sourceTree = "<group>"; };
-		01C02E2A20571CC10060702B /* VOYReportListTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VOYReportListTests.swift; sourceTree = "<group>"; };
-		01C02E2C20571D0D0060702B /* VOYMockReportListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VOYMockReportListViewController.swift; sourceTree = "<group>"; };
-		01C02EA12058147F0060702B /* VOYUserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VOYUserTests.swift; sourceTree = "<group>"; };
 		01EBF714204EB7D800D4EF10 /* UIFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIFont.swift; sourceTree = "<group>"; };
 		01EBF719204F216200D4EF10 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		01EBF71B204F295600D4EF10 /* VOYLocalizable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VOYLocalizable.swift; sourceTree = "<group>"; };
 		01EBF7212051C44A00D4EF10 /* VOYNetworkClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VOYNetworkClient.swift; sourceTree = "<group>"; };
-		01EBF72C2053058200D4EF10 /* VOYMockReachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VOYMockReachability.swift; sourceTree = "<group>"; };
 		01EBF72E2053160E00D4EF10 /* VOYReportListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VOYReportListPresenter.swift; sourceTree = "<group>"; };
 		01EBF7302053162400D4EF10 /* VOYReportListContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VOYReportListContract.swift; sourceTree = "<group>"; };
 		09E6F9A93ABF9A8CD9032B8F /* Pods-VoyTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VoyTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-VoyTests/Pods-VoyTests.release.xcconfig"; sourceTree = "<group>"; };
 		1C63B2E9849D938061D8A8BB /* Pods-VoyTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VoyTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-VoyTests/Pods-VoyTests.debug.xcconfig"; sourceTree = "<group>"; };
 		1E550C0C568807F52623837F /* Pods_Voy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Voy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		33E4711F114752F9A169B817 /* Pods_VoyUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VoyUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		431F359A204DC48F00E27A7F /* VOYCommentTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VOYCommentTests.swift; sourceTree = "<group>"; };
 		433DE1C42052AD0C00966BE1 /* VOYNotificationDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VOYNotificationDataSource.swift; sourceTree = "<group>"; };
 		433DE1C52052AD0C00966BE1 /* VOYNotificationRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VOYNotificationRepository.swift; sourceTree = "<group>"; };
 		433DE1C82052C33C00966BE1 /* VOYNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VOYNotification.swift; sourceTree = "<group>"; };
-		436960A6205858BE00A2BD67 /* VOYMockAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VOYMockAccountViewController.swift; sourceTree = "<group>"; };
-		436A087E20501685001285FC /* VOYAddReportTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VOYAddReportTests.swift; sourceTree = "<group>"; };
-		436C992D2049850800915A13 /* VOYThemeListTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = VOYThemeListTests.swift; path = VoyTests/Controller/ThemeList/VOYThemeListTests.swift; sourceTree = SOURCE_ROOT; };
 		436C9935204991ED00915A13 /* VOYReachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VOYReachability.swift; sourceTree = "<group>"; };
 		436C9937204992A200915A13 /* VOYReachabilityImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VOYReachabilityImpl.swift; sourceTree = "<group>"; };
 		436C9939204996A300915A13 /* VOYLoginDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VOYLoginDataSource.swift; sourceTree = "<group>"; };
@@ -227,24 +174,12 @@
 		4371B693204F256300D83454 /* VOYAddReportTagsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VOYAddReportTagsPresenter.swift; sourceTree = "<group>"; };
 		4371B695204F257600D83454 /* VOYAddReportTagsContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VOYAddReportTagsContract.swift; sourceTree = "<group>"; };
 		4376E764205163B700F83FF5 /* VOYAddReportAttachContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VOYAddReportAttachContract.swift; sourceTree = "<group>"; };
-		4376E76E2051806600F83FF5 /* VOYMockLoginRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VOYMockLoginRepository.swift; sourceTree = "<group>"; };
-		4376E76F2051806600F83FF5 /* VOYMockLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VOYMockLoginViewController.swift; sourceTree = "<group>"; };
-		4376E7742051825A00F83FF5 /* VOYMockMediaFileRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VOYMockMediaFileRepository.swift; sourceTree = "<group>"; };
-		4376E7752051825A00F83FF5 /* VOYMockAddReportAttachViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VOYMockAddReportAttachViewController.swift; sourceTree = "<group>"; };
-		4376E7762051825A00F83FF5 /* VOYMockAddReportTagsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VOYMockAddReportTagsViewController.swift; sourceTree = "<group>"; };
-		4376E7772051825A00F83FF5 /* VOYMockAddReportRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VOYMockAddReportRepository.swift; sourceTree = "<group>"; };
-		4376E77E2051A78B00F83FF5 /* VOYMockThemeListRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VOYMockThemeListRepository.swift; sourceTree = "<group>"; };
-		4376E77F2051A78B00F83FF5 /* VOYMockThemeListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VOYMockThemeListViewController.swift; sourceTree = "<group>"; };
-		4376E7862051A7EC00F83FF5 /* VOYMockAccountRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VOYMockAccountRepository.swift; sourceTree = "<group>"; };
-		4376E78A2051A83900F83FF5 /* VOYMockCommentRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VOYMockCommentRepository.swift; sourceTree = "<group>"; };
 		4376E78E2051C83100F83FF5 /* VOYNotificationPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VOYNotificationPresenter.swift; sourceTree = "<group>"; };
 		4376E7902051C8D800F83FF5 /* VOYNotificationContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VOYNotificationContract.swift; sourceTree = "<group>"; };
 		4376E7972051C9C300F83FF5 /* VOYNotificationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VOYNotificationTableViewCell.swift; sourceTree = "<group>"; };
 		4376E7982051C9C300F83FF5 /* VOYNotificationTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VOYNotificationTableViewCell.xib; sourceTree = "<group>"; };
 		437BD1A520487C8F00EC5661 /* VOYLoginPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VOYLoginPresenter.swift; sourceTree = "<group>"; };
 		437BD1AC2048891300EC5661 /* VOYLoginContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VOYLoginContract.swift; sourceTree = "<group>"; };
-		43A0518C204DB62D00ABC0C9 /* VOYAccountListTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VOYAccountListTests.swift; sourceTree = "<group>"; };
-		43A0518E204DB63600ABC0C9 /* VOYLoginTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VOYLoginTests.swift; sourceTree = "<group>"; };
 		5C5F78CC110E27296AC6C772 /* Pods-VoyUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VoyUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-VoyUITests/Pods-VoyUITests.release.xcconfig"; sourceTree = "<group>"; };
 		655BD1212020E4FA00D69EA2 /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		655BD1242020F3C100D69EA2 /* VOYAlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VOYAlertViewController.swift; sourceTree = "<group>"; };
@@ -323,11 +258,6 @@
 		65F3460D2020A87A00AC5437 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		65F346102020A87A00AC5437 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		65F346122020A87A00AC5437 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		65F346172020A87B00AC5437 /* VoyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VoyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		65F3461D2020A87B00AC5437 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		65F346222020A87B00AC5437 /* VoyUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VoyUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		65F346262020A87B00AC5437 /* VoyUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoyUITests.swift; sourceTree = "<group>"; };
-		65F346282020A87B00AC5437 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		65F3463B2020B58A00AC5437 /* VOYLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VOYLoginViewController.swift; sourceTree = "<group>"; };
 		65F3463C2020B58A00AC5437 /* VOYLoginViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VOYLoginViewController.xib; sourceTree = "<group>"; };
 		65F346402020B82B00AC5437 /* VOYTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VOYTextFieldView.swift; sourceTree = "<group>"; };
@@ -352,34 +282,9 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		65F346142020A87A00AC5437 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				D36E24B6691A028EA1A52082 /* Pods_VoyTests.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		65F3461F2020A87B00AC5437 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				C365BA53A254E96BCDEB9AAF /* Pods_VoyUITests.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		0103F5A8205879B50093E0F5 /* ReportDetail */ = {
-			isa = PBXGroup;
-			children = (
-				0103F5A9205879D80093E0F5 /* VOYReportDetailTests.swift */,
-				0103F5AB20587A190093E0F5 /* VOYMockReportDetailViewController.swift */,
-			);
-			path = ReportDetail;
-			sourceTree = "<group>";
-		};
 		01609EFD205AACE5008735EB /* Shared */ = {
 			isa = PBXGroup;
 			children = (
@@ -388,23 +293,6 @@
 			);
 			name = Shared;
 			path = "New Group";
-			sourceTree = "<group>";
-		};
-		01C02E2920571C9D0060702B /* ReportList */ = {
-			isa = PBXGroup;
-			children = (
-				01C02E2A20571CC10060702B /* VOYReportListTests.swift */,
-				01C02E2C20571D0D0060702B /* VOYMockReportListViewController.swift */,
-			);
-			path = ReportList;
-			sourceTree = "<group>";
-		};
-		01C02EA02058145F0060702B /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				01C02EA12058147F0060702B /* VOYUserTests.swift */,
-			);
-			path = Models;
 			sourceTree = "<group>";
 		};
 		01EBF713204EB7BA00D4EF10 /* Extensions */ = {
@@ -502,14 +390,6 @@
 			path = Remote;
 			sourceTree = "<group>";
 		};
-		431F3599204DC47400E27A7F /* Comment */ = {
-			isa = PBXGroup;
-			children = (
-				431F359A204DC48F00E27A7F /* VOYCommentTests.swift */,
-			);
-			path = Comment;
-			sourceTree = "<group>";
-		};
 		433DE1C32052AC3B00966BE1 /* Notification */ = {
 			isa = PBXGroup;
 			children = (
@@ -517,14 +397,6 @@
 				433DE1C52052AD0C00966BE1 /* VOYNotificationRepository.swift */,
 			);
 			path = Notification;
-			sourceTree = "<group>";
-		};
-		436A087D20501685001285FC /* AddReport */ = {
-			isa = PBXGroup;
-			children = (
-				436A087E20501685001285FC /* VOYAddReportTests.swift */,
-			);
-			path = AddReport;
 			sourceTree = "<group>";
 		};
 		436C994620499AE400915A13 /* Reachability */ = {
@@ -536,101 +408,6 @@
 			path = Reachability;
 			sourceTree = "<group>";
 		};
-		4376E76720517F2500F83FF5 /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-				0103F5A8205879B50093E0F5 /* ReportDetail */,
-				01C02E2920571C9D0060702B /* ReportList */,
-				4376E7882051A81900F83FF5 /* Comment */,
-				4376E7842051A7CA00F83FF5 /* Account */,
-				4376E77C2051A70600F83FF5 /* ThemeList */,
-				4376E772205181DA00F83FF5 /* AddReport */,
-				4376E76820517F2F00F83FF5 /* Login */,
-			);
-			path = Controller;
-			sourceTree = "<group>";
-		};
-		4376E76820517F2F00F83FF5 /* Login */ = {
-			isa = PBXGroup;
-			children = (
-				43A0518E204DB63600ABC0C9 /* VOYLoginTests.swift */,
-				4376E76D2051806600F83FF5 /* Mock */,
-			);
-			path = Login;
-			sourceTree = "<group>";
-		};
-		4376E76D2051806600F83FF5 /* Mock */ = {
-			isa = PBXGroup;
-			children = (
-				4376E76E2051806600F83FF5 /* VOYMockLoginRepository.swift */,
-				4376E76F2051806600F83FF5 /* VOYMockLoginViewController.swift */,
-			);
-			path = Mock;
-			sourceTree = "<group>";
-		};
-		4376E772205181DA00F83FF5 /* AddReport */ = {
-			isa = PBXGroup;
-			children = (
-				4376E7732051820400F83FF5 /* Mock */,
-			);
-			path = AddReport;
-			sourceTree = "<group>";
-		};
-		4376E7732051820400F83FF5 /* Mock */ = {
-			isa = PBXGroup;
-			children = (
-				4376E7752051825A00F83FF5 /* VOYMockAddReportAttachViewController.swift */,
-				4376E7772051825A00F83FF5 /* VOYMockAddReportRepository.swift */,
-				4376E7762051825A00F83FF5 /* VOYMockAddReportTagsViewController.swift */,
-				4376E7742051825A00F83FF5 /* VOYMockMediaFileRepository.swift */,
-			);
-			path = Mock;
-			sourceTree = "<group>";
-		};
-		4376E77C2051A70600F83FF5 /* ThemeList */ = {
-			isa = PBXGroup;
-			children = (
-				4376E77F2051A78B00F83FF5 /* VOYMockThemeListViewController.swift */,
-				4376E77E2051A78B00F83FF5 /* VOYMockThemeListRepository.swift */,
-				436C992D2049850800915A13 /* VOYThemeListTests.swift */,
-			);
-			path = ThemeList;
-			sourceTree = "<group>";
-		};
-		4376E7842051A7CA00F83FF5 /* Account */ = {
-			isa = PBXGroup;
-			children = (
-				43A0518C204DB62D00ABC0C9 /* VOYAccountListTests.swift */,
-				4376E7852051A7D400F83FF5 /* Mock */,
-			);
-			path = Account;
-			sourceTree = "<group>";
-		};
-		4376E7852051A7D400F83FF5 /* Mock */ = {
-			isa = PBXGroup;
-			children = (
-				4376E7862051A7EC00F83FF5 /* VOYMockAccountRepository.swift */,
-				436960A6205858BE00A2BD67 /* VOYMockAccountViewController.swift */,
-			);
-			path = Mock;
-			sourceTree = "<group>";
-		};
-		4376E7882051A81900F83FF5 /* Comment */ = {
-			isa = PBXGroup;
-			children = (
-				4376E7892051A82700F83FF5 /* Mock */,
-			);
-			path = Comment;
-			sourceTree = "<group>";
-		};
-		4376E7892051A82700F83FF5 /* Mock */ = {
-			isa = PBXGroup;
-			children = (
-				4376E78A2051A83900F83FF5 /* VOYMockCommentRepository.swift */,
-			);
-			path = Mock;
-			sourceTree = "<group>";
-		};
 		4376E7962051C9A900F83FF5 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
@@ -638,16 +415,6 @@
 				4376E7982051C9C300F83FF5 /* VOYNotificationTableViewCell.xib */,
 			);
 			path = Cell;
-			sourceTree = "<group>";
-		};
-		437BD19F204870AA00EC5661 /* Network */ = {
-			isa = PBXGroup;
-			children = (
-				436A087D20501685001285FC /* AddReport */,
-				431F3599204DC47400E27A7F /* Comment */,
-				01EBF72C2053058200D4EF10 /* VOYMockReachability.swift */,
-			);
-			path = Network;
 			sourceTree = "<group>";
 		};
 		655BD1202020E4E500D69EA2 /* Utils */ = {
@@ -852,8 +619,6 @@
 			isa = PBXGroup;
 			children = (
 				65F346052020A87A00AC5437 /* Voy */,
-				65F3461A2020A87B00AC5437 /* VoyTests */,
-				65F346252020A87B00AC5437 /* VoyUITests */,
 				65F346042020A87A00AC5437 /* Products */,
 				C719BE0786B50BD4697C92B9 /* Pods */,
 				E41BF611D24D11A81D73B236 /* Frameworks */,
@@ -864,8 +629,6 @@
 			isa = PBXGroup;
 			children = (
 				65F346032020A87A00AC5437 /* Voy.app */,
-				65F346172020A87B00AC5437 /* VoyTests.xctest */,
-				65F346222020A87B00AC5437 /* VoyUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -882,26 +645,6 @@
 				01EBF71A204F216200D4EF10 /* Localizable.strings */,
 			);
 			path = Voy;
-			sourceTree = "<group>";
-		};
-		65F3461A2020A87B00AC5437 /* VoyTests */ = {
-			isa = PBXGroup;
-			children = (
-				01C02EA02058145F0060702B /* Models */,
-				4376E76720517F2500F83FF5 /* Controller */,
-				437BD19F204870AA00EC5661 /* Network */,
-				65F3461D2020A87B00AC5437 /* Info.plist */,
-			);
-			path = VoyTests;
-			sourceTree = "<group>";
-		};
-		65F346252020A87B00AC5437 /* VoyUITests */ = {
-			isa = PBXGroup;
-			children = (
-				65F346262020A87B00AC5437 /* VoyUITests.swift */,
-				65F346282020A87B00AC5437 /* Info.plist */,
-			);
-			path = VoyUITests;
 			sourceTree = "<group>";
 		};
 		65F346342020B23A00AC5437 /* Classes */ = {
@@ -1021,48 +764,6 @@
 			productReference = 65F346032020A87A00AC5437 /* Voy.app */;
 			productType = "com.apple.product-type.application";
 		};
-		65F346162020A87A00AC5437 /* VoyTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 65F3462E2020A87B00AC5437 /* Build configuration list for PBXNativeTarget "VoyTests" */;
-			buildPhases = (
-				E7FB3E66DEF7D8C830965FC1 /* [CP] Check Pods Manifest.lock */,
-				65F346132020A87A00AC5437 /* Sources */,
-				65F346142020A87A00AC5437 /* Frameworks */,
-				65F346152020A87A00AC5437 /* Resources */,
-				0C4FEB4F06018ADE6D650746 /* [CP] Embed Pods Frameworks */,
-				FFFA98C5B7C06838CF641BE8 /* [CP] Copy Pods Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				65F346192020A87B00AC5437 /* PBXTargetDependency */,
-			);
-			name = VoyTests;
-			productName = VoyTests;
-			productReference = 65F346172020A87B00AC5437 /* VoyTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		65F346212020A87B00AC5437 /* VoyUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 65F346312020A87B00AC5437 /* Build configuration list for PBXNativeTarget "VoyUITests" */;
-			buildPhases = (
-				02DF6943BB7A5F715E942890 /* [CP] Check Pods Manifest.lock */,
-				65F3461E2020A87B00AC5437 /* Sources */,
-				65F3461F2020A87B00AC5437 /* Frameworks */,
-				65F346202020A87B00AC5437 /* Resources */,
-				2E5AE3B7258F2ACEFFC03929 /* [CP] Embed Pods Frameworks */,
-				4664528FB3269C43914D9D39 /* [CP] Copy Pods Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				65F346242020A87B00AC5437 /* PBXTargetDependency */,
-			);
-			name = VoyUITests;
-			productName = VoyUITests;
-			productReference = 65F346222020A87B00AC5437 /* VoyUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -1083,16 +784,6 @@
 							};
 						};
 					};
-					65F346162020A87A00AC5437 = {
-						CreatedOnToolsVersion = 9.2;
-						ProvisioningStyle = Automatic;
-						TestTargetID = 65F346022020A87A00AC5437;
-					};
-					65F346212020A87B00AC5437 = {
-						CreatedOnToolsVersion = 9.2;
-						ProvisioningStyle = Automatic;
-						TestTargetID = 65F346022020A87A00AC5437;
-					};
 				};
 			};
 			buildConfigurationList = 65F345FE2020A87A00AC5437 /* Build configuration list for PBXProject "Voy" */;
@@ -1109,8 +800,6 @@
 			projectRoot = "";
 			targets = (
 				65F346022020A87A00AC5437 /* Voy */,
-				65F346162020A87A00AC5437 /* VoyTests */,
-				65F346212020A87B00AC5437 /* VoyUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -1151,21 +840,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		65F346152020A87A00AC5437 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				01C02E9F20572A900060702B /* LaunchScreen.storyboard in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		65F346202020A87B00AC5437 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
@@ -1183,24 +857,6 @@
 			shellPath = /bin/sh;
 			shellScript = "if which swiftlint >/dev/null; then\n    swiftlint\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
 		};
-		02DF6943BB7A5F715E942890 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-VoyUITests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
 		06B3FEA5D74FC835DD497ED6 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1217,36 +873,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		0C4FEB4F06018ADE6D650746 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-VoyTests/Pods-VoyTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		2E5AE3B7258F2ACEFFC03929 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-VoyUITests/Pods-VoyUITests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		42DA7F30FB556E98FC231194 /* [CP] Embed Pods Frameworks */ = {
@@ -1299,21 +925,6 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Voy/Pods-Voy-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		4664528FB3269C43914D9D39 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-VoyUITests/Pods-VoyUITests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		494ADE4FC227B84A4C04B30D /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1327,39 +938,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Voy/Pods-Voy-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		E7FB3E66DEF7D8C830965FC1 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-VoyTests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		FFFA98C5B7C06838CF641BE8 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-VoyTests/Pods-VoyTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -1468,57 +1046,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		65F346132020A87A00AC5437 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				0103F5AC20587A190093E0F5 /* VOYMockReportDetailViewController.swift in Sources */,
-				4376E77B2051825A00F83FF5 /* VOYMockAddReportRepository.swift in Sources */,
-				436A088220501823001285FC /* VOYAddReportTests.swift in Sources */,
-				4376E7822051A78C00F83FF5 /* VOYMockThemeListViewController.swift in Sources */,
-				4376E78B2051A83900F83FF5 /* VOYMockCommentRepository.swift in Sources */,
-				4376E7712051806600F83FF5 /* VOYMockLoginViewController.swift in Sources */,
-				431F359B204DC48F00E27A7F /* VOYCommentTests.swift in Sources */,
-				01EBF72D2053058200D4EF10 /* VOYMockReachability.swift in Sources */,
-				4376E7872051A7EC00F83FF5 /* VOYMockAccountRepository.swift in Sources */,
-				431F3595204DBE7300E27A7F /* VOYAccountListTests.swift in Sources */,
-				01C02EA22058147F0060702B /* VOYUserTests.swift in Sources */,
-				431F3594204DBE6B00E27A7F /* VOYThemeListTests.swift in Sources */,
-				01C02E2D20571D0D0060702B /* VOYMockReportListViewController.swift in Sources */,
-				4376E7792051825A00F83FF5 /* VOYMockAddReportAttachViewController.swift in Sources */,
-				4376E77A2051825A00F83FF5 /* VOYMockAddReportTagsViewController.swift in Sources */,
-				4376E7812051A78C00F83FF5 /* VOYMockThemeListRepository.swift in Sources */,
-				4376E7702051806600F83FF5 /* VOYMockLoginRepository.swift in Sources */,
-				4376E7782051825A00F83FF5 /* VOYMockMediaFileRepository.swift in Sources */,
-				0103F5AA205879D80093E0F5 /* VOYReportDetailTests.swift in Sources */,
-				436960A7205858BE00A2BD67 /* VOYMockAccountViewController.swift in Sources */,
-				01C02E2B20571CC10060702B /* VOYReportListTests.swift in Sources */,
-				431F3593204DBE2900E27A7F /* VOYLoginTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		65F3461E2020A87B00AC5437 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				65F346272020A87B00AC5437 /* VoyUITests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		65F346192020A87B00AC5437 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 65F346022020A87A00AC5437 /* Voy */;
-			targetProxy = 65F346182020A87B00AC5437 /* PBXContainerItemProxy */;
-		};
-		65F346242020A87B00AC5437 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 65F346022020A87A00AC5437 /* Voy */;
-			targetProxy = 65F346232020A87B00AC5437 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		01EBF71A204F216200D4EF10 /* Localizable.strings */ = {
@@ -1670,84 +1198,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = URW25ECJ7Y;
+				DEVELOPMENT_TEAM = 4HQH8A7243;
 				INFOPLIST_FILE = Voy/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = br.com.ilhasoft.Voy;
+				PRODUCT_BUNDLE_IDENTIFIER = io.github.dielsonsales.Voy;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
-			};
-			name = Release;
-		};
-		65F3462F2020A87B00AC5437 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1C63B2E9849D938061D8A8BB /* Pods-VoyTests.debug.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = ZE9A9HAM9Z;
-				INFOPLIST_FILE = VoyTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = br.com.ilhasoft.VoyTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Voy.app/Voy";
-			};
-			name = Debug;
-		};
-		65F346302020A87B00AC5437 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 09E6F9A93ABF9A8CD9032B8F /* Pods-VoyTests.release.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = ZE9A9HAM9Z;
-				INFOPLIST_FILE = VoyTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = br.com.ilhasoft.VoyTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Voy.app/Voy";
-			};
-			name = Release;
-		};
-		65F346322020A87B00AC5437 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6BA92341A1C7FC405623FD46 /* Pods-VoyUITests.debug.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = ZE9A9HAM9Z;
-				INFOPLIST_FILE = VoyUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = br.com.ilhasoft.VoyUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = Voy;
-			};
-			name = Debug;
-		};
-		65F346332020A87B00AC5437 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5C5F78CC110E27296AC6C772 /* Pods-VoyUITests.release.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = ZE9A9HAM9Z;
-				INFOPLIST_FILE = VoyUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = br.com.ilhasoft.VoyUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = Voy;
 			};
 			name = Release;
 		};
@@ -1768,24 +1226,6 @@
 			buildConfigurations = (
 				65F3462C2020A87B00AC5437 /* Debug */,
 				65F3462D2020A87B00AC5437 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		65F3462E2020A87B00AC5437 /* Build configuration list for PBXNativeTarget "VoyTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				65F3462F2020A87B00AC5437 /* Debug */,
-				65F346302020A87B00AC5437 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		65F346312020A87B00AC5437 /* Build configuration list for PBXNativeTarget "VoyUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				65F346322020A87B00AC5437 /* Debug */,
-				65F346332020A87B00AC5437 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
