@@ -9,18 +9,19 @@
 import UIKit
 
 class VOYAddReportRepository: VOYAddReportDataSource {
-    
+
     let reachability: VOYReachability
     let networkClient = VOYNetworkClient(reachability: VOYReachabilityImpl())
     let mediaFileDataSource: VOYMediaFileDataSource
-    
+    private let reportStorageManager = VOYReportStorageManager()
+
     init(reachability: VOYReachability, mediaFileDataSource: VOYMediaFileDataSource = VOYMediaFileRepository()) {
         self.reachability = reachability
         self.mediaFileDataSource = mediaFileDataSource
     }
-    
+
     // MARK: - VOYAddReportDataSource
-    
+
     func save(report: VOYReport, completion: @escaping (Error?, Int?) -> Void) {
         if reachability.hasNetwork() {
             saveRemote(report: report, completion: completion)
@@ -28,12 +29,12 @@ class VOYAddReportRepository: VOYAddReportDataSource {
             saveLocal(report: report, completion: completion)
         }
     }
-    
+
     // MARK: - Private methods
-    
+
     private func saveRemote(report: VOYReport, completion: @escaping (Error?, Int?) -> Void) {
         let authToken = VOYUser.activeUser()!.authToken
-        let headers = ["Authorization": "Token \(authToken!)", "Content-Type": "application/json"]
+        let headers = ["Authorization": "Token \(authToken!)"]
         var method: VOYNetworkClient.VOYHTTPMethod!
         var reportIDString = ""
         if report.update && report.status != nil {
@@ -53,7 +54,7 @@ class VOYAddReportRepository: VOYAddReportDataSource {
                 }
                 if let reportID = value["id"] as? Int {
                     self.mediaFileDataSource.delete(mediaFiles: report.removedMedias)
-                    VOYReportStorageManager.shared.removeFromStorageAfterSave(report: report)
+                    self.reportStorageManager.removeFromStorageAfterSave(report: report)
                     self.mediaFileDataSource.upload(
                         reportID: reportID,
                         cameraDataList: report.cameraDataList!,
@@ -68,7 +69,7 @@ class VOYAddReportRepository: VOYAddReportDataSource {
     }
 
     private func saveLocal(report: VOYReport, completion: @escaping (Error?, Int?) -> Void) {
-        VOYReportStorageManager.shared.addAsPendent(report: report)
+        reportStorageManager.addAsPendent(report: report)
         completion(nil, nil)
     }
 }

@@ -11,96 +11,60 @@ import MapKit
 import NVActivityIndicatorView
 import MobileCoreServices
 
-enum VOYAddReportErrorType {
-    case willStart
-    case ended
-    case outOfBouds
-}
-
 class VOYAddReportAttachViewController: UIViewController, NVActivityIndicatorViewable {
 
     @IBOutlet var mediaViews: [VOYAddMediaView]!
     @IBOutlet var lbTitle: UILabel!
 
-    var locationManager: VOYLocationManager!
-    var theme: VOYTheme!
     var imagePickerController: UIImagePickerController!
     var actionSheetController: VOYActionSheetViewController!
-    
+
     var report: VOYReport?
-    var removedMedias = [VOYMedia]()
-    
+    var presenter: VOYAddReportAttachPresenter!
+
     var mediaList = [VOYMedia]() {
         didSet {
             self.navigationItem.rightBarButtonItem!.isEnabled = !mediaList.isEmpty
         }
     }
-    
+
     var cameraDataList = [VOYCameraData]() {
         didSet {
             self.navigationItem.rightBarButtonItem!.isEnabled = !cameraDataList.isEmpty
         }
     }
+
     var cameraData: VOYCameraData! {
         didSet {
             cameraDataList.append(cameraData)
             setupMediaView()
         }
     }
-    
+
     var tappedMediaView: VOYAddMediaView!
-    
-    init(report: VOYReport) {
+
+    init(report: VOYReport? = nil) {
         self.report = report
         super.init(nibName: String(describing: type(of: self)), bundle: nil)
     }
-    
-    init() {
-        super.init(nibName: String(describing: type(of: self)), bundle: nil)
-    }
-    
+
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         edgesForExtendedLayout = []
-        
-        if let activeTheme = VOYTheme.activeTheme() {
-            self.theme = activeTheme
-        }
-        
-        locationManager = VOYLocationManager(delegate: self)
-        locationManager.getCurrentLocation()
         self.startAnimating()
-
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: " ", style: .plain, target: nil, action: nil)
         self.navigationController?.setNavigationBarHidden(false, animated: false)
         setupMediaViewDelegate()
         addNextButton()
         loadFromReport()
         setupLocalization()
-        validateDateLimit()
+        presenter = VOYAddReportAttachPresenter(view: self, report: self.report)
     }
     
-    // TODO: Add a method to switch alerts(will start, ended or out of bounds), it must be called from presenter, that must verify both situations, time and bounds
-    
-    func validateDateLimit() {
-        if let startAt = self.theme.start_at, let endAt = self.theme.end_at {
-            let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "yyyy-MM-dd"
-            dateFormatter.timeZone = TimeZone(abbreviation: TimeZone.current.abbreviation() ?? "UTC")
-            
-            if let startDate = dateFormatter.date(from: startAt), let endDate = dateFormatter.date(from: endAt) {
-                let currentDate = Date()
-                if startDate >= currentDate || endDate <= currentDate {
-                    (startDate >= currentDate) ? showAlert(alert: .willStart) : showAlert(alert: .ended)
-                }
-            }
-        }
-    }
-
     func loadFromReport() {
         guard let report = self.report else { return }        
         mediaList = report.files
@@ -115,22 +79,15 @@ class VOYAddReportAttachViewController: UIViewController, NVActivityIndicatorVie
             title: localizedString(.next),
             style: .plain,
             target: self,
-            action: #selector(openNextController)
+            action: #selector(onTapNextButton)
         )
         self.navigationItem.rightBarButtonItem!.isEnabled = false
     }
 
-    @objc func openNextController() {
-        var addReportDataViewController: VOYAddReportDataViewController!
-        if report != nil {
-            report!.cameraDataList = self.cameraDataList
-            addReportDataViewController = VOYAddReportDataViewController(savedReport: self.report!)
-        } else {
-            addReportDataViewController = VOYAddReportDataViewController(cameraDataList: self.cameraDataList)
-        }
-        self.navigationController?.pushViewController(addReportDataViewController, animated: true)
+    @objc func onTapNextButton() {
+        presenter.onNextButtonTapped()
     }
-    
+
     func setupMediaViewDelegate() {
         for mediaView in mediaViews {
             mediaView.delegate = self
@@ -162,17 +119,45 @@ class VOYAddReportAttachViewController: UIViewController, NVActivityIndicatorVie
     func setupMediaView() {
         tappedMediaView.setupWithMedia(cameraData: self.cameraData)
     }
-    
+
     // MARK: - Localization
-    
+
     private func setupLocalization() {
         self.title = localizedString(.addReport)
         lbTitle.text = localizedString(.addPhotosAndVideos)
     }
+}
+
+extension VOYAddReportAttachViewController: VOYAddReportAttachContract {
+
+    func navigateToNextScreen() {
+        var addReportDataViewController: VOYAddReportDataViewController!
+        if report != nil {
+            report!.cameraDataList = self.cameraDataList
+            addReportDataViewController = VOYAddReportDataViewController(savedReport: self.report!)
+        } else {
+            addReportDataViewController = VOYAddReportDataViewController(cameraDataList: self.cameraDataList)
+        }
+        self.navigationController?.pushViewController(addReportDataViewController, animated: true)
+    }
     
+    func showGpsPermissionError() {
+        let alertViewController = VOYAlertViewController(
+            title: localizedString(.alert),
+            message: localizedString(.outsideThemesBounds)
+        )
+        alertViewController.view.tag = 1
+        alertViewController.delegate = self
+        alertViewController.show(true, inViewController: self)
+    }
+    
+    func showOutsideThemeBoundsError() {
+        self.showAlert(alert: .outOfBouds)
+    }
 }
 
 extension VOYAddReportAttachViewController: VOYAddMediaViewDelegate {
+
     func mediaViewDidTap(mediaView: VOYAddMediaView) {
         tappedMediaView = mediaView
         actionSheetController = VOYActionSheetViewController(
@@ -182,6 +167,7 @@ extension VOYAddReportAttachViewController: VOYAddMediaViewDelegate {
         actionSheetController.delegate = self
         actionSheetController.show(true, inViewController: self)
     }
+
     func removeMediaButtonDidTap(mediaView: VOYAddMediaView) {
         if let cameraData = mediaView.cameraData {
             let index = self.cameraDataList.index { ($0.id == cameraData.id) }
@@ -192,9 +178,14 @@ extension VOYAddReportAttachViewController: VOYAddMediaViewDelegate {
             let index = self.mediaList.index { ($0.id == media.id) }
             if let index = index {
                 self.mediaList.remove(at: index)
-                self.removedMedias.append(media)
             }
-            self.report!.removedMedias = self.removedMedias
+            if let report = self.report {
+                if report.removedMedias == nil {
+                    report.removedMedias = [media]
+                } else {
+                    report.removedMedias!.append(media)
+                }
+            }
         }
     }
 }
@@ -213,51 +204,10 @@ extension VOYAddReportAttachViewController: VOYActionSheetViewControllerDelegate
         } else {
             imagePickerController.mediaTypes = [kUTTypeImage as String]
         }
-        self.present(imagePickerController, animated: true) {
-            
-        }
+        present(imagePickerController, animated: true, completion: nil)
     }
     func cancelButtonDidTap(actionSheetViewController: VOYActionSheetViewController) {
         actionSheetViewController.close()
-    }
-}
-
-extension VOYAddReportAttachViewController: VOYLocationManagerDelegate {
-    func didGetUserLocation(latitude: Float, longitude: Float, error: Error?) {
-        self.stopAnimating()
-        let myLocation = CLLocationCoordinate2D(
-            latitude: CLLocationDegrees(latitude),
-            longitude: CLLocationDegrees(longitude)
-        )
-
-        var loctionCoordinate2dList = [CLLocationCoordinate2D]()
-        for point in theme.bounds {
-            let locationCoordinate2D = CLLocationCoordinate2D(latitude: point[0], longitude: point[1])
-            loctionCoordinate2dList.append(locationCoordinate2D)
-        }
-        
-        let statePolygonRenderer = MKPolygonRenderer(polygon:
-            MKPolygon(coordinates: loctionCoordinate2dList, count: loctionCoordinate2dList.count)
-        )
-        let testMapPoint: MKMapPoint = MKMapPointForCoordinate(myLocation)
-        let statePolygonRenderedPoint: CGPoint = statePolygonRenderer.point(for: testMapPoint)
-        let intersects: Bool = statePolygonRenderer.path.contains(statePolygonRenderedPoint)
-        
-        if !intersects {
-            self.showAlert(alert: .outOfBouds)
-        }
- 
-    }
-    
-    func userDidntGivePermission() {
-        self.stopAnimating()
-        let alertViewController = VOYAlertViewController(
-            title: localizedString(.gpsPermissionError),
-            message: localizedString(.needGpsPermission)
-        )
-        alertViewController.view.tag = 2
-        alertViewController.delegate = self
-        alertViewController.show(true, inViewController: self)
     }
 }
 

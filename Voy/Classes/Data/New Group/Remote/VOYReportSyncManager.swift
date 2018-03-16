@@ -10,10 +10,10 @@ import UIKit
 
 class VOYReportSyncManager {
 
-    static let shared = VOYReportSyncManager()
-
     private let mediaFileDataSource: VOYMediaFileDataSource
     private let reachability: VOYReachability
+    private let reportStoreManager = VOYReportStorageManager()
+    private let cameraDataStoreManager = VOYCameraDataStorageManager()
 
     init(mediaFileDataSource: VOYMediaFileDataSource = VOYMediaFileRepository(),
          reachability: VOYReachability = VOYReachabilityImpl()) {
@@ -22,7 +22,7 @@ class VOYReportSyncManager {
     }
 
     func trySendPendentReports() {
-        let pendentReportsJSON = VOYReportStorageManager.shared.getPendentReports()
+        let pendentReportsJSON = reportStoreManager.getPendentReports()
         guard !pendentReportsJSON.isEmpty else {
             return
         }
@@ -36,7 +36,7 @@ class VOYReportSyncManager {
     }
 
     func trySendPendentCameraData() {
-        let pendentCameraDataListDictionary = VOYCameraDataStorageManager.shared.getPendentCameraDataList()
+        let pendentCameraDataListDictionary = cameraDataStoreManager.getPendentCameraDataList()
         var cameraDataList = [VOYCameraData]()
         guard !pendentCameraDataListDictionary.isEmpty else {
             return

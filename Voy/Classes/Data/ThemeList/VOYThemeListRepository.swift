@@ -29,7 +29,7 @@ class VOYThemeListRepository: VOYThemeListDataSource {
         }
     }
     
-    func cacheDataFrom(url: String, parameters: inout [String: Any]) {
+    func cacheDataFrom(url: String, parameters: inout [String: Any], headers: inout [String: String]) {
         if reachability.hasNetwork() {
             var headers = [String: String]()
             headers["Cache-Control"] = "public, max-age=86400, max-stale=120"
@@ -54,16 +54,24 @@ class VOYThemeListRepository: VOYThemeListDataSource {
     
     func getMyProjects(completion: @escaping(_ projects: [VOYProject], _ error: Error?) -> Void) {
         
+        guard let activeUser = VOYUser.activeUser(), let authToken = activeUser.authToken else {
+            #if DEBUG
+                fatalError("Auth token does't exist")
+                #else
+                return
+            #endif
+        }
+        
         var headers = [String: String]()
         if !reachability.hasNetwork() {
             headers["Cache-Control"] = "public, only-if-cached, max-stale=86400"
         } else {
             headers["Cache-Control"] = "public, max-age=86400, max-stale=120"
         }
+        headers[VOYConstant.API.authHeader] = "Token \(authToken)"
         
         let request = Alamofire.request(
-            VOYConstant.API.URL + "projects",
-            parameters: ["auth_token": VOYUser.activeUser()!.authToken],
+            VOYConstant.API.URL + "projects/",
             headers: headers
         )
         
