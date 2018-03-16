@@ -32,8 +32,7 @@ class VOYReportStorageManager {
     }
     
     static func clearPendentReports() {
-        let alert = UIAlertController(title: "Are you sure?", message: "Will lose", preferredStyle: .alert)
-        let cancelAction = UIAlertAction(title: localizedString(.cancel) , style: .destructive) { (_) in }
+        UserDefaults.standard.set(nil, forKey: "reports")
     }
 
     func addAsPendent(report: VOYReport) {
