@@ -20,7 +20,10 @@ public class DataBindOnDemandTableViewInteractor: ISOnDemandTableViewInteractor 
     private var reachability: VOYReachability
     private let networkClient = VOYNetworkClient(reachability: VOYReachabilityImpl())
     
-  init(configuration: DataBindRestConfiguration, params: [String: Any]? = nil, paginationCount: Int, reachability: VOYReachability) {
+  init(configuration: DataBindRestConfiguration,
+       params: [String: Any]? = nil,
+       paginationCount: Int,
+       reachability: VOYReachability) {
         self.endPoint = configuration.endPoint
         self.keyPath = configuration.keyPath
         self.apiURL = configuration.apiURL

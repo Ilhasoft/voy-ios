@@ -15,4 +15,5 @@ protocol VOYReportDetailContract: class {
     func showVideoScreen(videoURL: URL)
     func showActionSheet()
     func navigateToEditReportScreen(report: VOYReport)
+    func setCommentButtonEnabled(_ enabled: Bool)
 }
