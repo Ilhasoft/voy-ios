@@ -49,7 +49,7 @@
 "logout" = "Logout";
 "email" = "Email";
 "new_password" = "New Password";
-"are_you_sure" = "Are you sure? All your pending reports will be lost.";
+"are_you_sure" = "When logging out, all reports that were not sent will be lost. Do you want to continue?";
 
 // Report Details
 "issues_reported" = "Issues reported in your report";
