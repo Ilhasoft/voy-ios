@@ -9,24 +9,24 @@
 import UIKit
 
 class VOYAccountPresenter {
-    
+
     weak var view: VOYAccountContract?
     var dataSource: VOYAccountDataSource
-    
+
     init(dataSource: VOYAccountDataSource, view: VOYAccountContract) {
         self.dataSource = dataSource
         self.view = view
     }
-    
+
     func updateUser(avatar: Int?, password: String?) {
         if avatar != nil || password != nil {
             view?.setupLoading(showLoading: true)
-            self.dataSource.updateUser(avatar: avatar, password: password) { (_) in
+            self.dataSource.updateUser(avatar: avatar, password: password) { _ in
                 self.view?.setupLoading(showLoading: false)
             }
         }
     }
-    
+
     func logoutUser() {
         VOYUser.deactiveUser()
         let navigationController = UINavigationController(rootViewController: VOYLoginViewController())
