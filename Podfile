@@ -3,7 +3,7 @@ platform :ios, '9.0'
 
 use_frameworks!
 
-def common_dependencies
+target 'Voy' do
     pod 'TPKeyboardAvoiding'
     pod 'TagListView'
     pod 'ISOnDemandTableView', :git => 'https://github.com/Ilhasoft/ISOnDemandTableView'
@@ -18,12 +18,11 @@ def common_dependencies
     pod 'AXPhotoViewer'
     pod 'Alamofire'
     pod 'ObjectMapper'
+
+    target 'VoyTests' do
+        inherit! :search_paths
+    end
+
 end
 
-target 'Voy' do
-    common_dependencies
-end
 
-target 'VoyTests' do
-    common_dependencies
-end
