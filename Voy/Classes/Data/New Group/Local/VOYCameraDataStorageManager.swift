@@ -53,4 +53,8 @@ class VOYCameraDataStorageManager {
         UserDefaults.standard.set(encodedObject, forKey: "cameraData")
         UserDefaults.standard.synchronize()
     }
+    
+    static func clearStoredCameraData() {
+        UserDefaults.standard.set(nil, forKey: "cameraData")
+    }
 }
