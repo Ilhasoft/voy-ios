@@ -20,7 +20,6 @@ class VOYAddReportAttachViewController: UIViewController, NVActivityIndicatorVie
     var actionSheetController: VOYActionSheetViewController!
 
     var report: VOYReport?
-//    var removedMedias = [VOYMedia]()
     var presenter: VOYAddReportAttachPresenter!
 
     var mediaList = [VOYMedia]() {
@@ -56,17 +55,16 @@ class VOYAddReportAttachViewController: UIViewController, NVActivityIndicatorVie
     override func viewDidLoad() {
         super.viewDidLoad()
         edgesForExtendedLayout = []
-        startAnimating()
-        navigationItem.backBarButtonItem = UIBarButtonItem(title: " ", style: .plain, target: nil, action: nil)
-        navigationController?.setNavigationBarHidden(false, animated: false)
+        self.startAnimating()
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: " ", style: .plain, target: nil, action: nil)
+        self.navigationController?.setNavigationBarHidden(false, animated: false)
         setupMediaViewDelegate()
         addNextButton()
         loadFromReport()
         setupLocalization()
-        
         presenter = VOYAddReportAttachPresenter(view: self, report: self.report)
     }
-
+    
     func loadFromReport() {
         guard let report = self.report else { return }        
         mediaList = report.files
@@ -95,7 +93,29 @@ class VOYAddReportAttachViewController: UIViewController, NVActivityIndicatorVie
             mediaView.delegate = self
         }
     }
+    
+    func showAlert(alert: VOYAddReportErrorType) {
+        
+        var alertText: String = ""
 
+        switch alert {
+        case .willStart:
+            alertText = localizedString(.weArePreparingThisTheme)
+        case .ended:
+            alertText = localizedString(.periodForReportEnded)
+        case .outOfBouds:
+            alertText = localizedString(.outsideThemesBounds)
+        }
+        
+        let alertViewController = VOYAlertViewController(
+            title: localizedString(.alert),
+            message: alertText
+        )
+        alertViewController.view.tag = 1
+        alertViewController.delegate = self
+        alertViewController.show(true, inViewController: self)
+    }
+    
     func setupMediaView() {
         tappedMediaView.setupWithMedia(cameraData: self.cameraData)
     }
@@ -132,13 +152,7 @@ extension VOYAddReportAttachViewController: VOYAddReportAttachContract {
     }
     
     func showOutsideThemeBoundsError() {
-        let alertViewController = VOYAlertViewController(
-            title: localizedString(.alert),
-            message: localizedString(.outsideThemesBounds)
-        )
-        alertViewController.view.tag = 1
-        alertViewController.delegate = self
-        alertViewController.show(true, inViewController: self)
+        self.showAlert(alert: .outOfBouds)
     }
 }
 

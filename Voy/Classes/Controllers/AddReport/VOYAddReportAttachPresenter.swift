@@ -10,6 +10,12 @@ import UIKit
 import CoreLocation
 import MapKit
 
+enum VOYAddReportErrorType {
+    case willStart
+    case ended
+    case outOfBouds
+}
+
 class VOYAddReportAttachPresenter {
 
     weak var view: VOYAddReportAttachContract?
@@ -20,8 +26,26 @@ class VOYAddReportAttachPresenter {
         self.view = view
         locationManager = VOYLocationManager(delegate: self)
         locationManager.getCurrentLocation()
+        if let theme = VOYTheme.activeTheme() {
+            validateDateLimit(theme: theme)
+        }
     }
 
+    func validateDateLimit(theme: VOYTheme) {
+        if let startAt = theme.start_at, let endAt = theme.end_at {
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "yyyy-MM-dd"
+            dateFormatter.timeZone = TimeZone(abbreviation: TimeZone.current.abbreviation() ?? "UTC")
+            
+            if let startDate = dateFormatter.date(from: startAt), let endDate = dateFormatter.date(from: endAt) {
+                let currentDate = Date()
+                if startDate >= currentDate || endDate <= currentDate {
+                    (startDate >= currentDate) ? view?.showAlert(alert: .willStart) : view?.showAlert(alert: .ended)
+                }
+            }
+        }
+    }
+    
     func onNextButtonTapped() {
         view?.navigateToNextScreen()
     }
