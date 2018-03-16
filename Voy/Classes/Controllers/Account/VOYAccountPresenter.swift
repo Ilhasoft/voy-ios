@@ -30,7 +30,14 @@ class VOYAccountPresenter {
     func logoutUser() {
         VOYUser.deactiveUser()
         let navigationController = UINavigationController(rootViewController: VOYLoginViewController())
-        UIViewController.switchRootViewController(navigationController, animated: true) {
-        }
+        UIViewController.switchRootViewController(navigationController, animated: true, completion: {
+            self.clearAllCachedData()
+        })
+    }
+    
+    func clearAllCachedData() {
+        VOYReportStorageManager.clearPendentReports()
+        VOYCameraDataStorageManager.clearStoredCameraData()
+        URLCache.shared.removeAllCachedResponses()
     }
 }

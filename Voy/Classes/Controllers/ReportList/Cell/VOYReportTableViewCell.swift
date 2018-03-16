@@ -73,19 +73,7 @@ extension VOYReportTableViewCell: DataBindViewDelegate {
         if report.status == nil {
             self.btResent.isHidden = false
             self.btResent.setImage(#imageLiteral(resourceName: "noun576598Cc"), for: .normal)
-        } else if let status = report.status {
-            switch status {
-            case VOYReportStatus.approved.rawValue:
-                break
-            case VOYReportStatus.pendent.rawValue:
-                break
-            case VOYReportStatus.notApproved.rawValue:
-                break
-            default:
-                break
-            }
         }
-        
     }
     
     func willFill(component: Any, value: Any) -> Any? {

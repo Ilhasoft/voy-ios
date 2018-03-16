@@ -22,6 +22,7 @@ class VOYLocalizable {
         case alert
         case allReportsApproved = "all_reports_approved"
         case approved
+        case areYouSure = "are_you_sure"
         case cancel
         case change
         case close
@@ -44,7 +45,7 @@ class VOYLocalizable {
         case issuesReported = "issues_reported"
         case login
         case loginErrorMessage = "login_error_message"
-        case logout
+        case logout = "logout"
         case movie
         case needGpsPermission = "need_gps_permission"
         case newPassword = "new_password"
@@ -60,6 +61,7 @@ class VOYLocalizable {
         case periodForReportEnded = "period_for_reports_has_ended"
         case remove
         case report = "report"
+        case reports = "reports"
         case reportWasApproved = "report_was_approved"
         case reportWasNotApproved = "report_was_not_approved"
         case save
@@ -71,6 +73,7 @@ class VOYLocalizable {
         case title
         case titleAndDescription = "title_and_description"
         case username
+        case youHaveNoUnapprovedReports = "you_have_no_unapproved_reports"
         case weArePreparingThisTheme = "we_are_preparing_this_theme_for_you"
     }
 }
