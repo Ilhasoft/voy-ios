@@ -130,7 +130,6 @@
 		65F699492028FAE400BFCF0C /* ISOndemandTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65F699482028FAE400BFCF0C /* ISOndemandTableView.swift */; };
 		65F6994C202A1CB400BFCF0C /* VOYTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65F6994A202A1CB400BFCF0C /* VOYTextView.swift */; };
 		65F6994D202A1CB400BFCF0C /* VOYTextView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 65F6994B202A1CB400BFCF0C /* VOYTextView.xib */; };
-		799D127A523DE25275D763EF /* Pods_VoyTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABF132ADC4EF1DA114732EB6 /* Pods_VoyTests.framework */; };
 		7CE0EFAA68FD7879EE12CDA5 /* Pods_Voy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E550C0C568807F52623837F /* Pods_Voy.framework */; };
 		AF287EDC205AB65100296A22 /* VOYReportListRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF287EDB205AB65100296A22 /* VOYReportListRepository.swift */; };
 		AF287EDE205AB66000296A22 /* VOYReportListDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF287EDD205AB66000296A22 /* VOYReportListDataSource.swift */; };
@@ -293,7 +292,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				799D127A523DE25275D763EF /* Pods_VoyTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
