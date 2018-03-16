@@ -32,6 +32,7 @@
 "great_job" = "Great Job!";
 "all_reports_approved" = "All your reports have been approved";
 "add_report" = "Add Report";
+"you_have_no_unapproved_reports" = "You have no unapproved reports";
 
 // Notifications Screen
 "notifications" = "Notifications";

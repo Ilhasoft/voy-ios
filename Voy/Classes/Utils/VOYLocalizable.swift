@@ -71,6 +71,7 @@ class VOYLocalizable {
         case title
         case titleAndDescription = "title_and_description"
         case username
+        case youHaveNoUnapprovedReports = "you_have_no_unapproved_reports"
         case weArePreparingThisTheme = "we_are_preparing_this_theme_for_you"
     }
 }
