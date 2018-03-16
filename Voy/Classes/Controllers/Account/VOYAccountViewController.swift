@@ -143,6 +143,11 @@ class VOYAccountViewController: UIViewController, NVActivityIndicatorViewable, V
         }
     }
     
+     func clearPendentReports() {
+        let alert = UIAlertController(title: "Are you sure?", message: "Will lose", preferredStyle: .alert)
+        let cancelAction = UIAlertAction(title: localizedString(.cancel) , style: .destructive) { (_) in }
+    }
+    
     @IBAction func btLogoutTapped() {
         presenter?.logoutUser()
     }
