@@ -24,6 +24,7 @@ class VOYReportDetailViewController: UIViewController {
     @IBOutlet weak var viewTags: TagListView!
     @IBOutlet weak var btComment: UIButton!
     @IBOutlet weak var dataBindView: DataBindView!
+    @IBOutlet weak var separatorView: UIView!
     
     var report: VOYReport!
     var presenter: VOYReportDetailPresenter!
@@ -54,6 +55,7 @@ class VOYReportDetailViewController: UIViewController {
         setupLocalization()
 
         presenter = VOYReportDetailPresenter(view: self, report: self.report)
+        presenter.onViewDidLoad()
     }
     
     func setupViewTags() {
@@ -210,6 +212,11 @@ extension VOYReportDetailViewController: VOYReportDetailContract {
             VOYAddReportAttachViewController(report: report),
             animated: true
         )
+    }
+    
+    func setCommentButtonEnabled(_ enabled: Bool) {
+        btComment.isHidden = !enabled
+        separatorView.isHidden = !enabled
     }
 }
 

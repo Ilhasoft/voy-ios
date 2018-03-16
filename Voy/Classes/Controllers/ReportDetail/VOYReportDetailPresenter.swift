@@ -18,6 +18,17 @@ class VOYReportDetailPresenter {
         self.report = report
     }
 
+    func onViewDidLoad() {
+        guard let reportStatusRawValue = report.status,
+              let reportStatus = VOYReportStatus(rawValue: reportStatusRawValue) else { return }
+        switch reportStatus {
+        case .approved:
+            view?.setCommentButtonEnabled(true)
+        default:
+            view?.setCommentButtonEnabled(false)
+        }
+    }
+
     func onCommentButtonTapped() {
         view?.navigateToCommentsScreen(report: report)
     }
