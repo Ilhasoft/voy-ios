@@ -14,51 +14,41 @@ class VOYMockAddReportAttachViewController: VOYAddReportAttachContract {
     var startedMediaPicker: Bool = false
     var loadedMediaFromPreviousReport: Bool = false
     var userTappedNext: Bool = false
-    var addedNextButton: Bool = false
     var userDismissedMediaPicker: Bool = false
     var mediaPicker: UIImagePickerController?
     var mediaList: [VOYMedia] = [VOYMedia]()
-    
+
     init() {
-        addNextButton()
         loadFromReport()
     }
-    
-    func addNextButton() {
-        addedNextButton = true
-        
-    }
-    
+
     func loadFromReport() {
         loadedMediaFromPreviousReport = true
     }
-    
+
     func openNextController() {
         userTappedNext = true
     }
-    
+
     func navigateToNextScreen() {
         // TODO
     }
-    
-    func showAlert(alert: VOYAddReportErrorType) {
+
+    func showAlert(text: String) {
         // TODO
     }
-    
+
     func stopAnimating() {
         // TODO
     }
-    
+
     func showGpsPermissionError() {
-        // TODO
-    }
-    
-    func showOutsideThemeBoundsError() {
         // TODO
     }
 }
 
 extension VOYMockAddReportAttachViewController: VOYActionSheetViewControllerDelegate {
+
     func buttonDidTap(actionSheetViewController: VOYActionSheetViewController, button: UIButton, index: Int) {
         self.mediaPicker = UIImagePickerController()
         let newMedia = VOYMedia()
@@ -70,7 +60,7 @@ extension VOYMockAddReportAttachViewController: VOYActionSheetViewControllerDele
             startedMediaPicker = true
         }
     }
-    
+
     func cancelButtonDidTap(actionSheetViewController: VOYActionSheetViewController) {
         self.mediaPicker = nil
         if self.mediaPicker == nil {
