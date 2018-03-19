@@ -64,9 +64,9 @@ class VOYAddReportAttachViewController: UIViewController, NVActivityIndicatorVie
         setupLocalization()
         presenter = VOYAddReportAttachPresenter(view: self, report: self.report)
     }
-    
+
     func loadFromReport() {
-        guard let report = self.report else { return }        
+        guard let report = self.report else { return }
         mediaList = report.files
         for (index, mediaView) in self.mediaViews.enumerated() {
             guard index < report.files.count else { return }
@@ -93,12 +93,12 @@ class VOYAddReportAttachViewController: UIViewController, NVActivityIndicatorVie
             mediaView.delegate = self
         }
     }
-    
+
     func showAlert(alert: VOYAlertViewController) {
         alert.delegate = self
         alert.show(true, inViewController: self)
     }
-    
+
     func setupMediaView() {
         tappedMediaView.setupWithMedia(cameraData: self.cameraData)
     }
@@ -123,7 +123,7 @@ extension VOYAddReportAttachViewController: VOYAddReportAttachContract {
         }
         self.navigationController?.pushViewController(addReportDataViewController, animated: true)
     }
-    
+
     func showGpsPermissionError() {
         let alertViewController = VOYAlertViewController(
             title: localizedString(.alert),
@@ -133,7 +133,7 @@ extension VOYAddReportAttachViewController: VOYAddReportAttachContract {
         alertViewController.delegate = self
         alertViewController.show(true, inViewController: self)
     }
-    
+
     func showOutsideThemeBoundsError() {
         self.presenter.showAlert(alert: .outOfBouds)
     }

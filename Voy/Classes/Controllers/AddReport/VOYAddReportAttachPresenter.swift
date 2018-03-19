@@ -36,7 +36,7 @@ class VOYAddReportAttachPresenter {
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "yyyy-MM-dd"
             dateFormatter.timeZone = TimeZone(abbreviation: TimeZone.current.abbreviation() ?? "UTC")
-            
+
             if let startDate = dateFormatter.date(from: startAt), let endDate = dateFormatter.date(from: endAt) {
                 let currentDate = Date()
                 if startDate >= currentDate || endDate <= currentDate {
@@ -45,11 +45,11 @@ class VOYAddReportAttachPresenter {
             }
         }
     }
-    
+
     func showAlert(alert: VOYAddReportErrorType) {
-        
+
         var alertText: String = ""
-        
+
         switch alert {
         case .willStart:
             alertText = localizedString(.weArePreparingThisTheme)
@@ -58,7 +58,7 @@ class VOYAddReportAttachPresenter {
         case .outOfBouds:
             alertText = localizedString(.outsideThemesBounds)
         }
-        
+
         let alertViewController = VOYAlertViewController(
             title: localizedString(.alert),
             message: alertText
@@ -66,7 +66,7 @@ class VOYAddReportAttachPresenter {
         alertViewController.view.tag = 1
         view?.showAlert(alert: alertViewController)
     }
-    
+
     func onNextButtonTapped() {
         view?.navigateToNextScreen()
     }
@@ -88,14 +88,14 @@ extension VOYAddReportAttachPresenter: VOYLocationManagerDelegate {
             longitude: CLLocationDegrees(longitude)
         )
 
-        var loctionCoordinate2dList = [CLLocationCoordinate2D]()
+        var locationCoordinate2dList = [CLLocationCoordinate2D]()
         for point in theme.bounds {
             let locationCoordinate2D = CLLocationCoordinate2D(latitude: point[0], longitude: point[1])
-            loctionCoordinate2dList.append(locationCoordinate2D)
+            locationCoordinate2dList.append(locationCoordinate2D)
         }
 
         let statePolygonRenderer = MKPolygonRenderer(polygon:
-            MKPolygon(coordinates: loctionCoordinate2dList, count: loctionCoordinate2dList.count)
+            MKPolygon(coordinates: locationCoordinate2dList, count: locationCoordinate2dList.count)
         )
         let testMapPoint: MKMapPoint = MKMapPointForCoordinate(myLocation)
         let statePolygonRenderedPoint: CGPoint = statePolygonRenderer.point(for: testMapPoint)
