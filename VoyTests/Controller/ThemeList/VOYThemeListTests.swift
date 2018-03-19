@@ -48,7 +48,7 @@ class VOYThemeListTests: XCTestCase {
         expectations.fulfill()
         waitForExpectations(timeout: 10, handler: nil)
     }
-    
+
     func testTapOnTheme() {
         let expectations = expectation(description: "Check if the presenter actually instructs the view to navigate when tapping on a theme.")
         reachability.mockNetworkAvailable = true
