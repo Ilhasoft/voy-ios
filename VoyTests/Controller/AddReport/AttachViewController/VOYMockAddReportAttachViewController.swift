@@ -12,7 +12,6 @@ import XCTest
 class VOYMockAddReportAttachViewController: VOYAddReportAttachContract {
     var addedMedias: Bool = false
     var startedMediaPicker: Bool = false
-    var loadedMediaFromPreviousReport: Bool = false
     var hasOpenedNextController = false
     var userDismissedMediaPicker: Bool = false
     var hasShownGpsPermissionError = false
@@ -22,12 +21,7 @@ class VOYMockAddReportAttachViewController: VOYAddReportAttachContract {
     var isAnimating = false
 
     init() {
-        loadFromReport()
         isAnimating = true
-    }
-
-    func loadFromReport() {
-        loadedMediaFromPreviousReport = true
     }
 
     func navigateToNextScreen() {
