@@ -13,22 +13,22 @@ import NVActivityIndicatorView
 class VOYAddReportTagsViewController: UIViewController, NVActivityIndicatorViewable, VOYAddReportTagsContract {
     @IBOutlet var lbTitle: UILabel!
     @IBOutlet var viewTags: TagListView!
-    
+
     var presenter: VOYAddReportTagsPresenter?
-    
+
     var selectedTags = [String]() {
         didSet {
             self.navigationItem.rightBarButtonItem?.isEnabled = !selectedTags.isEmpty
         }
     }
-    
+
     var report: VOYReport!
-    
+
     init(report: VOYReport) {
         self.report = report
         super.init(nibName: String(describing: type(of: self)), bundle: nil)
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -36,7 +36,7 @@ class VOYAddReportTagsViewController: UIViewController, NVActivityIndicatorViewa
     override func viewDidLoad() {
         super.viewDidLoad()
         presenter = VOYAddReportTagsPresenter(
-            dataSource: VOYAddReportRepository(reachability: VOYReachabilityImpl()),
+            dataSource: VOYAddReportRepository(reachability: VOYDefaultReachability()),
             view: self
         )
         edgesForExtendedLayout = []
@@ -54,7 +54,7 @@ class VOYAddReportTagsViewController: UIViewController, NVActivityIndicatorViewa
             action: #selector(save)
         )
     }
-    
+
     @objc func save() {
         guard let presenter = self.presenter else { return }
         self.report.tags = selectedTags
@@ -63,42 +63,42 @@ class VOYAddReportTagsViewController: UIViewController, NVActivityIndicatorViewa
         self.report.location = location
         presenter.saveReport(report: report)
     }
-    
+
     func stopLoadingAnimation() {
         self.stopAnimating()
     }
-    
+
     func startLoadingAnimation() {
         self.startAnimating()
     }
-    
+
     func showSuccess() {
         self.navigationController?.pushViewController(VOYAddReportSuccessViewController(), animated: true)
     }
-    
+
     internal func loadTags() {
         viewTags.addTags(VOYTheme.activeTheme()!.tags)
         viewTags.delegate = self
     }
-    
+
     internal func selectTags() {
         guard let tags = self.report.tags else {
             return
         }
         self.selectedTags = tags
-        
+
         for tag in tags {
-            
+
             let tagViewFiltered = self.viewTags.tagViews.filter { ($0.titleLabel!.text! == tag) }
-            
+
             guard !tagViewFiltered.isEmpty else { return }
-            
+
             tagViewFiltered.first!.textColor = UIColor.white
             tagViewFiltered.first!.tagBackgroundColor = UIColor.voyBlue
-            
+
         }
     }
-    
+
     internal func addTag(tagView: TagView, title: String) {
         let index = selectedTags.index { ($0 == title) }
         if index != nil {
@@ -111,13 +111,13 @@ class VOYAddReportTagsViewController: UIViewController, NVActivityIndicatorViewa
             selectedTags.append(title)
         }
     }
-    
+
     // MARK: - Localization
-    
+
     private func setupLocalization() {
         lbTitle.text = localizedString(.addTags)
     }
-    
+
 }
 
 extension VOYAddReportTagsViewController: TagListViewDelegate {

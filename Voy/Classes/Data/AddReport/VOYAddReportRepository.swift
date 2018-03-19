@@ -11,7 +11,7 @@ import UIKit
 class VOYAddReportRepository: VOYAddReportDataSource {
 
     let reachability: VOYReachability
-    let networkClient = VOYNetworkClient(reachability: VOYReachabilityImpl())
+    let networkClient = VOYNetworkClient(reachability: VOYDefaultReachability())
     let mediaFileDataSource: VOYMediaFileDataSource
     private let reportStorageManager = VOYReportStorageManager()
 

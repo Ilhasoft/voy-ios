@@ -58,13 +58,7 @@ class VOYAddReportAttachPresenter {
         case .outOfBouds:
             alertText = localizedString(.outsideThemesBounds)
         }
-
-        let alertViewController = VOYAlertViewController(
-            title: localizedString(.alert),
-            message: alertText
-        )
-        alertViewController.view.tag = 1
-        view?.showAlert(alert: alertViewController)
+        view?.showAlert(text: alertText)
     }
 
     func onNextButtonTapped() {
@@ -102,7 +96,7 @@ extension VOYAddReportAttachPresenter: VOYLocationManagerDelegate {
         let intersects: Bool = statePolygonRenderer.path.contains(statePolygonRenderedPoint)
 
         if !intersects {
-            view?.showOutsideThemeBoundsError()
+            view?.showAlert(text: localizedString(.outsideThemesBounds))
         }
     }
 

@@ -10,8 +10,7 @@ import UIKit
 
 protocol VOYAddReportAttachContract: class {
     func navigateToNextScreen()
-    func showAlert(alert: VOYAlertViewController)
+    func showAlert(text: String)
     func stopAnimating()
     func showGpsPermissionError()
-    func showOutsideThemeBoundsError()
 }

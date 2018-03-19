@@ -94,11 +94,6 @@ class VOYAddReportAttachViewController: UIViewController, NVActivityIndicatorVie
         }
     }
 
-    func showAlert(alert: VOYAlertViewController) {
-        alert.delegate = self
-        alert.show(true, inViewController: self)
-    }
-
     func setupMediaView() {
         tappedMediaView.setupWithMedia(cameraData: self.cameraData)
     }
@@ -126,16 +121,22 @@ extension VOYAddReportAttachViewController: VOYAddReportAttachContract {
 
     func showGpsPermissionError() {
         let alertViewController = VOYAlertViewController(
-            title: localizedString(.alert),
-            message: localizedString(.outsideThemesBounds)
+            title: localizedString(.gpsPermissionError),
+            message: localizedString(.needGpsPermission)
         )
         alertViewController.view.tag = 1
         alertViewController.delegate = self
         alertViewController.show(true, inViewController: self)
     }
 
-    func showOutsideThemeBoundsError() {
-        self.presenter.showAlert(alert: .outOfBouds)
+    func showAlert(text: String) {
+        let alertViewController = VOYAlertViewController(
+                title: localizedString(.alert),
+                message: text
+        )
+        alertViewController.view.tag = 1
+        alertViewController.delegate = self
+        alertViewController.show(true, inViewController: self)
     }
 }
 
