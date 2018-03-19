@@ -94,26 +94,9 @@ class VOYAddReportAttachViewController: UIViewController, NVActivityIndicatorVie
         }
     }
     
-    func showAlert(alert: VOYAddReportErrorType) {
-        
-        var alertText: String = ""
-
-        switch alert {
-        case .willStart:
-            alertText = localizedString(.weArePreparingThisTheme)
-        case .ended:
-            alertText = localizedString(.periodForReportEnded)
-        case .outOfBouds:
-            alertText = localizedString(.outsideThemesBounds)
-        }
-        
-        let alertViewController = VOYAlertViewController(
-            title: localizedString(.alert),
-            message: alertText
-        )
-        alertViewController.view.tag = 1
-        alertViewController.delegate = self
-        alertViewController.show(true, inViewController: self)
+    func showAlert(alert: VOYAlertViewController) {
+        alert.delegate = self
+        alert.show(true, inViewController: self)
     }
     
     func setupMediaView() {
@@ -152,7 +135,7 @@ extension VOYAddReportAttachViewController: VOYAddReportAttachContract {
     }
     
     func showOutsideThemeBoundsError() {
-        self.showAlert(alert: .outOfBouds)
+        self.presenter.showAlert(alert: .outOfBouds)
     }
 }
 

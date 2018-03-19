@@ -12,7 +12,8 @@ import XCTest
 class VOYMockThemeListViewController: VOYThemeListContract {
     var listCount: Int = 0
     var hasNavigatedToReportList = false
-
+    var badgeView = UIView()
+    
     func updateProjectsList(projects: [VOYProject]) {
         listCount = projects.count
     }

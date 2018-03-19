@@ -40,10 +40,31 @@ class VOYAddReportAttachPresenter {
             if let startDate = dateFormatter.date(from: startAt), let endDate = dateFormatter.date(from: endAt) {
                 let currentDate = Date()
                 if startDate >= currentDate || endDate <= currentDate {
-                    (startDate >= currentDate) ? view?.showAlert(alert: .willStart) : view?.showAlert(alert: .ended)
+                    (startDate >= currentDate) ? showAlert(alert: .willStart) : showAlert(alert: .ended)
                 }
             }
         }
+    }
+    
+    func showAlert(alert: VOYAddReportErrorType) {
+        
+        var alertText: String = ""
+        
+        switch alert {
+        case .willStart:
+            alertText = localizedString(.weArePreparingThisTheme)
+        case .ended:
+            alertText = localizedString(.periodForReportEnded)
+        case .outOfBouds:
+            alertText = localizedString(.outsideThemesBounds)
+        }
+        
+        let alertViewController = VOYAlertViewController(
+            title: localizedString(.alert),
+            message: alertText
+        )
+        alertViewController.view.tag = 1
+        view?.showAlert(alert: alertViewController)
     }
     
     func onNextButtonTapped() {
