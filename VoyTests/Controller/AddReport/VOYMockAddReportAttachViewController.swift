@@ -13,37 +13,37 @@ class VOYMockAddReportAttachViewController: VOYAddReportAttachContract {
     var addedMedias: Bool = false
     var startedMediaPicker: Bool = false
     var loadedMediaFromPreviousReport: Bool = false
-    var userTappedNext: Bool = false
+    var hasOpenedNextController = false
     var userDismissedMediaPicker: Bool = false
+    var hasShownGpsPermissionError = false
     var mediaPicker: UIImagePickerController?
     var mediaList: [VOYMedia] = [VOYMedia]()
+    var lastMessageShown: String? = nil
+    var isAnimating = false
 
     init() {
         loadFromReport()
+        isAnimating = true
     }
 
     func loadFromReport() {
         loadedMediaFromPreviousReport = true
     }
 
-    func openNextController() {
-        userTappedNext = true
-    }
-
     func navigateToNextScreen() {
-        // TODO
+        hasOpenedNextController = true
     }
 
     func showAlert(text: String) {
-        // TODO
+        lastMessageShown = text
     }
 
     func stopAnimating() {
-        // TODO
+        isAnimating = false
     }
 
     func showGpsPermissionError() {
-        // TODO
+        hasShownGpsPermissionError = true
     }
 }
 

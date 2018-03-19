@@ -13,20 +13,26 @@ protocol VOYLocationManagerDelegate: class {
     func userDidntGivePermission()
 }
 
-class VOYLocationManager: NSObject, CLLocationManagerDelegate {
+protocol VOYLocationManager: class {
+    init(delegate: VOYLocationManagerDelegate)
+    func locationPermissionIsGranted() -> Bool
+    func getCurrentLocation()
+}
+
+class VOYDefaultLocationManager: NSObject, CLLocationManagerDelegate, VOYLocationManager {
     
     var locationManager: CLLocationManager?
-    static var latitude: Float = 0
-    static var longitude: Float = 0
-    
-    init(delegate: VOYLocationManagerDelegate) {
+    var latitude: Float = 0
+    var longitude: Float = 0
+
+    required init(delegate: VOYLocationManagerDelegate) {
         super.init()
         self.delegate = delegate
     }
     
     weak var delegate: VOYLocationManagerDelegate?
     
-    static func locationPermissionIsGranted() -> Bool {
+    func locationPermissionIsGranted() -> Bool {
         return CLLocationManager.authorizationStatus() == CLAuthorizationStatus.authorizedWhenInUse
     }
     
@@ -48,35 +54,36 @@ class VOYLocationManager: NSObject, CLLocationManagerDelegate {
             }
         }
     }
+
+    // MARK: - CLLocationManagerDelegate
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         self.locationManager?.stopUpdatingLocation()
         self.locationManager = nil
         let userLocation = locations.first!
-        VOYLocationManager.latitude = Float(userLocation.coordinate.latitude)
-        VOYLocationManager.longitude = Float(userLocation.coordinate.longitude)
+        self.latitude = Float(userLocation.coordinate.latitude)
+        self.longitude = Float(userLocation.coordinate.longitude)
         self.delegate?.didGetUserLocation(
-            latitude: VOYLocationManager.latitude,
-            longitude: VOYLocationManager.longitude,
+            latitude: latitude,
+            longitude: longitude,
             error: nil
         )
     }
-    
+
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         self.delegate?.didGetUserLocation(latitude: 0, longitude: 0, error: error)
     }
-    
+
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         switch status {
         case .denied, .restricted:
             self.delegate?.userDidntGivePermission()
         case .authorizedWhenInUse :
-            if VOYLocationManager.latitude == 0 {
+            if latitude == 0 {
                 self.locationManager!.startUpdatingLocation()
             }
         default:
             break
         }
     }
-    
 }
