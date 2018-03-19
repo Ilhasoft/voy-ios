@@ -49,6 +49,7 @@
 		4376E79A2051C9C300F83FF5 /* VOYNotificationTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4376E7982051C9C300F83FF5 /* VOYNotificationTableViewCell.xib */; };
 		437BD1A620487C8F00EC5661 /* VOYLoginPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 437BD1A520487C8F00EC5661 /* VOYLoginPresenter.swift */; };
 		437BD1AD2048891300EC5661 /* VOYLoginContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 437BD1AC2048891300EC5661 /* VOYLoginContract.swift */; };
+		61F46BAC659C8FDD6BB7F268 /* Pods_VoyTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABF132ADC4EF1DA114732EB6 /* Pods_VoyTests.framework */; };
 		655BD1222020E4FA00D69EA2 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 655BD1212020E4FA00D69EA2 /* UIColor.swift */; };
 		655BD1262020F3C100D69EA2 /* VOYAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 655BD1242020F3C100D69EA2 /* VOYAlertViewController.swift */; };
 		655BD1272020F3C100D69EA2 /* VOYAlertViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 655BD1252020F3C100D69EA2 /* VOYAlertViewController.xib */; };
@@ -159,6 +160,7 @@
 		01EBF72E2053160E00D4EF10 /* VOYReportListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VOYReportListPresenter.swift; sourceTree = "<group>"; };
 		01EBF7302053162400D4EF10 /* VOYReportListContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VOYReportListContract.swift; sourceTree = "<group>"; };
 		1E550C0C568807F52623837F /* Pods_Voy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Voy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2F4C0570243D50EF91545CC8 /* Pods-VoyTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VoyTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-VoyTests/Pods-VoyTests.debug.xcconfig"; sourceTree = "<group>"; };
 		33E4711F114752F9A169B817 /* Pods_VoyUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VoyUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		433DE1C42052AD0C00966BE1 /* VOYNotificationDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VOYNotificationDataSource.swift; sourceTree = "<group>"; };
 		433DE1C52052AD0C00966BE1 /* VOYNotificationRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VOYNotificationRepository.swift; sourceTree = "<group>"; };
@@ -283,6 +285,7 @@
 		AF287EDB205AB65100296A22 /* VOYReportListRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VOYReportListRepository.swift; sourceTree = "<group>"; };
 		AF287EDD205AB66000296A22 /* VOYReportListDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VOYReportListDataSource.swift; sourceTree = "<group>"; };
 		B50D70A526449FB3324B7983 /* Pods-Voy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Voy.release.xcconfig"; path = "Pods/Target Support Files/Pods-Voy/Pods-Voy.release.xcconfig"; sourceTree = "<group>"; };
+		E35FBE7D1F2064366158BE2F /* Pods-VoyTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VoyTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-VoyTests/Pods-VoyTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -290,6 +293,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				61F46BAC659C8FDD6BB7F268 /* Pods_VoyTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -754,6 +758,8 @@
 				B50D70A526449FB3324B7983 /* Pods-Voy.release.xcconfig */,
 				6BA92341A1C7FC405623FD46 /* Pods-VoyUITests.debug.xcconfig */,
 				5C5F78CC110E27296AC6C772 /* Pods-VoyUITests.release.xcconfig */,
+				2F4C0570243D50EF91545CC8 /* Pods-VoyTests.debug.xcconfig */,
+				E35FBE7D1F2064366158BE2F /* Pods-VoyTests.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -775,9 +781,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 014E4560205C71D9001D53F6 /* Build configuration list for PBXNativeTarget "VoyTests" */;
 			buildPhases = (
+				66CB26576D27E48E5C125E82 /* [CP] Check Pods Manifest.lock */,
 				014E4555205C71D9001D53F6 /* Sources */,
 				014E4556205C71D9001D53F6 /* Frameworks */,
 				014E4557205C71D9001D53F6 /* Resources */,
+				03DD4E7D66E93E9994A23188 /* [CP] Embed Pods Frameworks */,
+				4E82BB08C5A465AF836BA282 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -916,6 +925,21 @@
 			shellPath = /bin/sh;
 			shellScript = "if which swiftlint >/dev/null; then\n    swiftlint\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
 		};
+		03DD4E7D66E93E9994A23188 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-VoyTests/Pods-VoyTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		06B3FEA5D74FC835DD497ED6 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -997,6 +1021,39 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Voy/Pods-Voy-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		4E82BB08C5A465AF836BA282 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-VoyTests/Pods-VoyTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		66CB26576D27E48E5C125E82 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-VoyTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -1145,6 +1202,7 @@
 /* Begin XCBuildConfiguration section */
 		014E4561205C71D9001D53F6 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2F4C0570243D50EF91545CC8 /* Pods-VoyTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
@@ -1160,6 +1218,7 @@
 		};
 		014E4562205C71D9001D53F6 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E35FBE7D1F2064366158BE2F /* Pods-VoyTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
