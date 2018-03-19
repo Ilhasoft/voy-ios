@@ -22,5 +22,6 @@ target 'Voy' do
     target 'VoyTests' do
         inherit! :search_paths
         # Pods for testing
+        pod 'ObjectMapper'
     end
 end

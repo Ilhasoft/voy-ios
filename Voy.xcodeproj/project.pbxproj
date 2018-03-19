@@ -9,7 +9,28 @@
 /* Begin PBXBuildFile section */
 		0103F5A5205861380093E0F5 /* VOYReportDetailPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0103F5A4205861380093E0F5 /* VOYReportDetailPresenter.swift */; };
 		0103F5A7205861960093E0F5 /* VOYReportDetailContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0103F5A6205861960093E0F5 /* VOYReportDetailContract.swift */; };
-		014E455C205C71D9001D53F6 /* VoyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014E455B205C71D9001D53F6 /* VoyTests.swift */; };
+		010767A2205FF05C00B0C597 /* VOYUserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 010767A1205FF05C00B0C597 /* VOYUserTests.swift */; };
+		010767C1206002ED00B0C597 /* VOYMockAccountRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 010767A6206002ED00B0C597 /* VOYMockAccountRepository.swift */; };
+		010767C2206002ED00B0C597 /* VOYMockAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 010767A7206002ED00B0C597 /* VOYMockAccountViewController.swift */; };
+		010767C3206002ED00B0C597 /* VOYAccountListTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 010767A8206002ED00B0C597 /* VOYAccountListTests.swift */; };
+		010767C4206002ED00B0C597 /* VOYMockAddReportAttachViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 010767AB206002ED00B0C597 /* VOYMockAddReportAttachViewController.swift */; };
+		010767C5206002ED00B0C597 /* VOYMockAddReportRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 010767AC206002ED00B0C597 /* VOYMockAddReportRepository.swift */; };
+		010767C6206002ED00B0C597 /* VOYMockAddReportTagsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 010767AD206002ED00B0C597 /* VOYMockAddReportTagsViewController.swift */; };
+		010767C7206002ED00B0C597 /* VOYMockMediaFileRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 010767AE206002ED00B0C597 /* VOYMockMediaFileRepository.swift */; };
+		010767C8206002ED00B0C597 /* VOYMockCommentRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 010767B1206002ED00B0C597 /* VOYMockCommentRepository.swift */; };
+		010767C9206002ED00B0C597 /* VOYMockLoginRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 010767B4206002ED00B0C597 /* VOYMockLoginRepository.swift */; };
+		010767CA206002ED00B0C597 /* VOYMockLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 010767B5206002ED00B0C597 /* VOYMockLoginViewController.swift */; };
+		010767CB206002ED00B0C597 /* VOYLoginTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 010767B6206002ED00B0C597 /* VOYLoginTests.swift */; };
+		010767CC206002ED00B0C597 /* VOYMockReportDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 010767B8206002ED00B0C597 /* VOYMockReportDetailViewController.swift */; };
+		010767CD206002ED00B0C597 /* VOYReportDetailTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 010767B9206002ED00B0C597 /* VOYReportDetailTests.swift */; };
+		010767CE206002ED00B0C597 /* VOYMockReportListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 010767BB206002ED00B0C597 /* VOYMockReportListViewController.swift */; };
+		010767CF206002ED00B0C597 /* VOYReportListTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 010767BC206002ED00B0C597 /* VOYReportListTests.swift */; };
+		010767D0206002ED00B0C597 /* VOYMockThemeListRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 010767BE206002ED00B0C597 /* VOYMockThemeListRepository.swift */; };
+		010767D1206002ED00B0C597 /* VOYMockThemeListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 010767BF206002ED00B0C597 /* VOYMockThemeListViewController.swift */; };
+		010767D2206002ED00B0C597 /* VOYThemeListTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 010767C0206002ED00B0C597 /* VOYThemeListTests.swift */; };
+		010767D920601CDD00B0C597 /* VOYAddReportTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 010767D520601CDC00B0C597 /* VOYAddReportTests.swift */; };
+		010767DA20601CDD00B0C597 /* VOYCommentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 010767D720601CDC00B0C597 /* VOYCommentTests.swift */; };
+		010767DB20601CDD00B0C597 /* VOYMockReachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 010767D820601CDC00B0C597 /* VOYMockReachability.swift */; };
 		01609EFF205AD848008735EB /* VOYAddReportAttachPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01609EFE205AD848008735EB /* VOYAddReportAttachPresenter.swift */; };
 		01EBF715204EB7D800D4EF10 /* UIFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01EBF714204EB7D800D4EF10 /* UIFont.swift */; };
 		01EBF718204F216200D4EF10 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 01EBF71A204F216200D4EF10 /* Localizable.strings */; };
@@ -49,7 +70,6 @@
 		4376E79A2051C9C300F83FF5 /* VOYNotificationTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4376E7982051C9C300F83FF5 /* VOYNotificationTableViewCell.xib */; };
 		437BD1A620487C8F00EC5661 /* VOYLoginPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 437BD1A520487C8F00EC5661 /* VOYLoginPresenter.swift */; };
 		437BD1AD2048891300EC5661 /* VOYLoginContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 437BD1AC2048891300EC5661 /* VOYLoginContract.swift */; };
-		61F46BAC659C8FDD6BB7F268 /* Pods_VoyTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABF132ADC4EF1DA114732EB6 /* Pods_VoyTests.framework */; };
 		655BD1222020E4FA00D69EA2 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 655BD1212020E4FA00D69EA2 /* UIColor.swift */; };
 		655BD1262020F3C100D69EA2 /* VOYAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 655BD1242020F3C100D69EA2 /* VOYAlertViewController.swift */; };
 		655BD1272020F3C100D69EA2 /* VOYAlertViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 655BD1252020F3C100D69EA2 /* VOYAlertViewController.xib */; };
@@ -132,6 +152,7 @@
 		65F6994C202A1CB400BFCF0C /* VOYTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65F6994A202A1CB400BFCF0C /* VOYTextView.swift */; };
 		65F6994D202A1CB400BFCF0C /* VOYTextView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 65F6994B202A1CB400BFCF0C /* VOYTextView.xib */; };
 		7CE0EFAA68FD7879EE12CDA5 /* Pods_Voy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E550C0C568807F52623837F /* Pods_Voy.framework */; };
+		A3366CC92422D058852E4602 /* Pods_VoyTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F63FF6F39DCB54C103D6001F /* Pods_VoyTests.framework */; };
 		AF287EDC205AB65100296A22 /* VOYReportListRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF287EDB205AB65100296A22 /* VOYReportListRepository.swift */; };
 		AF287EDE205AB66000296A22 /* VOYReportListDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF287EDD205AB66000296A22 /* VOYReportListDataSource.swift */; };
 /* End PBXBuildFile section */
@@ -149,8 +170,29 @@
 /* Begin PBXFileReference section */
 		0103F5A4205861380093E0F5 /* VOYReportDetailPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VOYReportDetailPresenter.swift; sourceTree = "<group>"; };
 		0103F5A6205861960093E0F5 /* VOYReportDetailContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VOYReportDetailContract.swift; sourceTree = "<group>"; };
+		010767A1205FF05C00B0C597 /* VOYUserTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VOYUserTests.swift; sourceTree = "<group>"; };
+		010767A6206002ED00B0C597 /* VOYMockAccountRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VOYMockAccountRepository.swift; sourceTree = "<group>"; };
+		010767A7206002ED00B0C597 /* VOYMockAccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VOYMockAccountViewController.swift; sourceTree = "<group>"; };
+		010767A8206002ED00B0C597 /* VOYAccountListTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VOYAccountListTests.swift; sourceTree = "<group>"; };
+		010767AB206002ED00B0C597 /* VOYMockAddReportAttachViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VOYMockAddReportAttachViewController.swift; sourceTree = "<group>"; };
+		010767AC206002ED00B0C597 /* VOYMockAddReportRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VOYMockAddReportRepository.swift; sourceTree = "<group>"; };
+		010767AD206002ED00B0C597 /* VOYMockAddReportTagsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VOYMockAddReportTagsViewController.swift; sourceTree = "<group>"; };
+		010767AE206002ED00B0C597 /* VOYMockMediaFileRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VOYMockMediaFileRepository.swift; sourceTree = "<group>"; };
+		010767B1206002ED00B0C597 /* VOYMockCommentRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VOYMockCommentRepository.swift; sourceTree = "<group>"; };
+		010767B4206002ED00B0C597 /* VOYMockLoginRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VOYMockLoginRepository.swift; sourceTree = "<group>"; };
+		010767B5206002ED00B0C597 /* VOYMockLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VOYMockLoginViewController.swift; sourceTree = "<group>"; };
+		010767B6206002ED00B0C597 /* VOYLoginTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VOYLoginTests.swift; sourceTree = "<group>"; };
+		010767B8206002ED00B0C597 /* VOYMockReportDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VOYMockReportDetailViewController.swift; sourceTree = "<group>"; };
+		010767B9206002ED00B0C597 /* VOYReportDetailTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VOYReportDetailTests.swift; sourceTree = "<group>"; };
+		010767BB206002ED00B0C597 /* VOYMockReportListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VOYMockReportListViewController.swift; sourceTree = "<group>"; };
+		010767BC206002ED00B0C597 /* VOYReportListTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VOYReportListTests.swift; sourceTree = "<group>"; };
+		010767BE206002ED00B0C597 /* VOYMockThemeListRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VOYMockThemeListRepository.swift; sourceTree = "<group>"; };
+		010767BF206002ED00B0C597 /* VOYMockThemeListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VOYMockThemeListViewController.swift; sourceTree = "<group>"; };
+		010767C0206002ED00B0C597 /* VOYThemeListTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VOYThemeListTests.swift; sourceTree = "<group>"; };
+		010767D520601CDC00B0C597 /* VOYAddReportTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VOYAddReportTests.swift; sourceTree = "<group>"; };
+		010767D720601CDC00B0C597 /* VOYCommentTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VOYCommentTests.swift; sourceTree = "<group>"; };
+		010767D820601CDC00B0C597 /* VOYMockReachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VOYMockReachability.swift; sourceTree = "<group>"; };
 		014E4559205C71D9001D53F6 /* VoyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VoyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		014E455B205C71D9001D53F6 /* VoyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoyTests.swift; sourceTree = "<group>"; };
 		014E455D205C71D9001D53F6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		01609EFE205AD848008735EB /* VOYAddReportAttachPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VOYAddReportAttachPresenter.swift; sourceTree = "<group>"; };
 		01EBF714204EB7D800D4EF10 /* UIFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIFont.swift; sourceTree = "<group>"; };
@@ -159,8 +201,8 @@
 		01EBF7212051C44A00D4EF10 /* VOYNetworkClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VOYNetworkClient.swift; sourceTree = "<group>"; };
 		01EBF72E2053160E00D4EF10 /* VOYReportListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VOYReportListPresenter.swift; sourceTree = "<group>"; };
 		01EBF7302053162400D4EF10 /* VOYReportListContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VOYReportListContract.swift; sourceTree = "<group>"; };
+		056DD3B398FE8FF28F66524B /* Pods-VoyTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VoyTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-VoyTests/Pods-VoyTests.release.xcconfig"; sourceTree = "<group>"; };
 		1E550C0C568807F52623837F /* Pods_Voy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Voy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		2F4C0570243D50EF91545CC8 /* Pods-VoyTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VoyTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-VoyTests/Pods-VoyTests.debug.xcconfig"; sourceTree = "<group>"; };
 		33E4711F114752F9A169B817 /* Pods_VoyUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VoyUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		433DE1C42052AD0C00966BE1 /* VOYNotificationDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VOYNotificationDataSource.swift; sourceTree = "<group>"; };
 		433DE1C52052AD0C00966BE1 /* VOYNotificationRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VOYNotificationRepository.swift; sourceTree = "<group>"; };
@@ -279,13 +321,19 @@
 		65F699482028FAE400BFCF0C /* ISOndemandTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ISOndemandTableView.swift; sourceTree = "<group>"; };
 		65F6994A202A1CB400BFCF0C /* VOYTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VOYTextView.swift; sourceTree = "<group>"; };
 		65F6994B202A1CB400BFCF0C /* VOYTextView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VOYTextView.xib; sourceTree = "<group>"; };
+		6649693F6CAAB07090D4B424 /* Pods-VoyTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VoyTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-VoyTests/Pods-VoyTests.debug.xcconfig"; sourceTree = "<group>"; };
+		664D932DEF9ECBCA975D8D17 /* Pods_Voy_VoyTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Voy_VoyTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6BA92341A1C7FC405623FD46 /* Pods-VoyUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VoyUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-VoyUITests/Pods-VoyUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		8C3722C99424E551F9A1FB0F /* Pods_VoyProject_Voy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VoyProject_Voy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		91650CDB61878FCC952906DC /* Pods-Voy-VoyTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Voy-VoyTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Voy-VoyTests/Pods-Voy-VoyTests.release.xcconfig"; sourceTree = "<group>"; };
 		A3774A32A2AA74A335CD6885 /* Pods-Voy.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Voy.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Voy/Pods-Voy.debug.xcconfig"; sourceTree = "<group>"; };
-		ABF132ADC4EF1DA114732EB6 /* Pods_VoyTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VoyTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AF287EDB205AB65100296A22 /* VOYReportListRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VOYReportListRepository.swift; sourceTree = "<group>"; };
 		AF287EDD205AB66000296A22 /* VOYReportListDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VOYReportListDataSource.swift; sourceTree = "<group>"; };
+		B40AF5455C9F44FD49D10414 /* Pods-VoyProject-Voy.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VoyProject-Voy.debug.xcconfig"; path = "Pods/Target Support Files/Pods-VoyProject-Voy/Pods-VoyProject-Voy.debug.xcconfig"; sourceTree = "<group>"; };
 		B50D70A526449FB3324B7983 /* Pods-Voy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Voy.release.xcconfig"; path = "Pods/Target Support Files/Pods-Voy/Pods-Voy.release.xcconfig"; sourceTree = "<group>"; };
-		E35FBE7D1F2064366158BE2F /* Pods-VoyTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VoyTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-VoyTests/Pods-VoyTests.release.xcconfig"; sourceTree = "<group>"; };
+		D4DC89BB08B12ABA7CF217D2 /* Pods-Voy-VoyTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Voy-VoyTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Voy-VoyTests/Pods-Voy-VoyTests.debug.xcconfig"; sourceTree = "<group>"; };
+		F63FF6F39DCB54C103D6001F /* Pods_VoyTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VoyTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F7B840988888DDE62FA54CA5 /* Pods-VoyProject-Voy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VoyProject-Voy.release.xcconfig"; path = "Pods/Target Support Files/Pods-VoyProject-Voy/Pods-VoyProject-Voy.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -293,7 +341,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				61F46BAC659C8FDD6BB7F268 /* Pods_VoyTests.framework in Frameworks */,
+				A3366CC92422D058852E4602 /* Pods_VoyTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -308,10 +356,129 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		010767A0205FF05C00B0C597 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				010767A1205FF05C00B0C597 /* VOYUserTests.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		010767A3206002ED00B0C597 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				010767D620601CDC00B0C597 /* Comment */,
+				010767D420601CDC00B0C597 /* AddReport */,
+				010767A4206002ED00B0C597 /* Account */,
+				010767A9206002ED00B0C597 /* AddReport */,
+				010767AF206002ED00B0C597 /* Comment */,
+				010767B2206002ED00B0C597 /* Login */,
+				010767B7206002ED00B0C597 /* ReportDetail */,
+				010767BA206002ED00B0C597 /* ReportList */,
+				010767BD206002ED00B0C597 /* ThemeList */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		010767A4206002ED00B0C597 /* Account */ = {
+			isa = PBXGroup;
+			children = (
+				010767A6206002ED00B0C597 /* VOYMockAccountRepository.swift */,
+				010767A7206002ED00B0C597 /* VOYMockAccountViewController.swift */,
+				010767A8206002ED00B0C597 /* VOYAccountListTests.swift */,
+			);
+			path = Account;
+			sourceTree = "<group>";
+		};
+		010767A9206002ED00B0C597 /* AddReport */ = {
+			isa = PBXGroup;
+			children = (
+				010767AB206002ED00B0C597 /* VOYMockAddReportAttachViewController.swift */,
+				010767AC206002ED00B0C597 /* VOYMockAddReportRepository.swift */,
+				010767AD206002ED00B0C597 /* VOYMockAddReportTagsViewController.swift */,
+				010767AE206002ED00B0C597 /* VOYMockMediaFileRepository.swift */,
+			);
+			path = AddReport;
+			sourceTree = "<group>";
+		};
+		010767AF206002ED00B0C597 /* Comment */ = {
+			isa = PBXGroup;
+			children = (
+				010767B1206002ED00B0C597 /* VOYMockCommentRepository.swift */,
+			);
+			path = Comment;
+			sourceTree = "<group>";
+		};
+		010767B2206002ED00B0C597 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				010767B4206002ED00B0C597 /* VOYMockLoginRepository.swift */,
+				010767B5206002ED00B0C597 /* VOYMockLoginViewController.swift */,
+				010767B6206002ED00B0C597 /* VOYLoginTests.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		010767B7206002ED00B0C597 /* ReportDetail */ = {
+			isa = PBXGroup;
+			children = (
+				010767B8206002ED00B0C597 /* VOYMockReportDetailViewController.swift */,
+				010767B9206002ED00B0C597 /* VOYReportDetailTests.swift */,
+			);
+			path = ReportDetail;
+			sourceTree = "<group>";
+		};
+		010767BA206002ED00B0C597 /* ReportList */ = {
+			isa = PBXGroup;
+			children = (
+				010767BB206002ED00B0C597 /* VOYMockReportListViewController.swift */,
+				010767BC206002ED00B0C597 /* VOYReportListTests.swift */,
+			);
+			path = ReportList;
+			sourceTree = "<group>";
+		};
+		010767BD206002ED00B0C597 /* ThemeList */ = {
+			isa = PBXGroup;
+			children = (
+				010767BE206002ED00B0C597 /* VOYMockThemeListRepository.swift */,
+				010767BF206002ED00B0C597 /* VOYMockThemeListViewController.swift */,
+				010767C0206002ED00B0C597 /* VOYThemeListTests.swift */,
+			);
+			path = ThemeList;
+			sourceTree = "<group>";
+		};
+		010767D320601CDC00B0C597 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				010767D820601CDC00B0C597 /* VOYMockReachability.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		010767D420601CDC00B0C597 /* AddReport */ = {
+			isa = PBXGroup;
+			children = (
+				010767D520601CDC00B0C597 /* VOYAddReportTests.swift */,
+			);
+			name = AddReport;
+			path = ../Network/AddReport;
+			sourceTree = "<group>";
+		};
+		010767D620601CDC00B0C597 /* Comment */ = {
+			isa = PBXGroup;
+			children = (
+				010767D720601CDC00B0C597 /* VOYCommentTests.swift */,
+			);
+			name = Comment;
+			path = ../Network/Comment;
+			sourceTree = "<group>";
+		};
 		014E455A205C71D9001D53F6 /* VoyTests */ = {
 			isa = PBXGroup;
 			children = (
-				014E455B205C71D9001D53F6 /* VoyTests.swift */,
+				010767D320601CDC00B0C597 /* Network */,
+				010767A3206002ED00B0C597 /* Controller */,
+				010767A0205FF05C00B0C597 /* Models */,
 				014E455D205C71D9001D53F6 /* Info.plist */,
 			);
 			path = VoyTests;
@@ -758,8 +925,12 @@
 				B50D70A526449FB3324B7983 /* Pods-Voy.release.xcconfig */,
 				6BA92341A1C7FC405623FD46 /* Pods-VoyUITests.debug.xcconfig */,
 				5C5F78CC110E27296AC6C772 /* Pods-VoyUITests.release.xcconfig */,
-				2F4C0570243D50EF91545CC8 /* Pods-VoyTests.debug.xcconfig */,
-				E35FBE7D1F2064366158BE2F /* Pods-VoyTests.release.xcconfig */,
+				D4DC89BB08B12ABA7CF217D2 /* Pods-Voy-VoyTests.debug.xcconfig */,
+				91650CDB61878FCC952906DC /* Pods-Voy-VoyTests.release.xcconfig */,
+				6649693F6CAAB07090D4B424 /* Pods-VoyTests.debug.xcconfig */,
+				056DD3B398FE8FF28F66524B /* Pods-VoyTests.release.xcconfig */,
+				B40AF5455C9F44FD49D10414 /* Pods-VoyProject-Voy.debug.xcconfig */,
+				F7B840988888DDE62FA54CA5 /* Pods-VoyProject-Voy.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -768,8 +939,10 @@
 			isa = PBXGroup;
 			children = (
 				1E550C0C568807F52623837F /* Pods_Voy.framework */,
-				ABF132ADC4EF1DA114732EB6 /* Pods_VoyTests.framework */,
 				33E4711F114752F9A169B817 /* Pods_VoyUITests.framework */,
+				664D932DEF9ECBCA975D8D17 /* Pods_Voy_VoyTests.framework */,
+				F63FF6F39DCB54C103D6001F /* Pods_VoyTests.framework */,
+				8C3722C99424E551F9A1FB0F /* Pods_VoyProject_Voy.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -781,12 +954,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 014E4560205C71D9001D53F6 /* Build configuration list for PBXNativeTarget "VoyTests" */;
 			buildPhases = (
-				66CB26576D27E48E5C125E82 /* [CP] Check Pods Manifest.lock */,
+				E51B56189A0BAF7E00DB62BC /* [CP] Check Pods Manifest.lock */,
 				014E4555205C71D9001D53F6 /* Sources */,
 				014E4556205C71D9001D53F6 /* Frameworks */,
 				014E4557205C71D9001D53F6 /* Resources */,
-				03DD4E7D66E93E9994A23188 /* [CP] Embed Pods Frameworks */,
-				4E82BB08C5A465AF836BA282 /* [CP] Copy Pods Resources */,
+				9F3E5556E2E9AB22C24EC4E0 /* [CP] Embed Pods Frameworks */,
+				DD8D823CE8273533BC1F1EFC /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -925,21 +1098,6 @@
 			shellPath = /bin/sh;
 			shellScript = "if which swiftlint >/dev/null; then\n    swiftlint\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
 		};
-		03DD4E7D66E93E9994A23188 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-VoyTests/Pods-VoyTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		06B3FEA5D74FC835DD497ED6 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1023,7 +1181,25 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Voy/Pods-Voy-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		4E82BB08C5A465AF836BA282 /* [CP] Copy Pods Resources */ = {
+		9F3E5556E2E9AB22C24EC4E0 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-VoyTests/Pods-VoyTests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-VoyTests/Pods-VoyTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DD8D823CE8273533BC1F1EFC /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1038,7 +1214,7 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-VoyTests/Pods-VoyTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		66CB26576D27E48E5C125E82 /* [CP] Check Pods Manifest.lock */ = {
+		E51B56189A0BAF7E00DB62BC /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1063,7 +1239,28 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				014E455C205C71D9001D53F6 /* VoyTests.swift in Sources */,
+				010767D920601CDD00B0C597 /* VOYAddReportTests.swift in Sources */,
+				010767C9206002ED00B0C597 /* VOYMockLoginRepository.swift in Sources */,
+				010767C4206002ED00B0C597 /* VOYMockAddReportAttachViewController.swift in Sources */,
+				010767D2206002ED00B0C597 /* VOYThemeListTests.swift in Sources */,
+				010767C8206002ED00B0C597 /* VOYMockCommentRepository.swift in Sources */,
+				010767C1206002ED00B0C597 /* VOYMockAccountRepository.swift in Sources */,
+				010767CE206002ED00B0C597 /* VOYMockReportListViewController.swift in Sources */,
+				010767C5206002ED00B0C597 /* VOYMockAddReportRepository.swift in Sources */,
+				010767CD206002ED00B0C597 /* VOYReportDetailTests.swift in Sources */,
+				010767A2205FF05C00B0C597 /* VOYUserTests.swift in Sources */,
+				010767C3206002ED00B0C597 /* VOYAccountListTests.swift in Sources */,
+				010767CC206002ED00B0C597 /* VOYMockReportDetailViewController.swift in Sources */,
+				010767C6206002ED00B0C597 /* VOYMockAddReportTagsViewController.swift in Sources */,
+				010767CB206002ED00B0C597 /* VOYLoginTests.swift in Sources */,
+				010767D0206002ED00B0C597 /* VOYMockThemeListRepository.swift in Sources */,
+				010767CF206002ED00B0C597 /* VOYReportListTests.swift in Sources */,
+				010767C7206002ED00B0C597 /* VOYMockMediaFileRepository.swift in Sources */,
+				010767DB20601CDD00B0C597 /* VOYMockReachability.swift in Sources */,
+				010767C2206002ED00B0C597 /* VOYMockAccountViewController.swift in Sources */,
+				010767CA206002ED00B0C597 /* VOYMockLoginViewController.swift in Sources */,
+				010767D1206002ED00B0C597 /* VOYMockThemeListViewController.swift in Sources */,
+				010767DA20601CDD00B0C597 /* VOYCommentTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1202,7 +1399,7 @@
 /* Begin XCBuildConfiguration section */
 		014E4561205C71D9001D53F6 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2F4C0570243D50EF91545CC8 /* Pods-VoyTests.debug.xcconfig */;
+			baseConfigurationReference = 6649693F6CAAB07090D4B424 /* Pods-VoyTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
@@ -1218,7 +1415,7 @@
 		};
 		014E4562205C71D9001D53F6 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E35FBE7D1F2064366158BE2F /* Pods-VoyTests.release.xcconfig */;
+			baseConfigurationReference = 056DD3B398FE8FF28F66524B /* Pods-VoyTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
