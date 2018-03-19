@@ -55,11 +55,7 @@ class VOYThemeListRepository: VOYThemeListDataSource {
     func getMyProjects(completion: @escaping(_ projects: [VOYProject], _ error: Error?) -> Void) {
         
         guard let activeUser = VOYUser.activeUser(), let authToken = activeUser.authToken else {
-            #if DEBUG
-                fatalError("Auth token does't exist")
-                #else
-                return
-            #endif
+            return
         }
         
         var headers = [String: String]()

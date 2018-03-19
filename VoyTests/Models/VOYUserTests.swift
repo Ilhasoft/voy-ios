@@ -10,43 +10,35 @@ import XCTest
 @testable import Voy
 
 class VOYUserTests: XCTestCase {
-    
+
     var userUnderTest: VOYUser!
-    
+
     override func setUp() {
         userUnderTest = VOYUser()
         userUnderTest.id = 10
     }
+    
+    func testOk() {
+        XCTAssertEqual("String", "String")
+    }
 
     func testSetActiveUser() {
-        let expectations = expectation(description: "Test set the active user.")
         VOYUser.setActiveUser(user: userUnderTest)
-
-        XCTAssertTrue(VOYUser.activeUser()!.id == userUnderTest.id, "Active user works correctly")
-        expectations.fulfill()
-        waitForExpectations(timeout: 10, handler: nil)
+        XCTAssertTrue(VOYUser.activeUser()!.id == userUnderTest.id)
     }
-    
+
     func testDeactiveUser() {
-        let expectations = expectation(description: "Test remove active user.")
         VOYUser.setActiveUser(user: userUnderTest)
         VOYUser.deactiveUser()
-
-        XCTAssertTrue(VOYUser.activeUser() == nil, "Active user removed correctly")
-        expectations.fulfill()
-        waitForExpectations(timeout: 10, handler: nil)
+        XCTAssertTrue(VOYUser.activeUser() == nil)
     }
-    
+
     func testParseUser() {
-        let expectations = expectation(description: "Test user is being parsed correctly.")
         let map: [String: Any] = [
             "id": 10
         ]
         let parsedUser = VOYUser(JSON: map)
         XCTAssertNotNil(parsedUser)
         XCTAssertEqual(parsedUser!.id, 10)
-        expectations.fulfill()
-        waitForExpectations(timeout: 10, handler: nil)
     }
-
 }

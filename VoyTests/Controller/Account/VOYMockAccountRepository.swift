@@ -19,15 +19,14 @@ class VOYMockAccountRepository: VOYAccountDataSource {
         user.authToken = "TokenExample"
         user.avatar = oldAvatar
         user.password = oldPassword
-        
+
         user.password = password
         user.avatar = String(describing: avatar)
-        
+
         if user.password != oldPassword, user.avatar != oldAvatar {
             completion(nil)
         } else {
             completion(NSError.init() as Error)
         }
     }
-    
 }

@@ -10,7 +10,6 @@ import XCTest
 @testable import Voy
 
 class VOYMockThemeListRepository: VOYThemeListDataSource {
-
     var projectList: [VOYProject] = [VOYProject]()
     var userToken: String = "testToken989h9h7h8g8"
     var cachedProjectsCount: Int = 0
@@ -41,6 +40,10 @@ class VOYMockThemeListRepository: VOYThemeListDataSource {
     }
     
     func getNotifications(completion: @escaping ([VOYNotification]?) -> Void) {
-        implement
+        // TODO
+    }
+    
+    func cacheDataFrom(url: String, parameters: inout [String : Any], headers: inout [String : String]) {
+        // TODO
     }
 }

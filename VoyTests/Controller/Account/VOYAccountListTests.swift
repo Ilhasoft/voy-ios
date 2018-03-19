@@ -13,7 +13,7 @@ class VOYAccountListTests: XCTestCase {
     var repositoryUnderTest: VOYMockAccountRepository!
     var presenterUnderTest: VOYAccountPresenter!
     var viewControllerUnderTest: VOYMockAccountViewController!
-    
+
     let newPassword: String = "NewPassword"
     let newAvatar: Int = 000000
     

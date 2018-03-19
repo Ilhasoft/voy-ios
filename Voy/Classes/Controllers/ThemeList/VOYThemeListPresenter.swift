@@ -68,9 +68,10 @@ class VOYThemeListPresenter {
     }
 
     private func cacheData() {
+        guard let activeUser = VOYUser.activeUser() else { return }
         for project in projects {
-            var params = ["project": project.id as Any, "user": VOYUser.activeUser()!.id]
-            var headers = ["Authorization": "Token \(VOYUser.activeUser()!.authToken)"]
+            var params = ["project": project.id as Any, "user": activeUser.id]
+            var headers = ["Authorization": "Token \(activeUser.authToken)"]
             dataSource.cacheDataFrom(url: "\(VOYConstant.API.URL)themes", parameters: &params, headers: &headers)
         }
     }

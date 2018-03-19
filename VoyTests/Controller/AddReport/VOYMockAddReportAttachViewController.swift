@@ -37,7 +37,25 @@ class VOYMockAddReportAttachViewController: VOYAddReportAttachContract {
         userTappedNext = true
     }
     
-
+    func navigateToNextScreen() {
+        // TODO
+    }
+    
+    func showAlert(alert: VOYAddReportErrorType) {
+        // TODO
+    }
+    
+    func stopAnimating() {
+        // TODO
+    }
+    
+    func showGpsPermissionError() {
+        // TODO
+    }
+    
+    func showOutsideThemeBoundsError() {
+        // TODO
+    }
 }
 
 extension VOYMockAddReportAttachViewController: VOYActionSheetViewControllerDelegate {
