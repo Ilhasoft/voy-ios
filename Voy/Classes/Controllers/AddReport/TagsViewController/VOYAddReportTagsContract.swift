@@ -11,10 +11,8 @@ import TagListView
 
 protocol VOYAddReportTagsContract {
     func loadTags()
-    func selectTags()
-    func addTag(tagView: TagView, title: String)
-    func save()
-    func showSuccess()
-    func stopLoadingAnimation()
-    func startLoadingAnimation()
+    func selectTags(tags: [String])
+    func navigateToSuccessScreen()
+    func startAnimating()
+    func stopAnimating()
 }

@@ -10,19 +10,34 @@ import UIKit
 
 class VOYAddReportTagsPresenter {
     var dataSource: VOYAddReportDataSource!
-    var view: VOYAddReportTagsContract!
+    var view: VOYAddReportTagsContract?
+    private var report: VOYReport?
     
-    init(dataSource: VOYAddReportDataSource, view: VOYAddReportTagsContract) {
+    init(report: VOYReport?, dataSource: VOYAddReportDataSource, view: VOYAddReportTagsContract) {
+        self.report = report
         self.dataSource = dataSource
         self.view = view
     }
+
+    func onViewDidLoad() {
+        view?.loadTags()
+        if let tags = report?.tags {
+            view?.selectTags(tags: tags)
+        }
+    }
     
-    func saveReport(report: VOYReport) {
-        view.startLoadingAnimation()
-        dataSource.save(report: report) { (error, _) in
-            self.view.stopLoadingAnimation()
+    func saveReport(selectedTags: [String]) {
+        guard let report = self.report else { return }
+        report.tags = selectedTags
+        report.theme = VOYTheme.activeTheme()!.id
+        let location = "POINT(\(VOYLocationData.longitude) \(VOYLocationData.latitude))"
+        report.location = location
+
+        view?.startAnimating()
+        dataSource.save(report: report) { error, _ in
+            self.view?.stopAnimating()
             if error == nil {
-                self.view.showSuccess()
+                self.view?.navigateToSuccessScreen()
             }
         }
     }

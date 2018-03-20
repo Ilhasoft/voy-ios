@@ -24,10 +24,16 @@ class VOYAddReportAttachPresenter {
 
     init(view: VOYAddReportAttachContract, report: VOYReport? = nil) {
         self.view = view
-        locationManager = VOYLocationManager(delegate: self)
+        locationManager = VOYDefaultLocationManager(delegate: self)
         locationManager.getCurrentLocation()
         if let theme = VOYTheme.activeTheme() {
             validateDateLimit(theme: theme)
+        }
+    }
+
+    func onViewDidLoad() {
+        if let report = self.report, let mediaList = report.files {
+            view?.loadFromReport(mediaList: mediaList)
         }
     }
 
@@ -62,7 +68,16 @@ class VOYAddReportAttachPresenter {
     }
 
     func onNextButtonTapped() {
-        view?.navigateToNextScreen()
+        view?.navigateToNextScreen(report: report)
+    }
+
+    func onMediaRemoved(_ media: VOYMedia) {
+        if let report = self.report {
+            if report.removedMedias == nil {
+                report.removedMedias = []
+            }
+            report.removedMedias!.append(media)
+        }
     }
 }
 

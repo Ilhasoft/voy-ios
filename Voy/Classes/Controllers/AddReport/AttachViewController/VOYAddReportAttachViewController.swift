@@ -18,8 +18,6 @@ class VOYAddReportAttachViewController: UIViewController, NVActivityIndicatorVie
 
     var imagePickerController: UIImagePickerController!
     var actionSheetController: VOYActionSheetViewController!
-
-    var report: VOYReport?
     var presenter: VOYAddReportAttachPresenter!
 
     var mediaList = [VOYMedia]() {
@@ -44,8 +42,8 @@ class VOYAddReportAttachViewController: UIViewController, NVActivityIndicatorVie
     var tappedMediaView: VOYAddMediaView!
 
     init(report: VOYReport? = nil) {
-        self.report = report
         super.init(nibName: String(describing: type(of: self)), bundle: nil)
+        presenter = VOYAddReportAttachPresenter(view: self, report: report)
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -58,23 +56,18 @@ class VOYAddReportAttachViewController: UIViewController, NVActivityIndicatorVie
         self.startAnimating()
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: " ", style: .plain, target: nil, action: nil)
         self.navigationController?.setNavigationBarHidden(false, animated: false)
-        setupMediaViewDelegate()
-        addNextButton()
-        loadFromReport()
-        setupLocalization()
-        presenter = VOYAddReportAttachPresenter(view: self, report: self.report)
-    }
 
-    func loadFromReport() {
-        guard let report = self.report else { return }
-        mediaList = report.files
-        for (index, mediaView) in self.mediaViews.enumerated() {
-            guard index < report.files.count else { return }
-            mediaView.setupWithMedia(media: mediaList[index])
+        // Setup mediaView delegates
+        for mediaView in mediaViews {
+            mediaView.delegate = self
         }
+
+        addNextButton()
+        setupLocalization()
+        presenter.onViewDidLoad()
     }
 
-    func addNextButton() {
+    private func addNextButton() {
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(
             title: localizedString(.next),
             style: .plain,
@@ -86,12 +79,6 @@ class VOYAddReportAttachViewController: UIViewController, NVActivityIndicatorVie
 
     @objc func onTapNextButton() {
         presenter.onNextButtonTapped()
-    }
-
-    func setupMediaViewDelegate() {
-        for mediaView in mediaViews {
-            mediaView.delegate = self
-        }
     }
 
     func setupMediaView() {
@@ -108,11 +95,18 @@ class VOYAddReportAttachViewController: UIViewController, NVActivityIndicatorVie
 
 extension VOYAddReportAttachViewController: VOYAddReportAttachContract {
 
-    func navigateToNextScreen() {
+    func loadFromReport(mediaList: [VOYMedia]) {
+        self.mediaList = mediaList
+        for (index, mediaView) in self.mediaViews.enumerated() {
+            mediaView.setupWithMedia(media: mediaList[index])
+        }
+    }
+
+    func navigateToNextScreen(report: VOYReport?) {
         var addReportDataViewController: VOYAddReportDataViewController!
-        if report != nil {
-            report!.cameraDataList = self.cameraDataList
-            addReportDataViewController = VOYAddReportDataViewController(savedReport: self.report!)
+        if let report = report {
+            report.cameraDataList = self.cameraDataList
+            addReportDataViewController = VOYAddReportDataViewController(savedReport: report)
         } else {
             addReportDataViewController = VOYAddReportDataViewController(cameraDataList: self.cameraDataList)
         }
@@ -154,27 +148,22 @@ extension VOYAddReportAttachViewController: VOYAddMediaViewDelegate {
 
     func removeMediaButtonDidTap(mediaView: VOYAddMediaView) {
         if let cameraData = mediaView.cameraData {
-            let index = self.cameraDataList.index { ($0.id == cameraData.id) }
-            if let index = index {
+            for (index, value) in cameraDataList.enumerated() where value.id == cameraData.id {
                 self.cameraDataList.remove(at: index)
+                break
             }
         } else if let media = mediaView.media {
-            let index = self.mediaList.index { ($0.id == media.id) }
-            if let index = index {
-                self.mediaList.remove(at: index)
+            for (index, value) in mediaList.enumerated() where value.id == media.id {
+                mediaList.remove(at: index)
+                break
             }
-            if let report = self.report {
-                if report.removedMedias == nil {
-                    report.removedMedias = [media]
-                } else {
-                    report.removedMedias!.append(media)
-                }
-            }
+            presenter.onMediaRemoved(media)
         }
     }
 }
 
 extension VOYAddReportAttachViewController: VOYActionSheetViewControllerDelegate {
+
     func buttonDidTap(actionSheetViewController: VOYActionSheetViewController, button: UIButton, index: Int) {
         actionSheetController.close()
         imagePickerController = UIImagePickerController()
@@ -190,16 +179,21 @@ extension VOYAddReportAttachViewController: VOYActionSheetViewControllerDelegate
         }
         present(imagePickerController, animated: true, completion: nil)
     }
+
     func cancelButtonDidTap(actionSheetViewController: VOYActionSheetViewController) {
         actionSheetViewController.close()
     }
 }
 
+// MARK: - VOYAlertViewControllerDelegate
+
 extension VOYAddReportAttachViewController: VOYAlertViewControllerDelegate {
+
     func buttonDidTap(alertController: VOYAlertViewController, button: UIButton, index: Int) {
         alertController.close()
         self.navigationController?.popViewController(animated: true)
         if alertController.view.tag == 1 {
+            // Does nothing
         } else if alertController.view.tag == 2 {
             UIApplication.shared.open(
                 URL(string: UIApplicationOpenSettingsURLString)!,

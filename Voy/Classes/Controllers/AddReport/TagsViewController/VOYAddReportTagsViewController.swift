@@ -10,11 +10,11 @@ import UIKit
 import TagListView
 import NVActivityIndicatorView
 
-class VOYAddReportTagsViewController: UIViewController, NVActivityIndicatorViewable, VOYAddReportTagsContract {
+class VOYAddReportTagsViewController: UIViewController, NVActivityIndicatorViewable {
     @IBOutlet var lbTitle: UILabel!
     @IBOutlet var viewTags: TagListView!
 
-    var presenter: VOYAddReportTagsPresenter?
+    var presenter: VOYAddReportTagsPresenter!
 
     var selectedTags = [String]() {
         didSet {
@@ -22,11 +22,13 @@ class VOYAddReportTagsViewController: UIViewController, NVActivityIndicatorViewa
         }
     }
 
-    var report: VOYReport!
-
     init(report: VOYReport) {
-        self.report = report
         super.init(nibName: String(describing: type(of: self)), bundle: nil)
+        presenter = VOYAddReportTagsPresenter(
+            report: report,
+            dataSource: VOYAddReportRepository(reachability: VOYDefaultReachability()),
+            view: self
+        )
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -35,71 +37,26 @@ class VOYAddReportTagsViewController: UIViewController, NVActivityIndicatorViewa
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        presenter = VOYAddReportTagsPresenter(
-            dataSource: VOYAddReportRepository(reachability: VOYDefaultReachability()),
-            view: self
-        )
         edgesForExtendedLayout = []
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: " ", style: .plain, target: nil, action: nil)
         addNextButton()
-        loadTags()
-        selectTags()
+        presenter.onViewDidLoad()
     }
 
-    func addNextButton() {
+    private func addNextButton() {
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(
             title: localizedString(.send),
             style: .plain,
             target: self,
-            action: #selector(save)
+            action: #selector(onSaveButtonTapped)
         )
     }
 
-    @objc func save() {
-        guard let presenter = self.presenter else { return }
-        self.report.tags = selectedTags
-        self.report.theme = VOYTheme.activeTheme()!.id
-        let location = "POINT(\(VOYLocationManager.longitude) \(VOYLocationManager.latitude))"
-        self.report.location = location
-        presenter.saveReport(report: report)
+    @objc func onSaveButtonTapped() {
+        presenter.saveReport(selectedTags: selectedTags)
     }
 
-    func stopLoadingAnimation() {
-        self.stopAnimating()
-    }
-
-    func startLoadingAnimation() {
-        self.startAnimating()
-    }
-
-    func showSuccess() {
-        self.navigationController?.pushViewController(VOYAddReportSuccessViewController(), animated: true)
-    }
-
-    internal func loadTags() {
-        viewTags.addTags(VOYTheme.activeTheme()!.tags)
-        viewTags.delegate = self
-    }
-
-    internal func selectTags() {
-        guard let tags = self.report.tags else {
-            return
-        }
-        self.selectedTags = tags
-
-        for tag in tags {
-
-            let tagViewFiltered = self.viewTags.tagViews.filter { ($0.titleLabel!.text! == tag) }
-
-            guard !tagViewFiltered.isEmpty else { return }
-
-            tagViewFiltered.first!.textColor = UIColor.white
-            tagViewFiltered.first!.tagBackgroundColor = UIColor.voyBlue
-
-        }
-    }
-
-    internal func addTag(tagView: TagView, title: String) {
+    fileprivate func addTag(tagView: TagView, title: String) {
         let index = selectedTags.index { ($0 == title) }
         if index != nil {
             tagView.textColor = UIColor.black
@@ -118,6 +75,32 @@ class VOYAddReportTagsViewController: UIViewController, NVActivityIndicatorViewa
         lbTitle.text = localizedString(.addTags)
     }
 
+}
+
+extension VOYAddReportTagsViewController: VOYAddReportTagsContract {
+
+    func startAnimating() {
+        self.startAnimating()
+    }
+
+    func loadTags() {
+        viewTags.addTags(VOYTheme.activeTheme()!.tags)
+        viewTags.delegate = self
+    }
+
+    func selectTags(tags: [String]) {
+        self.selectedTags = tags
+        for tag in tags {
+            for viewTag in viewTags.tagViews where viewTag.titleLabel!.text! == tag {
+                viewTag.textColor = UIColor.white
+                viewTag.tagBackgroundColor = UIColor.voyBlue
+            }
+        }
+    }
+
+    func navigateToSuccessScreen() {
+        self.navigationController?.pushViewController(VOYAddReportSuccessViewController(), animated: true)
+    }
 }
 
 extension VOYAddReportTagsViewController: TagListViewDelegate {

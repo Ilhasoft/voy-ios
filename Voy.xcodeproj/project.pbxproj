@@ -394,7 +394,7 @@
 		010767A9206002ED00B0C597 /* AddReport */ = {
 			isa = PBXGroup;
 			children = (
-				010767AB206002ED00B0C597 /* VOYMockAddReportAttachViewController.swift */,
+				010767E120605D0200B0C597 /* AttachViewController */,
 				010767AC206002ED00B0C597 /* VOYMockAddReportRepository.swift */,
 				010767AD206002ED00B0C597 /* VOYMockAddReportTagsViewController.swift */,
 				010767AE206002ED00B0C597 /* VOYMockMediaFileRepository.swift */,
@@ -472,8 +472,8 @@
 			children = (
 				657C3F73203B72990077F07B /* VOYAddReportAttachViewCameraExtension.swift */,
 				01609EFE205AD848008735EB /* VOYAddReportAttachPresenter.swift */,
-				4376E764205163B700F83FF5 /* VOYAddReportAttachContract.swift */,
 				655BD12D2021148800D69EA2 /* VOYAddReportAttachViewController.swift */,
+				4376E764205163B700F83FF5 /* VOYAddReportAttachContract.swift */,
 				655BD12E2021148800D69EA2 /* VOYAddReportAttachViewController.xib */,
 			);
 			path = AttachViewController;
@@ -514,6 +514,14 @@
 				657C3F6D203768D90077F07B /* VOYLocationManager.swift */,
 			);
 			path = Location;
+			sourceTree = "<group>";
+		};
+		010767E120605D0200B0C597 /* AttachViewController */ = {
+			isa = PBXGroup;
+			children = (
+				010767AB206002ED00B0C597 /* VOYMockAddReportAttachViewController.swift */,
+			);
+			path = AttachViewController;
 			sourceTree = "<group>";
 		};
 		014E455A205C71D9001D53F6 /* VoyTests */ = {

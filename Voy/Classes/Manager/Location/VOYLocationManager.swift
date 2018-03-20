@@ -19,11 +19,14 @@ protocol VOYLocationManager: class {
     func getCurrentLocation()
 }
 
+class VOYLocationData {
+    static var latitude: Float = 0
+    static var longitude: Float = 0
+}
+
 class VOYDefaultLocationManager: NSObject, CLLocationManagerDelegate, VOYLocationManager {
     
     var locationManager: CLLocationManager?
-    var latitude: Float = 0
-    var longitude: Float = 0
 
     required init(delegate: VOYLocationManagerDelegate) {
         super.init()
@@ -61,11 +64,11 @@ class VOYDefaultLocationManager: NSObject, CLLocationManagerDelegate, VOYLocatio
         self.locationManager?.stopUpdatingLocation()
         self.locationManager = nil
         let userLocation = locations.first!
-        self.latitude = Float(userLocation.coordinate.latitude)
-        self.longitude = Float(userLocation.coordinate.longitude)
+        VOYLocationData.latitude = Float(userLocation.coordinate.latitude)
+        VOYLocationData.longitude = Float(userLocation.coordinate.longitude)
         self.delegate?.didGetUserLocation(
-            latitude: latitude,
-            longitude: longitude,
+            latitude: VOYLocationData.latitude,
+            longitude: VOYLocationData.longitude,
             error: nil
         )
     }
@@ -79,7 +82,7 @@ class VOYDefaultLocationManager: NSObject, CLLocationManagerDelegate, VOYLocatio
         case .denied, .restricted:
             self.delegate?.userDidntGivePermission()
         case .authorizedWhenInUse :
-            if latitude == 0 {
+            if VOYLocationData.latitude == 0 {
                 self.locationManager!.startUpdatingLocation()
             }
         default:
