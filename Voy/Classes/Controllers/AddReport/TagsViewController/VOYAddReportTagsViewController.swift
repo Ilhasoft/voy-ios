@@ -78,9 +78,12 @@ class VOYAddReportTagsViewController: UIViewController, NVActivityIndicatorViewa
 }
 
 extension VOYAddReportTagsViewController: VOYAddReportTagsContract {
-
-    func startAnimating() {
+    func showProgress() {
         self.startAnimating()
+    }
+
+    func dismissProgress() {
+        self.stopAnimating()
     }
 
     func loadTags() {

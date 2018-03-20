@@ -13,6 +13,6 @@ protocol VOYAddReportTagsContract {
     func loadTags()
     func selectTags(tags: [String])
     func navigateToSuccessScreen()
-    func startAnimating()
-    func stopAnimating()
+    func showProgress()
+    func dismissProgress()
 }

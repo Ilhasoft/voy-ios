@@ -33,9 +33,9 @@ class VOYAddReportTagsPresenter {
         let location = "POINT(\(VOYLocationData.longitude) \(VOYLocationData.latitude))"
         report.location = location
 
-        view?.startAnimating()
+        view?.showProgress()
         dataSource.save(report: report) { error, _ in
-            self.view?.stopAnimating()
+            self.view?.dismissProgress()
             if error == nil {
                 self.view?.navigateToSuccessScreen()
             }

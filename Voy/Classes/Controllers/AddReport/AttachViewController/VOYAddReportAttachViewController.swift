@@ -41,9 +41,14 @@ class VOYAddReportAttachViewController: UIViewController, NVActivityIndicatorVie
 
     var tappedMediaView: VOYAddMediaView!
 
-    init(report: VOYReport? = nil) {
+    private init() {
         super.init(nibName: String(describing: type(of: self)), bundle: nil)
-        presenter = VOYAddReportAttachPresenter(view: self, report: report)
+    }
+
+    init(report: VOYReport? = nil) {
+        super.init(nibName: "VOYAddReportAttachViewController", bundle: nil)
+        self.presenter = VOYAddReportAttachPresenter(view: self, report: report)
+        NSLog("Presenter is null? \(presenter == nil)")
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -97,7 +102,7 @@ extension VOYAddReportAttachViewController: VOYAddReportAttachContract {
 
     func loadFromReport(mediaList: [VOYMedia]) {
         self.mediaList = mediaList
-        for (index, mediaView) in self.mediaViews.enumerated() {
+        for (index, mediaView) in self.mediaViews.enumerated() where index < mediaList.count {
             mediaView.setupWithMedia(media: mediaList[index])
         }
     }

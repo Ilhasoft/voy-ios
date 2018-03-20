@@ -24,14 +24,15 @@ class VOYAddReportAttachPresenter {
 
     init(view: VOYAddReportAttachContract, report: VOYReport? = nil) {
         self.view = view
+        self.report = report
         locationManager = VOYDefaultLocationManager(delegate: self)
         locationManager.getCurrentLocation()
-        if let theme = VOYTheme.activeTheme() {
-            validateDateLimit(theme: theme)
-        }
     }
 
     func onViewDidLoad() {
+        if let theme = VOYTheme.activeTheme() {
+            validateDateLimit(theme: theme)
+        }
         if let report = self.report, let mediaList = report.files {
             view?.loadFromReport(mediaList: mediaList)
         }
@@ -53,9 +54,7 @@ class VOYAddReportAttachPresenter {
     }
 
     func showAlert(alert: VOYAddReportErrorType) {
-
         var alertText: String = ""
-
         switch alert {
         case .willStart:
             alertText = localizedString(.weArePreparingThisTheme)
