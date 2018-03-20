@@ -83,8 +83,15 @@ class VOYThemeListViewController: UIViewController, NVActivityIndicatorViewable 
         addLeftBarButtonItem()
         let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(openNotifications))
         let customView = UIImageView(image: #imageLiteral(resourceName: "bell"))
-        VOYThemeListViewController.badgeView = UIView(frame: CGRect(x: customView.frame.width - 9, y: 0, width: 9, height: 9))
-        VOYThemeListViewController.badgeView.backgroundColor = UIColor(displayP3Red: 222/255, green: 72/255, blue: 107/255, alpha: 1)
+        VOYThemeListViewController.badgeView = UIView(
+            frame: CGRect(x: customView.frame.width - 9, y: 0, width: 9, height: 9)
+        )
+        VOYThemeListViewController.badgeView.backgroundColor = UIColor(
+            displayP3Red: 222/255,
+            green: 72/255,
+            blue: 107/255,
+            alpha: 1
+        )
         VOYThemeListViewController.badgeView.clipsToBounds = true
         VOYThemeListViewController.badgeView.layer.cornerRadius = VOYThemeListViewController.badgeView.frame.height/2
         VOYThemeListViewController.badgeView.isHidden = true

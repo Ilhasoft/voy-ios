@@ -11,7 +11,10 @@ import UIKit
 
 class VOYMockReportListRepository: VOYReportListDataSource {
     
-    func getReportCount(themeId: Int, status: VOYReportStatus, mapper: Int, completion: @escaping (Int?, Error?) -> ()) {
+    func getReportCount(themeId: Int,
+                        status: VOYReportStatus,
+                        mapper: Int,
+                        completion: @escaping (Int?, Error?) -> Void) {
         completion(10, nil)
     }
 }

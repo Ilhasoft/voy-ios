@@ -55,11 +55,22 @@ class VOYMediaFileRepository: VOYMediaFileDataSource {
                 guard let auth = VOYUser.activeUser()?.authToken else { return }
                 Alamofire.upload(
                     multipartFormData: { multipartFormData in
-                        multipartFormData.append("\(report_id)".data(using: String.Encoding.utf8)!, withName: "report_id")
-                        multipartFormData.append("title".data(using: String.Encoding.utf8)!, withName: "title")
-                        multipartFormData.append(URL(fileURLWithPath: cameraData.path), withName: "file")
+                        multipartFormData.append(
+                            "\(report_id)".data(using: String.Encoding.utf8)!,
+                            withName: "report_id"
+                        )
+                        multipartFormData.append(
+                            "title".data(using: String.Encoding.utf8)!,
+                            withName: "title"
+                        )
+                        multipartFormData.append(
+                            URL(fileURLWithPath: cameraData.path),
+                            withName: "file"
+                        )
                         if cameraData.type == VOYMediaType.video {
-                            multipartFormData.append(URL(fileURLWithPath: cameraData.thumbnailPath!), withName: "thumbnail")
+                            multipartFormData.append(
+                                URL(fileURLWithPath: cameraData.thumbnailPath!), withName: "thumbnail"
+                            )
                         }
                 },
                     to: VOYConstant.API.URL + "report-files/",

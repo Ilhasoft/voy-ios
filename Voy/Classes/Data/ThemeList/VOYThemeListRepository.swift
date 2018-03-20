@@ -23,7 +23,8 @@ class VOYThemeListRepository: VOYThemeListDataSource {
         guard let auth = VOYUser.activeUser()?.authToken else { return }
         networkClient.requestObjectArray(urlSuffix: "report-notification/",
                                    httpMethod: VOYNetworkClient.VOYHTTPMethod.get,
-                                   headers: ["Authorization": "Token \(auth)"]) { (notificationList: [VOYNotification]?, _, _) in
+                                   headers: ["Authorization": "Token \(auth)"]
+        ) { (notificationList: [VOYNotification]?, _, _) in
                                     guard let notificationList = notificationList else { return }
                                     completion(notificationList)
         }

@@ -30,7 +30,13 @@ class VOYAddReportTests: XCTestCase {
         newReport.id = 123456
         newReport.name = "New Report"
         newReport.removedMedias = [VOYMedia(), VOYMedia()]
-        let cameraData = VOYCameraData(image: UIImage(), thumbnail: UIImage(), thumbnailPath: URL(fileURLWithPath:""), path: URL(fileURLWithPath:""), type: .image)
+        let cameraData = VOYCameraData(
+            image: UIImage(),
+            thumbnail: UIImage(),
+            thumbnailPath: URL(fileURLWithPath: ""),
+            path: URL(fileURLWithPath: ""),
+            type: .image
+        )
         newReport.cameraDataList = [cameraData, cameraData, cameraData]
         repositoryUnderTest.save(report: newReport) { (error, reportID) in
             XCTAssertNil(error, "Got no errors.")
@@ -58,9 +64,16 @@ class VOYAddReportTests: XCTestCase {
         let expectations = expectation(description: "Entered all methods that handles the UI.")
         let attachControllerUnderTest: VOYMockAddReportAttachViewController = VOYMockAddReportAttachViewController()
         let tagsControllerUnderTest: VOYMockAddReportTagsViewController = VOYMockAddReportTagsViewController()
-        let presenterUnderTest: VOYAddReportTagsPresenter = VOYAddReportTagsPresenter(dataSource: VOYMockAddReportRepository(), view: tagsControllerUnderTest)
+        let presenterUnderTest: VOYAddReportTagsPresenter = VOYAddReportTagsPresenter(
+            dataSource: VOYMockAddReportRepository(),
+            view: tagsControllerUnderTest
+        )
         // Emulating media button tap
-        attachControllerUnderTest.buttonDidTap(actionSheetViewController: VOYActionSheetViewController(), button: UIButton(), index: 0)
+        attachControllerUnderTest.buttonDidTap(
+            actionSheetViewController: VOYActionSheetViewController(),
+            button: UIButton(),
+            index: 0
+        )
         
         tagsControllerUnderTest.presenter = presenterUnderTest
         // Emulating a - Send Report - Event

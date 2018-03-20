@@ -34,9 +34,11 @@ class VOYNotificationPresenter {
     func setupNotificationTitleFor( indexPath: IndexPath) -> String {
         guard let notification = notifications?[indexPath.row] else { return "" }
         if notification.status == 1 {
-            return (notification.origin == 1) ? localizedString(.reportWasApproved) : localizedString(.commentWasApproved)
+            return (notification.origin == 1) ?
+                localizedString(.reportWasApproved) : localizedString(.commentWasApproved)
         } else {
-            return (notification.origin == 1) ? localizedString(.reportWasNotApproved) : localizedString(.commentWasNotApproved)
+            return (notification.origin == 1) ?
+                localizedString(.reportWasNotApproved) : localizedString(.commentWasNotApproved)
         }
     }
     

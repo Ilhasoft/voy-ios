@@ -34,16 +34,4 @@ class VOYReportListTests: XCTestCase {
         expectations.fulfill()
         waitForExpectations(timeout: 10, handler: nil)
     }
-    
-    func testTapOnReport() {
-        // TODO
-//        let expectations = expectation(description: "Check if the controller is telling the view to redirect correctly.")
-//        let report = [
-//            "id": 20
-//        ]
-//        presenterUnderTest.onReportSelected(object: report)
-//        XCTAssertTrue(viewControllerUnderTest.hasNavigatedToReportDetails, "View redirected to report details correctly")
-//        expectations.fulfill()
-//        waitForExpectations(timeout: 10, handler: nil)
-    }
 }
