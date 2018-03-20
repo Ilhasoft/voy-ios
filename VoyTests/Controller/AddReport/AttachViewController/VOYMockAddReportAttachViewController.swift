@@ -12,53 +12,37 @@ import XCTest
 class VOYMockAddReportAttachViewController: VOYAddReportAttachContract {
     var addedMedias: Bool = false
     var startedMediaPicker: Bool = false
-    var loadedMediaFromPreviousReport: Bool = false
-    var userTappedNext: Bool = false
-    var addedNextButton: Bool = false
+    var hasOpenedNextController = false
     var userDismissedMediaPicker: Bool = false
+    var hasShownGpsPermissionError = false
     var mediaPicker: UIImagePickerController?
     var mediaList: [VOYMedia] = [VOYMedia]()
-    
+    var lastMessageShown: String? = nil
+    var isAnimating = false
+
     init() {
-        addNextButton()
-        loadFromReport()
+        isAnimating = true
     }
-    
-    func addNextButton() {
-        addedNextButton = true
-        
-    }
-    
-    func loadFromReport() {
-        loadedMediaFromPreviousReport = true
-    }
-    
-    func openNextController() {
-        userTappedNext = true
-    }
-    
+
     func navigateToNextScreen() {
-        // TODO
+        hasOpenedNextController = true
     }
-    
-    func showAlert(alert: VOYAddReportErrorType) {
-        // TODO
+
+    func showAlert(text: String) {
+        lastMessageShown = text
     }
-    
+
     func stopAnimating() {
-        // TODO
+        isAnimating = false
     }
-    
+
     func showGpsPermissionError() {
-        // TODO
-    }
-    
-    func showOutsideThemeBoundsError() {
-        // TODO
+        hasShownGpsPermissionError = true
     }
 }
 
 extension VOYMockAddReportAttachViewController: VOYActionSheetViewControllerDelegate {
+
     func buttonDidTap(actionSheetViewController: VOYActionSheetViewController, button: UIButton, index: Int) {
         self.mediaPicker = UIImagePickerController()
         let newMedia = VOYMedia()
@@ -70,7 +54,7 @@ extension VOYMockAddReportAttachViewController: VOYActionSheetViewControllerDele
             startedMediaPicker = true
         }
     }
-    
+
     func cancelButtonDidTap(actionSheetViewController: VOYActionSheetViewController) {
         self.mediaPicker = nil
         if self.mediaPicker == nil {

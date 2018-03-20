@@ -17,10 +17,6 @@ class VOYUserTests: XCTestCase {
         userUnderTest = VOYUser()
         userUnderTest.id = 10
     }
-    
-    func testOk() {
-        XCTAssertEqual("String", "String")
-    }
 
     func testSetActiveUser() {
         VOYUser.setActiveUser(user: userUnderTest)

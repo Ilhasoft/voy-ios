@@ -11,14 +11,14 @@ import Alamofire
 
 class VOYMediaFileRepository: VOYMediaFileDataSource {
     var isUploading = false
-    private let networkClient = VOYNetworkClient(reachability: VOYReachabilityImpl())
+    private let networkClient = VOYNetworkClient(reachability: VOYDefaultReachability())
     private let reachability: VOYReachability
     private let camerDataStoreManager = VOYCameraDataStorageManager()
-    
-    init(reachability: VOYReachability = VOYReachabilityImpl()) {
+
+    init(reachability: VOYReachability = VOYDefaultReachability()) {
         self.reachability = reachability
     }
-    
+
     func delete(mediaFiles: [VOYMedia]?) {
         guard let mediaFiles = mediaFiles else {return}
         guard let authToken = VOYUser.activeUser()?.authToken else { return }
@@ -29,7 +29,7 @@ class VOYMediaFileRepository: VOYMediaFileDataSource {
         }
         mediaIdsString.removeLast()
         let headers: HTTPHeaders = ["Authorization": "Token \(authToken)"]
-        
+
         networkClient.requestDictionary(urlSuffix: "report-files/delete/?ids=\(mediaIdsString)",
                                         httpMethod: .post,
                                         headers: headers) { value, error, _ in
@@ -40,16 +40,16 @@ class VOYMediaFileRepository: VOYMediaFileDataSource {
             }
         }
     }
-    
+
     func upload(reportID: Int, cameraDataList: [VOYCameraData], completion:@escaping(Error?) -> Void) {
         for cameraData in cameraDataList {
-            
+
             var report_id = reportID
-            
+
             if reportID <= 0 {
                 report_id = cameraData.report_id
             }
-            
+
             if reachability.hasNetwork() {
                 isUploading = true
                 guard let auth = VOYUser.activeUser()?.authToken else { return }

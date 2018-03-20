@@ -11,35 +11,35 @@ import ISOnDemandTableView
 import SlideMenuControllerSwift
 
 class VOYNotificationViewController: UIViewController, VOYNotificationContract {
-    
+
     @IBOutlet weak var lbTitle: UILabel!
     @IBOutlet weak var tableView: UITableView!
-    
+
     var presenter: VOYNotificationPresenter?
-    
+
     init() {
         super.init(nibName: String(describing: type(of: self)), bundle: nil)
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setupController()
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         fetchNotifications()
     }
-    
+
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         VOYThemeListViewController.badgeView.isHidden = true
     }
-    
+
     internal func setupController() {
         lbTitle.text = localizedString(.notifications)
         tableView.estimatedRowHeight = 100
@@ -47,19 +47,19 @@ class VOYNotificationViewController: UIViewController, VOYNotificationContract {
         tableView.delegate = self
         tableView.register(UINib(nibName: VOYNotificationTableViewCell.identifier, bundle: nil),
                            forCellReuseIdentifier: VOYNotificationTableViewCell.identifier)
-        presenter = VOYNotificationPresenter(dataSource: VOYNotificationRepository(reachability: VOYReachabilityImpl()), view: self)
+        presenter = VOYNotificationPresenter(dataSource: VOYNotificationRepository(reachability: VOYDefaultReachability()), view: self)
         fetchNotifications()
     }
-    
+
     func fetchNotifications() {
         guard let presenter = self.presenter else { return }
         presenter.viewDidLoad()
     }
-    
+
     func updateTableView() {
         tableView.reloadData()
     }
-    
+
     func userTappedNotification(from report: VOYReport) {
         guard let mainParentNavigation = (self.parent as? SlideMenuController)?.mainViewController?.parent,
             let mainNavigation = AppDelegate.mainNavigationController else { return }

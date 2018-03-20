@@ -20,25 +20,25 @@ class VOYReportListViewController: UIViewController, NVActivityIndicatorViewable
     @IBOutlet var tableViews: [DataBindOnDemandTableView]!
     @IBOutlet var segmentedControl: UISegmentedControl!
     @IBOutlet weak var messageLabel: UILabel!
-    
+
     static var sharedInstance: VOYReportListViewController?
     var theme: VOYTheme!
     var allDataFinishedLoad = false
     var dataLoadTime = 0
-    
+
     var presenter: VOYReportListPresenter!
-    
+
     init() {
         super.init(nibName: String(describing: type(of: self)), bundle: nil)
         VOYReportListViewController.sharedInstance = self
         self.theme = VOYTheme.activeTheme()!
         self.title = theme.name
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         presenter = VOYReportListPresenter(view: self, dataSource: VOYReportListRepository())
@@ -48,21 +48,21 @@ class VOYReportListViewController: UIViewController, NVActivityIndicatorViewable
         setupTableView()
         setupLocalization()
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.setNavigationBarHidden(false, animated: true)
     }
-    
+
     @objc func openNotifications() {
         self.slideMenuController()?.openRight()
     }
-    
+
     func setupTableView() {
         var status: VOYReportStatus = .approved
         startAnimating()
         for tableView in self.tableViews {
-            
+
             if tableView == self.tableViewApproved {
                 status = VOYReportStatus.approved
             } else if tableView == self.tableViewPending {
@@ -70,7 +70,7 @@ class VOYReportListViewController: UIViewController, NVActivityIndicatorViewable
             } else if tableView == self.tableViewNotApproved {
                 status = VOYReportStatus.notApproved
             }
-            
+
             tableView.separatorColor = UIColor.clear
             tableView.register(
                 UINib(nibName: "VOYReportTableViewCell", bundle: nil),
@@ -81,16 +81,16 @@ class VOYReportListViewController: UIViewController, NVActivityIndicatorViewable
                 configuration: tableViewApproved.getConfiguration(),
                 params: ["theme": self.theme.id, "status": status.rawValue, "mapper": VOYUser.activeUser()!.id],
                 paginationCount: VOYConstant.API.paginationSize,
-                reachability: VOYReachabilityImpl()
+                reachability: VOYDefaultReachability()
             )
-            
+
             presenter.countReports(themeId: self.theme.id, status: status, mapper: VOYUser.activeUser()!.id)
-            
+
             tableView.loadContent()
         }
-        
+
     }
-    
+
     func showInfoViewIfNecessary(tableView: DataBindOnDemandTableView) {
         if tableView.interactor?.objects.count == 0 {
             switch self.segmentedControl.selectedSegmentIndex {
@@ -111,11 +111,11 @@ class VOYReportListViewController: UIViewController, NVActivityIndicatorViewable
             self.viewInfo.isHidden = true
         }
     }
-    
+
     @IBAction func btAddReportTapped(_ sender: Any) {
         self.navigationController?.pushViewController(VOYAddReportAttachViewController(), animated: true)
     }
-    
+
     @IBAction func segmentedControlTapped() {
         switch self.segmentedControl.selectedSegmentIndex {
         case 0:
@@ -125,7 +125,7 @@ class VOYReportListViewController: UIViewController, NVActivityIndicatorViewable
             } else {
                 messageLabel.isHidden = true
             }
-            
+
             tableViewApproved.isHidden = false
             tableViewPending.isHidden = true
             tableViewNotApproved.isHidden = true
@@ -137,7 +137,7 @@ class VOYReportListViewController: UIViewController, NVActivityIndicatorViewable
             } else {
                 messageLabel.isHidden = true
             }
-            
+
             tableViewApproved.isHidden = true
             tableViewPending.isHidden = false
             tableViewNotApproved.isHidden = true
@@ -149,7 +149,7 @@ class VOYReportListViewController: UIViewController, NVActivityIndicatorViewable
             } else {
                 messageLabel.isHidden = true
             }
-            
+
             tableViewApproved.isHidden = true
             tableViewPending.isHidden = true
             tableViewNotApproved.isHidden = false
@@ -158,9 +158,9 @@ class VOYReportListViewController: UIViewController, NVActivityIndicatorViewable
             break
         }
     }
-    
+
     // MARK: - Localization
-    
+
     private func setupLocalization() {
         btAddReport.setTitle(localizedString(.addReport), for: .normal)
         segmentedControl.setTitle(localizedString(.approved), forSegmentAt: 0)
@@ -198,7 +198,7 @@ extension VOYReportListViewController: ISOnDemandTableViewDelegate {
     func onDemandTableView(_ tableView: ISOnDemandTableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 118
     }
-    
+
     func onDemandTableView(_ tableView: ISOnDemandTableView, didSelectRowAt indexPath: IndexPath) {
         if let cell = tableView.cellForRow(at: indexPath) as? VOYReportTableViewCell {
             self.navigationController?.pushViewController(
@@ -221,8 +221,8 @@ extension VOYReportListViewController: VOYActionSheetViewControllerDelegate {
     func cancelButtonDidTap(actionSheetViewController: VOYActionSheetViewController) {
         actionSheetViewController.close()
     }
-    
+
     func buttonDidTap(actionSheetViewController: VOYActionSheetViewController, button: UIButton, index: Int) {
-        
+
     }
 }

@@ -35,7 +35,7 @@ class VOYThemeListViewController: UIViewController, NVActivityIndicatorViewable 
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.setNavigationBarHidden(false, animated: true)
@@ -53,7 +53,7 @@ class VOYThemeListViewController: UIViewController, NVActivityIndicatorViewable 
         setupButtonItems()
         presenter = VOYThemeListPresenter(
             view: self,
-            dataSource: VOYThemeListRepository(reachability: VOYReachabilityImpl()),
+            dataSource: VOYThemeListRepository(reachability: VOYDefaultReachability()),
             userJustLogged: userJustLogged
         )
         presenter?.onViewDidLoad()
@@ -111,7 +111,7 @@ class VOYThemeListViewController: UIViewController, NVActivityIndicatorViewable 
             configuration: tbView.getConfiguration(),
             params: ["project": project.id, "user": VOYUser.activeUser()!.id],
             paginationCount: VOYConstant.API.paginationSize,
-            reachability: VOYReachabilityImpl()
+            reachability: VOYDefaultReachability()
         )
         tbView.loadContent()
     }
@@ -134,7 +134,7 @@ class VOYThemeListViewController: UIViewController, NVActivityIndicatorViewable 
         selectedReportView.heightAnchor.constraint(equalToConstant: 40)
         selectedReportView.delegate = self
         self.navigationItem.titleView = selectedReportView
-        
+
         dropDown.anchorView = selectedReportView
         dropDown.bottomOffset = CGPoint(x: 0, y: selectedReportView.bounds.size.height)
         dropDown.dataSource = projects.map {($0.name)}

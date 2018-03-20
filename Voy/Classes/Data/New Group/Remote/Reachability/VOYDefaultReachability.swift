@@ -9,10 +9,10 @@
 import UIKit
 import Alamofire
 
-class VOYReachabilityImpl: VOYReachability {
-    
+class VOYDefaultReachability: VOYReachability {
+
     private let manager = NetworkReachabilityManager()!
-    
+
     func hasNetwork() -> Bool {
         return manager.isReachable
     }

@@ -9,10 +9,10 @@
 import Foundation
 
 class VOYCommentRepository: VOYCommentDataSource {
-    
+
     let authToken = VOYUser.activeUser()!.authToken!
-    
-    let networkClient = VOYNetworkClient(reachability: VOYReachabilityImpl())
+
+    let networkClient = VOYNetworkClient(reachability: VOYDefaultReachability())
 
     func save(comment: VOYComment, completion: @escaping (Error?) -> Void) {
 
@@ -24,7 +24,7 @@ class VOYCommentRepository: VOYCommentDataSource {
             completion(error)
         }
     }
-    
+
     func delete(commentId: Int, completion: @escaping (Error?) -> Void) {
         networkClient.requestDictionary(urlSuffix: "report-comments/\(commentId)/",
                                     httpMethod: .delete,

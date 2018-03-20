@@ -46,7 +46,7 @@ class VOYMockAddReportTagsViewController: VOYAddReportTagsContract {
         presenter.saveReport(report: newReport)
     }
     
-    func showSuccess() {
+    func navigateToSuccessScreen() {
         showedSuccess = true
     }
     

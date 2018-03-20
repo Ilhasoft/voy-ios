@@ -10,7 +10,7 @@ import UIKit
 
 class VOYAccountRepository: VOYAccountDataSource {
 
-    let networkClient = VOYNetworkClient(reachability: VOYReachabilityImpl())
+    let networkClient = VOYNetworkClient(reachability: VOYDefaultReachability())
 
     func updateUser(avatar: Int?, password: String?, completion: @escaping(Error?) -> Void) {
         let user = VOYUser.activeUser()!

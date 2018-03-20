@@ -16,7 +16,7 @@ class VOYReportSyncManager {
     private let cameraDataStoreManager = VOYCameraDataStorageManager()
 
     init(mediaFileDataSource: VOYMediaFileDataSource = VOYMediaFileRepository(),
-         reachability: VOYReachability = VOYReachabilityImpl()) {
+         reachability: VOYReachability = VOYDefaultReachability()) {
         self.mediaFileDataSource = mediaFileDataSource
         self.reachability = reachability
     }

@@ -11,6 +11,7 @@ import XCTest
 
 class VOYMockCommentRepository: VOYCommentDataSource {
     func delete(commentId: Int, completion: @escaping (Error?) -> Void) {
+        // TODO
     }
     
     func save(comment: VOYComment, completion: @escaping (Error?) -> Void) {

@@ -11,7 +11,7 @@ import UIKit
 class VOYReportDetailPresenter {
 
     private weak var view: VOYReportDetailContract?
-    private var report: VOYReport!
+    var report: VOYReport!
 
     init(view: VOYReportDetailContract, report: VOYReport) {
         self.view = view

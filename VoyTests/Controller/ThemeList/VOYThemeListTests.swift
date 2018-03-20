@@ -32,8 +32,6 @@ class VOYThemeListTests: XCTestCase {
         presenterUnderTest = nil
         super.tearDown()
     }
-    
-    // MARK: - UITests
 
     func testRetrieveProjects() {
         let expectations = expectation(description: "Validate the whole controller behaviour flow.")
@@ -50,7 +48,7 @@ class VOYThemeListTests: XCTestCase {
         expectations.fulfill()
         waitForExpectations(timeout: 10, handler: nil)
     }
-    
+
     func testTapOnTheme() {
         let expectations = expectation(description: "Check if the presenter actually instructs the view to navigate when tapping on a theme.")
         reachability.mockNetworkAvailable = true
@@ -70,6 +68,15 @@ class VOYThemeListTests: XCTestCase {
         ]
         presenterUnderTest.onThemeSelected(object: themeObj)
         XCTAssertTrue(viewControllerUnderTest.hasNavigatedToReportList, "Successfully redirected to report screen")
+        expectations.fulfill()
+        waitForExpectations(timeout: 10, handler: nil)
+    }
+    
+    func testUpdateNotifications() {
+        let expectations = expectation(description: "Get notification and set badged as visible.")
+        presenterUnderTest.updateNotifications()
+        XCTAssert(repositoryUnderTest.notificationList.count == 3)
+        XCTAssertFalse(viewControllerUnderTest.badgeView.isHidden)
         expectations.fulfill()
         waitForExpectations(timeout: 10, handler: nil)
     }

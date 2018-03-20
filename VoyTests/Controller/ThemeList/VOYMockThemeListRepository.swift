@@ -10,6 +10,8 @@ import XCTest
 @testable import Voy
 
 class VOYMockThemeListRepository: VOYThemeListDataSource {
+    
+    var notificationList = [VOYNotification]()
     var projectList: [VOYProject] = [VOYProject]()
     var userToken: String = "testToken989h9h7h8g8"
     var cachedProjectsCount: Int = 0
@@ -30,20 +32,22 @@ class VOYMockThemeListRepository: VOYThemeListDataSource {
         }
         completion(projectList, nil)
     }
-
-    func cacheDataFrom(url: String, parameters: inout [String: Any]) {
+    
+    func getNotifications(completion: @escaping ([VOYNotification]?) -> Void) {
+        let notification = VOYNotification(body: "Notification", report: VOYReport())
+        notification.id = 123
+        notification.message = "Notification"
+        notification.read = false
+        let notificationList = [notification, notification, notification]
+        self.notificationList = notificationList
+        completion(notificationList)
+    }
+    
+    func cacheDataFrom(url: String, parameters: inout [String : Any], headers: inout [String : String]) {
         if reachability.hasNetwork() {
             cachedProjectsCount += 1
         } else {
             print("Don't have internet connect nor cached data")
         }
-    }
-    
-    func getNotifications(completion: @escaping ([VOYNotification]?) -> Void) {
-        // TODO
-    }
-    
-    func cacheDataFrom(url: String, parameters: inout [String : Any], headers: inout [String : String]) {
-        // TODO
     }
 }
