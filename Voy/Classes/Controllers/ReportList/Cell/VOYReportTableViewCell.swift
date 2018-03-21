@@ -69,8 +69,7 @@ class VOYReportTableViewCell: DataBindOnDemandTableViewCell {
 
 extension VOYReportTableViewCell: DataBindViewDelegate {
     func didFillAllComponents(JSON: [String: Any]) {
-        let report = VOYReport(JSON: JSON)!
-        if report.status == nil {
+        if let report = VOYReport(JSON: JSON), report.status == nil {
             self.btResent.isHidden = false
             self.btResent.setImage(#imageLiteral(resourceName: "noun576598Cc"), for: .normal)
         }
@@ -87,8 +86,7 @@ extension VOYReportTableViewCell: DataBindViewDelegate {
                     let dateFormatter2 = DateFormatter()
                     dateFormatter2.dateFormat = "MMM"
                     dateFormatter2.dateStyle = .medium
-                    
-                    lbDate.text = dateFormatter2.string(from: date!)
+                    if let date = date { lbDate.text = dateFormatter2.string(from: date) }
                 }
                 return nil
             } else if component == self.lbDescription {

@@ -65,6 +65,8 @@ class VOYReportDetailViewController: UIViewController {
     }
     
     func setupNavigationItem() {
+        guard let activeUser = VOYUser.activeUser() else { return }
+
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: " ", style: .plain, target: nil, action: nil)
         let barButtonItemOptions = UIBarButtonItem(
             image: #imageLiteral(resourceName: "combinedShape").withRenderingMode(.alwaysOriginal),
@@ -84,7 +86,7 @@ class VOYReportDetailViewController: UIViewController {
             action: #selector(btShareTapped)
         )
         let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
-        imageView.kf.setImage(with: URL(string: VOYUser.activeUser()!.avatar))
+        imageView.kf.setImage(with: URL(string: activeUser.avatar))
         imageView.contentMode = .scaleAspectFit
         imageView.widthAnchor.constraint(equalToConstant: 32).isActive = true
         imageView.heightAnchor.constraint(equalToConstant: 31).isActive = true
@@ -194,7 +196,7 @@ extension VOYReportDetailViewController: VOYReportDetailContract {
     func showVideoScreen(videoURL: URL) {
         let playerController = AVPlayerViewController()
         playerController.player = AVPlayer(url: videoURL)
-        playerController.player!.play()
+        playerController.player?.play()
         present(playerController, animated: true, completion: nil)
     }
     
@@ -268,7 +270,7 @@ extension VOYReportDetailViewController: DataBindViewDelegate {
                     let dateFormatter2 = DateFormatter()
                     dateFormatter2.dateFormat = "MMM"
                     dateFormatter2.dateStyle = .medium
-                    lbDate.text = dateFormatter2.string(from: date!)
+                    if let date = date { lbDate.text = dateFormatter2.string(from: date) }
                 }
                 return nil
             }
@@ -276,10 +278,11 @@ extension VOYReportDetailViewController: DataBindViewDelegate {
         } else if component is UIScrollView {
             if let values = value as? [[String: Any]] {
                 for mediaObject in values {
-                    let media = VOYMedia(JSON: mediaObject)!
-                    setupScrollViewMedias(media: media)
+                    if let media = VOYMedia(JSON: mediaObject) {
+                        setupScrollViewMedias(media: media)
+                    }
                 }
-                self.pageControl.numberOfPages = scrollViewMedias.views!.count
+                self.pageControl.numberOfPages = scrollViewMedias.views?.count ?? 0
             }
         }
         return value

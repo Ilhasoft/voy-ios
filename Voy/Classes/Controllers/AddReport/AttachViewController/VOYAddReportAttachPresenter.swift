@@ -72,10 +72,11 @@ class VOYAddReportAttachPresenter {
 
     func onMediaRemoved(_ media: VOYMedia) {
         if let report = self.report {
-            if report.removedMedias == nil {
-                report.removedMedias = []
+            if var removedMedias = report.removedMedias {
+                removedMedias.append(media)
+            } else {
+                report.removedMedias = [ media ]
             }
-            report.removedMedias!.append(media)
         }
     }
 }

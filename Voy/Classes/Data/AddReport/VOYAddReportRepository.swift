@@ -39,9 +39,9 @@ class VOYAddReportRepository: VOYAddReportDataSource {
         let headers = ["Authorization": "Token \(authToken)"]
         var method: VOYNetworkClient.VOYHTTPMethod!
         var reportIDString = ""
-        if report.update && report.status != nil {
+        if let reportId = report.id, report.update && report.status != nil {
             method = .put
-            reportIDString = "\(report.id!)/"
+            reportIDString = "\(reportId)/"
         } else {
             method = .post
             reportIDString = ""
@@ -54,12 +54,12 @@ class VOYAddReportRepository: VOYAddReportDataSource {
                     completion(error, nil)
                     return
                 }
-                if let reportID = value["id"] as? Int {
+                if let reportID = value["id"] as? Int, let reportCameraDataList = report.cameraDataList {
                     self.mediaFileDataSource.delete(mediaFiles: report.removedMedias)
                     self.reportStorageManager.removeFromStorageAfterSave(report: report)
                     self.mediaFileDataSource.upload(
                         reportID: reportID,
-                        cameraDataList: report.cameraDataList!,
+                        cameraDataList: reportCameraDataList,
                         completion: { (_) in }
                     )
                     completion(nil, reportID)

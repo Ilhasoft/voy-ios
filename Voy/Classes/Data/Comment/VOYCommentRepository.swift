@@ -10,7 +10,9 @@ import Foundation
 
 class VOYCommentRepository: VOYCommentDataSource {
 
-    let authToken = VOYUser.activeUser()!.authToken!
+    var authToken: String {
+        return VOYUser.activeUser()?.authToken ?? ""
+    }
 
     let networkClient = VOYNetworkClient(reachability: VOYDefaultReachability())
 

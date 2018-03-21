@@ -48,9 +48,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func setupWindow() {
         self.window = UIWindow(frame: UIScreen.main.bounds)
-        self.window!.backgroundColor = UIColor.white
-        self.window!.rootViewController = loadRootScreen()
-        self.window!.makeKeyAndVisible()
+        self.window?.backgroundColor = UIColor.white
+        self.window?.rootViewController = loadRootScreen()
+        self.window?.makeKeyAndVisible()
     }
 
     func loadRootScreen() -> UIViewController {

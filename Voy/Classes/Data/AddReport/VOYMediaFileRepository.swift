@@ -67,9 +67,9 @@ class VOYMediaFileRepository: VOYMediaFileDataSource {
                             URL(fileURLWithPath: cameraData.path),
                             withName: "file"
                         )
-                        if cameraData.type == VOYMediaType.video {
+                        if let thumbnailPath = cameraData.thumbnailPath, cameraData.type == VOYMediaType.video {
                             multipartFormData.append(
-                                URL(fileURLWithPath: cameraData.thumbnailPath!), withName: "thumbnail"
+                                URL(fileURLWithPath: thumbnailPath), withName: "thumbnail"
                             )
                         }
                 },
@@ -88,7 +88,7 @@ class VOYMediaFileRepository: VOYMediaFileDataSource {
                                     self.camerDataStoreManager.removeFromStorageAfterSave(cameraData: cameraData)
                                 }
                             }
-                        case .failure(let encodingError):
+                        case .failure:
                             self.camerDataStoreManager.addAsPendent(cameraData: cameraData, reportID: report_id)
                         }
                 })

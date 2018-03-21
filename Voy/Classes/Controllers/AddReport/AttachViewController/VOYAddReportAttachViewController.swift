@@ -22,13 +22,13 @@ class VOYAddReportAttachViewController: UIViewController, NVActivityIndicatorVie
 
     var mediaList = [VOYMedia]() {
         didSet {
-            self.navigationItem.rightBarButtonItem!.isEnabled = !mediaList.isEmpty
+            self.navigationItem.rightBarButtonItem?.isEnabled = !mediaList.isEmpty
         }
     }
 
     var cameraDataList = [VOYCameraData]() {
         didSet {
-            self.navigationItem.rightBarButtonItem!.isEnabled = !cameraDataList.isEmpty
+            self.navigationItem.rightBarButtonItem?.isEnabled = !cameraDataList.isEmpty
         }
     }
 
@@ -79,7 +79,7 @@ class VOYAddReportAttachViewController: UIViewController, NVActivityIndicatorVie
             target: self,
             action: #selector(onTapNextButton)
         )
-        self.navigationItem.rightBarButtonItem!.isEnabled = false
+        self.navigationItem.rightBarButtonItem?.isEnabled = false
     }
 
     @objc func onTapNextButton() {
@@ -199,12 +199,8 @@ extension VOYAddReportAttachViewController: VOYAlertViewControllerDelegate {
         self.navigationController?.popViewController(animated: true)
         if alertController.view.tag == 1 {
             // Does nothing
-        } else if alertController.view.tag == 2 {
-            UIApplication.shared.open(
-                URL(string: UIApplicationOpenSettingsURLString)!,
-                options: [:],
-                completionHandler: nil
-            )
+        } else if alertController.view.tag == 2, let url = URL(string: UIApplicationOpenSettingsURLString) {
+            UIApplication.shared.open(url, options: [:], completionHandler: nil)
         }
     }
 }

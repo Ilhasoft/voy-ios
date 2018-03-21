@@ -40,8 +40,8 @@ class VOYLoginRepository: VOYLoginDataSource {
                                          httpMethod: .get,
                                          headers: ["Authorization": "Token \(authToken)"]
         ) { (userList: [VOYUser]?, error, _) in
-            if let userList = userList, userList.count > 0 {
-                completion(userList.first!, nil)
+            if let userList = userList, let user = userList.first {
+                completion(user, nil)
             } else {
                 completion(nil, error)
             }

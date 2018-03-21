@@ -27,9 +27,9 @@ class VOYAddReportTagsPresenter {
     }
     
     func saveReport(selectedTags: [String]) {
-        guard let report = self.report else { return }
+        guard let report = self.report, let activeTheme = VOYTheme.activeTheme() else { return }
         report.tags = selectedTags
-        report.theme = VOYTheme.activeTheme()!.id
+        report.theme = activeTheme.id
         let location = "POINT(\(VOYLocationData.longitude) \(VOYLocationData.latitude))"
         report.location = location
 

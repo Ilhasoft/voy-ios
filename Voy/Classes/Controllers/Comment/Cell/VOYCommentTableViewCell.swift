@@ -39,7 +39,7 @@ class VOYCommentTableViewCell: DataBindOnDemandTableViewCell {
     }
  
     @IBAction func btOptionsTapped(_ sender: Any) {
-        guard let delegate = self.delegate, let commentId = cellJSON!["id"] as? Int else { return }
+        guard let delegate = self.delegate, let commentId = cellJSON?["id"] as? Int else { return }
         delegate.btOptionsDidTap(commentId: commentId)
     }
 }
@@ -48,7 +48,7 @@ extension VOYCommentTableViewCell: DataBindViewDelegate {
     func didFillAllComponents(JSON: [String: Any]) {
         self.cellJSON = JSON
         var activeUserName = ""
-        if let username = VOYUser.activeUser()!.username {
+        if let username = VOYUser.activeUser()?.username {
             activeUserName = username
         }
         if let username = self.lbName.text, username != activeUserName {
@@ -68,7 +68,7 @@ extension VOYCommentTableViewCell: DataBindViewDelegate {
                     let dateFormatter2 = DateFormatter()
                     dateFormatter2.dateFormat = "MMM"
                     dateFormatter2.dateStyle = .medium
-                    lbDate.text = dateFormatter2.string(from: date!)
+                    if let date = date { lbDate.text = dateFormatter2.string(from: date) }
                 }
                 return nil
             }

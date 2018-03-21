@@ -3,3 +3,6 @@ disabled_rules:
     - variable_name
 excluded:
     - Pods
+    - VoyTests
+opt_in_rules:
+    - force_unwrapping

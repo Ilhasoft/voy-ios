@@ -43,15 +43,15 @@ class VOYDefaultLocationManager: NSObject, CLLocationManagerDelegate, VOYLocatio
         if locationManager == nil {
             locationManager = CLLocationManager()
         }
-        
-        locationManager!.delegate = self
-        locationManager!.desiredAccuracy = kCLLocationAccuracyBestForNavigation
+
+        locationManager?.delegate = self
+        locationManager?.desiredAccuracy = kCLLocationAccuracyBestForNavigation
         
         if CLLocationManager.locationServicesEnabled() {
             if CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
-                locationManager!.startUpdatingLocation()
+                locationManager?.startUpdatingLocation()
             } else if CLLocationManager.authorizationStatus() == .notDetermined {
-                self.locationManager!.requestWhenInUseAuthorization()
+                self.locationManager?.requestWhenInUseAuthorization()
             } else if CLLocationManager.authorizationStatus() == .denied {
                 self.delegate?.userDidntGivePermission()
             }
@@ -63,14 +63,15 @@ class VOYDefaultLocationManager: NSObject, CLLocationManagerDelegate, VOYLocatio
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         self.locationManager?.stopUpdatingLocation()
         self.locationManager = nil
-        let userLocation = locations.first!
-        VOYLocationData.latitude = Float(userLocation.coordinate.latitude)
-        VOYLocationData.longitude = Float(userLocation.coordinate.longitude)
-        self.delegate?.didGetUserLocation(
-            latitude: VOYLocationData.latitude,
-            longitude: VOYLocationData.longitude,
-            error: nil
-        )
+        if let userLocation = locations.first {
+            VOYLocationData.latitude = Float(userLocation.coordinate.latitude)
+            VOYLocationData.longitude = Float(userLocation.coordinate.longitude)
+            self.delegate?.didGetUserLocation(
+                latitude: VOYLocationData.latitude,
+                longitude: VOYLocationData.longitude,
+                error: nil
+            )
+        }
     }
 
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
@@ -83,7 +84,7 @@ class VOYDefaultLocationManager: NSObject, CLLocationManagerDelegate, VOYLocatio
             self.delegate?.userDidntGivePermission()
         case .authorizedWhenInUse :
             if VOYLocationData.latitude == 0 {
-                self.locationManager!.startUpdatingLocation()
+                self.locationManager?.startUpdatingLocation()
             }
         default:
             break

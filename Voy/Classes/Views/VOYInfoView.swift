@@ -16,8 +16,8 @@ class VOYInfoView: UIView {
     @IBOutlet weak var lbMessage: UILabel!
     @IBOutlet var contentView: UIView!
     
-    required init(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)!
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
         initSubviews()
     }
     
@@ -34,10 +34,23 @@ class VOYInfoView: UIView {
     }
     
     func setupWith(titleAndColor: [String: UIColor], messageAndColor: [String: UIColor]) {
-        self.imgAvatar.kf.setImage(with: URL(string: VOYUser.activeUser()!.avatar))
-        self.lbTitle.text = titleAndColor.keys.first!
-        self.lbTitle.textColor = titleAndColor.values.first!
-        self.lbMessage.text = messageAndColor.keys.first!
-        self.lbMessage.textColor = messageAndColor.values.first!
+        guard let activeUser = VOYUser.activeUser() else { return }
+        self.imgAvatar.kf.setImage(with: URL(string: activeUser.avatar))
+
+        if let firstTitleAndColorKey = titleAndColor.keys.first {
+            self.lbTitle.text = firstTitleAndColorKey
+        }
+
+        if let firstTitleAndColorValue = titleAndColor.values.first {
+            self.lbTitle.textColor = firstTitleAndColorValue
+        }
+
+        if let firstMessageAndColorKey = messageAndColor.keys.first {
+            self.lbMessage.text = firstMessageAndColorKey
+        }
+
+        if let firstMessageAndColorValue = messageAndColor.values.first {
+            self.lbMessage.textColor = firstMessageAndColorValue
+        }
     }
 }

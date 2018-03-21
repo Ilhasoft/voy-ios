@@ -13,8 +13,9 @@ extension VOYAddReportAttachViewController: UIImagePickerControllerDelegate, UIN
         picker.dismiss(animated: true) {
             
         }
-        if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
-            let path = VOYFileUtil.writeImageFile(UIImageJPEGRepresentation(image, 0.2)!)
+        if let image = info[UIImagePickerControllerOriginalImage] as? UIImage,
+            let imageRepresentation = UIImageJPEGRepresentation(image, 0.2),
+            let path = VOYFileUtil.writeImageFile(imageRepresentation) {
             cameraData = VOYCameraData(
                 image: image,
                 thumbnail: nil,
@@ -27,9 +28,10 @@ extension VOYAddReportAttachViewController: UIImagePickerControllerDelegate, UIN
             ISVideoUtil.compressVideo(inputURL: mediaURL, completion: { _, url in
                 DispatchQueue.main.async {
                     self.stopAnimating()
-                    guard let url = url else { return }
-                    let thumbnail = ISVideoUtil.generateThumbnail(url)!
-                    let thumbnailPath = VOYFileUtil.writeImageFile(UIImageJPEGRepresentation(thumbnail, 0.2)!)
+                    guard let url = url,
+                          let thumbnail = ISVideoUtil.generateThumbnail(url),
+                          let thumbnailRepresentation = UIImageJPEGRepresentation(thumbnail, 0.2),
+                          let thumbnailPath = VOYFileUtil.writeImageFile(thumbnailRepresentation) else { return }
                     self.cameraData = VOYCameraData(
                         image: nil,
                         thumbnail: thumbnail,

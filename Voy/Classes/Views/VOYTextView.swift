@@ -51,8 +51,8 @@ class VOYTextView: UIView {
     @IBOutlet var viewBottom: UIView!
     @IBOutlet var contentView: UIView!
     
-    required init(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)!
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
         initSubviews()
     }
     
@@ -97,7 +97,7 @@ extension VOYTextView: GrowingTextViewDelegate {
     }
     
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
-        let newText = (textView.text! as NSString).replacingCharacters(in: range, with: text)
+        let newText = (textView.text as NSString).replacingCharacters(in: range, with: text)
         let numberOfChars = newText.count
         
         if numberOfChars > 0 && self.lbFieldName.alpha == 0 {

@@ -11,9 +11,9 @@ import Alamofire
 
 class VOYDefaultReachability: VOYReachability {
 
-    private let manager = NetworkReachabilityManager()!
+    private let manager = NetworkReachabilityManager()
 
     func hasNetwork() -> Bool {
-        return manager.isReachable
+        return manager?.isReachable ?? false
     }
 }
