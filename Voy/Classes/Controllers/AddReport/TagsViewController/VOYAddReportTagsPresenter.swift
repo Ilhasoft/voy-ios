@@ -21,11 +21,8 @@ class VOYAddReportTagsPresenter {
 
     func onViewDidLoad() {
         guard let activeTheme = assertExists(optionalVar: VOYTheme.activeTheme()) else { return }
-        if let tags = report?.tags {
-            view?.loadTags(themeTags: activeTheme.tags, selectedTags: tags)
-        } else {
-            view?.loadTags(themeTags: activeTheme.tags, selectedTags: [])
-        }
+        let selectedTags = report?.tags ?? []
+        view?.loadTags(themeTags: activeTheme.tags, selectedTags: selectedTags)
     }
     
     func saveReport(selectedTags: [String]) {
