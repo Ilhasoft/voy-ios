@@ -13,18 +13,15 @@ class VOYAccountRepository: VOYAccountDataSource {
     let networkClient = VOYNetworkClient(reachability: VOYDefaultReachability())
 
     func updateUser(avatar: Int?, password: String?, completion: @escaping(Error?) -> Void) {
-        let user = VOYUser.activeUser()!
+        guard let user = VOYUser.activeUser(),
+              let authToken = user.authToken,
+              let userId = user.id else { return }
         var jsonUser = [String: Any]()
-        let authToken = user.authToken!
-        if let avatar = avatar {
-            jsonUser["avatar"] = avatar
-        }
-        if let password = password {
-            jsonUser["password"] = password
-        }
+        if let avatar = avatar { jsonUser["avatar"] = avatar }
+        if let password = password { jsonUser["password"] = password }
         let headers = ["Authorization": "Token " + authToken]
 
-        networkClient.requestDictionary(urlSuffix: "users/\(user.id!)/",
+        networkClient.requestDictionary(urlSuffix: "users/\(userId)/",
                                         httpMethod: .put,
                                         parameters: jsonUser,
                                         headers: headers) { result, error, _ in

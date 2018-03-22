@@ -27,10 +27,10 @@ class VOYAlertViewController: ISModalViewController {
     
     weak var delegate: VOYAlertViewControllerDelegate?
     
-    init(title: String, message: String, buttonNames: [String]? = ["Ok"]) {
+    init(title: String, message: String, buttonNames: [String] = ["Ok"]) {
         self.messageTitle = title
         self.message = message
-        self.buttonNames = buttonNames!
+        self.buttonNames = buttonNames
         super.init(nibName: "VOYAlertViewController", bundle: nil)
     }
     
@@ -58,7 +58,7 @@ class VOYAlertViewController: ISModalViewController {
         
         for (index, buttonName) in buttonNames.enumerated() {
             let button = UIButton()
-            button.titleLabel!.font = UIFont.systemFont(ofSize: 16)
+            button.titleLabel?.font = UIFont.systemFont(ofSize: 16)
             button.layer.borderWidth = 1
             button.layer.borderColor = UIColor.voyGray.cgColor
             button.setTitleColor(UIColor.voyLightBlue, for: .normal)

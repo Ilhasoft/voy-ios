@@ -24,8 +24,8 @@ class VOYActionSheetViewController: ISModalViewController {
     
     weak var delegate: VOYActionSheetViewControllerDelegate?
     
-    init(buttonNames: [String]? = ["Ok"], icons: [UIImage]? = nil) {
-        self.buttonNames = buttonNames!
+    init(buttonNames: [String] = ["Ok"], icons: [UIImage]? = nil) {
+        self.buttonNames = buttonNames
         if let icons = icons {
             self.icons = icons
         }
@@ -85,7 +85,7 @@ class VOYActionSheetViewController: ISModalViewController {
     private func buildButton(index: Int, name: String, icon: UIImage? = nil) -> UIButton {
         let button = UIButton()
         button.layer.cornerRadius = 7
-        button.titleLabel!.font = UIFont.systemFont(ofSize: 16)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 16)
         button.setTitleColor(index == 999 ? UIColor.white : UIColor.voyLightBlue, for: .normal)
         button.setTitle(name, for: .normal)
         

@@ -68,7 +68,7 @@ class VOYAccountViewController: UIViewController, NVActivityIndicatorViewable, V
     }
     
     func setupData() {
-        let user = VOYUser.activeUser()!
+        guard let user = VOYUser.activeUser() else { return }
         self.viewUserName.txtField.text = user.first_name
         self.viewUserName.layer.opacity = 0.5
         self.viewEmail.txtField.text = user.email
@@ -123,9 +123,9 @@ class VOYAccountViewController: UIViewController, NVActivityIndicatorViewable, V
         if isPasswordEditing {
             self.viewPassword.editEnabled = false
             let passwordChanged = (nilPassword != self.viewPassword.txtField.text
-                    && !self.viewPassword.txtField.text!.isEmpty)
+                    && !self.viewPassword.txtField.safeText.isEmpty)
             if passwordChanged {
-                newPassword = self.viewPassword.txtField.text!
+                newPassword = self.viewPassword.txtField.text ?? ""
             } else {
                 newPassword = nil
             }
@@ -144,9 +144,19 @@ class VOYAccountViewController: UIViewController, NVActivityIndicatorViewable, V
     }
     
      func clearPendentReports() {
-        let alert = UIAlertController(title: localizedString(.logout), message: localizedString(.areYouSure), preferredStyle: .alert)
-        let cancelAction = UIAlertAction(title: localizedString(.cancel) , style: .default) { (_) in }
-        let confirmAction = UIAlertAction(title: localizedString(.logout) , style: .default) { (_) in
+        let alert = UIAlertController(
+            title: localizedString(.logout),
+            message: localizedString(.areYouSure),
+            preferredStyle: .alert
+        )
+        let cancelAction = UIAlertAction(
+            title: localizedString(.cancel),
+            style: .default
+        ) { (_) in }
+        let confirmAction = UIAlertAction(
+            title: localizedString(.logout),
+            style: .default
+        ) { (_) in
             self.presenter?.logoutUser()
         }
         

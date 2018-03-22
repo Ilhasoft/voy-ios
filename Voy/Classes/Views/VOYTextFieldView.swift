@@ -57,8 +57,8 @@ class VOYTextFieldView: UIView {
     @IBOutlet var viewBottom: UIView!
     @IBOutlet var contentView: UIView!
     
-    required init(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)!
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
         initSubviews()
     }
     
@@ -104,7 +104,7 @@ extension VOYTextFieldView: UITextFieldDelegate {
             textField.resignFirstResponder()
             return false
         }
-        let newText = (textField.text! as NSString).replacingCharacters(in: range, with: string)
+        let newText = (textField.safeText as NSString).replacingCharacters(in: range, with: string)
         let numberOfChars = newText.count
         
         self.delegate?.textFieldDidChange(self, text: newText)

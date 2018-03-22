@@ -31,7 +31,9 @@ class VOYReportListViewController: UIViewController, NVActivityIndicatorViewable
     init() {
         super.init(nibName: String(describing: type(of: self)), bundle: nil)
         VOYReportListViewController.sharedInstance = self
-        self.theme = VOYTheme.activeTheme()!
+        if let theme = assertExists(optionalVar: VOYTheme.activeTheme()) {
+            self.theme = theme
+        }
         self.title = theme.name
     }
 
@@ -59,6 +61,8 @@ class VOYReportListViewController: UIViewController, NVActivityIndicatorViewable
     }
 
     func setupTableView() {
+        guard let activeUser = VOYUser.activeUser() else { return }
+
         var status: VOYReportStatus = .approved
         startAnimating()
         for tableView in self.tableViews {
@@ -79,13 +83,11 @@ class VOYReportListViewController: UIViewController, NVActivityIndicatorViewable
             tableView.onDemandTableViewDelegate = self
             tableView.interactor = DataBindOnDemandTableViewInteractor(
                 configuration: tableViewApproved.getConfiguration(),
-                params: ["theme": self.theme.id, "status": status.rawValue, "mapper": VOYUser.activeUser()!.id],
+                params: ["theme": self.theme.id, "status": status.rawValue, "mapper": activeUser.id],
                 paginationCount: VOYConstant.API.paginationSize,
                 reachability: VOYDefaultReachability()
             )
-
-            presenter.countReports(themeId: self.theme.id, status: status, mapper: VOYUser.activeUser()!.id)
-
+            presenter.countReports(themeId: self.theme.id, status: status, mapper: activeUser.id)
             tableView.loadContent()
         }
 
@@ -200,9 +202,10 @@ extension VOYReportListViewController: ISOnDemandTableViewDelegate {
     }
 
     func onDemandTableView(_ tableView: ISOnDemandTableView, didSelectRowAt indexPath: IndexPath) {
-        if let cell = tableView.cellForRow(at: indexPath) as? VOYReportTableViewCell {
+        if let cell = tableView.cellForRow(at: indexPath) as? VOYReportTableViewCell,
+           let report = VOYReport(JSON: cell.object.JSON) {
             self.navigationController?.pushViewController(
-                VOYReportDetailViewController(report: VOYReport(JSON: cell.object.JSON)!),
+                VOYReportDetailViewController(report: report),
                 animated: true
             )
         }

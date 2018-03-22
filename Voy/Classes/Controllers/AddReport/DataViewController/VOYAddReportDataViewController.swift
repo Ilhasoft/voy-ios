@@ -65,35 +65,39 @@ class VOYAddReportDataViewController: UIViewController {
     }
     
     @objc func openNextController() {
-        
-        if self.titleView.txtField.text!.isEmpty {
+        if self.titleView.txtField.safeText.isEmpty {
             self.titleView.shake()
             self.titleView.txtField.becomeFirstResponder()
             return
         }
-        
-        let report = VOYReport(JSON: self.dataBindView.toJSON())!
-        if let savedReport = self.savedReport {
-            report.status = savedReport.status
-            report.update = true
-            report.tags = savedReport.tags
-            report.id = savedReport.id
-            report.removedMedias = savedReport.removedMedias
-            report.cameraDataList = savedReport.cameraDataList
-        } else {
-            report.update = false
-            report.cameraDataList = cameraDataList
+        if let report = VOYReport(JSON: self.dataBindView.toJSON()) {
+            if let savedReport = self.savedReport {
+                report.status = savedReport.status
+                report.update = true
+                report.tags = savedReport.tags
+                report.id = savedReport.id
+                report.removedMedias = savedReport.removedMedias
+                report.cameraDataList = savedReport.cameraDataList
+            } else {
+                report.update = false
+                report.cameraDataList = cameraDataList
+            }
+            self.navigationController?.pushViewController(
+                VOYAddReportTagsViewController(report: report),
+                animated: true
+            )
         }
-        self.navigationController?.pushViewController(VOYAddReportTagsViewController(report: report), animated: true)
     }
-    
+
     func setupLayout() {
+        guard let activeTheme = assertExists(optionalVar: VOYTheme.activeTheme()) else { return }
+
         self.tbViewLinks.separatorColor = UIColor.clear
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: " ", style: .plain, target: nil, action: nil)
         self.automaticallyAdjustsScrollViewInsets = false
         self.txtFieldLink.layer.borderWidth = 1
         self.txtFieldLink.layer.borderColor = UIColor.voyGray.cgColor
-        if !VOYTheme.activeTheme()!.allow_links {
+        if !activeTheme.allow_links {
             self.tbViewLinks.isHidden = true
             self.txtFieldLink.isHidden = true
             self.btAddLink.isHidden = true
@@ -109,8 +113,8 @@ class VOYAddReportDataViewController: UIViewController {
     }
     
     @IBAction func btAddLinkTapped(_ sender: Any) {
-        if !self.txtFieldLink.text!.isEmpty {
-            self.tbViewLinks.dataList.append(self.txtFieldLink.text!)
+        if !self.txtFieldLink.safeText.isEmpty {
+            self.tbViewLinks.dataList.append(self.txtFieldLink.safeText)
             self.tbViewLinks.reloadData()
             self.txtFieldLink.text = ""
             UIView.animate(withDuration: 0.3, animations: {
@@ -164,7 +168,7 @@ extension VOYAddReportDataViewController: UITextFieldDelegate {
             textField.resignFirstResponder()
             return false
         }
-        let newText = (textField.text! as NSString).replacingCharacters(in: range, with: string)
+        let newText = (textField.safeText as NSString).replacingCharacters(in: range, with: string)
         let numberOfChars = newText.count
         
         if numberOfChars > 0 && self.btAddLink.alpha < 1 {
@@ -196,9 +200,9 @@ extension VOYAddReportDataViewController: VOYLinkTableViewCellDelegate {
     }
     func removeButtonDidTap(cell: VOYLinkTableViewCell) {
         if let dataList = self.tbViewLinks.dataList as? [String] {
-            let index = dataList.index {($0 == cell.lbLink.text!)}
-            if index != nil {
-                self.tbViewLinks.dataList.remove(at: index!)
+            let index = dataList.index {($0 == cell.lbLink.safeText)}
+            if let index = index {
+                self.tbViewLinks.dataList.remove(at: index)
                 self.tbViewLinks.reloadData()
             }
         }

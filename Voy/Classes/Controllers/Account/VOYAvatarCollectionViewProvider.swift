@@ -15,7 +15,7 @@ class VOYAvatarCollectionViewProvider: ISOnDemandCollectionViewInteractor {
     override func fetchObjects(forPage: Int, completion: @escaping (([Any]?, Error?) -> Void)) {
         var avatarList = [UIImage]()
         for i in 1...25 {
-            avatarList.append(UIImage(named: "ic_avatar\(i)")!)
+            if let image = UIImage(named: "ic_avatar\(i)") { avatarList.append(image) }
         }
         completion(avatarList, nil)
     }

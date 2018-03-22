@@ -20,7 +20,7 @@ open class ISModalViewController: UIViewController {
     
     override open func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor!.withAlphaComponent(0)
+        self.view.backgroundColor = self.view.backgroundColor?.withAlphaComponent(0)
     }
     
     // MARK: - Class Methods

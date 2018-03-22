@@ -34,8 +34,8 @@ class VOYPlayMediaView: UIView, NVActivityIndicatorViewable {
     var media: VOYMedia!
     var videoURL: URL?
     
-    required init(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)!
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
         initSubviews()
     }
     
@@ -96,6 +96,8 @@ class VOYPlayMediaView: UIView, NVActivityIndicatorViewable {
     
     @objc func videoDidTap() {
         fullScreen = !fullScreen
-        self.delegate?.videoDidTap(mediaView: self, url: self.videoURL!, showInFullScreen: fullScreen)
+        if let videoURL = self.videoURL {
+            self.delegate?.videoDidTap(mediaView: self, url: videoURL, showInFullScreen: fullScreen)
+        }
     }
 }

@@ -32,12 +32,17 @@ class VOYReportListRepository: VOYReportListDataSource {
 
         let headers = [ "Authorization": "Token \(auth)" ]
 
-        networkClient.requestDictionary(urlSuffix: "reports", httpMethod: .get, parameters: parameters, headers: headers, completion: { object, error, _ in
-            if let count = object?["count"] as? Int {
-                completion(count, nil)
-            } else {
-                completion(nil, error)
-            }
+        networkClient.requestDictionary(
+            urlSuffix: "reports",
+            httpMethod: .get,
+            parameters: parameters,
+            headers: headers,
+            completion: { object, error, _ in
+                if let count = object?["count"] as? Int {
+                    completion(count, nil)
+                } else {
+                    completion(nil, error)
+                }
         })
     }
 }

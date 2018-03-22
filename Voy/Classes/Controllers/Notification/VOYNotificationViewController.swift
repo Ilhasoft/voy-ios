@@ -47,7 +47,10 @@ class VOYNotificationViewController: UIViewController, VOYNotificationContract {
         tableView.delegate = self
         tableView.register(UINib(nibName: VOYNotificationTableViewCell.identifier, bundle: nil),
                            forCellReuseIdentifier: VOYNotificationTableViewCell.identifier)
-        presenter = VOYNotificationPresenter(dataSource: VOYNotificationRepository(reachability: VOYDefaultReachability()), view: self)
+        presenter = VOYNotificationPresenter(
+            dataSource: VOYNotificationRepository(reachability: VOYDefaultReachability()),
+            view: self
+        )
         fetchNotifications()
     }
 

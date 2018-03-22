@@ -24,8 +24,8 @@ class VOYAddMediaView: UIView {
     weak var delegate: VOYAddMediaViewDelegate?
     var media: VOYMedia?
     
-    required init(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)!
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
         initSubviews()
     }
     
@@ -51,10 +51,10 @@ class VOYAddMediaView: UIView {
         self.imgViewPlusIcon.isHidden = true
         self.btRemove.isHidden = false
         
-        if cameraData.type == .image {
-            self.imgView.image = cameraData.image!
-        } else if cameraData.type == .video {            
-            self.imgView.image = cameraData.thumbnail!
+        if let cameraDataImage = cameraData.image, cameraData.type == .image {
+            self.imgView.image = cameraDataImage
+        } else if let cameraDataThumbnail = cameraData.thumbnail, cameraData.type == .video {
+            self.imgView.image = cameraDataThumbnail
         }
     }
     

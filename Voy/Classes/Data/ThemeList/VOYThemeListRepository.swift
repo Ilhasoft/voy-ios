@@ -23,7 +23,8 @@ class VOYThemeListRepository: VOYThemeListDataSource {
         guard let auth = VOYUser.activeUser()?.authToken else { return }
         networkClient.requestObjectArray(urlSuffix: "report-notification/",
                                    httpMethod: VOYNetworkClient.VOYHTTPMethod.get,
-                                   headers: ["Authorization": "Token \(auth)"]) { (notificationList: [VOYNotification]?, _, _) in
+                                   headers: ["Authorization": "Token \(auth)"]
+        ) { (notificationList: [VOYNotification]?, _, _) in
                                     guard let notificationList = notificationList else { return }
                                     completion(notificationList)
         }
@@ -37,15 +38,18 @@ class VOYThemeListRepository: VOYThemeListDataSource {
             parameters["page_size"] = VOYConstant.API.paginationSize
             Alamofire.request(url, method: .get, parameters: parameters, headers: headers)
                 .responseJSON { (dataResponse: DataResponse<Any>) in
-                if dataResponse.result.error == nil {
-                    let cachedURLResponse = CachedURLResponse(
-                        response: dataResponse.response!,
-                        data: dataResponse.data! ,
-                        userInfo: nil,
-                        storagePolicy: .allowed
-                    )
-                    URLCache.shared.storeCachedResponse(cachedURLResponse, for: dataResponse.request!)
-                }
+                    guard let internalRequest = dataResponse.request,
+                          let internalResponse = dataResponse.response,
+                          let internalData = dataResponse.data else { return }
+                    if dataResponse.result.error == nil {
+                        let cachedURLResponse = CachedURLResponse(
+                            response: internalResponse,
+                            data: internalData,
+                            userInfo: nil,
+                            storagePolicy: .allowed
+                        )
+                        URLCache.shared.storeCachedResponse(cachedURLResponse, for: internalRequest)
+                    }
             }
         } else {
             print("User haven't internet connection and don't have cached data")
@@ -65,43 +69,44 @@ class VOYThemeListRepository: VOYThemeListDataSource {
             headers["Cache-Control"] = "public, max-age=86400, max-stale=120"
         }
         headers[VOYConstant.API.authHeader] = "Token \(authToken)"
-        
-        let request = Alamofire.request(
-            VOYConstant.API.URL + "projects/",
-            headers: headers
-        )
-        
-        let cachedResponse = URLCache.shared.cachedResponse(for: request.request!)
-        
+
+        let request = Alamofire.request(VOYConstant.API.URL + "projects/", headers: headers)
+
+        var cachedResponse: CachedURLResponse?
+        if let alamofireRequest = request.request {
+            cachedResponse = URLCache.shared.cachedResponse(for: alamofireRequest)
+        }
+
         if reachability.hasNetwork() {
-            
+
             request.responseArray { (dataResponse: DataResponse<[VOYProject]>) in
-                
+                guard let internalRequest = dataResponse.request,
+                      let internalResponse = dataResponse.response,
+                      let internalData = dataResponse.data else { return }
                 if dataResponse.result.error == nil {
                     let cachedURLResponse = CachedURLResponse(
-                        response: dataResponse.response!,
-                        data: dataResponse.data! ,
+                        response: internalResponse,
+                        data: internalData,
                         userInfo: nil,
                         storagePolicy: .allowed
                     )
-                    URLCache.shared.storeCachedResponse(cachedURLResponse, for: dataResponse.request!)
+                    URLCache.shared.storeCachedResponse(cachedURLResponse, for: internalRequest)
                 }
-                
                 if let projects = dataResponse.result.value {
                     completion(projects, nil)
                 } else if let error = dataResponse.result.error {
                     completion([], error)
                 }
             }
-            
         } else if let cachedResponse = cachedResponse {
             do {
                 let jsonObject = try JSONSerialization.jsonObject(with: cachedResponse.data, options: [])
                 if let arrayDictionary = jsonObject as? [[String: Any]] {
                     var projects = [VOYProject]()
                     for dictionary in arrayDictionary {
-                        let project = VOYProject(JSON: dictionary)!
-                        projects.append(project)
+                        if let project = VOYProject(JSON: dictionary) {
+                            projects.append(project)
+                        }
                     }
                     completion(projects, nil)
                 }

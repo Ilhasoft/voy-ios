@@ -58,10 +58,10 @@ class VOYAddReportTagsViewController: UIViewController, NVActivityIndicatorViewa
 
     fileprivate func addTag(tagView: TagView, title: String) {
         let index = selectedTags.index { ($0 == title) }
-        if index != nil {
+        if let index = index {
             tagView.textColor = UIColor.black
             tagView.tagBackgroundColor = UIColor.voyGray
-            selectedTags.remove(at: index!)
+            selectedTags.remove(at: index)
         } else {
             tagView.textColor = UIColor.white
             tagView.tagBackgroundColor = UIColor.voyBlue

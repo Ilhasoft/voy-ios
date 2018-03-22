@@ -17,7 +17,7 @@ class VOYMockAddReportAttachViewController: VOYAddReportAttachContract {
     var hasShownGpsPermissionError = false
     var mediaPicker: UIImagePickerController?
     var mediaList: [VOYMedia] = [VOYMedia]()
-    var lastMessageShown: String? = nil
+    var lastMessageShown: String?
     var isAnimating = false
 
     init() {

@@ -20,8 +20,8 @@ class VOYSelectedReportView: UIView {
     
     weak var delegate: VOYSelectedReportViewDelegate?
     
-    required init(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)!
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
         initSubviews()
     }
     

@@ -38,9 +38,10 @@ class VOYLoginRepository: VOYLoginDataSource {
     func getUserData(authToken: String, completion: @escaping (VOYUser?, Error?) -> Void) {
         networkClient.requestObjectArray(urlSuffix: "users/?me=1",
                                          httpMethod: .get,
-                                         headers: ["Authorization": "Token \(authToken)"]) { (userList: [VOYUser]?, error, _) in
-            if let userList = userList, userList.count > 0 {
-                completion(userList.first!, nil)
+                                         headers: ["Authorization": "Token \(authToken)"]
+        ) { (userList: [VOYUser]?, error, _) in
+            if let userList = userList, let user = userList.first {
+                completion(user, nil)
             } else {
                 completion(nil, error)
             }

@@ -17,13 +17,23 @@ extension UIFont {
     }
   
     static func helveticaNeue(withSize size: CGFloat, andStyle style: FontStyle) -> UIFont {
+        let loadedFont: UIFont?
         switch style {
         case .light:
-            return UIFont(name: "HelveticaNeue-Light", size: size)!
+            loadedFont = UIFont(name: "HelveticaNeue-Light", size: size)
         case .bold:
-            return UIFont(name: "HelveticaNeue-Bold", size: size)!
+            loadedFont = UIFont(name: "HelveticaNeue-Bold", size: size)
         default:
-            return UIFont(name: "HelveticaNeue", size: size)!
+            loadedFont = UIFont(name: "HelveticaNeue", size: size)
+        }
+        if let unwrappedFont = loadedFont {
+            return unwrappedFont
+        } else {
+            #if DEBUG
+                fatalError("Font not found")
+            #else
+                return UIFont.systemFont(ofSize: size)
+            #endif
         }
     }
 }

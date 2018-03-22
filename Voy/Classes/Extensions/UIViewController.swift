@@ -13,24 +13,25 @@ extension UIViewController {
     static public func switchRootViewController(_ rootViewController: UIViewController, animated: Bool,
                                                 transition: UIViewAnimationOptions = .transitionFlipFromLeft,
                                                 completion: (() -> Void)?) {
-        let window = UIApplication.shared.keyWindow
+        guard let window = UIApplication.shared.keyWindow else {
+            completion?()
+            return
+        }
         if animated {
-            UIView.transition(with: window!, duration: 0.5, options: transition, animations: {
+            UIView.transition(with: window, duration: 0.5, options: transition, animations: {
                 let oldState: Bool = UIView.areAnimationsEnabled
                 UIView.setAnimationsEnabled(false)
-                window!.rootViewController = rootViewController
+                window.rootViewController = rootViewController
                 UIView.setAnimationsEnabled(oldState)
             }, completion: { _ in
-                if completion != nil {
-                    completion!()
-                }
+                completion?()
             })
         } else {
-            window!.rootViewController = rootViewController
+            window.rootViewController = rootViewController
         }
     }
     
-    static public func rootViewController() -> UIViewController {
-        return UIApplication.shared.keyWindow!.rootViewController!
+    static public func rootViewController() -> UIViewController? {
+        return UIApplication.shared.keyWindow?.rootViewController
     }
 }

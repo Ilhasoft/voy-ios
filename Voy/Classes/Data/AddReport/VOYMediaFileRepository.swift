@@ -55,11 +55,22 @@ class VOYMediaFileRepository: VOYMediaFileDataSource {
                 guard let auth = VOYUser.activeUser()?.authToken else { return }
                 Alamofire.upload(
                     multipartFormData: { multipartFormData in
-                        multipartFormData.append("\(report_id)".data(using: String.Encoding.utf8)!, withName: "report_id")
-                        multipartFormData.append("title".data(using: String.Encoding.utf8)!, withName: "title")
-                        multipartFormData.append(URL(fileURLWithPath: cameraData.path), withName: "file")
-                        if cameraData.type == VOYMediaType.video {
-                            multipartFormData.append(URL(fileURLWithPath: cameraData.thumbnailPath!), withName: "thumbnail")
+                        multipartFormData.append(
+                            "\(report_id)".data(using: String.Encoding.utf8)!,
+                            withName: "report_id"
+                        )
+                        multipartFormData.append(
+                            "title".data(using: String.Encoding.utf8)!,
+                            withName: "title"
+                        )
+                        multipartFormData.append(
+                            URL(fileURLWithPath: cameraData.path),
+                            withName: "file"
+                        )
+                        if let thumbnailPath = cameraData.thumbnailPath, cameraData.type == VOYMediaType.video {
+                            multipartFormData.append(
+                                URL(fileURLWithPath: thumbnailPath), withName: "thumbnail"
+                            )
                         }
                 },
                     to: VOYConstant.API.URL + "report-files/",
@@ -77,7 +88,7 @@ class VOYMediaFileRepository: VOYMediaFileDataSource {
                                     self.camerDataStoreManager.removeFromStorageAfterSave(cameraData: cameraData)
                                 }
                             }
-                        case .failure(let encodingError):
+                        case .failure:
                             self.camerDataStoreManager.addAsPendent(cameraData: cameraData, reportID: report_id)
                         }
                 })

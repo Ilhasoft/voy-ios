@@ -14,8 +14,8 @@ func getRequest<T: Mappable>(urlSuffix: String, completion: @escaping (T?, Error
     let url = "\(VOYConstant.API.URL)\(urlSuffix)"
     Alamofire.request(url, method: .get)
         .responseArray(completionHandler: { (dataResponse: DataResponse<[T]>) -> Void in
-            if let userData = dataResponse.result.value, userData.count > 0 {
-                completion(userData.first!, nil)
+            if let userData = dataResponse.result.value, let firstValue = userData.first {
+                completion(firstValue, nil)
             } else if let error = dataResponse.result.error {
                 completion(nil, error)
             }

@@ -70,8 +70,10 @@ class VOYThemeListViewController: UIViewController, NVActivityIndicatorViewable 
         imageView.widthAnchor.constraint(equalToConstant: 30).isActive = true
         imageView.heightAnchor.constraint(equalToConstant: 30).isActive = true
         imageView.contentMode = .scaleAspectFill
-        if let activeUser = VOYUser.activeUser(), let avatar = activeUser.avatar {
-            imageView.kf.setImage(with: URL(string: avatar)!)
+        if let activeUser = VOYUser.activeUser(),
+           let avatar = activeUser.avatar,
+           let url = URL(string: avatar) {
+            imageView.kf.setImage(with: url)
         }
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(openAccount))
         imageView.addGestureRecognizer(tapGesture)
@@ -83,8 +85,15 @@ class VOYThemeListViewController: UIViewController, NVActivityIndicatorViewable 
         addLeftBarButtonItem()
         let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(openNotifications))
         let customView = UIImageView(image: #imageLiteral(resourceName: "bell"))
-        VOYThemeListViewController.badgeView = UIView(frame: CGRect(x: customView.frame.width - 9, y: 0, width: 9, height: 9))
-        VOYThemeListViewController.badgeView.backgroundColor = UIColor(displayP3Red: 222/255, green: 72/255, blue: 107/255, alpha: 1)
+        VOYThemeListViewController.badgeView = UIView(
+            frame: CGRect(x: customView.frame.width - 9, y: 0, width: 9, height: 9)
+        )
+        VOYThemeListViewController.badgeView.backgroundColor = UIColor(
+            displayP3Red: 222/255,
+            green: 72/255,
+            blue: 107/255,
+            alpha: 1
+        )
         VOYThemeListViewController.badgeView.clipsToBounds = true
         VOYThemeListViewController.badgeView.layer.cornerRadius = VOYThemeListViewController.badgeView.frame.height/2
         VOYThemeListViewController.badgeView.isHidden = true
@@ -106,10 +115,11 @@ class VOYThemeListViewController: UIViewController, NVActivityIndicatorViewable 
     }
 
     func loadThemesFilteredByProject(project: VOYProject) {
+        guard let activeUser = assertExists(optionalVar: VOYUser.activeUser()) else { return }
         VOYProject.setActiveProject(project: project)
         tbView.interactor = DataBindOnDemandTableViewInteractor(
             configuration: tbView.getConfiguration(),
-            params: ["project": project.id, "user": VOYUser.activeUser()!.id],
+            params: ["project": project.id, "user": activeUser.id],
             paginationCount: VOYConstant.API.paginationSize,
             reachability: VOYDefaultReachability()
         )
@@ -150,8 +160,7 @@ class VOYThemeListViewController: UIViewController, NVActivityIndicatorViewable 
 
 extension VOYThemeListViewController: VOYThemeListContract {
     func updateProjectsList(projects: [VOYProject]) {
-        if !projects.isEmpty {
-            let selectedReport = projects.first!
+        if let selectedReport = projects.first {
             setupDropDown(projects: projects)
             setupTableView(filterThemesByProject: selectedReport)
             self.selectedReportView.lbTitle.text = selectedReport.name
@@ -172,10 +181,12 @@ extension VOYThemeListViewController: ISOnDemandTableViewDelegate {
     }
 
     func onDemandTableView(_ tableView: ISOnDemandTableView, onContentLoad lastData: [Any]?, withError error: Error?) {
-        self.lbThemesCount.text = localizedString(
-            .themesListHeader,
-            andNumber: tableView.interactor!.objects.count
-        )
+        if let tableViewInteractor = tableView.interactor {
+            self.lbThemesCount.text = localizedString(
+                .themesListHeader,
+                andNumber: tableViewInteractor.objects.count
+            )
+        }
     }
 
     func onDemandTableView(_ tableView: ISOnDemandTableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

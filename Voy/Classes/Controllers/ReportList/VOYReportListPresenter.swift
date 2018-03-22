@@ -29,18 +29,18 @@ class VOYReportListPresenter {
     
     func countReports(themeId: Int, status: VOYReportStatus, mapper: Int) {
         switch status {
-            case .approved:
-                dataSource.getReportCount(themeId: themeId, status: status, mapper: mapper) { (count, error) in
-                    self.countApprovedReports = count
-                }
-            case .pendent:
-                dataSource.getReportCount(themeId: themeId, status: status, mapper: mapper) { (count, error) in
-                    self.countPendingReports = count
-                }
-            case .notApproved:
-                dataSource.getReportCount(themeId: themeId, status: status, mapper: mapper) { (count, error) in
-                    self.countNotApprovedReports = count
-                }
+        case .approved:
+            dataSource.getReportCount(themeId: themeId, status: status, mapper: mapper) { count, _ in
+                self.countApprovedReports = count
+            }
+        case .pendent:
+            dataSource.getReportCount(themeId: themeId, status: status, mapper: mapper) { count, _ in
+                self.countPendingReports = count
+            }
+        case .notApproved:
+            dataSource.getReportCount(themeId: themeId, status: status, mapper: mapper) { count, _ in
+                self.countNotApprovedReports = count
+            }
         }
     }
 }

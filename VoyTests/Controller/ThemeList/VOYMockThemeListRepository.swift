@@ -32,7 +32,7 @@ class VOYMockThemeListRepository: VOYThemeListDataSource {
         }
         completion(projectList, nil)
     }
-    
+
     func getNotifications(completion: @escaping ([VOYNotification]?) -> Void) {
         let notification = VOYNotification(body: "Notification", report: VOYReport())
         notification.id = 123
@@ -42,7 +42,7 @@ class VOYMockThemeListRepository: VOYThemeListDataSource {
         self.notificationList = notificationList
         completion(notificationList)
     }
-    
+
     func cacheDataFrom(url: String, parameters: inout [String : Any], headers: inout [String : String]) {
         if reachability.hasNetwork() {
             cachedProjectsCount += 1

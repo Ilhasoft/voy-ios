@@ -68,6 +68,7 @@ class VOYCommentViewController: UIViewController, VOYCommentContract {
     }
 
     func setupTableView() {
+        guard let reportId = self.report.id else { return }
         tableView.register(
             UINib(nibName: "VOYCommentTableViewCell", bundle: Bundle(for: VOYCommentTableViewCell.self)),
             forCellReuseIdentifier: NSStringFromClass(VOYCommentTableViewCell.self)
@@ -79,7 +80,7 @@ class VOYCommentViewController: UIViewController, VOYCommentContract {
         tableView.onDemandTableViewDelegate = self
         tableView.interactor = DataBindOnDemandTableViewInteractor(
             configuration: tableView.getConfiguration(),
-            params: ["report": self.report.id!],
+            params: ["report": reportId],
             paginationCount: 20,
             reachability: VOYDefaultReachability()
         )
@@ -87,9 +88,10 @@ class VOYCommentViewController: UIViewController, VOYCommentContract {
     }
 
     @objc func keyboardWillShow(notification: NSNotification) {
-        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
-            if let duration = notification.userInfo![UIKeyboardAnimationDurationUserInfoKey] as? Double,
-                let curve = notification.userInfo![UIKeyboardAnimationCurveUserInfoKey] as? UInt {
+        if let userInfo = notification.userInfo,
+           let keyboardSize = (notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+            if let duration = userInfo[UIKeyboardAnimationDurationUserInfoKey] as? Double,
+               let curve = userInfo[UIKeyboardAnimationCurveUserInfoKey] as? UInt {
                 view.setNeedsLayout()
                 view.layoutIfNeeded()
                 UIView.animate(
@@ -105,9 +107,10 @@ class VOYCommentViewController: UIViewController, VOYCommentContract {
     }
 
     @objc func keyboardWillHide(notification: NSNotification) {
-        if (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue != nil {
-            if let duration = notification.userInfo![UIKeyboardAnimationDurationUserInfoKey] as? Double,
-                let curve = notification.userInfo![UIKeyboardAnimationCurveUserInfoKey] as? UInt {
+        if let userInfo = notification.userInfo,
+            (userInfo[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue != nil {
+            if let duration = userInfo[UIKeyboardAnimationDurationUserInfoKey] as? Double,
+               let curve = userInfo[UIKeyboardAnimationCurveUserInfoKey] as? UInt {
                 view.setNeedsLayout()
                 view.layoutIfNeeded()
                 UIView.animate(
@@ -123,9 +126,9 @@ class VOYCommentViewController: UIViewController, VOYCommentContract {
     }
 
     func sendComment() {
-        let text = self.txtField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
-        if !text.isEmpty {
-            let comment = VOYComment(text: text, reportID: self.report.id!)
+        let text = self.txtField.safeText.trimmingCharacters(in: .whitespacesAndNewlines)
+        if let reportId = self.report.id, !text.isEmpty {
+            let comment = VOYComment(text: text, reportID: reportId)
             self.txtField.text = ""
             self.txtField.resignFirstResponder()
             guard let presenter = presenter else { return }

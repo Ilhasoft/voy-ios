@@ -9,5 +9,8 @@
 import Foundation
 
 protocol VOYReportListDataSource {
-    func getReportCount(themeId: Int, status: VOYReportStatus, mapper: Int, completion: @escaping (Int?, Error?) -> ())
+    func getReportCount(themeId: Int,
+                        status: VOYReportStatus,
+                        mapper: Int,
+                        completion: @escaping (Int?, Error?) -> Void)
 }

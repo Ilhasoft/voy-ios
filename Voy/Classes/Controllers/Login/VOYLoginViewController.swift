@@ -71,7 +71,7 @@ class VOYLoginViewController: UIViewController, NVActivityIndicatorViewable, VOY
         self.view.endEditing(true)
         startAnimating()
         guard let presenter = presenter else { return }
-        presenter.login(username: self.userNameView.txtField.text!, password: self.passwordView.txtField.text!)
+        presenter.login(username: self.userNameView.txtField.safeText, password: self.passwordView.txtField.safeText)
     }
 
     // MARK: - Localization

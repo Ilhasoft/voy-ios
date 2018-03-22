@@ -30,8 +30,9 @@ class VOYReportSyncManager {
             return
         }
         for reportJSON in pendentReportsJSON {
-            let report = VOYReport(JSON: reportJSON)!
-            VOYAddReportRepository(reachability: reachability).save(report: report) { (_, _) in }
+            if let report = VOYReport(JSON: reportJSON) {
+                VOYAddReportRepository(reachability: reachability).save(report: report) { (_, _) in }
+            }
         }
     }
 
@@ -42,8 +43,9 @@ class VOYReportSyncManager {
             return
         }
         for cameraDataDictionary in pendentCameraDataListDictionary {
-            let cameraData = VOYCameraData(JSON: cameraDataDictionary)!
-            cameraDataList.append(cameraData)
+            if let cameraData = VOYCameraData(JSON: cameraDataDictionary) {
+                cameraDataList.append(cameraData)
+            }
         }
         guard reachability.hasNetwork() else {
             return
