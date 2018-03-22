@@ -86,14 +86,12 @@ extension VOYAddReportTagsViewController: VOYAddReportTagsContract {
         self.stopAnimating()
     }
 
-    func loadTags() {
-        viewTags.addTags(VOYTheme.activeTheme()!.tags)
+    func loadTags(themeTags: [String], selectedTags: [String]) {
+        viewTags.addTags(themeTags)
         viewTags.delegate = self
-    }
 
-    func selectTags(tags: [String]) {
-        self.selectedTags = tags
-        for tag in tags {
+        self.selectedTags = selectedTags
+        for tag in selectedTags {
             for viewTag in viewTags.tagViews where viewTag.titleLabel!.text! == tag {
                 viewTag.textColor = UIColor.white
                 viewTag.tagBackgroundColor = UIColor.voyBlue
