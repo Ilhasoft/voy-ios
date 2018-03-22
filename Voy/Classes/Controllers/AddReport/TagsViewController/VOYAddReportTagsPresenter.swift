@@ -20,9 +20,11 @@ class VOYAddReportTagsPresenter {
     }
 
     func onViewDidLoad() {
-        view?.loadTags()
+        guard let activeTheme = assertExists(optionalVar: VOYTheme.activeTheme()) else { return }
         if let tags = report?.tags {
-            view?.selectTags(tags: tags)
+            view?.loadTags(themeTags: activeTheme.tags, selectedTags: tags)
+        } else {
+            view?.loadTags(themeTags: activeTheme.tags, selectedTags: [])
         }
     }
     
@@ -38,6 +40,8 @@ class VOYAddReportTagsPresenter {
             self.view?.dismissProgress()
             if error == nil {
                 self.view?.navigateToSuccessScreen()
+            } else {
+                // TODO: navigate to error
             }
         }
     }

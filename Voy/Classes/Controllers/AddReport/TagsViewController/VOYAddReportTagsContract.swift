@@ -10,8 +10,7 @@ import UIKit
 import TagListView
 
 protocol VOYAddReportTagsContract {
-    func loadTags()
-    func selectTags(tags: [String])
+    func loadTags(themeTags: [String], selectedTags: [String])
     func navigateToSuccessScreen()
     func showProgress()
     func dismissProgress()
