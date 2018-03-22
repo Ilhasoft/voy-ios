@@ -17,12 +17,10 @@ class VOYCommentRepository: VOYCommentDataSource {
     let networkClient = VOYNetworkClient(reachability: VOYDefaultReachability())
 
     func save(comment: VOYComment, completion: @escaping (Error?) -> Void) {
-
-        let headers = ["Authorization": "Token " + authToken]
         networkClient.requestDictionary(urlSuffix: "report-comments/",
                                    httpMethod: .post,
                                    parameters: comment.toJSON(),
-                                   headers: headers) { _, error, _ in
+                                   headers: ["Authorization": "Token " + authToken]) { _, error, _ in
             completion(error)
         }
     }
