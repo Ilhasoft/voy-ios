@@ -120,18 +120,20 @@ class VOYNetworkClient {
                            parameters: [String: Any]? = nil,
                            headers: [String: String]? = nil,
                            shouldCacheResponse: Bool = false,
+                           useJSONEncoding: Bool = false,
                            completion: @escaping ([String: Any]?, Error?, URLRequest) -> Void) -> URLRequest? {
         let url = createURL(urlSuffix: urlSuffix)
         let request = Alamofire.request(
             url,
             method: httpMethod.toHttpMethod(),
             parameters: parameters,
+            encoding: (useJSONEncoding ? JSONEncoding.default : URLEncoding.default),
             headers: headers
         )
         pendingRequests.append(request)
         request.responseJSON { (dataResponse: DataResponse<Any>) in
-            guard let internalRequest = dataResponse.request else { return }
             self.pendingRequests.removeRequest(request: request)
+            guard let internalRequest = dataResponse.request else { return }
             if shouldCacheResponse { self.cacheReponse(dataResponse: dataResponse) }
             switch dataResponse.result {
             case .failure(let error):

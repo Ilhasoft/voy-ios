@@ -19,12 +19,11 @@ class VOYAccountRepository: VOYAccountDataSource {
         var jsonUser = [String: Any]()
         if let avatar = avatar { jsonUser["avatar"] = avatar }
         if let password = password { jsonUser["password"] = password }
-        let headers = ["Authorization": "Token " + authToken]
 
         networkClient.requestDictionary(urlSuffix: "users/\(userId)/",
                                         httpMethod: .put,
                                         parameters: jsonUser,
-                                        headers: headers) { result, error, _ in
+                                        headers: ["Authorization": "Token " + authToken]) { result, error, _ in
             if result != nil {
                 let loginRepository = VOYLoginRepository()
                 loginRepository.getUserData(authToken: user.authToken, completion: { (user, error) in

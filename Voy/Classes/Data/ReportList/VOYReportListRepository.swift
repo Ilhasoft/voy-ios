@@ -29,14 +29,11 @@ class VOYReportListRepository: VOYReportListDataSource {
                            "page_size": VOYConstant.API.paginationSize,
                            "page": 1,
                            "theme": themeId ]
-
-        let headers = [ "Authorization": "Token \(auth)" ]
-
         networkClient.requestDictionary(
             urlSuffix: "reports",
             httpMethod: .get,
             parameters: parameters,
-            headers: headers,
+            headers: [ "Authorization": "Token \(auth)" ],
             completion: { object, error, _ in
                 if let count = object?["count"] as? Int {
                     completion(count, nil)

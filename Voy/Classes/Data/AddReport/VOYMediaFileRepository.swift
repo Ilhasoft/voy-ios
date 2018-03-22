@@ -28,11 +28,9 @@ class VOYMediaFileRepository: VOYMediaFileDataSource {
             mediaIdsString = "\(mediaIdsString)\(mediaId),"
         }
         mediaIdsString.removeLast()
-        let headers: HTTPHeaders = ["Authorization": "Token \(authToken)"]
-
         networkClient.requestDictionary(urlSuffix: "report-files/delete/?ids=\(mediaIdsString)",
                                         httpMethod: .post,
-                                        headers: headers) { value, error, _ in
+                                        headers: ["Authorization": "Token \(authToken)"]) { value, error, _ in
             if let value = value {
                 print(value)
             } else if let error = error {

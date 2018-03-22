@@ -33,40 +33,62 @@ class VOYAddReportRepository: VOYAddReportDataSource {
     // MARK: - Private methods
 
     private func saveRemote(report: VOYReport, completion: @escaping (Error?, Int?) -> Void) {
+        let handler: ([String: Any]?, Error?) -> Void = { value, error in
+            guard let value = value else {
+                completion(error, nil)
+                return
+            }
+            if let tags = value["tags"] as? [String] {
+                print("\(tags)")
+            }
+            if let reportID = value["id"] as? Int, let reportCameraDataList = report.cameraDataList {
+                self.mediaFileDataSource.delete(mediaFiles: report.removedMedias)
+                self.reportStorageManager.removeFromStorageAfterSave(report: report)
+                self.mediaFileDataSource.upload(
+                    reportID: reportID,
+                    cameraDataList: reportCameraDataList,
+                    completion: { (_) in }
+                )
+                completion(nil, reportID)
+            } else {
+                print("error: \(value)")
+                completion(nil, nil)
+            }
+        }
+        if let reportId = report.id, report.update && report.status != nil {
+            updateRemote(reportId: reportId, report: report, completion: handler)
+        } else {
+            createRemote(report: report, completion: handler)
+        }
+    }
+
+    private func createRemote(report: VOYReport, completion: @escaping ([String: Any]?, Error?) -> Void) {
         guard let authToken = VOYUser.activeUser()?.authToken else {
             return
         }
         let headers = ["Authorization": "Token \(authToken)"]
-        var method: VOYNetworkClient.VOYHTTPMethod!
-        var reportIDString = ""
-        if let reportId = report.id, report.update && report.status != nil {
-            method = .put
-            reportIDString = "\(reportId)/"
-        } else {
-            method = .post
-            reportIDString = ""
-        }
-        networkClient.requestDictionary(urlSuffix: "reports/\(reportIDString)",
-            httpMethod: method,
-            parameters: report.toJSON(),
+        let params = report.toJSON()
+        networkClient.requestDictionary(urlSuffix: "reports/",
+            httpMethod: .post,
+            parameters: params,
             headers: headers) { (value, error, _) in
-                guard let value = value else {
-                    completion(error, nil)
-                    return
-                }
-                if let reportID = value["id"] as? Int, let reportCameraDataList = report.cameraDataList {
-                    self.mediaFileDataSource.delete(mediaFiles: report.removedMedias)
-                    self.reportStorageManager.removeFromStorageAfterSave(report: report)
-                    self.mediaFileDataSource.upload(
-                        reportID: reportID,
-                        cameraDataList: reportCameraDataList,
-                        completion: { (_) in }
-                    )
-                    completion(nil, reportID)
-                } else {
-                    print("error: \(value)")
-                    completion(nil, nil)
-                }
+                completion(value, error)
+        }
+    }
+
+    private func updateRemote(reportId: Int, report: VOYReport, completion: @escaping ([String: Any]?, Error?) -> Void) {
+        guard let authToken = VOYUser.activeUser()?.authToken else {
+            return
+        }
+        let headers = ["Authorization": "Token \(authToken)"]
+        let params = report.toJSON()
+        let urlSuffix = "reports/\(reportId)/"
+        networkClient.requestDictionary(urlSuffix: urlSuffix,
+            httpMethod: .put,
+            parameters: params,
+            headers: headers,
+            useJSONEncoding: true) { (value, error, _) in
+                completion(value, error)
         }
     }
 
