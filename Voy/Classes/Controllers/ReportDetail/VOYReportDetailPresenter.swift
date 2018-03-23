@@ -20,7 +20,11 @@ class VOYReportDetailPresenter {
 
     func onViewDidLoad() {
         guard let reportStatusRawValue = report.status,
-              let reportStatus = VOYReportStatus(rawValue: reportStatusRawValue) else { return }
+              let reportStatus = VOYReportStatus(rawValue: reportStatusRawValue) else {
+            view?.setCommentButtonEnabled(false)
+            return
+        }
+
         switch reportStatus {
         case .approved:
             view?.setCommentButtonEnabled(true)
@@ -53,7 +57,7 @@ class VOYReportDetailPresenter {
     func onTapVideo(videoURL: URL) {
         view?.showVideoScreen(videoURL: videoURL)
     }
-    
+
     func onTapEditReport() {
         view?.navigateToEditReportScreen(report: self.report)
     }
