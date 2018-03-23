@@ -89,10 +89,7 @@ disposal in river</string>
                                     <constraint firstAttribute="height" constant="26" id="2zZ-p7-ha6"/>
                                     <constraint firstAttribute="width" constant="31" id="9HF-tl-9Yb"/>
                                 </constraints>
-                                <state key="normal" image="noun1146501Cc"/>
-                                <connections>
-                                    <action selector="btResentTapped" destination="KGk-i7-Jjw" eventType="touchUpInside" id="P16-eG-fE7"/>
-                                </connections>
+                                <state key="normal" image="ic_offline"/>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -138,6 +135,6 @@ disposal in river</string>
         </tableViewCell>
     </objects>
     <resources>
-        <image name="noun1146501Cc" width="11" height="12"/>
+        <image name="ic_offline" width="14" height="14"/>
     </resources>
 </document>

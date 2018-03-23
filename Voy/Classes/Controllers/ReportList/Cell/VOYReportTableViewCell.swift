@@ -57,21 +57,16 @@ class VOYReportTableViewCell: DataBindOnDemandTableViewCell {
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
         // Configure the view for the selected state
     }
-    
-    @IBAction func btResentTapped() {
-        self.delegate?.btResentDidTap(cell: self)
-    }
-    
 }
 
 extension VOYReportTableViewCell: DataBindViewDelegate {
     func didFillAllComponents(JSON: [String: Any]) {
         if let report = VOYReport(JSON: JSON), report.status == nil {
             self.btResent.isHidden = false
-            self.btResent.setImage(#imageLiteral(resourceName: "noun576598Cc"), for: .normal)
+        } else {
+            self.btResent.isHidden = true
         }
     }
     
