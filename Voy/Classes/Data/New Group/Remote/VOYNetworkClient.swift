@@ -11,7 +11,7 @@ import Alamofire
 import ObjectMapper
 
 class VOYNetworkClient {
-    
+
     private var pendingRequests: [DataRequest] = []
     private let reachability: VOYReachability
     private let reportStoreManager = VOYReportStorageManager()
@@ -35,18 +35,18 @@ class VOYNetworkClient {
             }
         }
     }
-    
+
     init(reachability: VOYReachability) {
         self.reachability = reachability
     }
-    
+
     /**
      * When this object is destroyed, it cancels all of its pending network requests.
      */
     deinit {
         cancelAllRequests()
     }
-    
+
     /**
      * Cancels all pending requests for this wrapper object.
      */
@@ -84,7 +84,7 @@ class VOYNetworkClient {
         }
         return request.request
     }
-    
+
     @discardableResult
     func requestAnyObject(urlSuffix: String,
                           httpMethod: VOYHTTPMethod,
@@ -163,7 +163,7 @@ class VOYNetworkClient {
             parameters: parameters,
             headers: headers
         )
-        
+
         if reachability.hasNetwork() {
             pendingRequests.append(request)
             request.responseJSON { (dataResponse: DataResponse<Any>) in
@@ -188,7 +188,7 @@ class VOYNetworkClient {
             do {
                 var objects = [[String: Any]]()
                 let jsonObject = try JSONSerialization.jsonObject(with: cachedResponse.data, options: [])
-                
+
                 if let keyPath = keyPath,
                     let jsonObject = jsonObject as? [String: Any],
                     let subobject = jsonObject[keyPath] as? [[String: Any]] {
@@ -219,6 +219,8 @@ class VOYNetworkClient {
                 print(error.localizedDescription)
                 completion([], error)
             }
+        } else {
+            completion([], nil)
         }
     }
 
@@ -250,13 +252,13 @@ class VOYNetworkClient {
         }
         return request.request
     }
-    
+
     // MARK: - Private methods
-    
+
     private func createURL(urlSuffix: String) -> String {
         return "\(VOYConstant.API.URL)\(urlSuffix)"
     }
-    
+
     private func cacheReponse<T: Any>(dataResponse: DataResponse<T>) {
         guard let internalRequest = dataResponse.request,
               let internalResponse = dataResponse.response,
@@ -271,10 +273,10 @@ class VOYNetworkClient {
             URLCache.shared.storeCachedResponse(cachedURLResponse, for: internalRequest)
         }
     }
-    
+
     private func prepareForHandleData(_ arrayDictionary: [[String: Any]], completion: (([Any]) -> Void)!) {
         var objects = [Map]()
-        
+
         for result in arrayDictionary {
             let object = Map(mappingType: .fromJSON, JSON: result)
             objects.append(object)
