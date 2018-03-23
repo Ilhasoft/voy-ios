@@ -71,7 +71,8 @@ class VOYAddReportRepository: VOYAddReportDataSource {
         networkClient.requestDictionary(urlSuffix: "reports/",
             httpMethod: .post,
             parameters: params,
-            headers: headers) { (value, error, _) in
+            headers: headers,
+            useJSONEncoding: true) { (value, error, _) in
                 completion(value, error)
         }
     }
