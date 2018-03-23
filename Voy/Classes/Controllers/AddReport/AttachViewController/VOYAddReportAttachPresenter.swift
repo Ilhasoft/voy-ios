@@ -31,21 +31,22 @@ class VOYAddReportAttachPresenter {
 
     func onViewDidLoad() {
         if let theme = VOYTheme.activeTheme() {
-            validateDateLimit(theme: theme)
+            validateDateLimit(theme: theme, currentDate: Date())
         }
         if let report = self.report, let mediaList = report.files {
             view?.loadFromReport(mediaList: mediaList)
         }
     }
 
-    func validateDateLimit(theme: VOYTheme) {
-        if let startAt = theme.start_at, let endAt = theme.end_at {
+    func validateDateLimit(theme: VOYTheme, currentDate: Date) {
+        if var startAt = theme.start_at, var endAt = theme.end_at {
+            startAt = "\(startAt) 00:00"
+            endAt = "\(endAt) 23:59"
             let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "yyyy-MM-dd"
+            dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
             dateFormatter.timeZone = TimeZone(abbreviation: TimeZone.current.abbreviation() ?? "UTC")
 
             if let startDate = dateFormatter.date(from: startAt), let endDate = dateFormatter.date(from: endAt) {
-                let currentDate = Date()
                 if startDate >= currentDate || endDate <= currentDate {
                     (startDate >= currentDate) ? showAlert(alert: .willStart) : showAlert(alert: .ended)
                 }
