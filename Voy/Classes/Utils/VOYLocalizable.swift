@@ -9,7 +9,7 @@
 import UIKit
 
 class VOYLocalizable {
-    
+
     /**
      * Add item here in alphabetic order
      */
@@ -61,6 +61,7 @@ class VOYLocalizable {
         case periodForReportEnded = "period_for_reports_has_ended"
         case remove
         case report = "report"
+        case reportedAProblem = "reported_a_problem"
         case reports = "reports"
         case reportWasApproved = "report_was_approved"
         case reportWasNotApproved = "report_was_not_approved"
@@ -85,4 +86,9 @@ func localizedString(_ localizedText: VOYLocalizable.LocalizedText) -> String {
 func localizedString(_ localizedText: VOYLocalizable.LocalizedText, andNumber number: Int) -> String {
     let format = localizedString(localizedText)
     return String(format: format, arguments: [number])
+}
+
+func localizedString(_ localizedText: VOYLocalizable.LocalizedText, andText text: String) -> String {
+    let format = localizedString(localizedText)
+    return String(format: format, arguments: [text])
 }
