@@ -43,8 +43,7 @@ class VOYReportDetailPresenter {
 
     func onShareButtonTapped() {
         guard let reportId = self.report.id else { return }
-        // TODO: make this translatable
-        let textToShare = "Hello, I reported a problem in this region, take a look: https://voy-dev.ilhasoft.mobi/project/Ilhasoft/report/\(reportId)"
+        let textToShare = localizedString(.reportedAProblem, andText: report.shareURL)
         view?.shareText(textToShare)
     }
 

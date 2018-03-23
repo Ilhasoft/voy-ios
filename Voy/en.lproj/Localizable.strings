@@ -1,4 +1,4 @@
-/* 
+/*
   Localizable.strings
   Voy
 
@@ -57,6 +57,7 @@
 "close" = "Close";
 "comment" = "Comment";
 "report" = "Report";
+"reported_a_problem" = "Hello, I reported a problem in this region, take a look: %@";
 
 // Comments Screen
 "comments" = "Comments";

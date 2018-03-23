@@ -15,7 +15,7 @@ enum VOYReportStatus: Int {
 }
 
 class VOYReport: Mappable {
-    
+
     var id: Int?
     var theme: Int!
     var name: String!
@@ -32,13 +32,14 @@ class VOYReport: Mappable {
     var removedMedias: [VOYMedia]?
     var lastNotification: String!
     var update: Bool!
-    
+    var shareURL: String!
+
     init() {
-        
+
     }
-    
+
     required init?(map: Map) { }
-    
+
     func mapping(map: Map) {
         id <- map["id"]
         theme <- map["theme"]
@@ -55,8 +56,9 @@ class VOYReport: Mappable {
         removedMedias <- map["removedMedias"]
         lastNotification <- map["last_notification"]
         update <- map["update"]
+        shareURL <- map["share"]
     }
-    
+
     func map() -> Map {
         return Map(mappingType: .toJSON, JSON: self.toJSON())
     }
