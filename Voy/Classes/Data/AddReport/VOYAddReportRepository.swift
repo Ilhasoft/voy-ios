@@ -77,7 +77,9 @@ class VOYAddReportRepository: VOYAddReportDataSource {
         }
     }
 
-    private func updateRemote(reportId: Int, report: VOYReport, completion: @escaping ([String: Any]?, Error?) -> Void) {
+    private func updateRemote(reportId: Int,
+                              report: VOYReport,
+                              completion: @escaping ([String: Any]?, Error?) -> Void) {
         guard let authToken = VOYUser.activeUser()?.authToken else {
             return
         }

@@ -9,18 +9,19 @@
 import UIKit
 
 extension VOYAddReportAttachViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String: Any]) {
         picker.dismiss(animated: true) {
-            
+
         }
         if let image = info[UIImagePickerControllerOriginalImage] as? UIImage,
             let imageRepresentation = UIImageJPEGRepresentation(image, 0.2),
-            let path = VOYFileUtil.writeImageFile(imageRepresentation) {
+            let fileName = VOYFileUtil.writeImageFile(imageRepresentation) {
             cameraData = VOYCameraData(
                 image: image,
                 thumbnail: nil,
-                thumbnailPath: nil,
-                path: URL(fileURLWithPath: path),
+                thumbnailFileName: nil,
+                fileName: fileName,
                 type: .image
             )
         } else if let mediaURL = info[UIImagePickerControllerMediaURL] as? URL {
@@ -32,11 +33,12 @@ extension VOYAddReportAttachViewController: UIImagePickerControllerDelegate, UIN
                           let thumbnail = ISVideoUtil.generateThumbnail(url),
                           let thumbnailRepresentation = UIImageJPEGRepresentation(thumbnail, 0.2),
                           let thumbnailPath = VOYFileUtil.writeImageFile(thumbnailRepresentation) else { return }
+                    let videoFileName = mediaURL.lastPathComponent
                     self.cameraData = VOYCameraData(
                         image: nil,
                         thumbnail: thumbnail,
-                        thumbnailPath: URL(fileURLWithPath: thumbnailPath),
-                        path: mediaURL,
+                        thumbnailFileName: thumbnailPath,
+                        fileName: videoFileName,
                         type: .video
                     )
                 }
@@ -45,7 +47,7 @@ extension VOYAddReportAttachViewController: UIImagePickerControllerDelegate, UIN
     }
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         picker.dismiss(animated: true) {
-            
+
         }
     }
 }

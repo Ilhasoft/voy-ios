@@ -9,37 +9,35 @@ import UIKit
 import ObjectMapper
 
 class VOYCameraData: Mappable {
-    
+
     var id: String!
     var report_id: Int!
     var type: VOYMediaType!
     var image: UIImage?
     var thumbnail: UIImage?
-    var thumbnailPath: String?
-    var path: String!
-    
+    var thumbnailFileName: String?
+    var fileName: String?
+
     required init?(map: Map) { }
-    
+
     func mapping(map: Map) {
         id <- map["id"]
         report_id <- map["report_id"]
         type <- map["type"]
         image <- map["image"]
         thumbnail <- map["thumbnail"]
-        thumbnailPath <- map["thumbnailPath"]
-        path <- map["path"]
+        thumbnailFileName <- map["thumbnailPath"]
+        fileName <- map["path"]
     }
-    
-    init(image: UIImage?, thumbnail: UIImage?, thumbnailPath: URL?, path: URL!, type: VOYMediaType) {
+
+    init(image: UIImage?, thumbnail: UIImage?, thumbnailFileName: String?, fileName: String?, type: VOYMediaType) {
         self.id = String.getIdentifier()
         self.thumbnail = thumbnail
-        if let thumbnailPath = thumbnailPath {
-            self.thumbnailPath = thumbnailPath.path
-        }
+        self.thumbnailFileName = thumbnailFileName
         self.image = image
-        self.path = path.path
+        self.fileName = fileName
         self.type = type
-        
+
     }
-    
+
 }

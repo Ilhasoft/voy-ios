@@ -53,6 +53,11 @@ class VOYAddMediaView: UIView {
 
         if let cameraDataImage = cameraData.image, cameraData.type == .image {
             self.imgView.image = cameraDataImage
+        } else if let fileName = cameraData.fileName,
+                  let cameraDataPath = VOYFileUtil.outputURLDirectory?.appendingPathComponent(fileName),
+                  cameraData.type == .image {
+            let image = UIImage(contentsOfFile: cameraDataPath)
+            self.imgView.image = image
         } else if let cameraDataThumbnail = cameraData.thumbnail, cameraData.type == .video {
             self.imgView.image = cameraDataThumbnail
         }
