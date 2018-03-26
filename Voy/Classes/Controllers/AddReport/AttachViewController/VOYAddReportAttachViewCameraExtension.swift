@@ -26,19 +26,19 @@ extension VOYAddReportAttachViewController: UIImagePickerControllerDelegate, UIN
             )
         } else if let mediaURL = info[UIImagePickerControllerMediaURL] as? URL {
             self.startAnimating()
-            ISVideoUtil.compressVideo(inputURL: mediaURL, completion: { _, url in
+            ISVideoUtil.compressVideo(inputURL: mediaURL, completion: { _, fileName in
                 DispatchQueue.main.async {
                     self.stopAnimating()
-                    guard let url = url,
-                          let thumbnail = ISVideoUtil.generateThumbnail(url),
-                          let thumbnailRepresentation = UIImageJPEGRepresentation(thumbnail, 0.2),
+                    guard let fileName = fileName,
+                          let videoPath = VOYFileUtil.outputURLDirectory?.appendingPathComponent(fileName),
+                          let thumbnailImg = ISVideoUtil.generateThumbnail(mediaURL),
+                          let thumbnailRepresentation = UIImageJPEGRepresentation(thumbnailImg, 0.2),
                           let thumbnailPath = VOYFileUtil.writeImageFile(thumbnailRepresentation) else { return }
-                    let videoFileName = mediaURL.lastPathComponent
                     self.cameraData = VOYCameraData(
                         image: nil,
-                        thumbnail: thumbnail,
+                        thumbnail: thumbnailImg,
                         thumbnailFileName: thumbnailPath,
-                        fileName: videoFileName,
+                        fileName: fileName,
                         type: .video
                     )
                 }
@@ -47,7 +47,6 @@ extension VOYAddReportAttachViewController: UIImagePickerControllerDelegate, UIN
     }
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         picker.dismiss(animated: true) {
-
         }
     }
 }

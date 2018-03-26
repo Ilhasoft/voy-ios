@@ -30,7 +30,7 @@ class VOYReportStorageManager {
             UserDefaults.standard.synchronize()
         }
     }
-    
+
     static func clearPendentReports() {
         UserDefaults.standard.set(nil, forKey: "reports")
     }
