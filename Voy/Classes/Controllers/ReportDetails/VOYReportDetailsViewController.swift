@@ -8,11 +8,12 @@
 
 import UIKit
 import TagListView
+import ISScrollViewPageSwift
 
 class VOYReportDetailsViewController: UIViewController {
 
     @IBOutlet var scrollView: UIScrollView!
-    @IBOutlet var collectionView: UICollectionView!
+    @IBOutlet var scrollViewMedias: ISScrollViewPage!
     @IBOutlet var pageControl: UIPageControl!
     @IBOutlet var lbTitle: UILabel!
     @IBOutlet var lbDate: UILabel!
@@ -32,11 +33,18 @@ class VOYReportDetailsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupScrollViewMedias()
         setupTagsView()
         presenter.onViewDidLoad()
     }
 
     // MARK: - Private methods
+
+    private func setupScrollViewMedias() {
+        scrollViewMedias.scrollViewPageType = .horizontally
+        scrollViewMedias.scrollViewPageDelegate = self
+        scrollViewMedias.setPaging(true)
+    }
 
     private func setupTagsView() {
         viewTags.backgroundColor = UIColor.white
@@ -68,5 +76,35 @@ extension VOYReportDetailsViewController: VOYReportDetailsContract {
         viewTags.tagBackgroundColor = themeColor
         viewTags.tagHighlightedBackgroundColor = themeColor
         viewTags.tagSelectedBackgroundColor = themeColor
+    }
+
+    func setMedias(_ medias: [VOYMedia]) {
+        pageControl.numberOfPages = medias.count
+        for media in medias {
+            DispatchQueue.main.async {
+                let mediaPlayView = VOYPlayMediaView(
+                    frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: 161)
+                )
+                mediaPlayView.setup(media: media)
+                mediaPlayView.delegate = self
+                self.scrollViewMedias.addCustomView(mediaPlayView)
+            }
+        }
+    }
+}
+
+extension VOYReportDetailsViewController: ISScrollViewPageDelegate {
+    func scrollViewPageDidChanged(_ scrollViewPage: ISScrollViewPage, index: Int) {
+        pageControl.currentPage = index
+    }
+}
+
+extension VOYReportDetailsViewController: VOYPlayMediaViewDelegate {
+    func mediaDidTap(mediaView: VOYPlayMediaView) {
+        // TODO
+    }
+
+    func videoDidTap(mediaView: VOYPlayMediaView, url: URL, showInFullScreen: Bool) {
+        // TODO
     }
 }

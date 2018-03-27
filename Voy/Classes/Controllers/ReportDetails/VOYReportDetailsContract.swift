@@ -11,4 +11,5 @@ import UIKit
 protocol VOYReportDetailsContract: class {
     func setupText(title: String, date: String, description: String, tags: [String])
     func setThemeColor(themeColorHex: String)
+    func setMedias(_ medias: [VOYMedia])
 }

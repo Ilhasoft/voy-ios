@@ -23,6 +23,7 @@ class VOYReportDetailsPresenter {
         let dateString = formatDate(createdOnDate: report.created_on)
         view?.setupText(title: report.name, date: dateString, description: report.description, tags: report.tags)
         view?.setThemeColor(themeColorHex: theme.color)
+        view?.setMedias(report.files)
     }
 
     // MARK: - Private methods
