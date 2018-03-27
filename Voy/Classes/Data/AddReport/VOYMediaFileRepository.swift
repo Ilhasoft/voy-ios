@@ -22,10 +22,12 @@ class VOYMediaFileRepository: VOYMediaFileDataSource {
     func delete(mediaFiles: [VOYMedia]?) {
         guard let mediaFiles = mediaFiles else {return}
         guard let authToken = VOYUser.activeUser()?.authToken else { return }
-        let mediaIds = mediaFiles.map {($0.id!)}
+        let mediaIdsList = mediaFiles.map { $0.id }
         var mediaIdsString = ""
-        for mediaId in mediaIds {
-            mediaIdsString = "\(mediaIdsString)\(mediaId),"
+        for mediaId in mediaIdsList {
+            if let mediaId = mediaId {
+                mediaIdsString = "\(mediaIdsString)\(mediaId),"
+            }
         }
         mediaIdsString.removeLast()
         networkClient.requestDictionary(urlSuffix: "report-files/delete/?ids=\(mediaIdsString)",
@@ -39,7 +41,7 @@ class VOYMediaFileRepository: VOYMediaFileDataSource {
         }
     }
 
-    func upload(reportID: Int, cameraDataList: [VOYCameraData], completion:@escaping(Error?) -> Void) {
+    func upload(reportID: Int, cameraDataList: [VOYCameraData], completion: @escaping(Error?) -> Void) {
         for cameraData in cameraDataList {
 
             var report_id = reportID
