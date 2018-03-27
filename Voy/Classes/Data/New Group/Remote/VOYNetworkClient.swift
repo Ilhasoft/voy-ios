@@ -172,53 +172,42 @@ class VOYNetworkClient {
                 if let keyPath = keyPath,
                     let resultValue = dataResponse.value as? [String: Any],
                     let results = resultValue[keyPath] as? [[String: Any]] {
-                    self.prepareForHandleData(results) { objects in
-                        completion(objects, nil)
-                    }
+                    let objects = results.map({ return Map(mappingType: .fromJSON, JSON: $0) })
+                    completion(objects, nil)
                 } else if let results = dataResponse.value as? [[String: Any]] {
-                    self.prepareForHandleData(results) { objects in
-                        completion(objects, nil)
-                    }
+                    let objects = results.map({ return Map(mappingType: .fromJSON, JSON: $0) })
+                    completion(objects, nil)
                 } else if let error = dataResponse.result.error {
                     completion(nil, error)
                 }
             }
         } else if let alamofireRequest = request.request,
                   let cachedResponse = URLCache.shared.cachedResponse(for: alamofireRequest) {
-            do {
-                var objects = [[String: Any]]()
-                let jsonObject = try JSONSerialization.jsonObject(with: cachedResponse.data, options: [])
+            var arrayOfMaps = [[String: Any]]()
+            var jsonObject: Any?
 
-                if let keyPath = keyPath,
-                    let jsonObject = jsonObject as? [String: Any],
-                    let subobject = jsonObject[keyPath] as? [[String: Any]] {
-                    objects = subobject
-                } else if let jsonObject = jsonObject as? [[String: Any]] {
-                    objects = jsonObject
-                }
-                prepareForHandleData(objects, completion: { (objects) in
-                    if urlSuffix == "reports" && parameters?["status"] as? Int == 2 {
-                        let pendentReportsJSONList = self.reportStoreManager.getPendentReports()
-                        guard !pendentReportsJSONList.isEmpty else {
-                            completion(objects, nil)
-                            return
-                        }
-                        if var objectsAsMap = objects as? [Map] {
-                            for reportJSON in pendentReportsJSONList {
-                                objectsAsMap.append(Map(mappingType: .fromJSON, JSON: reportJSON))
-                            }
-                            completion(objectsAsMap, nil)
-                        } else {
-                            completion(objects, nil)
-                        }
-                    } else {
-                        completion(objects, nil)
-                    }
-                })
+            do {
+                jsonObject = try JSONSerialization.jsonObject(with: cachedResponse.data, options: [])
             } catch {
-                print(error.localizedDescription)
                 completion([], error)
+                return
             }
+
+            if let keyPath = keyPath, let jsonObject = jsonObject as? [String: Any],
+                let subobject = jsonObject[keyPath] as? [[String: Any]] {
+                arrayOfMaps = subobject
+            } else if let jsonObject = jsonObject as? [[String: Any]] {
+                arrayOfMaps = jsonObject
+            }
+
+            var objects = arrayOfMaps.map({ return Map(mappingType: .fromJSON, JSON: $0) })
+
+            if urlSuffix == "reports" && parameters?["status"] as? Int == 2 {
+                for reportJSON in self.reportStoreManager.getPendentReports() {
+                    objects.append(Map(mappingType: .fromJSON, JSON: reportJSON))
+                }
+            }
+            completion(objects, nil)
         } else {
             completion([], nil)
         }
@@ -272,16 +261,6 @@ class VOYNetworkClient {
             )
             URLCache.shared.storeCachedResponse(cachedURLResponse, for: internalRequest)
         }
-    }
-
-    private func prepareForHandleData(_ arrayDictionary: [[String: Any]], completion: (([Any]) -> Void)!) {
-        var objects = [Map]()
-
-        for result in arrayDictionary {
-            let object = Map(mappingType: .fromJSON, JSON: result)
-            objects.append(object)
-        }
-        completion(objects)
     }
 }
 
