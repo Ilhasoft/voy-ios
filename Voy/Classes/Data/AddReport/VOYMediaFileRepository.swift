@@ -57,24 +57,20 @@ class VOYMediaFileRepository: VOYMediaFileDataSource {
                       let filePath = VOYFileUtil.outputURLDirectory?.appendingPathComponent(fileName) else { return }
                 Alamofire.upload(
                     multipartFormData: { multipartFormData in
-                        multipartFormData.append(
-                            "\(report_id)".data(using: String.Encoding.utf8)!,
-                            withName: "report_id"
-                        )
-                        multipartFormData.append(
-                            "title".data(using: String.Encoding.utf8)!,
-                            withName: "title"
-                        )
+                        if let reportIdData = "\(report_id)".data(using: String.Encoding.utf8) {
+                            multipartFormData.append(reportIdData, withName: "report_id")
+                        }
+                        if let titleData = "title".data(using: String.Encoding.utf8) {
+                            multipartFormData.append(titleData, withName: "title")
+                        }
                         multipartFormData.append(
                             URL(fileURLWithPath: filePath),
                             withName: "file"
                         )
-                        if let thumbnailFileName = cameraData.thumbnailFileName,
-                           let thumbnailPath = VOYFileUtil.outputURLDirectory?.appendingPathComponent(thumbnailFileName),
-                           cameraData.type == VOYMediaType.video {
-                            multipartFormData.append(
-                                URL(fileURLWithPath: thumbnailPath), withName: "thumbnail"
-                            )
+                        if let thumbFileName = cameraData.thumbnailFileName,
+                          let thumbnailPath = VOYFileUtil.outputURLDirectory?.appendingPathComponent(thumbFileName),
+                          cameraData.type == VOYMediaType.video {
+                            multipartFormData.append(URL(fileURLWithPath: thumbnailPath), withName: "thumbnail")
                         }
                 },
                     to: VOYConstant.API.URL + "report-files/",
