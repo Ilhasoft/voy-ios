@@ -19,8 +19,11 @@ class VOYReportDetailsViewController: UIViewController {
     @IBOutlet var lbDescription: UILabel!
     @IBOutlet var viewTags: TagListView!
 
+    private var presenter: VOYReportDetailsPresenter!
+
     init(report: VOYReport) {
         super.init(nibName: String(describing: type(of: self)), bundle: nil)
+        presenter = VOYReportDetailsPresenter(report: report, view: self)
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -29,27 +32,41 @@ class VOYReportDetailsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        lbDescription.text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor" +
-        "incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco" +
-        "laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit" +
-        " esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa" +
-        " qui officia deserunt mollit anim id est laborum." +
-        "incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco" +
-        "laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit" +
-        " esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa" +
-        " qui officia deserunt mollit anim id est laborum." +
-        "incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco" +
-        "laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit" +
-        " esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa" +
-        " qui officia deserunt mollit anim id est laborum." +
-        "incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco" +
-        "laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit" +
-        " esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa" +
-        " qui officia deserunt mollit anim id est laborum."
+        setupTagsView()
+        presenter.onViewDidLoad()
     }
 
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        print("ContentSize: \(scrollView.contentSize.height)")
+    // MARK: - Private methods
+
+    private func setupTagsView() {
+        viewTags.backgroundColor = UIColor.white
+        viewTags.textColor = UIColor.white
+        viewTags.selectedTextColor = UIColor.white
+        viewTags.cornerRadius = 7
+        viewTags.paddingY = 9
+        viewTags.paddingX = 22
+        viewTags.marginY = 13
+    }
+}
+
+extension VOYReportDetailsViewController: VOYReportDetailsContract {
+
+    func setupText(title: String, date: String, description: String, tags: [String]) {
+        lbTitle.text = title
+        lbDate.text = date
+        lbDescription.text = description
+        viewTags.addTags(tags)
+    }
+
+    func setThemeColor(themeColorHex: String) {
+        let themeColor = UIColor(hex: themeColorHex)
+        pageControl.currentPageIndicatorTintColor = themeColor
+        pageControl.pageIndicatorTintColor = themeColor.withAlphaComponent(0.5)
+        lbTitle.textColor = themeColor
+        lbDate.textColor = themeColor
+
+        viewTags.tagBackgroundColor = themeColor
+        viewTags.tagHighlightedBackgroundColor = themeColor
+        viewTags.tagSelectedBackgroundColor = themeColor
     }
 }
