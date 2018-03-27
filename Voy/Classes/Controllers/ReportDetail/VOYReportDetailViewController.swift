@@ -261,20 +261,17 @@ extension VOYReportDetailViewController: DataBindViewDelegate {
     }
 
     func willFill(component: Any, value: Any) -> Any? {
-        if let component = component as? UILabel {
-            if component == self.lbDate {
-                let dateFormatter = DateFormatter()
-                dateFormatter.dateFormat = localizedString(.dateFormat)
-                if let dateString = value as? String {
-                    let date = dateFormatter.date(from: dateString)
-                    let dateFormatter2 = DateFormatter()
-                    dateFormatter2.dateFormat = "MMM"
-                    dateFormatter2.dateStyle = .medium
-                    if let date = date { lbDate.text = dateFormatter2.string(from: date) }
-                }
-                return nil
+        if let component = component as? UILabel, component == self.lbDate {
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = localizedString(.dateFormat)
+            if let dateString = value as? String {
+                let date = dateFormatter.date(from: dateString)
+                let dateFormatter2 = DateFormatter()
+                dateFormatter2.dateFormat = "MMM"
+                dateFormatter2.dateStyle = .medium
+                if let date = date { lbDate.text = dateFormatter2.string(from: date) }
             }
-
+            return nil
         } else if component is UIScrollView {
             if let values = value as? [[String: Any]] {
                 for mediaObject in values {
