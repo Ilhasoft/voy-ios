@@ -26,7 +26,7 @@ class VOYFileUtil {
     open class func removeFile(_ fileURL: URL) {
         let filePath = fileURL.path
         let fileManager = FileManager.default
-        
+
         if fileManager.fileExists(atPath: filePath) {
             do {
                 try fileManager.removeItem(atPath: filePath)
@@ -40,13 +40,15 @@ class VOYFileUtil {
 
     open class func writeImageFile(_ data: Data) -> String? {
 
-        if let path = VOYFileUtil.outputURLDirectory?.appendingPathComponent("image\(String.getIdentifier()).jpg") {
+        let fileName = "image\(String.getIdentifier()).jpg"
+
+        if let path = VOYFileUtil.outputURLDirectory?.appendingPathComponent(fileName) {
             do {
                 try data.write(to: URL(fileURLWithPath: path), options: [.atomic])
             } catch {
                 print(error.localizedDescription)
             }
-            return path
+            return fileName
         }
         return nil
     }

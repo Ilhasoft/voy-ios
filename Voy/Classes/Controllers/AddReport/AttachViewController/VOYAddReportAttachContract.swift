@@ -10,6 +10,7 @@ import UIKit
 
 protocol VOYAddReportAttachContract: class {
     func loadFromReport(mediaList: [VOYMedia])
+    func loadFromReport(cameraDataList: [VOYCameraData])
     func navigateToNextScreen(report: VOYReport?)
     func showAlert(text: String)
     func stopAnimating()

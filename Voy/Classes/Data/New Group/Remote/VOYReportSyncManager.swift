@@ -15,6 +15,8 @@ class VOYReportSyncManager {
     private let reportStoreManager = VOYReportStorageManager()
     private let cameraDataStoreManager = VOYCameraDataStorageManager()
 
+    private var isAllowedToSync = true
+
     init(mediaFileDataSource: VOYMediaFileDataSource = VOYMediaFileRepository(),
          reachability: VOYReachability = VOYDefaultReachability()) {
         self.mediaFileDataSource = mediaFileDataSource
@@ -22,6 +24,7 @@ class VOYReportSyncManager {
     }
 
     func trySendPendentReports() {
+        guard isAllowedToSync else { return }
         let pendentReportsJSON = reportStoreManager.getPendentReports()
         guard !pendentReportsJSON.isEmpty else {
             return
@@ -37,6 +40,7 @@ class VOYReportSyncManager {
     }
 
     func trySendPendentCameraData() {
+        guard isAllowedToSync else { return }
         let pendentCameraDataListDictionary = cameraDataStoreManager.getPendentCameraDataList()
         var cameraDataList = [VOYCameraData]()
         guard !pendentCameraDataListDictionary.isEmpty else {

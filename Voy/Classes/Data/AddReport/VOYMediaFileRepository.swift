@@ -50,7 +50,9 @@ class VOYMediaFileRepository: VOYMediaFileDataSource {
 
             if reachability.hasNetwork() {
                 isUploading = true
-                guard let auth = VOYUser.activeUser()?.authToken else { return }
+                guard let auth = VOYUser.activeUser()?.authToken,
+                      let fileName = cameraData.fileName,
+                      let filePath = VOYFileUtil.outputURLDirectory?.appendingPathComponent(fileName) else { return }
                 Alamofire.upload(
                     multipartFormData: { multipartFormData in
                         multipartFormData.append(
@@ -62,10 +64,12 @@ class VOYMediaFileRepository: VOYMediaFileDataSource {
                             withName: "title"
                         )
                         multipartFormData.append(
-                            URL(fileURLWithPath: cameraData.path),
+                            URL(fileURLWithPath: filePath),
                             withName: "file"
                         )
-                        if let thumbnailPath = cameraData.thumbnailPath, cameraData.type == VOYMediaType.video {
+                        if let thumbnailFileName = cameraData.thumbnailFileName,
+                           let thumbnailPath = VOYFileUtil.outputURLDirectory?.appendingPathComponent(thumbnailFileName),
+                           cameraData.type == VOYMediaType.video {
                             multipartFormData.append(
                                 URL(fileURLWithPath: thumbnailPath), withName: "thumbnail"
                             )

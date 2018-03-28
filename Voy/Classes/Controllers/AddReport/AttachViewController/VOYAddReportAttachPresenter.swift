@@ -35,6 +35,8 @@ class VOYAddReportAttachPresenter {
         }
         if let report = self.report, let mediaList = report.files {
             view?.loadFromReport(mediaList: mediaList)
+        } else if let report = self.report, let cameraDataList = report.cameraDataList {
+            view?.loadFromReport(cameraDataList: cameraDataList)
         }
     }
 
@@ -84,12 +86,8 @@ class VOYAddReportAttachPresenter {
 
 extension VOYAddReportAttachPresenter: VOYLocationManagerDelegate {
     func didGetUserLocation(latitude: Float, longitude: Float, error: Error?) {
-        guard let theme = VOYTheme.activeTheme() else {
-            #if DEBUG
-                fatalError("VOYTheme.activeTheme is null")
-            #else
-                return
-            #endif
+        guard let theme = assertExists(optionalVar: VOYTheme.activeTheme()) else {
+            return
         }
 
         view?.stopAnimating()
