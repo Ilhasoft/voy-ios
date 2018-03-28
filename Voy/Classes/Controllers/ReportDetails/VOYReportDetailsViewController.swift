@@ -9,6 +9,8 @@
 import UIKit
 import TagListView
 import ISScrollViewPageSwift
+import AXPhotoViewer
+import AVKit
 
 class VOYReportDetailsViewController: UIViewController {
 
@@ -19,6 +21,9 @@ class VOYReportDetailsViewController: UIViewController {
     @IBOutlet var lbDate: UILabel!
     @IBOutlet var lbDescription: UILabel!
     @IBOutlet var viewTags: TagListView!
+
+    @IBOutlet var viewSeparator: UIView!
+    @IBOutlet var btComments: UIButton!
 
     private var presenter: VOYReportDetailsPresenter!
 
@@ -35,6 +40,7 @@ class VOYReportDetailsViewController: UIViewController {
         super.viewDidLoad()
         setupScrollViewMedias()
         setupTagsView()
+        setupLocalization()
         presenter.onViewDidLoad()
     }
 
@@ -54,6 +60,15 @@ class VOYReportDetailsViewController: UIViewController {
         viewTags.paddingY = 9
         viewTags.paddingX = 22
         viewTags.marginY = 13
+    }
+
+    private func setupLocalization() {
+        btComments.setTitle(localizedString(.comment), for: .normal)
+    }
+
+    @IBAction
+    func didTapCommentsButton(_ button: UIButton) {
+        presenter.onTapCommentsButton()
     }
 }
 
@@ -91,6 +106,28 @@ extension VOYReportDetailsViewController: VOYReportDetailsContract {
             }
         }
     }
+
+    func navigateToPictureScreen(image: UIImage) {
+        let dataSource = PhotosDataSource(photos: [Photo(image: image)])
+        let photosViewController = PhotosViewController(dataSource: dataSource)
+        present(photosViewController, animated: true, completion: nil)
+    }
+
+    func navigateToVideoScreen(videoURL: URL) {
+        let playerController = AVPlayerViewController()
+        playerController.player = AVPlayer(url: videoURL)
+        playerController.player?.play()
+        present(playerController, animated: true, completion: nil)
+    }
+
+    func navigateToCommentsScreen(report: VOYReport) {
+        navigationController?.pushViewController(VOYCommentViewController(report: report), animated: true)
+    }
+
+    func setCommentButtonEnabled(_ enabled: Bool) {
+        viewSeparator.isHidden = !enabled
+        btComments.isHidden = !enabled
+    }
 }
 
 extension VOYReportDetailsViewController: ISScrollViewPageDelegate {
@@ -101,10 +138,10 @@ extension VOYReportDetailsViewController: ISScrollViewPageDelegate {
 
 extension VOYReportDetailsViewController: VOYPlayMediaViewDelegate {
     func mediaDidTap(mediaView: VOYPlayMediaView) {
-        // TODO
+        presenter.onTapImage(image: mediaView.imgView.image)
     }
 
     func videoDidTap(mediaView: VOYPlayMediaView, url: URL, showInFullScreen: Bool) {
-        // TODO
+        presenter.onTapVideo(videoURL: url)
     }
 }

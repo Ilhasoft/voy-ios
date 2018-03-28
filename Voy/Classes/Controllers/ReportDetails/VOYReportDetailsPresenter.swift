@@ -6,7 +6,7 @@
 //  Copyright © 2018 Ilhasoft. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 class VOYReportDetailsPresenter {
 
@@ -24,6 +24,27 @@ class VOYReportDetailsPresenter {
         view?.setupText(title: report.name, date: dateString, description: report.description, tags: report.tags)
         view?.setThemeColor(themeColorHex: theme.color)
         view?.setMedias(report.files)
+
+        // Only allow comments in approved reports
+        if let reportStatus = report.status, reportStatus == VOYReportStatus.approved.rawValue {
+            view?.setCommentButtonEnabled(true)
+        } else {
+            view?.setCommentButtonEnabled(false)
+        }
+    }
+
+    func onTapImage(image: UIImage?) {
+        if let image = image {
+            view?.navigateToPictureScreen(image: image)
+        }
+    }
+
+    func onTapVideo(videoURL: URL) {
+        view?.navigateToVideoScreen(videoURL: videoURL)
+    }
+
+    func onTapCommentsButton() {
+        view?.navigateToCommentsScreen(report: report)
     }
 
     // MARK: - Private methods
