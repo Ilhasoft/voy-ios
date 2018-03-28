@@ -22,10 +22,18 @@ class VOYReportDetailsPresenter {
         guard let theme = assertExists(optionalVar: VOYTheme.activeTheme()) else { return }
         guard let activeUser = VOYUser.activeUser() else { return }
         guard let avatarURL = URL(string: activeUser.avatar) else { return }
-        let dateString = formatDate(createdOnDate: report.created_on)
+
+        var dateString = ""
+        if let createdOn = report.created_on {
+            dateString = formatDate(createdOnDate: createdOn)
+        }
+
         view?.setupText(title: report.name, date: dateString, description: report.description, tags: report.tags)
         view?.setThemeColor(themeColorHex: theme.color)
-        view?.setMedias(report.files)
+
+        if let reportFiles = report.files {
+            view?.setMedias(reportFiles)
+        }
 
         // Only allow comments in approved reports
         if let reportStatus = report.status, reportStatus == VOYReportStatus.approved.rawValue {
@@ -44,6 +52,11 @@ class VOYReportDetailsPresenter {
             showOptions: !reportIsApproved,
             showShare: reportIsApproved
         )
+
+        // Offline report
+        if let cameraDataList = report.cameraDataList {
+            view?.setCameraData(cameraDataList)
+        }
     }
 
     func onTapImage(image: UIImage?) {

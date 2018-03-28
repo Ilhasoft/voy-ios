@@ -177,6 +177,20 @@ extension VOYReportDetailsViewController: VOYReportDetailsContract {
         }
     }
 
+    func setCameraData(_ cameraDataList: [VOYCameraData]) {
+        pageControl.numberOfPages = cameraDataList.count
+        for cameraData in cameraDataList {
+            DispatchQueue.main.async {
+                let mediaPlayView = VOYPlayMediaView(
+                    frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: 161)
+                )
+                mediaPlayView.setup(cameraData: cameraData)
+                mediaPlayView.delegate = self
+                self.scrollViewMedias.addCustomView(mediaPlayView)
+            }
+        }
+    }
+
     func navigateToPictureScreen(image: UIImage) {
         let dataSource = PhotosDataSource(photos: [Photo(image: image)])
         let photosViewController = PhotosViewController(dataSource: dataSource)
