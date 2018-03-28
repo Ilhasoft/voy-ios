@@ -16,4 +16,9 @@ protocol VOYReportDetailsContract: class {
     func navigateToVideoScreen(videoURL: URL)
     func navigateToCommentsScreen(report: VOYReport)
     func setCommentButtonEnabled(_ enabled: Bool)
+    func setupNavigationButtons(avatarURL: URL, lastNotification: String?, showOptions: Bool, showShare: Bool)
+    func navigateToEditReport(report: VOYReport)
+    func shareText(_ string: String)
+    func showOptionsActionSheet()
+    func showIssueAlert(lastNotification: String)
 }

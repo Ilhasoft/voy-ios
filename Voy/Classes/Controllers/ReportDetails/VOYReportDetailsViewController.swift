@@ -66,9 +66,35 @@ class VOYReportDetailsViewController: UIViewController {
         btComments.setTitle(localizedString(.comment), for: .normal)
     }
 
+    fileprivate func showActionSheet() {
+        let actionSheetViewController = VOYActionSheetViewController(
+            buttonNames: [localizedString(.editReport)],
+            icons: nil
+        )
+        actionSheetViewController.delegate = self
+        actionSheetViewController.show(true, inViewController: self)
+    }
+
+    // MARK: - Button Actions
+
     @IBAction
     func didTapCommentsButton(_ button: UIButton) {
         presenter.onTapCommentsButton()
+    }
+
+    @objc
+    func didTapShareButton() {
+        presenter.onTapSharedButton()
+    }
+
+    @objc
+    func didTapIssueButton() {
+        presenter.onTapIssueButton()
+    }
+
+    @objc
+    func didTapOptionsButton() {
+        presenter.onTapOptionsButton()
     }
 }
 
@@ -91,6 +117,50 @@ extension VOYReportDetailsViewController: VOYReportDetailsContract {
         viewTags.tagBackgroundColor = themeColor
         viewTags.tagHighlightedBackgroundColor = themeColor
         viewTags.tagSelectedBackgroundColor = themeColor
+    }
+
+    func setupNavigationButtons(avatarURL: URL, lastNotification: String?, showOptions: Bool, showShare: Bool) {
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: " ", style: .plain, target: nil, action: nil)
+        let barButtonItemOptions = UIBarButtonItem(
+            image: #imageLiteral(resourceName: "combinedShape").withRenderingMode(.alwaysOriginal),
+            style: .plain,
+            target: self,
+            action: #selector(didTapOptionsButton)
+        )
+        let barButtonItemIssue = UIBarButtonItem(
+            image: #imageLiteral(resourceName: "issue").withRenderingMode(.alwaysOriginal),
+            style: .plain,
+            target: self,
+            action: #selector(didTapIssueButton)
+        )
+        let barButtonItemShare = UIBarButtonItem(
+            barButtonSystemItem: UIBarButtonSystemItem.action,
+            target: self,
+            action: #selector(didTapShareButton)
+        )
+        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
+        imageView.kf.setImage(with: avatarURL)
+        imageView.contentMode = .scaleAspectFit
+        imageView.widthAnchor.constraint(equalToConstant: 32).isActive = true
+        imageView.heightAnchor.constraint(equalToConstant: 31).isActive = true
+
+        self.navigationItem.title = localizedString(.report)
+
+        var buttonItens = [barButtonItemOptions, barButtonItemIssue]
+
+        if isEmptyOrNil(string: lastNotification) {
+            buttonItens.remove(at: 1)
+        }
+
+        if !showOptions {
+            buttonItens.remove(at: 0)
+        }
+
+        if showShare {
+            buttonItens.append(barButtonItemShare)
+        }
+
+        self.navigationItem.rightBarButtonItems = buttonItens
     }
 
     func setMedias(_ medias: [VOYMedia]) {
@@ -128,6 +198,41 @@ extension VOYReportDetailsViewController: VOYReportDetailsContract {
         viewSeparator.isHidden = !enabled
         btComments.isHidden = !enabled
     }
+
+    func navigateToEditReport(report: VOYReport) {
+        self.navigationController?.pushViewController(
+            VOYAddReportAttachViewController(report: report),
+            animated: true
+        )
+    }
+
+    func shareText(_ string: String) {
+        let activityViewController = UIActivityViewController(
+            activityItems: [string],
+            applicationActivities: nil
+        )
+        activityViewController.popoverPresentationController?.sourceView = self.view
+        present(activityViewController, animated: true, completion: nil)
+    }
+
+    func showOptionsActionSheet() {
+        let actionSheetViewController = VOYActionSheetViewController(
+            buttonNames: [localizedString(.editReport)],
+            icons: nil
+        )
+        actionSheetViewController.delegate = self
+        actionSheetViewController.show(true, inViewController: self)
+    }
+
+    func showIssueAlert(lastNotification: String) {
+        let alertInfoController = VOYAlertViewController(
+            title: localizedString(.issuesReported),
+            message: lastNotification,
+            buttonNames: [localizedString(.editReport), localizedString(.close)]
+        )
+        alertInfoController.delegate = self
+        alertInfoController.show(true, inViewController: self)
+    }
 }
 
 extension VOYReportDetailsViewController: ISScrollViewPageDelegate {
@@ -143,5 +248,25 @@ extension VOYReportDetailsViewController: VOYPlayMediaViewDelegate {
 
     func videoDidTap(mediaView: VOYPlayMediaView, url: URL, showInFullScreen: Bool) {
         presenter.onTapVideo(videoURL: url)
+    }
+}
+
+extension VOYReportDetailsViewController: VOYActionSheetViewControllerDelegate {
+    func cancelButtonDidTap(actionSheetViewController: VOYActionSheetViewController) {
+        actionSheetViewController.close()
+    }
+
+    func buttonDidTap(actionSheetViewController: VOYActionSheetViewController, button: UIButton, index: Int) {
+        actionSheetViewController.close()
+        presenter.onTapEditReport()
+    }
+}
+
+extension VOYReportDetailsViewController: VOYAlertViewControllerDelegate {
+    func buttonDidTap(alertController: VOYAlertViewController, button: UIButton, index: Int) {
+        alertController.close()
+        if index == 0 {
+            presenter.onTapEditReport()
+        }
     }
 }

@@ -20,6 +20,8 @@ class VOYReportDetailsPresenter {
 
     func onViewDidLoad() {
         guard let theme = assertExists(optionalVar: VOYTheme.activeTheme()) else { return }
+        guard let activeUser = VOYUser.activeUser() else { return }
+        guard let avatarURL = URL(string: activeUser.avatar) else { return }
         let dateString = formatDate(createdOnDate: report.created_on)
         view?.setupText(title: report.name, date: dateString, description: report.description, tags: report.tags)
         view?.setThemeColor(themeColorHex: theme.color)
@@ -31,6 +33,17 @@ class VOYReportDetailsPresenter {
         } else {
             view?.setCommentButtonEnabled(false)
         }
+
+        var reportIsApproved = false
+        if let status = report.status, status == VOYReportStatus.approved.rawValue {
+            reportIsApproved = true
+        }
+        view?.setupNavigationButtons(
+            avatarURL: avatarURL,
+            lastNotification: report.lastNotification,
+            showOptions: !reportIsApproved,
+            showShare: reportIsApproved
+        )
     }
 
     func onTapImage(image: UIImage?) {
@@ -45,6 +58,24 @@ class VOYReportDetailsPresenter {
 
     func onTapCommentsButton() {
         view?.navigateToCommentsScreen(report: report)
+    }
+
+    func onTapEditReport() {
+        view?.navigateToEditReport(report: report)
+    }
+
+    func onTapSharedButton() {
+        let textToShare = localizedString(.reportedAProblem, andText: report.shareURL)
+        view?.shareText(textToShare)
+    }
+
+    func onTapOptionsButton() {
+        view?.showOptionsActionSheet()
+    }
+
+    func onTapIssueButton() {
+        guard let lastNotification = report.lastNotification else { return }
+        view?.showIssueAlert(lastNotification: lastNotification)
     }
 
     // MARK: - Private methods
