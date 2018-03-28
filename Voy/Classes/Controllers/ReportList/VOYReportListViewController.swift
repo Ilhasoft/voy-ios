@@ -173,7 +173,7 @@ class VOYReportListViewController: UIViewController, NVActivityIndicatorViewable
 
 extension VOYReportListViewController: VOYReportListContract {
     func navigateToReportDetails(report: VOYReport) {
-        self.navigationController?.pushViewController(VOYReportDetailViewController(report: report), animated: true)
+        self.navigationController?.pushViewController(VOYReportDetailsViewController(report: report), animated: true)
     }
 }
 
@@ -205,7 +205,7 @@ extension VOYReportListViewController: ISOnDemandTableViewDelegate {
         if let cell = tableView.cellForRow(at: indexPath) as? VOYReportTableViewCell,
            let report = VOYReport(JSON: cell.object.JSON) {
             self.navigationController?.pushViewController(
-                VOYReportDetailViewController(report: report),
+                VOYReportDetailsViewController(report: report),
                 animated: true
             )
         }

@@ -22,3 +22,12 @@ func assertExists<T>(optionalVar: T?) -> T? {
         #endif
     }
 }
+
+func isEmptyOrNil(string: String?) -> Bool {
+    if let string = string, string.isEmpty {
+        return true
+    } else if string == nil {
+        return true
+    }
+    return false
+}
