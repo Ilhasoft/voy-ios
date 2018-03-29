@@ -22,24 +22,18 @@ class VOYAddReportDataViewController: UIViewController {
     @IBOutlet weak var btAddLink: UIButton!
     @IBOutlet weak var tbViewLinks: DataBindTableView!
     @IBOutlet weak var dataBindView: DataBindView!
-    
-    var cameraDataList = [VOYCameraData]()
-    var savedReport: VOYReport?
-    
-    init(cameraDataList: [VOYCameraData]) {
-        self.cameraDataList = cameraDataList
-        super.init(nibName: String(describing: type(of: self)), bundle: nil)
-    }
+
+    var savedReport: VOYReport
     
     init(savedReport: VOYReport) {
         self.savedReport = savedReport
         super.init(nibName: String(describing: type(of: self)), bundle: nil)
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         edgesForExtendedLayout = []
@@ -48,13 +42,11 @@ class VOYAddReportDataViewController: UIViewController {
         setupLayout()
         addNextButton()
         dataBindView.delegate = self
-        if let savedReport = self.savedReport {
-            dataBindView.fillFields(withObject: savedReport.toJSON())
-        }
+        dataBindView.fillFields(withObject: savedReport.toJSON())
         descriptionView.delegate = self
         setupLocalization()
     }
-    
+
     func addNextButton() {
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(
             title: localizedString(.next),
@@ -63,7 +55,7 @@ class VOYAddReportDataViewController: UIViewController {
             action: #selector(openNextController)
         )
     }
-    
+
     @objc func openNextController() {
         if self.titleView.txtField.safeText.isEmpty {
             self.titleView.shake()
@@ -71,19 +63,12 @@ class VOYAddReportDataViewController: UIViewController {
             return
         }
         if let report = VOYReport(JSON: self.dataBindView.toJSON()) {
-            if let savedReport = self.savedReport {
-                report.status = savedReport.status
-                report.update = true
-                report.tags = savedReport.tags
-                report.id = savedReport.id
-                report.removedMedias = savedReport.removedMedias
-                report.cameraDataList = savedReport.cameraDataList
-            } else {
-                report.update = false
-                report.cameraDataList = cameraDataList
-            }
+            savedReport.name = report.name
+            savedReport.description = report.description
+            savedReport.urls = report.urls
+            savedReport.update = true
             self.navigationController?.pushViewController(
-                VOYAddReportTagsViewController(report: report),
+                VOYAddReportTagsViewController(report: savedReport),
                 animated: true
             )
         }
@@ -104,7 +89,7 @@ class VOYAddReportDataViewController: UIViewController {
             self.lbAddLink.isHidden = true
         }
     }
-    
+
     func setupTableView() {
         self.tbViewLinks.register(
             UINib(nibName: "VOYLinkTableViewCell", bundle: nil),

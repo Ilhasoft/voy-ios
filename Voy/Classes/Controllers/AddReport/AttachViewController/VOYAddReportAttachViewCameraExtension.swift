@@ -30,7 +30,6 @@ extension VOYAddReportAttachViewController: UIImagePickerControllerDelegate, UIN
                 DispatchQueue.main.async {
                     self.stopAnimating()
                     guard let fileName = fileName,
-                          let videoPath = VOYFileUtil.outputURLDirectory?.appendingPathComponent(fileName),
                           let thumbnailImg = ISVideoUtil.generateThumbnail(mediaURL),
                           let thumbnailRepresentation = UIImageJPEGRepresentation(thumbnailImg, 0.2),
                           let thumbnailPath = VOYFileUtil.writeImageFile(thumbnailRepresentation) else { return }

@@ -33,6 +33,31 @@ class VOYAddReportTagsPresenter {
         report.location = location
 
         view?.showProgress()
+
+        for cameraDataToRemove in report.removedCameraData {
+            if let fileName = cameraDataToRemove.fileName,
+                let filePath = VOYFileUtil.outputURLDirectory?.appendingPathComponent(fileName) {
+                VOYFileUtil.removeFile(URL(fileURLWithPath: filePath))
+            }
+            if let fileName = cameraDataToRemove.thumbnailFileName,
+                let filePath = VOYFileUtil.outputURLDirectory?.appendingPathComponent(fileName) {
+                VOYFileUtil.removeFile(URL(fileURLWithPath: filePath))
+            }
+            if var cameraDataList = report.cameraDataList {
+                let indexToRemove = cameraDataList.index(where: {
+                    if let fileName = $0.fileName, fileName == cameraDataToRemove.fileName {
+                        return true
+                    }
+                    return false
+                })
+                if let indexToRemove = indexToRemove {
+                    cameraDataList.remove(at: indexToRemove)
+                }
+                report.cameraDataList = cameraDataList
+            }
+        }
+        report.removedCameraData.removeAll()
+
         dataSource.save(report: report) { error, _ in
             self.view?.dismissProgress()
             if error == nil {
