@@ -22,7 +22,7 @@ class VOYAddReportTagsPresenter {
     func onViewDidLoad() {
         guard let activeTheme = assertExists(optionalVar: VOYTheme.activeTheme()) else { return }
         let selectedTags = report?.tags ?? []
-        view?.loadTags(themeTags: activeTheme.tags, selectedTags: selectedTags)
+        view?.loadTags(themeTags: activeTheme.tags.sorted(), selectedTags: selectedTags)
     }
     
     func saveReport(selectedTags: [String]) {
