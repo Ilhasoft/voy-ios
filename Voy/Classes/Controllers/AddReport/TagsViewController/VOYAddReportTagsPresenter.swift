@@ -34,6 +34,7 @@ class VOYAddReportTagsPresenter {
 
         view?.showProgress()
 
+        // TODO: separate this into its own method
         for cameraDataToRemove in report.removedCameraData {
             if let fileName = cameraDataToRemove.fileName,
                 let filePath = VOYFileUtil.outputURLDirectory?.appendingPathComponent(fileName) {
@@ -58,13 +59,9 @@ class VOYAddReportTagsPresenter {
         }
         report.removedCameraData.removeAll()
 
-        dataSource.save(report: report) { error, _ in
-            self.view?.dismissProgress()
-            if error == nil {
-                self.view?.navigateToSuccessScreen()
-            } else {
-                // TODO: navigate to error
-            }
-        }
+        dataSource.saveLocal(report: report)
+
+        self.view?.dismissProgress()
+        self.view?.navigateToSuccessScreen()
     }
 }

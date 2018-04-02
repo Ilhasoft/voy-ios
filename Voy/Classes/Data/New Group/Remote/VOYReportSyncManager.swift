@@ -15,26 +15,25 @@ class VOYReportSyncManager {
     private let reportStoreManager = VOYReportStorageManager()
     private let cameraDataStoreManager = VOYCameraDataStorageManager()
 
+    private let dataSource: VOYAddReportDataSource!
+
     private var isAllowedToSync = true
 
     init(mediaFileDataSource: VOYMediaFileDataSource = VOYMediaFileRepository(),
          reachability: VOYReachability = VOYDefaultReachability()) {
         self.mediaFileDataSource = mediaFileDataSource
         self.reachability = reachability
+        dataSource = VOYAddReportRepository(reachability: reachability)
     }
 
     func trySendPendentReports() {
         guard isAllowedToSync else { return }
         let pendentReportsJSON = reportStoreManager.getPendentReports()
-        guard !pendentReportsJSON.isEmpty else {
-            return
-        }
-        guard reachability.hasNetwork() else {
-            return
-        }
+        guard !pendentReportsJSON.isEmpty else { return }
+        guard reachability.hasNetwork() else { return }
         for reportJSON in pendentReportsJSON {
             if let report = VOYReport(JSON: reportJSON) {
-                VOYAddReportRepository(reachability: reachability).save(report: report) { (_, _) in }
+                dataSource.save(report: report) { _, _ in }
             }
         }
     }

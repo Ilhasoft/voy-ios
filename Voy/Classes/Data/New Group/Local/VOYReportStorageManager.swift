@@ -35,24 +35,23 @@ class VOYReportStorageManager {
         UserDefaults.standard.set(nil, forKey: "reports")
     }
 
-    func addAsPendent(report: VOYReport) {
+    func addPendingReport(_ report: VOYReport) {
+        var pendingReports = getPendentReports()
 
-        var pendentReports = getPendentReports()
-
-        let index = pendentReports.index {
+        let index = pendingReports.index {
             if let idAsInt = $0["id"] as? Int { return idAsInt == report.id }
             return false
         }
 
         if let index = index {
-            pendentReports.remove(at: index)
+            pendingReports.remove(at: index)
         }
 
         let reportID = Int(String.getIdentifier())
         report.id = reportID
-        pendentReports.append(report.toJSON())
+        pendingReports.append(report.toJSON())
 
-        let encodedObject = NSKeyedArchiver.archivedData(withRootObject: pendentReports)
+        let encodedObject = NSKeyedArchiver.archivedData(withRootObject: pendingReports)
         UserDefaults.standard.set(encodedObject, forKey: "reports")
         UserDefaults.standard.synchronize()
     }
