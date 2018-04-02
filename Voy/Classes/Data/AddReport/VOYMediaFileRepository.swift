@@ -76,7 +76,6 @@ class VOYMediaFileRepository: VOYMediaFileDataSource {
                     switch encodingResult {
                     case .success(let upload, _, _):
                         upload.responseJSON { response in
-                            debugPrint(response)
                             if response.error != nil {
                                 self.camerDataStoreManager.addAsPendent(cameraData: cameraData, reportID: report_id)
                             } else {
