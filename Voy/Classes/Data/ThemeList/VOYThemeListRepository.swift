@@ -78,7 +78,6 @@ class VOYThemeListRepository: VOYThemeListDataSource {
         }
 
         if reachability.hasNetwork() {
-
             request.responseArray { (dataResponse: DataResponse<[VOYProject]>) in
                 guard let internalRequest = dataResponse.request,
                       let internalResponse = dataResponse.response,

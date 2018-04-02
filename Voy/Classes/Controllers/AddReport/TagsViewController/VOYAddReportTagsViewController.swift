@@ -92,9 +92,12 @@ extension VOYAddReportTagsViewController: VOYAddReportTagsContract {
 
         self.selectedTags = selectedTags
         for tag in selectedTags {
-            for viewTag in viewTags.tagViews where viewTag.titleLabel!.text! == tag {
-                viewTag.textColor = UIColor.white
-                viewTag.tagBackgroundColor = UIColor.voyBlue
+            for viewTag in viewTags.tagViews {
+                if let titleLabel = viewTag.titleLabel, titleLabel.text == tag {
+                    viewTag.textColor = UIColor.white
+                    viewTag.tagBackgroundColor = UIColor.voyBlue
+                }
+
             }
         }
     }

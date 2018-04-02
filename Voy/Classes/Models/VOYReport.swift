@@ -22,15 +22,15 @@ class VOYReport: Mappable {
     var description: String!
     var tags: [String]!
     var lastImage: VOYMedia!
-    var files: [VOYMedia]!
+    var files: [VOYMedia]?
     var urls: [String]!
     var media: VOYMedia!
-    var created_on: String!
+    var created_on: String?
     var location: String!
     var status: Int?
     var cameraDataList: [VOYCameraData]?
     var removedMedias: [VOYMedia]?
-    var lastNotification: String!
+    var lastNotification: String?
     var update: Bool!
     var shareURL: String!
 

@@ -67,7 +67,7 @@ class VOYNotificationViewController: UIViewController, VOYNotificationContract {
         guard let mainParentNavigation = (self.parent as? SlideMenuController)?.mainViewController?.parent,
             let mainNavigation = AppDelegate.mainNavigationController else { return }
         mainParentNavigation.closeRight()
-        mainNavigation.pushViewController(VOYReportDetailViewController(report: report), animated: true)
+        mainNavigation.pushViewController(VOYReportDetailsViewController(report: report), animated: true)
     }
 }
 
