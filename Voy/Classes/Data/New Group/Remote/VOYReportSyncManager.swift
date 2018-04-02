@@ -40,7 +40,7 @@ class VOYReportSyncManager {
     }
 
     func trySendPendentCameraData() {
-        guard isAllowedToSync else { return }
+        guard isAllowedToSync, reachability.hasNetwork() else { return }
         let pendentCameraDataListDictionary = cameraDataStoreManager.getPendentCameraDataList()
         var cameraDataList = [VOYCameraData]()
         guard !pendentCameraDataListDictionary.isEmpty else {
@@ -50,9 +50,6 @@ class VOYReportSyncManager {
             if let cameraData = VOYCameraData(JSON: cameraDataDictionary) {
                 cameraDataList.append(cameraData)
             }
-        }
-        guard reachability.hasNetwork() else {
-            return
         }
         guard !mediaFileDataSource.isUploading else { return }
         mediaFileDataSource.upload(reportID: 0, cameraDataList: cameraDataList) { (_) in }
