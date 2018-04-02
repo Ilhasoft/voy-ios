@@ -68,7 +68,7 @@ class VOYMediaFileRepository: VOYMediaFileDataSource {
                         multipartFormData.append(URL(fileURLWithPath: thumbnailPath), withName: "thumbnail")
                     }
             },
-                to: VOYConstant.API.URL + "report-files/",
+                to: "\(VOYConstant.API.URL)report-files/",
                 method: .post,
                 headers: ["Authorization": "Token \(auth)"],
                 encodingCompletion: { encodingResult in
