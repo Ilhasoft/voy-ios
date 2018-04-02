@@ -47,7 +47,11 @@ class VOYAddReportAttachViewController: UIViewController, NVActivityIndicatorVie
 
     init(report: VOYReport? = nil) {
         super.init(nibName: "VOYAddReportAttachViewController", bundle: nil)
-        self.presenter = VOYAddReportAttachPresenter(view: self, report: report)
+        if let report = report {
+            self.presenter = VOYAddReportAttachPresenter(view: self, report: report)
+        } else {
+            self.presenter = VOYAddReportAttachPresenter(view: self)
+        }
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -113,15 +117,12 @@ extension VOYAddReportAttachViewController: VOYAddReportAttachContract {
         }
     }
 
-    func navigateToNextScreen(report: VOYReport?) {
-        var addReportDataViewController: VOYAddReportDataViewController!
-        if let report = report {
-            report.cameraDataList = self.cameraDataList
-            addReportDataViewController = VOYAddReportDataViewController(savedReport: report)
-        } else {
-            addReportDataViewController = VOYAddReportDataViewController(cameraDataList: self.cameraDataList)
-        }
-        self.navigationController?.pushViewController(addReportDataViewController, animated: true)
+    func navigateToNextScreen(report: VOYReport) {
+        report.cameraDataList = cameraDataList
+        self.navigationController?.pushViewController(
+            VOYAddReportDataViewController(savedReport: report),
+            animated: true
+        )
     }
 
     func showGpsPermissionError() {
@@ -163,6 +164,7 @@ extension VOYAddReportAttachViewController: VOYAddMediaViewDelegate {
                 self.cameraDataList.remove(at: index)
                 break
             }
+            presenter.onCameraDataRemoved(cameraData)
         } else if let media = mediaView.media {
             for (index, value) in mediaList.enumerated() where value.id == media.id {
                 mediaList.remove(at: index)

@@ -29,6 +29,7 @@ class VOYReport: Mappable {
     var location: String!
     var status: Int?
     var cameraDataList: [VOYCameraData]?
+    var removedCameraData: [VOYCameraData] = []
     var removedMedias: [VOYMedia]?
     var lastNotification: String?
     var update: Bool!

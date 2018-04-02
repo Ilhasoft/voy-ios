@@ -19,10 +19,10 @@ enum VOYAddReportErrorType {
 class VOYAddReportAttachPresenter {
 
     weak var view: VOYAddReportAttachContract?
-    var report: VOYReport?
+    var report: VOYReport
     var locationManager: VOYLocationManager!
 
-    init(view: VOYAddReportAttachContract, report: VOYReport? = nil) {
+    init(view: VOYAddReportAttachContract, report: VOYReport = VOYReport()) {
         self.view = view
         self.report = report
         locationManager = VOYDefaultLocationManager(delegate: self)
@@ -33,9 +33,9 @@ class VOYAddReportAttachPresenter {
         if let theme = VOYTheme.activeTheme() {
             validateDateLimit(theme: theme, currentDate: Date())
         }
-        if let report = self.report, let mediaList = report.files {
+        if let mediaList = report.files {
             view?.loadFromReport(mediaList: mediaList)
-        } else if let report = self.report, let cameraDataList = report.cameraDataList {
+        } else if let cameraDataList = report.cameraDataList {
             view?.loadFromReport(cameraDataList: cameraDataList)
         }
     }
@@ -73,13 +73,15 @@ class VOYAddReportAttachPresenter {
         view?.navigateToNextScreen(report: report)
     }
 
+    func onCameraDataRemoved(_ cameraData: VOYCameraData) {
+        report.removedCameraData.append(cameraData)
+    }
+
     func onMediaRemoved(_ media: VOYMedia) {
-        if let report = self.report {
-            if var removedMedias = report.removedMedias {
-                removedMedias.append(media)
-            } else {
-                report.removedMedias = [ media ]
-            }
+        if var removedMedias = report.removedMedias {
+            removedMedias.append(media)
+        } else {
+            report.removedMedias = [ media ]
         }
     }
 }
