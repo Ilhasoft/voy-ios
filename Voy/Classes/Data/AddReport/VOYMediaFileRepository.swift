@@ -41,60 +41,60 @@ class VOYMediaFileRepository: VOYMediaFileDataSource {
         }
     }
 
-    func upload(reportID: Int, cameraDataList: [VOYCameraData], completion: @escaping(Error?) -> Void) {
-        for cameraData in cameraDataList {
-
-            var report_id = reportID
-
-            if reportID <= 0 {
-                report_id = cameraData.report_id
-            }
-
-            if reachability.hasNetwork() {
-                isUploading = true
-                guard let auth = VOYUser.activeUser()?.authToken,
-                      let fileName = cameraData.fileName,
-                      let filePath = VOYFileUtil.outputURLDirectory?.appendingPathComponent(fileName) else { return }
-                Alamofire.upload(
-                    multipartFormData: { multipartFormData in
-                        if let reportIdData = "\(report_id)".data(using: String.Encoding.utf8) {
-                            multipartFormData.append(reportIdData, withName: "report_id")
-                        }
-                        if let titleData = "title".data(using: String.Encoding.utf8) {
-                            multipartFormData.append(titleData, withName: "title")
-                        }
-                        multipartFormData.append(
-                            URL(fileURLWithPath: filePath),
-                            withName: "file"
-                        )
-                        if let thumbFileName = cameraData.thumbnailFileName,
-                          let thumbnailPath = VOYFileUtil.outputURLDirectory?.appendingPathComponent(thumbFileName),
-                          cameraData.type == VOYMediaType.video {
-                            multipartFormData.append(URL(fileURLWithPath: thumbnailPath), withName: "thumbnail")
-                        }
-                },
-                    to: VOYConstant.API.URL + "report-files/",
-                    method: .post,
-                    headers: ["Authorization": "Token \(auth)"],
-                    encodingCompletion: { encodingResult in
-                        self.isUploading = false
-                        switch encodingResult {
-                        case .success(let upload, _, _):
-                            upload.responseJSON { response in
-                                debugPrint(response)
-                                if response.error != nil {
-                                    self.camerDataStoreManager.addAsPendent(cameraData: cameraData, reportID: report_id)
-                                } else {
-                                    self.camerDataStoreManager.removeFromStorageAfterSave(cameraData: cameraData)
-                                }
+    func upload(reportID: Int, cameraData: VOYCameraData, completion: @escaping (Error?) -> Void) {
+        var report_id = reportID
+        if reportID <= 0 {
+            report_id = cameraData.report_id
+        }
+        if reachability.hasNetwork() && !isUploading {
+            isUploading = true
+            guard let auth = VOYUser.activeUser()?.authToken,
+                let fileName = cameraData.fileName,
+                let filePath = VOYFileUtil.outputURLDirectory?.appendingPathComponent(fileName) else { return }
+            Alamofire.upload(multipartFormData: { multipartFormData in
+                    if let reportIdData = "\(report_id)".data(using: String.Encoding.utf8) {
+                        multipartFormData.append(reportIdData, withName: "report_id")
+                    }
+                    if let titleData = "title".data(using: String.Encoding.utf8) {
+                        multipartFormData.append(titleData, withName: "title")
+                    }
+                    multipartFormData.append(
+                        URL(fileURLWithPath: filePath),
+                        withName: "file"
+                    )
+                    if let thumbFileName = cameraData.thumbnailFileName,
+                        let thumbnailPath = VOYFileUtil.outputURLDirectory?.appendingPathComponent(thumbFileName),
+                        cameraData.type == VOYMediaType.video {
+                        multipartFormData.append(URL(fileURLWithPath: thumbnailPath), withName: "thumbnail")
+                    }
+            },
+                to: VOYConstant.API.URL + "report-files/",
+                method: .post,
+                headers: ["Authorization": "Token \(auth)"],
+                encodingCompletion: { encodingResult in
+                    self.isUploading = false
+                    switch encodingResult {
+                    case .success(let upload, _, _):
+                        upload.responseJSON { response in
+                            debugPrint(response)
+                            if response.error != nil {
+                                self.camerDataStoreManager.addAsPendent(cameraData: cameraData, reportID: report_id)
+                            } else {
+                                self.camerDataStoreManager.removeFromStorageAfterSave(cameraData: cameraData)
                             }
-                        case .failure:
-                            self.camerDataStoreManager.addAsPendent(cameraData: cameraData, reportID: report_id)
                         }
-                })
-            } else {
-                camerDataStoreManager.addAsPendent(cameraData: cameraData, reportID: report_id)
-            }
+                    case .failure:
+                        self.camerDataStoreManager.addAsPendent(cameraData: cameraData, reportID: report_id)
+                    }
+            })
+        } else {
+            camerDataStoreManager.addAsPendent(cameraData: cameraData, reportID: report_id)
+        }
+    }
+
+    func upload(reportID: Int, cameraDataList: [VOYCameraData], completion: @escaping (Error?) -> Void) {
+        for cameraData in cameraDataList {
+            upload(reportID: reportID, cameraData: cameraData, completion: completion)
         }
     }
 }

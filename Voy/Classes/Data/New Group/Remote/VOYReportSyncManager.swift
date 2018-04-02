@@ -39,19 +39,11 @@ class VOYReportSyncManager {
         }
     }
 
-    func trySendPendentCameraData() {
-        guard isAllowedToSync, reachability.hasNetwork() else { return }
+    func trySendingNextPendingCameraData() {
+        guard isAllowedToSync, reachability.hasNetwork(), !mediaFileDataSource.isUploading else { return }
         let pendentCameraDataListDictionary = cameraDataStoreManager.getPendentCameraDataList()
-        var cameraDataList = [VOYCameraData]()
-        guard !pendentCameraDataListDictionary.isEmpty else {
-            return
-        }
-        for cameraDataDictionary in pendentCameraDataListDictionary {
-            if let cameraData = VOYCameraData(JSON: cameraDataDictionary) {
-                cameraDataList.append(cameraData)
-            }
-        }
-        guard !mediaFileDataSource.isUploading else { return }
-        mediaFileDataSource.upload(reportID: 0, cameraDataList: cameraDataList) { (_) in }
+        guard let cameraData = pendentCameraDataListDictionary.first else { return }
+        guard let cameraDataObject = VOYCameraData(JSON: cameraData) else { return }
+        mediaFileDataSource.upload(reportID: 0, cameraData: cameraDataObject) { _ in }
     }
 }

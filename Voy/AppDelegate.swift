@@ -78,7 +78,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             self.reportSyncManager.trySendPendentReports()
         }
         Timer.scheduledTimer(withTimeInterval: 17, repeats: true) { _ in
-            self.reportSyncManager.trySendPendentCameraData()
+            self.reportSyncManager.trySendingNextPendingCameraData()
         }
     }
 }
