@@ -33,11 +33,9 @@ class VOYAddReportAttachPresenter {
         if let theme = VOYTheme.activeTheme() {
             validateDateLimit(theme: theme, currentDate: Date())
         }
-        if let mediaList = report.files {
-            view?.loadFromReport(mediaList: mediaList)
-        } else if let cameraDataList = report.cameraDataList {
-            view?.loadFromReport(cameraDataList: cameraDataList)
-        }
+        let mediaList: [VOYMedia] = report.files ?? []
+        let cameraDataList: [VOYCameraData] = report.cameraDataList ?? []
+        view?.loadFromReport(mediaList: mediaList, cameraDataList: cameraDataList)
     }
 
     func validateDateLimit(theme: VOYTheme, currentDate: Date) {

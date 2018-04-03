@@ -103,17 +103,15 @@ class VOYAddReportAttachViewController: UIViewController, NVActivityIndicatorVie
 
 extension VOYAddReportAttachViewController: VOYAddReportAttachContract {
 
-    func loadFromReport(mediaList: [VOYMedia]) {
-        self.mediaList = mediaList
-        for (index, mediaView) in self.mediaViews.enumerated() where index < mediaList.count {
-            mediaView.setupWithMedia(media: mediaList[index])
-        }
-    }
-
-    func loadFromReport(cameraDataList: [VOYCameraData]) {
-        self.cameraDataList = cameraDataList
-        for (index, mediaView) in self.mediaViews.enumerated() where index < cameraDataList.count {
-            mediaView.setupWithMedia(cameraData: cameraDataList[index])
+    func loadFromReport(mediaList: [VOYMedia], cameraDataList: [VOYCameraData]) {
+        for (index, mediaView) in self.mediaViews.enumerated() {
+            if index < mediaList.count {
+                let media = mediaList[index]
+                mediaView.setupWithMedia(media: media)
+            } else if index < mediaList.count + cameraDataList.count {
+                let cameraData = cameraDataList[index - mediaList.count]
+                mediaView.setupWithMedia(cameraData: cameraData)
+            }
         }
     }
 
