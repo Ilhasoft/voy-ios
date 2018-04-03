@@ -13,6 +13,7 @@ class VOYAddReportRepository: VOYAddReportDataSource {
     let reachability: VOYReachability
     let networkClient = VOYNetworkClient(reachability: VOYDefaultReachability())
     let mediaFileDataSource: VOYMediaFileDataSource
+    let cameraDataStoreManager = VOYCameraDataStorageManager()
     private let reportStorageManager = VOYReportStorageManager()
 
     init(reachability: VOYReachability, mediaFileDataSource: VOYMediaFileDataSource = VOYMediaFileRepository()) {
@@ -23,32 +24,19 @@ class VOYAddReportRepository: VOYAddReportDataSource {
     // MARK: - VOYAddReportDataSource
 
     func save(report: VOYReport, completion: @escaping (Error?, Int?) -> Void) {
-        if reachability.hasNetwork() {
-            saveRemote(report: report, completion: completion)
-        } else {
-            saveLocal(report: report, completion: completion)
-        }
-    }
+        guard reachability.hasNetwork() else { completion(nil, nil); return }
 
-    // MARK: - Private methods
-
-    private func saveRemote(report: VOYReport, completion: @escaping (Error?, Int?) -> Void) {
         let handler: ([String: Any]?, Error?) -> Void = { value, error in
             guard let value = value else {
                 completion(error, nil)
                 return
             }
-            if let tags = value["tags"] as? [String] {
-                print("\(tags)")
-            }
-            if let reportID = value["id"] as? Int, let reportCameraDataList = report.cameraDataList {
+            if let reportID = value["id"] as? Int, let cameraDataList = report.cameraDataList {
                 self.mediaFileDataSource.delete(mediaFiles: report.removedMedias)
                 self.reportStorageManager.removeFromStorageAfterSave(report: report)
-                self.mediaFileDataSource.upload(
-                    reportID: reportID,
-                    cameraDataList: reportCameraDataList,
-                    completion: { (_) in }
-                )
+                for cameraData in cameraDataList {
+                    self.cameraDataStoreManager.addAsPending(cameraData: cameraData, reportID: reportID)
+                }
                 completion(nil, reportID)
             } else {
                 print("error: \(value)")
@@ -61,6 +49,12 @@ class VOYAddReportRepository: VOYAddReportDataSource {
             createRemote(report: report, completion: handler)
         }
     }
+
+    func saveLocal(report: VOYReport) {
+        reportStorageManager.addPendingReport(report)
+    }
+
+    // MARK: - Private methods
 
     private func createRemote(report: VOYReport, completion: @escaping ([String: Any]?, Error?) -> Void) {
         guard let authToken = VOYUser.activeUser()?.authToken else {
@@ -93,10 +87,5 @@ class VOYAddReportRepository: VOYAddReportDataSource {
             useJSONEncoding: true) { (value, error, _) in
                 completion(value, error)
         }
-    }
-
-    private func saveLocal(report: VOYReport, completion: @escaping (Error?, Int?) -> Void) {
-        reportStorageManager.addAsPendent(report: report)
-        completion(nil, nil)
     }
 }

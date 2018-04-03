@@ -31,7 +31,7 @@ class VOYCameraDataStorageManager {
         }
     }
 
-    func addAsPendent(cameraData: VOYCameraData, reportID: Int) {
+    func addAsPending(cameraData: VOYCameraData, reportID: Int) {
 
         var pendentCameraDataList = getPendentCameraDataList()
 

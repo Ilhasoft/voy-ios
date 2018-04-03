@@ -633,9 +633,9 @@
 		01EBF7262051C59200D4EF10 /* AddReport */ = {
 			isa = PBXGroup;
 			children = (
+				4371B68F204F1D9E00D83454 /* VOYAddReportDataSource.swift */,
 				4371B68B204F1D6300D83454 /* VOYAddReportRepository.swift */,
 				4371B68D204F1D8300D83454 /* VOYMediaFileRepository.swift */,
-				4371B68F204F1D9E00D83454 /* VOYAddReportDataSource.swift */,
 				4371B691204F1DB700D83454 /* VOYMediaFileDataSource.swift */,
 			);
 			path = AddReport;

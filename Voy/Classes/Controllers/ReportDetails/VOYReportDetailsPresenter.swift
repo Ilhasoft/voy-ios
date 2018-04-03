@@ -28,7 +28,12 @@ class VOYReportDetailsPresenter {
             dateString = formatDate(createdOnDate: createdOn)
         }
 
-        view?.setupText(title: report.name, date: dateString, description: report.description, tags: report.tags)
+        view?.setupText(
+            title: report.name,
+            date: dateString,
+            description: report.description,
+            tags: report.tags.sorted()
+        )
         view?.setThemeColor(themeColorHex: theme.color)
 
         if let reportFiles = report.files {

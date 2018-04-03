@@ -17,11 +17,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     static var mainNavigationController: UINavigationController?
+    var reportSyncManager = VOYReportSyncManager()
 
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         setupAppearance()
         setupWindow()
+        checkPendentReportsToSend()
         URLCache.shared = URLCache(memoryCapacity: 4 * 1024 * 1024, diskCapacity: 20 * 1024 * 1024, diskPath: nil)
         return true
     }
@@ -66,6 +68,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let navigation = UINavigationController(rootViewController: VOYLoginViewController())
             
             return navigation
+        }
+    }
+
+    // MARK: - Private methods
+
+    private func checkPendentReportsToSend() {
+        Timer.scheduledTimer(withTimeInterval: 10, repeats: true) { _ in
+            self.reportSyncManager.trySendPendentReports()
+        }
+        Timer.scheduledTimer(withTimeInterval: 17, repeats: true) { _ in
+            self.reportSyncManager.trySendingNextPendingCameraData()
         }
     }
 }

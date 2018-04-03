@@ -12,7 +12,6 @@ class VOYThemeListPresenter {
     private weak var view: VOYThemeListContract?
     private var dataSource: VOYThemeListDataSource
     private var userJustLogged: Bool
-    private var syncManager = VOYReportSyncManager()
     var projects = [VOYProject]()
 
     init(view: VOYThemeListContract, dataSource: VOYThemeListDataSource, userJustLogged: Bool) {
@@ -23,7 +22,6 @@ class VOYThemeListPresenter {
 
     func onViewDidLoad() {
         getProjects()
-        checkPendentReportsToSend()
     }
     
     func onThemeSelected(object: [String: Any]) {
@@ -40,15 +38,6 @@ class VOYThemeListPresenter {
                     VOYThemeListViewController.badgeView.isHidden = false
                 }
             }
-        }
-    }
-    
-    func checkPendentReportsToSend() {
-        Timer.scheduledTimer(withTimeInterval: 10, repeats: true) { _ in
-            self.syncManager.trySendPendentReports()
-        }
-        Timer.scheduledTimer(withTimeInterval: 17, repeats: true) { _ in
-            self.syncManager.trySendPendentCameraData()
         }
     }
     
