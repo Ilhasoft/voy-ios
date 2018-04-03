@@ -21,11 +21,11 @@ class VOYAccountViewController: UIViewController, NVActivityIndicatorViewable, V
     @IBOutlet weak var btEditPassword: UIButton!
     @IBOutlet weak var collectionAvatar: ISOnDemandCollectionView!
     @IBOutlet weak var heightCollectionAvatar: NSLayoutConstraint!
-    
+
     var rightBarButtonItem: UIBarButtonItem!
-    
+
     var presenter: VOYAccountPresenter?
-    
+
     var isPasswordEditing = false
     let nilPassword = "xpto321otpx"
     var newPassword: String? {
@@ -38,15 +38,15 @@ class VOYAccountViewController: UIViewController, NVActivityIndicatorViewable, V
             enableRightBarButtonItem()
         }
     }
-    
+
     init() {
         super.init(nibName: String(describing: type(of: self)), bundle: nil)
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.presenter = VOYAccountPresenter(dataSource: VOYAccountRepository(), view: self)
@@ -66,7 +66,7 @@ class VOYAccountViewController: UIViewController, NVActivityIndicatorViewable, V
             self.rightBarButtonItem.isEnabled = true
         }
     }
-    
+
     func setupData() {
         guard let user = VOYUser.activeUser() else { return }
         self.viewUserName.txtField.text = user.first_name
@@ -77,7 +77,7 @@ class VOYAccountViewController: UIViewController, NVActivityIndicatorViewable, V
         self.viewPassword.txtField.text = nilPassword
         self.viewPassword.layer.opacity = 0.5
     }
-    
+
     func setupLayout() {
         edgesForExtendedLayout = []
         rightBarButtonItem = UIBarButtonItem(
@@ -89,7 +89,7 @@ class VOYAccountViewController: UIViewController, NVActivityIndicatorViewable, V
         rightBarButtonItem.isEnabled = false
         self.navigationItem.rightBarButtonItem = rightBarButtonItem
     }
-    
+
     func setupCollectionView() {
         collectionAvatar.register(
             UINib(nibName: "VOYAvatarCollectionViewCell", bundle: nil),
@@ -102,22 +102,22 @@ class VOYAccountViewController: UIViewController, NVActivityIndicatorViewable, V
         collectionAvatar.interactor = VOYAvatarCollectionViewProvider()
         collectionAvatar.loadContent()
     }
-    
+
     @objc func save() {
         presenter?.updateUser(avatar: newAvatar, password: newPassword)
     }
-    
+
     func setupLoading(showLoading: Bool) {
         showLoading ? self.startAnimating() : self.stopAnimating()
     }
-    
+
     @objc func showAvatars() {
         self.heightCollectionAvatar.constant = self.heightCollectionAvatar.constant == 0 ? 400 : 0
         UIView.animate(withDuration: 0.3) {
             self.view.layoutIfNeeded()
         }
     }
-    
+
     func setupViewPasswordLayout() {
         btEditPassword.setTitle(localizedString(.change), for: .normal)
         if isPasswordEditing {
@@ -130,7 +130,7 @@ class VOYAccountViewController: UIViewController, NVActivityIndicatorViewable, V
                 newPassword = nil
             }
             self.viewPassword.txtField.text = passwordChanged ? newPassword : nilPassword
-            
+
             self.viewPassword.layer.opacity = 0.5
             self.viewPassword.txtField.resignFirstResponder()
             isPasswordEditing = false
@@ -142,7 +142,7 @@ class VOYAccountViewController: UIViewController, NVActivityIndicatorViewable, V
             isPasswordEditing = true
         }
     }
-    
+
      func clearPendentReports() {
         let alert = UIAlertController(
             title: localizedString(.logout),
@@ -159,23 +159,23 @@ class VOYAccountViewController: UIViewController, NVActivityIndicatorViewable, V
         ) { (_) in
             self.presenter?.logoutUser()
         }
-        
+
         alert.addAction(cancelAction)
         alert.addAction(confirmAction)
-        
+
         self.present(alert, animated: true, completion: nil)
     }
-    
+
     @IBAction func btLogoutTapped() {
         clearPendentReports()
     }
-    
+
     @IBAction func btEditPasswordTapped() {
         setupViewPasswordLayout()
     }
-    
+
     // MARK: - Private methods
-    
+
     private func setupLocalization() {
         self.title = localizedString(.account)
         btEditPassword.setTitle(localizedString(.change), for: .normal)
@@ -184,7 +184,6 @@ class VOYAccountViewController: UIViewController, NVActivityIndicatorViewable, V
         viewPassword.placeholder = localizedString(.newPassword)
         btLogout.setTitle(localizedString(.logout), for: .normal)
     }
-    
 }
 
 extension VOYAccountViewController: ISOnDemandCollectionViewDelegate {
@@ -192,18 +191,18 @@ extension VOYAccountViewController: ISOnDemandCollectionViewDelegate {
                                 reuseIdentifierForItemAt indexPath: IndexPath) -> String {
         return "VOYAvatarCollectionViewCell"
     }
-    
+
     func onDemandCollectionView(_ collectionView: ISOnDemandCollectionView,
                                 onContentLoadFinishedWithNewObjects objects: [Any]?,
                                 error: Error?) {
     }
-    
+
     func onDemandCollectionView(_ collectionView: ISOnDemandCollectionView,
                                 sizeForItemAt indexPath: IndexPath) -> CGSize {
         let size = CGSize(width: 70, height: 70)
         return size
     }
-    
+
     func onDemandCollectionView(_ collectionView: ISOnDemandCollectionView,
                                 didSelect cell: ISOnDemandCollectionViewCell,
                                 at indexPath: IndexPath) {
@@ -221,7 +220,7 @@ extension VOYAccountViewController: VOYTextFieldViewDelegate {
             self.btEditPassword.setTitle(localizedString(.done), for: .normal)
         }
     }
-    
+
     func textFieldDidEndEditing(_ textFieldView: VOYTextFieldView) {
         setupViewPasswordLayout()
     }

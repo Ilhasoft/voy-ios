@@ -9,7 +9,7 @@
 import UIKit
 
 extension UIViewController {
-    
+
     static public func switchRootViewController(_ rootViewController: UIViewController, animated: Bool,
                                                 transition: UIViewAnimationOptions = .transitionFlipFromLeft,
                                                 completion: (() -> Void)?) {
@@ -30,7 +30,7 @@ extension UIViewController {
             window.rootViewController = rootViewController
         }
     }
-    
+
     static public func rootViewController() -> UIViewController? {
         return UIApplication.shared.keyWindow?.rootViewController
     }

@@ -25,20 +25,20 @@ class VOYLocationData {
 }
 
 class VOYDefaultLocationManager: NSObject, CLLocationManagerDelegate, VOYLocationManager {
-    
+
     var locationManager: CLLocationManager?
 
     required init(delegate: VOYLocationManagerDelegate) {
         super.init()
         self.delegate = delegate
     }
-    
+
     weak var delegate: VOYLocationManagerDelegate?
-    
+
     func locationPermissionIsGranted() -> Bool {
         return CLLocationManager.authorizationStatus() == CLAuthorizationStatus.authorizedWhenInUse
     }
-    
+
     func getCurrentLocation() {
         if locationManager == nil {
             locationManager = CLLocationManager()
@@ -46,7 +46,7 @@ class VOYDefaultLocationManager: NSObject, CLLocationManagerDelegate, VOYLocatio
 
         locationManager?.delegate = self
         locationManager?.desiredAccuracy = kCLLocationAccuracyBestForNavigation
-        
+
         if CLLocationManager.locationServicesEnabled() {
             if CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
                 locationManager?.startUpdatingLocation()
@@ -59,7 +59,7 @@ class VOYDefaultLocationManager: NSObject, CLLocationManagerDelegate, VOYLocatio
     }
 
     // MARK: - CLLocationManagerDelegate
-    
+
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         self.locationManager?.stopUpdatingLocation()
         self.locationManager = nil

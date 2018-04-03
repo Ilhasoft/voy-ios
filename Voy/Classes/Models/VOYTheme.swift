@@ -63,5 +63,4 @@ class VOYTheme: Mappable {
         defaults.set(encodedObject, forKey: "theme")
         defaults.synchronize()
     }
-    
 }

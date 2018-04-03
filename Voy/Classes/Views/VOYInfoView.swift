@@ -10,29 +10,29 @@ import UIKit
 
 @IBDesignable
 class VOYInfoView: UIView {
-    
+
     @IBOutlet weak var imgAvatar: UIImageView!
     @IBOutlet weak var lbTitle: UILabel!
     @IBOutlet weak var lbMessage: UILabel!
     @IBOutlet var contentView: UIView!
-    
+
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         initSubviews()
     }
-    
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         initSubviews()
     }
-    
+
     private func initSubviews() {
         let nib = UINib(nibName: "VOYInfoView", bundle: Bundle(for: VOYInfoView.self))
         nib.instantiate(withOwner: self, options: nil)
         contentView.frame = bounds
         self.addSubview(contentView)
     }
-    
+
     func setupWith(titleAndColor: [String: UIColor], messageAndColor: [String: UIColor]) {
         guard let activeUser = VOYUser.activeUser() else { return }
         self.imgAvatar.kf.setImage(with: URL(string: activeUser.avatar))

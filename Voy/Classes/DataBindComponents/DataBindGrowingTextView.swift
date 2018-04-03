@@ -11,15 +11,15 @@ import GrowingTextView
 import DataBindSwift
 
 public class DataBindGrowingTextView: GrowingTextView, DataBindable {
-    
+
     override public init(frame: CGRect, textContainer: NSTextContainer?) {
         super.init(frame: frame, textContainer: textContainer)
     }
-    
+
     required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
-    
+
     public var required: Bool = false
     public var requiredError: String = ""
     public var fieldPath: String = ""

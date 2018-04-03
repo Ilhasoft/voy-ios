@@ -10,7 +10,7 @@ import Alamofire
 import AlamofireObjectMapper
 
 class VOYThemeListRepository: VOYThemeListDataSource {
-    
+
     let reachability: VOYReachability
     let networkClient: VOYNetworkClient
 
@@ -18,7 +18,7 @@ class VOYThemeListRepository: VOYThemeListDataSource {
         self.reachability = reachability
         networkClient = VOYNetworkClient(reachability: self.reachability)
     }
-    
+
     func getNotifications(completion: @escaping ([VOYNotification]?) -> Void) {
         guard let auth = VOYUser.activeUser()?.authToken else { return }
         networkClient.requestObjectArray(urlSuffix: "report-notification/",
@@ -29,7 +29,7 @@ class VOYThemeListRepository: VOYThemeListDataSource {
                                     completion(notificationList)
         }
     }
-    
+
     func cacheDataFrom(url: String, parameters: inout [String: Any], headers: inout [String: String]) {
         if reachability.hasNetwork() {
             var headers = [String: String]()
@@ -55,13 +55,13 @@ class VOYThemeListRepository: VOYThemeListDataSource {
             print("User haven't internet connection and don't have cached data")
         }
     }
-    
+
     func getMyProjects(completion: @escaping(_ projects: [VOYProject], _ error: Error?) -> Void) {
-        
+
         guard let activeUser = VOYUser.activeUser(), let authToken = activeUser.authToken else {
             return
         }
-        
+
         var headers = [String: String]()
         if !reachability.hasNetwork() {
             headers["Cache-Control"] = "public, only-if-cached, max-stale=86400"

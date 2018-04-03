@@ -12,7 +12,7 @@ class VOYAddReportTagsPresenter {
     var dataSource: VOYAddReportDataSource!
     var view: VOYAddReportTagsContract?
     private var report: VOYReport?
-    
+
     init(report: VOYReport?, dataSource: VOYAddReportDataSource, view: VOYAddReportTagsContract) {
         self.report = report
         self.dataSource = dataSource
@@ -24,7 +24,7 @@ class VOYAddReportTagsPresenter {
         let selectedTags = report?.tags ?? []
         view?.loadTags(themeTags: activeTheme.tags.sorted(), selectedTags: selectedTags)
     }
-    
+
     func saveReport(selectedTags: [String]) {
         guard let report = self.report, let activeTheme = VOYTheme.activeTheme() else { return }
         report.tags = selectedTags

@@ -1,5 +1,4 @@
 disabled_rules:
-    - trailing_whitespace
     - variable_name
 excluded:
     - Pods

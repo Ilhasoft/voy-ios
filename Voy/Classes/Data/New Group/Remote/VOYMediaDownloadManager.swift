@@ -10,7 +10,7 @@ import UIKit
 import Alamofire
 
 class VOYMediaDownloadManager {
-    
+
     static let shared = VOYMediaDownloadManager()
     static var destinationPath: URL! {
         let urlPath: String? = VOYFileUtil.outputURLDirectory?.appendingPathComponent(String.getIdentifier()+".mp4")

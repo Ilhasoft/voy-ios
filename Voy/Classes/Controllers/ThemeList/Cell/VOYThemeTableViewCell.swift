@@ -12,22 +12,17 @@ import DataBindSwift
 open class VOYThemeTableViewCell: DataBindOnDemandTableViewCell {
 
     @IBOutlet var lbTheme: UILabel!
-    
+
     static var nibName: String {
         return "VOYThemeTableViewCell"
     }
-    
+
     override open func awakeFromNib() {
         super.awakeFromNib()
         self.dataBindView.layer.cornerRadius = 5
         self.selectionStyle = .none
     }
 
-    override open func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-        
-    }
-    
     override open func setupCell(with object: Any, at indexPath: IndexPath) {
         super.setupCell(with: object, at: indexPath)
         if let theme = VOYTheme(JSON: self.object.JSON) {

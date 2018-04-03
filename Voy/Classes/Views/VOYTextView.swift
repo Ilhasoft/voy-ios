@@ -15,12 +15,12 @@ protocol VOYTextViewDelegate: class {
 
 @IBDesignable
 class VOYTextView: UIView {
-    
+
     static let activeColor  = UIColor.voyBlue
     static let defaultColor = UIColor.voyGray
-    
+
     weak var delegate: VOYTextViewDelegate?
-    
+
     @IBInspectable var path: String = "" {
         didSet {
             self.txtView.fieldPath = path
@@ -38,46 +38,45 @@ class VOYTextView: UIView {
             self.viewBottom.isHidden = !showBottomView
         }
     }
-    
+
     @IBInspectable var editEnabled: Bool = true {
         didSet {
             self.txtView.isEditable = editEnabled
         }
     }
-    
+
     @IBOutlet var heightViewBottom: NSLayoutConstraint!
     @IBOutlet var txtView: DataBindGrowingTextView!
     @IBOutlet var lbFieldName: UILabel!
     @IBOutlet var viewBottom: UIView!
     @IBOutlet var contentView: UIView!
-    
+
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         initSubviews()
     }
-    
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         initSubviews()
     }
-    
+
     private func initSubviews() {
         let nib = UINib(nibName: "VOYTextView", bundle: Bundle(for: VOYTextView.self))
         nib.instantiate(withOwner: self, options: nil)
         contentView.frame = bounds
         addSubview(contentView)
-        
+
         self.txtView.delegate = self
     }
-    
 }
 
 extension VOYTextView: GrowingTextViewDelegate {
-    
+
     func textViewDidChangeHeight(_ textView: GrowingTextView, height: CGFloat) {
         self.delegate?.textViewDidChangeHeight(textView, height: height)
     }
-    
+
     func textViewDidBeginEditing(_ textView: UITextView) {
         self.heightViewBottom.constant = 2
         UIView.animate(withDuration: 0.5) {
@@ -86,7 +85,7 @@ extension VOYTextView: GrowingTextViewDelegate {
         self.viewBottom.backgroundColor = VOYTextFieldView.activeColor
         textView.textColor = VOYTextFieldView.activeColor
     }
-    
+
     func textViewDidEndEditing(_ textView: UITextView) {
         self.heightViewBottom.constant = 1
         UIView.animate(withDuration: 0.5) {
@@ -95,11 +94,11 @@ extension VOYTextView: GrowingTextViewDelegate {
         self.viewBottom.backgroundColor = VOYTextFieldView.defaultColor
         textView.textColor = UIColor.black
     }
-    
+
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         let newText = (textView.text as NSString).replacingCharacters(in: range, with: text)
         let numberOfChars = newText.count
-        
+
         if numberOfChars > 0 && self.lbFieldName.alpha == 0 {
             UIView.animate(withDuration: 0.3, animations: {
                 self.lbFieldName.alpha = 1
@@ -109,8 +108,7 @@ extension VOYTextView: GrowingTextViewDelegate {
                 self.lbFieldName.alpha = 0
             })
         }
-        
+
         return true
     }
-    
 }

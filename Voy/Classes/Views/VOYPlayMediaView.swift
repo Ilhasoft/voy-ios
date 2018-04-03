@@ -28,32 +28,31 @@ class VOYPlayMediaView: UIView, NVActivityIndicatorViewable {
     @IBOutlet var imgView: UIImageView!
     @IBOutlet var imgPlayIcon: UIImageView!
     @IBOutlet var activityView: NVActivityIndicatorView!
-    
+
     var fullScreen = false
     weak var delegate: VOYPlayMediaViewDelegate?
     var mediaType: VOYMediaType?
     var videoURL: URL?
-    
+
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         initSubviews()
     }
-    
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         initSubviews()
     }
-    
+
     private func initSubviews() {
         let nib = UINib(nibName: "VOYPlayMediaView", bundle: Bundle(for: VOYPlayMediaView.self))
         nib.instantiate(withOwner: self, options: nil)
-        
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(viewDidTap))
         self.addGestureRecognizer(tapGesture)
         contentView.frame = bounds
         self.addSubview(contentView)
     }
-    
+
     @objc func viewDidTap() {
         if let mediaType = self.mediaType, mediaType == .image {
             self.delegate?.mediaDidTap(mediaView: self)
@@ -124,7 +123,7 @@ class VOYPlayMediaView: UIView, NVActivityIndicatorViewable {
             }
         }
     }
-    
+
     @objc func videoDidTap() {
         fullScreen = !fullScreen
         if let videoURL = self.videoURL, let mediaType = self.mediaType, mediaType == .video {

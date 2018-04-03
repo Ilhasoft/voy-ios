@@ -18,44 +18,43 @@ class VOYAlertViewController: ISModalViewController {
     @IBOutlet private var lbMessage: UILabel!
     @IBOutlet private var stackView: UIStackView!
     @IBOutlet weak var heightStackView: NSLayoutConstraint!
-    
+
     private var buttonHeight = 49
     private var buttonNames = [String]()
-    
+
     private var messageTitle = "title"
     private var message = "message"
-    
+
     weak var delegate: VOYAlertViewControllerDelegate?
-    
+
     init(title: String, message: String, buttonNames: [String] = ["Ok"]) {
         self.messageTitle = title
         self.message = message
         self.buttonNames = buttonNames
         super.init(nibName: "VOYAlertViewController", bundle: nil)
     }
-    
+
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: "VOYAlertViewController", bundle: nibBundleOrNil)
     }
-    
+
     required public init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = self.view.backgroundColor?.withAlphaComponent(0)
         setupLayout()
     }
-    
+
     private func setupLayout() {
 
         self.lbTitle.text = messageTitle
         self.lbMessage.text = message
-        
         self.heightStackView.constant = CGFloat(buttonHeight * buttonNames.count)
         self.view.layoutIfNeeded()
-        
+
         for (index, buttonName) in buttonNames.enumerated() {
             let button = UIButton()
             button.titleLabel?.font = UIFont.systemFont(ofSize: 16)
@@ -79,5 +78,4 @@ class VOYAlertViewController: ISModalViewController {
             self.close()
         }
     }
-    
 }

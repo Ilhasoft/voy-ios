@@ -9,13 +9,13 @@
 import UIKit
 
 extension UIFont {
-  
+
     enum FontStyle {
         case light
         case bold
         case normal
     }
-  
+
     static func helveticaNeue(withSize size: CGFloat, andStyle style: FontStyle) -> UIFont {
         let loadedFont: UIFont?
         switch style {
