@@ -209,7 +209,13 @@ class VOYNetworkClient {
             }
             completion(objects, nil)
         } else {
-            completion([], nil)
+            var objects: [Map] = []
+            if urlSuffix == "reports" && parameters?["status"] as? Int == 2 {
+                for reportJSON in self.reportStoreManager.getPendentReports() {
+                    objects.append(Map(mappingType: .fromJSON, JSON: reportJSON))
+                }
+            }
+            completion(objects, nil)
         }
     }
 

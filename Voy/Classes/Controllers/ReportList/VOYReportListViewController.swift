@@ -66,7 +66,6 @@ class VOYReportListViewController: UIViewController, NVActivityIndicatorViewable
         var status: VOYReportStatus = .approved
         startAnimating()
         for tableView in self.tableViews {
-
             if tableView == self.tableViewApproved {
                 status = VOYReportStatus.approved
             } else if tableView == self.tableViewPending {
@@ -74,7 +73,6 @@ class VOYReportListViewController: UIViewController, NVActivityIndicatorViewable
             } else if tableView == self.tableViewNotApproved {
                 status = VOYReportStatus.notApproved
             }
-
             tableView.separatorColor = UIColor.clear
             tableView.register(
                 UINib(nibName: "VOYReportTableViewCell", bundle: nil),
@@ -90,7 +88,6 @@ class VOYReportListViewController: UIViewController, NVActivityIndicatorViewable
             presenter.countReports(themeId: self.theme.id, status: status, mapper: activeUser.id)
             tableView.loadContent()
         }
-
     }
 
     func showInfoViewIfNecessary(tableView: DataBindOnDemandTableView) {
@@ -127,7 +124,6 @@ class VOYReportListViewController: UIViewController, NVActivityIndicatorViewable
             } else {
                 messageLabel.isHidden = true
             }
-
             tableViewApproved.isHidden = false
             tableViewPending.isHidden = true
             tableViewNotApproved.isHidden = true
@@ -139,7 +135,6 @@ class VOYReportListViewController: UIViewController, NVActivityIndicatorViewable
             } else {
                 messageLabel.isHidden = true
             }
-
             tableViewApproved.isHidden = true
             tableViewPending.isHidden = false
             tableViewNotApproved.isHidden = true
@@ -151,7 +146,6 @@ class VOYReportListViewController: UIViewController, NVActivityIndicatorViewable
             } else {
                 messageLabel.isHidden = true
             }
-
             tableViewApproved.isHidden = true
             tableViewPending.isHidden = true
             tableViewNotApproved.isHidden = false
@@ -178,14 +172,17 @@ extension VOYReportListViewController: VOYReportListContract {
 }
 
 extension VOYReportListViewController: ISOnDemandTableViewDelegate {
+
     func onDemandTableView(_ tableView: ISOnDemandTableView, reuseIdentifierForCellAt indexPath: IndexPath) -> String {
         return "VOYReportTableViewCell"
     }
+
     func onDemandTableView(_ tableView: ISOnDemandTableView, setupCell cell: UITableViewCell, at indexPath: IndexPath) {
         if let cell = cell as? VOYReportTableViewCell {
             cell.delegate = self
         }
     }
+
     func onDemandTableView(_ tableView: ISOnDemandTableView, onContentLoad lastData: [Any]?, withError error: Error?) {
         dataLoadTime+=1
         allDataFinishedLoad = dataLoadTime >= 3
@@ -197,6 +194,7 @@ extension VOYReportListViewController: ISOnDemandTableViewDelegate {
             segmentedControlTapped()
         }
     }
+
     func onDemandTableView(_ tableView: ISOnDemandTableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 118
     }
