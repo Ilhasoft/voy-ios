@@ -183,7 +183,7 @@ class VOYNetworkClient {
             }
         } else if let alamofireRequest = request.request,
                   let cachedResponse = URLCache.shared.cachedResponse(for: alamofireRequest) {
-            var arrayOfMaps = [[String: Any]]()
+            var arrayOfDictionaries = [[String: Any]]()
             var jsonObject: Any?
 
             do {
@@ -195,12 +195,12 @@ class VOYNetworkClient {
 
             if let keyPath = keyPath, let jsonObject = jsonObject as? [String: Any],
                 let subobject = jsonObject[keyPath] as? [[String: Any]] {
-                arrayOfMaps = subobject
+                arrayOfDictionaries = subobject
             } else if let jsonObject = jsonObject as? [[String: Any]] {
-                arrayOfMaps = jsonObject
+                arrayOfDictionaries = jsonObject
             }
 
-            var objects = arrayOfMaps.map({ return Map(mappingType: .fromJSON, JSON: $0) })
+            var objects = arrayOfDictionaries.map({ return Map(mappingType: .fromJSON, JSON: $0) })
 
             if urlSuffix == "reports" && parameters?["status"] as? Int == 2 {
                 for reportJSON in self.reportStoreManager.getPendentReports() {
@@ -209,7 +209,13 @@ class VOYNetworkClient {
             }
             completion(objects, nil)
         } else {
-            completion([], nil)
+            var objects: [Map] = []
+            if urlSuffix == "reports" && parameters?["status"] as? Int == 2 {
+                for reportJSON in self.reportStoreManager.getPendentReports() {
+                    objects.append(Map(mappingType: .fromJSON, JSON: reportJSON))
+                }
+            }
+            completion(objects, nil)
         }
     }
 

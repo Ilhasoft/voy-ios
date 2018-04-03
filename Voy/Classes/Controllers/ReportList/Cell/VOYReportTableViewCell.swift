@@ -65,6 +65,20 @@ extension VOYReportTableViewCell: DataBindViewDelegate {
     func didFillAllComponents(JSON: [String: Any]) {
         if let report = VOYReport(JSON: JSON), report.status == nil {
             self.btResent.isHidden = false
+            if let cameraData = report.cameraDataList?.first, let mediaType = cameraData.type {
+                switch mediaType {
+                case .image:
+                    if let fileName = cameraData.fileName,
+                        let imagePath = VOYFileUtil.outputURLDirectory?.appendingPathComponent(fileName) {
+                        imgReport.image = UIImage(contentsOfFile: imagePath)
+                    }
+                case .video:
+                    if let thumbnailFileName = cameraData.thumbnailFileName,
+                        let thumbnailPath = VOYFileUtil.outputURLDirectory?.appendingPathComponent(thumbnailFileName) {
+                        imgReport.image = UIImage(contentsOfFile: thumbnailPath)
+                    }
+                }
+            }
         } else {
             self.btResent.isHidden = true
         }
