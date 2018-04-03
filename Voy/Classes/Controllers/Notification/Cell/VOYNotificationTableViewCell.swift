@@ -9,11 +9,11 @@
 import UIKit
 
 class VOYNotificationTableViewCell: UITableViewCell {
-    
+
     @IBOutlet weak var tvNotificationBody: UITextView!
-    
+
     static let identifier = String(describing: VOYNotificationTableViewCell.classForCoder())
-    
+
     override func awakeFromNib() {
         super.awakeFromNib()
         self.selectionStyle = .none
@@ -24,7 +24,7 @@ class VOYNotificationTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-    
+
     func setupCell(with text: String) {
         self.tvNotificationBody.text = text
     }

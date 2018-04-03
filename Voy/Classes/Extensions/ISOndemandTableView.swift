@@ -17,5 +17,5 @@ extension ISOnDemandTableView {
             self.insertRows(at: [IndexPath(row: index, section: 0)], with: .automatic)
             self.endUpdates()
         }
-    }        
+    }
 }

@@ -9,7 +9,7 @@
 import ObjectMapper
 
 class VOYUser: Mappable {
-    
+
     var id: Int!
     var first_name: String!
     var password: String!
@@ -19,13 +19,12 @@ class VOYUser: Mappable {
     var is_mapper: Bool!
     var is_admin: Bool!
     var authToken: String!
-    
+
     init() {
-        
     }
-    
+
     required init?(map: Map) { }
-    
+
     func mapping(map: Map) {
         id <- map["id"]
         first_name <- map["first_name"]
@@ -36,7 +35,7 @@ class VOYUser: Mappable {
         is_admin <- map["is_admin"]
         authToken <- map["authToken"]
     }
-    
+
     static func activeUser() -> VOYUser? {
         var user: VOYUser?
         if let userDictionary = UserDefaults.standard.getArchivedObject(key: "user") as? [String: Any] {
@@ -44,17 +43,16 @@ class VOYUser: Mappable {
         }
         return user
     }
-    
+
     static func deactiveUser() {
         UserDefaults.standard.removeObject(forKey: "user")
     }
-    
+
     static func setActiveUser(user: VOYUser) {
         let defaults = UserDefaults.standard
-        
+
         let encodedObject = NSKeyedArchiver.archivedData(withRootObject: user.toJSON())
         defaults.set(encodedObject, forKey: "user")
         defaults.synchronize()
     }
-    
 }

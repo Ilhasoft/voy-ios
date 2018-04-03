@@ -24,7 +24,7 @@ class VOYAddReportDataViewController: UIViewController {
     @IBOutlet weak var dataBindView: DataBindView!
 
     var savedReport: VOYReport
-    
+
     init(savedReport: VOYReport) {
         self.savedReport = savedReport
         super.init(nibName: String(describing: type(of: self)), bundle: nil)
@@ -96,7 +96,7 @@ class VOYAddReportDataViewController: UIViewController {
             forCellReuseIdentifier: NSStringFromClass(VOYLinkTableViewCell.self)
         )
     }
-    
+
     @IBAction func btAddLinkTapped(_ sender: Any) {
         if !self.txtFieldLink.safeText.isEmpty {
             self.tbViewLinks.dataList.append(self.txtFieldLink.safeText)
@@ -107,9 +107,9 @@ class VOYAddReportDataViewController: UIViewController {
             })
         }
     }
-    
+
     // MARK: - Localization
-    
+
     private func setupLocalization() {
         self.title = localizedString(.addReport)
         lbTitle.text = localizedString(.titleAndDescription)
@@ -124,7 +124,7 @@ extension VOYAddReportDataViewController: UITableViewDataSource, UITableViewDele
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.tbViewLinks.dataList.count
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(
             withIdentifier: NSStringFromClass(VOYLinkTableViewCell.self),
@@ -138,14 +138,13 @@ extension VOYAddReportDataViewController: UITableViewDataSource, UITableViewDele
         }
         return cell
     }
-    
+
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
     }
 }
 
 extension VOYAddReportDataViewController: UITextFieldDelegate {
-    
+
     func textField(_ textField: UITextField,
                    shouldChangeCharactersIn range: NSRange,
                    replacementString string: String) -> Bool {
@@ -155,7 +154,7 @@ extension VOYAddReportDataViewController: UITextFieldDelegate {
         }
         let newText = (textField.safeText as NSString).replacingCharacters(in: range, with: string)
         let numberOfChars = newText.count
-        
+
         if numberOfChars > 0 && self.btAddLink.alpha < 1 {
             UIView.animate(withDuration: 0.3, animations: {
                 self.btAddLink.alpha = 1
@@ -165,10 +164,9 @@ extension VOYAddReportDataViewController: UITextFieldDelegate {
                 self.btAddLink.alpha = 0.3
             })
         }
-        
+
         return true
     }
-    
 }
 
 extension VOYAddReportDataViewController: VOYTextViewDelegate {
@@ -197,19 +195,18 @@ extension VOYAddReportDataViewController: VOYLinkTableViewCellDelegate {
 extension VOYAddReportDataViewController: DataBindViewDelegate {
     func didFillAllComponents(JSON: [String: Any]) {
     }
-    
+
     func willFill(component: Any, value: Any) -> Any? {
         return value
     }
-    
+
     func didFill(component: Any, value: Any) {
-        
     }
-    
+
     func willSet(component: Any, value: Any) -> Any? {
         return value
     }
-    
+
     func didSet(component: Any, value: Any) {
     }
 }

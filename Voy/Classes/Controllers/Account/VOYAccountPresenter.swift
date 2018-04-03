@@ -34,7 +34,7 @@ class VOYAccountPresenter {
             self.clearAllCachedData()
         })
     }
-    
+
     func clearAllCachedData() {
         VOYReportStorageManager.clearPendentReports()
         VOYCameraDataStorageManager.clearStoredCameraData()

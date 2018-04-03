@@ -23,7 +23,7 @@ class VOYThemeListPresenter {
     func onViewDidLoad() {
         getProjects()
     }
-    
+
     func onThemeSelected(object: [String: Any]) {
         if let theme = VOYTheme(JSON: object) {
             VOYTheme.setActiveTheme(theme: theme)
@@ -40,7 +40,7 @@ class VOYThemeListPresenter {
             }
         }
     }
-    
+
     // MARK: - Private methods
 
     private func getProjects() {

@@ -11,18 +11,18 @@ import UIKit
 class VOYNotificationPresenter {
     var view: VOYNotificationContract!
     var dataSource: VOYNotificationDataSource!
-    
+
     var notifications: [VOYNotification]? {
         didSet {
             self.view.updateTableView()
         }
     }
-    
+
     init(dataSource: VOYNotificationDataSource, view: VOYNotificationContract) {
         self.view = view
         self.dataSource = dataSource
     }
-    
+
     func viewDidLoad() {
         dataSource.getNotifications { (notificationList) in
             if let notificationList = notificationList {
@@ -30,7 +30,7 @@ class VOYNotificationPresenter {
             }
         }
     }
-    
+
     func setupNotificationTitleFor( indexPath: IndexPath) -> String {
         guard let notification = notifications?[indexPath.row] else { return "" }
         if notification.status == 1 {
@@ -41,7 +41,7 @@ class VOYNotificationPresenter {
                 localizedString(.reportWasNotApproved) : localizedString(.commentWasNotApproved)
         }
     }
-    
+
     func userTappedNotificationFrom(index: Int) {
         guard let notification = notifications?[index] else { return }
         dataSource.updateNotification(notification: notification)

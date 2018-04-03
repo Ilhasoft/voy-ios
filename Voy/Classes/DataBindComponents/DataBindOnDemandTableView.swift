@@ -14,9 +14,9 @@ open class DataBindOnDemandTableView: ISOnDemandTableView {
     @IBInspectable var apiURL: String?
     @IBInspectable var endPoint: String!
     @IBInspectable var keyPath: String?
-    
+
     private var configuration: DataBindRestConfiguration!
-    
+
     public func getConfiguration() -> DataBindRestConfiguration {
         configuration = DataBindRestConfiguration()
         configuration.apiURL = apiURL
@@ -24,5 +24,4 @@ open class DataBindOnDemandTableView: ISOnDemandTableView {
         configuration.keyPath = keyPath
         return configuration
     }
-    
 }

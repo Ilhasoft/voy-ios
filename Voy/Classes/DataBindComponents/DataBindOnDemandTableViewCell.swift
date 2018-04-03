@@ -12,19 +12,11 @@ import ISOnDemandTableView
 import DataBindSwift
 
 open class DataBindOnDemandTableViewCell: UITableViewCell, ISOnDemandTableViewCell {
-    
+
     @IBOutlet public var dataBindView: DataBindView!
-    
+
     public var object: Map!
-    
-    override open func awakeFromNib() {
-        super.awakeFromNib()        
-    }
-    
-    override open func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-    }
- 
+
     open func setupCell(with object: Any, at indexPath: IndexPath) {
         if let objectAsMap = object as? Map {
             self.object = objectAsMap

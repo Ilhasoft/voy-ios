@@ -9,7 +9,7 @@
 import ObjectMapper
 
 class VOYMedia: Mappable {
-    
+
     var id: Int!
     var title: String!
     var media_type: String!

@@ -17,9 +17,9 @@ class VOYLinkTableViewCell: UITableViewCell {
 
     @IBOutlet var lbLink: UILabel!
     @IBOutlet var btRemove: UIButton!
-    
+
     weak var delegate: VOYLinkTableViewCellDelegate?
-    
+
     override func awakeFromNib() {
         super.awakeFromNib()
         self.selectionStyle = .none
@@ -30,13 +30,12 @@ class VOYLinkTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-    
+
     func setupCell(data: String) {
         self.lbLink.text = data
     }
-    
+
     @IBAction func btRemoveTapped() {
         delegate?.removeButtonDidTap(cell: self)
     }
-    
 }

@@ -11,17 +11,16 @@ import ISScrollViewPageSwift
 import DataBindSwift
 
 class DataBindScrollViewPageSwift: ISScrollViewPage, DataBindable {
-    
+
     override init(frame: CGRect) {
         super.init(frame: frame)
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
-    
+
     public var required: Bool = false
     public var requiredError: String = ""
-    @IBInspectable open var fieldPath: String = ""    
-
+    @IBInspectable open var fieldPath: String = ""
 }

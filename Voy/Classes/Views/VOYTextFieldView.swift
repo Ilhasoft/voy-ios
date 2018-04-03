@@ -38,35 +38,35 @@ class VOYTextFieldView: UIView {
             self.txtField.isSecureTextEntry = password
         }
     }
-    
+
     @IBInspectable var showBottomView: Bool = true {
         didSet {
             self.viewBottom.isHidden = !showBottomView
         }
     }
-    
+
     @IBInspectable var editEnabled: Bool = true {
         didSet {
             self.txtField.isEnabled = editEnabled
         }
     }
-    
+
     @IBOutlet var heightViewBottom: NSLayoutConstraint!
     @IBOutlet var txtField: DataBindTextField!
     @IBOutlet var lbFieldName: UILabel!
     @IBOutlet var viewBottom: UIView!
     @IBOutlet var contentView: UIView!
-    
+
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         initSubviews()
     }
-    
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         initSubviews()
     }
-    
+
     private func initSubviews() {
         let nib = UINib(nibName: "VOYTextFieldView", bundle: Bundle(for: VOYTextFieldView.self))
         nib.instantiate(withOwner: self, options: nil)
@@ -86,7 +86,7 @@ extension VOYTextFieldView: UITextFieldDelegate {
         self.viewBottom.backgroundColor = VOYTextFieldView.activeColor
         self.txtField.textColor = VOYTextFieldView.activeColor
     }
-    
+
     func textFieldDidEndEditing(_ textField: UITextField) {
         self.delegate?.textFieldDidEndEditing(self)
         self.heightViewBottom.constant = 1
@@ -96,7 +96,7 @@ extension VOYTextFieldView: UITextFieldDelegate {
         self.viewBottom.backgroundColor = VOYTextFieldView.defaultColor
         self.txtField.textColor = UIColor.black
     }
-    
+
     func textField(_ textField: UITextField,
                    shouldChangeCharactersIn range: NSRange,
                    replacementString string: String) -> Bool {
@@ -106,9 +106,9 @@ extension VOYTextFieldView: UITextFieldDelegate {
         }
         let newText = (textField.safeText as NSString).replacingCharacters(in: range, with: string)
         let numberOfChars = newText.count
-        
+
         self.delegate?.textFieldDidChange(self, text: newText)
-        
+
         if numberOfChars > 0 && self.lbFieldName.alpha == 0 {
             UIView.animate(withDuration: 0.3, animations: {
                 self.lbFieldName.alpha = 1

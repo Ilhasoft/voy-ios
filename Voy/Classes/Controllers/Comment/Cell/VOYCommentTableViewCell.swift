@@ -21,11 +21,11 @@ class VOYCommentTableViewCell: DataBindOnDemandTableViewCell {
     @IBOutlet weak var lbDate: DataBindLabel!
     @IBOutlet weak var lbComment: DataBindLabel!
     @IBOutlet weak var btOptions: UIButton!
-    
+
     var cellJSON: [String: Any]?
-    
+
     weak var delegate: VOYCommentTableViewCellDelegate?
-    
+
     override func awakeFromNib() {
         super.awakeFromNib()
         self.selectionStyle = .none
@@ -37,7 +37,7 @@ class VOYCommentTableViewCell: DataBindOnDemandTableViewCell {
 
         // Configure the view for the selected state
     }
- 
+
     @IBAction func btOptionsTapped(_ sender: Any) {
         guard let delegate = self.delegate, let commentId = cellJSON?["id"] as? Int else { return }
         delegate.btOptionsDidTap(commentId: commentId)
@@ -78,11 +78,11 @@ extension VOYCommentTableViewCell: DataBindViewDelegate {
 
     func didFill(component: Any, value: Any) {
     }
-    
+
     func willSet(component: Any, value: Any) -> Any? {
         return value
     }
-    
+
     func didSet(component: Any, value: Any) {
     }
 }

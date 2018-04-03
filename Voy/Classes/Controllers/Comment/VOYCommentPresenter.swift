@@ -12,12 +12,12 @@ class VOYCommentPresenter {
 
     weak var view: VOYCommentContract?
     var dataSource: VOYCommentDataSource
-    
+
     init(dataSource: VOYCommentDataSource, view: VOYCommentContract) {
         self.dataSource = dataSource
         self.view = view
     }
-    
+
     func save(comment: VOYComment, completion:@escaping (Error?) -> Void) {
         dataSource.save(comment: comment) { (error) in
             if let error = error {
@@ -27,11 +27,10 @@ class VOYCommentPresenter {
             }
         }
     }
-    
+
     func remove(commentId: Int, completion: @escaping (_ error: Error?) -> Void) {
         dataSource.delete(commentId: commentId) { (error) in
             completion(error)
         }
     }
-    
 }

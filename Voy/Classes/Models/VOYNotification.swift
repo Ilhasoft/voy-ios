@@ -10,7 +10,7 @@ import UIKit
 import ObjectMapper
 
 class VOYNotification: NSObject, Mappable {
-    
+
     var id: Int!
     var status: Int!
     var origin: Int!
@@ -22,9 +22,9 @@ class VOYNotification: NSObject, Mappable {
         self.message = body
         self.report = report
     }
-    
+
     required init?(map: Map) { }
-    
+
     func mapping(map: Map) {
         id <- map["id"]
         status <- map["status"]
@@ -33,7 +33,7 @@ class VOYNotification: NSObject, Mappable {
         message <- map["message"]
         report <- map["report"]
     }
-    
+
     func map() -> Map {
         return Map(mappingType: .toJSON, JSON: self.toJSON())
     }

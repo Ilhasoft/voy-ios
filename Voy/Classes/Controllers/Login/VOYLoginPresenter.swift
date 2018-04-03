@@ -9,10 +9,10 @@
 import UIKit
 
 class VOYLoginPresenter {
-    
+
     weak var view: VOYLoginContract?
     var dataSource: VOYLoginDataSource
-    
+
     init(dataSource: VOYLoginDataSource, view: VOYLoginContract) {
         self.dataSource = dataSource
         self.view = view
