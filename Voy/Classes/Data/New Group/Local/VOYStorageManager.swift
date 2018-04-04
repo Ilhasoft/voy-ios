@@ -62,7 +62,7 @@ class VOYStorageManager {
 
     // MARK: - Reports
 
-    func getPendentReports() -> [[String: Any]] {
+    func getPendingReports() -> [[String: Any]] {
         if let reportsDictionary = UserDefaults.standard.getArchivedObject(key: "reports") as? [[String: Any]] {
             return reportsDictionary
         }
@@ -70,7 +70,7 @@ class VOYStorageManager {
     }
 
     func removeFromStorageAfterSave(report: VOYReport) {
-        var pendentReports = getPendentReports()
+        var pendentReports = getPendingReports()
         let index = pendentReports.index {
             if let idAsInt = $0["id"] as? Int { return idAsInt == report.id }
             return false
@@ -88,7 +88,7 @@ class VOYStorageManager {
     }
 
     func addPendingReport(_ report: VOYReport) {
-        var pendingReports = getPendentReports()
+        var pendingReports = getPendingReports()
 
         let index = pendingReports.index {
             if let idAsInt = $0["id"] as? Int { return idAsInt == report.id }

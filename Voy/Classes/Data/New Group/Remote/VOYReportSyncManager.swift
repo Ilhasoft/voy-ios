@@ -27,7 +27,7 @@ class VOYReportSyncManager {
 
     func trySendPendentReports() {
         guard isAllowedToSync else { return }
-        let pendentReportsJSON = storageManager.getPendentReports()
+        let pendentReportsJSON = storageManager.getPendingReports()
         guard !pendentReportsJSON.isEmpty else { return }
         guard reachability.hasNetwork() else { return }
         for reportJSON in pendentReportsJSON {
