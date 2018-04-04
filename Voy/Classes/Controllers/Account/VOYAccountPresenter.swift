@@ -36,8 +36,7 @@ class VOYAccountPresenter {
     }
 
     func clearAllCachedData() {
-        VOYReportStorageManager.clearPendentReports()
-        VOYCameraDataStorageManager.clearStoredCameraData()
+        VOYStorageManager.clearAllStoredData()
         URLCache.shared.removeAllCachedResponses()
     }
 }

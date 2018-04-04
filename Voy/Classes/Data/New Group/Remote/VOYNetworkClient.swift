@@ -14,7 +14,7 @@ class VOYNetworkClient {
 
     private var pendingRequests: [DataRequest] = []
     private let reachability: VOYReachability
-    private let reportStoreManager = VOYReportStorageManager()
+    private let storeManager = VOYStorageManager()
 
     enum VOYHTTPMethod {
         case get
@@ -203,7 +203,7 @@ class VOYNetworkClient {
             var objects = arrayOfDictionaries.map({ return Map(mappingType: .fromJSON, JSON: $0) })
 
             if urlSuffix == "reports" && parameters?["status"] as? Int == 2 {
-                for reportJSON in self.reportStoreManager.getPendentReports() {
+                for reportJSON in self.storeManager.getPendentReports() {
                     objects.append(Map(mappingType: .fromJSON, JSON: reportJSON))
                 }
             }
@@ -211,7 +211,7 @@ class VOYNetworkClient {
         } else {
             var objects: [Map] = []
             if urlSuffix == "reports" && parameters?["status"] as? Int == 2 {
-                for reportJSON in self.reportStoreManager.getPendentReports() {
+                for reportJSON in self.storeManager.getPendentReports() {
                     objects.append(Map(mappingType: .fromJSON, JSON: reportJSON))
                 }
             }
