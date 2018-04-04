@@ -99,8 +99,11 @@ class VOYStorageManager {
             pendingReports.remove(at: index)
         }
 
-        let reportID = Int(String.getIdentifier())
-        report.id = reportID
+        if report.id == nil {
+            let reportID = Int(String.getIdentifier())
+            report.id = reportID
+        }
+
         pendingReports.append(report.toJSON())
 
         let encodedObject = NSKeyedArchiver.archivedData(withRootObject: pendingReports)
