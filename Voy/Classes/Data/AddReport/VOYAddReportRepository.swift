@@ -13,8 +13,7 @@ class VOYAddReportRepository: VOYAddReportDataSource {
     let reachability: VOYReachability
     let networkClient = VOYNetworkClient(reachability: VOYDefaultReachability())
     let mediaFileDataSource: VOYMediaFileDataSource
-    let cameraDataStoreManager = VOYCameraDataStorageManager()
-    private let reportStorageManager = VOYReportStorageManager()
+    let storageManager = VOYStorageManager()
 
     init(reachability: VOYReachability, mediaFileDataSource: VOYMediaFileDataSource = VOYMediaFileRepository()) {
         self.reachability = reachability
@@ -26,27 +25,31 @@ class VOYAddReportRepository: VOYAddReportDataSource {
     func save(report: VOYReport) {
         guard reachability.hasNetwork() else { return }
 
-        let handler: ([String: Any]?, Error?) -> Void = { value, error in
-            guard let value = value else {
-                return
-            }
-            if let reportID = value["id"] as? Int, let cameraDataList = report.cameraDataList {
-                self.mediaFileDataSource.delete(mediaFiles: report.removedMedias)
-                self.reportStorageManager.removeFromStorageAfterSave(report: report)
-                for cameraData in cameraDataList {
-                    self.cameraDataStoreManager.addAsPending(cameraData: cameraData, reportID: reportID)
+        if let reportId = report.id, report.update && report.status != nil {
+            updateRemote(reportId: reportId, report: report) { value, error in
+                if let value = value, let reportID = value["id"] as? Int, let cameraDataList = report.cameraDataList {
+                    self.mediaFileDataSource.delete(mediaFiles: report.removedMedias)
+                    self.storageManager.removeFromStorageAfterSave(report: report)
+                    for cameraData in cameraDataList {
+                        self.storageManager.addAsPending(cameraData: cameraData, reportID: reportID)
+                    }
                 }
             }
-        }
-        if let reportId = report.id, report.update && report.status != nil {
-            updateRemote(reportId: reportId, report: report, completion: handler)
         } else {
-            createRemote(report: report, completion: handler)
+            createRemote(report: report) { value, error in
+                if let value = value, let reportID = value["id"] as? Int, let cameraDataList = report.cameraDataList {
+                    self.mediaFileDataSource.delete(mediaFiles: report.removedMedias)
+                    self.storageManager.removeFromStorageAfterSave(report: report)
+                    for cameraData in cameraDataList {
+                        self.storageManager.addAsPending(cameraData: cameraData, reportID: reportID)
+                    }
+                }
+            }
         }
     }
 
     func saveLocal(report: VOYReport) {
-        reportStorageManager.addPendingReport(report)
+        storageManager.addPendingReport(report)
     }
 
     // MARK: - Private methods
