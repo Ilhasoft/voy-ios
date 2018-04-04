@@ -9,6 +9,6 @@
 import UIKit
 
 protocol VOYAddReportDataSource {
-    func save(report: VOYReport, completion: @escaping(Error?, Int?) -> Void)
+    func save(report: VOYReport)
     func saveLocal(report: VOYReport)
 }
