@@ -73,7 +73,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // MARK: - Private methods
 
     private func checkPendentReportsToSend() {
-        Timer.scheduledTimer(withTimeInterval: 10, repeats: true) { _ in
+        Timer.scheduledTimer(withTimeInterval: 15, repeats: true) { _ in
             self.reportSyncManager.trySendPendentReports()
         }
         Timer.scheduledTimer(withTimeInterval: 17, repeats: true) { _ in
