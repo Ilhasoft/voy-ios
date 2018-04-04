@@ -23,12 +23,11 @@ class VOYAddReportRepository: VOYAddReportDataSource {
 
     // MARK: - VOYAddReportDataSource
 
-    func save(report: VOYReport, completion: @escaping (Error?, Int?) -> Void) {
-        guard reachability.hasNetwork() else { completion(nil, nil); return }
+    func save(report: VOYReport) {
+        guard reachability.hasNetwork() else { return }
 
         let handler: ([String: Any]?, Error?) -> Void = { value, error in
             guard let value = value else {
-                completion(error, nil)
                 return
             }
             if let reportID = value["id"] as? Int, let cameraDataList = report.cameraDataList {
@@ -37,10 +36,6 @@ class VOYAddReportRepository: VOYAddReportDataSource {
                 for cameraData in cameraDataList {
                     self.cameraDataStoreManager.addAsPending(cameraData: cameraData, reportID: reportID)
                 }
-                completion(nil, reportID)
-            } else {
-                print("error: \(value)")
-                completion(nil, nil)
             }
         }
         if let reportId = report.id, report.update && report.status != nil {

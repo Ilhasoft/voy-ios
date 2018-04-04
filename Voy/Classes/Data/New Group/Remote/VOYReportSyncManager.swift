@@ -33,7 +33,7 @@ class VOYReportSyncManager {
         guard reachability.hasNetwork() else { return }
         for reportJSON in pendentReportsJSON {
             if let report = VOYReport(JSON: reportJSON) {
-                dataSource.save(report: report) { _, _ in }
+                dataSource.save(report: report)
             }
         }
     }
