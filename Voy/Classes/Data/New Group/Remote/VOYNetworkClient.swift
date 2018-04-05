@@ -203,7 +203,9 @@ class VOYNetworkClient {
             if urlSuffix == "reports" && parameters?["status"] as? Int == 2 {
                 for offlineReport in self.storeManager.getPendingReports() {
                     for (index, dictionary) in arrayOfDictionaries.enumerated() {
-                        if let dictionaryId = dictionary["id"] as? Int, let localReportId = offlineReport["id"] as? Int, dictionaryId == localReportId {
+                        if let dictionaryId = dictionary["id"] as? Int,
+                            let localReportId = offlineReport["id"] as? Int,
+                            dictionaryId == localReportId {
                             arrayOfDictionaries.remove(at: index)
                             break
                         }
