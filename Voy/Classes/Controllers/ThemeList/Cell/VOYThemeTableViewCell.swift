@@ -26,7 +26,7 @@ open class VOYThemeTableViewCell: DataBindOnDemandTableViewCell {
     override open func setupCell(with object: Any, at indexPath: IndexPath) {
         super.setupCell(with: object, at: indexPath)
         if let theme = VOYTheme(JSON: self.object.JSON) {
-            self.dataBindView.backgroundColor = UIColor(hex: theme.color)
+            self.lbTheme.backgroundColor = UIColor(hex: theme.color)
         }
     }
 }
