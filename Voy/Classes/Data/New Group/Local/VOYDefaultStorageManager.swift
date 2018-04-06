@@ -22,7 +22,7 @@ class VOYDefaultStorageManager: VOYStorageManager {
         return [[String: Any]]()
     }
 
-    func removeFromStorageAfterSave(cameraData: VOYCameraData) {
+    func removeFromPendingList(cameraData: VOYCameraData) {
         var pendentCameraDataList = getPendingCameraData()
         let index = pendentCameraDataList.index {
             if let idString = $0["id"] as? String { return idString == cameraData.id }
@@ -75,7 +75,7 @@ class VOYDefaultStorageManager: VOYStorageManager {
         return [[String: Any]]()
     }
 
-    func removeFromStorageAfterSave(report: VOYReport) {
+    func removeFromPendingList(report: VOYReport) {
         var pendentReports = getPendingReports()
         let index = pendentReports.index {
             if let idAsInt = $0["id"] as? Int { return idAsInt == report.id }

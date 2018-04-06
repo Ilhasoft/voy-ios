@@ -10,11 +10,11 @@ import UIKit
 
 protocol VOYStorageManager {
     func getPendingCameraData() -> [[String: Any]]
-    func removeFromStorageAfterSave(cameraData: VOYCameraData)
+    func removeFromPendingList(cameraData: VOYCameraData)
     func addAsPending(cameraData: VOYCameraData, reportID: Int)
     func clearStoredCameraData()
     func getPendingReports() -> [[String: Any]]
-    func removeFromStorageAfterSave(report: VOYReport)
+    func removeFromPendingList(report: VOYReport)
     func clearPendentReports()
     func addPendingReport(_ report: VOYReport)
     func clearAllStoredData()

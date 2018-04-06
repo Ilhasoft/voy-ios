@@ -81,7 +81,7 @@ class VOYMediaFileRepository: VOYMediaFileDataSource {
                             if response.error != nil {
                                 self.storageManager.addAsPending(cameraData: cameraData, reportID: report_id)
                             } else {
-                                self.storageManager.removeFromStorageAfterSave(cameraData: cameraData)
+                                self.storageManager.removeFromPendingList(cameraData: cameraData)
                             }
                         }
                     case .failure:
