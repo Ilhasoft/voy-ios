@@ -12,8 +12,7 @@ class VOYReportSyncManager {
 
     private let mediaFileDataSource: VOYMediaFileDataSource
     private let reachability: VOYReachability
-    private let reportStoreManager = VOYReportStorageManager()
-    private let cameraDataStoreManager = VOYCameraDataStorageManager()
+    private let storageManager = VOYStorageManager()
 
     private let dataSource: VOYAddReportDataSource!
 
@@ -28,7 +27,7 @@ class VOYReportSyncManager {
 
     func trySendPendentReports() {
         guard isAllowedToSync else { return }
-        let pendentReportsJSON = reportStoreManager.getPendentReports()
+        let pendentReportsJSON = storageManager.getPendentReports()
         guard !pendentReportsJSON.isEmpty else { return }
         guard reachability.hasNetwork() else { return }
         for reportJSON in pendentReportsJSON {
@@ -39,8 +38,9 @@ class VOYReportSyncManager {
     }
 
     func trySendingNextPendingCameraData() {
+        print("isAllowedToSync: \(isAllowedToSync), hastNetwork: \(reachability.hasNetwork()), isUploading: \(mediaFileDataSource.isUploading)")
         guard isAllowedToSync, reachability.hasNetwork(), !mediaFileDataSource.isUploading else { return }
-        let pendentCameraDataListDictionary = cameraDataStoreManager.getPendentCameraDataList()
+        let pendentCameraDataListDictionary = storageManager.getPendingCameraDataList()
         guard let cameraData = pendentCameraDataListDictionary.first else { return }
         guard let cameraDataObject = VOYCameraData(JSON: cameraData) else { return }
         mediaFileDataSource.upload(reportID: 0, cameraData: cameraDataObject) { _ in }

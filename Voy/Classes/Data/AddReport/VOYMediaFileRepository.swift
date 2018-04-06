@@ -13,7 +13,7 @@ class VOYMediaFileRepository: VOYMediaFileDataSource {
     var isUploading = false
     private let networkClient = VOYNetworkClient(reachability: VOYDefaultReachability())
     private let reachability: VOYReachability
-    private let camerDataStoreManager = VOYCameraDataStorageManager()
+    private let storageManager = VOYStorageManager()
 
     init(reachability: VOYReachability = VOYDefaultReachability()) {
         self.reachability = reachability
@@ -77,17 +77,17 @@ class VOYMediaFileRepository: VOYMediaFileDataSource {
                     case .success(let upload, _, _):
                         upload.responseJSON { response in
                             if response.error != nil {
-                                self.camerDataStoreManager.addAsPending(cameraData: cameraData, reportID: report_id)
+                                self.storageManager.addAsPending(cameraData: cameraData, reportID: report_id)
                             } else {
-                                self.camerDataStoreManager.removeFromStorageAfterSave(cameraData: cameraData)
+                                self.storageManager.removeFromStorageAfterSave(cameraData: cameraData)
                             }
                         }
                     case .failure:
-                        self.camerDataStoreManager.addAsPending(cameraData: cameraData, reportID: report_id)
+                        self.storageManager.addAsPending(cameraData: cameraData, reportID: report_id)
                     }
             })
         } else {
-            camerDataStoreManager.addAsPending(cameraData: cameraData, reportID: report_id)
+            storageManager.addAsPending(cameraData: cameraData, reportID: report_id)
         }
     }
 }
