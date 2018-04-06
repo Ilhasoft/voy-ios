@@ -28,6 +28,7 @@ class VOYDefaultStorageManager: VOYStorageManager {
             if let idString = $0["id"] as? String { return idString == cameraData.id }
             return false
         }
+        // TODO delete files from disk if they exist
         if let index = index {
             pendentCameraDataList.remove(at: index)
             let encodedObject = NSKeyedArchiver.archivedData(withRootObject: pendentCameraDataList)
@@ -119,6 +120,9 @@ class VOYDefaultStorageManager: VOYStorageManager {
         UserDefaults.standard.synchronize()
     }
 
+    /**
+     * Erases all content stored as offline data.
+     */
     func clearAllOfflineData() {
         clearPendingReports()
         clearStoredCameraData()
