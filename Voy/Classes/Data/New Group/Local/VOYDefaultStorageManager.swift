@@ -15,7 +15,7 @@ class VOYDefaultStorageManager: VOYStorageManager {
 
     // MARK: - CameraData
 
-    func getPendingCameraDataList() -> [[String: Any]] {
+    func getPendingCameraData() -> [[String: Any]] {
         if let cameraDataDictioanry = UserDefaults.standard.getArchivedObject(key: "cameraData") as? [[String: Any]] {
             return cameraDataDictioanry
         }
@@ -23,7 +23,7 @@ class VOYDefaultStorageManager: VOYStorageManager {
     }
 
     func removeFromStorageAfterSave(cameraData: VOYCameraData) {
-        var pendentCameraDataList = getPendingCameraDataList()
+        var pendentCameraDataList = getPendingCameraData()
         let index = pendentCameraDataList.index {
             if let idString = $0["id"] as? String { return idString == cameraData.id }
             return false
@@ -38,7 +38,7 @@ class VOYDefaultStorageManager: VOYStorageManager {
 
     func addAsPending(cameraData: VOYCameraData, reportID: Int) {
 
-        var pendentCameraDataList = getPendingCameraDataList()
+        var pendentCameraDataList = getPendingCameraData()
 
         let index = pendentCameraDataList.index {
             if let idString = $0["id"] as? String { return idString == cameraData.id }

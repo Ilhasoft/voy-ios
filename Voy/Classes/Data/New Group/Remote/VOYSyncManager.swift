@@ -41,7 +41,7 @@ class VOYSyncManager {
 
     func trySendingNextPendingCameraData() {
         guard isAllowedToSync, reachability.hasNetwork(), !mediaFileDataSource.isUploading else { return }
-        let pendentCameraDataListDictionary = storageManager.getPendingCameraDataList()
+        let pendentCameraDataListDictionary = storageManager.getPendingCameraData()
         guard let cameraData = pendentCameraDataListDictionary.first else { return }
         guard let cameraDataObject = VOYCameraData(JSON: cameraData) else { return }
         mediaFileDataSource.upload(reportID: 0, cameraData: cameraDataObject) { _ in }
