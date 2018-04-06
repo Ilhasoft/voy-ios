@@ -11,7 +11,7 @@ import XCTest
 
 class VOYStorageManagerTests: XCTestCase {
 
-    let storageManager = VOYStorageManager()
+    let storageManager = VOYDefaultStorageManager()
 
     /**
      * Saves a report and checks if it's actually stored in the pending list.
