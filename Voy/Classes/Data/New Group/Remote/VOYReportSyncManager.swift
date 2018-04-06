@@ -27,7 +27,7 @@ class VOYReportSyncManager {
 
     func trySendPendentReports() {
         guard isAllowedToSync else { return }
-        let pendentReportsJSON = storageManager.getPendentReports()
+        let pendentReportsJSON = storageManager.getPendingReports()
         guard !pendentReportsJSON.isEmpty else { return }
         guard reachability.hasNetwork() else { return }
         for reportJSON in pendentReportsJSON {
@@ -38,7 +38,6 @@ class VOYReportSyncManager {
     }
 
     func trySendingNextPendingCameraData() {
-        print("isAllowedToSync: \(isAllowedToSync), hastNetwork: \(reachability.hasNetwork()), isUploading: \(mediaFileDataSource.isUploading)")
         guard isAllowedToSync, reachability.hasNetwork(), !mediaFileDataSource.isUploading else { return }
         let pendentCameraDataListDictionary = storageManager.getPendingCameraDataList()
         guard let cameraData = pendentCameraDataListDictionary.first else { return }

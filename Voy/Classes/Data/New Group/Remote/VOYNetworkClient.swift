@@ -200,18 +200,25 @@ class VOYNetworkClient {
                 arrayOfDictionaries = jsonObject
             }
 
-            var objects = arrayOfDictionaries.map({ return Map(mappingType: .fromJSON, JSON: $0) })
-
             if urlSuffix == "reports" && parameters?["status"] as? Int == 2 {
-                for reportJSON in self.storeManager.getPendentReports() {
-                    objects.append(Map(mappingType: .fromJSON, JSON: reportJSON))
+                for offlineReport in self.storeManager.getPendingReports() {
+                    for (index, dictionary) in arrayOfDictionaries.enumerated() {
+                        if let dictionaryId = dictionary["id"] as? Int, let localReportId = offlineReport["id"] as? Int, dictionaryId == localReportId {
+                            arrayOfDictionaries.remove(at: index)
+                            break
+                        }
+                    }
+                    arrayOfDictionaries.append(offlineReport)
                 }
             }
+
+            let objects = arrayOfDictionaries.map({ return Map(mappingType: .fromJSON, JSON: $0) })
+
             completion(objects, nil)
         } else {
             var objects: [Map] = []
             if urlSuffix == "reports" && parameters?["status"] as? Int == 2 {
-                for reportJSON in self.storeManager.getPendentReports() {
+                for reportJSON in self.storeManager.getPendingReports() {
                     objects.append(Map(mappingType: .fromJSON, JSON: reportJSON))
                 }
             }
