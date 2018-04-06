@@ -17,7 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     static var mainNavigationController: UINavigationController?
-    var reportSyncManager = VOYReportSyncManager()
+    var reportSyncManager = VOYSyncManager()
 
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {

@@ -8,6 +8,9 @@
 
 import UIKit
 
+/**
+ * This class saves and returns the content that is kept in the device while network is not available.
+ */
 class VOYStorageManager {
 
     // MARK: - CameraData
@@ -62,6 +65,9 @@ class VOYStorageManager {
 
     // MARK: - Reports
 
+    /**
+     * Retusn all the reports not yet synchronized as dictionaries.
+     */
     func getPendingReports() -> [[String: Any]] {
         if let reportsDictionary = UserDefaults.standard.getArchivedObject(key: "reports") as? [[String: Any]] {
             return reportsDictionary
@@ -75,18 +81,20 @@ class VOYStorageManager {
             if let idAsInt = $0["id"] as? Int { return idAsInt == report.id }
             return false
         }
-        if let index = index {
-            pendentReports.remove(at: index)
-            let encodedObject = NSKeyedArchiver.archivedData(withRootObject: pendentReports)
-            UserDefaults.standard.set(encodedObject, forKey: "reports")
-            UserDefaults.standard.synchronize()
-        }
+        guard let unwrappedIndex = index else { return }
+        pendentReports.remove(at: unwrappedIndex)
+        let encodedObject = NSKeyedArchiver.archivedData(withRootObject: pendentReports)
+        UserDefaults.standard.set(encodedObject, forKey: "reports")
+        UserDefaults.standard.synchronize()
     }
 
     static func clearPendentReports() {
         UserDefaults.standard.set(nil, forKey: "reports")
     }
 
+    /**
+     * Saves a report as a offline report to the synchronized when network is available.
+     */
     func addPendingReport(_ report: VOYReport) {
         var pendingReports = getPendingReports()
 

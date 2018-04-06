@@ -8,7 +8,7 @@
 
 import UIKit
 
-class VOYReportSyncManager {
+class VOYSyncManager {
 
     private let mediaFileDataSource: VOYMediaFileDataSource
     private let reachability: VOYReachability
