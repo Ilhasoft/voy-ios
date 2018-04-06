@@ -13,11 +13,14 @@ class VOYAddReportRepository: VOYAddReportDataSource {
     let reachability: VOYReachability
     let networkClient = VOYNetworkClient(reachability: VOYDefaultReachability())
     let mediaFileDataSource: VOYMediaFileDataSource
-    let storageManager = VOYStorageManager()
+    let storageManager: VOYStorageManager
 
-    init(reachability: VOYReachability, mediaFileDataSource: VOYMediaFileDataSource = VOYMediaFileRepository()) {
+    init(reachability: VOYReachability,
+         mediaFileDataSource: VOYMediaFileDataSource = VOYMediaFileRepository(),
+         storageManager: VOYStorageManager = VOYDefaultStorageManager()) {
         self.reachability = reachability
         self.mediaFileDataSource = mediaFileDataSource
+        self.storageManager = storageManager
     }
 
     // MARK: - VOYAddReportDataSource

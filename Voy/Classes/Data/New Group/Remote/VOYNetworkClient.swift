@@ -14,7 +14,7 @@ class VOYNetworkClient {
 
     private var pendingRequests: [DataRequest] = []
     private let reachability: VOYReachability
-    private let storeManager = VOYStorageManager()
+    private let storeManager: VOYStorageManager
 
     enum VOYHTTPMethod {
         case get
@@ -36,8 +36,10 @@ class VOYNetworkClient {
         }
     }
 
-    init(reachability: VOYReachability) {
+    init(reachability: VOYReachability,
+         storageManager: VOYStorageManager = VOYDefaultStorageManager()) {
         self.reachability = reachability
+        self.storeManager = storageManager
     }
 
     /**

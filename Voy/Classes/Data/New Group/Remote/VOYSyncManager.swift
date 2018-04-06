@@ -12,16 +12,18 @@ class VOYSyncManager {
 
     private let mediaFileDataSource: VOYMediaFileDataSource
     private let reachability: VOYReachability
-    private let storageManager = VOYStorageManager()
+    private let storageManager: VOYStorageManager
 
     private let dataSource: VOYAddReportDataSource!
 
     private var isAllowedToSync = true
 
     init(mediaFileDataSource: VOYMediaFileDataSource = VOYMediaFileRepository(),
-         reachability: VOYReachability = VOYDefaultReachability()) {
+         reachability: VOYReachability = VOYDefaultReachability(),
+         storageManager: VOYStorageManager = VOYDefaultStorageManager()) {
         self.mediaFileDataSource = mediaFileDataSource
         self.reachability = reachability
+        self.storageManager = storageManager
         dataSource = VOYAddReportRepository(reachability: reachability)
     }
 

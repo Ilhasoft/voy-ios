@@ -9,6 +9,15 @@
 import XCTest
 @testable import Voy
 
-class VOYStorageManagerTests: NSObject {
+class VOYStorageManagerTests: XCTestCase {
+
+    let storageManager = VOYStorageManager()
+
+    /**
+     * Saves a report and checks if it's actually stored in the pending list.
+     */
+    func testSaveReport() {
+        
+    }
 
 }

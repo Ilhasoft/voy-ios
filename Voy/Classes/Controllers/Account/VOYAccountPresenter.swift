@@ -12,10 +12,14 @@ class VOYAccountPresenter {
 
     weak var view: VOYAccountContract?
     var dataSource: VOYAccountDataSource
+    let storageManager: VOYStorageManager
 
-    init(dataSource: VOYAccountDataSource, view: VOYAccountContract) {
+    init(dataSource: VOYAccountDataSource,
+         view: VOYAccountContract,
+         storageManager: VOYStorageManager = VOYDefaultStorageManager()) {
         self.dataSource = dataSource
         self.view = view
+        self.storageManager = storageManager
     }
 
     func updateUser(avatar: Int?, password: String?) {
@@ -36,7 +40,7 @@ class VOYAccountPresenter {
     }
 
     func clearAllCachedData() {
-        VOYStorageManager.clearAllStoredData()
+        storageManager.clearAllStoredData()
         URLCache.shared.removeAllCachedResponses()
     }
 }
