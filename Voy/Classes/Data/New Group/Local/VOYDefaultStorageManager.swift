@@ -88,7 +88,7 @@ class VOYDefaultStorageManager: VOYStorageManager {
         UserDefaults.standard.synchronize()
     }
 
-    func clearPendentReports() {
+    func clearPendingReports() {
         UserDefaults.standard.set(nil, forKey: "reports")
     }
 
@@ -119,8 +119,8 @@ class VOYDefaultStorageManager: VOYStorageManager {
         UserDefaults.standard.synchronize()
     }
 
-    func clearAllStoredData() {
-        clearPendentReports()
+    func clearAllOfflineData() {
+        clearPendingReports()
         clearStoredCameraData()
     }
 

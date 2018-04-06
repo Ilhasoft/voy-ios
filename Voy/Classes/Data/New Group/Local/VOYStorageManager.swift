@@ -15,7 +15,7 @@ protocol VOYStorageManager {
     func clearStoredCameraData()
     func getPendingReports() -> [[String: Any]]
     func removeFromPendingList(report: VOYReport)
-    func clearPendentReports()
+    func clearPendingReports()
     func addPendingReport(_ report: VOYReport)
-    func clearAllStoredData()
+    func clearAllOfflineData()
 }

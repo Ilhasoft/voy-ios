@@ -40,7 +40,7 @@ class VOYAccountPresenter {
     }
 
     func clearAllCachedData() {
-        storageManager.clearAllStoredData()
+        storageManager.clearAllOfflineData()
         URLCache.shared.removeAllCachedResponses()
     }
 }
