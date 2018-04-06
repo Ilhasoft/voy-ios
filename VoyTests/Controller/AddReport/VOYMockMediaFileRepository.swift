@@ -6,8 +6,8 @@
 //  Copyright © 2018 Ilhasoft. All rights reserved.
 //
 
-import XCTest
-@testable import Voy
+//import XCTest
+//@testable import Voy
 
 //class VOYMockMediaFileRepository: VOYMediaFileDataSource {
 //    var removedFile: Bool = false

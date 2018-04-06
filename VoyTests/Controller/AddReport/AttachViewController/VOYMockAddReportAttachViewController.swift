@@ -6,9 +6,9 @@
 //  Copyright © 2018 Ilhasoft. All rights reserved.
 //
 
-import XCTest
-@testable import Voy
-
+//import XCTest
+//@testable import Voy
+//
 //class VOYMockAddReportAttachViewController: VOYAddReportAttachContract {
 //    var addedMedias: Bool = false
 //    var startedMediaPicker: Bool = false

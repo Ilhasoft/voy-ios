@@ -6,17 +6,17 @@
 //  Copyright © 2018 Ilhasoft. All rights reserved.
 //
 
-import XCTest
-@testable import Voy
-
-class VOYMockCommentRepository: VOYCommentDataSource {
-    func delete(commentId: Int, completion: @escaping (Error?) -> Void) {
-        // TODO
-    }
-    
-    func save(comment: VOYComment, completion: @escaping (Error?) -> Void) {
-        if !comment.text.isEmpty {
-            completion(nil)
-        }
-    }
-}
+//import XCTest
+//@testable import Voy
+//
+//class VOYMockCommentRepository: VOYCommentDataSource {
+//    func delete(commentId: Int, completion: @escaping (Error?) -> Void) {
+//        // TODO
+//    }
+//    
+//    func save(comment: VOYComment, completion: @escaping (Error?) -> Void) {
+//        if !comment.text.isEmpty {
+//            completion(nil)
+//        }
+//    }
+//}

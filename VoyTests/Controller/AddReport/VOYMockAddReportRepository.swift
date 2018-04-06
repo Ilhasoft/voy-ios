@@ -6,8 +6,8 @@
 //  Copyright © 2018 Ilhasoft. All rights reserved.
 //
 
-import XCTest
-@testable import Voy
+//import XCTest
+//@testable import Voy
 
 //class VOYMockAddReportRepository: VOYAddReportDataSource {
 //    var hasNetwork: Bool = false

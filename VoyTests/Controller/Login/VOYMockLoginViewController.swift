@@ -6,23 +6,23 @@
 //  Copyright © 2018 Ilhasoft. All rights reserved.
 //
 
-import XCTest
-@testable import Voy
-
-open class VOYMockLoginViewController: VOYLoginContract {
-    var redirectedUser: Bool
-    var presentedAlert: Bool
-    
-    init(redirectedUser: Bool, presentedAlert: Bool) {
-        self.redirectedUser = redirectedUser
-        self.presentedAlert = presentedAlert
-    }
-    
-    public func redirectController() {
-        redirectedUser = true
-    }
-    
-    public func presentErrorAlert() {
-        presentedAlert = true
-    }
-}
+//import XCTest
+//@testable import Voy
+//
+//open class VOYMockLoginViewController: VOYLoginContract {
+//    var redirectedUser: Bool
+//    var presentedAlert: Bool
+//    
+//    init(redirectedUser: Bool, presentedAlert: Bool) {
+//        self.redirectedUser = redirectedUser
+//        self.presentedAlert = presentedAlert
+//    }
+//    
+//    public func redirectController() {
+//        redirectedUser = true
+//    }
+//    
+//    public func presentErrorAlert() {
+//        presentedAlert = true
+//    }
+//}
