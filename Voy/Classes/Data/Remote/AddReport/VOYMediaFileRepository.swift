@@ -13,10 +13,12 @@ class VOYMediaFileRepository: VOYMediaFileDataSource {
     var isUploading = false
     private let networkClient = VOYNetworkClient(reachability: VOYDefaultReachability())
     private let reachability: VOYReachability
-    private let storageManager = VOYStorageManager()
+    private let storageManager: VOYStorageManager
 
-    init(reachability: VOYReachability = VOYDefaultReachability()) {
+    init(reachability: VOYReachability = VOYDefaultReachability(),
+         storageManager: VOYStorageManager = VOYDefaultStorageManager()) {
         self.reachability = reachability
+        self.storageManager = storageManager
     }
 
     func delete(mediaFiles: [VOYMedia]?) {
@@ -79,7 +81,7 @@ class VOYMediaFileRepository: VOYMediaFileDataSource {
                             if response.error != nil {
                                 self.storageManager.addAsPending(cameraData: cameraData, reportID: report_id)
                             } else {
-                                self.storageManager.removeFromStorageAfterSave(cameraData: cameraData)
+                                self.storageManager.removeFromPendingList(cameraData: cameraData)
                             }
                         }
                     case .failure:

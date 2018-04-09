@@ -8,23 +8,27 @@
 
 import UIKit
 
-class VOYStorageManager {
+/**
+ * This class saves and returns the content that is kept in the device while network is not available.
+ */
+class VOYDefaultStorageManager: VOYStorageManager {
 
     // MARK: - CameraData
 
-    func getPendingCameraDataList() -> [[String: Any]] {
+    func getPendingCameraData() -> [[String: Any]] {
         if let cameraDataDictioanry = UserDefaults.standard.getArchivedObject(key: "cameraData") as? [[String: Any]] {
             return cameraDataDictioanry
         }
         return [[String: Any]]()
     }
 
-    func removeFromStorageAfterSave(cameraData: VOYCameraData) {
-        var pendentCameraDataList = getPendingCameraDataList()
+    func removeFromPendingList(cameraData: VOYCameraData) {
+        var pendentCameraDataList = getPendingCameraData()
         let index = pendentCameraDataList.index {
             if let idString = $0["id"] as? String { return idString == cameraData.id }
             return false
         }
+        // TODO delete files from disk if they exist
         if let index = index {
             pendentCameraDataList.remove(at: index)
             let encodedObject = NSKeyedArchiver.archivedData(withRootObject: pendentCameraDataList)
@@ -35,7 +39,7 @@ class VOYStorageManager {
 
     func addAsPending(cameraData: VOYCameraData, reportID: Int) {
 
-        var pendentCameraDataList = getPendingCameraDataList()
+        var pendentCameraDataList = getPendingCameraData()
 
         let index = pendentCameraDataList.index {
             if let idString = $0["id"] as? String { return idString == cameraData.id }
@@ -56,12 +60,15 @@ class VOYStorageManager {
         UserDefaults.standard.synchronize()
     }
 
-    static func clearStoredCameraData() {
+    func clearStoredCameraData() {
         UserDefaults.standard.set(nil, forKey: "cameraData")
     }
 
     // MARK: - Reports
 
+    /**
+     * Retusn all the reports not yet synchronized as dictionaries.
+     */
     func getPendingReports() -> [[String: Any]] {
         if let reportsDictionary = UserDefaults.standard.getArchivedObject(key: "reports") as? [[String: Any]] {
             return reportsDictionary
@@ -69,24 +76,26 @@ class VOYStorageManager {
         return [[String: Any]]()
     }
 
-    func removeFromStorageAfterSave(report: VOYReport) {
+    func removeFromPendingList(report: VOYReport) {
         var pendentReports = getPendingReports()
         let index = pendentReports.index {
             if let idAsInt = $0["id"] as? Int { return idAsInt == report.id }
             return false
         }
-        if let index = index {
-            pendentReports.remove(at: index)
-            let encodedObject = NSKeyedArchiver.archivedData(withRootObject: pendentReports)
-            UserDefaults.standard.set(encodedObject, forKey: "reports")
-            UserDefaults.standard.synchronize()
-        }
+        guard let unwrappedIndex = index else { return }
+        pendentReports.remove(at: unwrappedIndex)
+        let encodedObject = NSKeyedArchiver.archivedData(withRootObject: pendentReports)
+        UserDefaults.standard.set(encodedObject, forKey: "reports")
+        UserDefaults.standard.synchronize()
     }
 
-    static func clearPendentReports() {
+    func clearPendingReports() {
         UserDefaults.standard.set(nil, forKey: "reports")
     }
 
+    /**
+     * Saves a report as a offline report to the synchronized when network is available.
+     */
     func addPendingReport(_ report: VOYReport) {
         var pendingReports = getPendingReports()
 
@@ -111,8 +120,11 @@ class VOYStorageManager {
         UserDefaults.standard.synchronize()
     }
 
-    static func clearAllStoredData() {
-        clearPendentReports()
+    /**
+     * Erases all content stored as offline data.
+     */
+    func clearAllOfflineData() {
+        clearPendingReports()
         clearStoredCameraData()
     }
 

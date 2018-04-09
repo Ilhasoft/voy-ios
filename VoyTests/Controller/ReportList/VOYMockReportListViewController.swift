@@ -6,14 +6,14 @@
 //  Copyright © 2018 Ilhasoft. All rights reserved.
 //
 
-import XCTest
-@testable import Voy
-
-class VOYMockReportListViewController: VOYReportListContract {
-    
-    var hasNavigatedToReportDetails = false
-    
-    func navigateToReportDetails(report: VOYReport) {
-        hasNavigatedToReportDetails = true
-    }
-}
+//import XCTest
+//@testable import Voy
+//
+//class VOYMockReportListViewController: VOYReportListContract {
+//    
+//    var hasNavigatedToReportDetails = false
+//    
+//    func navigateToReportDetails(report: VOYReport) {
+//        hasNavigatedToReportDetails = true
+//    }
+//}

@@ -8,20 +8,22 @@
 
 import UIKit
 
-class VOYReportSyncManager {
+class VOYSyncManager {
 
     private let mediaFileDataSource: VOYMediaFileDataSource
     private let reachability: VOYReachability
-    private let storageManager = VOYStorageManager()
+    private let storageManager: VOYStorageManager
 
     private let dataSource: VOYAddReportDataSource!
 
     private var isAllowedToSync = true
 
     init(mediaFileDataSource: VOYMediaFileDataSource = VOYMediaFileRepository(),
-         reachability: VOYReachability = VOYDefaultReachability()) {
+         reachability: VOYReachability = VOYDefaultReachability(),
+         storageManager: VOYStorageManager = VOYDefaultStorageManager()) {
         self.mediaFileDataSource = mediaFileDataSource
         self.reachability = reachability
+        self.storageManager = storageManager
         dataSource = VOYAddReportRepository(reachability: reachability)
     }
 
@@ -39,7 +41,7 @@ class VOYReportSyncManager {
 
     func trySendingNextPendingCameraData() {
         guard isAllowedToSync, reachability.hasNetwork(), !mediaFileDataSource.isUploading else { return }
-        let pendentCameraDataListDictionary = storageManager.getPendingCameraDataList()
+        let pendentCameraDataListDictionary = storageManager.getPendingCameraData()
         guard let cameraData = pendentCameraDataListDictionary.first else { return }
         guard let cameraDataObject = VOYCameraData(JSON: cameraData) else { return }
         mediaFileDataSource.upload(reportID: 0, cameraData: cameraDataObject) { _ in }
