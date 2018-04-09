@@ -19,12 +19,14 @@ class VOYLoginPresenter {
     }
 
     func login(username: String, password: String) {
+        view?.startProgressIndicator()
         dataSource.login(username: username, password: password) { (user, _) in
-            guard let view = self.view else { return }
+            self.view?.stopProgressIndicator()
             if user != nil {
-                view.redirectController()
+                self.view?.redirectController()
             } else {
-                view.presentErrorAlert()
+                // TODO: show show a more specific error
+                self.view?.presentErrorAlert()
             }
         }
     }

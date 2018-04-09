@@ -9,6 +9,8 @@
 import UIKit
 
 protocol VOYLoginContract: class {
+    func startProgressIndicator()
+    func stopProgressIndicator()
     func redirectController()
     func presentErrorAlert()
 }
