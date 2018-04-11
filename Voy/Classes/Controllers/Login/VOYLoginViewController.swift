@@ -10,7 +10,7 @@ import UIKit
 import SlideMenuControllerSwift
 import NVActivityIndicatorView
 
-class VOYLoginViewController: UIViewController, NVActivityIndicatorViewable, VOYLoginContract {
+class VOYLoginViewController: UIViewController, NVActivityIndicatorViewable {
 
     @IBOutlet var scrollView: UIScrollView!
     @IBOutlet weak var stackViewIcons: UIStackView!
@@ -19,10 +19,11 @@ class VOYLoginViewController: UIViewController, NVActivityIndicatorViewable, VOY
     @IBOutlet weak var passwordView: VOYTextFieldView!
     @IBOutlet weak var btLogin: UIButton!
 
-    var presenter: VOYLoginPresenter?
+    var presenter: VOYLoginPresenter!
 
     init() {
         super.init(nibName: String(describing: type(of: self)), bundle: nil)
+        self.presenter = VOYLoginPresenter(dataSource: VOYLoginRepository(), view: self)
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -31,46 +32,17 @@ class VOYLoginViewController: UIViewController, NVActivityIndicatorViewable, VOY
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.presenter = VOYLoginPresenter(dataSource: VOYLoginRepository(), view: self)
+
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: " ", style: .plain, target: nil, action: nil)
         self.automaticallyAdjustsScrollViewInsets = false
         self.navigationController?.setNavigationBarHidden(true, animated: false)
         setupLocalization()
     }
 
-    // MARK: - VOYLoginContract
-
-    func presentErrorAlert() {
-        let alertController = VOYAlertViewController(
-            title: localizedString(.error),
-            message: localizedString(.loginErrorMessage),
-            buttonNames: [localizedString(.ok)]
-        )
-        self.stopAnimating()
-        alertController.show(true, inViewController: self)
-    }
-
-    func redirectController() {
-        let navigationController = UINavigationController(
-            rootViewController: VOYThemeListViewController(userJustLogged: true)
-        )
-        let slideMenuController = SlideMenuController(
-            mainViewController: navigationController,
-            rightMenuViewController: VOYNotificationViewController()
-        )
-
-        self.stopAnimating()
-
-        guard let navigation = self.navigationController else { return }
-        navigation.pushViewController(slideMenuController, animated: true)
-    }
-
     // MARK: - Component Events
 
     @IBAction func btLoginTapped(_ sender: Any) {
         self.view.endEditing(true)
-        startAnimating()
-        guard let presenter = presenter else { return }
         presenter.login(username: self.userNameView.txtField.safeText, password: self.passwordView.txtField.safeText)
     }
 
@@ -82,5 +54,35 @@ class VOYLoginViewController: UIViewController, NVActivityIndicatorViewable, VOY
         passwordView.txtField.placeholder = localizedString(.password)
         btLogin.setTitle(localizedString(.login), for: .normal)
     }
+}
 
+extension VOYLoginViewController: VOYLoginContract {
+    func startProgressIndicator() {
+        startAnimating()
+    }
+
+    func stopProgressIndicator() {
+        stopAnimating()
+    }
+
+    func redirectController() {
+        let navigationController = UINavigationController(
+                rootViewController: VOYThemeListViewController(userJustLogged: true)
+        )
+        let slideMenuController = SlideMenuController(
+                mainViewController: navigationController,
+                rightMenuViewController: VOYNotificationViewController()
+        )
+        self.navigationController?.pushViewController(slideMenuController, animated: true)
+    }
+
+    func presentErrorAlert() {
+        let alertController = VOYAlertViewController(
+                title: localizedString(.error),
+                message: localizedString(.loginErrorMessage),
+                buttonNames: [localizedString(.ok)]
+        )
+        self.stopAnimating()
+        alertController.show(true, inViewController: self)
+    }
 }
