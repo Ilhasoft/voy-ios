@@ -40,7 +40,6 @@ class VOYReportDetailsViewController: UIViewController {
         super.viewDidLoad()
         setupScrollViewMedias()
         setupTagsView()
-        setupLocalization()
         presenter.onViewDidLoad()
     }
 
@@ -60,10 +59,6 @@ class VOYReportDetailsViewController: UIViewController {
         viewTags.paddingY = 9
         viewTags.paddingX = 22
         viewTags.marginY = 13
-    }
-
-    private func setupLocalization() {
-        btComments.setTitle(localizedString(.comment), for: .normal)
     }
 
     fileprivate func showActionSheet() {
@@ -100,11 +95,12 @@ class VOYReportDetailsViewController: UIViewController {
 
 extension VOYReportDetailsViewController: VOYReportDetailsContract {
 
-    func setupText(title: String, date: String, description: String, tags: [String]) {
+    func setupText(title: String, date: String, description: String, tags: [String], commentsCount: Int) {
         lbTitle.text = title
         lbDate.text = date
         lbDescription.text = description
         viewTags.addTags(tags)
+        btComments.setTitle("\(localizedString(.comment)) (\(commentsCount))", for: .normal)
     }
 
     func setThemeColor(themeColorHex: String) {
