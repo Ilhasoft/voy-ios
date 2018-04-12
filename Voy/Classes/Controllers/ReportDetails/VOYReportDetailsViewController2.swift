@@ -12,7 +12,7 @@ import ISScrollViewPageSwift
 import AXPhotoViewer
 import AVKit
 
-class VOYReportDetailsViewController: UIViewController {
+class VOYReportDetailsViewController2: UIViewController {
 
     @IBOutlet var scrollView: UIScrollView!
     @IBOutlet var scrollViewMedias: ISScrollViewPage!
@@ -93,7 +93,7 @@ class VOYReportDetailsViewController: UIViewController {
     }
 }
 
-extension VOYReportDetailsViewController: VOYReportDetailsContract {
+extension VOYReportDetailsViewController2: VOYReportDetailsContract {
 
     func setupText(title: String, date: String, description: String, tags: [String], commentsCount: Int) {
         lbTitle.text = title
@@ -245,13 +245,13 @@ extension VOYReportDetailsViewController: VOYReportDetailsContract {
     }
 }
 
-extension VOYReportDetailsViewController: ISScrollViewPageDelegate {
+extension VOYReportDetailsViewController2: ISScrollViewPageDelegate {
     func scrollViewPageDidChanged(_ scrollViewPage: ISScrollViewPage, index: Int) {
         pageControl.currentPage = index
     }
 }
 
-extension VOYReportDetailsViewController: VOYPlayMediaViewDelegate {
+extension VOYReportDetailsViewController2: VOYPlayMediaViewDelegate {
     func mediaDidTap(mediaView: VOYPlayMediaView) {
         presenter.onTapImage(image: mediaView.imgView.image)
     }
@@ -261,7 +261,7 @@ extension VOYReportDetailsViewController: VOYPlayMediaViewDelegate {
     }
 }
 
-extension VOYReportDetailsViewController: VOYActionSheetViewControllerDelegate {
+extension VOYReportDetailsViewController2: VOYActionSheetViewControllerDelegate {
     func cancelButtonDidTap(actionSheetViewController: VOYActionSheetViewController) {
         actionSheetViewController.close()
     }
@@ -272,7 +272,7 @@ extension VOYReportDetailsViewController: VOYActionSheetViewControllerDelegate {
     }
 }
 
-extension VOYReportDetailsViewController: VOYAlertViewControllerDelegate {
+extension VOYReportDetailsViewController2: VOYAlertViewControllerDelegate {
     func buttonDidTap(alertController: VOYAlertViewController, button: UIButton, index: Int) {
         alertController.close()
         if index == 0 {
