@@ -100,7 +100,7 @@ extension VOYReportDetailsViewController: VOYReportDetailsContract {
         lbDate.text = date
         lbDescription.text = description
         viewTags.addTags(tags)
-        btComments.setTitle("\(localizedString(.comment)) (\(commentsCount))", for: .normal)
+        btComments.setTitle("\(localizedString(.comments)) (\(commentsCount))", for: .normal)
     }
 
     func setThemeColor(themeColorHex: String) {
