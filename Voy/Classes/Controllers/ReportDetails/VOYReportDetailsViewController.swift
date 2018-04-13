@@ -10,6 +10,9 @@ import UIKit
 
 enum VOYReportDetailsRow: String {
     case header
+    case externalLinksHeader
+    case externalLinksItem
+    case tags
 }
 
 class VOYReportDetailsViewController: UIViewController {
@@ -33,12 +36,35 @@ class VOYReportDetailsViewController: UIViewController {
             UINib(nibName: "VOYReportDetailsHeaderCell", bundle: nil),
             forCellReuseIdentifier: VOYReportDetailsRow.header.rawValue
         )
+        tableView.register(
+            VOYExternalLinksHeaderCell.self,
+            forCellReuseIdentifier: VOYReportDetailsRow.externalLinksHeader.rawValue
+        )
+        tableView.register(
+            VOYExternalLinkItemCell.self,
+            forCellReuseIdentifier: VOYReportDetailsRow.externalLinksItem.rawValue
+        )
+        tableView.register(
+            UINib(nibName: "VOYReportDetailsTagsCell", bundle: nil),
+            forCellReuseIdentifier: VOYReportDetailsRow.tags.rawValue
+        )
     }
 }
 
 extension VOYReportDetailsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("Selected row at \(indexPath.row)")
+    }
+
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        switch indexPath.row {
+        case 0...2:
+            return UITableViewAutomaticDimension
+        case 3:
+            return 141
+        default:
+            return UITableViewAutomaticDimension
+        }
     }
 }
 
@@ -47,6 +73,12 @@ extension VOYReportDetailsViewController: UITableViewDataSource {
         var reuseIdentifier = ""
         if indexPath.row == 0 {
             reuseIdentifier = VOYReportDetailsRow.header.rawValue
+        } else if indexPath.row == 1 {
+            reuseIdentifier = VOYReportDetailsRow.externalLinksHeader.rawValue
+        } else if indexPath.row == 2 {
+            reuseIdentifier = VOYReportDetailsRow.externalLinksItem.rawValue
+        } else {
+            reuseIdentifier = VOYReportDetailsRow.tags.rawValue
         }
         guard let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier) else {
             fatalError("Cell was not found")
@@ -55,7 +87,7 @@ extension VOYReportDetailsViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return 4
     }
 
     func numberOfSections(in tableView: UITableView) -> Int {
