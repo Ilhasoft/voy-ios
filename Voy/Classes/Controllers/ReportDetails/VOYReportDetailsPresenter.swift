@@ -28,18 +28,17 @@ class VOYReportDetailsPresenter {
             dateString = formatDate(createdOnDate: createdOn)
         }
 
-        view?.setupText(
+        let viewModel = VOYReportDetailsViewModel(
+            medias: report.files ?? [],
             title: report.name,
             date: dateString,
             description: report.description,
             tags: report.tags.sorted(),
+            links: report.urls.sorted(),
             commentsCount: report.comments
         )
+        view?.update(with: viewModel)
         view?.setThemeColor(themeColorHex: theme.color)
-
-        if let reportFiles = report.files {
-            view?.setMedias(reportFiles)
-        }
 
         // Only allow comments in approved reports
         if let reportStatus = report.status, reportStatus == VOYReportStatus.approved.rawValue {
@@ -89,7 +88,7 @@ class VOYReportDetailsPresenter {
     }
 
     func onTapOptionsButton() {
-        view?.showOptionsActionSheet()
+        view?.showOptions()
     }
 
     func onTapIssueButton() {

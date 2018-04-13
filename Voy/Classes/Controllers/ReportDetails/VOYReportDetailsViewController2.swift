@@ -25,11 +25,11 @@ class VOYReportDetailsViewController2: UIViewController {
     @IBOutlet var viewSeparator: UIView!
     @IBOutlet var btComments: UIButton!
 
-    private var presenter: VOYReportDetailsPresenter!
+//    private var presenter: VOYReportDetailsPresenter!
 
     init(report: VOYReport) {
         super.init(nibName: String(describing: type(of: self)), bundle: nil)
-        presenter = VOYReportDetailsPresenter(report: report, view: self)
+//        presenter = VOYReportDetailsPresenter(report: report, view: self)
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -40,7 +40,7 @@ class VOYReportDetailsViewController2: UIViewController {
         super.viewDidLoad()
         setupScrollViewMedias()
         setupTagsView()
-        presenter.onViewDidLoad()
+//        presenter.onViewDidLoad()
     }
 
     // MARK: - Private methods
@@ -74,26 +74,26 @@ class VOYReportDetailsViewController2: UIViewController {
 
     @IBAction
     func didTapCommentsButton(_ button: UIButton) {
-        presenter.onTapCommentsButton()
+//        presenter.onTapCommentsButton()
     }
 
     @objc
     func didTapShareButton() {
-        presenter.onTapSharedButton()
+//        presenter.onTapSharedButton()
     }
 
     @objc
     func didTapIssueButton() {
-        presenter.onTapIssueButton()
+//        presenter.onTapIssueButton()
     }
 
     @objc
     func didTapOptionsButton() {
-        presenter.onTapOptionsButton()
+//        presenter.onTapOptionsButton()
     }
 }
 
-extension VOYReportDetailsViewController2: VOYReportDetailsContract {
+extension VOYReportDetailsViewController2 {
 
     func setupText(title: String, date: String, description: String, tags: [String], commentsCount: Int) {
         lbTitle.text = title
@@ -253,11 +253,11 @@ extension VOYReportDetailsViewController2: ISScrollViewPageDelegate {
 
 extension VOYReportDetailsViewController2: VOYPlayMediaViewDelegate {
     func mediaDidTap(mediaView: VOYPlayMediaView) {
-        presenter.onTapImage(image: mediaView.imgView.image)
+//        presenter.onTapImage(image: mediaView.imgView.image)
     }
 
     func videoDidTap(mediaView: VOYPlayMediaView, url: URL, showInFullScreen: Bool) {
-        presenter.onTapVideo(videoURL: url)
+//        presenter.onTapVideo(videoURL: url)
     }
 }
 
@@ -268,7 +268,7 @@ extension VOYReportDetailsViewController2: VOYActionSheetViewControllerDelegate 
 
     func buttonDidTap(actionSheetViewController: VOYActionSheetViewController, button: UIButton, index: Int) {
         actionSheetViewController.close()
-        presenter.onTapEditReport()
+//        presenter.onTapEditReport()
     }
 }
 
@@ -276,7 +276,7 @@ extension VOYReportDetailsViewController2: VOYAlertViewControllerDelegate {
     func buttonDidTap(alertController: VOYAlertViewController, button: UIButton, index: Int) {
         alertController.close()
         if index == 0 {
-            presenter.onTapEditReport()
+//            presenter.onTapEditReport()
         }
     }
 }

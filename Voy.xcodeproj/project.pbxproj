@@ -34,6 +34,7 @@
 		010A52AE2081166D00855D65 /* VOYReportDetailsTagsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 010A52AC2081166D00855D65 /* VOYReportDetailsTagsCell.swift */; };
 		010A52AF2081166D00855D65 /* VOYReportDetailsTagsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 010A52AD2081166D00855D65 /* VOYReportDetailsTagsCell.xib */; };
 		010A52B120811A7D00855D65 /* VOYExternalLinkItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 010A52B020811A7D00855D65 /* VOYExternalLinkItemCell.swift */; };
+		010A52B320812C0D00855D65 /* VOYReportDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 010A52B220812C0D00855D65 /* VOYReportDetailsViewModel.swift */; };
 		013FD5A42077F5D400F92662 /* VOYNotificationDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013FD5A32077F5D400F92662 /* VOYNotificationDataSource.swift */; };
 		013FD5A92077F6F900F92662 /* VOYReportListDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013FD5A82077F6F900F92662 /* VOYReportListDataSource.swift */; };
 		013FD5B32077F78500F92662 /* VOYAccountDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013FD5B22077F78400F92662 /* VOYAccountDataSource.swift */; };
@@ -208,6 +209,7 @@
 		010A52AC2081166D00855D65 /* VOYReportDetailsTagsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VOYReportDetailsTagsCell.swift; sourceTree = "<group>"; };
 		010A52AD2081166D00855D65 /* VOYReportDetailsTagsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VOYReportDetailsTagsCell.xib; sourceTree = "<group>"; };
 		010A52B020811A7D00855D65 /* VOYExternalLinkItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VOYExternalLinkItemCell.swift; sourceTree = "<group>"; };
+		010A52B220812C0D00855D65 /* VOYReportDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VOYReportDetailsViewModel.swift; sourceTree = "<group>"; };
 		013FD5A32077F5D400F92662 /* VOYNotificationDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VOYNotificationDataSource.swift; sourceTree = "<group>"; };
 		013FD5A82077F6F900F92662 /* VOYReportListDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VOYReportListDataSource.swift; sourceTree = "<group>"; };
 		013FD5B22077F78400F92662 /* VOYAccountDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VOYAccountDataSource.swift; sourceTree = "<group>"; };
@@ -664,6 +666,7 @@
 				0175D964206AC1B900938937 /* VOYReportDetailsContract.swift */,
 				01C14E86207FDA4400F69B73 /* VOYReportDetailsViewController.swift */,
 				01C14E88207FEFCD00F69B73 /* VOYReportDetailsViewController.xib */,
+				010A52B220812C0D00855D65 /* VOYReportDetailsViewModel.swift */,
 			);
 			path = ReportDetails;
 			sourceTree = "<group>";
@@ -1434,6 +1437,7 @@
 				013FD5F5207802DC00F92662 /* VOYNotificationRepository.swift in Sources */,
 				437BD1AD2048891300EC5661 /* VOYLoginContract.swift in Sources */,
 				436C995C2049D7B000915A13 /* VOYCommentPresenter.swift in Sources */,
+				010A52B320812C0D00855D65 /* VOYReportDetailsViewModel.swift in Sources */,
 				4371B694204F256300D83454 /* VOYAddReportTagsPresenter.swift in Sources */,
 				657C3F72203B71DC0077F07B /* ISVideoUtil.swift in Sources */,
 				657C3F6E203768D90077F07B /* VOYLocationManager.swift in Sources */,

@@ -15,12 +15,21 @@ enum VOYReportDetailsRow: String {
     case tags
 }
 
+struct VOYReportDetailsConstants {
+    static let linkCellHeight: CGFloat = 30
+    static let tagsCellHeight: CGFloat = 141
+}
+
 class VOYReportDetailsViewController: UIViewController {
 
     @IBOutlet var tableView: UITableView!
 
+    private var viewModel: VOYReportDetailsViewModel?
+    private var presenter: VOYReportDetailsPresenter!
+
     init(report: VOYReport) {
         super.init(nibName: String(describing: type(of: self)), bundle: nil)
+        presenter = VOYReportDetailsPresenter(report: report, view: self)
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -48,49 +57,139 @@ class VOYReportDetailsViewController: UIViewController {
             UINib(nibName: "VOYReportDetailsTagsCell", bundle: nil),
             forCellReuseIdentifier: VOYReportDetailsRow.tags.rawValue
         )
+
+        presenter.onViewDidLoad()
+    }
+
+    private func getHeaderCell() -> UITableViewCell? {
+        guard let viewModel = self.viewModel else { return nil }
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: VOYReportDetailsRow.header.rawValue)
+                as? VOYReportDetailsHeaderCell else {
+            return nil
+        }
+        cell.setup(with: viewModel)
+        return cell
+    }
+
+    private func getLinksHeader() -> UITableViewCell? {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: VOYReportDetailsRow.externalLinksHeader.rawValue)
+            as? VOYExternalLinksHeaderCell else {
+            fatalError("Could not load cell")
+        }
+        return cell
+    }
+
+    private func getLinksItem(at position: Int) -> UITableViewCell? {
+        guard let viewModel = self.viewModel else { return nil }
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: VOYReportDetailsRow.externalLinksItem.rawValue)
+            as? VOYExternalLinkItemCell else {
+            fatalError("Could not load cell")
+        }
+        cell.setLink(link: viewModel.links[position])
+        return cell
+    }
+
+    private func getTagsViewCell() -> UITableViewCell? {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: VOYReportDetailsRow.tags.rawValue)
+            as? VOYReportDetailsTagsCell else {
+            fatalError("Could not load cell")
+        }
+        return cell
     }
 }
 
 extension VOYReportDetailsViewController: UITableViewDelegate {
+
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("Selected row at \(indexPath.row)")
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        switch indexPath.row {
-        case 0...2:
-            return UITableViewAutomaticDimension
-        case 3:
-            return 141
-        default:
-            return UITableViewAutomaticDimension
+        guard let viewModel = self.viewModel else { return UITableViewAutomaticDimension }
+        if viewModel.links.isEmpty {
+            switch indexPath.row {
+            case 0:
+                return UITableViewAutomaticDimension
+            default:
+                return VOYReportDetailsConstants.tagsCellHeight
+            }
+        } else {
+            if indexPath.row == 0 {
+                return UITableViewAutomaticDimension
+            } else if indexPath.row == 1 {
+                return VOYReportDetailsConstants.linkCellHeight
+            } else if indexPath.row > 1 && indexPath.row < viewModel.links.count + 2 {
+                return VOYReportDetailsConstants.linkCellHeight
+            } else {
+                return VOYReportDetailsConstants.tagsCellHeight
+            }
         }
     }
 }
 
 extension VOYReportDetailsViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        var reuseIdentifier = ""
-        if indexPath.row == 0 {
-            reuseIdentifier = VOYReportDetailsRow.header.rawValue
-        } else if indexPath.row == 1 {
-            reuseIdentifier = VOYReportDetailsRow.externalLinksHeader.rawValue
-        } else if indexPath.row == 2 {
-            reuseIdentifier = VOYReportDetailsRow.externalLinksItem.rawValue
+        guard let viewModel = self.viewModel else { return UITableViewCell() }
+        var cell: UITableViewCell?
+
+        if viewModel.links.isEmpty {
+            switch indexPath.row {
+            case 0:
+                cell = getHeaderCell()
+            case 1:
+                cell = getTagsViewCell()
+            default:
+                break
+            }
         } else {
-            reuseIdentifier = VOYReportDetailsRow.tags.rawValue
+            if indexPath.row == 0 {
+                cell = getHeaderCell()
+            } else if indexPath.row == 1 {
+                cell = getLinksHeader()
+            } else if indexPath.row > 1 && indexPath.row < viewModel.links.count + 2 {
+                cell = getLinksItem(at: indexPath.row - 2)
+            } else {
+                cell = getTagsViewCell()
+            }
         }
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier) else {
-            fatalError("Cell was not found")
-        }
-        return cell
+        return cell ?? UITableViewCell()
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 4
+        guard let viewModel = self.viewModel else { return 0 }
+        if viewModel.links.count > 0 {
+            return viewModel.links.count + 3
+        } else {
+            return 2 // header and tags cells
+        }
+    }
+}
+
+extension VOYReportDetailsViewController: VOYReportDetailsContract {
+    func update(with viewModel: VOYReportDetailsViewModel) {
+        self.viewModel = viewModel
+        tableView.reloadData()
     }
 
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
+    func setThemeColor(themeColorHex: String) {}
+
+    func setCameraData(_ cameraDataList: [VOYCameraData]) {}
+
+    func navigateToPictureScreen(image: UIImage) {}
+
+    func navigateToVideoScreen(videoURL: URL) {}
+
+    func navigateToCommentsScreen(report: VOYReport) {}
+
+    func setCommentButtonEnabled(_ enabled: Bool) {}
+
+    func setupNavigationButtons(avatarURL: URL, lastNotification: String?, showOptions: Bool, showShare: Bool) {}
+
+    func navigateToEditReport(report: VOYReport) {}
+
+    func shareText(_ string: String) {}
+
+    func showOptions() {}
+
+    func showIssueAlert(lastNotification: String) {}
 }
