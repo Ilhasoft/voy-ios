@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina5_9" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="VOYReportDetailsViewController" customModule="Voy" customModuleProvider="target">
+            <connections>
+                <outlet property="tableView" destination="4Vg-d2-fMU" id="5hJ-ok-F6A"/>
+                <outlet property="view" destination="iN0-l3-epB" id="qBV-gc-PYc"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="4Vg-d2-fMU">
+                    <rect key="frame" x="0.0" y="44" width="375" height="734"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="0dC-Ya-8Zq"/>
+                        <outlet property="delegate" destination="-1" id="BVI-sG-8RW"/>
+                    </connections>
+                </tableView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qht-QO-Z15">
+                    <rect key="frame" x="0.0" y="730" width="375" height="48"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="48" id="F8t-ID-CeZ"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
+                    <inset key="imageEdgeInsets" minX="-13" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    <state key="normal" title="Comment" image="messageCircleCopy">
+                        <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="Qht-QO-Z15" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" id="EP3-qI-dxW"/>
+                <constraint firstItem="Qht-QO-Z15" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="MXE-4A-ndc"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="4Vg-d2-fMU" secondAttribute="bottom" id="Rbd-g8-3dJ"/>
+                <constraint firstItem="Qht-QO-Z15" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="Whr-up-L7x"/>
+                <constraint firstItem="4Vg-d2-fMU" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="dAU-ww-j1k"/>
+                <constraint firstItem="4Vg-d2-fMU" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="g5w-qs-E9U"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="4Vg-d2-fMU" secondAttribute="trailing" id="jw2-yB-cF2"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="messageCircleCopy" width="16" height="15"/>
+    </resources>
+</document>
