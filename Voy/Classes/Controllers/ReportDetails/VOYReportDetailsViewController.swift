@@ -23,6 +23,8 @@ struct VOYReportDetailsConstants {
 class VOYReportDetailsViewController: UIViewController {
 
     @IBOutlet var tableView: UITableView!
+    @IBOutlet var btComment: UIButton!
+    @IBOutlet var tableViewBottomConstraint: NSLayoutConstraint!
 
     private var viewModel: VOYReportDetailsViewModel?
     private var presenter: VOYReportDetailsPresenter!
@@ -181,7 +183,10 @@ extension VOYReportDetailsViewController: VOYReportDetailsContract {
 
     func navigateToCommentsScreen(report: VOYReport) {}
 
-    func setCommentButtonEnabled(_ enabled: Bool) {}
+    func setCommentButtonEnabled(_ enabled: Bool) {
+        tableViewBottomConstraint.constant = enabled ? 48 : 0
+        btComment.isHidden = !enabled
+    }
 
     func setupNavigationButtons(avatarURL: URL, lastNotification: String?, showOptions: Bool, showShare: Bool) {}
 

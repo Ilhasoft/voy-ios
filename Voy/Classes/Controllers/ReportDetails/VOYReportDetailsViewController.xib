@@ -12,7 +12,9 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="VOYReportDetailsViewController" customModule="Voy" customModuleProvider="target">
             <connections>
+                <outlet property="btComment" destination="Qht-QO-Z15" id="XXQ-d1-PD1"/>
                 <outlet property="tableView" destination="4Vg-d2-fMU" id="5hJ-ok-F6A"/>
+                <outlet property="tableViewBottomConstraint" destination="Rbd-g8-3dJ" id="855-FS-dfe"/>
                 <outlet property="view" destination="iN0-l3-epB" id="qBV-gc-PYc"/>
             </connections>
         </placeholder>
