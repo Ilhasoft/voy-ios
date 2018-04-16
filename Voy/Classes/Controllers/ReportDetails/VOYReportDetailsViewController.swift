@@ -96,10 +96,12 @@ class VOYReportDetailsViewController: UIViewController {
     }
 
     private func getTagsViewCell() -> UITableViewCell? {
+        guard let viewModel = self.viewModel else { return nil }
         guard let cell = tableView.dequeueReusableCell(withIdentifier: VOYReportDetailsRow.tags.rawValue)
             as? VOYReportDetailsTagsCell else {
             fatalError("Could not load cell")
         }
+        cell.setTags(viewModel.tags, withColorHex: viewModel.themeColorHex)
         return cell
     }
 
@@ -247,7 +249,15 @@ extension VOYReportDetailsViewController: VOYReportDetailsContract {
         actionSheetViewController.show(true, inViewController: self)
     }
 
-    func showIssueAlert(lastNotification: String) {}
+    func showIssueAlert(lastNotification: String) {
+        let alertInfoController = VOYAlertViewController(
+            title: localizedString(.issuesReported),
+            message: lastNotification,
+            buttonNames: [localizedString(.editReport), localizedString(.close)]
+        )
+        alertInfoController.delegate = self
+        alertInfoController.show(true, inViewController: self)
+    }
 }
 
 extension VOYReportDetailsViewController: VOYActionSheetViewControllerDelegate {
