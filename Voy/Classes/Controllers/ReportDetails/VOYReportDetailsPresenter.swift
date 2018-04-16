@@ -32,7 +32,8 @@ class VOYReportDetailsPresenter {
             title: report.name,
             date: dateString,
             description: report.description,
-            tags: report.tags.sorted()
+            tags: report.tags.sorted(),
+            commentsCount: report.comments
         )
         view?.setThemeColor(themeColorHex: theme.color)
 

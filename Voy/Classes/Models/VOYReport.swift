@@ -34,6 +34,7 @@ class VOYReport: Mappable {
     var lastNotification: String?
     var update: Bool!
     var shareURL: String!
+    var comments: Int!
 
     init() {
 
@@ -58,6 +59,7 @@ class VOYReport: Mappable {
         lastNotification <- map["last_notification"]
         update <- map["update"]
         shareURL <- map["share"]
+        comments <- map["comments"]
     }
 
     func map() -> Map {

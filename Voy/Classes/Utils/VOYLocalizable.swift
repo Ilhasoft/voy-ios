@@ -26,7 +26,6 @@ class VOYLocalizable {
         case cancel
         case change
         case close
-        case comment
         case comments
         case commentSentToModeration = "comment_sent_to_moderation"
         case commentWasApproved = "comment_was_approved"
