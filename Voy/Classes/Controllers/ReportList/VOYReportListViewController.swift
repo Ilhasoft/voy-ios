@@ -100,7 +100,7 @@ class VOYReportListViewController: UIViewController, NVActivityIndicatorViewable
                 self.viewInfo.setupWith(titleAndColor: [localizedString(.great): UIColor.voyBlue],
                                         messageAndColor: [localizedString(.allReportsApproved): UIColor.black])
             case 2:
-                self.viewInfo.setupWith(titleAndColor: [localizedString(.greatJob): UIColor.voyLeafGreen],
+                self.viewInfo.setupWith(titleAndColor: [localizedString(.greatJob): UIColor.voyBlue],
                                         messageAndColor: [localizedString(.youHaveNoUnapprovedReports): UIColor.black])
             default:
                 break
