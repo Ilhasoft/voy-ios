@@ -9,11 +9,13 @@
 import UIKit
 
 struct VOYReportDetailsViewModel {
-    let medias: [VOYMedia]
     let title: String
     let date: String
     let description: String
     let tags: [String]
     let links: [String]
     let commentsCount: Int
+    let medias: [VOYMedia]
+    let cameraDataList: [VOYCameraData]
+    let themeColorHex: String
 }

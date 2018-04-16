@@ -72,6 +72,7 @@ class VOYReportDetailsViewController: UIViewController {
                 as? VOYReportDetailsHeaderCell else {
             return nil
         }
+        cell.presenter = self.presenter
         cell.setup(with: viewModel)
         return cell
     }
@@ -109,6 +110,13 @@ class VOYReportDetailsViewController: UIViewController {
         )
         actionSheetViewController.delegate = self
         actionSheetViewController.show(true, inViewController: self)
+    }
+
+    // MARK: - IBACtions
+
+    @IBAction
+    func didTapCommentsButton(_ button: UIButton) {
+        presenter.onTapCommentsButton()
     }
 }
 

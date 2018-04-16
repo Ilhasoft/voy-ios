@@ -35,17 +35,17 @@ class VOYReportDetailsViewController2: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupScrollViewMedias()
+//        setupScrollViewMedias()
         setupTagsView()
     }
 
     // MARK: - Private methods
 
-    private func setupScrollViewMedias() {
-        scrollViewMedias.scrollViewPageType = .horizontally
-        scrollViewMedias.scrollViewPageDelegate = self
-        scrollViewMedias.setPaging(true)
-    }
+//    private func setupScrollViewMedias() {
+//        scrollViewMedias.scrollViewPageType = .horizontally
+//        scrollViewMedias.scrollViewPageDelegate = self
+//        scrollViewMedias.setPaging(true)
+//    }
 
     private func setupTagsView() {
         viewTags.backgroundColor = UIColor.white
@@ -68,9 +68,9 @@ class VOYReportDetailsViewController2: UIViewController {
 
     // MARK: - Button Actions
 
-    @IBAction
-    func didTapCommentsButton(_ button: UIButton) {
-    }
+//    @IBAction
+//    func didTapCommentsButton(_ button: UIButton) {
+//    }
 
     @objc
     func didTapShareButton() {
@@ -87,20 +87,20 @@ class VOYReportDetailsViewController2: UIViewController {
 
 extension VOYReportDetailsViewController2 {
 
-    func setupText(title: String, date: String, description: String, tags: [String], commentsCount: Int) {
-        lbTitle.text = title
-        lbDate.text = date
-        lbDescription.text = description
-        viewTags.addTags(tags)
-        btComments.setTitle("\(localizedString(.comments)) (\(commentsCount))", for: .normal)
-    }
+//    func setupText(title: String, date: String, description: String, tags: [String], commentsCount: Int) {
+//        lbTitle.text = title
+//        lbDate.text = date
+//        lbDescription.text = description
+//        viewTags.addTags(tags)
+//        btComments.setTitle("\(localizedString(.comments)) (\(commentsCount))", for: .normal)
+//    }
 
     func setThemeColor(themeColorHex: String) {
         let themeColor = UIColor(hex: themeColorHex)
-        pageControl.currentPageIndicatorTintColor = themeColor
-        pageControl.pageIndicatorTintColor = themeColor.withAlphaComponent(0.5)
-        lbTitle.textColor = themeColor
-        lbDate.textColor = themeColor
+//        pageControl.currentPageIndicatorTintColor = themeColor
+//        pageControl.pageIndicatorTintColor = themeColor.withAlphaComponent(0.5)
+//        lbTitle.textColor = themeColor
+//        lbDate.textColor = themeColor
 
         viewTags.tagBackgroundColor = themeColor
         viewTags.tagHighlightedBackgroundColor = themeColor
@@ -151,55 +151,55 @@ extension VOYReportDetailsViewController2 {
         self.navigationItem.rightBarButtonItems = buttonItens
     }
 
-    func setMedias(_ medias: [VOYMedia]) {
-        pageControl.numberOfPages = medias.count
-        for media in medias {
-            DispatchQueue.main.async {
-                let mediaPlayView = VOYPlayMediaView(
-                    frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: 161)
-                )
-                mediaPlayView.setup(media: media)
-                mediaPlayView.delegate = self
-                self.scrollViewMedias.addCustomView(mediaPlayView)
-            }
-        }
-    }
+//    func setMedias(_ medias: [VOYMedia]) {
+//        pageControl.numberOfPages = medias.count
+//        for media in medias {
+//            DispatchQueue.main.async {
+//                let mediaPlayView = VOYPlayMediaView(
+//                    frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: 161)
+//                )
+//                mediaPlayView.setup(media: media)
+//                mediaPlayView.delegate = self
+//                self.scrollViewMedias.addCustomView(mediaPlayView)
+//            }
+//        }
+//    }
 
-    func setCameraData(_ cameraDataList: [VOYCameraData]) {
-        pageControl.numberOfPages = cameraDataList.count
-        for cameraData in cameraDataList {
-            DispatchQueue.main.async {
-                let mediaPlayView = VOYPlayMediaView(
-                    frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: 161)
-                )
-                mediaPlayView.setup(cameraData: cameraData)
-                mediaPlayView.delegate = self
-                self.scrollViewMedias.addCustomView(mediaPlayView)
-            }
-        }
-    }
+//    func setCameraData(_ cameraDataList: [VOYCameraData]) {
+//        pageControl.numberOfPages = cameraDataList.count
+//        for cameraData in cameraDataList {
+//            DispatchQueue.main.async {
+//                let mediaPlayView = VOYPlayMediaView(
+//                    frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: 161)
+//                )
+//                mediaPlayView.setup(cameraData: cameraData)
+//                mediaPlayView.delegate = self
+//                self.scrollViewMedias.addCustomView(mediaPlayView)
+//            }
+//        }
+//    }
 
-    func navigateToPictureScreen(image: UIImage) {
-        let dataSource = PhotosDataSource(photos: [Photo(image: image)])
-        let photosViewController = PhotosViewController(dataSource: dataSource)
-        present(photosViewController, animated: true, completion: nil)
-    }
+//    func navigateToPictureScreen(image: UIImage) {
+//        let dataSource = PhotosDataSource(photos: [Photo(image: image)])
+//        let photosViewController = PhotosViewController(dataSource: dataSource)
+//        present(photosViewController, animated: true, completion: nil)
+//    }
 
-    func navigateToVideoScreen(videoURL: URL) {
-        let playerController = AVPlayerViewController()
-        playerController.player = AVPlayer(url: videoURL)
-        playerController.player?.play()
-        present(playerController, animated: true, completion: nil)
-    }
+//    func navigateToVideoScreen(videoURL: URL) {
+//        let playerController = AVPlayerViewController()
+//        playerController.player = AVPlayer(url: videoURL)
+//        playerController.player?.play()
+//        present(playerController, animated: true, completion: nil)
+//    }
 
-    func navigateToCommentsScreen(report: VOYReport) {
-        navigationController?.pushViewController(VOYCommentViewController(report: report), animated: true)
-    }
+//    func navigateToCommentsScreen(report: VOYReport) {
+//        navigationController?.pushViewController(VOYCommentViewController(report: report), animated: true)
+//    }
 
-    func setCommentButtonEnabled(_ enabled: Bool) {
-        viewSeparator.isHidden = !enabled
-        btComments.isHidden = !enabled
-    }
+//    func setCommentButtonEnabled(_ enabled: Bool) {
+//        viewSeparator.isHidden = !enabled
+//        btComments.isHidden = !enabled
+//    }
 
 //    func navigateToEditReport(report: VOYReport) {
 //        self.navigationController?.pushViewController(
@@ -237,21 +237,21 @@ extension VOYReportDetailsViewController2 {
     }
 }
 
-extension VOYReportDetailsViewController2: ISScrollViewPageDelegate {
-    func scrollViewPageDidChanged(_ scrollViewPage: ISScrollViewPage, index: Int) {
-        pageControl.currentPage = index
-    }
-}
+//extension VOYReportDetailsViewController2: ISScrollViewPageDelegate {
+//    func scrollViewPageDidChanged(_ scrollViewPage: ISScrollViewPage, index: Int) {
+//        pageControl.currentPage = index
+//    }
+//}
 
-extension VOYReportDetailsViewController2: VOYPlayMediaViewDelegate {
-    func mediaDidTap(mediaView: VOYPlayMediaView) {
+//extension VOYReportDetailsViewController2: VOYPlayMediaViewDelegate {
+//    func mediaDidTap(mediaView: VOYPlayMediaView) {
 //        presenter.onTapImage(image: mediaView.imgView.image)
-    }
-
-    func videoDidTap(mediaView: VOYPlayMediaView, url: URL, showInFullScreen: Bool) {
+//    }
+//
+//    func videoDidTap(mediaView: VOYPlayMediaView, url: URL, showInFullScreen: Bool) {
 //        presenter.onTapVideo(videoURL: url)
-    }
-}
+//    }
+//}
 
 //extension VOYReportDetailsViewController2: VOYActionSheetViewControllerDelegate {
 //    func cancelButtonDidTap(actionSheetViewController: VOYActionSheetViewController) {

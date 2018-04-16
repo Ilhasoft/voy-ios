@@ -7,28 +7,88 @@
 //
 
 import UIKit
+import ISScrollViewPageSwift
 
 class VOYReportDetailsHeaderCell: UITableViewCell {
 
+    @IBOutlet var scrollViewMedias: ISScrollViewPage!
+    @IBOutlet var pageControl: UIPageControl!
     @IBOutlet var lbTitle: UILabel!
     @IBOutlet var lbDate: UILabel!
     @IBOutlet var lbDescription: UILabel!
 
+    var presenter: VOYReportDetailsPresenter?
+
     override func awakeFromNib() {
         super.awakeFromNib()
         selectionStyle = .none
-//        lbDescription.text = "For example, if you were displaying an email message in each cell, you might have 4"
-//        + "unique layouts: messages with just a subject, messages with a subject and a body, messages with a subject"
-//        + "and a photo attachment, and messages with a subject, body, and photo attachment. Each layout has completely"
-//        + " different constraints required to achieve it, so once the cell is initialized and the constraints are added"
-//        + " for one of these cell types, the cell should get a unique reuse identifier specific to that cell type."
-//        + " This means when you dequeue a cell for reuse, the constraints have already been added and are ready to go"
-//        + " for that cell type."
+        scrollViewMedias.scrollViewPageDelegate = self
+        setupScrollViewMedias()
     }
 
     func setup(with viewModel: VOYReportDetailsViewModel) {
         lbTitle.text = viewModel.title
         lbDate.text = viewModel.date
         lbDescription.text = viewModel.description
+
+        let themeColor = UIColor(hex: viewModel.themeColorHex)
+        pageControl.currentPageIndicatorTintColor = themeColor
+        pageControl.pageIndicatorTintColor = themeColor.withAlphaComponent(0.5)
+        setMedias(viewModel.medias, viewModel.cameraDataList)
+        setThemeColor(colorHex: viewModel.themeColorHex)
+    }
+
+    private func setThemeColor(colorHex: String) {
+        let themeColor = UIColor(hex: colorHex)
+        pageControl.currentPageIndicatorTintColor = themeColor
+        pageControl.pageIndicatorTintColor = themeColor.withAlphaComponent(0.5)
+        lbTitle.textColor = themeColor
+        lbDate.textColor = themeColor
+    }
+
+    private func setupScrollViewMedias() {
+        scrollViewMedias.scrollViewPageType = .horizontally
+        scrollViewMedias.scrollViewPageDelegate = self
+        scrollViewMedias.setPaging(true)
+    }
+
+    private func setMedias(_ medias: [VOYMedia], _ cameraDataList: [VOYCameraData]) {
+        pageControl.numberOfPages = medias.count + cameraDataList.count
+        for media in medias {
+            DispatchQueue.main.async {
+                let mediaPlayView = VOYPlayMediaView(
+                    frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: 161)
+                )
+                mediaPlayView.setup(media: media)
+                mediaPlayView.delegate = self
+                self.scrollViewMedias.addCustomView(mediaPlayView)
+            }
+        }
+        for cameraData in cameraDataList {
+            DispatchQueue.main.async {
+                let mediaPlayView = VOYPlayMediaView(
+                    frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: 161)
+                )
+                mediaPlayView.setup(cameraData: cameraData)
+                mediaPlayView.delegate = self
+                self.scrollViewMedias.addCustomView(mediaPlayView)
+            }
+        }
+    }
+}
+
+extension VOYReportDetailsHeaderCell: ISScrollViewPageDelegate {
+    func scrollViewPageDidChanged(_ scrollViewPage: ISScrollViewPage, index: Int) {
+        pageControl.currentPage = index
+    }
+}
+
+extension VOYReportDetailsHeaderCell: VOYPlayMediaViewDelegate {
+    func mediaDidTap(mediaView: VOYPlayMediaView) {
+        presenter?.onTapImage(image: mediaView.imgView.image)
+    }
+
+    func videoDidTap(mediaView: VOYPlayMediaView, url: URL, showInFullScreen: Bool) {
+        presenter?.onTapVideo(videoURL: url)
     }
 }

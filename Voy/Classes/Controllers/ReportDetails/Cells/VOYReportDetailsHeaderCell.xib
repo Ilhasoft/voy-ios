@@ -89,6 +89,8 @@
                 <outlet property="lbDate" destination="I16-aN-lQx" id="rfN-1K-30c"/>
                 <outlet property="lbDescription" destination="R6b-E2-zx0" id="5GF-mw-NLg"/>
                 <outlet property="lbTitle" destination="yVJ-2Z-Mv5" id="RAp-Y1-sA5"/>
+                <outlet property="pageControl" destination="k0x-EF-8oh" id="3gq-Ep-qOW"/>
+                <outlet property="scrollViewMedias" destination="6So-zR-pV4" id="nJd-4U-QEN"/>
             </connections>
             <point key="canvasLocation" x="25" y="185"/>
         </tableViewCell>
