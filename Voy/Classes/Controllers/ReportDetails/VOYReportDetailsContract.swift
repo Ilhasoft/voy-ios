@@ -9,10 +9,7 @@
 import UIKit
 
 protocol VOYReportDetailsContract: class {
-    func setupText(title: String, date: String, description: String, tags: [String], commentsCount: Int)
-    func setThemeColor(themeColorHex: String)
-    func setMedias(_ medias: [VOYMedia])
-    func setCameraData(_ cameraDataList: [VOYCameraData])
+    func update(with viewModel: VOYReportDetailsViewModel)
     func navigateToPictureScreen(image: UIImage)
     func navigateToVideoScreen(videoURL: URL)
     func navigateToCommentsScreen(report: VOYReport)
@@ -20,6 +17,6 @@ protocol VOYReportDetailsContract: class {
     func setupNavigationButtons(avatarURL: URL, lastNotification: String?, showOptions: Bool, showShare: Bool)
     func navigateToEditReport(report: VOYReport)
     func shareText(_ string: String)
-    func showOptionsActionSheet()
+    func showOptions()
     func showIssueAlert(lastNotification: String)
 }

@@ -28,18 +28,18 @@ class VOYReportDetailsPresenter {
             dateString = formatDate(createdOnDate: createdOn)
         }
 
-        view?.setupText(
+        let viewModel = VOYReportDetailsViewModel(
             title: report.name,
             date: dateString,
             description: report.description,
             tags: report.tags.sorted(),
-            commentsCount: report.comments
+            links: report.urls.sorted(),
+            commentsCount: report.comments,
+            medias: report.files ?? [],
+            cameraDataList: report.cameraDataList ?? [],
+            themeColorHex: theme.color
         )
-        view?.setThemeColor(themeColorHex: theme.color)
-
-        if let reportFiles = report.files {
-            view?.setMedias(reportFiles)
-        }
+        view?.update(with: viewModel)
 
         // Only allow comments in approved reports
         if let reportStatus = report.status, reportStatus == VOYReportStatus.approved.rawValue {
@@ -58,11 +58,6 @@ class VOYReportDetailsPresenter {
             showOptions: !reportIsApproved,
             showShare: reportIsApproved
         )
-
-        // Offline report
-        if let cameraDataList = report.cameraDataList {
-            view?.setCameraData(cameraDataList)
-        }
     }
 
     func onTapImage(image: UIImage?) {
@@ -89,7 +84,7 @@ class VOYReportDetailsPresenter {
     }
 
     func onTapOptionsButton() {
-        view?.showOptionsActionSheet()
+        view?.showOptions()
     }
 
     func onTapIssueButton() {
