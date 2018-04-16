@@ -15,6 +15,7 @@ class VOYReportDetailsTagsCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
+        selectionStyle = .none
         viewTags.backgroundColor = UIColor.white
         viewTags.textColor = UIColor.white
         viewTags.selectedTextColor = UIColor.white
