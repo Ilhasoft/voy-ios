@@ -25,11 +25,8 @@ class VOYReportDetailsViewController2: UIViewController {
     @IBOutlet var viewSeparator: UIView!
     @IBOutlet var btComments: UIButton!
 
-//    private var presenter: VOYReportDetailsPresenter!
-
     init(report: VOYReport) {
         super.init(nibName: String(describing: type(of: self)), bundle: nil)
-//        presenter = VOYReportDetailsPresenter(report: report, view: self)
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -40,7 +37,6 @@ class VOYReportDetailsViewController2: UIViewController {
         super.viewDidLoad()
         setupScrollViewMedias()
         setupTagsView()
-//        presenter.onViewDidLoad()
     }
 
     // MARK: - Private methods
@@ -61,12 +57,12 @@ class VOYReportDetailsViewController2: UIViewController {
         viewTags.marginY = 13
     }
 
-    fileprivate func showActionSheet() {
+    private func showActionSheet() {
         let actionSheetViewController = VOYActionSheetViewController(
             buttonNames: [localizedString(.editReport)],
             icons: nil
         )
-        actionSheetViewController.delegate = self
+//        actionSheetViewController.delegate = self
         actionSheetViewController.show(true, inViewController: self)
     }
 
@@ -74,22 +70,18 @@ class VOYReportDetailsViewController2: UIViewController {
 
     @IBAction
     func didTapCommentsButton(_ button: UIButton) {
-//        presenter.onTapCommentsButton()
     }
 
     @objc
     func didTapShareButton() {
-//        presenter.onTapSharedButton()
     }
 
     @objc
     func didTapIssueButton() {
-//        presenter.onTapIssueButton()
     }
 
     @objc
     func didTapOptionsButton() {
-//        presenter.onTapOptionsButton()
     }
 }
 
@@ -209,30 +201,30 @@ extension VOYReportDetailsViewController2 {
         btComments.isHidden = !enabled
     }
 
-    func navigateToEditReport(report: VOYReport) {
-        self.navigationController?.pushViewController(
-            VOYAddReportAttachViewController(report: report),
-            animated: true
-        )
-    }
+//    func navigateToEditReport(report: VOYReport) {
+//        self.navigationController?.pushViewController(
+//            VOYAddReportAttachViewController(report: report),
+//            animated: true
+//        )
+//    }
 
-    func shareText(_ string: String) {
-        let activityViewController = UIActivityViewController(
-            activityItems: [string],
-            applicationActivities: nil
-        )
-        activityViewController.popoverPresentationController?.sourceView = self.view
-        present(activityViewController, animated: true, completion: nil)
-    }
+//    func shareText(_ string: String) {
+//        let activityViewController = UIActivityViewController(
+//            activityItems: [string],
+//            applicationActivities: nil
+//        )
+//        activityViewController.popoverPresentationController?.sourceView = self.view
+//        present(activityViewController, animated: true, completion: nil)
+//    }
 
-    func showOptionsActionSheet() {
-        let actionSheetViewController = VOYActionSheetViewController(
-            buttonNames: [localizedString(.editReport)],
-            icons: nil
-        )
-        actionSheetViewController.delegate = self
-        actionSheetViewController.show(true, inViewController: self)
-    }
+//    func showOptionsActionSheet() {
+//        let actionSheetViewController = VOYActionSheetViewController(
+//            buttonNames: [localizedString(.editReport)],
+//            icons: nil
+//        )
+//        actionSheetViewController.delegate = self
+//        actionSheetViewController.show(true, inViewController: self)
+//    }
 
     func showIssueAlert(lastNotification: String) {
         let alertInfoController = VOYAlertViewController(
@@ -240,7 +232,7 @@ extension VOYReportDetailsViewController2 {
             message: lastNotification,
             buttonNames: [localizedString(.editReport), localizedString(.close)]
         )
-        alertInfoController.delegate = self
+//        alertInfoController.delegate = self
         alertInfoController.show(true, inViewController: self)
     }
 }
@@ -261,22 +253,22 @@ extension VOYReportDetailsViewController2: VOYPlayMediaViewDelegate {
     }
 }
 
-extension VOYReportDetailsViewController2: VOYActionSheetViewControllerDelegate {
-    func cancelButtonDidTap(actionSheetViewController: VOYActionSheetViewController) {
-        actionSheetViewController.close()
-    }
-
-    func buttonDidTap(actionSheetViewController: VOYActionSheetViewController, button: UIButton, index: Int) {
-        actionSheetViewController.close()
+//extension VOYReportDetailsViewController2: VOYActionSheetViewControllerDelegate {
+//    func cancelButtonDidTap(actionSheetViewController: VOYActionSheetViewController) {
+//        actionSheetViewController.close()
+//    }
+//
+//    func buttonDidTap(actionSheetViewController: VOYActionSheetViewController, button: UIButton, index: Int) {
+//        actionSheetViewController.close()
 //        presenter.onTapEditReport()
-    }
-}
-
-extension VOYReportDetailsViewController2: VOYAlertViewControllerDelegate {
-    func buttonDidTap(alertController: VOYAlertViewController, button: UIButton, index: Int) {
-        alertController.close()
-        if index == 0 {
+//    }
+//}
+//
+//extension VOYReportDetailsViewController2: VOYAlertViewControllerDelegate {
+//    func buttonDidTap(alertController: VOYAlertViewController, button: UIButton, index: Int) {
+//        alertController.close()
+//        if index == 0 {
 //            presenter.onTapEditReport()
-        }
-    }
-}
+//        }
+//    }
+//}

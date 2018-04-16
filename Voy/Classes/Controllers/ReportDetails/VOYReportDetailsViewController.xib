@@ -16,6 +16,7 @@
                 <outlet property="tableView" destination="4Vg-d2-fMU" id="5hJ-ok-F6A"/>
                 <outlet property="tableViewBottomConstraint" destination="Rbd-g8-3dJ" id="855-FS-dfe"/>
                 <outlet property="view" destination="iN0-l3-epB" id="qBV-gc-PYc"/>
+                <outlet property="viewSeparator" destination="eVp-m4-PJI" id="egA-8C-XFY"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -31,6 +32,13 @@
                         <outlet property="delegate" destination="-1" id="BVI-sG-8RW"/>
                     </connections>
                 </tableView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eVp-m4-PJI">
+                    <rect key="frame" x="0.0" y="729" width="375" height="1"/>
+                    <color key="backgroundColor" red="0.85490196080000003" green="0.85490196080000003" blue="0.85490196080000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="1" id="YSl-42-2ga"/>
+                    </constraints>
+                </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qht-QO-Z15">
                     <rect key="frame" x="0.0" y="730" width="375" height="48"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -46,15 +54,19 @@
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="eVp-m4-PJI" secondAttribute="trailing" id="8eq-tb-0Yt"/>
                 <constraint firstItem="Qht-QO-Z15" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" id="EP3-qI-dxW"/>
                 <constraint firstItem="Qht-QO-Z15" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="MXE-4A-ndc"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="4Vg-d2-fMU" secondAttribute="bottom" id="Rbd-g8-3dJ"/>
                 <constraint firstItem="Qht-QO-Z15" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="Whr-up-L7x"/>
+                <constraint firstItem="Qht-QO-Z15" firstAttribute="top" secondItem="eVp-m4-PJI" secondAttribute="bottom" id="cu6-Sd-JPS"/>
                 <constraint firstItem="4Vg-d2-fMU" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="dAU-ww-j1k"/>
                 <constraint firstItem="4Vg-d2-fMU" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="g5w-qs-E9U"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="4Vg-d2-fMU" secondAttribute="trailing" id="jw2-yB-cF2"/>
+                <constraint firstItem="eVp-m4-PJI" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="oXi-N7-Aje"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <point key="canvasLocation" x="24.5" y="52"/>
         </view>
     </objects>
     <resources>

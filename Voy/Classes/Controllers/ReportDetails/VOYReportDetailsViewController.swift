@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import AVKit
+import AXPhotoViewer
 
 enum VOYReportDetailsRow: String {
     case header
@@ -23,6 +25,7 @@ struct VOYReportDetailsConstants {
 class VOYReportDetailsViewController: UIViewController {
 
     @IBOutlet var tableView: UITableView!
+    @IBOutlet var viewSeparator: UIView!
     @IBOutlet var btComment: UIButton!
     @IBOutlet var tableViewBottomConstraint: NSLayoutConstraint!
 
@@ -97,6 +100,15 @@ class VOYReportDetailsViewController: UIViewController {
             fatalError("Could not load cell")
         }
         return cell
+    }
+
+    private func showActionSheet() {
+        let actionSheetViewController = VOYActionSheetViewController(
+            buttonNames: [localizedString(.editReport)],
+            icons: nil
+        )
+        actionSheetViewController.delegate = self
+        actionSheetViewController.show(true, inViewController: self)
     }
 }
 
@@ -177,24 +189,75 @@ extension VOYReportDetailsViewController: VOYReportDetailsContract {
 
     func setCameraData(_ cameraDataList: [VOYCameraData]) {}
 
-    func navigateToPictureScreen(image: UIImage) {}
+    func navigateToPictureScreen(image: UIImage) {
+        let dataSource = PhotosDataSource(photos: [Photo(image: image)])
+        let photosViewController = PhotosViewController(dataSource: dataSource)
+        present(photosViewController, animated: true, completion: nil)
+    }
 
-    func navigateToVideoScreen(videoURL: URL) {}
+    func navigateToVideoScreen(videoURL: URL) {
+        let playerController = AVPlayerViewController()
+        playerController.player = AVPlayer(url: videoURL)
+        playerController.player?.play()
+        present(playerController, animated: true, completion: nil)
+    }
 
-    func navigateToCommentsScreen(report: VOYReport) {}
+    func navigateToCommentsScreen(report: VOYReport) {
+        navigationController?.pushViewController(VOYCommentViewController(report: report), animated: true)
+    }
 
     func setCommentButtonEnabled(_ enabled: Bool) {
         tableViewBottomConstraint.constant = enabled ? 48 : 0
+        viewSeparator.isHidden = !enabled
         btComment.isHidden = !enabled
     }
 
     func setupNavigationButtons(avatarURL: URL, lastNotification: String?, showOptions: Bool, showShare: Bool) {}
 
-    func navigateToEditReport(report: VOYReport) {}
+    func navigateToEditReport(report: VOYReport) {
+        self.navigationController?.pushViewController(
+            VOYAddReportAttachViewController(report: report),
+            animated: true
+        )
+    }
 
-    func shareText(_ string: String) {}
+    func shareText(_ string: String) {
+        let activityViewController = UIActivityViewController(
+            activityItems: [string],
+            applicationActivities: nil
+        )
+        activityViewController.popoverPresentationController?.sourceView = self.view
+        present(activityViewController, animated: true, completion: nil)
+    }
 
-    func showOptions() {}
+    func showOptions() {
+        let actionSheetViewController = VOYActionSheetViewController(
+            buttonNames: [localizedString(.editReport)],
+            icons: nil
+        )
+        actionSheetViewController.delegate = self
+        actionSheetViewController.show(true, inViewController: self)
+    }
 
     func showIssueAlert(lastNotification: String) {}
+}
+
+extension VOYReportDetailsViewController: VOYActionSheetViewControllerDelegate {
+    func cancelButtonDidTap(actionSheetViewController: VOYActionSheetViewController) {
+        actionSheetViewController.close()
+    }
+
+    func buttonDidTap(actionSheetViewController: VOYActionSheetViewController, button: UIButton, index: Int) {
+        actionSheetViewController.close()
+        presenter.onTapEditReport()
+    }
+}
+
+extension VOYReportDetailsViewController: VOYAlertViewControllerDelegate {
+    func buttonDidTap(alertController: VOYAlertViewController, button: UIButton, index: Int) {
+        alertController.close()
+        if index == 0 {
+            presenter.onTapEditReport()
+        }
+    }
 }
