@@ -24,19 +24,13 @@ class VOYReportDetailsTagsCell: UITableViewCell {
         viewTags.marginY = 13
     }
 
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
-
     func setTags(_ tags: [String], withColorHex colorHex: String) {
         let themeColor = UIColor(hex: colorHex)
         viewTags.tagBackgroundColor = themeColor
         viewTags.tagHighlightedBackgroundColor = themeColor
         viewTags.tagSelectedBackgroundColor = themeColor
 
+        viewTags.removeAllTags()
         viewTags.addTags(tags)
     }
-    
 }
