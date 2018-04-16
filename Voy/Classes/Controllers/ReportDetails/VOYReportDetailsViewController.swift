@@ -66,6 +66,9 @@ class VOYReportDetailsViewController: UIViewController {
         presenter.onViewDidLoad()
     }
 
+    /**
+     * Configures the first cell, containing all the medias, title, date and description of the report.
+     */
     private func getHeaderCell() -> UITableViewCell? {
         guard let viewModel = self.viewModel else { return nil }
         guard let cell = tableView.dequeueReusableCell(withIdentifier: VOYReportDetailsRow.header.rawValue)
@@ -77,6 +80,9 @@ class VOYReportDetailsViewController: UIViewController {
         return cell
     }
 
+    /**
+     * The "External Links" title cell.
+     */
     private func getLinksHeader() -> UITableViewCell? {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: VOYReportDetailsRow.externalLinksHeader.rawValue)
             as? VOYExternalLinksHeaderCell else {
@@ -85,6 +91,9 @@ class VOYReportDetailsViewController: UIViewController {
         return cell
     }
 
+    /**
+     * The cell containing the link itself.
+     */
     private func getLinksItem(at position: Int) -> UITableViewCell? {
         guard let viewModel = self.viewModel else { return nil }
         guard let cell = tableView.dequeueReusableCell(withIdentifier: VOYReportDetailsRow.externalLinksItem.rawValue)
@@ -140,7 +149,9 @@ class VOYReportDetailsViewController: UIViewController {
 extension VOYReportDetailsViewController: UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("Selected row at \(indexPath.row)")
+        if let linkTableView = tableView.cellForRow(at: indexPath) as? VOYExternalLinkItemCell {
+            print("Cell selected is \(linkTableView.textLabel?.text)")
+        }
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

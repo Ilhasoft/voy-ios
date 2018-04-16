@@ -8,6 +8,9 @@
 
 import UIKit
 
+/**
+ * This structure describes all the content desiplayed in the report details screen and its cells.
+ */
 struct VOYReportDetailsViewModel {
     let title: String
     let date: String

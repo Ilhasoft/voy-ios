@@ -25,6 +25,9 @@ class VOYReportDetailsTagsCell: UITableViewCell {
         viewTags.marginY = 13
     }
 
+    /**
+     * Adds the strings passed as tags displayed in the UI, using the color specified.
+     */
     func setTags(_ tags: [String], withColorHex colorHex: String) {
         let themeColor = UIColor(hex: colorHex)
         viewTags.tagBackgroundColor = themeColor
