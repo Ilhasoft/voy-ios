@@ -10,8 +10,6 @@ import UIKit
 
 protocol VOYReportDetailsContract: class {
     func update(with viewModel: VOYReportDetailsViewModel)
-    func setThemeColor(themeColorHex: String)
-    func setCameraData(_ cameraDataList: [VOYCameraData])
     func navigateToPictureScreen(image: UIImage)
     func navigateToVideoScreen(videoURL: URL)
     func navigateToCommentsScreen(report: VOYReport)

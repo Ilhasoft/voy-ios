@@ -114,11 +114,26 @@ class VOYReportDetailsViewController: UIViewController {
         actionSheetViewController.show(true, inViewController: self)
     }
 
-    // MARK: - IBACtions
+    // MARK: - IBActions
 
     @IBAction
     func didTapCommentsButton(_ button: UIButton) {
         presenter.onTapCommentsButton()
+    }
+
+    @objc
+    func didTapShareButton() {
+        presenter.onTapSharedButton()
+    }
+
+    @objc
+    func didTapIssueButton() {
+        presenter.onTapIssueButton()
+    }
+
+    @objc
+    func didTapOptionsButton() {
+        presenter.onTapOptionsButton()
     }
 }
 
@@ -195,10 +210,6 @@ extension VOYReportDetailsViewController: VOYReportDetailsContract {
         tableView.reloadData()
     }
 
-    func setThemeColor(themeColorHex: String) {}
-
-    func setCameraData(_ cameraDataList: [VOYCameraData]) {}
-
     func navigateToPictureScreen(image: UIImage) {
         let dataSource = PhotosDataSource(photos: [Photo(image: image)])
         let photosViewController = PhotosViewController(dataSource: dataSource)
@@ -222,7 +233,49 @@ extension VOYReportDetailsViewController: VOYReportDetailsContract {
         btComment.isHidden = !enabled
     }
 
-    func setupNavigationButtons(avatarURL: URL, lastNotification: String?, showOptions: Bool, showShare: Bool) {}
+    func setupNavigationButtons(avatarURL: URL, lastNotification: String?, showOptions: Bool, showShare: Bool) {
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: " ", style: .plain, target: nil, action: nil)
+        let barButtonItemOptions = UIBarButtonItem(
+            image: #imageLiteral(resourceName: "combinedShape").withRenderingMode(.alwaysOriginal),
+            style: .plain,
+            target: self,
+            action: #selector(didTapOptionsButton)
+        )
+        let barButtonItemIssue = UIBarButtonItem(
+            image: #imageLiteral(resourceName: "issue").withRenderingMode(.alwaysOriginal),
+            style: .plain,
+            target: self,
+            action: #selector(didTapIssueButton)
+        )
+        let barButtonItemShare = UIBarButtonItem(
+            barButtonSystemItem: UIBarButtonSystemItem.action,
+            target: self,
+            action: #selector(didTapShareButton)
+        )
+        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
+        imageView.kf.setImage(with: avatarURL)
+        imageView.contentMode = .scaleAspectFit
+        imageView.widthAnchor.constraint(equalToConstant: 32).isActive = true
+        imageView.heightAnchor.constraint(equalToConstant: 31).isActive = true
+
+        self.navigationItem.title = localizedString(.report)
+
+        var buttonItens = [barButtonItemOptions, barButtonItemIssue]
+
+        if isEmptyOrNil(string: lastNotification) {
+            buttonItens.remove(at: 1)
+        }
+
+        if !showOptions {
+            buttonItens.remove(at: 0)
+        }
+
+        if showShare {
+            buttonItens.append(barButtonItemShare)
+        }
+
+        self.navigationItem.rightBarButtonItems = buttonItens
+    }
 
     func navigateToEditReport(report: VOYReport) {
         self.navigationController?.pushViewController(
