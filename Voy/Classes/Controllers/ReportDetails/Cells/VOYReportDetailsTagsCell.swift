@@ -22,7 +22,7 @@ class VOYReportDetailsTagsCell: UITableViewCell {
         viewTags.cornerRadius = 7
         viewTags.paddingY = 9
         viewTags.paddingX = 22
-        viewTags.marginY = 13
+        viewTags.marginY = 6
     }
 
     /**
