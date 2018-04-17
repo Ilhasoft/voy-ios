@@ -18,4 +18,9 @@ extension String {
         let seconds = Calendar.current.component(.second, from: Date())
         return "\(day)\(month)\(year)\(hour)\(minutes)\(seconds)"
     }
+
+    var isValidURL: Bool {
+        let urlRegex = "^(https://|http://)?[a-z0-9]+([-.][a-z0-9]+)+.*$"
+        return (self as NSString).range(of: urlRegex, options: .regularExpression).location != NSNotFound
+    }
 }

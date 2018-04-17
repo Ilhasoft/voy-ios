@@ -66,11 +66,10 @@
                                     </constraints>
                                 </view>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add Link" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Jy-6e-IFa">
-                                    <rect key="frame" x="25" y="282" width="96" height="25"/>
+                                    <rect key="frame" x="25" y="282" width="325" height="25"/>
                                     <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="25" id="04T-87-B0J"/>
-                                        <constraint firstAttribute="width" constant="96" id="Yj0-DF-mCa"/>
                                     </constraints>
                                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
                                     <nil key="textColor"/>
@@ -134,6 +133,7 @@
                                 <constraint firstAttribute="trailing" secondItem="fVN-Il-aK5" secondAttribute="trailing" constant="25" id="Anm-Xv-Bno"/>
                                 <constraint firstAttribute="height" constant="690" id="DIX-PP-b7g"/>
                                 <constraint firstAttribute="bottom" secondItem="ozX-WH-phr" secondAttribute="bottom" id="FeN-Uh-0hH"/>
+                                <constraint firstAttribute="trailing" secondItem="4Jy-6e-IFa" secondAttribute="trailing" constant="25" id="IXv-FI-PEF"/>
                                 <constraint firstItem="qbh-Cy-T1c" firstAttribute="top" secondItem="fVN-Il-aK5" secondAttribute="bottom" constant="11" id="Oz5-RS-wTr"/>
                                 <constraint firstItem="fVN-Il-aK5" firstAttribute="top" secondItem="jFq-xv-cro" secondAttribute="bottom" constant="34" id="PRw-MP-4nU"/>
                                 <constraint firstItem="4Jy-6e-IFa" firstAttribute="leading" secondItem="2IB-dE-tl7" secondAttribute="leading" constant="25" id="Ph5-TM-AgQ"/>
