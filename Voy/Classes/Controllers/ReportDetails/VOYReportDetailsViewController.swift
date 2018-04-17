@@ -150,7 +150,11 @@ extension VOYReportDetailsViewController: UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let linkTableView = tableView.cellForRow(at: indexPath) as? VOYExternalLinkItemCell {
-            print("Cell selected is \(linkTableView.textLabel?.text)")
+            if let labelText = linkTableView.textLabel?.text,
+                let url = URL(string: labelText),
+                UIApplication.shared.canOpenURL(url) {
+                presenter.onSelectURL(url)
+            }
         }
     }
 
@@ -321,6 +325,10 @@ extension VOYReportDetailsViewController: VOYReportDetailsContract {
         )
         alertInfoController.delegate = self
         alertInfoController.show(true, inViewController: self)
+    }
+
+    func openURL(_ url: URL) {
+        UIApplication.shared.open(url, options: [:], completionHandler: nil)
     }
 }
 

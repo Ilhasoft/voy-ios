@@ -92,6 +92,10 @@ class VOYReportDetailsPresenter {
         view?.showIssueAlert(lastNotification: lastNotification)
     }
 
+    func onSelectURL(_ url: URL) {
+        view?.openURL(url)
+    }
+
     // MARK: - Private methods
 
     /**
