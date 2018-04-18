@@ -7,16 +7,37 @@
 //
 
 import UIKit
+import ObjectMapper
 
 /**
  * This class saves and returns the content that is kept in the device while network is not available.
  */
 class VOYDefaultStorageManager: VOYStorageManager {
 
+    private let themesKey = "themes"
+    private let cameraDataKey = "cameraData"
+
+    // MARK: - Themes
+
+    func getThemes(completion: ([VOYTheme]) -> Void) {
+        if let themesDictioanry = UserDefaults.standard.getArchivedObject(key: themesKey) as? [[String: Any]] {
+            let themes: [VOYTheme] = themesDictioanry.map { VOYTheme(JSON: $0) ?? VOYTheme() }
+            completion(themes)
+        } else {
+            completion([])
+        }
+    }
+
+    func setThemes(_ themes: [VOYTheme]) {
+        let dictionaries: [[String: Any]] = themes.map { $0.toJSON() }
+        UserDefaults.standard.set(dictionaries, forKey: themesKey)
+        UserDefaults.standard.synchronize()
+    }
+
     // MARK: - CameraData
 
     func getPendingCameraData() -> [[String: Any]] {
-        if let cameraDataDictioanry = UserDefaults.standard.getArchivedObject(key: "cameraData") as? [[String: Any]] {
+        if let cameraDataDictioanry = UserDefaults.standard.getArchivedObject(key: cameraDataKey) as? [[String: Any]] {
             return cameraDataDictioanry
         }
         return [[String: Any]]()
@@ -32,7 +53,7 @@ class VOYDefaultStorageManager: VOYStorageManager {
         if let index = index {
             pendentCameraDataList.remove(at: index)
             let encodedObject = NSKeyedArchiver.archivedData(withRootObject: pendentCameraDataList)
-            UserDefaults.standard.set(encodedObject, forKey: "cameraData")
+            UserDefaults.standard.set(encodedObject, forKey: cameraDataKey)
             UserDefaults.standard.synchronize()
         }
     }
@@ -56,12 +77,12 @@ class VOYDefaultStorageManager: VOYStorageManager {
         pendentCameraDataList.append(cameraData.toJSON())
 
         let encodedObject = NSKeyedArchiver.archivedData(withRootObject: pendentCameraDataList)
-        UserDefaults.standard.set(encodedObject, forKey: "cameraData")
+        UserDefaults.standard.set(encodedObject, forKey: cameraDataKey)
         UserDefaults.standard.synchronize()
     }
 
     func clearStoredCameraData() {
-        UserDefaults.standard.set(nil, forKey: "cameraData")
+        UserDefaults.standard.set(nil, forKey: cameraDataKey)
     }
 
     // MARK: - Reports

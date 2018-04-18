@@ -9,6 +9,9 @@
 import UIKit
 
 protocol VOYStorageManager {
+    func getThemes(completion: ([VOYTheme]) -> Void)
+    func setThemes(_ themes: [VOYTheme])
+
     func getPendingCameraData() -> [[String: Any]]
     func removeFromPendingList(cameraData: VOYCameraData)
     func addAsPending(cameraData: VOYCameraData, reportID: Int)
