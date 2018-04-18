@@ -33,6 +33,9 @@
 "all_reports_approved" = "All your reports have been approved";
 "add_report" = "Add Report";
 "you_have_no_unapproved_reports" = "You have no unapproved reports";
+"you_have_x_reports_approved" = "You have %d reports approved";
+"you_have_x_reports_pending" = "You have %d reports pending";
+"you_have_x_reports_not_approved" = "You have %d reports not approved";
 
 // Notifications Screen
 "notifications" = "Notifications";
