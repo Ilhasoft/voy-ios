@@ -34,6 +34,7 @@ class VOYLocalizable {
         case description
         case done
         case editReport = "edit_report"
+        case externalLinks = "external_links"
         case email
         case error
         case gpsPermissionError = "gps_permission_error"

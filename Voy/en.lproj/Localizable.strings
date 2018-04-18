@@ -58,6 +58,7 @@
 "comment" = "Comment";
 "report" = "Report";
 "reported_a_problem" = "Hello, I reported a problem in this region, take a look: %@";
+"external_links" = "External Links";
 
 // Comments Screen
 "comments" = "Comments";
