@@ -98,8 +98,8 @@ class VOYAddReportDataViewController: UIViewController {
     }
 
     @IBAction func btAddLinkTapped(_ sender: Any) {
-        if !self.txtFieldLink.safeText.isEmpty {
-            self.tbViewLinks.dataList.append(self.txtFieldLink.safeText)
+        if !self.txtFieldLink.safeText.isEmpty && txtFieldLink.safeText.isValidURL {
+            self.tbViewLinks.dataList.append(txtFieldLink.safeText)
             self.tbViewLinks.reloadData()
             self.txtFieldLink.text = ""
             UIView.animate(withDuration: 0.3, animations: {
@@ -181,6 +181,7 @@ extension VOYAddReportDataViewController: VOYTextViewDelegate {
 extension VOYAddReportDataViewController: VOYLinkTableViewCellDelegate {
     func linkDidTap(url: String, cell: VOYLinkTableViewCell) {
     }
+
     func removeButtonDidTap(cell: VOYLinkTableViewCell) {
         if let dataList = self.tbViewLinks.dataList as? [String] {
             let index = dataList.index {($0 == cell.lbLink.safeText)}
