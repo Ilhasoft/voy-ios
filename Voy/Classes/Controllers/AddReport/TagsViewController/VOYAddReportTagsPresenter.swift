@@ -36,13 +36,11 @@ class VOYAddReportTagsPresenter {
 
         // TODO: separate this into its own method
         for cameraDataToRemove in report.removedCameraData {
-            if let fileName = cameraDataToRemove.fileName,
-                let filePath = VOYFileUtil.outputURLDirectory?.appendingPathComponent(fileName) {
-                VOYFileUtil.removeFile(URL(fileURLWithPath: filePath))
+            if let fileName = cameraDataToRemove.fileName {
+                VOYFileUtil.removeFile(with: fileName)
             }
-            if let fileName = cameraDataToRemove.thumbnailFileName,
-                let filePath = VOYFileUtil.outputURLDirectory?.appendingPathComponent(fileName) {
-                VOYFileUtil.removeFile(URL(fileURLWithPath: filePath))
+            if let fileName = cameraDataToRemove.thumbnailFileName {
+                VOYFileUtil.removeFile(with: fileName)
             }
             if var cameraDataList = report.cameraDataList {
                 let indexToRemove = cameraDataList.index(where: {

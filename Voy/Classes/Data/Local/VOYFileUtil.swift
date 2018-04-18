@@ -23,31 +23,21 @@ class VOYFileUtil {
         }
     }
 
-    open class func removeFile(_ fileURL: URL) {
-        let filePath = fileURL.path
-        let fileManager = FileManager.default
+    open class func removeFile(with fileName: String) {
+        if let completeFilePath = VOYFileUtil.outputURLDirectory?.appendingPathComponent(fileName) {
+            let filePath = URL(fileURLWithPath: completeFilePath).path
+            let fileManager = FileManager.default
 
-        if fileManager.fileExists(atPath: filePath) {
-            do {
-                try fileManager.removeItem(atPath: filePath)
-            } catch let error as NSError {
-                print("Can't remove file \(error.localizedDescription)")
+            if fileManager.fileExists(atPath: filePath) {
+                try? fileManager.removeItem(atPath: filePath)
             }
-        } else {
-            print("file doesn't exist")
         }
     }
 
     open class func writeImageFile(_ data: Data) -> String? {
-
         let fileName = "image\(String.getIdentifier()).jpg"
-
         if let path = VOYFileUtil.outputURLDirectory?.appendingPathComponent(fileName) {
-            do {
-                try data.write(to: URL(fileURLWithPath: path), options: [.atomic])
-            } catch {
-                print(error.localizedDescription)
-            }
+            try? data.write(to: URL(fileURLWithPath: path), options: [.atomic])
             return fileName
         }
         return nil
