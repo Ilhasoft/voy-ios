@@ -27,7 +27,7 @@ class VOYAlertViewController: ISModalViewController {
 
     weak var delegate: VOYAlertViewControllerDelegate?
 
-    init(title: String, message: String, buttonNames: [String] = ["Ok"]) {
+    init(title: String, message: String, buttonNames: [String] = [localizedString(.ok)]) {
         self.messageTitle = title
         self.message = message
         self.buttonNames = buttonNames
