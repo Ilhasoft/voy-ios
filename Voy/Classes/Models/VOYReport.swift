@@ -34,7 +34,7 @@ class VOYReport: Mappable {
     var lastNotification: String?
     var update: Bool!
     var shareURL: String!
-    var comments: Int!
+    var comments: Int = 0
 
     init() {
 
