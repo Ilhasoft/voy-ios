@@ -155,7 +155,8 @@ class VOYDefaultStorageManager: VOYStorageManager {
 
     private func storeObjects<T: Mappable>(objects: [T], usingKey key: String) {
         let dictionaries: [[String: Any]] = objects.map { $0.toJSON() }
-        UserDefaults.standard.set(dictionaries, forKey: key)
+        let encodedObject = NSKeyedArchiver.archivedData(withRootObject: dictionaries)
+        UserDefaults.standard.set(encodedObject, forKey: key)
         UserDefaults.standard.synchronize()
     }
 

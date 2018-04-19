@@ -11,8 +11,8 @@ import UIKit
 class VOYThemesPresenter {
     private let dataSource: VOYThemesDataSource
 
-    private var projects: [VOYProject] = []
-    private var themes: [VOYTheme] = []
+    private var projects: [VOYProject: [VOYTheme]?] = [:]
+    private var retrievedThemesCount = 0
     weak var view: VOYThemesContract?
 
     init(dataSource: VOYThemesDataSource = VOYThemeRepository(), view: VOYThemesContract) {
@@ -22,11 +22,19 @@ class VOYThemesPresenter {
 
     func onReady() {
         view?.showProgress()
-        dataSource.getProjects { [weak self] projects in
-            self?.projects = projects
-            self?.dataSource.getThemes { themes in
-                self?.themes = themes
-                self?.view?.dismissProgress()
+        guard let activeUser = assertExists(optionalVar: VOYUser.activeUser()) else { return }
+        dataSource.getProjects(forUser: activeUser) { projects in
+            for project in projects {
+                self.projects[project] = []
+                self.dataSource.getThemes(forProject: project) { themes in
+                    DispatchQueue.main.async {
+                        self.projects[project] = themes
+                        self.retrievedThemesCount += 1
+                        if self.retrievedThemesCount == self.projects.count {
+                            self.view?.dismissProgress()
+                        }
+                    }
+                }
             }
         }
     }

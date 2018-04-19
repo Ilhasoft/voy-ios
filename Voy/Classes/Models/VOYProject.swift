@@ -8,10 +8,14 @@
 
 import ObjectMapper
 
-class VOYProject: Mappable {
+class VOYProject: Mappable, Hashable, Equatable {
 
     var id: Int!
     var name: String!
+
+    var hashValue: Int {
+        return id
+    }
 
     init() {
     }
@@ -40,5 +44,9 @@ class VOYProject: Mappable {
 
     func map() -> Map {
         return Map(mappingType: .toJSON, JSON: self.toJSON())
+    }
+
+    static func == (lhs: VOYProject, rhs: VOYProject) -> Bool {
+        return lhs.id == rhs.id
     }
 }

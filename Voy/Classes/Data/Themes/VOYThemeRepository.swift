@@ -21,9 +21,17 @@ class VOYThemeRepository: VOYThemesDataSource {
         self.networkClient = VOYNetworkClient(reachability: reachability, storageManager: storageManager)
     }
 
-    func getProjects(completion: @escaping ([VOYProject]) -> Void) {
+    func getProjects(forUser user: VOYUser, completion: @escaping ([VOYProject]) -> Void) {
         if reachability.hasNetwork() {
-            networkClient.requestObjectArray(urlSuffix: "projects/", httpMethod: .get) { (projects: [VOYProject]?, error, request) in
+            guard let authToken = user.authToken else {
+                completion([])
+                return
+            }
+            networkClient.requestObjectArray(
+                urlSuffix: "projects/",
+                httpMethod: .get,
+                headers: ["Authorization": "Token \(authToken)"]
+            ) { (projects: [VOYProject]?, _, _) in
                 if let projects = projects {
                     self.storageManager.setProjects(projects)
                     completion(projects)
@@ -36,9 +44,16 @@ class VOYThemeRepository: VOYThemesDataSource {
         }
     }
 
-    func getThemes(completion: @escaping ([VOYTheme]) -> Void) {
+    func getThemes(forProject project: VOYProject, completion: @escaping ([VOYTheme]) -> Void) {
         if reachability.hasNetwork() {
-            networkClient.requestObjectArray(urlSuffix: "themes/", httpMethod: .get) { (themes: [VOYTheme]?, error, request) in
+            guard let projectId = project.id else {
+                completion([])
+                return
+            }
+            networkClient.requestObjectArray(
+                urlSuffix: "themes/?project=\(projectId)",
+                httpMethod: .get
+            ) { (themes: [VOYTheme]?, _, _) in
                 if let themes = themes {
                     self.storageManager.setThemes(themes)
                     completion(themes)

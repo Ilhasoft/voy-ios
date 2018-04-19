@@ -28,6 +28,12 @@ class VOYThemesViewController: UIViewController {
         super.viewDidLoad()
         presenter.onReady()
     }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        // Sometimes this viewController comes from a step where the navigationController is hidden
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
+    }
 }
 
 extension VOYThemesViewController: VOYThemesContract {
