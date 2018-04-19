@@ -9,6 +9,7 @@
 import UIKit
 
 protocol VOYThemesContract: AnyObject {
+    func update(with viewModel: VOYThemesViewModel)
     func showProgress()
     func dismissProgress()
 }

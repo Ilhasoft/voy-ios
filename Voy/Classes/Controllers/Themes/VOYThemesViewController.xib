@@ -39,7 +39,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="BiI-uF-EOH">
-                    <rect key="frame" x="0.0" y="91" width="375" height="576"/>
+                    <rect key="frame" x="24" y="91" width="327" height="576"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </tableView>
             </subviews>
@@ -51,8 +51,8 @@
                 <constraint firstItem="BiI-uF-EOH" firstAttribute="top" secondItem="xPD-8W-K41" secondAttribute="bottom" constant="27" id="W4v-fN-37b"/>
                 <constraint firstItem="Dku-Zm-hCh" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="aIX-1F-2fa"/>
                 <constraint firstItem="xPD-8W-K41" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="23" id="abS-dC-60g"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="BiI-uF-EOH" secondAttribute="trailing" id="h5I-Bk-4NW"/>
-                <constraint firstItem="BiI-uF-EOH" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="iYU-Wz-bmx"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="BiI-uF-EOH" secondAttribute="trailing" constant="24" id="h5I-Bk-4NW"/>
+                <constraint firstItem="BiI-uF-EOH" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="24" id="iYU-Wz-bmx"/>
                 <constraint firstItem="Dku-Zm-hCh" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="iYk-XE-vHb"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="BiI-uF-EOH" secondAttribute="bottom" id="op4-vs-SaI"/>
             </constraints>
