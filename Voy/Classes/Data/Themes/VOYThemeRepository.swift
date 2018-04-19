@@ -19,11 +19,21 @@ class VOYThemeRepository: VOYThemesDataSource {
         self.storageManager = storageManager
     }
 
+    func getProjects(completion: ([VOYProject]) -> Void) {
+        if reachability.hasNetwork() {
+            // TODO: request remotely
+            //storageManager.setProjects([])
+        } else {
+            completion(storageManager.getProjects())
+        }
+    }
+
     func getThemes(completion: ([VOYTheme]) -> Void) {
         if reachability.hasNetwork() {
             // TODO: request remotely
+            //storageManager.setThemes([])
         } else {
-            storageManager.getThemes(completion: completion)
+            completion(storageManager.getThemes())
         }
     }
 }

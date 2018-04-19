@@ -9,5 +9,6 @@
 import UIKit
 
 protocol VOYThemesDataSource {
+    func getProjects(completion: ([VOYProject]) -> Void)
     func getThemes(completion: ([VOYTheme]) -> Void)
 }

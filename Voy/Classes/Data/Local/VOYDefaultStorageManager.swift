@@ -14,24 +14,26 @@ import ObjectMapper
  */
 class VOYDefaultStorageManager: VOYStorageManager {
 
+    private let projectsKey = "projects"
     private let themesKey = "themes"
     private let cameraDataKey = "cameraData"
 
-    // MARK: - Themes
-
-    func getThemes(completion: ([VOYTheme]) -> Void) {
-        if let themesDictioanry = UserDefaults.standard.getArchivedObject(key: themesKey) as? [[String: Any]] {
-            let themes: [VOYTheme] = themesDictioanry.map { VOYTheme(JSON: $0) ?? VOYTheme() }
-            completion(themes)
-        } else {
-            completion([])
-        }
+    func setProjects(_ projects: [VOYProject]) {
+        storeObjects(objects: projects, usingKey: projectsKey)
     }
 
+    func getProjects() -> [VOYProject] {
+        return getObjects(usingKey: projectsKey)
+    }
+
+    // MARK: - Themes
+
     func setThemes(_ themes: [VOYTheme]) {
-        let dictionaries: [[String: Any]] = themes.map { $0.toJSON() }
-        UserDefaults.standard.set(dictionaries, forKey: themesKey)
-        UserDefaults.standard.synchronize()
+        storeObjects(objects: themes, usingKey: themesKey)
+    }
+
+    func getThemes() -> [VOYTheme] {
+        return getObjects(usingKey: themesKey)
     }
 
     // MARK: - CameraData
@@ -147,6 +149,26 @@ class VOYDefaultStorageManager: VOYStorageManager {
     func clearAllOfflineData() {
         clearPendingReports()
         clearStoredCameraData()
+    }
+
+    // MARK: Private methods
+
+    private func storeObjects<T: Mappable>(objects: [T], usingKey key: String) {
+        let dictionaries: [[String: Any]] = objects.map { $0.toJSON() }
+        UserDefaults.standard.set(dictionaries, forKey: key)
+        UserDefaults.standard.synchronize()
+    }
+
+    private func getObjects<T: Mappable>(usingKey key: String) -> [T] {
+        var objects: [T] = []
+        if let dictioanries = UserDefaults.standard.getArchivedObject(key: key) as? [[String: Any]] {
+            for dictionary in dictioanries {
+                if let object = T(JSON: dictionary) {
+                    objects.append(object)
+                }
+            }
+        }
+        return objects
     }
 
 }

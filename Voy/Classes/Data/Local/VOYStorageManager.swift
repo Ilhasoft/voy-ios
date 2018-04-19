@@ -9,7 +9,11 @@
 import UIKit
 
 protocol VOYStorageManager {
-    func getThemes(completion: ([VOYTheme]) -> Void)
+
+    func setProjects(_ projects: [VOYProject])
+    func getProjects() -> [VOYProject]
+
+    func getThemes() -> [VOYTheme]
     func setThemes(_ themes: [VOYTheme])
 
     func getPendingCameraData() -> [[String: Any]]
