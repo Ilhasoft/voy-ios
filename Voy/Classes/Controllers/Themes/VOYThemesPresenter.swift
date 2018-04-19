@@ -9,5 +9,25 @@
 import UIKit
 
 class VOYThemesPresenter {
+    private let dataSource: VOYThemesDataSource
 
+    private var projects: [VOYProject] = []
+    private var themes: [VOYTheme] = []
+    weak var view: VOYThemesContract?
+
+    init(dataSource: VOYThemesDataSource = VOYThemeRepository(), view: VOYThemesContract) {
+        self.dataSource = dataSource
+        self.view = view
+    }
+
+    func onReady() {
+        view?.showProgress()
+        dataSource.getProjects { [weak self] projects in
+            self?.projects = projects
+            self?.dataSource.getThemes { themes in
+                self?.themes = themes
+                self?.view?.dismissProgress()
+            }
+        }
+    }
 }
