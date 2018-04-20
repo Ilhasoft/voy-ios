@@ -11,4 +11,11 @@ import UIKit
 struct VOYThemesViewModel {
     let themes: [VOYProject: [VOYTheme]]
     let selectedProject: VOYProject?
+
+    func themesForSelectedProject() -> [VOYTheme] {
+        if let selectedProject = self.selectedProject, let themes = themes[selectedProject] {
+            return themes
+        }
+        return []
+    }
 }

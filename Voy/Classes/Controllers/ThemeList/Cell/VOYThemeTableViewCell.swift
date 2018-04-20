@@ -29,4 +29,9 @@ open class VOYThemeTableViewCell: DataBindOnDemandTableViewCell {
             self.lbTheme.backgroundColor = UIColor(hex: theme.color)
         }
     }
+
+    func setupCell(with theme: VOYTheme) {
+        self.lbTheme.text = theme.name
+        self.lbTheme.backgroundColor = UIColor(hex: theme.color)
+    }
 }

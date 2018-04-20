@@ -31,6 +31,12 @@ class VOYThemesViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        lbThemesCount.text = localizedString(.themesListHeader, andNumber: 0)
+        tableView.separatorColor = UIColor.clear
+        tableView.register(
+            UINib(nibName: VOYThemeTableViewCell.nibName, bundle: nil),
+            forCellReuseIdentifier: VOYThemeTableViewCell.nibName
+        )
         presenter.onReady()
     }
 
@@ -54,21 +60,53 @@ class VOYThemesViewController: UIViewController {
             cell.optionLabel.textAlignment = .center
         }
         dropDown.selectionAction = { [unowned self] (index: Int, item: String) in
-//            self.loadThemesFilteredByProject(project: projects[index])
-            self.selectedReportView.lbTitle.text = item
+            self.presenter.onProjectSelectionChanged(project: item)
         }
+    }
+}
+
+extension VOYThemesViewController: UITableViewDataSource {
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let viewModel = self.viewModel else { return UITableViewCell() }
+        let themes = viewModel.themesForSelectedProject()
+        if let cell = tableView.dequeueReusableCell(withIdentifier: VOYThemeTableViewCell.nibName, for: indexPath)
+            as? VOYThemeTableViewCell, indexPath.row < themes.count {
+            let theme = themes[indexPath.row]
+            cell.setupCell(with: theme)
+            return cell
+        }
+        return UITableViewCell()
+    }
+
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        guard let viewModel = self.viewModel else { return 0 }
+        return viewModel.themesForSelectedProject().count
+    }
+}
+
+extension VOYThemesViewController: UITableViewDelegate {
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        // TODO
+    }
+
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 103
     }
 }
 
 extension VOYThemesViewController: VOYThemesContract {
 
     func update(with viewModel: VOYThemesViewModel) {
-        lbThemesCount.text = localizedString(.themesListHeader, andNumber: viewModel.themes.count)
+        self.viewModel = viewModel
+        lbThemesCount.text = localizedString(.themesListHeader, andNumber: viewModel.themesForSelectedProject().count)
         let projects = Array(viewModel.themes.keys)
         if projects.count > 0 {
             setupDropDown(projects: projects)
         }
         selectedReportView.lbTitle.text = viewModel.selectedProject?.name ?? ""
+        tableView.reloadData()
     }
 
     func showProgress() {

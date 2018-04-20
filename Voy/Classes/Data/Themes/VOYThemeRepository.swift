@@ -44,14 +44,14 @@ class VOYThemeRepository: VOYThemesDataSource {
         }
     }
 
-    func getThemes(forProject project: VOYProject, completion: @escaping ([VOYTheme]) -> Void) {
+    func getThemes(forProject project: VOYProject, user: VOYUser, completion: @escaping ([VOYTheme]) -> Void) {
         if reachability.hasNetwork() {
-            guard let projectId = project.id else {
+            guard let projectId = project.id, let userId = user.id else {
                 completion([])
                 return
             }
             networkClient.requestObjectArray(
-                urlSuffix: "themes/?project=\(projectId)",
+                urlSuffix: "themes/?project=\(projectId)&user=\(userId)",
                 httpMethod: .get
             ) { (themes: [VOYTheme]?, _, _) in
                 if let themes = themes {

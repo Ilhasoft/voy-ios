@@ -28,7 +28,7 @@ class VOYThemesPresenter {
             if let firstProject = projects.first { self.selectedProject = firstProject }
             for project in projects {
                 self.themes[project] = []
-                self.dataSource.getThemes(forProject: project) { themes in
+                self.dataSource.getThemes(forProject: project, user: activeUser) { themes in
                     DispatchQueue.main.async {
                         self.themes[project] = themes
                         self.retrievedThemesCount += 1
@@ -43,6 +43,19 @@ class VOYThemesPresenter {
                     }
                 }
             }
+        }
+    }
+
+    func onProjectSelectionChanged(project: String) {
+        for element in themes where element.key.name == project {
+            selectedProject = element.key
+        }
+        DispatchQueue.main.async {
+            let viewModel = VOYThemesViewModel(
+                themes: self.themes,
+                selectedProject: self.selectedProject
+            )
+            self.view?.update(with: viewModel)
         }
     }
 }
