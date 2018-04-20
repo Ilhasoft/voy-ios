@@ -18,6 +18,22 @@ class VOYStorageManagerTests: XCTestCase {
         storageManager.clearAllOfflineData()
     }
 
+    func testSaveAndRemoveProjects() {
+        let project = VOYProject()
+        project.id = 24
+        project.name = "Ilhasoft"
+
+        storageManager.setProjects([project])
+        var retrievedProjects = storageManager.getProjects()
+        XCTAssertEqual(retrievedProjects.count, 1)
+        XCTAssertEqual(retrievedProjects[0].id, Optional(24))
+        XCTAssertEqual(retrievedProjects[0].name, Optional("Ilhasoft"))
+
+        storageManager.setProjects([])
+        retrievedProjects = storageManager.getProjects()
+        XCTAssertEqual(retrievedProjects.count, 0)
+    }
+
     /**
      * Saves a report and checks if it's actually stored in the pending list. Then removes it and checks if it has been
      * actually removed.
