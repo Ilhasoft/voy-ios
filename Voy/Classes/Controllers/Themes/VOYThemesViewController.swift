@@ -110,11 +110,11 @@ class VOYThemesViewController: UIViewController, NVActivityIndicatorViewable {
             alpha: 1
         )
         VOYThemesViewController.badgeView.clipsToBounds = true
-        VOYThemesViewController.badgeView.layer.cornerRadius = VOYThemeListViewController.badgeView.frame.height / 2
+        VOYThemesViewController.badgeView.layer.cornerRadius = VOYThemesViewController.badgeView.frame.height / 2
         VOYThemesViewController.badgeView.isHidden = true
 
         customView.addGestureRecognizer(gestureRecognizer)
-        customView.addSubview(VOYThemeListViewController.badgeView)
+        customView.addSubview(VOYThemesViewController.badgeView)
 
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: customView)
     }
@@ -214,7 +214,7 @@ extension VOYThemesViewController: VOYThemesContract {
     }
 
     func setNotificationBadge(hidden: Bool) {
-        VOYThemeListViewController.badgeView.isHidden = hidden
+        VOYThemesViewController.badgeView.isHidden = hidden
     }
 }
 
