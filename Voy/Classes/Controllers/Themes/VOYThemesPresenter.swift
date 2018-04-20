@@ -54,13 +54,8 @@ class VOYThemesPresenter {
         for element in themes where element.key.name == project {
             selectedProject = element.key
         }
-        DispatchQueue.main.async {
-            let viewModel = VOYThemesViewModel(
-                themes: self.themes,
-                selectedProject: self.selectedProject
-            )
-            self.view?.update(with: viewModel)
-        }
+        let viewModel = VOYThemesViewModel(themes: self.themes, selectedProject: self.selectedProject)
+        self.view?.update(with: viewModel)
     }
 
     func onProfileAction() {

@@ -25,7 +25,7 @@ class VOYThemesPresenterTests: XCTestCase {
         let expectations = expectation(description: "Set the view model in the viewController")
         presenterUnderTest.onReady()
         DispatchQueue.main.async {
-            XCTAssertNotNil(self.mockViewController.viewModel)
+            XCTAssertEqual(self.mockViewController.viewModel?.selectedProject?.name, Optional("Project 1"))
             expectations.fulfill()
         }
         waitForExpectations(timeout: 5, handler: nil)
@@ -65,5 +65,20 @@ class VOYThemesPresenterTests: XCTestCase {
         mockDataSource.notifications = []
         presenterUnderTest.onViewDidAppear()
         XCTAssertFalse(mockViewController.badgeIsVisible)
+
+        XCTAssertFalse(mockViewController.hasToggledNotification)
+        presenterUnderTest.onNotificationsAction()
+        XCTAssertTrue(mockViewController.hasToggledNotification)
+    }
+
+    func testSelectingNewProject() {
+        let expectations = expectation(description: "Change the selected project")
+        presenterUnderTest.onReady()
+        DispatchQueue.main.async {
+            self.presenterUnderTest.onProjectSelectionChanged(project: "Project 2")
+            XCTAssertEqual(self.mockViewController.viewModel?.selectedProject?.name, Optional("Project 2"))
+            expectations.fulfill()
+        }
+        waitForExpectations(timeout: 5, handler: nil)
     }
 }
