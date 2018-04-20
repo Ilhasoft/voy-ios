@@ -8,12 +8,14 @@
 
 import UIKit
 import DropDown
+import NVActivityIndicatorView
 
-class VOYThemesViewController: UIViewController {
+class VOYThemesViewController: UIViewController, NVActivityIndicatorViewable {
 
     @IBOutlet weak var lbThemesCount: UILabel!
     @IBOutlet weak var tableView: UITableView!
 
+    static var badgeView = UIView()
     var dropDown = DropDown()
     var selectedReportView: VOYSelectedReportView!
     var viewModel: VOYThemesViewModel?
@@ -37,13 +39,26 @@ class VOYThemesViewController: UIViewController {
             UINib(nibName: VOYThemeTableViewCell.nibName, bundle: nil),
             forCellReuseIdentifier: VOYThemeTableViewCell.nibName
         )
+        setupButtonItems()
         presenter.onReady()
+
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(userDataUpdated),
+            name: Notification.Name("userDataUpdated"),
+            object: nil
+        )
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         // Sometimes this viewController comes from a step where the navigationController is hidden
         self.navigationController?.setNavigationBarHidden(false, animated: true)
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        presenter.onViewDidAppear()
     }
 
     fileprivate func setupDropDown(projects: [VOYProject]) {
@@ -62,6 +77,58 @@ class VOYThemesViewController: UIViewController {
         dropDown.selectionAction = { [unowned self] (index: Int, item: String) in
             self.presenter.onProjectSelectionChanged(project: item)
         }
+    }
+
+    func configureLeftBarButtonItem(user: VOYUser) {
+        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
+        imageView.widthAnchor.constraint(equalToConstant: 30).isActive = true
+        imageView.heightAnchor.constraint(equalToConstant: 30).isActive = true
+        imageView.contentMode = .scaleAspectFill
+        if let avatar = user.avatar,
+            let url = URL(string: avatar) {
+            imageView.kf.setImage(with: url)
+        }
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(onProfileButtonTapped))
+        imageView.addGestureRecognizer(tapGesture)
+        let leftBarButtonItem = UIBarButtonItem(customView: imageView)
+        self.navigationItem.leftBarButtonItem = leftBarButtonItem
+    }
+
+    func setupButtonItems() {
+        if let activeUser = VOYUser.activeUser() {
+            configureLeftBarButtonItem(user: activeUser)
+        }
+        let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(onNotificationsButtonTapped))
+        let customView = UIImageView(image: #imageLiteral(resourceName: "bell"))
+        VOYThemesViewController.badgeView = UIView(
+            frame: CGRect(x: customView.frame.width - 9, y: 0, width: 9, height: 9)
+        )
+        VOYThemesViewController.badgeView.backgroundColor = UIColor(
+            displayP3Red: 222/255,
+            green: 72/255,
+            blue: 107/255,
+            alpha: 1
+        )
+        VOYThemesViewController.badgeView.clipsToBounds = true
+        VOYThemesViewController.badgeView.layer.cornerRadius = VOYThemeListViewController.badgeView.frame.height / 2
+        VOYThemesViewController.badgeView.isHidden = true
+
+        customView.addGestureRecognizer(gestureRecognizer)
+        customView.addSubview(VOYThemeListViewController.badgeView)
+
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: customView)
+    }
+
+    @objc func onProfileButtonTapped() {
+        presenter.onProfileAction()
+    }
+
+    @objc func onNotificationsButtonTapped() {
+        presenter.onNotificationsAction()
+    }
+
+    @objc func userDataUpdated() {
+        presenter.onUserDataUpdated()
     }
 }
 
@@ -112,15 +179,42 @@ extension VOYThemesViewController: VOYThemesContract {
     }
 
     func showProgress() {
-        // TODO
+        self.startAnimating()
     }
 
     func dismissProgress() {
-        // TODO
+        self.stopAnimating()
     }
 
     func navigateToReportsScreen() {
-        self.navigationController?.pushViewController(VOYReportListViewController(), animated: true)
+        navigationController?.pushViewController(VOYReportListViewController(), animated: true)
+    }
+
+    func navigateToProfileScreen() {
+        navigationController?.pushViewController(VOYAccountViewController(), animated: true)
+    }
+
+    /**
+     * Opens the notifications slider if it is closed.
+     */
+    func toggleNotifications() {
+        guard let slideMenuController = self.slideMenuController() else { return }
+        if !slideMenuController.isRightOpen() {
+            slideMenuController.openRight()
+        } else {
+            slideMenuController.closeRight()
+        }
+    }
+
+    /**
+     * Sets an updated image of the user in the left navigation button.
+     */
+    func updateUserData(user: VOYUser) {
+        configureLeftBarButtonItem(user: user)
+    }
+
+    func setNotificationBadge(hidden: Bool) {
+        VOYThemeListViewController.badgeView.isHidden = hidden
     }
 }
 

@@ -65,4 +65,21 @@ class VOYThemeRepository: VOYThemesDataSource {
             completion(storageManager.getThemes())
         }
     }
+
+    func getNotifications(withUser user: VOYUser, completion: @escaping ([VOYNotification]) -> Void) {
+        guard let auth = user.authToken else {
+            completion([])
+            return
+        }
+        networkClient.requestObjectArray(urlSuffix: "report-notification/",
+                                         httpMethod: VOYNetworkClient.VOYHTTPMethod.get,
+                                         headers: ["Authorization": "Token \(auth)"]
+        ) { (notificationsList: [VOYNotification]?, _, _) in
+            if let notificationsList = notificationsList {
+                completion(notificationsList)
+            } else {
+                completion([])
+            }
+        }
+    }
 }

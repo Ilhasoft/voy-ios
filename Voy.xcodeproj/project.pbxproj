@@ -573,6 +573,7 @@
 		011B7A262086924F0059C7B4 /* Themes */ = {
 			isa = PBXGroup;
 			children = (
+				01D97E19208A6F3E0059A7AE /* Cell */,
 				011B7A272086928C0059C7B4 /* VOYThemesViewController.swift */,
 				011B7A282086928C0059C7B4 /* VOYThemesViewController.xib */,
 				011B7A2B2086957D0059C7B4 /* VOYThemesPresenter.swift */,
@@ -724,6 +725,15 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
+		01D97E19208A6F3E0059A7AE /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				655BD15620238B0F00D69EA2 /* VOYThemeTableViewCell.xib */,
+				655BD15720238B0F00D69EA2 /* VOYThemeTableViewCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
 		01EBF713204EB7BA00D4EF10 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -824,7 +834,6 @@
 		655BD15020238AD800D69EA2 /* ThemeList */ = {
 			isa = PBXGroup;
 			children = (
-				655BD15520238B0F00D69EA2 /* Cell */,
 				655BD15A20238D4500D69EA2 /* VOYThemeListViewController.swift */,
 				655BD15B20238D4500D69EA2 /* VOYThemeListViewController.xib */,
 				436C994C2049BC0600915A13 /* VOYThemeListPresenter.swift */,
@@ -832,15 +841,6 @@
 				013FD5B92077F7E900F92662 /* VOYThemeListDataSource.swift */,
 			);
 			path = ThemeList;
-			sourceTree = "<group>";
-		};
-		655BD15520238B0F00D69EA2 /* Cell */ = {
-			isa = PBXGroup;
-			children = (
-				655BD15620238B0F00D69EA2 /* VOYThemeTableViewCell.xib */,
-				655BD15720238B0F00D69EA2 /* VOYThemeTableViewCell.swift */,
-			);
-			path = Cell;
 			sourceTree = "<group>";
 		};
 		655BD1602023987D00D69EA2 /* Notification */ = {

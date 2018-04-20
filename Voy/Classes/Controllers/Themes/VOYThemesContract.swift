@@ -13,4 +13,8 @@ protocol VOYThemesContract: AnyObject {
     func showProgress()
     func dismissProgress()
     func navigateToReportsScreen()
+    func navigateToProfileScreen()
+    func toggleNotifications()
+    func updateUserData(user: VOYUser)
+    func setNotificationBadge(hidden: Bool)
 }

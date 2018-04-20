@@ -46,6 +46,10 @@ class VOYThemesPresenter {
         }
     }
 
+    func onViewDidAppear() {
+        updateNotifications()
+    }
+
     func onProjectSelectionChanged(project: String) {
         for element in themes where element.key.name == project {
             selectedProject = element.key
@@ -60,15 +64,30 @@ class VOYThemesPresenter {
     }
 
     func onProfileAction() {
-        // TODO
+        view?.navigateToProfileScreen()
     }
 
     func onNotificationsAction() {
-        // TODO
+        view?.toggleNotifications()
     }
 
     func onThemeSelected(theme: VOYTheme) {
         VOYTheme.setActiveTheme(theme: theme)
         view?.navigateToReportsScreen()
+    }
+
+    func onUserDataUpdated() {
+        if let activeUser = VOYUser.activeUser() {
+            view?.updateUserData(user: activeUser)
+        }
+    }
+
+    // MARK: - Private methods
+
+    private func updateNotifications() {
+        guard let activeUser = VOYUser.activeUser() else { return }
+        dataSource.getNotifications(withUser: activeUser) { notifications in
+            self.view?.setNotificationBadge(hidden: notifications.isEmpty)
+        }
     }
 }

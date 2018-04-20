@@ -57,7 +57,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func loadRootScreen() -> UIViewController {
         if VOYUser.activeUser() != nil {
-            let navigationController = UINavigationController(rootViewController: VOYThemeListViewController())
+            let navigationController = UINavigationController(rootViewController: VOYThemesViewController())
             AppDelegate.mainNavigationController = navigationController
             let slideMenuController = SlideMenuController(
                 mainViewController: navigationController,
