@@ -30,4 +30,18 @@ class VOYThemesPresenterTests: XCTestCase {
         }
         waitForExpectations(timeout: 5, handler: nil)
     }
+
+    func testRoutes() {
+        XCTAssertFalse(mockViewController.hasRedirectedToProfileScreen)
+        XCTAssertFalse(mockViewController.hasRedirectedToReportsScreen)
+
+        presenterUnderTest.onProfileAction()
+        XCTAssertTrue(mockViewController.hasRedirectedToProfileScreen)
+
+        let theme = VOYTheme()
+        theme.id = 30
+        presenterUnderTest.onThemeSelected(theme: theme)
+        XCTAssertEqual(VOYTheme.activeTheme()?.id, Optional(30))
+        XCTAssertTrue(mockViewController.hasRedirectedToReportsScreen)
+    }
 }
