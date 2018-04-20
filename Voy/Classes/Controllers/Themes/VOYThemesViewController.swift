@@ -88,7 +88,9 @@ extension VOYThemesViewController: UITableViewDataSource {
 extension VOYThemesViewController: UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        // TODO
+        if let cell = tableView.cellForRow(at: indexPath) as? VOYThemeTableViewCell, let theme = cell.theme {
+            presenter.onThemeSelected(theme: theme)
+        }
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -115,6 +117,10 @@ extension VOYThemesViewController: VOYThemesContract {
 
     func dismissProgress() {
         // TODO
+    }
+
+    func navigateToReportsScreen() {
+        self.navigationController?.pushViewController(VOYReportListViewController(), animated: true)
     }
 }
 

@@ -58,4 +58,17 @@ class VOYThemesPresenter {
             self.view?.update(with: viewModel)
         }
     }
+
+    func onProfileAction() {
+        // TODO
+    }
+
+    func onNotificationsAction() {
+        // TODO
+    }
+
+    func onThemeSelected(theme: VOYTheme) {
+        VOYTheme.setActiveTheme(theme: theme)
+        view?.navigateToReportsScreen()
+    }
 }
