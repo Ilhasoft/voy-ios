@@ -13,8 +13,8 @@ protocol VOYStorageManager {
     func setProjects(_ projects: [VOYProject])
     func getProjects() -> [VOYProject]
 
-    func getThemes() -> [VOYTheme]
-    func setThemes(_ themes: [VOYTheme])
+    func getThemes(forProject project: VOYProject) -> [VOYTheme]
+    func setThemes(forProject project: VOYProject, _ themes: [VOYTheme])
 
     func getPendingCameraData() -> [[String: Any]]
     func removeFromPendingList(cameraData: VOYCameraData)

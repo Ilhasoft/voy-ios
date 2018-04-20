@@ -28,12 +28,14 @@ class VOYDefaultStorageManager: VOYStorageManager {
 
     // MARK: - Themes
 
-    func setThemes(_ themes: [VOYTheme]) {
-        storeObjects(objects: themes, usingKey: themesKey)
+    func setThemes(forProject project: VOYProject, _ themes: [VOYTheme]) {
+        guard let projectId = project.id else { return }
+        storeObjects(objects: themes, usingKey: "\(themesKey)-\(projectId)")
     }
 
-    func getThemes() -> [VOYTheme] {
-        return getObjects(usingKey: themesKey)
+    func getThemes(forProject project: VOYProject) -> [VOYTheme] {
+        guard let projectId = project.id else { return [] }
+        return getObjects(usingKey: "\(themesKey)-\(projectId)")
     }
 
     // MARK: - CameraData
