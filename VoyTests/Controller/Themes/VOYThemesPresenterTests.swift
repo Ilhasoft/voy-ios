@@ -44,4 +44,26 @@ class VOYThemesPresenterTests: XCTestCase {
         XCTAssertEqual(VOYTheme.activeTheme()?.id, Optional(30))
         XCTAssertTrue(mockViewController.hasRedirectedToReportsScreen)
     }
+
+    func testUserDataUpdated() {
+        XCTAssertFalse(mockViewController.hasUpdatedUserData)
+        presenterUnderTest.onUserDataUpdated()
+        XCTAssertTrue(mockViewController.hasUpdatedUserData)
+    }
+
+    func testNotifications() {
+        XCTAssertFalse(mockViewController.badgeIsVisible)
+
+        let report = VOYReport()
+        report.id = 89
+        let notification = VOYNotification(body: "Your report needs improvement", report: report)
+        mockDataSource.notifications = [notification]
+
+        presenterUnderTest.onViewDidAppear()
+        XCTAssertTrue(mockViewController.badgeIsVisible)
+
+        mockDataSource.notifications = []
+        presenterUnderTest.onViewDidAppear()
+        XCTAssertFalse(mockViewController.badgeIsVisible)
+    }
 }

@@ -17,6 +17,7 @@ class VOYMockThemesViewController: VOYThemesContract {
     var hasRedirectedToProfileScreen = false
     var hasToggledNotification = false
     var badgeIsVisible = false
+    var hasUpdatedUserData = false
 
     func update(with viewModel: VOYThemesViewModel) {
         self.viewModel = viewModel
@@ -42,9 +43,11 @@ class VOYMockThemesViewController: VOYThemesContract {
         hasToggledNotification = true
     }
 
-    func updateUserData(user: VOYUser) {}
+    func updateUserData(user: VOYUser) {
+        hasUpdatedUserData = true
+    }
 
     func setNotificationBadge(hidden: Bool) {
-        badgeIsVisible = hidden
+        badgeIsVisible = !hidden
     }
 }

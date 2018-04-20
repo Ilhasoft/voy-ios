@@ -11,6 +11,8 @@ import XCTest
 
 class VOYMockThemesDataSource: VOYThemesDataSource {
 
+    var notifications: [VOYNotification] = []
+
     func getProjects(forUser user: VOYUser, completion: @escaping ([VOYProject]) -> Void) {
         let project1 = VOYProject()
         project1.id = 1
@@ -42,6 +44,9 @@ class VOYMockThemesDataSource: VOYThemesDataSource {
     }
 
     func getNotifications(withUser user: VOYUser, completion: @escaping ([VOYNotification]) -> Void) {
-        completion([])
+        let report = VOYReport()
+        report.id = 89
+        let notification = VOYNotification(body: "Your report needs improvement", report: report)
+        completion(notifications)
     }
 }
