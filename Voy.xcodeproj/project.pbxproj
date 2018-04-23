@@ -40,6 +40,7 @@
 		011B7A2A2086928C0059C7B4 /* VOYThemesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 011B7A282086928C0059C7B4 /* VOYThemesViewController.xib */; };
 		011B7A2C2086957D0059C7B4 /* VOYThemesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 011B7A2B2086957D0059C7B4 /* VOYThemesPresenter.swift */; };
 		011B7A2E208773770059C7B4 /* VOYThemesDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 011B7A2D208773770059C7B4 /* VOYThemesDataSource.swift */; };
+		011C1556208E1E26004539A6 /* VOYThemeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 011C1555208E1E26004539A6 /* VOYThemeTests.swift */; };
 		0123370D208A859800318A57 /* VOYThemesPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0123370C208A859800318A57 /* VOYThemesPresenterTests.swift */; };
 		0123370F208A863400318A57 /* VOYMockThemesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0123370E208A863400318A57 /* VOYMockThemesViewController.swift */; };
 		01233711208A888800318A57 /* VOYMockThemesDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01233710208A888800318A57 /* VOYMockThemesDataSource.swift */; };
@@ -218,6 +219,7 @@
 		011B7A282086928C0059C7B4 /* VOYThemesViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VOYThemesViewController.xib; sourceTree = "<group>"; };
 		011B7A2B2086957D0059C7B4 /* VOYThemesPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VOYThemesPresenter.swift; sourceTree = "<group>"; };
 		011B7A2D208773770059C7B4 /* VOYThemesDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VOYThemesDataSource.swift; sourceTree = "<group>"; };
+		011C1555208E1E26004539A6 /* VOYThemeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VOYThemeTests.swift; sourceTree = "<group>"; };
 		0123370C208A859800318A57 /* VOYThemesPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VOYThemesPresenterTests.swift; sourceTree = "<group>"; };
 		0123370E208A863400318A57 /* VOYMockThemesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VOYMockThemesViewController.swift; sourceTree = "<group>"; };
 		01233710208A888800318A57 /* VOYMockThemesDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VOYMockThemesDataSource.swift; sourceTree = "<group>"; };
@@ -394,6 +396,7 @@
 			isa = PBXGroup;
 			children = (
 				010767A1205FF05C00B0C597 /* VOYUserTests.swift */,
+				011C1555208E1E26004539A6 /* VOYThemeTests.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1372,6 +1375,7 @@
 				0123370F208A863400318A57 /* VOYMockThemesViewController.swift in Sources */,
 				010767C8206002ED00B0C597 /* VOYMockCommentRepository.swift in Sources */,
 				010767C1206002ED00B0C597 /* VOYMockAccountRepository.swift in Sources */,
+				011C1556208E1E26004539A6 /* VOYThemeTests.swift in Sources */,
 				010767CE206002ED00B0C597 /* VOYMockReportListViewController.swift in Sources */,
 				010767C5206002ED00B0C597 /* VOYMockAddReportRepository.swift in Sources */,
 				010767CD206002ED00B0C597 /* VOYReportDetailTests.swift in Sources */,
