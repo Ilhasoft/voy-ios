@@ -55,14 +55,14 @@ class VOYThemeRepository: VOYThemesDataSource {
                 httpMethod: .get
             ) { (themes: [VOYTheme]?, _, _) in
                 if let themes = themes {
-                    self.storageManager.setThemes(themes)
+                    self.storageManager.setThemes(forProject: project, themes)
                     completion(themes)
                 } else {
                     completion([])
                 }
             }
         } else {
-            completion(storageManager.getThemes())
+            completion(storageManager.getThemes(forProject: project))
         }
     }
 
