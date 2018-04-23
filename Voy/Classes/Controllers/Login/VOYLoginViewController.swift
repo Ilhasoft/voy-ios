@@ -67,7 +67,7 @@ extension VOYLoginViewController: VOYLoginContract {
 
     func redirectController() {
         let navigationController = UINavigationController(
-                rootViewController: VOYThemeListViewController(userJustLogged: true)
+                rootViewController: VOYThemesViewController()
         )
         let slideMenuController = SlideMenuController(
                 mainViewController: navigationController,

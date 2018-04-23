@@ -37,7 +37,7 @@ class VOYNotificationViewController: UIViewController, VOYNotificationContract {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        VOYThemeListViewController.badgeView.isHidden = true
+        VOYThemesViewController.badgeView.isHidden = true
     }
 
     internal func setupController() {

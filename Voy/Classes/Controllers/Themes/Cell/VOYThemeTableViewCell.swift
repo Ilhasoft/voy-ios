@@ -13,6 +13,8 @@ open class VOYThemeTableViewCell: DataBindOnDemandTableViewCell {
 
     @IBOutlet var lbTheme: UILabel!
 
+    var theme: VOYTheme?
+
     static var nibName: String {
         return "VOYThemeTableViewCell"
     }
@@ -28,5 +30,11 @@ open class VOYThemeTableViewCell: DataBindOnDemandTableViewCell {
         if let theme = VOYTheme(JSON: self.object.JSON) {
             self.lbTheme.backgroundColor = UIColor(hex: theme.color)
         }
+    }
+
+    func setupCell(with theme: VOYTheme) {
+        self.theme = theme
+        self.lbTheme.text = theme.name
+        self.lbTheme.backgroundColor = UIColor(hex: theme.color)
     }
 }
