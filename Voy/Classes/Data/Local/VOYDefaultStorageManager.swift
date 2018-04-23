@@ -75,7 +75,7 @@ class VOYDefaultStorageManager: VOYStorageManager {
             pendentCameraDataList.remove(at: index)
         }
 
-        let cameraDataID = String.getIdentifier()
+        let cameraDataID = String.getIdentifier(from: Date())
         cameraData.id = cameraDataID
         cameraData.report_id = reportID
         pendentCameraDataList.append(cameraData.toJSON())
@@ -134,7 +134,7 @@ class VOYDefaultStorageManager: VOYStorageManager {
         }
 
         if report.id == nil {
-            let reportID = Int(String.getIdentifier())
+            let reportID = Int(String.getIdentifier(from: Date()))
             report.id = reportID
         }
 

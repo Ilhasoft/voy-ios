@@ -9,13 +9,13 @@
 import UIKit
 
 extension String {
-    public static func getIdentifier() -> String {
-        let year = Calendar.current.component(.year, from: Date())
-        let month = Calendar.current.component(.month, from: Date())
-        let day = Calendar.current.component(.day, from: Date())
-        let hour = Calendar.current.component(.hour, from: Date())
-        let minutes = Calendar.current.component(.minute, from: Date())
-        let seconds = Calendar.current.component(.second, from: Date())
+    public static func getIdentifier(from date: Date) -> String {
+        let year = Calendar.current.component(.year, from: date)
+        let month = Calendar.current.component(.month, from: date)
+        let day = Calendar.current.component(.day, from: date)
+        let hour = Calendar.current.component(.hour, from: date)
+        let minutes = Calendar.current.component(.minute, from: date)
+        let seconds = Calendar.current.component(.second, from: date)
         return "\(day)\(month)\(year)\(hour)\(minutes)\(seconds)"
     }
 
