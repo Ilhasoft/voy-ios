@@ -79,7 +79,8 @@ class VOYReportDetailsPresenter {
     }
 
     func onTapSharedButton() {
-        let textToShare = localizedString(.reportedAProblem, andText: report.shareURL)
+        guard let shareURL = report.shareURL else { return }
+        let textToShare = localizedString(.reportedAProblem, andText: shareURL)
         view?.shareText(textToShare)
     }
 

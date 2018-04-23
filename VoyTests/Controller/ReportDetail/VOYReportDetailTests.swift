@@ -6,53 +6,89 @@
 //  Copyright © 2018 Ilhasoft. All rights reserved.
 //
 
-//import XCTest
-//@testable import Voy
+import XCTest
+@testable import Voy
 
-//class VOYReportDetailTests: XCTestCase {
-//
-//    var viewControllerUnderTest: VOYMockReportDetailViewController!
-//    var presenterUnderTest: VOYReportDetailPresenter!
-//
-//    override func setUp() {
-//        viewControllerUnderTest = VOYMockReportDetailViewController()
-//        let report = VOYReport()
-//        presenterUnderTest = VOYReportDetailPresenter(view: viewControllerUnderTest, report: report)
-//    }
-//
-//    func testButtonCommentVisibility() {
-//        let expectations = expectation(description: "Test different visibility states for the comment button.")
-//        presenterUnderTest.onViewDidLoad()
-//        XCTAssertFalse(viewControllerUnderTest.commentButtonIsEnabled)
-//        presenterUnderTest.report.status = 1
-//        presenterUnderTest.onViewDidLoad()
-//        XCTAssert(viewControllerUnderTest.commentButtonIsEnabled)
-//        presenterUnderTest.report.status = 2
-//        presenterUnderTest.onViewDidLoad()
-//        XCTAssertFalse(viewControllerUnderTest.commentButtonIsEnabled)
-//        expectations.fulfill()
-//        waitForExpectations(timeout: 10, handler: nil)
-//    }
-//
-//    func testNavegation() {
-//        let expectations = expectation(description: "Confirm that the app pushed controllers correctly.")
-//        presenterUnderTest.onCommentButtonTapped()
-//        XCTAssert(viewControllerUnderTest.hasNavigatedToCommentsScreen)
-//        presenterUnderTest.report.id = nil
-//        presenterUnderTest.onShareButtonTapped()
-//        XCTAssertFalse(viewControllerUnderTest.hasSharedText)
-//        presenterUnderTest.report.id = 123
-//        presenterUnderTest.onShareButtonTapped()
-//        XCTAssert(viewControllerUnderTest.hasSharedText)
-//        presenterUnderTest.onOptionsButtonTapped()
-//        XCTAssert(viewControllerUnderTest.hasShownActionSheet)
-//        presenterUnderTest.onTapImage(image: UIImage())
-//        XCTAssert(viewControllerUnderTest.hasShownPicture)
-//        presenterUnderTest.onTapVideo(videoURL: URL(fileURLWithPath: "www.urlexample.com"))
-//        XCTAssert(viewControllerUnderTest.hasShownVideo)
-//        presenterUnderTest.onTapEditReport()
-//        XCTAssert(viewControllerUnderTest.hasNavigatedToEditReportScreen)
-//        expectations.fulfill()
-//        waitForExpectations(timeout: 10, handler: nil)
-//    }
-//}
+class VOYReportDetailTests: XCTestCase {
+
+    var report: VOYReport!
+    var mockviewController: VOYMockReportDetailViewController!
+    var presenterUnderTest: VOYReportDetailsPresenter!
+
+    override func setUp() {
+        mockviewController = VOYMockReportDetailViewController()
+        report = VOYReport()
+        report.name = "Report 1"
+        report.description = "Description of the report"
+        report.tags = ["tag1", "tag2"]
+        report.urls = []
+        report.comments = 0
+        report.created_on = "2018-04-19T13:55:19.325543Z"
+        presenterUnderTest = VOYReportDetailsPresenter(report: report, view: mockviewController)
+    }
+
+    func testButtonCommentVisibility() {
+        let currentUser = VOYUser()
+        currentUser.avatar = "www.google.com"
+        VOYUser.setActiveUser(user: currentUser)
+
+        let activeTheme = VOYTheme()
+        activeTheme.color = "ffffff"
+        VOYTheme.setActiveTheme(theme: activeTheme)
+
+        presenterUnderTest.onViewDidLoad()
+        XCTAssertFalse(mockviewController.commentButtonIsEnabled)
+
+        report.status = VOYReportStatus.approved.rawValue
+        presenterUnderTest.onViewDidLoad()
+        XCTAssertTrue(mockviewController.commentButtonIsEnabled)
+
+        report.status = VOYReportStatus.pendent.rawValue
+        presenterUnderTest.onViewDidLoad()
+        XCTAssertFalse(mockviewController.commentButtonIsEnabled)
+
+        report.status = VOYReportStatus.notApproved.rawValue
+        presenterUnderTest.onViewDidLoad()
+        XCTAssertFalse(mockviewController.commentButtonIsEnabled)
+    }
+
+    func testNavegation() {
+        presenterUnderTest.onTapCommentsButton()
+        XCTAssert(mockviewController.hasNavigatedToCommentsScreen)
+
+        presenterUnderTest.onTapSharedButton()
+        XCTAssertFalse(mockviewController.hasSharedText)
+
+        report.shareURL = "http://voy-dev.ilhasoft.mobi/project/world%20map/report/2293"
+        presenterUnderTest.onTapSharedButton()
+        XCTAssertTrue(mockviewController.hasSharedText)
+
+        presenterUnderTest.onTapOptionsButton()
+        XCTAssertTrue(mockviewController.hasShownActionSheet)
+
+        presenterUnderTest.onTapImage(image: UIImage())
+        XCTAssertTrue(mockviewController.hasShownPicture)
+
+        presenterUnderTest.onTapVideo(videoURL: URL(fileURLWithPath: "www.urlexample.com"))
+        XCTAssertTrue(mockviewController.hasShownVideo)
+
+        presenterUnderTest.onTapEditReport()
+        XCTAssertTrue(mockviewController.hasNavigatedToEditReportScreen)
+
+        presenterUnderTest.onSelectURL(URL(fileURLWithPath: "www.urlexample.com"))
+        XCTAssertTrue(mockviewController.hasOpenedURL)
+    }
+
+    /**
+     * Issues alert are supposed to check if there is an issue.
+     */
+    func testReportIssues() {
+        report.lastNotification = nil
+        presenterUnderTest.onTapIssueButton()
+        XCTAssertFalse(mockviewController.hasShownIssueAlert)
+
+        report.lastNotification = "Something's wrong with the report"
+        presenterUnderTest.onTapIssueButton()
+        XCTAssertTrue(mockviewController.hasShownIssueAlert)
+    }
+}
