@@ -18,6 +18,57 @@ class VOYStorageManagerTests: XCTestCase {
         storageManager.clearAllOfflineData()
     }
 
+    func testSaveAndRemoveProjects() {
+        let project = VOYProject()
+        project.id = 24
+        project.name = "Ilhasoft"
+
+        storageManager.setProjects([project])
+        var retrievedProjects = storageManager.getProjects()
+        XCTAssertEqual(retrievedProjects.count, 1)
+        XCTAssertEqual(retrievedProjects[0].id, Optional(24))
+        XCTAssertEqual(retrievedProjects[0].name, Optional("Ilhasoft"))
+
+        storageManager.setProjects([])
+        retrievedProjects = storageManager.getProjects()
+        XCTAssertEqual(retrievedProjects.count, 0)
+    }
+
+    func testSaveAndRemoveThemes() {
+        let project = VOYProject()
+        project.id = 24
+        project.name = "Ilhasoft"
+
+        let theme1 = VOYTheme()
+        theme1.id = 466
+        theme1.name = "Theme1"
+        theme1.description = "Theme created for a test"
+        theme1.tags = ["tag1", "tag2"]
+        theme1.color = "62ae7e"
+
+        let theme2 = VOYTheme()
+        theme2.id = 467
+        theme2.name = "Theme2"
+        theme2.description = "Another description"
+        theme2.tags = ["tag3", "tag4"]
+        theme2.color = "d6bd7d"
+
+        storageManager.setThemes(forProject: project, [theme1, theme2])
+        var retrievedThemes = storageManager.getThemes(forProject: project)
+        XCTAssertEqual(retrievedThemes.count, 2)
+        XCTAssertEqual(retrievedThemes[0].id, Optional(466))
+        XCTAssertEqual(retrievedThemes[0].name, Optional("Theme1"))
+        XCTAssertEqual(retrievedThemes[0].description, Optional("Theme created for a test"))
+        XCTAssertEqual(retrievedThemes[0].tags, Optional(["tag1", "tag2"]))
+        XCTAssertEqual(retrievedThemes[0].color, Optional("62ae7e"))
+
+        XCTAssertEqual(retrievedThemes[1].id, Optional(467))
+        XCTAssertEqual(retrievedThemes[1].name, Optional("Theme2"))
+        XCTAssertEqual(retrievedThemes[1].description, Optional("Another description"))
+        XCTAssertEqual(retrievedThemes[1].tags, Optional(["tag3", "tag4"]))
+        XCTAssertEqual(retrievedThemes[1].color, Optional("d6bd7d"))
+    }
+
     /**
      * Saves a report and checks if it's actually stored in the pending list. Then removes it and checks if it has been
      * actually removed.
