@@ -7,16 +7,39 @@
 //
 
 import UIKit
+import ObjectMapper
 
 /**
  * This class saves and returns the content that is kept in the device while network is not available.
  */
 class VOYDefaultStorageManager: VOYStorageManager {
 
+    private let projectsKey = "projects"
+    private let themesKey = "themes"
+    private let cameraDataKey = "cameraData"
+
+    func setProjects(_ projects: [VOYProject]) {
+        storeObjects(objects: projects, usingKey: projectsKey)
+    }
+
+    func getProjects() -> [VOYProject] {
+        return getObjects(usingKey: projectsKey)
+    }
+
+    // MARK: - Themes
+
+    func setThemes(_ themes: [VOYTheme]) {
+        storeObjects(objects: themes, usingKey: themesKey)
+    }
+
+    func getThemes() -> [VOYTheme] {
+        return getObjects(usingKey: themesKey)
+    }
+
     // MARK: - CameraData
 
     func getPendingCameraData() -> [[String: Any]] {
-        if let cameraDataDictioanry = UserDefaults.standard.getArchivedObject(key: "cameraData") as? [[String: Any]] {
+        if let cameraDataDictioanry = UserDefaults.standard.getArchivedObject(key: cameraDataKey) as? [[String: Any]] {
             return cameraDataDictioanry
         }
         return [[String: Any]]()
@@ -32,7 +55,7 @@ class VOYDefaultStorageManager: VOYStorageManager {
         if let index = index {
             pendentCameraDataList.remove(at: index)
             let encodedObject = NSKeyedArchiver.archivedData(withRootObject: pendentCameraDataList)
-            UserDefaults.standard.set(encodedObject, forKey: "cameraData")
+            UserDefaults.standard.set(encodedObject, forKey: cameraDataKey)
             UserDefaults.standard.synchronize()
         }
     }
@@ -56,12 +79,12 @@ class VOYDefaultStorageManager: VOYStorageManager {
         pendentCameraDataList.append(cameraData.toJSON())
 
         let encodedObject = NSKeyedArchiver.archivedData(withRootObject: pendentCameraDataList)
-        UserDefaults.standard.set(encodedObject, forKey: "cameraData")
+        UserDefaults.standard.set(encodedObject, forKey: cameraDataKey)
         UserDefaults.standard.synchronize()
     }
 
     func clearStoredCameraData() {
-        UserDefaults.standard.set(nil, forKey: "cameraData")
+        UserDefaults.standard.set(nil, forKey: cameraDataKey)
     }
 
     // MARK: - Reports
@@ -126,6 +149,27 @@ class VOYDefaultStorageManager: VOYStorageManager {
     func clearAllOfflineData() {
         clearPendingReports()
         clearStoredCameraData()
+    }
+
+    // MARK: Private methods
+
+    private func storeObjects<T: Mappable>(objects: [T], usingKey key: String) {
+        let dictionaries: [[String: Any]] = objects.map { $0.toJSON() }
+        let encodedObject = NSKeyedArchiver.archivedData(withRootObject: dictionaries)
+        UserDefaults.standard.set(encodedObject, forKey: key)
+        UserDefaults.standard.synchronize()
+    }
+
+    private func getObjects<T: Mappable>(usingKey key: String) -> [T] {
+        var objects: [T] = []
+        if let dictioanries = UserDefaults.standard.getArchivedObject(key: key) as? [[String: Any]] {
+            for dictionary in dictioanries {
+                if let object = T(JSON: dictionary) {
+                    objects.append(object)
+                }
+            }
+        }
+        return objects
     }
 
 }
