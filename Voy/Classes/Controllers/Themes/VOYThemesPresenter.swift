@@ -26,6 +26,7 @@ class VOYThemesPresenter {
         guard let activeUser = assertExists(optionalVar: VOYUser.activeUser()) else { return }
         dataSource.getProjects(forUser: activeUser) { projects in
             if let firstProject = projects.first { self.selectedProject = firstProject }
+            if projects.count == 0 { self.view?.dismissProgress() }
             for project in projects {
                 self.themes[project] = []
                 self.dataSource.getThemes(forProject: project, user: activeUser) { themes in

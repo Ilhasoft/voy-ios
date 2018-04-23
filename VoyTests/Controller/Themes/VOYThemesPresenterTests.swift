@@ -31,6 +31,20 @@ class VOYThemesPresenterTests: XCTestCase {
         waitForExpectations(timeout: 5, handler: nil)
     }
 
+    /**
+     * Returns an empty number of themes in the datasource, and makes sure it doesn't keep loading forever
+     */
+    func testEmptyThemes() {
+        let expectations = expectation(description: "Return an empty number of themes")
+        mockDataSource.themes = []
+        presenterUnderTest.onReady()
+        DispatchQueue.main.async {
+            XCTAssertFalse(self.mockViewController.isShowingProgress)
+            expectations.fulfill()
+        }
+        waitForExpectations(timeout: 5, handler: nil)
+    }
+
     func testRoutes() {
         XCTAssertFalse(mockViewController.hasRedirectedToProfileScreen)
         XCTAssertFalse(mockViewController.hasRedirectedToReportsScreen)

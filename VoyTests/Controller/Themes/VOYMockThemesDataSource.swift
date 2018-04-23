@@ -11,21 +11,11 @@ import XCTest
 
 class VOYMockThemesDataSource: VOYThemesDataSource {
 
+    var projects: [VOYProject] = []
+    var themes: [VOYTheme] = []
     var notifications: [VOYNotification] = []
 
-    func getProjects(forUser user: VOYUser, completion: @escaping ([VOYProject]) -> Void) {
-        let project1 = VOYProject()
-        project1.id = 1
-        project1.name = "Project 1"
-
-        let project2 = VOYProject()
-        project2.id = 2
-        project2.name = "Project 2"
-
-        completion([project1, project2])
-    }
-
-    func getThemes(forProject project: VOYProject, user: VOYUser, completion: @escaping ([VOYTheme]) -> Void) {
+    init() {
         let theme1 = VOYTheme()
         theme1.id = 466
         theme1.name = "Theme1"
@@ -40,7 +30,25 @@ class VOYMockThemesDataSource: VOYThemesDataSource {
         theme2.tags = ["tag3", "tag4"]
         theme2.color = "d6bd7d"
 
-        completion([theme1, theme2])
+        themes = [theme1, theme2]
+
+        let project1 = VOYProject()
+        project1.id = 1
+        project1.name = "Project 1"
+
+        let project2 = VOYProject()
+        project2.id = 2
+        project2.name = "Project 2"
+
+        projects = [project1, project2]
+    }
+
+    func getProjects(forUser user: VOYUser, completion: @escaping ([VOYProject]) -> Void) {
+        completion(projects)
+    }
+
+    func getThemes(forProject project: VOYProject, user: VOYUser, completion: @escaping ([VOYTheme]) -> Void) {
+        completion(themes)
     }
 
     func getNotifications(withUser user: VOYUser, completion: @escaping ([VOYNotification]) -> Void) {
