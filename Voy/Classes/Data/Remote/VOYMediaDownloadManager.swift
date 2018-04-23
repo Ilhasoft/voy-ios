@@ -13,7 +13,7 @@ class VOYMediaDownloadManager {
 
     static let shared = VOYMediaDownloadManager()
     static var destinationPath: URL! {
-        let urlPath: String? = VOYFileUtil.outputURLDirectory?.appendingPathComponent(String.getIdentifier()+".mp4")
+        let urlPath: String? = VOYFileUtil.outputURLDirectory?.appendingPathComponent(String.getIdentifier(from: Date())+".mp4")
         if let urlPath = urlPath {
             return URL(fileURLWithPath: urlPath)
         } else {
