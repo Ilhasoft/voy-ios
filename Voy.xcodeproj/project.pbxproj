@@ -74,6 +74,7 @@
 		01C14E8D207FF1AC00F69B73 /* VOYReportDetailsHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C14E8B207FF1AC00F69B73 /* VOYReportDetailsHeaderCell.swift */; };
 		01C14E8E207FF1AC00F69B73 /* VOYReportDetailsHeaderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01C14E8C207FF1AC00F69B73 /* VOYReportDetailsHeaderCell.xib */; };
 		01C14E902080F0BD00F69B73 /* VOYExternalLinksHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C14E8F2080F0BD00F69B73 /* VOYExternalLinksHeaderCell.swift */; };
+		01C5E245208E5B5400ACCF01 /* OptionalTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C5E244208E5B5400ACCF01 /* OptionalTests.swift */; };
 		01EBF715204EB7D800D4EF10 /* UIFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01EBF714204EB7D800D4EF10 /* UIFont.swift */; };
 		01EBF718204F216200D4EF10 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 01EBF71A204F216200D4EF10 /* Localizable.strings */; };
 		01EBF71C204F295600D4EF10 /* VOYLocalizable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01EBF71B204F295600D4EF10 /* VOYLocalizable.swift */; };
@@ -255,6 +256,7 @@
 		01C14E8B207FF1AC00F69B73 /* VOYReportDetailsHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VOYReportDetailsHeaderCell.swift; sourceTree = "<group>"; };
 		01C14E8C207FF1AC00F69B73 /* VOYReportDetailsHeaderCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VOYReportDetailsHeaderCell.xib; sourceTree = "<group>"; };
 		01C14E8F2080F0BD00F69B73 /* VOYExternalLinksHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VOYExternalLinksHeaderCell.swift; sourceTree = "<group>"; };
+		01C5E244208E5B5400ACCF01 /* OptionalTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionalTests.swift; sourceTree = "<group>"; };
 		01EBF714204EB7D800D4EF10 /* UIFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIFont.swift; sourceTree = "<group>"; };
 		01EBF719204F216200D4EF10 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		01EBF71B204F295600D4EF10 /* VOYLocalizable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VOYLocalizable.swift; sourceTree = "<group>"; };
@@ -564,6 +566,7 @@
 			isa = PBXGroup;
 			children = (
 				011B7A23208678DE0059C7B4 /* StringTests.swift */,
+				01C5E244208E5B5400ACCF01 /* OptionalTests.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1370,6 +1373,7 @@
 				4339D82B206030BE00D514DA /* VOYMockReportListRepository.swift in Sources */,
 				010767C9206002ED00B0C597 /* VOYMockLoginRepository.swift in Sources */,
 				4339D82920602AC400D514DA /* VOYCommentTests.swift in Sources */,
+				01C5E245208E5B5400ACCF01 /* OptionalTests.swift in Sources */,
 				010767C4206002ED00B0C597 /* VOYMockAddReportAttachViewController.swift in Sources */,
 				010767D2206002ED00B0C597 /* VOYThemeListTests.swift in Sources */,
 				0123370F208A863400318A57 /* VOYMockThemesViewController.swift in Sources */,
