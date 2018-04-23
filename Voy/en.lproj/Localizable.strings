@@ -16,11 +16,11 @@
 "hey" = "Hey!";
 "username" = "Username";
 "password" = "Password";
-"login" = "Login";
-"login_error_message" = "Maybe you typed a wrong username or password!";
+"login" = "Log in";
+"login_error_message" = "Maybe you typed the wrong username or password!";
 
 // Theme List Screen
-"themes_list_header" = "You are on %d themes.";
+"themes_list_header" = "You are part of %d themes.";
 
 // Reports List Screen
 "approved" = "Approved";
@@ -46,10 +46,10 @@
 "save" = "Save";
 "change" = "Change";
 "done" = "Done";
-"logout" = "Logout";
+"logout" = "Log out";
 "email" = "Email";
 "new_password" = "New Password";
-"are_you_sure" = "When logging out, all reports that were not sent will be lost. Do you want to continue?";
+"are_you_sure" = "When you log out, all reports that have not been sent will be lost. Do you want to continue?";
 
 // Report Details
 "issues_reported" = "Issues reported in your report";
@@ -62,7 +62,7 @@
 // Comments Screen
 "comments" = "Comments";
 "thanks" = "Thanks!";
-"comment_sent_to_moderation" = "Your comment was sent to moderation, after being approved it will be available here.";
+"comment_sent_to_moderation" = "Your comment was sent for moderation. After it is approved it will be available here.";
 "send" = "Send";
 "send_comment" = "Send comment...";
 "remove" = "Remove";
@@ -73,9 +73,9 @@
 "photo" = "Photo";
 "next" = "Next";
 "alert" = "Alert";
-"outside_themes_bounds" = "You are outside this theme's bounds. You can't create a report.";
+"outside_themes_bounds" = "You are outside the boundary for this theme. You can't create a report.";
 "gps_permission_error" = "No GPS Permission";
-"need_gps_permission" = "You have to give GPS permission before creating a report.";
+"need_gps_permission" = "You have to grant the app GPS permission before creating a report.";
 "we_are_preparing_this_theme_for_you" = "We are preparing this theme for you, please come back later or contact your administrator!";
 "title_and_description" = "Title and Description";
 "period_for_reports_has_ended" = "Unfortunately the period to receive new reports has ended. Thank you for your efforts!";
@@ -85,4 +85,4 @@
 
 "add_tags" = "Add Tags";
 
-"thanks_for_reporting" = "Thanks for reporting! Please come back whenever you have a new request.";
+"thanks_for_reporting" = "Thanks for reporting! Please come back when you want to add a new report.";
