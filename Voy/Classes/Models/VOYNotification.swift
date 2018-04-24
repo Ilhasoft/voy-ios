@@ -9,7 +9,7 @@
 import UIKit
 import ObjectMapper
 
-class VOYNotification: NSObject, Mappable {
+class VOYNotification: Mappable {
 
     var id: Int!
     var status: Int!

@@ -11,6 +11,9 @@
 - VOYNetworkClient.swift
 - VOYMediaDownloadManager.swift
 
+# Models
+- VOYNotification.swift
+
 # Data
 - VOYSyncManager.swift
 - VOYDefaultReachability.swift
