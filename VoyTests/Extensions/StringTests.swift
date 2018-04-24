@@ -11,6 +11,15 @@ import XCTest
 
 class StringTests: XCTestCase {
 
+    func testGetIdentifier() {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "d MMM yyyy HH:mm:ss"
+
+        let date = dateFormatter.date(from: "23 Apr 2018 18:37:50")!
+        let identifier = String.getIdentifier(from: date)
+        XCTAssertEqual(identifier, "2342018183750")
+    }
+
     func testValidURLs() {
         XCTAssertFalse("ytc".isValidURL)
         XCTAssertFalse("".isValidURL)
