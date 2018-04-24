@@ -34,6 +34,7 @@ class VOYLocalizable {
         case description
         case done
         case editReport = "edit_report"
+        case externalLinks = "external_links"
         case email
         case error
         case gpsPermissionError = "gps_permission_error"
@@ -74,7 +75,10 @@ class VOYLocalizable {
         case titleAndDescription = "title_and_description"
         case username
         case youHaveNoUnapprovedReports = "you_have_no_unapproved_reports"
+        case youHaveXReportsApproved = "you_have_x_reports_approved"
+        case youHaveXReportsNotApproved = "you_have_x_reports_not_approved"
         case weArePreparingThisTheme = "we_are_preparing_this_theme_for_you"
+        case youHaveXReportsPending = "you_have_x_reports_pending"
     }
 }
 
