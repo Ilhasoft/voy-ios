@@ -19,7 +19,7 @@
 "login" = "Log in";
 "login_error_message" = "Maybe you typed the wrong username or password!";
 "password_min_length_error" = "Password should be at least 6 characters";
-"logout_alert_title" = "Will you logout?";
+"logout_alert_title" = "Do you want to log out?";
 
 // Theme List Screen
 "themes_list_header" = "You are part of %d themes.";
@@ -52,7 +52,7 @@
 "email" = "Email";
 "new_password" = "New Password";
 "are_you_sure" = "When you log out, all reports that have not been sent will be lost. Do you want to continue?";
-"user_updated" = "Your user was updated!";
+"user_updated" = "Your user profile was updated!";
 
 // Report Details
 "issues_reported" = "Issues reported in your report";
