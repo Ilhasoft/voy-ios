@@ -1,4 +1,15 @@
+# GUI Files
 - .*View.swift
 - .*ViewController.swift
 - .*Cell.swift
+
+# API Files
+- .*Repository.swift
+- .*Interactor.swift
+
+# Extensions
+- UILabel.swift
+- UITextField.swift
+
+# Cocoapods
 - Pods
