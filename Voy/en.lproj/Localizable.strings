@@ -18,6 +18,8 @@
 "password" = "Password";
 "login" = "Log in";
 "login_error_message" = "Maybe you typed the wrong username or password!";
+"password_min_length_error" = "Password should be at least 6 characters";
+"do_you_want_to_logout" = "Do you want to log out?";
 
 // Theme List Screen
 "themes_list_header" = "You are part of %d themes.";
@@ -53,6 +55,7 @@
 "email" = "Email";
 "new_password" = "New Password";
 "are_you_sure" = "When you log out, all reports that have not been sent will be lost. Do you want to continue?";
+"user_updated" = "Your user profile was updated!";
 
 // Report Details
 "issues_reported" = "Issues reported in your report";
@@ -60,8 +63,9 @@
 "close" = "Close";
 "comment" = "Comment";
 "report" = "Report";
-"reported_a_problem" = "Hey, check out what I mapped in my community today! %@";
 "external_links" = "External Links";
+"reported_a_problem" = "Hey, check out what I mapped in my community today! %@";
+"error_getting_reports" = "There was an error while getting reports";
 
 // Comments Screen
 "comments" = "Comments";
@@ -70,6 +74,8 @@
 "send" = "Send";
 "send_comment" = "Send comment...";
 "remove" = "Remove";
+"error_removing_comment" = "We had a problem removing this comment";
+"error_creating_comment" = "We had a problem creating a new comment";
 
 // Add Report
 "add_photos_and_videos" = "Add photos and videos";
@@ -88,5 +94,8 @@
 "add_link" = "Add Link";
 
 "add_tags" = "Add Tags";
+
+"offline_error" = "Couldn't find connection. Check it and try again";
+"getting_location" = "Getting your location";
 
 "thanks_for_reporting" = "Thanks for reporting! Please come back when you want to add a new report.";
