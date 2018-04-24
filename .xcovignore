@@ -13,6 +13,10 @@
 
 # Models
 - VOYNotification.swift
+- VOYComment.swift
+- VOYCameraData.swift
+- VOYMedia.swift
+- VOYReport.swift
 
 # Data
 - VOYSyncManager.swift
