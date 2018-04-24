@@ -32,6 +32,4 @@ class VOYThemeTests: XCTestCase {
         XCTAssertEqual(activeTheme.tags, themeUnderTest.tags)
         XCTAssertEqual(activeTheme.color, themeUnderTest.color)
     }
-
-
 }

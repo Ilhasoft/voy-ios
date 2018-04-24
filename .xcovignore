@@ -1,3 +1,5 @@
+- AppDelegate.swift
+
 # GUI Files
 - .*View.swift
 - .*ViewController.swift
@@ -6,10 +8,35 @@
 # API Files
 - .*Repository.swift
 - .*Interactor.swift
+- VOYNetworkClient.swift
+- VOYMediaDownloadManager.swift
+
+# Data
+- VOYSyncManager.swift
+- VOYDefaultReachability.swift
+
+# DataBindComponents
+- DataBindGrowingTextView.swift
+- DataBindRestConfiguration.swift
+- DataBindOnDemandTableView.swift
+- DataBindOnDemandTableViewCell.swift
+- DataBindScrollViewPageSwift.swift
 
 # Extensions
 - UILabel.swift
 - UITextField.swift
+- ISOnDemandTableView.swift
+- UIColor.swift
+- UIView.swift
+- UIFont.swift
+
+# Utils
+- VOYConstants.swift
+- VOYLocalizable.swift
+- ISVideoUtil.swift
+
+# Managers
+- VOYDefaultLocationManager.swift
 
 # Cocoapods
 - Pods
