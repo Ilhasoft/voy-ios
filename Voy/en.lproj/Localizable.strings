@@ -57,7 +57,7 @@
 "close" = "Close";
 "comment" = "Comment";
 "report" = "Report";
-"reported_a_problem" = "Hello, I reported a problem in this region, take a look: %@";
+"reported_a_problem" = "Hey, check out what I mapped in my community today! %@";
 
 // Comments Screen
 "comments" = "Comments";
