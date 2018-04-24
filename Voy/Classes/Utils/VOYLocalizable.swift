@@ -33,10 +33,15 @@ class VOYLocalizable {
         case dateFormat = "date_format"
         case description
         case done
+        case doYouWantToLogout = "do_you_want_to_logout"
         case editReport = "edit_report"
         case externalLinks = "external_links"
         case email
         case error
+        case errorCreatingComment = "error_creating_comment"
+        case errorGettingReports = "error_getting_reports"
+        case errorRemovingComment = "error_removing_comment"
+        case gettingLocation = "getting_location"
         case gpsPermissionError = "gps_permission_error"
         case great
         case greatJob = "great_job"
@@ -53,9 +58,11 @@ class VOYLocalizable {
         case noReportsYet = "no_reports_yet"
         case notApproved = "not_approved"
         case notifications
+        case offlineError = "offline_error"
         case ok
         case outsideThemesBounds = "outside_themes_bounds"
         case password
+        case passwordMinLengthError = "password_min_length_error"
         case pending
         case photo
         case periodForReportEnded = "period_for_reports_has_ended"
@@ -74,6 +81,7 @@ class VOYLocalizable {
         case title
         case titleAndDescription = "title_and_description"
         case username
+        case userUpdated = "user_updated"
         case youHaveNoUnapprovedReports = "you_have_no_unapproved_reports"
         case youHaveXReportsApproved = "you_have_x_reports_approved"
         case youHaveXReportsNotApproved = "you_have_x_reports_not_approved"
