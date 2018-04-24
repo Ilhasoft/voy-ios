@@ -24,7 +24,7 @@ class VOYActionSheetViewController: ISModalViewController {
 
     weak var delegate: VOYActionSheetViewControllerDelegate?
 
-    init(buttonNames: [String] = ["Ok"], icons: [UIImage]? = nil) {
+    init(buttonNames: [String] = [localizedString(.ok)], icons: [UIImage]? = nil) {
         self.buttonNames = buttonNames
         if let icons = icons {
             self.icons = icons

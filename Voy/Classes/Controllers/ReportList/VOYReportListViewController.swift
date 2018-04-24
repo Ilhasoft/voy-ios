@@ -119,7 +119,7 @@ class VOYReportListViewController: UIViewController, NVActivityIndicatorViewable
         switch self.segmentedControl.selectedSegmentIndex {
         case 0:
             if let countApprovedReports = presenter.countApprovedReports {
-                messageLabel.text = "You have \(countApprovedReports) reports approved"
+                messageLabel.text = localizedString(.youHaveXReportsApproved, andNumber: countApprovedReports)
                 messageLabel.isHidden = false
             } else {
                 messageLabel.isHidden = true
@@ -130,7 +130,7 @@ class VOYReportListViewController: UIViewController, NVActivityIndicatorViewable
             showInfoViewIfNecessary(tableView: tableViewApproved)
         case 1:
             if let countPendingReports = presenter.countPendingReports {
-                messageLabel.text = "You have \(countPendingReports) reports pending"
+                messageLabel.text = localizedString(.youHaveXReportsPending, andNumber: countPendingReports)
                 messageLabel.isHidden = false
             } else {
                 messageLabel.isHidden = true
@@ -141,7 +141,7 @@ class VOYReportListViewController: UIViewController, NVActivityIndicatorViewable
             showInfoViewIfNecessary(tableView: tableViewPending)
         case 2:
             if let countNotApprovedReports = presenter.countNotApprovedReports {
-                messageLabel.text = "You have \(countNotApprovedReports) reports not approved"
+                messageLabel.text = localizedString(.youHaveXReportsNotApproved, andNumber: countNotApprovedReports)
                 messageLabel.isHidden = false
             } else {
                 messageLabel.isHidden = true

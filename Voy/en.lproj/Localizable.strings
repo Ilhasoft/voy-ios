@@ -19,7 +19,7 @@
 "login" = "Log in";
 "login_error_message" = "Maybe you typed the wrong username or password!";
 "password_min_length_error" = "Password should be at least 6 characters";
-"logout_alert_title" = "Will you logout?";
+"will_you_logout" = "Will you logout?";
 
 // Theme List Screen
 "themes_list_header" = "You are part of %d themes.";
@@ -35,6 +35,9 @@
 "all_reports_approved" = "All your reports have been approved";
 "add_report" = "Add Report";
 "you_have_no_unapproved_reports" = "You have no unapproved reports";
+"you_have_x_reports_approved" = "You have %d reports approved";
+"you_have_x_reports_pending" = "You have %d reports pending";
+"you_have_x_reports_not_approved" = "You have %d reports not approved";
 
 // Notifications Screen
 "notifications" = "Notifications";
@@ -52,7 +55,7 @@
 "email" = "Email";
 "new_password" = "New Password";
 "are_you_sure" = "When you log out, all reports that have not been sent will be lost. Do you want to continue?";
-"user_updated" = "Your user was updated!";
+"user_was_updated" = "User was updated!";
 
 // Report Details
 "issues_reported" = "Issues reported in your report";
@@ -62,7 +65,8 @@
 "report" = "Report";
 "external_links" = "External Links";
 "reported_a_problem" = "Hey, check out what I mapped in my community today! %@";
-"report_list_error" = "We have an error on get reports from server!";
+"error_getting_reports" = "There was an error while getting reports";
+"external_links" = "External Links";
 
 // Comments Screen
 "comments" = "Comments";
@@ -71,8 +75,8 @@
 "send" = "Send";
 "send_comment" = "Send comment...";
 "remove" = "Remove";
-"comment_delete_error" = "We had a problem removing this comment";
-"comment_create_error" = "We had a problem creating a new comment";
+"error_removing_comment" = "We had a problem removing this comment";
+"error_creating_comment" = "We had a problem creating a new comment";
 
 // Add Report
 "add_photos_and_videos" = "Add photos and videos";

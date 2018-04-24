@@ -13,7 +13,7 @@ class VOYExternalLinksHeaderCell: UITableViewCell {
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         selectionStyle = .none
-        textLabel?.text = "External links"
+        textLabel?.text = localizedString(.externalLinks)
         textLabel?.font = UIFont.boldSystemFont(ofSize: 13)
     }
 
