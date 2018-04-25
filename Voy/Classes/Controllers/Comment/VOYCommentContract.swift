@@ -8,6 +8,6 @@
 
 import UIKit
 
-protocol VOYCommentContract: class {
-
+protocol VOYCommentContract: AnyObject {
+    func update(with viewModel: VOYCommentViewModel)
 }

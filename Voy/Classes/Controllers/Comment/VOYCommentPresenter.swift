@@ -26,8 +26,8 @@ class VOYCommentPresenter {
 
     private func getComments(for report: VOYReport) {
         dataSource.getComments(for: report) { comments in
-            print(comments)
-            // TODO: update view
+            let viewModel = VOYCommentViewModel(comments: comments)
+            self.view?.update(with: viewModel)
         }
     }
 
