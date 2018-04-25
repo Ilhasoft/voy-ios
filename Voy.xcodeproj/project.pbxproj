@@ -614,7 +614,6 @@
 			children = (
 				013FD5D7207802DB00F92662 /* Account */,
 				013FD5D9207802DB00F92662 /* AddReport */,
-				013FD5DC207802DB00F92662 /* Comment */,
 				013FD5DE207802DB00F92662 /* Login */,
 				013FD5E0207802DB00F92662 /* Notifications */,
 				013FD5E2207802DB00F92662 /* Reachability */,
@@ -763,6 +762,7 @@
 			isa = PBXGroup;
 			children = (
 				011B7A2F208774C50059C7B4 /* Themes */,
+				013FD5DC207802DB00F92662 /* Comment */,
 				013FD5EC207802DC00F92662 /* Local */,
 				013FD5D6207802DB00F92662 /* Remote */,
 			);

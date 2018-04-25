@@ -9,6 +9,7 @@
 import UIKit
 
 protocol VOYCommentDataSource {
+    func getComments(for report: VOYReport, completion:@escaping ([VOYComment]) -> Void)
     func save(comment: VOYComment, completion:@escaping (Error?) -> Void)
     func delete(commentId: Int, completion: @escaping (Error?) -> Void)
 }

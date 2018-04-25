@@ -10,12 +10,25 @@ import UIKit
 
 class VOYCommentPresenter {
 
-    weak var view: VOYCommentContract?
-    var dataSource: VOYCommentDataSource
+    private weak var view: VOYCommentContract?
+    private var dataSource: VOYCommentDataSource
+    private var report: VOYReport
 
-    init(dataSource: VOYCommentDataSource, view: VOYCommentContract) {
+    init(dataSource: VOYCommentDataSource, view: VOYCommentContract, report: VOYReport) {
         self.dataSource = dataSource
         self.view = view
+        self.report = report
+    }
+
+    func onScreenDidLoad() {
+        getComments(for: report)
+    }
+
+    private func getComments(for report: VOYReport) {
+        dataSource.getComments(for: report) { comments in
+            print(comments)
+            // TODO: update view
+        }
     }
 
     func save(comment: VOYComment, completion:@escaping (Error?) -> Void) {

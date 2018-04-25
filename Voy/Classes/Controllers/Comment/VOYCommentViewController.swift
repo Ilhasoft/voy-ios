@@ -19,12 +19,13 @@ class VOYCommentViewController: UIViewController, VOYCommentContract {
     @IBOutlet weak var txtField: UITextField!
 
     var report: VOYReport!
-    var presenter: VOYCommentPresenter?
+    var presenter: VOYCommentPresenter!
     var activeCellId: Int?
 
     init(report: VOYReport) {
         self.report = report
         super.init(nibName: String(describing: type(of: self)), bundle: nil)
+        presenter = VOYCommentPresenter(dataSource: VOYCommentRepository(), view: self, report: self.report)
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -33,11 +34,11 @@ class VOYCommentViewController: UIViewController, VOYCommentContract {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        presenter = VOYCommentPresenter(dataSource: VOYCommentRepository(), view: self)
         setupKeyboard()
         setupTableView()
         setupLayout()
         setupLocalization()
+        presenter.onScreenDidLoad()
     }
 
     func setupLayout() {
@@ -48,7 +49,6 @@ class VOYCommentViewController: UIViewController, VOYCommentContract {
         self.bgViewTextField.layer.cornerRadius = 4
         self.bgViewTextField.layer.borderColor = UIColor.voyLightGray.cgColor
         self.bgViewTextField.layer.borderWidth = 2
-
         self.automaticallyAdjustsScrollViewInsets = false
     }
 
