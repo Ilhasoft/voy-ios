@@ -28,8 +28,8 @@ class VOYComment: Mappable {
         id <- map["id"]
         text <- map["text"]
         createdBy <- map["created_by"]
-        createdOn <- map["createdOn"]
-        modifiedOn <- map["modifiedOn"]
+        createdOn <- map["created_on"]
+        modifiedOn <- map["modified_on"]
         report <- map["report"]
     }
 
