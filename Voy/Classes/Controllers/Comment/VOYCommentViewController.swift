@@ -70,7 +70,6 @@ class VOYCommentViewController: UIViewController {
     }
 
     func setupTableView() {
-        guard let reportId = self.report.id else { return }
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 60
         tableView.register(
@@ -157,7 +156,8 @@ class VOYCommentViewController: UIViewController {
 extension VOYCommentViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let viewModel = self.viewModel,
-            let commentCell = tableView.dequeueReusableCell(withIdentifier: "VOYCommentTableViewCell") as? VOYCommentTableViewCell {
+           let commentCell = tableView.dequeueReusableCell(withIdentifier: "VOYCommentTableViewCell")
+                as? VOYCommentTableViewCell {
             commentCell.set(comment: viewModel.comments[indexPath.row])
             commentCell.delegate = self
             return commentCell
