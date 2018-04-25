@@ -6,7 +6,7 @@
 //  Copyright © 2018 Ilhasoft. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 class VOYCommentRepository: VOYCommentDataSource {
 
@@ -45,6 +45,16 @@ class VOYCommentRepository: VOYCommentDataSource {
                                         httpMethod: .delete,
                                         headers: ["Authorization": "Token " + authToken]) { (_, error, _)  in
             completion(error)
+        }
+    }
+
+    func getImage(for comment: VOYComment, completion: @escaping (UIImage?) -> Void) {
+        guard let imageURL = comment.createdBy.avatar else {
+            completion(nil)
+            return
+        }
+        networkClient.requestImage(url: imageURL) { image, _ in
+            completion(image)
         }
     }
 }

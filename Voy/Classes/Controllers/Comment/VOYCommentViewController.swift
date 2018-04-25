@@ -7,9 +7,9 @@
 //
 
 import UIKit
-import ISOnDemandTableView
+import NVActivityIndicatorView
 
-class VOYCommentViewController: UIViewController {
+class VOYCommentViewController: UIViewController, NVActivityIndicatorViewable {
 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var bottomView: UIView!
@@ -123,16 +123,7 @@ class VOYCommentViewController: UIViewController {
             self.txtField.text = ""
             self.txtField.resignFirstResponder()
             guard let presenter = presenter else { return }
-            presenter.save(comment: comment, completion: { (error) in
-                if let error = error {
-                    print(error.localizedDescription)
-                }
-            })
-            let alertViewController = VOYAlertViewController(
-                title: localizedString(.thanks),
-                message: localizedString(.commentSentToModeration)
-            )
-            alertViewController.show(true, inViewController: self)
+            presenter.save(comment: comment)
         }
     }
 
@@ -175,6 +166,10 @@ extension VOYCommentViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableViewAutomaticDimension
     }
+
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        presenter.getImageForComment(at: indexPath.row)
+    }
 }
 
 extension VOYCommentViewController: VOYCommentTableViewCellDelegate {
@@ -198,10 +193,8 @@ extension VOYCommentViewController: VOYActionSheetViewControllerDelegate {
     func buttonDidTap(actionSheetViewController: VOYActionSheetViewController, button: UIButton, index: Int) {
         guard let presenter = self.presenter, let id = self.activeCellId else { return }
         actionSheetViewController.close()
-        presenter.remove(commentId: id) { (_) in
-            self.activeCellId = nil
-            self.tableView.reloadData()
-        }
+        self.activeCellId = nil
+        presenter.remove(commentId: id)
     }
 }
 
@@ -209,5 +202,30 @@ extension VOYCommentViewController: VOYCommentContract {
     func update(with viewModel: VOYCommentViewModel) {
         self.viewModel = viewModel
         self.tableView.reloadData()
+    }
+
+    func showProgress() {
+        self.startAnimating()
+    }
+
+    func hideProgress() {
+        self.stopAnimating()
+    }
+
+    func setImage(image: UIImage, at position: Int) {
+        DispatchQueue.main.async {
+            if let cell = self.tableView.cellForRow(at: IndexPath(row: position, section: 0))
+                as? VOYCommentTableViewCell {
+                cell.set(image: image)
+            }
+        }
+    }
+
+    func showCommentSentAlert() {
+        let alertViewController = VOYAlertViewController(
+            title: localizedString(.thanks),
+            message: localizedString(.commentSentToModeration)
+        )
+        alertViewController.show(true, inViewController: self)
     }
 }

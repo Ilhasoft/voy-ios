@@ -62,4 +62,8 @@ class VOYCommentTableViewCell: UITableViewCell {
             self.btOptions.isHidden = false
         }
     }
+
+    func set(image: UIImage) {
+        imgAvatar.image = image
+    }
 }
