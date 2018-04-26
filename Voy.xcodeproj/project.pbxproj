@@ -78,6 +78,7 @@
 		01C5E247208F9CE600ACCF01 /* VOYDefaultLocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C5E246208F9CE600ACCF01 /* VOYDefaultLocationManager.swift */; };
 		01C5E24B208FA09600ACCF01 /* VOYProjectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C5E24A208FA09600ACCF01 /* VOYProjectTests.swift */; };
 		01DF2DBE2090F5AA000E172E /* VOYCommentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01DF2DBD2090F5AA000E172E /* VOYCommentViewModel.swift */; };
+		01DF2DC020920E9F000E172E /* VOYMockCommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01DF2DBF20920E9F000E172E /* VOYMockCommentViewController.swift */; };
 		01EBF715204EB7D800D4EF10 /* UIFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01EBF714204EB7D800D4EF10 /* UIFont.swift */; };
 		01EBF718204F216200D4EF10 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 01EBF71A204F216200D4EF10 /* Localizable.strings */; };
 		01EBF71C204F295600D4EF10 /* VOYLocalizable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01EBF71B204F295600D4EF10 /* VOYLocalizable.swift */; };
@@ -263,6 +264,7 @@
 		01C5E246208F9CE600ACCF01 /* VOYDefaultLocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VOYDefaultLocationManager.swift; sourceTree = "<group>"; };
 		01C5E24A208FA09600ACCF01 /* VOYProjectTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VOYProjectTests.swift; sourceTree = "<group>"; };
 		01DF2DBD2090F5AA000E172E /* VOYCommentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VOYCommentViewModel.swift; sourceTree = "<group>"; };
+		01DF2DBF20920E9F000E172E /* VOYMockCommentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VOYMockCommentViewController.swift; sourceTree = "<group>"; };
 		01EBF714204EB7D800D4EF10 /* UIFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIFont.swift; sourceTree = "<group>"; };
 		01EBF719204F216200D4EF10 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		01EBF71B204F295600D4EF10 /* VOYLocalizable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VOYLocalizable.swift; sourceTree = "<group>"; };
@@ -452,6 +454,7 @@
 			children = (
 				4339D82820602AC300D514DA /* VOYCommentTests.swift */,
 				010767B1206002ED00B0C597 /* VOYMockCommentRepository.swift */,
+				01DF2DBF20920E9F000E172E /* VOYMockCommentViewController.swift */,
 			);
 			path = Comment;
 			sourceTree = "<group>";
@@ -1398,6 +1401,7 @@
 				010767A2205FF05C00B0C597 /* VOYUserTests.swift in Sources */,
 				010767C3206002ED00B0C597 /* VOYAccountListTests.swift in Sources */,
 				010767CC206002ED00B0C597 /* VOYMockReportDetailViewController.swift in Sources */,
+				01DF2DC020920E9F000E172E /* VOYMockCommentViewController.swift in Sources */,
 				0123370D208A859800318A57 /* VOYThemesPresenterTests.swift in Sources */,
 				01233711208A888800318A57 /* VOYMockThemesDataSource.swift in Sources */,
 				010767C6206002ED00B0C597 /* VOYMockAddReportTagsViewController.swift in Sources */,
