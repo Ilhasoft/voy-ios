@@ -10,44 +10,49 @@ import UIKit
 import ISOnDemandTableView
 import DataBindSwift
 
-protocol VOYCommentTableViewCellDelegate: class {
+protocol VOYCommentTableViewCellDelegate: AnyObject {
     func btOptionsDidTap(commentId: Int)
 }
 
-class VOYCommentTableViewCell: DataBindOnDemandTableViewCell {
+class VOYCommentTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var imgAvatar: DataBindImageView!
-    @IBOutlet weak var lbName: DataBindLabel!
-    @IBOutlet weak var lbDate: DataBindLabel!
-    @IBOutlet weak var lbComment: DataBindLabel!
+    @IBOutlet weak var imgAvatar: UIImageView!
+    @IBOutlet weak var lbName: UILabel!
+    @IBOutlet weak var lbDate: UILabel!
+    @IBOutlet weak var lbComment: UILabel!
     @IBOutlet weak var btOptions: UIButton!
 
-    var cellJSON: [String: Any]?
+    var comment: VOYComment?
 
     weak var delegate: VOYCommentTableViewCellDelegate?
 
     override func awakeFromNib() {
         super.awakeFromNib()
         self.selectionStyle = .none
-        self.dataBindView.delegate = self
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
 
     @IBAction func btOptionsTapped(_ sender: Any) {
-        guard let delegate = self.delegate, let commentId = cellJSON?["id"] as? Int else { return }
+        guard let delegate = self.delegate, let commentId = comment?.id else { return }
         delegate.btOptionsDidTap(commentId: commentId)
     }
-}
 
-extension VOYCommentTableViewCell: DataBindViewDelegate {
-    func didFillAllComponents(JSON: [String: Any]) {
-        self.cellJSON = JSON
+    func set(comment: VOYComment) {
+        self.comment = comment
+        lbName.text = comment.createdBy.username
+        lbComment.text = comment.text
+
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSSSSZ"
+        if let date = dateFormatter.date(from: comment.createdOn) {
+            let dateFormatter2 = DateFormatter()
+            dateFormatter2.dateFormat = "MMM"
+            dateFormatter2.dateStyle = .medium
+            lbDate.text = dateFormatter2.string(from: date)
+        }
+
         var activeUserName = ""
+        // TODO: Download image
+        // comment.createdBy.avatar
         if let username = VOYUser.activeUser()?.username {
             activeUserName = username
         }
@@ -58,31 +63,7 @@ extension VOYCommentTableViewCell: DataBindViewDelegate {
         }
     }
 
-    func willFill(component: Any, value: Any) -> Any? {
-        if let component = component as? UILabel {
-            if component == self.lbDate {
-                let dateFormatter = DateFormatter()
-                dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSSSSZ"
-                if let dateString = value as? String {
-                    let date = dateFormatter.date(from: dateString)
-                    let dateFormatter2 = DateFormatter()
-                    dateFormatter2.dateFormat = "MMM"
-                    dateFormatter2.dateStyle = .medium
-                    if let date = date { lbDate.text = dateFormatter2.string(from: date) }
-                }
-                return nil
-            }
-        }
-        return value
-    }
-
-    func didFill(component: Any, value: Any) {
-    }
-
-    func willSet(component: Any, value: Any) -> Any? {
-        return value
-    }
-
-    func didSet(component: Any, value: Any) {
+    func set(image: UIImage) {
+        imgAvatar.image = image
     }
 }

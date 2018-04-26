@@ -77,6 +77,7 @@
 		01C5E245208E5B5400ACCF01 /* OptionalTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C5E244208E5B5400ACCF01 /* OptionalTests.swift */; };
 		01C5E247208F9CE600ACCF01 /* VOYDefaultLocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C5E246208F9CE600ACCF01 /* VOYDefaultLocationManager.swift */; };
 		01C5E24B208FA09600ACCF01 /* VOYProjectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C5E24A208FA09600ACCF01 /* VOYProjectTests.swift */; };
+		01DF2DBE2090F5AA000E172E /* VOYCommentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01DF2DBD2090F5AA000E172E /* VOYCommentViewModel.swift */; };
 		01EBF715204EB7D800D4EF10 /* UIFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01EBF714204EB7D800D4EF10 /* UIFont.swift */; };
 		01EBF718204F216200D4EF10 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 01EBF71A204F216200D4EF10 /* Localizable.strings */; };
 		01EBF71C204F295600D4EF10 /* VOYLocalizable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01EBF71B204F295600D4EF10 /* VOYLocalizable.swift */; };
@@ -261,6 +262,7 @@
 		01C5E244208E5B5400ACCF01 /* OptionalTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionalTests.swift; sourceTree = "<group>"; };
 		01C5E246208F9CE600ACCF01 /* VOYDefaultLocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VOYDefaultLocationManager.swift; sourceTree = "<group>"; };
 		01C5E24A208FA09600ACCF01 /* VOYProjectTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VOYProjectTests.swift; sourceTree = "<group>"; };
+		01DF2DBD2090F5AA000E172E /* VOYCommentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VOYCommentViewModel.swift; sourceTree = "<group>"; };
 		01EBF714204EB7D800D4EF10 /* UIFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIFont.swift; sourceTree = "<group>"; };
 		01EBF719204F216200D4EF10 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		01EBF71B204F295600D4EF10 /* VOYLocalizable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VOYLocalizable.swift; sourceTree = "<group>"; };
@@ -614,7 +616,6 @@
 			children = (
 				013FD5D7207802DB00F92662 /* Account */,
 				013FD5D9207802DB00F92662 /* AddReport */,
-				013FD5DC207802DB00F92662 /* Comment */,
 				013FD5DE207802DB00F92662 /* Login */,
 				013FD5E0207802DB00F92662 /* Notifications */,
 				013FD5E2207802DB00F92662 /* Reachability */,
@@ -763,6 +764,7 @@
 			isa = PBXGroup;
 			children = (
 				011B7A2F208774C50059C7B4 /* Themes */,
+				013FD5DC207802DB00F92662 /* Comment */,
 				013FD5EC207802DC00F92662 /* Local */,
 				013FD5D6207802DB00F92662 /* Remote */,
 			);
@@ -906,6 +908,7 @@
 				436C99592049D79800915A13 /* VOYCommentContract.swift */,
 				436C995B2049D7B000915A13 /* VOYCommentPresenter.swift */,
 				013FD5C72077F91900F92662 /* VOYCommentDataSource.swift */,
+				01DF2DBD2090F5AA000E172E /* VOYCommentViewModel.swift */,
 			);
 			path = Comment;
 			sourceTree = "<group>";
@@ -1261,6 +1264,7 @@
 				"${BUILT_PRODUCTS_DIR}/AXPhotoViewer/AXPhotoViewer.framework",
 				"${BUILT_PRODUCTS_DIR}/AXStateButton/AXStateButton.framework",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/AlamofireImage/AlamofireImage.framework",
 				"${BUILT_PRODUCTS_DIR}/AlamofireObjectMapper/AlamofireObjectMapper.framework",
 				"${BUILT_PRODUCTS_DIR}/DataBindSwift/DataBindSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/DropDown/DropDown.framework",
@@ -1281,6 +1285,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AXPhotoViewer.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AXStateButton.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireObjectMapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DataBindSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DropDown.framework",
@@ -1413,6 +1418,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				655BD12F2021148800D69EA2 /* VOYAddReportAttachViewController.swift in Sources */,
+				01DF2DBE2090F5AA000E172E /* VOYCommentViewModel.swift in Sources */,
 				655BD1262020F3C100D69EA2 /* VOYAlertViewController.swift in Sources */,
 				65CA0650203C5C67009A936A /* DataBindOnDemandTableView.swift in Sources */,
 				655BD1292020F53400D69EA2 /* ISModalViewController.swift in Sources */,

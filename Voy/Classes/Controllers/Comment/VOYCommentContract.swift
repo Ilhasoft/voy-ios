@@ -8,6 +8,10 @@
 
 import UIKit
 
-protocol VOYCommentContract: class {
-
+protocol VOYCommentContract: AnyObject {
+    func update(with viewModel: VOYCommentViewModel)
+    func showCommentSentAlert()
+    func setImage(image: UIImage, at position: Int)
+    func showProgress()
+    func hideProgress()
 }

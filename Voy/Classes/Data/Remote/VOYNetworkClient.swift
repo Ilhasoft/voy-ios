@@ -10,6 +10,7 @@ import UIKit
 import Alamofire
 import ObjectMapper
 import AlamofireObjectMapper
+import AlamofireImage
 
 class VOYNetworkClient {
 
@@ -258,6 +259,18 @@ class VOYNetworkClient {
             }
         }
         return request.request
+    }
+
+    func requestImage(url: String, completion: @escaping (UIImage?, Error?) -> Void) {
+        Alamofire.request(url).responseImage { responseImage in
+            if let error = responseImage.error {
+                completion(nil, error)
+            } else if let image = responseImage.value {
+                completion(image, nil)
+            } else {
+                completion(nil, nil)
+            }
+        }
     }
 
     // MARK: - Private methods

@@ -17,6 +17,7 @@ target 'Voy' do
     pod 'NVActivityIndicatorView'
     pod 'AXPhotoViewer'
     pod 'Alamofire'
+    pod 'AlamofireImage', '~> 3.3'
     pod 'ObjectMapper'
 
     target 'VoyTests' do

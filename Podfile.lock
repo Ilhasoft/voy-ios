@@ -1,5 +1,7 @@
 PODS:
   - Alamofire (4.7.0)
+  - AlamofireImage (3.3.0):
+    - Alamofire (~> 4.5)
   - AlamofireObjectMapper (5.0.0):
     - Alamofire (~> 4.1)
     - ObjectMapper (~> 3.0)
@@ -30,6 +32,7 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire
+  - AlamofireImage (~> 3.3)
   - AlamofireObjectMapper
   - AXPhotoViewer
   - DataBindSwift (from `https://github.com/Ilhasoft/DataBindSwift`)
@@ -65,6 +68,7 @@ CHECKOUT OPTIONS:
 
 SPEC CHECKSUMS:
   Alamofire: 907e0a98eb68cdb7f9d1f541a563d6ac5dc77b25
+  AlamofireImage: 2e784dc5d00f04903a52c1d169181469c805c3df
   AlamofireObjectMapper: 5fafc816351cbbc0d486611aaeba7461c0cbad49
   AXPhotoViewer: f1edb13f8116f57e67c5f2a6484acd9f8a54d263
   AXStateButton: 6c515a433e37551505046429b5be04c12daa8c07
@@ -82,6 +86,6 @@ SPEC CHECKSUMS:
   TagListView: 669f7d4455003c877655875d34829731c4191528
   TPKeyboardAvoiding: cb69d5ddbe90ce0170e4bc2db1e5e41d4a3ad9a4
 
-PODFILE CHECKSUM: 9e2daae60b7d03f2d9d208772e0af51f2e0ec7fb
+PODFILE CHECKSUM: 2fabfc163d57a2a89648f47bc783c9be92b3a077
 
 COCOAPODS: 1.4.0

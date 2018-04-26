@@ -7,11 +7,11 @@
 //
 
 import UIKit
-import ISOnDemandTableView
+import NVActivityIndicatorView
 
-class VOYCommentViewController: UIViewController, VOYCommentContract {
+class VOYCommentViewController: UIViewController, NVActivityIndicatorViewable {
 
-    @IBOutlet weak var tableView: DataBindOnDemandTableView!
+    @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var bottomView: UIView!
     @IBOutlet weak var bgViewTextField: UIView!
     @IBOutlet weak var bottomViewConstraint: NSLayoutConstraint!
@@ -19,12 +19,15 @@ class VOYCommentViewController: UIViewController, VOYCommentContract {
     @IBOutlet weak var txtField: UITextField!
 
     var report: VOYReport!
-    var presenter: VOYCommentPresenter?
+    var presenter: VOYCommentPresenter!
     var activeCellId: Int?
+
+    private var viewModel: VOYCommentViewModel?
 
     init(report: VOYReport) {
         self.report = report
         super.init(nibName: String(describing: type(of: self)), bundle: nil)
+        presenter = VOYCommentPresenter(dataSource: VOYCommentRepository(), view: self, report: self.report)
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -33,11 +36,11 @@ class VOYCommentViewController: UIViewController, VOYCommentContract {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        presenter = VOYCommentPresenter(dataSource: VOYCommentRepository(), view: self)
         setupKeyboard()
         setupTableView()
         setupLayout()
         setupLocalization()
+        presenter.onScreenDidLoad()
     }
 
     func setupLayout() {
@@ -48,7 +51,6 @@ class VOYCommentViewController: UIViewController, VOYCommentContract {
         self.bgViewTextField.layer.cornerRadius = 4
         self.bgViewTextField.layer.borderColor = UIColor.voyLightGray.cgColor
         self.bgViewTextField.layer.borderWidth = 2
-
         self.automaticallyAdjustsScrollViewInsets = false
     }
 
@@ -68,23 +70,12 @@ class VOYCommentViewController: UIViewController, VOYCommentContract {
     }
 
     func setupTableView() {
-        guard let reportId = self.report.id else { return }
-        tableView.register(
-            UINib(nibName: "VOYCommentTableViewCell", bundle: Bundle(for: VOYCommentTableViewCell.self)),
-            forCellReuseIdentifier: NSStringFromClass(VOYCommentTableViewCell.self)
-        )
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 60
-        tableView.refreshControl = nil
-        tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 64, right: 0)
-        tableView.onDemandTableViewDelegate = self
-        tableView.interactor = DataBindOnDemandTableViewInteractor(
-            configuration: tableView.getConfiguration(),
-            params: ["report": reportId],
-            paginationCount: 20,
-            reachability: VOYDefaultReachability()
+        tableView.register(
+            UINib(nibName: "VOYCommentTableViewCell", bundle: nil),
+            forCellReuseIdentifier: "VOYCommentTableViewCell"
         )
-        tableView.loadContent()
     }
 
     @objc func keyboardWillShow(notification: NSNotification) {
@@ -132,16 +123,7 @@ class VOYCommentViewController: UIViewController, VOYCommentContract {
             self.txtField.text = ""
             self.txtField.resignFirstResponder()
             guard let presenter = presenter else { return }
-            presenter.save(comment: comment, completion: { (error) in
-                if let error = error {
-                    print(error.localizedDescription)
-                }
-            })
-            let alertViewController = VOYAlertViewController(
-                title: localizedString(.thanks),
-                message: localizedString(.commentSentToModeration)
-            )
-            alertViewController.show(true, inViewController: self)
+            presenter.save(comment: comment)
         }
     }
 
@@ -162,30 +144,32 @@ class VOYCommentViewController: UIViewController, VOYCommentContract {
     }
 }
 
-extension VOYCommentViewController: ISOnDemandTableViewDelegate {
-
-    func onDemandTableView(_ tableView: ISOnDemandTableView, didSelectRowAt indexPath: IndexPath) {
-        self.view.endEditing(true)
-    }
-
-    func onDemandTableView(_ tableView: ISOnDemandTableView, reuseIdentifierForCellAt indexPath: IndexPath) -> String {
-        return NSStringFromClass(VOYCommentTableViewCell.self)
-    }
-
-    func onDemandTableView(_ tableView: ISOnDemandTableView, onContentLoad lastData: [Any]?, withError error: Error?) {
-
-    }
-
-    func onDemandTableView(_ tableView: ISOnDemandTableView, setupCell cell: UITableViewCell, at indexPath: IndexPath) {
-        if let cell = cell as? VOYCommentTableViewCell {
-            cell.delegate = self
+extension VOYCommentViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if let viewModel = self.viewModel,
+           let commentCell = tableView.dequeueReusableCell(withIdentifier: "VOYCommentTableViewCell")
+                as? VOYCommentTableViewCell {
+            commentCell.set(comment: viewModel.comments[indexPath.row])
+            commentCell.delegate = self
+            return commentCell
         }
+        return UITableViewCell()
     }
 
-    func onDemandTableView(_ tableView: ISOnDemandTableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        guard let viewModel = self.viewModel else { return 0 }
+        return viewModel.comments.count
+    }
+}
+
+extension VOYCommentViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableViewAutomaticDimension
     }
 
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        presenter.getImageForComment(at: indexPath.row)
+    }
 }
 
 extension VOYCommentViewController: VOYCommentTableViewCellDelegate {
@@ -209,9 +193,39 @@ extension VOYCommentViewController: VOYActionSheetViewControllerDelegate {
     func buttonDidTap(actionSheetViewController: VOYActionSheetViewController, button: UIButton, index: Int) {
         guard let presenter = self.presenter, let id = self.activeCellId else { return }
         actionSheetViewController.close()
-        presenter.remove(commentId: id) { (_) in
-            self.activeCellId = nil
-            self.tableView.interactor?.refreshAllContent()
+        self.activeCellId = nil
+        presenter.remove(commentId: id)
+    }
+}
+
+extension VOYCommentViewController: VOYCommentContract {
+    func update(with viewModel: VOYCommentViewModel) {
+        self.viewModel = viewModel
+        self.tableView.reloadData()
+    }
+
+    func showProgress() {
+        self.startAnimating()
+    }
+
+    func hideProgress() {
+        self.stopAnimating()
+    }
+
+    func setImage(image: UIImage, at position: Int) {
+        DispatchQueue.main.async {
+            if let cell = self.tableView.cellForRow(at: IndexPath(row: position, section: 0))
+                as? VOYCommentTableViewCell {
+                cell.set(image: image)
+            }
         }
+    }
+
+    func showCommentSentAlert() {
+        let alertViewController = VOYAlertViewController(
+            title: localizedString(.thanks),
+            message: localizedString(.commentSentToModeration)
+        )
+        alertViewController.show(true, inViewController: self)
     }
 }
