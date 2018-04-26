@@ -24,7 +24,6 @@ class VOYCommentTests: XCTestCase {
         report.comments = 2
         report.description = "This is a description, isn't it?"
         report.shareURL = "shareurl.com.br/report456"
-
         mockRepository = VOYMockCommentRepository()
         mockViewController = VOYMockCommentViewController()
         commentPresenterUnderTest = VOYCommentPresenter(dataSource: mockRepository, view: mockViewController, report: report)
@@ -70,5 +69,18 @@ class VOYCommentTests: XCTestCase {
             }
         }
         waitForExpectations(timeout: 5, handler: nil)
+    }
+
+    func testGetImage() {
+        let expectations = expectation(description: "Return an image")
+        commentPresenterUnderTest.onScreenDidLoad()
+        DispatchQueue.main.async {
+            self.commentPresenterUnderTest.getImageForComment(at: 0)
+            DispatchQueue.main.async {
+                XCTAssertTrue(self.mockViewController.hasSetImage)
+                expectations.fulfill()
+            }
+        }
+        waitForExpectations(timeout: 2, handler: nil)
     }
 }
