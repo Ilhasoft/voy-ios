@@ -37,12 +37,9 @@ class VOYCommentPresenter {
 
     func save(comment: VOYComment) {
         view?.showProgress()
-        dataSource.save(comment: comment) { (error) in
+        dataSource.save(comment: comment) { _ in
             self.view?.hideProgress()
             self.view?.showCommentSentAlert()
-            if let error = error {
-                print(error)
-            }
         }
     }
 
