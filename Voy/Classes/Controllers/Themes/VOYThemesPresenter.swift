@@ -12,6 +12,7 @@ class VOYThemesPresenter {
     private let dataSource: VOYThemesDataSource
 
     private var themes: [VOYProject: [VOYTheme]] = [:]
+
     private var selectedProject: VOYProject?
     private var retrievedThemesCount = 0
     weak var view: VOYThemesContract?
@@ -27,8 +28,7 @@ class VOYThemesPresenter {
         dataSource.getProjects(forUser: activeUser) { projects in
             if let firstProject = projects.first { self.selectedProject = firstProject }
             if projects.count == 0 { self.view?.dismissProgress() }
-            for project in projects {
-                self.themes[project] = []
+            projects.forEach { project in
                 self.dataSource.getThemes(forProject: project, user: activeUser) { themes in
                     DispatchQueue.main.async {
                         self.themes[project] = themes
