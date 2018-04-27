@@ -75,4 +75,3 @@ class VOYDefaultLocationManager: NSObject, CLLocationManagerDelegate, VOYLocatio
         }
     }
 }
-

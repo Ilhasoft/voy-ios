@@ -25,7 +25,6 @@ class VOYLoginPresenter {
             if user != nil {
                 self.view?.redirectController()
             } else {
-                // TODO: show show a more specific error
                 self.view?.presentErrorAlert()
             }
         }
