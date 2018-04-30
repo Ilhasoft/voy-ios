@@ -12,6 +12,7 @@ class VOYUser: Mappable {
 
     var id: Int!
     var first_name: String!
+    var last_name: String!
     var password: String!
     var avatar: String!
     var email: String!
@@ -28,6 +29,7 @@ class VOYUser: Mappable {
     func mapping(map: Map) {
         id <- map["id"]
         first_name <- map["first_name"]
+        last_name <- map["last_name"]
         avatar <- map["avatar"]
         email <- map["email"]
         username <- map["username"]
