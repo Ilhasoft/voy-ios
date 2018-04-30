@@ -1098,7 +1098,6 @@
 				014E4556205C71D9001D53F6 /* Frameworks */,
 				014E4557205C71D9001D53F6 /* Resources */,
 				9F3E5556E2E9AB22C24EC4E0 /* [CP] Embed Pods Frameworks */,
-				DD8D823CE8273533BC1F1EFC /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1119,7 +1118,6 @@
 				65F346002020A87A00AC5437 /* Frameworks */,
 				65F346012020A87A00AC5437 /* Resources */,
 				42DA7F30FB556E98FC231194 /* [CP] Embed Pods Frameworks */,
-				494ADE4FC227B84A4C04B30D /* [CP] Copy Pods Resources */,
 				01EBF71D205070B100D4EF10 /* Swiftlint */,
 			);
 			buildRules = (
@@ -1309,21 +1307,6 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Voy/Pods-Voy-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		494ADE4FC227B84A4C04B30D /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Voy/Pods-Voy-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		9F3E5556E2E9AB22C24EC4E0 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1340,21 +1323,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-VoyTests/Pods-VoyTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		DD8D823CE8273533BC1F1EFC /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-VoyTests/Pods-VoyTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		E51B56189A0BAF7E00DB62BC /* [CP] Check Pods Manifest.lock */ = {
