@@ -9,5 +9,6 @@
 import UIKit
 
 protocol VOYAccountDataSource {
+    func downloadAvatarImage(avatarURL: String, completion: @escaping (UIImage?) -> Void)
     func updateUser(avatar: Int?, password: String?, completion: @escaping(Error?) -> Void)
 }

@@ -9,10 +9,11 @@
 import UIKit
 import NVActivityIndicatorView
 
-class VOYAccountViewController: UIViewController, NVActivityIndicatorViewable, VOYAccountContract {
+class VOYAccountViewController: UIViewController, NVActivityIndicatorViewable {
 
     struct Constants {
         static let cellIdentifier = "VOYAvatarCollectionViewCell"
+        static let avatarsCount = 42
     }
 
     @IBOutlet weak var imgAvatar: UIImageView!
@@ -27,7 +28,8 @@ class VOYAccountViewController: UIViewController, NVActivityIndicatorViewable, V
 
     var rightBarButtonItem: UIBarButtonItem!
 
-    var presenter: VOYAccountPresenter?
+    var presenter: VOYAccountPresenter!
+    var viewModel: VOYAccountViewModel?
 
     var isPasswordEditing = false
     let nilPassword = "xpto321otpx"
@@ -44,6 +46,7 @@ class VOYAccountViewController: UIViewController, NVActivityIndicatorViewable, V
 
     init() {
         super.init(nibName: String(describing: type(of: self)), bundle: nil)
+        self.presenter = VOYAccountPresenter(dataSource: VOYAccountRepository(), view: self)
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -52,14 +55,13 @@ class VOYAccountViewController: UIViewController, NVActivityIndicatorViewable, V
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.presenter = VOYAccountPresenter(dataSource: VOYAccountRepository(), view: self)
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(showAvatars))
-        self.imgAvatar.addGestureRecognizer(tapGesture)
+        self.imgAvatar.image = nil
+        self.imgAvatar.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(showAvatars)))
         self.viewPassword.delegate = self
         setupLayout()
         setupCollectionView()
-        setupData()
         setupLocalization()
+        presenter.onScreenLoaded()
     }
 
     func enableRightBarButtonItem() {
@@ -68,17 +70,6 @@ class VOYAccountViewController: UIViewController, NVActivityIndicatorViewable, V
         } else {
             self.rightBarButtonItem.isEnabled = true
         }
-    }
-
-    func setupData() {
-        guard let user = VOYUser.activeUser() else { return }
-        self.viewUserName.txtField.text = user.first_name
-        self.viewUserName.layer.opacity = 0.5
-        self.viewEmail.txtField.text = user.email
-        self.viewEmail.layer.opacity = 0.5
-        self.imgAvatar.kf.setImage(with: URL(string: user.avatar))
-        self.viewPassword.txtField.text = nilPassword
-        self.viewPassword.layer.opacity = 0.5
     }
 
     func setupLayout() {
@@ -98,7 +89,6 @@ class VOYAccountViewController: UIViewController, NVActivityIndicatorViewable, V
             UINib(nibName: "VOYAvatarCollectionViewCell", bundle: nil),
             forCellWithReuseIdentifier: Constants.cellIdentifier
         )
-
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
         layout.itemSize = CGSize(width: 70, height: 70)
@@ -109,15 +99,8 @@ class VOYAccountViewController: UIViewController, NVActivityIndicatorViewable, V
         presenter?.updateUser(avatar: newAvatar, password: newPassword)
     }
 
-    func setupLoading(showLoading: Bool) {
-        showLoading ? self.startAnimating() : self.stopAnimating()
-    }
-
     @objc func showAvatars() {
         self.heightCollectionAvatar.constant = self.heightCollectionAvatar.constant == 0 ? 400 : 0
-        UIView.animate(withDuration: 0.3) {
-            self.view.layoutIfNeeded()
-        }
     }
 
     func setupViewPasswordLayout() {
@@ -201,7 +184,7 @@ extension VOYAccountViewController: UICollectionViewDataSource {
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 42
+        return Constants.avatarsCount
     }
 }
 
@@ -225,5 +208,22 @@ extension VOYAccountViewController: VOYTextFieldViewDelegate {
 
     func textFieldDidEndEditing(_ textFieldView: VOYTextFieldView) {
         setupViewPasswordLayout()
+    }
+}
+
+extension VOYAccountViewController: VOYAccountContract {
+    func update(with viewModel: VOYAccountViewModel) {
+        self.viewModel = viewModel
+        self.viewUserName.txtField.text = viewModel.fullName
+        self.viewUserName.layer.opacity = 0.5
+        self.viewEmail.txtField.text = viewModel.email
+        self.viewEmail.layer.opacity = 0.5
+        self.imgAvatar.image = viewModel.avatarImage
+        self.viewPassword.txtField.text = nilPassword
+        self.viewPassword.layer.opacity = 0.5
+    }
+
+    func setupLoading(showLoading: Bool) {
+        showLoading ? self.startAnimating() : self.stopAnimating()
     }
 }

@@ -22,6 +22,20 @@ class VOYAccountPresenter {
         self.storageManager = storageManager
     }
 
+    func onScreenLoaded() {
+        guard let user = VOYUser.activeUser() else { return }
+        view?.setupLoading(showLoading: true)
+        dataSource.downloadAvatarImage(avatarURL: user.avatar) { (image: UIImage?) in
+            self.view?.setupLoading(showLoading: false)
+            var fullName: String = user.username
+            if let firstName = user.first_name, let lastName = user.last_name {
+                fullName = "\(firstName) \(lastName)"
+            }
+            let viewModel = VOYAccountViewModel(fullName: fullName, email: user.email, avatarImage: image)
+            self.view?.update(with: viewModel)
+        }
+    }
+
     func updateUser(avatar: Int?, password: String?) {
         if avatar != nil || password != nil {
             view?.setupLoading(showLoading: true)

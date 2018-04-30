@@ -12,6 +12,12 @@ class VOYAccountRepository: VOYAccountDataSource {
 
     let networkClient = VOYNetworkClient(reachability: VOYDefaultReachability())
 
+    func downloadAvatarImage(avatarURL: String, completion: @escaping (UIImage?) -> Void) {
+        networkClient.requestImage(url: avatarURL) { (image, _) in
+            completion(image)
+        }
+    }
+
     func updateUser(avatar: Int?, password: String?, completion: @escaping(Error?) -> Void) {
         guard let user = VOYUser.activeUser(),
               let authToken = user.authToken,
