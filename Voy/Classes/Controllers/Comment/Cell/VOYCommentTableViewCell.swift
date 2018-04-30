@@ -51,7 +51,6 @@ class VOYCommentTableViewCell: UITableViewCell {
         }
 
         var activeUserName = ""
-        // TODO: Download image
         // comment.createdBy.avatar
         if let username = VOYUser.activeUser()?.username {
             activeUserName = username

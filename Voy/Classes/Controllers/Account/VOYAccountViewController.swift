@@ -7,10 +7,13 @@
 //
 
 import UIKit
-import ISOnDemandCollectionView
 import NVActivityIndicatorView
 
 class VOYAccountViewController: UIViewController, NVActivityIndicatorViewable, VOYAccountContract {
+
+    struct Constants {
+        static let cellIdentifier = "VOYAvatarCollectionViewCell"
+    }
 
     @IBOutlet weak var imgAvatar: UIImageView!
     @IBOutlet weak var imgIcon: UIImageView!
@@ -19,7 +22,7 @@ class VOYAccountViewController: UIViewController, NVActivityIndicatorViewable, V
     @IBOutlet weak var viewPassword: VOYTextFieldView!
     @IBOutlet weak var btLogout: UIButton!
     @IBOutlet weak var btEditPassword: UIButton!
-    @IBOutlet weak var collectionAvatar: ISOnDemandCollectionView!
+    @IBOutlet weak var collectionAvatar: UICollectionView!
     @IBOutlet weak var heightCollectionAvatar: NSLayoutConstraint!
 
     var rightBarButtonItem: UIBarButtonItem!
@@ -93,14 +96,13 @@ class VOYAccountViewController: UIViewController, NVActivityIndicatorViewable, V
     func setupCollectionView() {
         collectionAvatar.register(
             UINib(nibName: "VOYAvatarCollectionViewCell", bundle: nil),
-            forCellWithReuseIdentifier: "VOYAvatarCollectionViewCell"
+            forCellWithReuseIdentifier: Constants.cellIdentifier
         )
+
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
-        collectionAvatar.setLayout(to: layout)
-        collectionAvatar.onDemandDelegate = self
-        collectionAvatar.interactor = VOYAvatarCollectionViewProvider()
-        collectionAvatar.loadContent()
+        layout.itemSize = CGSize(width: 70, height: 70)
+        collectionAvatar.collectionViewLayout = layout
     }
 
     @objc func save() {
@@ -186,28 +188,27 @@ class VOYAccountViewController: UIViewController, NVActivityIndicatorViewable, V
     }
 }
 
-extension VOYAccountViewController: ISOnDemandCollectionViewDelegate {
-    func onDemandCollectionView(_ collectionView: ISOnDemandCollectionView,
-                                reuseIdentifierForItemAt indexPath: IndexPath) -> String {
-        return "VOYAvatarCollectionViewCell"
+extension VOYAccountViewController: UICollectionViewDataSource {
+
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.cellIdentifier, for: indexPath)
+            as? VOYAvatarCollectionViewCell {
+            cell.imgAvatar.image = UIImage(named: "ic_avatar\(indexPath.item + 1)")
+            return cell
+        }
+        return UICollectionViewCell()
     }
 
-    func onDemandCollectionView(_ collectionView: ISOnDemandCollectionView,
-                                onContentLoadFinishedWithNewObjects objects: [Any]?,
-                                error: Error?) {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 42
     }
+}
 
-    func onDemandCollectionView(_ collectionView: ISOnDemandCollectionView,
-                                sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let size = CGSize(width: 70, height: 70)
-        return size
-    }
+extension VOYAccountViewController: UICollectionViewDelegate {
 
-    func onDemandCollectionView(_ collectionView: ISOnDemandCollectionView,
-                                didSelect cell: ISOnDemandCollectionViewCell,
-                                at indexPath: IndexPath) {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         newAvatar = indexPath.item + 1
-        if let cell = cell as? VOYAvatarCollectionViewCell {
+        if let cell = collectionView.cellForItem(at: indexPath) as? VOYAvatarCollectionViewCell {
             self.imgAvatar.image = cell.imgAvatar.image
             self.showAvatars()
         }

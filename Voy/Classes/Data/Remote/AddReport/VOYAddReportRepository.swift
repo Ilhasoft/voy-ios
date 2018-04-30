@@ -29,7 +29,7 @@ class VOYAddReportRepository: VOYAddReportDataSource {
         guard reachability.hasNetwork() else { return }
 
         if let reportId = report.id, report.update && report.status != nil {
-            updateRemote(reportId: reportId, report: report) { value, error in
+            updateRemote(reportId: reportId, report: report) { value, _ in
                 if let value = value, let reportID = value["id"] as? Int, let cameraDataList = report.cameraDataList {
                     self.mediaFileDataSource.delete(mediaFiles: report.removedMedias)
                     self.storageManager.removeFromPendingList(report: report)
@@ -39,7 +39,7 @@ class VOYAddReportRepository: VOYAddReportDataSource {
                 }
             }
         } else {
-            createRemote(report: report) { value, error in
+            createRemote(report: report) { value, _ in
                 if let value = value, let reportID = value["id"] as? Int, let cameraDataList = report.cameraDataList {
                     self.mediaFileDataSource.delete(mediaFiles: report.removedMedias)
                     self.storageManager.removeFromPendingList(report: report)
