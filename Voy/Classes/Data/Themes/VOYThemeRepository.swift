@@ -23,14 +23,10 @@ class VOYThemeRepository: VOYThemesDataSource {
 
     func getProjects(forUser user: VOYUser, completion: @escaping ([VOYProject]) -> Void) {
         if reachability.hasNetwork() {
-            guard let authToken = user.authToken else {
-                completion([])
-                return
-            }
             networkClient.requestObjectArray(
                 urlSuffix: "projects/",
                 httpMethod: .get,
-                headers: ["Authorization": "Token \(authToken)"]
+                headers: networkClient.authorizationHeaders
             ) { (projects: [VOYProject]?, _) in
                 if let projects = projects {
                     self.storageManager.setProjects(projects)
@@ -67,13 +63,9 @@ class VOYThemeRepository: VOYThemesDataSource {
     }
 
     func getNotifications(withUser user: VOYUser, completion: @escaping ([VOYNotification]) -> Void) {
-        guard let auth = user.authToken else {
-            completion([])
-            return
-        }
         networkClient.requestObjectArray(urlSuffix: "report-notification/",
                                          httpMethod: VOYNetworkClient.VOYHTTPMethod.get,
-                                         headers: ["Authorization": "Token \(auth)"]
+                                         headers: networkClient.authorizationHeaders
         ) { (notificationsList: [VOYNotification]?, _) in
             if let notificationsList = notificationsList {
                 completion(notificationsList)

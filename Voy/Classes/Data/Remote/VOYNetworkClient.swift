@@ -18,6 +18,14 @@ class VOYNetworkClient {
     private let reachability: VOYReachability
     private let storageManager: VOYStorageManager
 
+    var authorizationHeaders: [String: String] {
+        var headers: [String: String] = [:]
+        if let authToken = VOYUser.activeUser()?.authToken {
+            headers[VOYConstant.API.authHeader] = "Token \(authToken)"
+        }
+        return headers
+    }
+
     enum VOYHTTPMethod {
         case get
         case post
@@ -179,9 +187,7 @@ class VOYNetworkClient {
                     arrayOfDictionaries.append(offlineReport)
                 }
             }
-
             let objects = arrayOfDictionaries.map({ return Map(mappingType: .fromJSON, JSON: $0) })
-
             completion(objects, nil)
         } else {
             var objects: [Map] = []

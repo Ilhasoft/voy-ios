@@ -19,10 +19,9 @@ class VOYNotificationRepository: VOYNotificationDataSource {
     }
 
     func getNotifications(completion: @escaping ([VOYNotification]?) -> Void) {
-        guard let auth = VOYUser.activeUser()?.authToken else { return }
         networkClient.requestObjectArray(urlSuffix: "report-notification/",
                                          httpMethod: .get,
-                                         headers: ["Authorization": "Token \(auth)"]
+                                         headers: networkClient.authorizationHeaders
         ) { (notificationList: [VOYNotification]?, _) in
             guard let notificationList = notificationList else { return }
             completion(notificationList)
@@ -35,6 +34,6 @@ class VOYNotificationRepository: VOYNotificationDataSource {
         networkClient.requestDictionary(urlSuffix: "report-notification/\(notificationId)/",
                                         httpMethod: .put,
                                         parameters: parameters,
-                                        headers: ["Authorization": "Token \(auth)"]) { (_, _, _)  in }
+                                        headers: networkClient.authorizationHeaders) { (_, _, _)  in }
     }
 }
