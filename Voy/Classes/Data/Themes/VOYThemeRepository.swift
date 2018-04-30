@@ -31,7 +31,7 @@ class VOYThemeRepository: VOYThemesDataSource {
                 urlSuffix: "projects/",
                 httpMethod: .get,
                 headers: ["Authorization": "Token \(authToken)"]
-            ) { (projects: [VOYProject]?, _, _) in
+            ) { (projects: [VOYProject]?, _) in
                 if let projects = projects {
                     self.storageManager.setProjects(projects)
                     completion(projects)
@@ -53,7 +53,7 @@ class VOYThemeRepository: VOYThemesDataSource {
             networkClient.requestObjectArray(
                 urlSuffix: "themes/?project=\(projectId)&user=\(userId)",
                 httpMethod: .get
-            ) { (themes: [VOYTheme]?, _, _) in
+            ) { (themes: [VOYTheme]?, _) in
                 if let themes = themes {
                     self.storageManager.setThemes(forProject: project, themes)
                     completion(themes)
@@ -74,7 +74,7 @@ class VOYThemeRepository: VOYThemesDataSource {
         networkClient.requestObjectArray(urlSuffix: "report-notification/",
                                          httpMethod: VOYNetworkClient.VOYHTTPMethod.get,
                                          headers: ["Authorization": "Token \(auth)"]
-        ) { (notificationsList: [VOYNotification]?, _, _) in
+        ) { (notificationsList: [VOYNotification]?, _) in
             if let notificationsList = notificationsList {
                 completion(notificationsList)
             } else {

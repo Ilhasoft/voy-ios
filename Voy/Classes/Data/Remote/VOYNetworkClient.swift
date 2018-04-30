@@ -64,7 +64,7 @@ class VOYNetworkClient {
                                          httpMethod: VOYHTTPMethod,
                                          parameters: [String: Any]? = nil,
                                          headers: [String: String]? = nil,
-                                         completion: @escaping ([T]?, Error?, URLRequest) -> Void) {
+                                         completion: @escaping ([T]?, Error?) -> Void) {
         let url = createURL(urlSuffix: urlSuffix)
         let request = Alamofire.request(
             url,
@@ -76,11 +76,10 @@ class VOYNetworkClient {
         pendingRequests.append(request)
         request.responseArray { (dataResponse: DataResponse<[T]>) in
             self.pendingRequests.removeRequest(request: request)
-            guard let internalRequest = dataResponse.request else { return }
             if let userData = dataResponse.result.value {
-                completion(userData, nil, internalRequest)
+                completion(userData, nil)
             } else if let error = dataResponse.result.error {
-                completion(nil, error, internalRequest)
+                completion(nil, error)
             }
         }
     }
@@ -199,7 +198,7 @@ class VOYNetworkClient {
                                     httpMethod: VOYHTTPMethod,
                                     parameters: [String: Any]? = nil,
                                     headers: [String: String]? = nil,
-                                    completion: @escaping (T?, Error?, URLRequest) -> Void) {
+                                    completion: @escaping (T?, Error?) -> Void) {
         let url = createURL(urlSuffix: urlSuffix)
         let request = Alamofire.request(
             url,
@@ -210,12 +209,11 @@ class VOYNetworkClient {
         )
         pendingRequests.append(request)
         request.responseObject { (dataResponse: DataResponse<T>) in
-            guard let internalRequest = dataResponse.request else { return }
             self.pendingRequests.removeRequest(request: request)
             if let value = dataResponse.value {
-                completion(value, nil, internalRequest)
+                completion(value, nil)
             } else if let error = dataResponse.result.error {
-                completion(nil, error, internalRequest)
+                completion(nil, error)
             }
         }
     }

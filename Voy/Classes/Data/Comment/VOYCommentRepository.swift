@@ -22,7 +22,7 @@ class VOYCommentRepository: VOYCommentDataSource {
             return
         }
         networkClient.requestObjectArray(urlSuffix: "report-comments/?report=\(reportId)",
-                                         httpMethod: .get) { (comments: [VOYComment]?, _, _) in
+                                         httpMethod: .get) { (comments: [VOYComment]?, _) in
             if let comments = comments {
                 completion(comments)
             } else {

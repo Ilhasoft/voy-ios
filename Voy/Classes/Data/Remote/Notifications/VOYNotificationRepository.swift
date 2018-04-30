@@ -21,9 +21,9 @@ class VOYNotificationRepository: VOYNotificationDataSource {
     func getNotifications(completion: @escaping ([VOYNotification]?) -> Void) {
         guard let auth = VOYUser.activeUser()?.authToken else { return }
         networkClient.requestObjectArray(urlSuffix: "report-notification/",
-                                         httpMethod: VOYNetworkClient.VOYHTTPMethod.get,
+                                         httpMethod: .get,
                                          headers: ["Authorization": "Token \(auth)"]
-        ) { (notificationList: [VOYNotification]?, _, _) in
+        ) { (notificationList: [VOYNotification]?, _) in
             guard let notificationList = notificationList else { return }
             completion(notificationList)
         }
