@@ -16,7 +16,7 @@ class VOYNetworkClient {
 
     private var pendingRequests: [DataRequest] = []
     private let reachability: VOYReachability
-    private let storeManager: VOYStorageManager
+    private let storageManager: VOYStorageManager
 
     enum VOYHTTPMethod {
         case get
@@ -41,7 +41,7 @@ class VOYNetworkClient {
     init(reachability: VOYReachability,
          storageManager: VOYStorageManager = VOYDefaultStorageManager()) {
         self.reachability = reachability
-        self.storeManager = storageManager
+        self.storageManager = storageManager
     }
 
     /**
@@ -205,7 +205,7 @@ class VOYNetworkClient {
             }
 
             if urlSuffix == "reports" && parameters?["status"] as? Int == 2 {
-                for offlineReport in self.storeManager.getPendingReports() {
+                for offlineReport in self.storageManager.getPendingReports() {
                     for (index, dictionary) in arrayOfDictionaries.enumerated() {
                         if let dictionaryId = dictionary["id"] as? Int,
                             let localReportId = offlineReport["id"] as? Int,
@@ -224,7 +224,7 @@ class VOYNetworkClient {
         } else {
             var objects: [Map] = []
             if urlSuffix == "reports" && parameters?["status"] as? Int == 2 {
-                for reportJSON in self.storeManager.getPendingReports() {
+                for reportJSON in self.storageManager.getPendingReports() {
                     objects.append(Map(mappingType: .fromJSON, JSON: reportJSON))
                 }
             }
