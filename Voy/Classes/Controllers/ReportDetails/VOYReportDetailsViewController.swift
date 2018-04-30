@@ -226,8 +226,8 @@ extension VOYReportDetailsViewController: VOYReportDetailsContract {
     }
 
     func navigateToPictureScreen(image: UIImage) {
-        let dataSource = PhotosDataSource(photos: [Photo(image: image)])
-        let photosViewController = PhotosViewController(dataSource: dataSource)
+        let dataSource = AXPhotosDataSource(photos: [AXPhoto(image: image)])
+        let photosViewController = AXPhotosViewController(dataSource: dataSource)
         present(photosViewController, animated: true, completion: nil)
     }
 

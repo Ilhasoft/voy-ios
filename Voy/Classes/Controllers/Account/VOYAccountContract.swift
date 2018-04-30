@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol VOYAccountContract: class {
+protocol VOYAccountContract: AnyObject {
     func save()
     func btLogoutTapped()
     func setupLoading(showLoading: Bool)

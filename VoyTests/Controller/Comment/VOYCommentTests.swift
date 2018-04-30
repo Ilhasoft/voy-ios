@@ -32,7 +32,7 @@ class VOYCommentTests: XCTestCase {
     // MARK: - Data test
 
     func testGetComments() {
-        let expectations = expectation(description: "Should get 2 comments from the fake reopository")
+        let expectations = expectation(description: "Should get 2 comments from the fake repository")
         commentPresenterUnderTest.onScreenDidLoad()
         DispatchQueue.main.async {
             XCTAssertEqual(self.mockViewController.viewModel!.comments.count, 2)
