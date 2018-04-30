@@ -60,13 +60,11 @@ class VOYNetworkClient {
         }
     }
 
-    @discardableResult
     func requestObjectArray<T: Mappable>(urlSuffix: String,
                                          httpMethod: VOYHTTPMethod,
                                          parameters: [String: Any]? = nil,
                                          headers: [String: String]? = nil,
-                                         shouldCacheResponse: Bool = false,
-                                         completion: @escaping ([T]?, Error?, URLRequest) -> Void) -> URLRequest? {
+                                         completion: @escaping ([T]?, Error?, URLRequest) -> Void) {
         let url = createURL(urlSuffix: urlSuffix)
         let request = Alamofire.request(
             url,
@@ -78,7 +76,6 @@ class VOYNetworkClient {
         pendingRequests.append(request)
         request.responseArray { (dataResponse: DataResponse<[T]>) in
             self.pendingRequests.removeRequest(request: request)
-            if shouldCacheResponse { self.cacheReponse(dataResponse: dataResponse) }
             guard let internalRequest = dataResponse.request else { return }
             if let userData = dataResponse.result.value {
                 completion(userData, nil, internalRequest)
@@ -86,46 +83,14 @@ class VOYNetworkClient {
                 completion(nil, error, internalRequest)
             }
         }
-        return request.request
     }
 
-    @discardableResult
-    func requestAnyObject(urlSuffix: String,
-                          httpMethod: VOYHTTPMethod,
-                          parameters: [String: Any]? = nil,
-                          headers: [String: String]? = nil,
-                          shouldCacheResponse: Bool = false,
-                          completion: @escaping (Any?, Error?, URLRequest) -> Void) -> URLRequest? {
-        let url = createURL(urlSuffix: urlSuffix)
-        let request = Alamofire.request(
-            url,
-            method: httpMethod.toHttpMethod(),
-            parameters: parameters,
-            encoding: JSONEncoding.default,
-            headers: headers
-        )
-        pendingRequests.append(request)
-        request.responseJSON { (dataResponse: DataResponse<Any>) in
-            self.pendingRequests.removeRequest(request: request)
-            if shouldCacheResponse { self.cacheReponse(dataResponse: dataResponse) }
-            guard let internalRequest = dataResponse.request else { return }
-            if let value = dataResponse.result.value {
-                completion(value, nil, internalRequest)
-            } else if let error = dataResponse.result.error {
-                completion(nil, error, internalRequest)
-            }
-        }
-        return request.request
-    }
-
-    @discardableResult
     func requestDictionary(urlSuffix: String,
                            httpMethod: VOYHTTPMethod,
                            parameters: [String: Any]? = nil,
                            headers: [String: String]? = nil,
-                           shouldCacheResponse: Bool = false,
                            useJSONEncoding: Bool = false,
-                           completion: @escaping ([String: Any]?, Error?, URLRequest) -> Void) -> URLRequest? {
+                           completion: @escaping ([String: Any]?, Error?, URLRequest) -> Void) {
         let url = createURL(urlSuffix: urlSuffix)
         let request = Alamofire.request(
             url,
@@ -138,7 +103,6 @@ class VOYNetworkClient {
         request.responseJSON { (dataResponse: DataResponse<Any>) in
             self.pendingRequests.removeRequest(request: request)
             guard let internalRequest = dataResponse.request else { return }
-            if shouldCacheResponse { self.cacheReponse(dataResponse: dataResponse) }
             switch dataResponse.result {
             case .failure(let error):
                 completion(nil, error, internalRequest)
@@ -150,7 +114,6 @@ class VOYNetworkClient {
                 completion(valueDict, nil, internalRequest)
             }
         }
-        return request.request
     }
 
     func requestKeyPathDictionary(urlSuffix: String,
@@ -232,13 +195,11 @@ class VOYNetworkClient {
         }
     }
 
-    @discardableResult
     func requestObject<T: Mappable>(urlSuffix: String,
                                     httpMethod: VOYHTTPMethod,
                                     parameters: [String: Any]? = nil,
                                     headers: [String: String]? = nil,
-                                    shouldCacheResponse: Bool = false,
-                                    completion: @escaping (T?, Error?, URLRequest) -> Void) -> URLRequest? {
+                                    completion: @escaping (T?, Error?, URLRequest) -> Void) {
         let url = createURL(urlSuffix: urlSuffix)
         let request = Alamofire.request(
             url,
@@ -251,14 +212,12 @@ class VOYNetworkClient {
         request.responseObject { (dataResponse: DataResponse<T>) in
             guard let internalRequest = dataResponse.request else { return }
             self.pendingRequests.removeRequest(request: request)
-            if shouldCacheResponse { self.cacheReponse(dataResponse: dataResponse) }
             if let value = dataResponse.value {
                 completion(value, nil, internalRequest)
             } else if let error = dataResponse.result.error {
                 completion(nil, error, internalRequest)
             }
         }
-        return request.request
     }
 
     func requestImage(url: String, completion: @escaping (UIImage?, Error?) -> Void) {
