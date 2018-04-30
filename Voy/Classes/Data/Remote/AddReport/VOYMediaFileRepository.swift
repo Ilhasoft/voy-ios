@@ -23,7 +23,6 @@ class VOYMediaFileRepository: VOYMediaFileDataSource {
 
     func delete(mediaFiles: [VOYMedia]?) {
         guard let mediaFiles = mediaFiles else {return}
-        guard let authToken = VOYUser.activeUser()?.authToken else { return }
         let mediaIdsList = mediaFiles.map { $0.id }
         var mediaIdsString = ""
         for mediaId in mediaIdsList {
@@ -34,7 +33,7 @@ class VOYMediaFileRepository: VOYMediaFileDataSource {
         mediaIdsString.removeLast()
         networkClient.requestDictionary(urlSuffix: "report-files/delete/?ids=\(mediaIdsString)",
                                         httpMethod: .post,
-                                        headers: ["Authorization": "Token \(authToken)"]) { value, error, _ in
+                                        headers: networkClient.authorizationHeaders) { value, error, _ in
             if let value = value {
                 print(value)
             } else if let error = error {
@@ -50,8 +49,7 @@ class VOYMediaFileRepository: VOYMediaFileDataSource {
         }
         if reachability.hasNetwork() && !isUploading {
             isUploading = true
-            guard let auth = VOYUser.activeUser()?.authToken,
-                let fileName = cameraData.fileName,
+            guard let fileName = cameraData.fileName,
                 let filePath = VOYFileUtil.outputURLDirectory?.appendingPathComponent(fileName) else { return }
             Alamofire.upload(multipartFormData: { multipartFormData in
                     if let reportIdData = "\(report_id)".data(using: String.Encoding.utf8) {
@@ -72,7 +70,7 @@ class VOYMediaFileRepository: VOYMediaFileDataSource {
             },
                 to: "\(VOYConstant.API.URL)report-files/",
                 method: .post,
-                headers: ["Authorization": "Token \(auth)"],
+                headers: networkClient.authorizationHeaders,
                 encodingCompletion: { encodingResult in
                     self.isUploading = false
                     switch encodingResult {
