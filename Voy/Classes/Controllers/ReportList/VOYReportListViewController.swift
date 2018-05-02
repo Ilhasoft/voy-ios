@@ -19,7 +19,7 @@ class VOYReportListViewController: UIViewController, NVActivityIndicatorViewable
     @IBOutlet var tableViewNotApproved: DataBindOnDemandTableView!
     @IBOutlet var tableViews: [DataBindOnDemandTableView]!
     @IBOutlet var segmentedControl: UISegmentedControl!
-    @IBOutlet weak var messageLabel: UILabel!
+    var messageLabel: UILabel!
 
     static var sharedInstance: VOYReportListViewController?
     var theme: VOYTheme!
@@ -34,7 +34,8 @@ class VOYReportListViewController: UIViewController, NVActivityIndicatorViewable
         if let theme = assertExists(optionalVar: VOYTheme.activeTheme()) {
             self.theme = theme
         }
-        self.title = theme.name
+        title = theme.name
+        presenter = VOYReportListPresenter(view: self, dataSource: VOYReportListRepository())
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -43,12 +44,20 @@ class VOYReportListViewController: UIViewController, NVActivityIndicatorViewable
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        presenter = VOYReportListPresenter(view: self, dataSource: VOYReportListRepository())
+        messageLabel = UILabel()
+        messageLabel.font = UIFont.systemFont(ofSize: 15)
+        messageLabel.textAlignment = .center
+
         messageLabel.isHidden = true
         edgesForExtendedLayout = []
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: " ", style: .plain, target: nil, action: nil)
         setupTableView()
         setupLocalization()
+    }
+
+    override func viewDidLayoutSubviews() {
+        messageLabel.frame = CGRect(x: 0, y: 0, width: tableViewApproved.bounds.width, height: 60)
+        tableViewApproved.tableHeaderView = messageLabel
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -116,6 +125,10 @@ class VOYReportListViewController: UIViewController, NVActivityIndicatorViewable
     }
 
     @IBAction func segmentedControlTapped() {
+        tableViewApproved.tableHeaderView = nil
+        tableViewPending.tableHeaderView = nil
+        tableViewNotApproved.tableHeaderView = nil
+
         switch self.segmentedControl.selectedSegmentIndex {
         case 0:
             if let countApprovedReports = presenter.countApprovedReports {
@@ -124,6 +137,7 @@ class VOYReportListViewController: UIViewController, NVActivityIndicatorViewable
             } else {
                 messageLabel.isHidden = true
             }
+            tableViewApproved.tableHeaderView = messageLabel
             tableViewApproved.isHidden = false
             tableViewPending.isHidden = true
             tableViewNotApproved.isHidden = true
@@ -135,6 +149,7 @@ class VOYReportListViewController: UIViewController, NVActivityIndicatorViewable
             } else {
                 messageLabel.isHidden = true
             }
+            tableViewPending.tableHeaderView = messageLabel
             tableViewApproved.isHidden = true
             tableViewPending.isHidden = false
             tableViewNotApproved.isHidden = true
@@ -146,6 +161,7 @@ class VOYReportListViewController: UIViewController, NVActivityIndicatorViewable
             } else {
                 messageLabel.isHidden = true
             }
+            tableViewNotApproved.tableHeaderView = messageLabel
             tableViewApproved.isHidden = true
             tableViewPending.isHidden = true
             tableViewNotApproved.isHidden = false
