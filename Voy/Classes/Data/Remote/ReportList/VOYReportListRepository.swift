@@ -22,8 +22,6 @@ class VOYReportListRepository: VOYReportListDataSource {
                         status: VOYReportStatus,
                         mapper: Int,
                         completion: @escaping (Int?, Error?) -> Void) {
-        guard let auth = VOYUser.activeUser()?.authToken else { return }
-
         let parameters = [ "status": status.rawValue,
                            "mapper": mapper,
                            "page_size": VOYConstant.API.paginationSize,
@@ -33,7 +31,7 @@ class VOYReportListRepository: VOYReportListDataSource {
             urlSuffix: "reports",
             httpMethod: .get,
             parameters: parameters,
-            headers: [ "Authorization": "Token \(auth)" ],
+            headers: networkClient.authorizationHeaders,
             completion: { object, error, _ in
                 if let count = object?["count"] as? Int {
                     completion(count, nil)

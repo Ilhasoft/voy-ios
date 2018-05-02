@@ -23,15 +23,11 @@ class VOYThemeRepository: VOYThemesDataSource {
 
     func getProjects(forUser user: VOYUser, completion: @escaping ([VOYProject]) -> Void) {
         if reachability.hasNetwork() {
-            guard let authToken = user.authToken else {
-                completion([])
-                return
-            }
             networkClient.requestObjectArray(
                 urlSuffix: "projects/",
                 httpMethod: .get,
-                headers: ["Authorization": "Token \(authToken)"]
-            ) { (projects: [VOYProject]?, _, _) in
+                headers: networkClient.authorizationHeaders
+            ) { (projects: [VOYProject]?, _) in
                 if let projects = projects {
                     self.storageManager.setProjects(projects)
                     completion(projects)
@@ -53,7 +49,7 @@ class VOYThemeRepository: VOYThemesDataSource {
             networkClient.requestObjectArray(
                 urlSuffix: "themes/?project=\(projectId)&user=\(userId)",
                 httpMethod: .get
-            ) { (themes: [VOYTheme]?, _, _) in
+            ) { (themes: [VOYTheme]?, _) in
                 if let themes = themes {
                     self.storageManager.setThemes(forProject: project, themes)
                     completion(themes)
@@ -67,14 +63,10 @@ class VOYThemeRepository: VOYThemesDataSource {
     }
 
     func getNotifications(withUser user: VOYUser, completion: @escaping ([VOYNotification]) -> Void) {
-        guard let auth = user.authToken else {
-            completion([])
-            return
-        }
         networkClient.requestObjectArray(urlSuffix: "report-notification/",
                                          httpMethod: VOYNetworkClient.VOYHTTPMethod.get,
-                                         headers: ["Authorization": "Token \(auth)"]
-        ) { (notificationsList: [VOYNotification]?, _, _) in
+                                         headers: networkClient.authorizationHeaders
+        ) { (notificationsList: [VOYNotification]?, _) in
             if let notificationsList = notificationsList {
                 completion(notificationsList)
             } else {

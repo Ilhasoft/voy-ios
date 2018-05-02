@@ -1,19 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
-    <customFonts key="customFonts">
-        <array key="HelveticaNeue.ttc">
-            <string>HelveticaNeue-Bold</string>
-        </array>
-    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="VOYAccountViewController" customModule="Voy" customModuleProvider="target">
             <connections>
@@ -137,7 +132,7 @@
                                         <action selector="btEditPasswordTapped" destination="-1" eventType="touchUpInside" id="pLn-Qn-3eH"/>
                                     </connections>
                                 </button>
-                                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="BjK-si-s2r" customClass="ISOnDemandCollectionView" customModule="ISOnDemandCollectionView">
+                                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="BjK-si-s2r">
                                     <rect key="frame" x="0.0" y="126" width="414" height="0.0"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
@@ -149,6 +144,10 @@
                                         <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                         <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                     </collectionViewFlowLayout>
+                                    <connections>
+                                        <outlet property="dataSource" destination="-1" id="Khj-GI-6sJ"/>
+                                        <outlet property="delegate" destination="-1" id="ovQ-yl-dAn"/>
+                                    </connections>
                                 </collectionView>
                                 <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" image="group2" translatesAutoresizingMaskIntoConstraints="NO" id="ZFY-tG-TqP">
                                     <rect key="frame" x="208" y="69" width="29" height="29"/>
@@ -191,21 +190,11 @@
                                 <constraint firstAttribute="trailing" secondItem="eOb-gy-c4w" secondAttribute="trailing" constant="15" id="zad-ox-pBu"/>
                             </constraints>
                         </view>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4hM-Bx-lxg">
-                            <rect key="frame" x="0.0" y="0.0" width="414" height="3"/>
-                            <color key="backgroundColor" red="0.0" green="0.79607843140000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="3" id="coc-ds-pUD"/>
-                            </constraints>
-                        </view>
                     </subviews>
                     <constraints>
                         <constraint firstItem="tS7-SP-Mfr" firstAttribute="top" secondItem="ack-HC-hrS" secondAttribute="top" id="9nx-ec-nDO"/>
                         <constraint firstItem="tS7-SP-Mfr" firstAttribute="leading" secondItem="ack-HC-hrS" secondAttribute="leading" id="BIX-7V-GDg"/>
-                        <constraint firstItem="4hM-Bx-lxg" firstAttribute="leading" secondItem="ack-HC-hrS" secondAttribute="leading" id="L8S-sH-l2S"/>
                         <constraint firstAttribute="trailing" secondItem="tS7-SP-Mfr" secondAttribute="trailing" id="Qf2-qy-zXg"/>
-                        <constraint firstItem="4hM-Bx-lxg" firstAttribute="top" secondItem="ack-HC-hrS" secondAttribute="top" id="Tuz-hS-x6z"/>
-                        <constraint firstAttribute="trailing" secondItem="4hM-Bx-lxg" secondAttribute="trailing" id="XgI-30-1aE"/>
                         <constraint firstItem="tS7-SP-Mfr" firstAttribute="width" secondItem="ack-HC-hrS" secondAttribute="width" id="bSY-Gb-WkP"/>
                         <constraint firstAttribute="bottom" secondItem="tS7-SP-Mfr" secondAttribute="bottom" id="fBZ-uO-NxY"/>
                         <constraint firstItem="tS7-SP-Mfr" firstAttribute="height" secondItem="ack-HC-hrS" secondAttribute="height" id="yA7-IA-GQC"/>

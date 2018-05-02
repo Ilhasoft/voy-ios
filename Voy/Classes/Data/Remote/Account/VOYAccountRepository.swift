@@ -23,7 +23,7 @@ class VOYAccountRepository: VOYAccountDataSource {
         networkClient.requestDictionary(urlSuffix: "users/\(userId)/",
                                         httpMethod: .put,
                                         parameters: jsonUser,
-                                        headers: ["Authorization": "Token " + authToken]) { result, error, _ in
+                                        headers: networkClient.authorizationHeaders) { result, error, _ in
             if result != nil {
                 let loginRepository = VOYLoginRepository()
                 loginRepository.getUserData(authToken: user.authToken, completion: { (user, error) in
