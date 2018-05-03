@@ -10,5 +10,7 @@ import UIKit
 
 protocol VOYAccountContract: AnyObject {
     func update(with viewModel: VOYAccountViewModel)
-    func setupLoading(showLoading: Bool)
+    func showProgress()
+    func hideProgress()
+    func navigateToLoginScreen()
 }

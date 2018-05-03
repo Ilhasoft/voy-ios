@@ -212,6 +212,7 @@ extension VOYAccountViewController: VOYTextFieldViewDelegate {
 }
 
 extension VOYAccountViewController: VOYAccountContract {
+
     func update(with viewModel: VOYAccountViewModel) {
         self.viewModel = viewModel
         self.viewUserName.txtField.text = viewModel.fullName
@@ -223,7 +224,16 @@ extension VOYAccountViewController: VOYAccountContract {
         self.viewPassword.layer.opacity = 0.5
     }
 
-    func setupLoading(showLoading: Bool) {
-        showLoading ? self.startAnimating() : self.stopAnimating()
+    func showProgress() {
+        self.startAnimating()
+    }
+
+    func hideProgress() {
+        self.stopAnimating()
+    }
+
+    func navigateToLoginScreen() {
+        let navigationController = UINavigationController(rootViewController: VOYLoginViewController())
+        UIViewController.switchRootViewController(navigationController, animated: true, completion: { })
     }
 }

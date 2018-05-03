@@ -24,9 +24,9 @@ class VOYAccountPresenter {
 
     func onScreenLoaded() {
         guard let user = VOYUser.activeUser() else { return }
-        view?.setupLoading(showLoading: true)
+        view?.showProgress()
         dataSource.downloadAvatarImage(avatarURL: user.avatar) { (image: UIImage?) in
-            self.view?.setupLoading(showLoading: false)
+            self.view?.hideProgress()
             var fullName: String = user.username
             if let firstName = user.first_name, let lastName = user.last_name {
                 fullName = "\(firstName) \(lastName)"
@@ -38,19 +38,17 @@ class VOYAccountPresenter {
 
     func updateUser(avatar: Int?, password: String?) {
         if avatar != nil || password != nil {
-            view?.setupLoading(showLoading: true)
+            view?.showProgress()
             self.dataSource.updateUser(avatar: avatar, password: password) { _ in
-                self.view?.setupLoading(showLoading: false)
+                self.view?.hideProgress()
             }
         }
     }
 
     func logoutUser() {
         VOYUser.deactiveUser()
-        let navigationController = UINavigationController(rootViewController: VOYLoginViewController())
-        UIViewController.switchRootViewController(navigationController, animated: true, completion: {
-            self.clearAllCachedData()
-        })
+        clearAllCachedData()
+        view?.navigateToLoginScreen()
     }
 
     func clearAllCachedData() {
