@@ -10,12 +10,6 @@ import UIKit
 import CoreLocation
 import MapKit
 
-enum VOYAddReportErrorType {
-    case willStart
-    case ended
-    case outOfBouds
-}
-
 class VOYAddReportAttachPresenter {
 
     weak var view: VOYAddReportAttachContract?
@@ -30,41 +24,9 @@ class VOYAddReportAttachPresenter {
     }
 
     func onViewDidLoad() {
-        if let theme = VOYTheme.activeTheme() {
-            validateDateLimit(theme: theme, currentDate: Date())
-        }
         let mediaList: [VOYMedia] = report.files ?? []
         let cameraDataList: [VOYCameraData] = report.cameraDataList ?? []
         view?.loadFromReport(mediaList: mediaList, cameraDataList: cameraDataList)
-    }
-
-    func validateDateLimit(theme: VOYTheme, currentDate: Date) {
-        if var startAt = theme.start_at, var endAt = theme.end_at {
-            startAt = "\(startAt) 00:00"
-            endAt = "\(endAt) 23:59"
-            let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
-            dateFormatter.timeZone = TimeZone(abbreviation: TimeZone.current.abbreviation() ?? "UTC")
-
-            if let startDate = dateFormatter.date(from: startAt), let endDate = dateFormatter.date(from: endAt) {
-                if startDate >= currentDate || endDate <= currentDate {
-                    (startDate >= currentDate) ? showAlert(alert: .willStart) : showAlert(alert: .ended)
-                }
-            }
-        }
-    }
-
-    func showAlert(alert: VOYAddReportErrorType) {
-        var alertText: String = ""
-        switch alert {
-        case .willStart:
-            alertText = localizedString(.weArePreparingThisTheme)
-        case .ended:
-            alertText = localizedString(.periodForReportEnded)
-        case .outOfBouds:
-            alertText = localizedString(.outsideThemesBounds)
-        }
-        view?.showAlert(text: alertText)
     }
 
     func onNextButtonTapped() {

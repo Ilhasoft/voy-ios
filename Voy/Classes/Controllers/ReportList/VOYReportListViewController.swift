@@ -121,7 +121,7 @@ class VOYReportListViewController: UIViewController, NVActivityIndicatorViewable
     }
 
     @IBAction func btAddReportTapped(_ sender: Any) {
-        self.navigationController?.pushViewController(VOYAddReportAttachViewController(), animated: true)
+        presenter.onAddReportAction()
     }
 
     @IBAction func segmentedControlTapped() {
@@ -185,6 +185,20 @@ extension VOYReportListViewController: VOYReportListContract {
     func navigateToReportDetails(report: VOYReport) {
         self.navigationController?.pushViewController(VOYReportDetailsViewController(report: report), animated: true)
     }
+
+    func navigateToAddReport() {
+        navigationController?.pushViewController(VOYAddReportAttachViewController(), animated: true)
+    }
+
+    func showAlert(text: String) {
+        let alertViewController = VOYAlertViewController(
+            title: localizedString(.alert),
+            message: text
+        )
+        alertViewController.view.tag = 1
+        alertViewController.delegate = self
+        alertViewController.show(true, inViewController: self)
+    }
 }
 
 extension VOYReportListViewController: ISOnDemandTableViewDelegate {
@@ -241,5 +255,11 @@ extension VOYReportListViewController: VOYActionSheetViewControllerDelegate {
 
     func buttonDidTap(actionSheetViewController: VOYActionSheetViewController, button: UIButton, index: Int) {
 
+    }
+}
+
+extension VOYReportListViewController: VOYAlertViewControllerDelegate {
+    func buttonDidTap(alertController: VOYAlertViewController, button: UIButton, index: Int) {
+        alertController.close()
     }
 }
