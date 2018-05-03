@@ -35,7 +35,11 @@ class VOYReportListViewController: UIViewController, NVActivityIndicatorViewable
             self.theme = theme
         }
         title = theme.name
-        presenter = VOYReportListPresenter(view: self, dataSource: VOYReportListRepository())
+        presenter = VOYReportListPresenter(
+            view: self,
+            dataSource: VOYReportListRepository(),
+            locationManager: VOYServicesProvider.shared.locationManager
+        )
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -194,6 +198,24 @@ extension VOYReportListViewController: VOYReportListContract {
         let alertViewController = VOYAlertViewController(
             title: localizedString(.alert),
             message: text
+        )
+        alertViewController.view.tag = 1
+        alertViewController.delegate = self
+        alertViewController.show(true, inViewController: self)
+    }
+
+    func showProgress() {
+        self.startAnimating()
+    }
+
+    func hideProgress() {
+        self.stopAnimating()
+    }
+
+    func showGpsPermissionError() {
+        let alertViewController = VOYAlertViewController(
+            title: localizedString(.gpsPermissionError),
+            message: localizedString(.needGpsPermission)
         )
         alertViewController.view.tag = 1
         alertViewController.delegate = self

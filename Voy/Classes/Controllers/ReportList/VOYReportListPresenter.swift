@@ -6,7 +6,9 @@
 //  Copyright © 2018 Ilhasoft. All rights reserved.
 //
 
-import UIKit
+import Foundation
+import CoreLocation
+import MapKit
 
 enum VOYAddReportErrorType {
     case willStart
@@ -35,9 +37,13 @@ class VOYReportListPresenter {
     var countPendingReports: Int?
     var countNotApprovedReports: Int?
 
-    init(view: VOYReportListContract, dataSource: VOYReportListDataSource) {
+    var locationManager: VOYLocationManager!
+
+    init(view: VOYReportListContract, dataSource: VOYReportListDataSource, locationManager: VOYLocationManager) {
         self.view = view
         self.dataSource = dataSource
+        self.locationManager = locationManager
+        self.locationManager.delegate = self
     }
 
     func onAddReportAction() {
@@ -45,12 +51,13 @@ class VOYReportListPresenter {
         if let error = getDateError(theme: theme, currentDate: Date()) {
             view?.showAlert(text: error.getMessage())
         } else {
-            view?.navigateToAddReport()
+            view?.showProgress()
+            locationManager.getCurrentLocation()
         }
     }
 
     func onReportSelected(object: [String: Any]) {
-        if let report = VOYReport(JSON: object)  {
+        if let report = VOYReport(JSON: object) {
             view?.navigateToReportDetails(report: report)
         }
     }
@@ -91,5 +98,44 @@ class VOYReportListPresenter {
         } else {
             return nil
         }
+    }
+}
+
+extension VOYReportListPresenter: VOYLocationManagerDelegate {
+    func didGetUserLocation(latitude: Float, longitude: Float, error: Error?) {
+        guard let theme = assertExists(optionalVar: VOYTheme.activeTheme()) else {
+            return
+        }
+
+        let myLocation = CLLocationCoordinate2D(
+            latitude: CLLocationDegrees(latitude),
+            longitude: CLLocationDegrees(longitude)
+        )
+
+        var locationCoordinate2dList = [CLLocationCoordinate2D]()
+        for point in theme.bounds {
+            let locationCoordinate2D = CLLocationCoordinate2D(latitude: point[0], longitude: point[1])
+            locationCoordinate2dList.append(locationCoordinate2D)
+        }
+
+        let statePolygonRenderer = MKPolygonRenderer(polygon:
+            MKPolygon(coordinates: locationCoordinate2dList, count: locationCoordinate2dList.count)
+        )
+        let testMapPoint: MKMapPoint = MKMapPointForCoordinate(myLocation)
+        let statePolygonRenderedPoint: CGPoint = statePolygonRenderer.point(for: testMapPoint)
+        let intersects: Bool = statePolygonRenderer.path.contains(statePolygonRenderedPoint)
+
+        view?.hideProgress()
+
+        if !intersects {
+            view?.showAlert(text: localizedString(.outsideThemesBounds))
+        } else {
+            view?.navigateToAddReport()
+        }
+    }
+
+    func userDidntGivePermission() {
+        view?.hideProgress()
+        view?.showGpsPermissionError()
     }
 }

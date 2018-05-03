@@ -7,20 +7,15 @@
 //
 
 import UIKit
-import CoreLocation
-import MapKit
 
 class VOYAddReportAttachPresenter {
 
     weak var view: VOYAddReportAttachContract?
     var report: VOYReport
-    var locationManager: VOYLocationManager!
 
     init(view: VOYAddReportAttachContract, report: VOYReport = VOYReport()) {
         self.view = view
         self.report = report
-        locationManager = VOYDefaultLocationManager(delegate: self)
-        locationManager.getCurrentLocation()
     }
 
     func onViewDidLoad() {
@@ -43,41 +38,5 @@ class VOYAddReportAttachPresenter {
         } else {
             report.removedMedias = [ media ]
         }
-    }
-}
-
-extension VOYAddReportAttachPresenter: VOYLocationManagerDelegate {
-    func didGetUserLocation(latitude: Float, longitude: Float, error: Error?) {
-        guard let theme = assertExists(optionalVar: VOYTheme.activeTheme()) else {
-            return
-        }
-
-        view?.stopAnimating()
-        let myLocation = CLLocationCoordinate2D(
-            latitude: CLLocationDegrees(latitude),
-            longitude: CLLocationDegrees(longitude)
-        )
-
-        var locationCoordinate2dList = [CLLocationCoordinate2D]()
-        for point in theme.bounds {
-            let locationCoordinate2D = CLLocationCoordinate2D(latitude: point[0], longitude: point[1])
-            locationCoordinate2dList.append(locationCoordinate2D)
-        }
-
-        let statePolygonRenderer = MKPolygonRenderer(polygon:
-            MKPolygon(coordinates: locationCoordinate2dList, count: locationCoordinate2dList.count)
-        )
-        let testMapPoint: MKMapPoint = MKMapPointForCoordinate(myLocation)
-        let statePolygonRenderedPoint: CGPoint = statePolygonRenderer.point(for: testMapPoint)
-        let intersects: Bool = statePolygonRenderer.path.contains(statePolygonRenderedPoint)
-
-        if !intersects {
-            view?.showAlert(text: localizedString(.outsideThemesBounds))
-        }
-    }
-
-    func userDidntGivePermission() {
-        view?.stopAnimating()
-        view?.showGpsPermissionError()
     }
 }

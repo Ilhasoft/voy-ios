@@ -11,7 +11,4 @@ import UIKit
 protocol VOYAddReportAttachContract: class {
     func loadFromReport(mediaList: [VOYMedia], cameraDataList: [VOYCameraData])
     func navigateToNextScreen(report: VOYReport)
-    func showAlert(text: String)
-    func stopAnimating()
-    func showGpsPermissionError()
 }
