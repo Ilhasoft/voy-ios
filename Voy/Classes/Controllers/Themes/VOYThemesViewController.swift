@@ -12,7 +12,7 @@ import NVActivityIndicatorView
 
 class VOYThemesViewController: UIViewController, NVActivityIndicatorViewable {
 
-    @IBOutlet weak var lbThemesCount: UILabel!
+    var lbThemesCount: UILabel!
     @IBOutlet weak var tableView: UITableView!
 
     static var badgeView = UIView()
@@ -33,6 +33,9 @@ class VOYThemesViewController: UIViewController, NVActivityIndicatorViewable {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        lbThemesCount = UILabel()
+        lbThemesCount.textAlignment = .center
+        lbThemesCount.font = UIFont.boldSystemFont(ofSize: 18)
         lbThemesCount.text = localizedString(.themesListHeader, andNumber: 0)
         tableView.separatorColor = UIColor.clear
         tableView.register(
@@ -48,6 +51,11 @@ class VOYThemesViewController: UIViewController, NVActivityIndicatorViewable {
             name: Notification.Name("userDataUpdated"),
             object: nil
         )
+    }
+
+    override func viewDidLayoutSubviews() {
+        lbThemesCount.frame = CGRect(x: 0, y: 0, width: tableView.bounds.width, height: 70)
+        tableView.tableHeaderView = lbThemesCount
     }
 
     override func viewWillAppear(_ animated: Bool) {
