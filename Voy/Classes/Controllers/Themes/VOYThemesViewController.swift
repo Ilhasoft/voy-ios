@@ -13,6 +13,7 @@ import NVActivityIndicatorView
 class VOYThemesViewController: UIViewController, NVActivityIndicatorViewable {
 
     var lbThemesCount: UILabel!
+    @IBOutlet weak var dropDownAnchor: UIView!
     @IBOutlet weak var tableView: UITableView!
 
     static var badgeView = UIView()
@@ -70,13 +71,14 @@ class VOYThemesViewController: UIViewController, NVActivityIndicatorViewable {
     }
 
     fileprivate func setupDropDown(projects: [VOYProject]) {
-        selectedReportView = VOYSelectedReportView(frame: CGRect(x: 0, y: 0, width: 180, height: 40))
-        selectedReportView.widthAnchor.constraint(equalToConstant: 180)
-        selectedReportView.heightAnchor.constraint(equalToConstant: 40)
+        let width = UIScreen.main.bounds.width - 100
+        selectedReportView = VOYSelectedReportView(frame: CGRect(x: 0, y: 0, width: width, height: 40))
+        selectedReportView.widthAnchor.constraint(equalToConstant: width).isActive = true
+        selectedReportView.heightAnchor.constraint(equalToConstant: 40).isActive = true
         selectedReportView.delegate = self
         self.navigationItem.titleView = selectedReportView
 
-        dropDown.anchorView = selectedReportView
+        dropDown.anchorView = dropDownAnchor
         dropDown.bottomOffset = CGPoint(x: 0, y: selectedReportView.bounds.size.height)
         dropDown.dataSource = projects.map {($0.name)}
         dropDown.customCellConfiguration = { (index: Index, item: String, cell: DropDownCell) -> Void in
