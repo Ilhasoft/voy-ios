@@ -14,12 +14,7 @@ protocol VOYLocationManagerDelegate: class {
 }
 
 protocol VOYLocationManager: class {
-    init(delegate: VOYLocationManagerDelegate)
+    var delegate: VOYLocationManagerDelegate? { get set }
     func locationPermissionIsGranted() -> Bool
     func getCurrentLocation()
-}
-
-class VOYLocationData {
-    static var latitude: Float = 0
-    static var longitude: Float = 0
 }

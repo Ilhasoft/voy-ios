@@ -12,7 +12,8 @@ import NVActivityIndicatorView
 
 class VOYThemesViewController: UIViewController, NVActivityIndicatorViewable {
 
-    @IBOutlet weak var lbThemesCount: UILabel!
+    var lbThemesCount: UILabel!
+    @IBOutlet weak var dropDownAnchor: UIView!
     @IBOutlet weak var tableView: UITableView!
 
     static var badgeView = UIView()
@@ -33,6 +34,9 @@ class VOYThemesViewController: UIViewController, NVActivityIndicatorViewable {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        lbThemesCount = UILabel()
+        lbThemesCount.textAlignment = .center
+        lbThemesCount.font = UIFont.boldSystemFont(ofSize: 18)
         lbThemesCount.text = localizedString(.themesListHeader, andNumber: 0)
         tableView.separatorColor = UIColor.clear
         tableView.register(
@@ -50,6 +54,11 @@ class VOYThemesViewController: UIViewController, NVActivityIndicatorViewable {
         )
     }
 
+    override func viewDidLayoutSubviews() {
+        lbThemesCount.frame = CGRect(x: 0, y: 0, width: tableView.bounds.width, height: 70)
+        tableView.tableHeaderView = lbThemesCount
+    }
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         // Sometimes this viewController comes from a step where the navigationController is hidden
@@ -62,13 +71,14 @@ class VOYThemesViewController: UIViewController, NVActivityIndicatorViewable {
     }
 
     fileprivate func setupDropDown(projects: [VOYProject]) {
-        selectedReportView = VOYSelectedReportView(frame: CGRect(x: 0, y: 0, width: 180, height: 40))
-        selectedReportView.widthAnchor.constraint(equalToConstant: 180)
-        selectedReportView.heightAnchor.constraint(equalToConstant: 40)
+        let width = UIScreen.main.bounds.width - 100
+        selectedReportView = VOYSelectedReportView(frame: CGRect(x: 0, y: 0, width: width, height: 40))
+        selectedReportView.widthAnchor.constraint(equalToConstant: width).isActive = true
+        selectedReportView.heightAnchor.constraint(equalToConstant: 40).isActive = true
         selectedReportView.delegate = self
         self.navigationItem.titleView = selectedReportView
 
-        dropDown.anchorView = selectedReportView
+        dropDown.anchorView = dropDownAnchor
         dropDown.bottomOffset = CGPoint(x: 0, y: selectedReportView.bounds.size.height)
         dropDown.dataSource = projects.map {($0.name)}
         dropDown.customCellConfiguration = { (index: Index, item: String, cell: DropDownCell) -> Void in

@@ -12,11 +12,14 @@ class VOYAddReportTagsPresenter {
     var dataSource: VOYAddReportDataSource!
     var view: VOYAddReportTagsContract?
     private var report: VOYReport?
+    private var locationManager: VOYLocationManager!
 
-    init(report: VOYReport?, dataSource: VOYAddReportDataSource, view: VOYAddReportTagsContract) {
+    init(report: VOYReport?, dataSource: VOYAddReportDataSource, view: VOYAddReportTagsContract, locationManager: VOYLocationManager) {
         self.report = report
         self.dataSource = dataSource
         self.view = view
+        self.locationManager = locationManager
+        self.locationManager.delegate = self
     }
 
     func onViewDidLoad() {
@@ -29,10 +32,17 @@ class VOYAddReportTagsPresenter {
         guard let report = self.report, let activeTheme = VOYTheme.activeTheme() else { return }
         report.tags = selectedTags
         report.theme = activeTheme.id
-        let location = "POINT(\(VOYLocationData.longitude) \(VOYLocationData.latitude))"
-        report.location = location
 
         view?.showProgress()
+        locationManager.getCurrentLocation()
+    }
+}
+
+extension VOYAddReportTagsPresenter: VOYLocationManagerDelegate {
+    func didGetUserLocation(latitude: Float, longitude: Float, error: Error?) {
+        guard let report = self.report else { return }
+
+        report.location = "POINT(\(longitude) \(latitude))"
 
         // TODO: separate this into its own method
         for cameraDataToRemove in report.removedCameraData {
@@ -61,5 +71,10 @@ class VOYAddReportTagsPresenter {
 
         self.view?.dismissProgress()
         self.view?.navigateToSuccessScreen()
+    }
+
+    func userDidntGivePermission() {
+        // This can be safely ignored, but do we have to consider the case where the user removes the permission while
+        // the app is running?
     }
 }

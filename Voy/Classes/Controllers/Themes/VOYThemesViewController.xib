@@ -12,7 +12,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="VOYThemesViewController" customModule="Voy" customModuleProvider="target">
             <connections>
-                <outlet property="lbThemesCount" destination="xPD-8W-K41" id="eBd-12-tcQ"/>
+                <outlet property="dropDownAnchor" destination="rlH-jX-VHg" id="5S5-M1-jv5"/>
                 <outlet property="tableView" destination="BiI-uF-EOH" id="RhE-TK-uBi"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -29,36 +29,34 @@
                         <constraint firstAttribute="height" constant="304" id="TnD-Su-ks2"/>
                     </constraints>
                 </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You are on 3 themes." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xPD-8W-K41">
-                    <rect key="frame" x="16" y="43" width="343" height="21"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="21" id="YKN-Wk-bvo"/>
-                    </constraints>
-                    <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="18"/>
-                    <nil key="textColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="BiI-uF-EOH">
-                    <rect key="frame" x="24" y="91" width="327" height="576"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <rect key="frame" x="24" y="20" width="327" height="647"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="Qx7-p8-Zg4"/>
                         <outlet property="delegate" destination="-1" id="L8S-k2-Nfl"/>
                     </connections>
                 </tableView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rlH-jX-VHg">
+                    <rect key="frame" x="24" y="-10" width="327" height="1"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="1" id="vJm-4q-Seg"/>
+                    </constraints>
+                </view>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="xPD-8W-K41" secondAttribute="trailing" constant="16" id="5fr-b6-HPU"/>
-                <constraint firstItem="xPD-8W-K41" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="Dxn-Ky-1hg"/>
+                <constraint firstItem="rlH-jX-VHg" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="-30" id="0jj-hG-dWa"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="rlH-jX-VHg" secondAttribute="trailing" constant="24" id="3dZ-lW-Ju8"/>
                 <constraint firstItem="Dku-Zm-hCh" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="Eg2-4r-du6"/>
-                <constraint firstItem="BiI-uF-EOH" firstAttribute="top" secondItem="xPD-8W-K41" secondAttribute="bottom" constant="27" id="W4v-fN-37b"/>
                 <constraint firstItem="Dku-Zm-hCh" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="aIX-1F-2fa"/>
-                <constraint firstItem="xPD-8W-K41" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="23" id="abS-dC-60g"/>
+                <constraint firstItem="BiI-uF-EOH" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="fOH-Xe-APD"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="BiI-uF-EOH" secondAttribute="trailing" constant="24" id="h5I-Bk-4NW"/>
                 <constraint firstItem="BiI-uF-EOH" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="24" id="iYU-Wz-bmx"/>
                 <constraint firstItem="Dku-Zm-hCh" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="iYk-XE-vHb"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="BiI-uF-EOH" secondAttribute="bottom" id="op4-vs-SaI"/>
+                <constraint firstItem="rlH-jX-VHg" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="24" id="tOr-md-bEA"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <point key="canvasLocation" x="24.5" y="51.5"/>

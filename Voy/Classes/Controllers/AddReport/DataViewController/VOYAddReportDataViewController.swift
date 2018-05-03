@@ -57,9 +57,9 @@ class VOYAddReportDataViewController: UIViewController {
     }
 
     @objc func openNextController() {
-        if self.titleView.txtField.safeText.isEmpty {
-            self.titleView.shake()
-            self.titleView.txtField.becomeFirstResponder()
+        if titleView.txtField.safeText.isEmpty {
+            titleView.shake()
+            titleView.txtField.becomeFirstResponder()
             return
         }
         if let report = VOYReport(JSON: self.dataBindView.toJSON()) {
@@ -67,7 +67,7 @@ class VOYAddReportDataViewController: UIViewController {
             savedReport.description = report.description
             savedReport.urls = report.urls
             savedReport.update = true
-            self.navigationController?.pushViewController(
+            navigationController?.pushViewController(
                 VOYAddReportTagsViewController(report: savedReport),
                 animated: true
             )
@@ -77,16 +77,18 @@ class VOYAddReportDataViewController: UIViewController {
     func setupLayout() {
         guard let activeTheme = assertExists(optionalVar: VOYTheme.activeTheme()) else { return }
 
-        self.tbViewLinks.separatorColor = UIColor.clear
-        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: " ", style: .plain, target: nil, action: nil)
-        self.automaticallyAdjustsScrollViewInsets = false
-        self.txtFieldLink.layer.borderWidth = 1
-        self.txtFieldLink.layer.borderColor = UIColor.voyGray.cgColor
+        titleView.txtField.autocapitalizationType = .sentences
+
+        tbViewLinks.separatorColor = UIColor.clear
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: " ", style: .plain, target: nil, action: nil)
+        automaticallyAdjustsScrollViewInsets = false
+        txtFieldLink.layer.borderWidth = 1
+        txtFieldLink.layer.borderColor = UIColor.voyGray.cgColor
         if !activeTheme.allow_links {
-            self.tbViewLinks.isHidden = true
-            self.txtFieldLink.isHidden = true
-            self.btAddLink.isHidden = true
-            self.lbAddLink.isHidden = true
+            tbViewLinks.isHidden = true
+            txtFieldLink.isHidden = true
+            btAddLink.isHidden = true
+            lbAddLink.isHidden = true
         }
     }
 
@@ -98,10 +100,10 @@ class VOYAddReportDataViewController: UIViewController {
     }
 
     @IBAction func btAddLinkTapped(_ sender: Any) {
-        if !self.txtFieldLink.safeText.isEmpty && txtFieldLink.safeText.isValidURL {
-            self.tbViewLinks.dataList.append(txtFieldLink.safeText)
-            self.tbViewLinks.reloadData()
-            self.txtFieldLink.text = ""
+        if !txtFieldLink.safeText.isEmpty && txtFieldLink.safeText.isValidURL {
+            tbViewLinks.dataList.append(txtFieldLink.safeText)
+            tbViewLinks.reloadData()
+            txtFieldLink.text = ""
             UIView.animate(withDuration: 0.3, animations: {
                 self.btAddLink.alpha = 0.3
             })
@@ -111,7 +113,7 @@ class VOYAddReportDataViewController: UIViewController {
     // MARK: - Localization
 
     private func setupLocalization() {
-        self.title = localizedString(.addReport)
+        title = localizedString(.addReport)
         lbTitle.text = localizedString(.titleAndDescription)
         titleView.placeholder = localizedString(.title)
         descriptionView.placeholder = localizedString(.description)
@@ -122,7 +124,7 @@ class VOYAddReportDataViewController: UIViewController {
 
 extension VOYAddReportDataViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.tbViewLinks.dataList.count
+        return tbViewLinks.dataList.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -171,7 +173,7 @@ extension VOYAddReportDataViewController: UITextFieldDelegate {
 
 extension VOYAddReportDataViewController: VOYTextViewDelegate {
     func textViewDidChangeHeight(_ textView: GrowingTextView, height: CGFloat) {
-        self.heightDescriptionView.constant = height + 15
+        heightDescriptionView.constant = height + 15
         UIView.animate(withDuration: 0.2) {
             self.view.layoutIfNeeded()
         }
@@ -183,11 +185,11 @@ extension VOYAddReportDataViewController: VOYLinkTableViewCellDelegate {
     }
 
     func removeButtonDidTap(cell: VOYLinkTableViewCell) {
-        if let dataList = self.tbViewLinks.dataList as? [String] {
+        if let dataList = tbViewLinks.dataList as? [String] {
             let index = dataList.index {($0 == cell.lbLink.safeText)}
             if let index = index {
-                self.tbViewLinks.dataList.remove(at: index)
-                self.tbViewLinks.reloadData()
+                tbViewLinks.dataList.remove(at: index)
+                tbViewLinks.reloadData()
             }
         }
     }
