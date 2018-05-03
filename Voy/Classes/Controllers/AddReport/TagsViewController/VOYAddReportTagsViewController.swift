@@ -27,7 +27,8 @@ class VOYAddReportTagsViewController: UIViewController, NVActivityIndicatorViewa
         presenter = VOYAddReportTagsPresenter(
             report: report,
             dataSource: VOYAddReportRepository(reachability: VOYDefaultReachability()),
-            view: self
+            view: self,
+            locationManager: VOYServicesProvider.shared.locationManager
         )
     }
 

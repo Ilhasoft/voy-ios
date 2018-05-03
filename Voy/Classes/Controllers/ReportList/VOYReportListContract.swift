@@ -10,4 +10,9 @@ import UIKit
 
 protocol VOYReportListContract: class {
     func navigateToReportDetails(report: VOYReport)
+    func navigateToAddReport()
+    func showAlert(text: String)
+    func showProgress()
+    func hideProgress()
+    func showGpsPermissionError()
 }
