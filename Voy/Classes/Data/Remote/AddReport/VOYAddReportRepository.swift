@@ -58,15 +58,11 @@ class VOYAddReportRepository: VOYAddReportDataSource {
     // MARK: - Private methods
 
     private func createRemote(report: VOYReport, completion: @escaping ([String: Any]?, Error?) -> Void) {
-        guard let authToken = VOYUser.activeUser()?.authToken else {
-            return
-        }
-        let headers = ["Authorization": "Token \(authToken)"]
         let params = report.toJSON()
         networkClient.requestDictionary(urlSuffix: "reports/",
             httpMethod: .post,
             parameters: params,
-            headers: headers,
+            headers: networkClient.authorizationHeaders,
             useJSONEncoding: true) { (value, error, _) in
                 completion(value, error)
         }
@@ -75,16 +71,10 @@ class VOYAddReportRepository: VOYAddReportDataSource {
     private func updateRemote(reportId: Int,
                               report: VOYReport,
                               completion: @escaping ([String: Any]?, Error?) -> Void) {
-        guard let authToken = VOYUser.activeUser()?.authToken else {
-            return
-        }
-        let headers = ["Authorization": "Token \(authToken)"]
-        let params = report.toJSON()
-        let urlSuffix = "reports/\(reportId)/"
-        networkClient.requestDictionary(urlSuffix: urlSuffix,
+        networkClient.requestDictionary(urlSuffix: "reports/\(reportId)/",
             httpMethod: .put,
-            parameters: params,
-            headers: headers,
+            parameters: report.toJSON(),
+            headers: networkClient.authorizationHeaders,
             useJSONEncoding: true) { (value, error, _) in
                 completion(value, error)
         }

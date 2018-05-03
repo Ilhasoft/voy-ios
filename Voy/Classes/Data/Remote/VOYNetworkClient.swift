@@ -18,6 +18,14 @@ class VOYNetworkClient {
     private let reachability: VOYReachability
     private let storageManager: VOYStorageManager
 
+    var authorizationHeaders: [String: String] {
+        var headers: [String: String] = [:]
+        if let authToken = VOYUser.activeUser()?.authToken {
+            headers[VOYConstant.API.authHeader] = "Token \(authToken)"
+        }
+        return headers
+    }
+
     enum VOYHTTPMethod {
         case get
         case post
@@ -64,7 +72,7 @@ class VOYNetworkClient {
                                          httpMethod: VOYHTTPMethod,
                                          parameters: [String: Any]? = nil,
                                          headers: [String: String]? = nil,
-                                         completion: @escaping ([T]?, Error?, URLRequest) -> Void) {
+                                         completion: @escaping ([T]?, Error?) -> Void) {
         let url = createURL(urlSuffix: urlSuffix)
         let request = Alamofire.request(
             url,
@@ -76,11 +84,10 @@ class VOYNetworkClient {
         pendingRequests.append(request)
         request.responseArray { (dataResponse: DataResponse<[T]>) in
             self.pendingRequests.removeRequest(request: request)
-            guard let internalRequest = dataResponse.request else { return }
             if let userData = dataResponse.result.value {
-                completion(userData, nil, internalRequest)
+                completion(userData, nil)
             } else if let error = dataResponse.result.error {
-                completion(nil, error, internalRequest)
+                completion(nil, error)
             }
         }
     }
@@ -180,9 +187,7 @@ class VOYNetworkClient {
                     arrayOfDictionaries.append(offlineReport)
                 }
             }
-
             let objects = arrayOfDictionaries.map({ return Map(mappingType: .fromJSON, JSON: $0) })
-
             completion(objects, nil)
         } else {
             var objects: [Map] = []
@@ -199,7 +204,7 @@ class VOYNetworkClient {
                                     httpMethod: VOYHTTPMethod,
                                     parameters: [String: Any]? = nil,
                                     headers: [String: String]? = nil,
-                                    completion: @escaping (T?, Error?, URLRequest) -> Void) {
+                                    completion: @escaping (T?, Error?) -> Void) {
         let url = createURL(urlSuffix: urlSuffix)
         let request = Alamofire.request(
             url,
@@ -210,12 +215,11 @@ class VOYNetworkClient {
         )
         pendingRequests.append(request)
         request.responseObject { (dataResponse: DataResponse<T>) in
-            guard let internalRequest = dataResponse.request else { return }
             self.pendingRequests.removeRequest(request: request)
             if let value = dataResponse.value {
-                completion(value, nil, internalRequest)
+                completion(value, nil)
             } else if let error = dataResponse.result.error {
-                completion(nil, error, internalRequest)
+                completion(nil, error)
             }
         }
     }

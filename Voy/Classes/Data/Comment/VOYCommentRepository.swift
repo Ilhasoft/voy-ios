@@ -10,10 +10,6 @@ import UIKit
 
 class VOYCommentRepository: VOYCommentDataSource {
 
-    var authToken: String {
-        return VOYUser.activeUser()?.authToken ?? ""
-    }
-
     let networkClient = VOYNetworkClient(reachability: VOYDefaultReachability())
 
     func getComments(for report: VOYReport, completion: @escaping ([VOYComment]) -> Void) {
@@ -22,7 +18,7 @@ class VOYCommentRepository: VOYCommentDataSource {
             return
         }
         networkClient.requestObjectArray(urlSuffix: "report-comments/?report=\(reportId)",
-                                         httpMethod: .get) { (comments: [VOYComment]?, _, _) in
+                                         httpMethod: .get) { (comments: [VOYComment]?, _) in
             if let comments = comments {
                 completion(comments)
             } else {
@@ -35,7 +31,7 @@ class VOYCommentRepository: VOYCommentDataSource {
         networkClient.requestDictionary(urlSuffix: "report-comments/",
                                         httpMethod: .post,
                                         parameters: comment.toJSON(),
-                                        headers: ["Authorization": "Token " + authToken]) { _, error, _ in
+                                        headers: networkClient.authorizationHeaders) { _, error, _ in
             completion(error)
         }
     }
@@ -43,7 +39,7 @@ class VOYCommentRepository: VOYCommentDataSource {
     func delete(commentId: Int, completion: @escaping (Error?) -> Void) {
         networkClient.requestDictionary(urlSuffix: "report-comments/\(commentId)/",
                                         httpMethod: .delete,
-                                        headers: ["Authorization": "Token " + authToken]) { (_, error, _)  in
+                                        headers: networkClient.authorizationHeaders) { (_, error, _)  in
             completion(error)
         }
     }

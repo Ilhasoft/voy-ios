@@ -190,7 +190,8 @@ class VOYAccountViewController: UIViewController, NVActivityIndicatorViewable, V
 
 extension VOYAccountViewController: UICollectionViewDataSource {
 
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    func collectionView(_ collectionView: UICollectionView,
+                        cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.cellIdentifier, for: indexPath)
             as? VOYAvatarCollectionViewCell {
             cell.imgAvatar.image = UIImage(named: "ic_avatar\(indexPath.item + 1)")
