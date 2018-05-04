@@ -16,27 +16,47 @@ class VOYAccountPresenter {
 
     init(dataSource: VOYAccountDataSource,
          view: VOYAccountContract,
-         storageManager: VOYStorageManager = VOYDefaultStorageManager()) {
+         storageManager: VOYStorageManager) {
         self.dataSource = dataSource
         self.view = view
         self.storageManager = storageManager
     }
 
+    func onScreenLoaded() {
+        guard let user = VOYUser.activeUser() else { return }
+        view?.showProgress()
+        dataSource.downloadAvatarImage(avatarURL: user.avatar) { (image: UIImage?) in
+            self.view?.hideProgress()
+            var fullName: String = user.username
+            if let firstName = user.first_name, let lastName = user.last_name {
+                fullName = "\(firstName) \(lastName)"
+            }
+            let viewModel = VOYAccountViewModel(fullName: fullName, email: user.email, avatarImage: image)
+            self.view?.update(with: viewModel)
+        }
+    }
+
+    func onLogoutAction() {
+        let isThereOfflineData = !storageManager.getPendingCameraData().isEmpty
+            || !storageManager.getPendingReports().isEmpty
+
+        let logoutMessage = isThereOfflineData ? localizedString(.areYouSurePending) : localizedString(.areYouSureEmpty)
+        view?.showLogoutConfirmation(message: logoutMessage)
+    }
+
     func updateUser(avatar: Int?, password: String?) {
         if avatar != nil || password != nil {
-            view?.setupLoading(showLoading: true)
+            view?.showProgress()
             self.dataSource.updateUser(avatar: avatar, password: password) { _ in
-                self.view?.setupLoading(showLoading: false)
+                self.view?.hideProgress()
             }
         }
     }
 
     func logoutUser() {
         VOYUser.deactiveUser()
-        let navigationController = UINavigationController(rootViewController: VOYLoginViewController())
-        UIViewController.switchRootViewController(navigationController, animated: true, completion: {
-            self.clearAllCachedData()
-        })
+        clearAllCachedData()
+        view?.navigateToLoginScreen()
     }
 
     func clearAllCachedData() {

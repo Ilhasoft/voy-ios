@@ -29,7 +29,7 @@ class VOYNotificationRepository: VOYNotificationDataSource {
     }
 
     func updateNotification(notification: VOYNotification) {
-        guard let auth = VOYUser.activeUser()?.authToken, let notificationId = notification.id else { return }
+        guard let notificationId = notification.id else { return }
         let parameters: [String: Any]? = ["read": true]
         networkClient.requestDictionary(urlSuffix: "report-notification/\(notificationId)/",
                                         httpMethod: .put,

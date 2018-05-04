@@ -16,7 +16,7 @@ class VOYMediaFileRepository: VOYMediaFileDataSource {
     private let storageManager: VOYStorageManager
 
     init(reachability: VOYReachability = VOYDefaultReachability(),
-         storageManager: VOYStorageManager = VOYDefaultStorageManager()) {
+         storageManager: VOYStorageManager = VOYServicesProvider.shared.storageManager) {
         self.reachability = reachability
         self.storageManager = storageManager
     }

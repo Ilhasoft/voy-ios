@@ -22,7 +22,8 @@ class VOYLocalizable {
         case alert
         case allReportsApproved = "all_reports_approved"
         case approved
-        case areYouSure = "are_you_sure"
+        case areYouSureEmpty = "are_you_sure_empty"
+        case areYouSurePending = "are_you_sure_pending"
         case cancel
         case change
         case close

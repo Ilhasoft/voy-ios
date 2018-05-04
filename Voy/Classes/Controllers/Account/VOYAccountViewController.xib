@@ -35,7 +35,7 @@
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tS7-SP-Mfr">
                             <rect key="frame" x="0.0" y="0.0" width="414" height="716"/>
                             <subviews>
-                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" image="group14" translatesAutoresizingMaskIntoConstraints="NO" id="Hob-E4-ZYT">
+                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" insetsLayoutMarginsFromSafeArea="NO" image="group14" translatesAutoresizingMaskIntoConstraints="NO" id="Hob-E4-ZYT">
                                     <rect key="frame" x="173.66666666666666" y="31" width="66" height="65"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="66" id="4nm-re-zgw"/>

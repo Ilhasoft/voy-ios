@@ -54,7 +54,8 @@
 "logout" = "Log out";
 "email" = "Email";
 "new_password" = "New Password";
-"are_you_sure" = "When you log out, all reports that have not been sent will be lost. Do you want to continue?";
+"are_you_sure_empty"  = "Are you sure you want to log out?";
+"are_you_sure_pending" = "When you log out, all reports that have not been sent will be lost. Do you want to continue?";
 "user_updated" = "Your user profile was updated!";
 
 // Report Details

@@ -9,10 +9,11 @@
 import UIKit
 import NVActivityIndicatorView
 
-class VOYAccountViewController: UIViewController, NVActivityIndicatorViewable, VOYAccountContract {
+class VOYAccountViewController: UIViewController, NVActivityIndicatorViewable {
 
     struct Constants {
         static let cellIdentifier = "VOYAvatarCollectionViewCell"
+        static let avatarsCount = 42
     }
 
     @IBOutlet weak var imgAvatar: UIImageView!
@@ -27,15 +28,18 @@ class VOYAccountViewController: UIViewController, NVActivityIndicatorViewable, V
 
     var rightBarButtonItem: UIBarButtonItem!
 
-    var presenter: VOYAccountPresenter?
+    var presenter: VOYAccountPresenter!
+    var viewModel: VOYAccountViewModel?
 
     var isPasswordEditing = false
     let nilPassword = "xpto321otpx"
+
     var newPassword: String? {
         didSet {
             enableRightBarButtonItem()
         }
     }
+
     var newAvatar: Int? {
         didSet {
             enableRightBarButtonItem()
@@ -44,6 +48,11 @@ class VOYAccountViewController: UIViewController, NVActivityIndicatorViewable, V
 
     init() {
         super.init(nibName: String(describing: type(of: self)), bundle: nil)
+        self.presenter = VOYAccountPresenter(
+            dataSource: VOYAccountRepository(),
+            view: self,
+            storageManager: VOYServicesProvider.shared.storageManager
+        )
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -52,33 +61,21 @@ class VOYAccountViewController: UIViewController, NVActivityIndicatorViewable, V
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.presenter = VOYAccountPresenter(dataSource: VOYAccountRepository(), view: self)
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(showAvatars))
-        self.imgAvatar.addGestureRecognizer(tapGesture)
-        self.viewPassword.delegate = self
+        imgAvatar.image = nil
+        imgAvatar.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(showAvatars)))
+        viewPassword.delegate = self
         setupLayout()
         setupCollectionView()
-        setupData()
         setupLocalization()
+        presenter.onScreenLoaded()
     }
 
     func enableRightBarButtonItem() {
         if newPassword == nil && newAvatar == nil {
-            self.rightBarButtonItem.isEnabled = false
+            rightBarButtonItem.isEnabled = false
         } else {
-            self.rightBarButtonItem.isEnabled = true
+            rightBarButtonItem.isEnabled = true
         }
-    }
-
-    func setupData() {
-        guard let user = VOYUser.activeUser() else { return }
-        self.viewUserName.txtField.text = user.first_name
-        self.viewUserName.layer.opacity = 0.5
-        self.viewEmail.txtField.text = user.email
-        self.viewEmail.layer.opacity = 0.5
-        self.imgAvatar.kf.setImage(with: URL(string: user.avatar))
-        self.viewPassword.txtField.text = nilPassword
-        self.viewPassword.layer.opacity = 0.5
     }
 
     func setupLayout() {
@@ -98,7 +95,6 @@ class VOYAccountViewController: UIViewController, NVActivityIndicatorViewable, V
             UINib(nibName: "VOYAvatarCollectionViewCell", bundle: nil),
             forCellWithReuseIdentifier: Constants.cellIdentifier
         )
-
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
         layout.itemSize = CGSize(width: 70, height: 70)
@@ -109,67 +105,37 @@ class VOYAccountViewController: UIViewController, NVActivityIndicatorViewable, V
         presenter?.updateUser(avatar: newAvatar, password: newPassword)
     }
 
-    func setupLoading(showLoading: Bool) {
-        showLoading ? self.startAnimating() : self.stopAnimating()
-    }
-
     @objc func showAvatars() {
         self.heightCollectionAvatar.constant = self.heightCollectionAvatar.constant == 0 ? 400 : 0
-        UIView.animate(withDuration: 0.3) {
-            self.view.layoutIfNeeded()
-        }
     }
 
     func setupViewPasswordLayout() {
         btEditPassword.setTitle(localizedString(.change), for: .normal)
         if isPasswordEditing {
-            self.viewPassword.editEnabled = false
+            viewPassword.editEnabled = false
             let passwordChanged = (nilPassword != self.viewPassword.txtField.text
-                    && !self.viewPassword.txtField.safeText.isEmpty)
+                    && !viewPassword.txtField.safeText.isEmpty)
             if passwordChanged {
-                newPassword = self.viewPassword.txtField.text ?? ""
+                newPassword = viewPassword.txtField.text ?? ""
             } else {
                 newPassword = nil
             }
-            self.viewPassword.txtField.text = passwordChanged ? newPassword : nilPassword
+            viewPassword.txtField.text = passwordChanged ? newPassword : nilPassword
 
-            self.viewPassword.layer.opacity = 0.5
-            self.viewPassword.txtField.resignFirstResponder()
+            viewPassword.layer.opacity = 0.5
+            viewPassword.txtField.resignFirstResponder()
             isPasswordEditing = false
         } else {
-            self.viewPassword.editEnabled = true
-            self.viewPassword.txtField.text = ""
-            self.viewPassword.layer.opacity = 1
-            self.viewPassword.txtField.becomeFirstResponder()
+            viewPassword.editEnabled = true
+            viewPassword.txtField.text = ""
+            viewPassword.layer.opacity = 1
+            viewPassword.txtField.becomeFirstResponder()
             isPasswordEditing = true
         }
     }
 
-     func clearPendentReports() {
-        let alert = UIAlertController(
-            title: localizedString(.logout),
-            message: localizedString(.areYouSure),
-            preferredStyle: .alert
-        )
-        let cancelAction = UIAlertAction(
-            title: localizedString(.cancel),
-            style: .default
-        ) { (_) in }
-        let confirmAction = UIAlertAction(
-            title: localizedString(.logout),
-            style: .default
-        ) { (_) in
-            self.presenter?.logoutUser()
-        }
-
-        alert.addAction(cancelAction)
-        alert.addAction(confirmAction)
-
-        self.present(alert, animated: true, completion: nil)
-    }
-
     @IBAction func btLogoutTapped() {
-        clearPendentReports()
+        presenter.onLogoutAction()
     }
 
     @IBAction func btEditPasswordTapped() {
@@ -201,7 +167,7 @@ extension VOYAccountViewController: UICollectionViewDataSource {
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 42
+        return Constants.avatarsCount
     }
 }
 
@@ -210,8 +176,8 @@ extension VOYAccountViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         newAvatar = indexPath.item + 1
         if let cell = collectionView.cellForItem(at: indexPath) as? VOYAvatarCollectionViewCell {
-            self.imgAvatar.image = cell.imgAvatar.image
-            self.showAvatars()
+            imgAvatar.image = cell.imgAvatar.image
+            showAvatars()
         }
     }
 }
@@ -219,11 +185,61 @@ extension VOYAccountViewController: UICollectionViewDelegate {
 extension VOYAccountViewController: VOYTextFieldViewDelegate {
     func textFieldDidChange(_ textFieldView: VOYTextFieldView, text: String) {
         if !text.isEmpty {
-            self.btEditPassword.setTitle(localizedString(.done), for: .normal)
+            btEditPassword.setTitle(localizedString(.done), for: .normal)
         }
     }
 
     func textFieldDidEndEditing(_ textFieldView: VOYTextFieldView) {
         setupViewPasswordLayout()
+    }
+}
+
+extension VOYAccountViewController: VOYAccountContract {
+
+    func update(with viewModel: VOYAccountViewModel) {
+        self.viewModel = viewModel
+        viewUserName.txtField.text = viewModel.fullName
+        viewUserName.layer.opacity = 0.5
+        viewEmail.txtField.text = viewModel.email
+        viewEmail.layer.opacity = 0.5
+        imgAvatar.image = viewModel.avatarImage
+        viewPassword.txtField.text = nilPassword
+        viewPassword.layer.opacity = 0.5
+    }
+
+    func showProgress() {
+        self.startAnimating()
+    }
+
+    func hideProgress() {
+        self.stopAnimating()
+    }
+
+    func showLogoutConfirmation(message: String) {
+        let alert = UIAlertController(
+            title: localizedString(.logout),
+            message: message, //localizedString(.areYouSure),
+            preferredStyle: .alert
+        )
+        let cancelAction = UIAlertAction(
+            title: localizedString(.cancel),
+            style: .default
+        ) { (_) in }
+        let confirmAction = UIAlertAction(
+            title: localizedString(.logout),
+            style: .default
+        ) { (_) in
+            self.presenter?.logoutUser()
+        }
+
+        alert.addAction(cancelAction)
+        alert.addAction(confirmAction)
+
+        present(alert, animated: true, completion: nil)
+    }
+
+    func navigateToLoginScreen() {
+        let navigationController = UINavigationController(rootViewController: VOYLoginViewController())
+        UIViewController.switchRootViewController(navigationController, animated: true, completion: { })
     }
 }

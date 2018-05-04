@@ -9,7 +9,9 @@
 import UIKit
 
 protocol VOYAccountContract: AnyObject {
-    func save()
-    func btLogoutTapped()
-    func setupLoading(showLoading: Bool)
+    func update(with viewModel: VOYAccountViewModel)
+    func showLogoutConfirmation(message: String)
+    func showProgress()
+    func hideProgress()
+    func navigateToLoginScreen()
 }
