@@ -22,6 +22,7 @@ class VOYLocalizable {
         case alert
         case allReportsApproved = "all_reports_approved"
         case approved
+        case attachmentsBeingSent = "attachments_being_sent"
         case areYouSureEmpty = "are_you_sure_empty"
         case areYouSurePending = "are_you_sure_pending"
         case cancel
@@ -65,6 +66,7 @@ class VOYLocalizable {
         case password
         case passwordMinLengthError = "password_min_length_error"
         case pending
+        case pendingUploads = "pending_uploads"
         case photo
         case periodForReportEnded = "period_for_reports_has_ended"
         case remove
