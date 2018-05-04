@@ -13,4 +13,5 @@ class VOYServicesProvider {
     static let shared = VOYServicesProvider()
 
     let locationManager: VOYLocationManager = VOYDefaultLocationManager()
+    let storageManager: VOYStorageManager = VOYDefaultStorageManager()
 }

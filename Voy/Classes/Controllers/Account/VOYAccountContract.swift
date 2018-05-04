@@ -10,6 +10,7 @@ import UIKit
 
 protocol VOYAccountContract: AnyObject {
     func update(with viewModel: VOYAccountViewModel)
+    func showLogoutConfirmation(message: String)
     func showProgress()
     func hideProgress()
     func navigateToLoginScreen()

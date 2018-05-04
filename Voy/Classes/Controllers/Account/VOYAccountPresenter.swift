@@ -16,7 +16,7 @@ class VOYAccountPresenter {
 
     init(dataSource: VOYAccountDataSource,
          view: VOYAccountContract,
-         storageManager: VOYStorageManager = VOYDefaultStorageManager()) {
+         storageManager: VOYStorageManager) {
         self.dataSource = dataSource
         self.view = view
         self.storageManager = storageManager
@@ -34,6 +34,14 @@ class VOYAccountPresenter {
             let viewModel = VOYAccountViewModel(fullName: fullName, email: user.email, avatarImage: image)
             self.view?.update(with: viewModel)
         }
+    }
+
+    func onLogoutAction() {
+        let isThereOfflineData = !storageManager.getPendingCameraData().isEmpty
+            || !storageManager.getPendingReports().isEmpty
+
+        let logoutMessage = isThereOfflineData ? localizedString(.areYouSurePending) : localizedString(.areYouSureEmpty)
+        view?.showLogoutConfirmation(message: logoutMessage)
     }
 
     func updateUser(avatar: Int?, password: String?) {
