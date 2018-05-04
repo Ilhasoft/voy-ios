@@ -35,6 +35,7 @@
 		010A52AF2081166D00855D65 /* VOYReportDetailsTagsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 010A52AD2081166D00855D65 /* VOYReportDetailsTagsCell.xib */; };
 		010A52B120811A7D00855D65 /* VOYExternalLinkItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 010A52B020811A7D00855D65 /* VOYExternalLinkItemCell.swift */; };
 		010A52B320812C0D00855D65 /* VOYReportDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 010A52B220812C0D00855D65 /* VOYReportDetailsViewModel.swift */; };
+		01184F8C209B9435001C46D3 /* VOYServicesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01184F8B209B9435001C46D3 /* VOYServicesProvider.swift */; };
 		011B7A24208678DE0059C7B4 /* StringTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 011B7A23208678DE0059C7B4 /* StringTests.swift */; };
 		011B7A292086928C0059C7B4 /* VOYThemesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 011B7A272086928C0059C7B4 /* VOYThemesViewController.swift */; };
 		011B7A2A2086928C0059C7B4 /* VOYThemesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 011B7A282086928C0059C7B4 /* VOYThemesViewController.xib */; };
@@ -219,6 +220,7 @@
 		010A52AD2081166D00855D65 /* VOYReportDetailsTagsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VOYReportDetailsTagsCell.xib; sourceTree = "<group>"; };
 		010A52B020811A7D00855D65 /* VOYExternalLinkItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VOYExternalLinkItemCell.swift; sourceTree = "<group>"; };
 		010A52B220812C0D00855D65 /* VOYReportDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VOYReportDetailsViewModel.swift; sourceTree = "<group>"; };
+		01184F8B209B9435001C46D3 /* VOYServicesProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VOYServicesProvider.swift; sourceTree = "<group>"; };
 		011B7A23208678DE0059C7B4 /* StringTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringTests.swift; sourceTree = "<group>"; };
 		011B7A272086928C0059C7B4 /* VOYThemesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VOYThemesViewController.swift; sourceTree = "<group>"; };
 		011B7A282086928C0059C7B4 /* VOYThemesViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VOYThemesViewController.xib; sourceTree = "<group>"; };
@@ -806,6 +808,7 @@
 				655BD14620234A4A00D69EA2 /* VOYConstant.swift */,
 				657C3F71203B71DC0077F07B /* ISVideoUtil.swift */,
 				01EBF71B204F295600D4EF10 /* VOYLocalizable.swift */,
+				01184F8B209B9435001C46D3 /* VOYServicesProvider.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -1446,6 +1449,7 @@
 				010767E72062904D00B0C597 /* UILabel.swift in Sources */,
 				4371B696204F257600D83454 /* VOYAddReportTagsContract.swift in Sources */,
 				655BD19B2028ECFC00D69EA2 /* VOYCommentViewController.swift in Sources */,
+				01184F8C209B9435001C46D3 /* VOYServicesProvider.swift in Sources */,
 				013FD5F6207802DC00F92662 /* VOYDefaultReachability.swift in Sources */,
 				013FD5FB207802DC00F92662 /* VOYNetworkClient.swift in Sources */,
 				65CA064F203C5C67009A936A /* DataBindOnDemandTableViewCell.swift in Sources */,

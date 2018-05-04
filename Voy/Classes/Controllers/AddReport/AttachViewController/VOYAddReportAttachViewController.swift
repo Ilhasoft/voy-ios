@@ -61,7 +61,6 @@ class VOYAddReportAttachViewController: UIViewController, NVActivityIndicatorVie
     override func viewDidLoad() {
         super.viewDidLoad()
         edgesForExtendedLayout = []
-        self.startAnimating()
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: " ", style: .plain, target: nil, action: nil)
         self.navigationController?.setNavigationBarHidden(false, animated: false)
 
@@ -124,26 +123,6 @@ extension VOYAddReportAttachViewController: VOYAddReportAttachContract {
             animated: true
         )
     }
-
-    func showGpsPermissionError() {
-        let alertViewController = VOYAlertViewController(
-            title: localizedString(.gpsPermissionError),
-            message: localizedString(.needGpsPermission)
-        )
-        alertViewController.view.tag = 1
-        alertViewController.delegate = self
-        alertViewController.show(true, inViewController: self)
-    }
-
-    func showAlert(text: String) {
-        let alertViewController = VOYAlertViewController(
-                title: localizedString(.alert),
-                message: text
-        )
-        alertViewController.view.tag = 1
-        alertViewController.delegate = self
-        alertViewController.show(true, inViewController: self)
-    }
 }
 
 extension VOYAddReportAttachViewController: VOYAddMediaViewDelegate {
@@ -195,20 +174,5 @@ extension VOYAddReportAttachViewController: VOYActionSheetViewControllerDelegate
 
     func cancelButtonDidTap(actionSheetViewController: VOYActionSheetViewController) {
         actionSheetViewController.close()
-    }
-}
-
-// MARK: - VOYAlertViewControllerDelegate
-
-extension VOYAddReportAttachViewController: VOYAlertViewControllerDelegate {
-
-    func buttonDidTap(alertController: VOYAlertViewController, button: UIButton, index: Int) {
-        alertController.close()
-        self.navigationController?.popViewController(animated: true)
-        if alertController.view.tag == 1 {
-            // Does nothing
-        } else if alertController.view.tag == 2, let url = URL(string: UIApplicationOpenSettingsURLString) {
-            UIApplication.shared.open(url, options: [:], completionHandler: nil)
-        }
     }
 }

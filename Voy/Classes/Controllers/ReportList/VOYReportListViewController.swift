@@ -35,7 +35,11 @@ class VOYReportListViewController: UIViewController, NVActivityIndicatorViewable
             self.theme = theme
         }
         title = theme.name
-        presenter = VOYReportListPresenter(view: self, dataSource: VOYReportListRepository())
+        presenter = VOYReportListPresenter(
+            view: self,
+            dataSource: VOYReportListRepository(),
+            locationManager: VOYServicesProvider.shared.locationManager
+        )
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -121,7 +125,7 @@ class VOYReportListViewController: UIViewController, NVActivityIndicatorViewable
     }
 
     @IBAction func btAddReportTapped(_ sender: Any) {
-        self.navigationController?.pushViewController(VOYAddReportAttachViewController(), animated: true)
+        presenter.onAddReportAction()
     }
 
     @IBAction func segmentedControlTapped() {
@@ -185,6 +189,38 @@ extension VOYReportListViewController: VOYReportListContract {
     func navigateToReportDetails(report: VOYReport) {
         self.navigationController?.pushViewController(VOYReportDetailsViewController(report: report), animated: true)
     }
+
+    func navigateToAddReport() {
+        navigationController?.pushViewController(VOYAddReportAttachViewController(), animated: true)
+    }
+
+    func showAlert(text: String) {
+        let alertViewController = VOYAlertViewController(
+            title: localizedString(.alert),
+            message: text
+        )
+        alertViewController.view.tag = 1
+        alertViewController.delegate = self
+        alertViewController.show(true, inViewController: self)
+    }
+
+    func showProgress() {
+        self.startAnimating()
+    }
+
+    func hideProgress() {
+        self.stopAnimating()
+    }
+
+    func showGpsPermissionError() {
+        let alertViewController = VOYAlertViewController(
+            title: localizedString(.gpsPermissionError),
+            message: localizedString(.needGpsPermission)
+        )
+        alertViewController.view.tag = 1
+        alertViewController.delegate = self
+        alertViewController.show(true, inViewController: self)
+    }
 }
 
 extension VOYReportListViewController: ISOnDemandTableViewDelegate {
@@ -241,5 +277,11 @@ extension VOYReportListViewController: VOYActionSheetViewControllerDelegate {
 
     func buttonDidTap(actionSheetViewController: VOYActionSheetViewController, button: UIButton, index: Int) {
 
+    }
+}
+
+extension VOYReportListViewController: VOYAlertViewControllerDelegate {
+    func buttonDidTap(alertController: VOYAlertViewController, button: UIButton, index: Int) {
+        alertController.close()
     }
 }
