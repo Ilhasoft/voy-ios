@@ -12,13 +12,16 @@ class VOYReportDetailsPresenter {
 
     private let report: VOYReport
     private weak var view: VOYReportDetailsContract?
+    private let storageManager: VOYStorageManager
 
-    init(report: VOYReport, view: VOYReportDetailsContract) {
+    init(report: VOYReport, view: VOYReportDetailsContract, storageManager: VOYStorageManager) {
         self.report = report
         self.view = view
+        self.storageManager = storageManager
     }
 
     func onViewDidLoad() {
+        guard let reportId = report.id else { return }
         guard let theme = assertExists(optionalVar: VOYTheme.activeTheme()) else { return }
         guard let activeUser = VOYUser.activeUser() else { return }
         guard let avatarURL = URL(string: activeUser.avatar) else { return }
@@ -58,6 +61,19 @@ class VOYReportDetailsPresenter {
             showOptions: !reportIsApproved,
             showShare: reportIsApproved
         )
+
+        let pendingCameraData = storageManager.getPendingCameraData()
+
+        // TODO: Oh, no! This is using a JSON stored locally and making a fake "query" :(
+        let pendingCameraDataForThisReport: [VOYCameraData] = pendingCameraData.compactMap({
+            return VOYCameraData(JSON: $0)
+        }).filter({
+            $0.report_id == reportId
+        })
+
+        if !pendingCameraDataForThisReport.isEmpty {
+            view?.showPendingMediasAlert()
+        }
     }
 
     func onTapImage(image: UIImage?) {

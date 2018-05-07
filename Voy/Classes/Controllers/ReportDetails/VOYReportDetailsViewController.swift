@@ -34,7 +34,10 @@ class VOYReportDetailsViewController: UIViewController {
 
     init(report: VOYReport) {
         super.init(nibName: String(describing: type(of: self)), bundle: nil)
-        presenter = VOYReportDetailsPresenter(report: report, view: self)
+        presenter = VOYReportDetailsPresenter(
+            report: report,
+            view: self,
+            storageManager: VOYServicesProvider.shared.storageManager)
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -327,6 +330,17 @@ extension VOYReportDetailsViewController: VOYReportDetailsContract {
         alertInfoController.show(true, inViewController: self)
     }
 
+    func showPendingMediasAlert() {
+        let alertInfoController = VOYAlertViewController(
+            title: localizedString(.pendingUploads),
+            message: localizedString(.attachmentsBeingSent),
+            buttonNames: [localizedString(.ok)]
+        )
+        alertInfoController.delegate = self
+        alertInfoController.view.tag = 2
+        alertInfoController.show(true, inViewController: self)
+    }
+
     func openURL(_ url: URL) {
         UIApplication.shared.open(url, options: [:], completionHandler: nil)
     }
@@ -346,7 +360,7 @@ extension VOYReportDetailsViewController: VOYActionSheetViewControllerDelegate {
 extension VOYReportDetailsViewController: VOYAlertViewControllerDelegate {
     func buttonDidTap(alertController: VOYAlertViewController, button: UIButton, index: Int) {
         alertController.close()
-        if index == 0 {
+        if alertController.view.tag != 2 && index == 0 {
             presenter.onTapEditReport()
         }
     }

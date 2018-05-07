@@ -19,5 +19,6 @@ protocol VOYReportDetailsContract: class {
     func shareText(_ string: String)
     func showOptions()
     func showIssueAlert(lastNotification: String)
+    func showPendingMediasAlert()
     func openURL(_ url: URL)
 }

@@ -67,6 +67,8 @@
 "external_links" = "External Links";
 "reported_a_problem" = "Hey, check out what I mapped in my community today! %@";
 "error_getting_reports" = "There was an error while getting reports";
+"pending_uploads" = "Pending Uploads";
+"attachments_being_sent" = "There are attachments still being sent. Try again after a while.";
 
 // Comments Screen
 "comments" = "Comments";

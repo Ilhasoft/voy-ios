@@ -77,7 +77,6 @@ class VOYReportListViewController: UIViewController, NVActivityIndicatorViewable
         guard let activeUser = VOYUser.activeUser() else { return }
 
         var status: VOYReportStatus = .approved
-        startAnimating()
         for tableView in self.tableViews {
             if tableView == self.tableViewApproved {
                 status = VOYReportStatus.approved
