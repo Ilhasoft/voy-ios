@@ -77,17 +77,17 @@ class VOYMediaFileRepository: VOYMediaFileDataSource {
                     case .success(let upload, _, _):
                         upload.responseJSON { response in
                             if response.error != nil {
-                                self.storageManager.addAsPending(cameraData: cameraData, reportID: report_id)
+                                self.storageManager.addPendingCameraData(cameraData: cameraData, reportID: report_id)
                             } else {
-                                self.storageManager.removeFromPendingList(cameraData: cameraData)
+                                self.storageManager.removePendingCameraData(cameraData: cameraData)
                             }
                         }
                     case .failure:
-                        self.storageManager.addAsPending(cameraData: cameraData, reportID: report_id)
+                        self.storageManager.addPendingCameraData(cameraData: cameraData, reportID: report_id)
                     }
             })
         } else {
-            storageManager.addAsPending(cameraData: cameraData, reportID: report_id)
+            storageManager.addPendingCameraData(cameraData: cameraData, reportID: report_id)
         }
     }
 }

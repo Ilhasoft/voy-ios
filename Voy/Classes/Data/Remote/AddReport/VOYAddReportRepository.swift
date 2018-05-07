@@ -32,9 +32,9 @@ class VOYAddReportRepository: VOYAddReportDataSource {
             updateRemote(reportId: reportId, report: report) { value, _ in
                 if let value = value, let reportID = value["id"] as? Int, let cameraDataList = report.cameraDataList {
                     self.mediaFileDataSource.delete(mediaFiles: report.removedMedias)
-                    self.storageManager.removeFromPendingList(report: report)
+                    self.storageManager.removePendingReport(report: report)
                     for cameraData in cameraDataList {
-                        self.storageManager.addAsPending(cameraData: cameraData, reportID: reportID)
+                        self.storageManager.addPendingCameraData(cameraData: cameraData, reportID: reportID)
                     }
                 }
             }
@@ -42,9 +42,9 @@ class VOYAddReportRepository: VOYAddReportDataSource {
             createRemote(report: report) { value, _ in
                 if let value = value, let reportID = value["id"] as? Int, let cameraDataList = report.cameraDataList {
                     self.mediaFileDataSource.delete(mediaFiles: report.removedMedias)
-                    self.storageManager.removeFromPendingList(report: report)
+                    self.storageManager.removePendingReport(report: report)
                     for cameraData in cameraDataList {
-                        self.storageManager.addAsPending(cameraData: cameraData, reportID: reportID)
+                        self.storageManager.addPendingCameraData(cameraData: cameraData, reportID: reportID)
                     }
                 }
             }
