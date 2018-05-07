@@ -47,7 +47,7 @@ class VOYDefaultStorageManager: VOYStorageManager {
         return [[String: Any]]()
     }
 
-    func removeFromPendingList(cameraData: VOYCameraData) {
+    func removePendingCameraData(cameraData: VOYCameraData) {
         var pendentCameraDataList = getPendingCameraData()
         let index = pendentCameraDataList.index {
             if let idString = $0["id"] as? String { return idString == cameraData.id }
@@ -62,30 +62,21 @@ class VOYDefaultStorageManager: VOYStorageManager {
         }
     }
 
-    func addAsPending(cameraData: VOYCameraData, reportID: Int) {
+    func addPendingCameraData(cameraData: VOYCameraData, reportID: Int) {
+        removePendingCameraData(cameraData: cameraData)
 
-        var pendentCameraDataList = getPendingCameraData()
-
-        let index = pendentCameraDataList.index {
-            if let idString = $0["id"] as? String { return idString == cameraData.id }
-            return false
-        }
-
-        if let index = index {
-            pendentCameraDataList.remove(at: index)
-        }
-
-        let cameraDataID = String.getIdentifier(from: Date())
-        cameraData.id = cameraDataID
+        if cameraData.id == nil { cameraData.id = String.getIdentifier(from: Date()) }
         cameraData.report_id = reportID
-        pendentCameraDataList.append(cameraData.toJSON())
 
-        let encodedObject = NSKeyedArchiver.archivedData(withRootObject: pendentCameraDataList)
+        var pendingCameraDataList = getPendingCameraData()
+        pendingCameraDataList.append(cameraData.toJSON())
+
+        let encodedObject = NSKeyedArchiver.archivedData(withRootObject: pendingCameraDataList)
         UserDefaults.standard.set(encodedObject, forKey: cameraDataKey)
         UserDefaults.standard.synchronize()
     }
 
-    func clearStoredCameraData() {
+    func clearPendingCameraData() {
         UserDefaults.standard.set(nil, forKey: cameraDataKey)
     }
 
@@ -101,7 +92,7 @@ class VOYDefaultStorageManager: VOYStorageManager {
         return [[String: Any]]()
     }
 
-    func removeFromPendingList(report: VOYReport) {
+    func removePendingReport(report: VOYReport) {
         var pendentReports = getPendingReports()
         let index = pendentReports.index {
             if let idAsInt = $0["id"] as? Int { return idAsInt == report.id }
@@ -145,12 +136,9 @@ class VOYDefaultStorageManager: VOYStorageManager {
         UserDefaults.standard.synchronize()
     }
 
-    /**
-     * Erases all content stored as offline data.
-     */
     func clearAllOfflineData() {
         clearPendingReports()
-        clearStoredCameraData()
+        clearPendingCameraData()
     }
 
     // MARK: Private methods
