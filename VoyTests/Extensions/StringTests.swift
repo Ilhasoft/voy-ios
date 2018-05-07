@@ -16,7 +16,7 @@ class StringTests: XCTestCase {
         dateFormatter.dateFormat = "d MMM yyyy HH:mm:ss"
 
         let date = dateFormatter.date(from: "23 Apr 2018 18:37:50")!
-        let identifier = String.getIdentifier(from: date)
+        let identifier = String.generateIdentifier(from: date)
         XCTAssertEqual(identifier, "2342018183750")
     }
 

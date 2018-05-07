@@ -24,7 +24,11 @@ class VOYReportDetailTests: XCTestCase {
         report.urls = []
         report.comments = 0
         report.created_on = "2018-04-19T13:55:19.325543Z"
-        presenterUnderTest = VOYReportDetailsPresenter(report: report, view: mockviewController)
+        presenterUnderTest = VOYReportDetailsPresenter(
+            report: report,
+            view: mockviewController,
+            storageManager: VOYMockServicesProvider.shared.storageManager
+        )
     }
 
     func testButtonCommentVisibility() {

@@ -98,7 +98,7 @@ class VOYStorageManagerTests: XCTestCase {
         XCTAssertEqual(reportId, report.id!)
         XCTAssertEqual(changedReportName, report.name!)
 
-        storageManager.removeFromPendingList(report: report)
+        storageManager.removePendingReport(report: report)
         XCTAssertEqual(storageManager.getPendingReports().count, 0)
     }
 
@@ -113,7 +113,7 @@ class VOYStorageManagerTests: XCTestCase {
         cameraData.id = "040"
 
         // Checks if the cameraData was stored offline
-        storageManager.addAsPending(cameraData: cameraData, reportID: 20)
+        storageManager.addPendingCameraData(cameraData: cameraData, reportID: 20)
         XCTAssertEqual(storageManager.getPendingCameraData().count, 1)
         let savedCameraData = storageManager.getPendingCameraData().first!
         XCTAssertEqual(savedCameraData["id"] as! String, cameraData.id!)
@@ -122,7 +122,7 @@ class VOYStorageManagerTests: XCTestCase {
 
         // Overrides the cameraData with a chaged value
         cameraData.fileName = "image_changed.jpg"
-        storageManager.addAsPending(cameraData: cameraData, reportID: 20)
+        storageManager.addPendingCameraData(cameraData: cameraData, reportID: 20)
         XCTAssertEqual(storageManager.getPendingCameraData().count, 1)
         let savedCameraData2 = storageManager.getPendingCameraData().first!
         XCTAssertEqual(savedCameraData2["path"] as! String, cameraData.fileName!)

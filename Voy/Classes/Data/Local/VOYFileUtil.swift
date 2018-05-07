@@ -35,7 +35,7 @@ class VOYFileUtil {
     }
 
     open class func writeImageFile(_ data: Data) -> String? {
-        let fileName = "image\(String.getIdentifier(from: Date())).jpg"
+        let fileName = "image\(String.generateIdentifier(from: Date())).jpg"
         if let path = VOYFileUtil.outputURLDirectory?.appendingPathComponent(fileName) {
             try? data.write(to: URL(fileURLWithPath: path), options: [.atomic])
             return fileName
