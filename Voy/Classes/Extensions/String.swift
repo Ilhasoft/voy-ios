@@ -9,7 +9,7 @@
 import UIKit
 
 extension String {
-    public static func getIdentifier(from date: Date) -> String {
+    public static func generateIdentifier(from date: Date) -> String {
         let year = Calendar.current.component(.year, from: date)
         let month = Calendar.current.component(.month, from: date)
         let day = Calendar.current.component(.day, from: date)

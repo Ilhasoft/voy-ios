@@ -18,7 +18,7 @@ open class ISVideoUtil {
             asset: urlAsset,
             presetName: AVAssetExportPresetMediumQuality
             ) else { return }
-        let fileName = "\(String.getIdentifier(from: Date())).mp4"
+        let fileName = "\(String.generateIdentifier(from: Date())).mp4"
         guard let outputDirectory = VOYFileUtil.outputURLDirectory?.appendingPathComponent(fileName) else {
             return
         }

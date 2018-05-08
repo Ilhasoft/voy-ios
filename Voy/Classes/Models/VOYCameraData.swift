@@ -31,7 +31,7 @@ class VOYCameraData: Mappable {
     }
 
     init(image: UIImage?, thumbnail: UIImage?, thumbnailFileName: String?, fileName: String?, type: VOYMediaType) {
-        self.id = String.getIdentifier(from: Date())
+        self.id = String.generateIdentifier(from: Date())
         self.thumbnail = thumbnail
         self.thumbnailFileName = thumbnailFileName
         self.image = image

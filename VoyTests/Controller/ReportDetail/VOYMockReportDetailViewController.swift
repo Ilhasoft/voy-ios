@@ -10,6 +10,7 @@ import XCTest
 @testable import Voy
 
 class VOYMockReportDetailViewController: VOYReportDetailsContract {
+    var viewModel: VOYReportDetailsViewModel?
     var hasNavigatedToCommentsScreen = false
     var hasSharedText = false
     var hasShownPicture = false
@@ -18,9 +19,12 @@ class VOYMockReportDetailViewController: VOYReportDetailsContract {
     var hasNavigatedToEditReportScreen = false
     var commentButtonIsEnabled = false
     var hasShownIssueAlert = false
+    var hasShownPendingMediasAlert = false
     var hasOpenedURL = false
 
-    func update(with viewModel: VOYReportDetailsViewModel) {}
+    func update(with viewModel: VOYReportDetailsViewModel) {
+        self.viewModel = viewModel
+    }
 
     func navigateToPictureScreen(image: UIImage) {
         hasShownPicture = true
@@ -54,6 +58,10 @@ class VOYMockReportDetailViewController: VOYReportDetailsContract {
 
     func showIssueAlert(lastNotification: String) {
         hasShownIssueAlert = true
+    }
+
+    func showPendingMediasAlert() {
+        hasShownPendingMediasAlert = true
     }
 
     func openURL(_ url: URL) {
