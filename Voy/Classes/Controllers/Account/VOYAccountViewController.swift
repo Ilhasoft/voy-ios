@@ -106,7 +106,7 @@ class VOYAccountViewController: UIViewController, NVActivityIndicatorViewable {
     }
 
     @objc func showAvatars() {
-        self.heightCollectionAvatar.constant = self.heightCollectionAvatar.constant == 0 ? 400 : 0
+        collectionAvatar.isHidden = !collectionAvatar.isHidden
     }
 
     func setupViewPasswordLayout() {
