@@ -20,21 +20,13 @@ class VOYAddReportAttachViewController: UIViewController, NVActivityIndicatorVie
     var actionSheetController: VOYActionSheetViewController!
     var presenter: VOYAddReportAttachPresenter!
 
-    var mediaList = [VOYMedia]() {
-        didSet {
-            self.navigationItem.rightBarButtonItem?.isEnabled = !mediaList.isEmpty
-        }
-    }
-
-    var cameraDataList = [VOYCameraData]() {
-        didSet {
-            self.navigationItem.rightBarButtonItem?.isEnabled = !cameraDataList.isEmpty
-        }
-    }
+    var mediaList: [VOYMedia] = []
+    var cameraDataList: [VOYCameraData] = []
 
     var cameraData: VOYCameraData! {
         didSet {
             cameraDataList.append(cameraData)
+            updateNextButtonState()
             setupMediaView()
         }
     }
@@ -98,6 +90,10 @@ class VOYAddReportAttachViewController: UIViewController, NVActivityIndicatorVie
         self.title = localizedString(.addReport)
         lbTitle.text = localizedString(.addPhotosAndVideos)
     }
+
+    private func updateNextButtonState() {
+        navigationItem.rightBarButtonItem?.isEnabled = (mediaList.count + cameraDataList.count) > 0
+    }
 }
 
 extension VOYAddReportAttachViewController: VOYAddReportAttachContract {
@@ -105,6 +101,7 @@ extension VOYAddReportAttachViewController: VOYAddReportAttachContract {
     func loadFromReport(mediaList: [VOYMedia], cameraDataList: [VOYCameraData]) {
         self.mediaList = mediaList
         self.cameraDataList = cameraDataList
+        updateNextButtonState()
         for (index, mediaView) in self.mediaViews.enumerated() {
             if index < mediaList.count {
                 let media = mediaList[index]
@@ -151,6 +148,7 @@ extension VOYAddReportAttachViewController: VOYAddMediaViewDelegate {
             }
             presenter.onMediaRemoved(media)
         }
+        updateNextButtonState()
     }
 }
 

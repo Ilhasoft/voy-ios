@@ -15,7 +15,6 @@
                 <outlet property="btEditPassword" destination="j3a-ps-Q99" id="ySK-fI-M7f"/>
                 <outlet property="btLogout" destination="IPg-Sc-lhJ" id="Z5n-u1-rhQ"/>
                 <outlet property="collectionAvatar" destination="BjK-si-s2r" id="ePo-rr-kqV"/>
-                <outlet property="heightCollectionAvatar" destination="wDR-6j-PPO" id="QNg-EO-wT9"/>
                 <outlet property="imgAvatar" destination="Hob-E4-ZYT" id="TBy-cq-Btp"/>
                 <outlet property="imgIcon" destination="ZFY-tG-TqP" id="JLX-4U-f0B"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -132,12 +131,9 @@
                                         <action selector="btEditPasswordTapped" destination="-1" eventType="touchUpInside" id="pLn-Qn-3eH"/>
                                     </connections>
                                 </button>
-                                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="BjK-si-s2r">
-                                    <rect key="frame" x="0.0" y="126" width="414" height="0.0"/>
+                                <collectionView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="BjK-si-s2r">
+                                    <rect key="frame" x="0.0" y="126" width="414" height="590"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    <constraints>
-                                        <constraint firstAttribute="height" id="wDR-6j-PPO"/>
-                                    </constraints>
                                     <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="mcW-Gd-b0b">
                                         <size key="itemSize" width="50" height="50"/>
                                         <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -180,6 +176,7 @@
                                 <constraint firstAttribute="trailing" secondItem="j3a-ps-Q99" secondAttribute="trailing" constant="6" id="ljj-zq-Nar"/>
                                 <constraint firstItem="4S9-jr-Llh" firstAttribute="leading" secondItem="tS7-SP-Mfr" secondAttribute="leading" constant="15" id="mUN-81-hki"/>
                                 <constraint firstAttribute="trailing" secondItem="4S9-jr-Llh" secondAttribute="trailing" constant="15" id="pZT-Gm-uwm"/>
+                                <constraint firstAttribute="bottom" secondItem="BjK-si-s2r" secondAttribute="bottom" id="qro-uu-UX8"/>
                                 <constraint firstItem="MTQ-OQ-dQn" firstAttribute="top" secondItem="WqD-QW-dDI" secondAttribute="bottom" id="tUS-g3-TuT"/>
                                 <constraint firstItem="Hob-E4-ZYT" firstAttribute="top" secondItem="tS7-SP-Mfr" secondAttribute="top" constant="31" id="uA5-5w-Jts"/>
                                 <constraint firstItem="Cga-PT-6QJ" firstAttribute="top" secondItem="eOb-gy-c4w" secondAttribute="bottom" id="wSX-r0-gV5"/>
