@@ -1,0 +1,101 @@
+/*
+ Localizable.strings
+ Voy
+
+ Created by Dielson Sales on 06/03/18.
+ Copyright © 2018 Ilhasoft. All rights reserved.
+ */
+
+// Shared
+"error" = "Hata";
+"ok" = "Tamam";
+"date_format" = "yyyy-MM-dd'T'HH:mm:ss.SSSSSSZ";
+"cancel" = "İptal et";
+
+// Login Screen
+"hey" = "Hey!";
+"username" = "Kullanıcı adı";
+"password" = "Şifre";
+"login" = "Giriş yap";
+"login_error_message" = "Sanırım yanlış bir kullanıcı adı veya şifre girdin!";
+"password_min_length_error" = "Şifre en az 6 karakterden oluşmalı";
+"do_you_want_to_logout" = "Çıkış yapmak istiyor musun?";
+
+// Theme List Screen
+"themes_list_header" = "Konuların yanlızca '%d'  ine dahilsin";
+
+// Reports List Screen
+"approved" = "Onaylandı";
+"pending" = "Onay bekliyor";
+"not_approved" = "Onaylanmadı";
+"hello" = "Selam!";
+"no_reports_yet" = "Henüz hiçbir rapor oluşturmadın";
+"great" = "Harika!";
+"great_job" = "İyi iş çıkardın!";
+"all_reports_approved" = "Bütün raporların onaylandı";
+"add_report" = "Rapor oluştur";
+"you_have_no_unapproved_reports" = "Onaylanmamış bir raporun bulunmamakta";
+"you_have_x_reports_approved" = "Raporlarının yüzde '%d' ı onaylandı";
+"you_have_x_reports_pending" = "Raporlarının '%d' ı onaylanmayı bekliyor";
+"you_have_x_reports_not_approved" = "Raporlarının '%d' ı henüz onaylanmadı";
+
+// Notifications Screen
+"notifications" = "Bildirimler";
+"report_was_approved" = "Raporun onaylandı";
+"comment_was_approved" = "Raporun için yeni bir yorum var";
+"report_was_not_approved" = "Raporun onaylanmadı";
+"comment_was_not_approved" = "Yorumun onaylanmadı";
+
+// Account Screen
+"account" = "Hesap";
+"save" = "Kaydet";
+"change" = "Değiştir";
+"done" = "Tamam";
+"logout" = "Çıkış yap";
+"email" = "E-posta";
+"new_password" = "Yeni şifre";
+"are_you_sure" = "Oturumunu kapattığında göndermemiş olduğun bütün raporlar silinecek. Devam etmek istiyor musun?";
+"user_updated" = "Kullanıcı profiliniz güncellendi!";
+
+// Report Details
+"issues_reported" = "Raporunda bazı sorunlar saptandı";
+"edit_report" = "Raporu düzenle";
+"close" = "Kapat";
+"comment" = "Yorum";
+"report" = "Raporla";
+"external_links" = "Linkler";
+"reported_a_problem" = "Hey! Bugün ne raporladığıma bak! '%@' ";
+"error_getting_reports" = "Raporlara ulaşmaya çalışırken bir hata oluştu";
+
+// Comments Screen
+"comments" = "Yorumlar";
+"thanks" = "Teşekkürler!";
+"comment_sent_to_moderation" = "Yorumunu moderatör ile paylaştık. Onaylandıktan sonra raporunu burada görebileceksin.";
+"send" = "Gönder";
+"send_comment" = "Yorum gönder";
+"remove" = "Kaldır";
+"error_removing_comment" = "Bu yorumu silmekte sorun yaşıyoruz";
+"error_creating_comment" = "Yeni yorum oluştururken sorun yaşandı";
+
+// Add Report
+"add_photos_and_videos" = "Fotoğraf ve video ekle";
+"movie" = "Video";
+"photo" = "Fotoğraf";
+"next" = "Sonraki";
+"alert" = "Uyarı";
+"outside_themes_bounds" = "Bu konunun sınırları dışındasın. Rapor oluşturamazsın.";
+"gps_permission_error" = "Konum izni yok";
+"need_gps_permission" = "Rapor oluşturmadan önce uygulamanın konum iznini açmalısın.";
+"we_are_preparing_this_theme_for_you" = "Bu konu üzerinde çalışıyoruz, lütfen daha sonra tekrar gel ya da yönetici ile iletişime geç!";
+"title_and_description" = "Başlık ve tanım";
+"period_for_reports_has_ended" = "Ne yazık ki yeni rapor ekleyebileceğin süre sona erdi. Emeklerin için teşekkür ederiz!";
+"title" = "Başlık";
+"description" = "Tanım";
+"add_link" = "Link ekle";
+
+"add_tags" = "Etiket ekle";
+
+"offline_error" = "Bağlantı kurulamadı. Kontrol et ve tekrar dene.";
+"getting_location" = "Konumun bulunuyor";
+
+"thanks_for_reporting" = "Rapor oluşturduğun için teşekkürler! Yeni bir rapor oluşturmak istediğinde lütfen geri gel.";

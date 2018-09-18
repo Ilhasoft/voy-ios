@@ -1,0 +1,101 @@
+/*
+ Localizable.strings
+ Voy
+
+ Created by Dielson Sales on 06/03/18.
+ Copyright © 2018 Ilhasoft. All rights reserved.
+ */
+
+// Shared
+"error" = "Error";
+"ok" = "Listo";
+"date_format" = "dd-mm-año";
+"cancel" = "Cancelar";
+
+// Login Screen
+"hey" = "Hey!";
+"username" = "Usuario";
+"password" = "Contraseña";
+"login" = "Ingresar";
+"login_error_message" = "Talvez te equivocaste al ingresar tu usuario o contraseña";
+"password_min_length_error" = "La contraseña debería tener al menos 6 caracteres";
+"do_you_want_to_logout" = "Quieres cerrar tu sesión?";
+
+// Theme List Screen
+"themes_list_header" = "Tu estás en el %d de los temas";
+
+// Reports List Screen
+"approved" = "Aprobado";
+"pending" = "Pendiente";
+"not_approved" = "No está aprovado";
+"hello" = "Hola";
+"no_reports_yet" = "No has creado ningún reporte hasta el momento";
+"great" = "Genial";
+"great_job" = "Buen trabajo";
+"all_reports_approved" = "Todos tus reportes han sido aprovados";
+"add_report" = "Añadir reporte";
+"you_have_no_unapproved_reports" = "Tu no has aprobado los reportes";
+"you_have_x_reports_approved" = "Tu tienes aprobado el %dde los reportes";
+"you_have_x_reports_pending" = "Tu tienes pendiente el %dde los reportes";
+"you_have_x_reports_not_approved" = "Tu tienes el %dde reportes no aprobados";
+
+// Notifications Screen
+"notifications" = "Notificación";
+"report_was_approved" = "Tu reporte fue aprobado";
+"comment_was_approved" = "Tienes un nuevo comentario en tu reporte";
+"report_was_not_approved" = "Tu reporte no fue aprobado";
+"comment_was_not_approved" = "Tu comentario no fue aprobado";
+
+// Account Screen
+"account" = "Cuenta";
+"save" = "Guardar";
+"change" = "Cambiar";
+"done" = "Realizado";
+"logout" = "Salir";
+"email" = "correo electrónico";
+"new_password" = "Nueva contraseña";
+"are_you_sure" = "Cuando salgas del sistema, todos tus reportes que no han sido enviados se perderán. Quieres continuar?";
+"user_updated" = "Tu usuario fue actualizado";
+
+// Report Details
+"issues_reported" = "Temas informados en tu reporte";
+"edit_report" = "Editar reporte";
+"close" = "salir";
+"comment" = "comentario";
+"report" = "reporte";
+"external_links" = "enlaces externos";
+"reported_a_problem" = "Hey, miren el mapeo que realice en mi comunidad el día de hoy! %@";
+"error_getting_reports" = "Se ha producido un error mientras se elaboraba el reporte";
+
+// Comments Screen
+"comments" = "comentarios";
+"thanks" = "Gracias!";
+"comment_sent_to_moderation" = "Su comentario fue enviado para revisión. Una vez aprobado, su comentario estará disponible aquí.";
+"send" = "Enviado";
+"send_comment" = "El comentario fue enviado";
+"remove" = "Eliminar";
+"error_removing_comment" = "Nosotros tuvimos problemas eliminando el comentario";
+"error_creating_comment" = "Nosotros tuvimos problemas generando un nuevo comentario";
+
+// Add Report
+"add_photos_and_videos" = "Añadir fotos y videos";
+"movie" = "Video";
+"photo" = "Foto";
+"next" = "Siguiente";
+"alert" = "Alerta";
+"outside_themes_bounds" = "Tu reporte está fuera del tema planteado. Tu no puedes crear este reporte";
+"gps_permission_error" = "No autorización para uso de GPS";
+"need_gps_permission" = "debes tener permiso de la aplicación antes de crear tu reporte";
+"we_are_preparing_this_theme_for_you" = "Nosotros estamos preparando la temática para ti, por favor regresa después o contacta con el administrador!";
+"title_and_description" = "Titulo y Resumen";
+"period_for_reports_has_ended" = "Desafortunadamente el periodo para recibir nuevos reportes a finalizado. Gracias por tu esfuerzo!!";
+"title" = "Titulo";
+"description" = "resumen";
+"add_link" = "agregar link";
+
+"add_tags" = "agregar etiquetas";
+
+"offline_error" = "No es posible conectarse. Revisa e intenta nuevamente";
+"getting_location" = "Cargando tu ubicación";
+
+"thanks_for_reporting" = "Gracias por tu reporte! Por favor ingresa nuevamente cuando quieras agregar un nuevo reporte";
