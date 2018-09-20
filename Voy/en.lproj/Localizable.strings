@@ -1,10 +1,10 @@
 /*
-  Localizable.strings
-  Voy
+ Localizable.strings
+ Voy
 
-  Created by Dielson Sales on 06/03/18.
-  Copyright © 2018 Ilhasoft. All rights reserved.
-*/
+ Created by Dielson Sales on 06/03/18.
+ Copyright © 2018 Ilhasoft. All rights reserved.
+ */
 
 // Shared
 "error" = "Error";
@@ -54,8 +54,7 @@
 "logout" = "Log out";
 "email" = "Email";
 "new_password" = "New Password";
-"are_you_sure_empty"  = "Are you sure you want to log out?";
-"are_you_sure_pending" = "When you log out, all reports that have not been sent will be lost. Do you want to continue?";
+"are_you_sure" = "When you log out, all reports that have not been sent will be lost. Do you want to continue?";
 "user_updated" = "Your user profile was updated!";
 
 // Report Details
@@ -67,8 +66,6 @@
 "external_links" = "External Links";
 "reported_a_problem" = "Hey, check out what I mapped in my community today! %@";
 "error_getting_reports" = "There was an error while getting reports";
-"pending_uploads" = "Pending Uploads";
-"attachments_being_sent" = "There are attachments still being sent. Try again after a while.";
 
 // Comments Screen
 "comments" = "Comments";

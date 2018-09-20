@@ -383,6 +383,10 @@
 		A3774A32A2AA74A335CD6885 /* Pods-Voy.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Voy.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Voy/Pods-Voy.debug.xcconfig"; sourceTree = "<group>"; };
 		B40AF5455C9F44FD49D10414 /* Pods-VoyProject-Voy.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VoyProject-Voy.debug.xcconfig"; path = "Pods/Target Support Files/Pods-VoyProject-Voy/Pods-VoyProject-Voy.debug.xcconfig"; sourceTree = "<group>"; };
 		B50D70A526449FB3324B7983 /* Pods-Voy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Voy.release.xcconfig"; path = "Pods/Target Support Files/Pods-Voy/Pods-Voy.release.xcconfig"; sourceTree = "<group>"; };
+		CC0AD8CD21515FF600F83FE4 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
+		CC0AD8CE2151602200F83FE4 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		CC0AD8CF2151602200F83FE4 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/Localizable.strings; sourceTree = "<group>"; };
+		CC0AD8D02151604E00F83FE4 /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		D4DC89BB08B12ABA7CF217D2 /* Pods-Voy-VoyTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Voy-VoyTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Voy-VoyTests/Pods-Voy-VoyTests.debug.xcconfig"; sourceTree = "<group>"; };
 		F63FF6F39DCB54C103D6001F /* Pods_VoyTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VoyTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F7B840988888DDE62FA54CA5 /* Pods-VoyProject-Voy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VoyProject-Voy.release.xcconfig"; path = "Pods/Target Support Files/Pods-VoyProject-Voy/Pods-VoyProject-Voy.release.xcconfig"; sourceTree = "<group>"; };
@@ -1188,6 +1192,9 @@
 			knownRegions = (
 				en,
 				Base,
+				es,
+				ar,
+				tr,
 			);
 			mainGroup = 65F345FA2020A87A00AC5437;
 			productRefGroup = 65F346042020A87A00AC5437 /* Products */;
@@ -1542,6 +1549,9 @@
 			isa = PBXVariantGroup;
 			children = (
 				01EBF719204F216200D4EF10 /* en */,
+				CC0AD8CD21515FF600F83FE4 /* es */,
+				CC0AD8CF2151602200F83FE4 /* ar */,
+				CC0AD8D02151604E00F83FE4 /* tr */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -1550,6 +1560,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				65F346102020A87A00AC5437 /* Base */,
+				CC0AD8CE2151602200F83FE4 /* ar */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -1593,6 +1604,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -1652,6 +1664,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -1706,7 +1719,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = URW25ECJ7Y;
+				DEVELOPMENT_TEAM = ZE9A9HAM9Z;
 				INFOPLIST_FILE = Voy/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1723,11 +1736,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 4HQH8A7243;
+				DEVELOPMENT_TEAM = ZE9A9HAM9Z;
 				INFOPLIST_FILE = Voy/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = io.github.dielsonsales.Voy;
+				PRODUCT_BUNDLE_IDENTIFIER = br.com.ilhasoft.Voy;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;

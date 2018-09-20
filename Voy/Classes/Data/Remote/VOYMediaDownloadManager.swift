@@ -19,9 +19,9 @@ class VOYMediaDownloadManager {
         if let urlPath = urlPath {
             return URL(fileURLWithPath: urlPath)
         } else {
-            #if DEBUG
+//            #if DEBUG
                 fatalError("Could not create output path for media")
-            #endif
+//            #endif
         }
     }
 

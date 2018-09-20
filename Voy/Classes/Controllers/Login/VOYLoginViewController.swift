@@ -50,8 +50,8 @@ class VOYLoginViewController: UIViewController, NVActivityIndicatorViewable {
 
     private func setupLocalization() {
         lbHey.text = localizedString(.hey)
-        userNameView.txtField.placeholder = localizedString(.username)
-        passwordView.txtField.placeholder = localizedString(.password)
+        userNameView.placeholder = localizedString(.username)
+        passwordView.placeholder = localizedString(.password)
         btLogin.setTitle(localizedString(.login), for: .normal)
     }
 }

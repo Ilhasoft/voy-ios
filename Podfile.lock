@@ -26,7 +26,7 @@ PODS:
   - NVActivityIndicatorView (4.2.0):
     - NVActivityIndicatorView/Presenter (= 4.2.0)
   - NVActivityIndicatorView/Presenter (4.2.0)
-  - ObjectMapper (3.1.0)
+  - ObjectMapper (3.3.0)
   - SlideMenuControllerSwift (4.0.0)
   - TagListView (1.3.0)
   - TPKeyboardAvoiding (1.3.2)
@@ -44,12 +44,13 @@ DEPENDENCIES:
   - ISScrollViewPageSwift
   - NVActivityIndicatorView
   - ObjectMapper
+  - ObjectMapper (= 3.3.0)
   - SlideMenuControllerSwift
   - TagListView
   - TPKeyboardAvoiding
 
 SPEC REPOS:
-  https://github.com/CocoaPods/Specs.git:
+  https://github.com/cocoapods/specs.git:
     - Alamofire
     - AlamofireImage
     - AlamofireObjectMapper
@@ -100,11 +101,11 @@ SPEC CHECKSUMS:
   ISScrollViewPageSwift: 0f4b7957b3e0f52a37ac8d05d0c2f14da221093c
   Kingfisher: da6b005aa96d37698e3e4f1ccfe96a5b9bbf27d6
   NVActivityIndicatorView: 75c9634073e03b31d7e2748cd2417feab1206195
-  ObjectMapper: 20505058f54e5c3ca69e1d6de9897d152a5369a6
+  ObjectMapper: b612bf8c8e99c4dc0bb6013a51f7c27966ed5da9
   SlideMenuControllerSwift: 021d6318201c53d4d4d3710517d43d6c556c7dd0
   TagListView: 669f7d4455003c877655875d34829731c4191528
   TPKeyboardAvoiding: cb69d5ddbe90ce0170e4bc2db1e5e41d4a3ad9a4
 
-PODFILE CHECKSUM: 2fabfc163d57a2a89648f47bc783c9be92b3a077
+PODFILE CHECKSUM: bfe96a92e0033200b33340bb6ced259cbc78d45a
 
-COCOAPODS: 1.5.0
+COCOAPODS: 1.5.3

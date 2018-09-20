@@ -40,7 +40,7 @@ class VOYAccountPresenter {
         let isThereOfflineData = !storageManager.getPendingCameraData().isEmpty
             || !storageManager.getPendingReports().isEmpty
 
-        let logoutMessage = isThereOfflineData ? localizedString(.areYouSurePending) : localizedString(.areYouSureEmpty)
+        let logoutMessage = isThereOfflineData ? localizedString(.areYouSurePending) : localizedString(.areYouSure)
         view?.showLogoutConfirmation(message: logoutMessage)
     }
 

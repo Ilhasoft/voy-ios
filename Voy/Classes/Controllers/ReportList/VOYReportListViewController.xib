@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -30,7 +30,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Z1Z-ub-iOy">
-                    <rect key="frame" x="40" y="80" width="295" height="29"/>
+                    <rect key="frame" x="20" y="80" width="335" height="29"/>
                     <segments>
                         <segment title="Approved"/>
                         <segment title="Pending"/>
@@ -91,7 +91,7 @@
             <constraints>
                 <constraint firstItem="McM-1T-NsW" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="2wR-Mr-xmY"/>
                 <constraint firstItem="McM-1T-NsW" firstAttribute="top" secondItem="Z1Z-ub-iOy" secondAttribute="bottom" constant="29" id="4VW-y2-4FK"/>
-                <constraint firstItem="Z1Z-ub-iOy" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="40" id="7Pc-HL-OLp"/>
+                <constraint firstItem="Z1Z-ub-iOy" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="7Pc-HL-OLp"/>
                 <constraint firstItem="T5j-cd-J1t" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="83k-zE-hWf"/>
                 <constraint firstItem="csj-pQ-hpO" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="9Eh-du-vHe"/>
                 <constraint firstItem="TkX-K4-otn" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" id="Atq-AV-cJ8"/>
@@ -99,7 +99,7 @@
                 <constraint firstItem="TkX-K4-otn" firstAttribute="top" secondItem="csj-pQ-hpO" secondAttribute="bottom" id="HcV-OS-Z4a"/>
                 <constraint firstItem="T84-3W-wTn" firstAttribute="top" secondItem="Z1Z-ub-iOy" secondAttribute="bottom" constant="20" id="HjE-DU-bMi"/>
                 <constraint firstItem="TkX-K4-otn" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="Jdx-Bi-zR3"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Z1Z-ub-iOy" secondAttribute="trailing" constant="40" id="R9M-Uv-iOg"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Z1Z-ub-iOy" secondAttribute="trailing" constant="20" id="R9M-Uv-iOg"/>
                 <constraint firstItem="csj-pQ-hpO" firstAttribute="top" secondItem="Z1Z-ub-iOy" secondAttribute="bottom" constant="20" id="Sb4-95-yVc"/>
                 <constraint firstItem="T84-3W-wTn" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="ZaD-yA-P38"/>
                 <constraint firstItem="TkX-K4-otn" firstAttribute="top" secondItem="T84-3W-wTn" secondAttribute="bottom" id="dFl-QE-sQr"/>

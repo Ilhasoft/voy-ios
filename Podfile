@@ -18,7 +18,7 @@ target 'Voy' do
     pod 'AXPhotoViewer'
     pod 'Alamofire'
     pod 'AlamofireImage', '~> 3.3'
-    pod 'ObjectMapper'
+    pod 'ObjectMapper', '3.3.0'
 
     target 'VoyTests' do
         inherit! :search_paths

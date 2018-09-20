@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -30,7 +30,7 @@
                     </constraints>
                 </imageView>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="BiI-uF-EOH">
-                    <rect key="frame" x="24" y="20" width="327" height="647"/>
+                    <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="Qx7-p8-Zg4"/>
@@ -52,10 +52,10 @@
                 <constraint firstItem="Dku-Zm-hCh" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="Eg2-4r-du6"/>
                 <constraint firstItem="Dku-Zm-hCh" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="aIX-1F-2fa"/>
                 <constraint firstItem="BiI-uF-EOH" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="fOH-Xe-APD"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="BiI-uF-EOH" secondAttribute="trailing" constant="24" id="h5I-Bk-4NW"/>
-                <constraint firstItem="BiI-uF-EOH" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="24" id="iYU-Wz-bmx"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="BiI-uF-EOH" secondAttribute="trailing" id="h5I-Bk-4NW"/>
+                <constraint firstItem="BiI-uF-EOH" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="iYU-Wz-bmx"/>
                 <constraint firstItem="Dku-Zm-hCh" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="iYk-XE-vHb"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="BiI-uF-EOH" secondAttribute="bottom" id="op4-vs-SaI"/>
+                <constraint firstAttribute="bottom" secondItem="BiI-uF-EOH" secondAttribute="bottom" id="op4-vs-SaI"/>
                 <constraint firstItem="rlH-jX-VHg" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="24" id="tOr-md-bEA"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>

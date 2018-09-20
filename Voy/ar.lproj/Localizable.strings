@@ -1,0 +1,101 @@
+/*
+ Localizable.strings
+ Voy
+
+ Created by Dielson Sales on 06/03/18.
+ Copyright © 2018 Ilhasoft. All rights reserved.
+ */
+
+// Shared
+"error" = "خطأ";
+"ok" = "موافق";
+"date_format" = "yyyy-MM-dd'T'HH:mm:ss.SSSSSSZ";
+"cancel" = "إلغاء";
+
+// Login Screen
+"hey" = "مرحبا!";
+"username" = "اسم المستخدم";
+"password" = "كلمة المرور";
+"login" = "تسجيل الدخول";
+"login_error_message" = "ربما كتبت اسم مستخدم أو كلمة المرور الخاطئة";
+"password_min_length_error" = "كلمة المرور يجب أن تكون على الأقل 6 أحرف";
+"do_you_want_to_logout" = "هل تريد تسجيل الخروج؟";
+
+// Theme List Screen
+"themes_list_header" = "أنت جزء %dمن المواضيع";
+
+// Reports List Screen
+"approved" = "تمت الموافقة عليه";
+"pending" = "بانتظار الموافقة";
+"not_approved" = "لم يتم الموافقة عليه";
+"hello" = "مرحبا!";
+"no_reports_yet" = "لم تقم بإنشاء أي تقرير بعد!";
+"great" = "رائع!";
+"great_job" = "عمل رائع!";
+"all_reports_approved" = "جميع مواضيعك تمت الموافقة عليها";
+"add_report" = "قم بإضافة تقرير";
+"you_have_no_unapproved_reports" = "لا يوجد لديك أي تقرير لم يتم الموافقة عليه";
+"you_have_x_reports_approved" = "لديك %d تقرير تمت الموافقة عليه";
+"you_have_x_reports_pending" = "لديك %d تقرير بانتظار الموافقة عليه";
+"you_have_x_reports_not_approved" = "لديك%dتقرير لم يتم الموافقة عليه";
+
+// Notifications Screen
+"notifications" = "إشعارات";
+"report_was_approved" = "تمت الموافقة على تقريرك";
+"comment_was_approved" = "يوجد تعليق جديد على تقريرك";
+"report_was_not_approved" = "تقريرك لم يتم الموافقة عليه";
+"comment_was_not_approved" = "تعليقك لم يتم الموافقة عليه";
+
+// Account Screen
+"account" = "حساب";
+"save" = "حفظ";
+"change" = "تغيير";
+"done" = "تم";
+"logout" = "تسجيل الخروج";
+"email" = "البريد الإلكتروني";
+"new_password" = "كلمة مرور جديدة";
+"are_you_sure" = "إذا قمت بتسجيل الخروج، جميع التقارير التي لم يتم حفظها سوف تخسرها، هل تريد المتابعة؟";
+"user_updated" = "لقد تم تحديث صفحتك الشخصية!";
+
+// Report Details
+"issues_reported" = "المشكلات التي تم الإبلاغ عنها في تقريرك";
+"edit_report" = "تحرير التقرير";
+"close" = "إغلاق";
+"comment" = "تعليق";
+"report" = "تقرير";
+"external_links" = "راوبط خارجية";
+"reported_a_problem" = "مرحبًا ، تحقق مما إضافته إلى خارطة في مجتمعي اليوم!%@";
+"error_getting_reports" = "حدث خطأ أثناء الحصول على التقارير";
+
+// Comments Screen
+"comments" = "تعليقات";
+"thanks" = "شكراًّ!";
+"comment_sent_to_moderation" = "تم ارسال موافقتك للإدارة، عند يتم الموافقة عليها سوف تظهر هنا.";
+"send" = "إرسال";
+"send_comment" = "أرسال التعليق";
+"remove" = "حذف";
+"error_removing_comment" = "واجهنا مشكلة في حذف هذا التعليق";
+"error_creating_comment" = "واجهنا مشكلة في إضافة التعليق الجديد";
+
+// Add Report
+"add_photos_and_videos" = "إضافة المزيد من الصور والفيديوهات";
+"movie" = "فيلم";
+"photo" = "صورة";
+"next" = "التالي";
+"alert" = "تحذير";
+"outside_themes_bounds" = "أنت خارج نطاق هذا الموضوع. لا يمكنك إنشاء تقرير.";
+"gps_permission_error" = "لا يوجد تصريح لتحديد المواقع";
+"need_gps_permission" = "عليك منح التطبيق الإذن لتحديد المواقع قبل إنشاء التقرير.";
+"we_are_preparing_this_theme_for_you" = "نقوم بإعداد هذا الموضوع لك ، يرجى العودة لاحقًا أو التواصل مع مشرفك!";
+"title_and_description" = "العنوان والوصف";
+"period_for_reports_has_ended" = "للأسف ، انتهت فترة تلقي التقارير الجديدة. شكرا لكم على جهودكم!";
+"title" = "عنوان";
+"description" = "وصف";
+"add_link" = "إضافة رابط";
+
+"add_tags" = "إضافة شعار";
+
+"offline_error" = "لا يمكن العثور على اتصال. التحقق من ذلك وحاول مرة أخرى";
+"getting_location" = "الحصول على موقعك";
+
+"thanks_for_reporting" = "شكرا على الإبلاغ! الرجاء العودة عندما تريد إضافة تقرير جديد.";
