@@ -19,6 +19,7 @@ class VOYReportListViewController: UIViewController, NVActivityIndicatorViewable
     @IBOutlet var tableViewNotApproved: DataBindOnDemandTableView!
     @IBOutlet var tableViews: [DataBindOnDemandTableView]!
     @IBOutlet var segmentedControl: UISegmentedControl!
+    @IBOutlet weak var viewInfoHeightConstraint: NSLayoutConstraint!
     var messageLabel: UILabel!
 
     static var sharedInstance: VOYReportListViewController?
@@ -55,6 +56,7 @@ class VOYReportListViewController: UIViewController, NVActivityIndicatorViewable
         messageLabel.isHidden = true
         edgesForExtendedLayout = []
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: " ", style: .plain, target: nil, action: nil)
+        viewInfo.isUserInteractionEnabled = false
         setupTableView()
         setupLocalization()
     }
@@ -104,6 +106,8 @@ class VOYReportListViewController: UIViewController, NVActivityIndicatorViewable
 
     func showInfoViewIfNecessary(tableView: DataBindOnDemandTableView) {
         if tableView.interactor?.objects.count == 0 {
+            viewInfoHeightConstraint.constant = messageLabel.frame.height + 9
+            viewInfo.layoutIfNeeded()
             switch self.segmentedControl.selectedSegmentIndex {
             case 0:
                 self.viewInfo.setupWith(titleAndColor: [localizedString(.hello): UIColor.voyBlue],
