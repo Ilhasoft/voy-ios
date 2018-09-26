@@ -37,7 +37,7 @@
 "you_have_no_unapproved_reports" = "Tu no has aprobado los reportes";
 "you_have_x_reports_approved" = "Tu tienes aprobado el %d de los reportes";
 "you_have_x_reports_pending" = "Tu tienes pendiente el %d de los reportes";
-"you_have_x_reports_not_approved" = "Tu tienes el %dde reportes no aprobados";
+"you_have_x_reports_not_approved" = "Tu tienes el %d de reportes no aprobados";
 
 // Notifications Screen
 "notifications" = "Notificación";
