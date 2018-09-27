@@ -42,6 +42,7 @@ class VOYUser: Mappable {
         var user: VOYUser?
         if let userDictionary = UserDefaults.standard.getArchivedObject(key: "user") as? [String: Any] {
             user = VOYUser(JSON: userDictionary)
+            user?.avatar = user?.avatar.replacingOccurrences(of: "http", with: "https")
         }
         return user
     }

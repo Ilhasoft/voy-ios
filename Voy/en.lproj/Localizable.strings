@@ -66,6 +66,7 @@
 "external_links" = "External Links";
 "reported_a_problem" = "Hey, check out what I mapped in my community today! %@";
 "error_getting_reports" = "There was an error while getting reports";
+"duplicated_link" = "You can't add the same link twice :(";
 
 // Comments Screen
 "comments" = "Comments";
