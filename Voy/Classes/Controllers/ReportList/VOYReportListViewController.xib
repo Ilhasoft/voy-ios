@@ -19,6 +19,7 @@
                 <outlet property="tableViewPending" destination="T5j-cd-J1t" id="eIx-40-HCZ"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outlet property="viewInfo" destination="McM-1T-NsW" id="kts-sN-ekm"/>
+                <outlet property="viewInfoHeightConstraint" destination="4VW-y2-4FK" id="0Pp-71-4o1"/>
                 <outletCollection property="tableViews" destination="T84-3W-wTn" collectionClass="NSMutableArray" id="uuh-Ja-3cT"/>
                 <outletCollection property="tableViews" destination="T5j-cd-J1t" collectionClass="NSMutableArray" id="VhP-xH-zTQ"/>
                 <outletCollection property="tableViews" destination="csj-pQ-hpO" collectionClass="NSMutableArray" id="T60-kr-K4y"/>
@@ -65,6 +66,13 @@
                         <userDefinedRuntimeAttribute type="string" keyPath="keyPath" value="results"/>
                     </userDefinedRuntimeAttributes>
                 </tableView>
+                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="McM-1T-NsW" customClass="VOYInfoView" customModule="Voy" customModuleProvider="target">
+                    <rect key="frame" x="16" y="137" width="343" height="326"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="326" id="ZB7-HE-swi"/>
+                    </constraints>
+                </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TkX-K4-otn">
                     <rect key="frame" x="0.0" y="610" width="375" height="57"/>
                     <color key="backgroundColor" red="0.0" green="0.79607843140000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -79,13 +87,6 @@
                         <action selector="btAddReportTapped:" destination="-1" eventType="touchUpInside" id="seX-0J-DVH"/>
                     </connections>
                 </button>
-                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="McM-1T-NsW" customClass="VOYInfoView" customModule="Voy" customModuleProvider="target">
-                    <rect key="frame" x="16" y="137" width="343" height="326"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="326" id="ZB7-HE-swi"/>
-                    </constraints>
-                </view>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
@@ -113,7 +114,7 @@
             </constraints>
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
-            <point key="canvasLocation" x="33.5" y="52.5"/>
+            <point key="canvasLocation" x="32.799999999999997" y="51.724137931034484"/>
         </view>
     </objects>
 </document>
