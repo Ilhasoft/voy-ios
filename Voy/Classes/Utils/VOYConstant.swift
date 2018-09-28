@@ -10,7 +10,7 @@ import UIKit
 
 struct VOYConstant {
     struct API {
-        static let URL = "http://voy.unicef.io/api/"
+        static let URL = "https://voy.unicef.io/api/"
 //        static let URL = "http://voy-dev.ilhasoft.mobi/api/"
         static let paginationSize = 50
         static let authHeader = "Authorization"
