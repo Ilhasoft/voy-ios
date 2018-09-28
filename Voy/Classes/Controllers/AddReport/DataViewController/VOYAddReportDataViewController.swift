@@ -101,6 +101,15 @@ class VOYAddReportDataViewController: UIViewController {
 
     @IBAction func btAddLinkTapped(_ sender: Any) {
         if !txtFieldLink.safeText.isEmpty && txtFieldLink.safeText.isValidURL {
+
+            guard !tbViewLinks.dataList
+                .contains( where: {
+                    ($0 as? String) == txtFieldLink.safeText })
+                else {
+                showDuplicatedLinkAlert()
+                return
+            }
+
             tbViewLinks.dataList.append(txtFieldLink.safeText)
             tbViewLinks.reloadData()
             txtFieldLink.text = ""
@@ -108,6 +117,15 @@ class VOYAddReportDataViewController: UIViewController {
                 self.btAddLink.alpha = 0.3
             })
         }
+    }
+
+    private func showDuplicatedLinkAlert() {
+        let alertInfoController = VOYAlertViewController(
+            title: localizedString(.error),
+            message: localizedString(.duplicatedLink),
+            buttonNames: [localizedString(.ok)]
+        )
+        alertInfoController.show(true, inViewController: self)
     }
 
     // MARK: - Localization

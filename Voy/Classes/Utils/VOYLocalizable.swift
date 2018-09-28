@@ -36,6 +36,7 @@ class VOYLocalizable {
         case description
         case done
         case doYouWantToLogout = "do_you_want_to_logout"
+        case duplicatedLink = "duplicated_link"
         case editReport = "edit_report"
         case externalLinks = "external_links"
         case email
