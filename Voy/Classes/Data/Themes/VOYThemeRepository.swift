@@ -23,8 +23,13 @@ class VOYThemeRepository: VOYThemesDataSource {
 
     func getProjects(forUser user: VOYUser, completion: @escaping ([VOYProject]) -> Void) {
         if reachability.hasNetwork() {
+
+            var urlSuffix = "projects/"
+            if let langCode = Locale.current.languageCode {
+                urlSuffix = "\(urlSuffix)?lang=\(langCode)"
+            }
             networkClient.requestObjectArray(
-                urlSuffix: "projects/",
+                urlSuffix: urlSuffix,
                 httpMethod: .get,
                 headers: networkClient.authorizationHeaders
             ) { (projects: [VOYProject]?, _) in
@@ -46,8 +51,13 @@ class VOYThemeRepository: VOYThemesDataSource {
                 completion([])
                 return
             }
+
+            var urlSuffix = "themes/?project=\(projectId)&user=\(userId)"
+            if let langCode = Locale.current.languageCode {
+                urlSuffix = "\(urlSuffix)&lang=\(langCode)"
+            }
             networkClient.requestObjectArray(
-                urlSuffix: "themes/?project=\(projectId)&user=\(userId)",
+                urlSuffix: urlSuffix,
                 httpMethod: .get
             ) { (themes: [VOYTheme]?, _) in
                 if let themes = themes {
