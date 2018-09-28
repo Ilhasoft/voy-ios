@@ -24,9 +24,9 @@ class VOYThemeRepository: VOYThemesDataSource {
     func getProjects(forUser user: VOYUser, completion: @escaping ([VOYProject]) -> Void) {
         if reachability.hasNetwork() {
 
-            var urlSuffix = "projects"
+            var urlSuffix = "projects/"
             if let langCode = Locale.current.languageCode {
-                urlSuffix = "\(urlSuffix)/?lang=\(langCode)"
+                urlSuffix = "\(urlSuffix)?lang=\(langCode)"
             }
             networkClient.requestObjectArray(
                 urlSuffix: urlSuffix,
